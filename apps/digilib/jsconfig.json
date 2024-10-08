@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/api/*" : ["pages/api/*"],
+      "@/assets/*" : ["assets/*"],
+      "@/components/*" : ["components/*"],
+      "@/graphql/*" : ["snippets/graphql/*"],
+      "@/hooks/*" : ["hooks/*"],
+      "@/layouts/*" : ["layouts/*"],
+      "@/lib/*" : ["lib/*"],
+      "@/snippets/*" : ["snippets/*"],
+      "@/styles/*" : ["styles/*"],
+      "@/context/*" : ["context/*"],
+    }
+  }
+}

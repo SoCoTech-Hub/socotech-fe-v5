@@ -1,0 +1,42 @@
+.banner-main-text {
+@apply desktop:text-5xl laptop:text-4xl mobile:text-3xl font-bold leading-tight text-black
+}
+
+.banner-subtext {
+@apply desktop:text-lg laptop:text-base mobile:text-base text-black  leading-tight
+}
+
+.heading {
+@apply desktop:text-2xl laptop:text-xl mobile:text-xl leading-tight text-black
+}
+
+.sub-heading {
+@apply desktop:text-lg laptop:text-sm mobile:text-sm text-black leading-tight
+}
+
+.menu-title {
+@apply font-semibold desktop:text-sm laptop:text-xs mobile:text-xs  text-black !important
+}
+
+.menu-name {
+@apply text-xs
+}
+
+.no-item-text {
+@apply text-xs
+}
+
+.body-text {
+@apply text-sm text-black break-words leading-tight
+}
+ul li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+ol li {
+    list-style-type: decimal;
+  list-style-position: inside;
+}
+
+

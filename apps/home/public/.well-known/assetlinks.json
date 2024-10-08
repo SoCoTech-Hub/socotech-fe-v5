@@ -1,0 +1,14 @@
+[
+	{
+	  "relation": ["delegate_permission/common.handle_all_urls"],
+	  "target": {
+		"namespace": "android_app",
+		"package_name": "za.co.topic.lms.twa",
+		"sha256_cert_fingerprints":[
+			"3C:7A:19:25:C0:14:07:4A:D6:FF:67:37:EC:77:67:CD:89:07:84:19:98:6B:73:DA:7E:C9:31:76:1A:6F:B6:5D", 
+			"92:23:6D:63:B0:43:99:34:16:6E:29:5E:19:7C:18:FF:E4:BF:04:36:50:1D:66:FA:42:82:F2:B8:F7:F6:DD:20",
+			"0E:A3:14:7E:33:DF:66:05:73:62:1C:E3:BA:77:B9:E4:24:6F:89:E4:EF:F0:AA:DF:02:28:0A:4C:5E:8E:21:B4",
+			"92:23:6D:63:B0:43:99:34:16:6E:29:5E:19:7C:18:FF:E4:BF:04:36:50:1D:66:FA:42:82:F2:B8:F7:F6:DD:20"]
+	  }
+	}
+  ]

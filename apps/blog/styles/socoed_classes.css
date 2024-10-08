@@ -1,0 +1,94 @@
+.banner-main-text {
+  @apply font-bold leading-tight text-colorMain desktop:text-5xl laptop:text-4xl mobile:text-3xl;
+}
+
+.banner-subtext {
+  @apply leading-tight text-colorMain desktop:text-lg laptop:text-base mobile:text-base;
+}
+
+.heading {
+  @apply leading-tight text-colorMain desktop:text-2xl laptop:text-xl mobile:text-xl;
+}
+
+.sub-heading {
+  @apply leading-tight text-colorMain desktop:text-lg laptop:text-sm mobile:text-sm;
+}
+
+.menu-title {
+  @apply desktop:text-sm laptop:text-xs mobile:text-xs  text-colorMain !important;
+}
+
+.menu-name {
+  @apply text-xs text-colorMain;
+}
+
+.no-item-text {
+  @apply text-xs text-colorMain;
+}
+
+.body-text {
+  @apply text-sm leading-tight break-words text-colorMain;
+}
+
+ul li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+ol li {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary {
+  background: blue;
+  color: white;
+}
+
+details[open] summary::after {
+  content: '-';
+}
+
+details[open] summary ~ * {
+  animation: slideDown 0.3s ease-in-out;
+}
+
+details[open] summary p {
+  opacity: 0;
+  animation-name: showContent;
+  animation-duration: 0.6s;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+  margin: 0;
+}
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: auto;
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+
+  to {
+    opacity: 1;
+    height: auto;
+  }
+}
+
+.text-colorMain {
+  color: #3c3c3b;
+}

@@ -1,0 +1,77 @@
+.threeBallsLoading {
+	position: relative;
+	display: inline-block;
+	z-index: 999;
+}
+.threeBallsLoading span,
+.threeBallsLoading span:nth-child(1),
+.threeBallsLoading span:nth-child(2) .threeBallsLoading span:nth-child(3) {
+	position: absolute;
+	top: auto;
+	width: 24px;
+	height: 24px;
+	background: #d6f379;
+	border-radius: 50%;
+	left: auto;
+}
+.threeBallsLoading span {
+	animation: bounce 1s infinite;
+	-webkit-animation: bounce 1s infinite;
+}
+.threeBallsLoading span:nth-child(1) {
+	left: 44px;
+	animation: bounce 1s infinite;
+	-webkit-animation: bounce 1s infinite;
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+.threeBallsLoading span:nth-child(2) {
+	left: 88px;
+	animation: bounce 1s infinite;
+	-webkit-animation: bounce 1s infinite;
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
+}
+
+.threeBallsLoading span:nth-child(3) {
+	left: 132px;
+	animation: bounce 1s infinite;
+	-webkit-animation: bounce 1s infinite;
+	-webkit-animation-delay: 0.6s;
+	animation-delay: 0.6s;
+}
+
+/* Animation */
+@keyframes bounce {
+	0% {
+		top: 0;
+		-webkit-animation-timing-function: ease-in;
+	}
+	40% {
+	}
+	50% {
+		top: 12px;
+		-webkit-animation-timing-function: ease-out;
+		width: 24px;
+	}
+	55% {
+		top: 20px;
+		-webkit-animation-timing-function: ease-in;
+		width: 26px;
+		height: 24px;
+	}
+	65% {
+		top: 4px;
+		-webkit-animation-timing-function: ease-out;
+		width: 24px;
+		height: 32px;
+	}
+	95% {
+		top: 0;
+		-webkit-animation-timing-function: ease-in;
+	}
+	100% {
+		top: 0;
+		-webkit-animation-timing-function: ease-in;
+	}
+}

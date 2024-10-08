@@ -1,0 +1,4 @@
+.ql-editor.ql-blank::before {
+	color: #ff0 !important; /* Replace with your desired color */
+	opacity: 1; /* Override any existing opacity settings */
+}

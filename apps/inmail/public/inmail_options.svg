@@ -1,0 +1,12 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 32 32"
+	style="enable-background:new 0 0 32 32" xml:space="preserve">
+	<style>
+		.ioisvg {
+			fill: #6b7074;
+			display: none
+		}
+	</style>
+	<circle class="ioisvg" cx="8.03" cy="16.25" r="3.33" />
+	<circle class="ioisvg" cx="16.37" cy="16.25" r="3.33" />
+	<circle class="ioisvg" cx="24.7" cy="16.25" r="3.33" />
+</svg>

@@ -1,0 +1,142 @@
+.banner-main-text {
+  @apply font-bold leading-tight desktop:text-5xl laptop:text-4xl mobile:text-3xl text-colorMain;
+}
+
+.banner-subtext {
+  @apply leading-tight desktop:text-lg laptop:text-base mobile:text-base text-colorMain;
+}
+
+.heading {
+  @apply leading-tight desktop:text-2xl laptop:text-xl mobile:text-xl text-colorMain;
+}
+
+.sub-heading {
+  @apply leading-tight desktop:text-lg laptop:text-sm mobile:text-sm text-colorMain;
+}
+
+.menu-title {
+  @apply font-semibold desktop:text-sm laptop:text-xs mobile:text-xs  text-colorMain !important;
+}
+
+.menu-name {
+  @apply text-xs text-colorMain;
+}
+
+.no-item-text {
+  @apply text-xs text-colorMain;
+}
+
+.body-text {
+  @apply text-sm leading-tight break-words text-colorMain;
+}
+
+ul li {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-left: 10px;
+}
+
+ol li {
+  list-style-type: decimal;
+  list-style-position: inside;
+  margin-left: 10px;
+}
+ol.roman li {
+  list-style-type: lower-roman;
+  list-style-position: inside;
+  margin-left: 10px;
+}
+
+.text-colorMain {
+  color: #3c3c3b;
+}
+.stepperContainer {
+  width: 100%;
+  z-index: 10;
+}
+
+nav {
+  z-index: 100;
+}
+
+.step {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* background-color: cream; */
+}
+
+.v-stepper {
+  position: relative;
+  z-index: 10;
+  /*   visibility: visible; */
+}
+
+/* regular step */
+.step .circle {
+  background-color: white;
+  border: 3px solid;
+  border-radius: 100%;
+  width: 20px; /* +6 for border */
+  height: 20px;
+  display: inline-block;
+  z-index: 10;
+  @apply border-white;
+}
+
+.step .line {
+  top: 20px;
+  left: 9px;
+  height: 120%;
+  position: absolute;
+  border-left: 3px solid;
+  z-index: 10;
+  @apply border-white;
+}
+
+.step.completed .circle {
+  visibility: visible;
+  z-index: 10;
+  /* background-color: rgb(6,150,215); */
+  /* border-color: rgb(6,150,215); */
+  @apply bg-themeColorMain border-themeColorMain;
+}
+
+.step.completed .line {
+  z-index: 10;
+  border-left: 3px solid;
+  @apply border-themeColorMain;
+}
+
+.step.active .circle {
+  z-index: 10;
+  visibility: visible;
+  /* border-color: rgb(6,150,215); */
+  @apply border-themeColorMain;
+}
+
+.step.empty .circle {
+  z-index: 10;
+  visibility: hidden;
+}
+
+.step.empty .line {
+  z-index: 10;
+  /*     visibility: hidden; */
+  /*   height: 150%; */
+  top: 0;
+  height: 150%;
+}
+
+.step:last-child .line {
+  border-left: 0px solid white;
+  z-index: -1;
+}
+
+.content {
+  margin-left: 20px;
+  display: inline-block;
+  margin-top: -5px;
+  color: '#fff';
+}

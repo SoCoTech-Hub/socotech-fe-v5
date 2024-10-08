@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "za.co.topic.lms.twa",
+        "sha256_cert_fingerprints": ["3C:7A:19:25:C0:14:07:4A:D6:FF:67:37:EC:77:67:CD:89:07:84:19:98:6B:73:DA:7E:C9:31:76:1A:6F:B6:5D", "A4:02:E4:70:1A:CC:89:44:93:D8:17:95:B4:96:AD:29:B7:68:7E:0D:48:77:54:4A:44:4F:9B:8E:1F:AB:63:41"]
+      }
+    }]

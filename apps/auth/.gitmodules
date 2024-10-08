@@ -1,0 +1,3 @@
+[submodule "socialo"]
+	path = socialo
+	url = https://github.com/Soco-Tech/socialo.git

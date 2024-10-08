@@ -1,0 +1,627 @@
+{
+	"id": "za.co.topic.lms.twa",
+	"short_name": "Topic",
+	"name": "Topic Learning Platform",
+	"start_url": "/auth/",
+	"display": "fullscreen",
+	"background_color": "#000",
+	"theme_color": "#000",
+	"permissions": {
+		"desktop-notification": {
+			"description": "Needed for creating system notifications."
+		}
+	},
+	"enableNotifications": true,
+	"enableSiteSettingsShortcut": true,
+	"isChromeOSOnly": false,
+	"icons": [
+		{
+			"src": "/auth/icons/windows11/SmallTile.scale-100.png",
+			"sizes": "71x71"
+		},
+		{
+			"src": "/auth/icons/windows11/SmallTile.scale-125.png",
+			"sizes": "89x89"
+		},
+		{
+			"src": "/auth/icons/windows11/SmallTile.scale-150.png",
+			"sizes": "107x107"
+		},
+		{
+			"src": "/auth/icons/windows11/SmallTile.scale-200.png",
+			"sizes": "142x142"
+		},
+		{
+			"src": "/auth/icons/windows11/SmallTile.scale-400.png",
+			"sizes": "284x284"
+		},
+		{
+			"src": "/auth/icons/windows11/Square150x150Logo.scale-100.png",
+			"sizes": "150x150"
+		},
+		{
+			"src": "/auth/icons/windows11/Square150x150Logo.scale-125.png",
+			"sizes": "188x188"
+		},
+		{
+			"src": "/auth/icons/windows11/Square150x150Logo.scale-150.png",
+			"sizes": "225x225"
+		},
+		{
+			"src": "/auth/icons/windows11/Square150x150Logo.scale-200.png",
+			"sizes": "300x300"
+		},
+		{
+			"src": "/auth/icons/windows11/Square150x150Logo.scale-400.png",
+			"sizes": "600x600"
+		},
+		{
+			"src": "/auth/icons/windows11/Wide310x150Logo.scale-100.png",
+			"sizes": "310x150"
+		},
+		{
+			"src": "/auth/icons/windows11/Wide310x150Logo.scale-125.png",
+			"sizes": "388x188"
+		},
+		{
+			"src": "/auth/icons/windows11/Wide310x150Logo.scale-150.png",
+			"sizes": "465x225"
+		},
+		{
+			"src": "/auth/icons/windows11/Wide310x150Logo.scale-200.png",
+			"sizes": "620x300"
+		},
+		{
+			"src": "/auth/icons/windows11/Wide310x150Logo.scale-400.png",
+			"sizes": "1240x600"
+		},
+		{
+			"src": "/auth/icons/windows11/LargeTile.scale-100.png",
+			"sizes": "310x310"
+		},
+		{
+			"src": "/auth/icons/windows11/LargeTile.scale-125.png",
+			"sizes": "388x388"
+		},
+		{
+			"src": "/auth/icons/windows11/LargeTile.scale-150.png",
+			"sizes": "465x465"
+		},
+		{
+			"src": "/auth/icons/windows11/LargeTile.scale-200.png",
+			"sizes": "620x620"
+		},
+		{
+			"src": "/auth/icons/windows11/LargeTile.scale-400.png",
+			"sizes": "1240x1240"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.scale-100.png",
+			"sizes": "44x44"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.scale-125.png",
+			"sizes": "55x55"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.scale-150.png",
+			"sizes": "66x66"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.scale-200.png",
+			"sizes": "88x88"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.scale-400.png",
+			"sizes": "176x176"
+		},
+		{
+			"src": "/auth/icons/windows11/StoreLogo.scale-100.png",
+			"sizes": "50x50"
+		},
+		{
+			"src": "/auth/icons/windows11/StoreLogo.scale-125.png",
+			"sizes": "63x63"
+		},
+		{
+			"src": "/auth/icons/windows11/StoreLogo.scale-150.png",
+			"sizes": "75x75"
+		},
+		{
+			"src": "/auth/icons/windows11/StoreLogo.scale-200.png",
+			"sizes": "100x100"
+		},
+		{
+			"src": "/auth/icons/windows11/StoreLogo.scale-400.png",
+			"sizes": "200x200"
+		},
+		{
+			"src": "/auth/icons/windows11/SplashScreen.scale-100.png",
+			"sizes": "620x300"
+		},
+		{
+			"src": "/auth/icons/windows11/SplashScreen.scale-125.png",
+			"sizes": "775x375"
+		},
+		{
+			"src": "/auth/icons/windows11/SplashScreen.scale-150.png",
+			"sizes": "930x450"
+		},
+		{
+			"src": "/auth/icons/windows11/SplashScreen.scale-200.png",
+			"sizes": "1240x600"
+		},
+		{
+			"src": "/auth/icons/windows11/SplashScreen.scale-400.png",
+			"sizes": "2480x1200"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-16.png",
+			"sizes": "16x16"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-20.png",
+			"sizes": "20x20"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-24.png",
+			"sizes": "24x24"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-30.png",
+			"sizes": "30x30"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-32.png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-36.png",
+			"sizes": "36x36"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-40.png",
+			"sizes": "40x40"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-44.png",
+			"sizes": "44x44"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-48.png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-60.png",
+			"sizes": "60x60"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-64.png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-72.png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-80.png",
+			"sizes": "80x80"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-96.png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.targetsize-256.png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-16.png",
+			"sizes": "16x16"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-20.png",
+			"sizes": "20x20"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-24.png",
+			"sizes": "24x24"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-30.png",
+			"sizes": "30x30"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-32.png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-36.png",
+			"sizes": "36x36"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-40.png",
+			"sizes": "40x40"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-44.png",
+			"sizes": "44x44"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-48.png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-60.png",
+			"sizes": "60x60"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-64.png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-72.png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-80.png",
+			"sizes": "80x80"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-96.png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-unplated_targetsize-256.png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-16.png",
+			"sizes": "16x16"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-20.png",
+			"sizes": "20x20"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-24.png",
+			"sizes": "24x24"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-30.png",
+			"sizes": "30x30"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-32.png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-36.png",
+			"sizes": "36x36"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-40.png",
+			"sizes": "40x40"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-44.png",
+			"sizes": "44x44"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-48.png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-60.png",
+			"sizes": "60x60"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-64.png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-72.png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-80.png",
+			"sizes": "80x80"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-96.png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "/auth/icons/windows11/Square44x44Logo.altform-lightunplated_targetsize-256.png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "/auth/icons/android/android-launchericon-512-512.png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "/auth/icons/android/android-launchericon-192-192.png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/auth/icons/android/android-launchericon-144-144.png",
+			"sizes": "144x144"
+		},
+		{
+			"src": "/auth/icons/android/android-launchericon-96-96.png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "/auth/icons/android/android-launchericon-72-72.png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "/auth/icons/android/android-launchericon-48-48.png",
+			"sizes": "48x48"
+		},
+		{ "src": "/auth/icons/ios/16.png", "sizes": "16x16" },
+		{ "src": "/auth/icons/ios/20.png", "sizes": "20x20" },
+		{ "src": "/auth/icons/ios/29.png", "sizes": "29x29" },
+		{ "src": "/auth/icons/ios/32.png", "sizes": "32x32" },
+		{ "src": "/auth/icons/ios/40.png", "sizes": "40x40" },
+		{ "src": "/auth/icons/ios/50.png", "sizes": "50x50" },
+		{ "src": "/auth/icons/ios/57.png", "sizes": "57x57" },
+		{ "src": "/auth/icons/ios/58.png", "sizes": "58x58" },
+		{ "src": "/auth/icons/ios/60.png", "sizes": "60x60" },
+		{ "src": "/auth/icons/ios/64.png", "sizes": "64x64" },
+		{ "src": "/auth/icons/ios/72.png", "sizes": "72x72" },
+		{ "src": "/auth/icons/ios/76.png", "sizes": "76x76" },
+		{ "src": "/auth/icons/ios/80.png", "sizes": "80x80" },
+		{ "src": "/auth/icons/ios/87.png", "sizes": "87x87" },
+		{ "src": "/auth/icons/ios/100.png", "sizes": "100x100" },
+		{ "src": "/auth/icons/ios/114.png", "sizes": "114x114" },
+		{ "src": "/auth/icons/ios/120.png", "sizes": "120x120" },
+		{ "src": "/auth/icons/ios/128.png", "sizes": "128x128" },
+		{ "src": "/auth/icons/ios/144.png", "sizes": "144x144" },
+		{ "src": "/auth/icons/ios/152.png", "sizes": "152x152" },
+		{ "src": "/auth/icons/ios/167.png", "sizes": "167x167" },
+		{ "src": "/auth/icons/ios/180.png", "sizes": "180x180" },
+		{ "src": "/auth/icons/ios/192.png", "sizes": "192x192" },
+		{ "src": "/auth/icons/ios/256.png", "sizes": "256x256" },
+		{ "src": "/auth/icons/ios/512.png", "sizes": "512x512" },
+		{ "src": "/auth/icons/ios/1024.png", "sizes": "1024x1024" }
+	],
+	"screenshots": [
+		{
+			"src": "/auth/screenshots/phone-01.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Lessons"
+		},
+		{
+			"src": "/auth/screenshots/phone-02.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Lesson Video"
+		},
+		{
+			"src": "/auth/screenshots/phone-03.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Blog"
+		},
+		{
+			"src": "/auth/screenshots/phone-04.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Homescreen"
+		},
+		{
+			"src": "/auth/screenshots/phone-05.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Profile settings"
+		},
+		{
+			"src": "/auth/screenshots/phone-06.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Quiz"
+		},
+		{
+			"src": "/auth/screenshots/phone-07.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Library"
+		},
+		{
+			"src": "/auth/screenshots/phone-08.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Mails"
+		},
+		{
+			"src": "/auth/screenshots/tablet-01.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Lessons"
+		},
+		{
+			"src": "/auth/screenshots/tablet-02.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Lesson Video"
+		},
+		{
+			"src": "/auth/screenshots/tablet-03.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Blog"
+		},
+		{
+			"src": "/auth/screenshots/tablet-04.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Homescreen"
+		},
+		{
+			"src": "/auth/screenshots/tablet-05.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Profile settings"
+		},
+		{
+			"src": "/auth/screenshots/tablet-06.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Quiz"
+		},
+		{
+			"src": "/auth/screenshots/tablet-07.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Library"
+		}
+	],
+	"related_applications": [
+		{
+			"platform": "play",
+			"url": "https://play.google.com/store/apps/details?id=za.co.topic.lms.twa"
+		}
+	],
+	"dir": "ltr",
+	"lang": "en",
+	"orientation": "any",
+	"display_override": ["window-controls-overlay"],
+	"prefer_related_applications": true,
+	"shortcuts": [
+		{
+			"name": "Dashboard",
+			"short_name": "Dashboard",
+			"url": "https://lms.topic.co.za/user/dashboard",
+			"description": "Access the latest news on Topic",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/DashboardIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Lessons",
+			"short_name": "Lessons",
+			"url": "https://lms.topic.co.za/lms",
+			"description": "Watch short lessons on a given Topic",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/lessons.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Mail",
+			"short_name": "Mail",
+			"url": "https://lms.topic.co.za/inmail",
+			"description": "View your Mails",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/InMailIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"short_name": "Blogs",
+			"url": "https://lms.topic.co.za/blog",
+			"description": "Indulge in blog brilliance that'll have you hooked from the first sentence",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/BlogIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Library",
+			"short_name": "Library",
+			"url": "https://lms.topic.co.za/digilib",
+			"description": "Dive into the Library and unlock a treasure trove of brain candy that'll make your neurons do a victory dance.",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/KnowledgeBaseIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "WhatsApp Support",
+			"short_name": "WhatsApp",
+			"url": "`https://wa.me/27799196543",
+			"description": "Need help on Topic, we are here to help you",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/WhatsAppIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Facebook",
+			"short_name": "Facebook",
+			"url": "https://www.facebook.com/profile.php?id=100095540883970",
+			"description": "See our Facebook Social Page",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/FacebookIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Instagram",
+			"short_name": "Instagram",
+			"url": "https://www.instagram.com/topic.education?fbclid=IwAR1WYgYgvoPU4MTH0DOqWcf-dbTtWdkG8ziCNGwUnFxKUZsy6OgYUJzoCdg",
+			"description": "See our Instagram Social Page",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/InstagramIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "TikTok",
+			"short_name": "TikTok",
+			"url": "https://www.tiktok.com/@topiceducation?is_from_webapp=1",
+			"description": "See our TikTok Social Page",
+			"icons": [
+				{
+					"src": "https://lms.topic.co.za/auth/svg/TikTokIcon.svg",
+					"type": "image/svg",
+					"purpose": "any"
+				}
+			]
+		}
+	],
+	"categories": ["business", "education", "finance", "government", "social"]
+}

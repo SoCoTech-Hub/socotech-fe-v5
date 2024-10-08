@@ -1,0 +1,45 @@
+.banner-main-text {
+  @apply font-bold leading-tight text-colorMain desktop:text-5xl laptop:text-4xl mobile:text-3xl;
+}
+
+.banner-subtext {
+  @apply leading-tight text-colorMain desktop:text-lg laptop:text-base mobile:text-base;
+}
+
+.heading {
+  @apply text-colorMain desktop:text-2xl laptop:text-xl mobile:text-xl;
+}
+
+.sub-heading {
+  @apply text-colorMain desktop:text-lg laptop:text-sm mobile:text-sm;
+}
+
+.menu-title {
+  @apply desktop:text-sm laptop:text-xs mobile:text-xs  text-colorMain !important;
+}
+
+.menu-name {
+  @apply text-xs text-colorMain;
+}
+
+.no-item-text {
+  @apply text-xs text-colorMain;
+}
+
+.body-text {
+  @apply text-sm leading-tight break-words text-colorMain;
+}
+
+ul li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+ol li {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+.text-colorMain {
+  color: #3c3c3b;
+}
