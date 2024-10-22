@@ -13,10 +13,10 @@ const index = ({
 	return (
 		<a href={`${baseUrl}${link}`}>
 			<div
-				className={`bg-compBg cursor-pointer rounded-lg shadow-menu h-full w-full`}
+				className={`bg-compBg cursor-pointer rounded-lg shadow-md h-full w-full`}
 			>
 				<div
-					className={`flex place-self-center rounded-lg rounded-t-lg`}
+					className={`flex place-self-center rounded-lg bg-auth shadow-sm`}
 					style={{
 						backgroundImage: `url(${background})`,
 						backgroundPosition: 'center',

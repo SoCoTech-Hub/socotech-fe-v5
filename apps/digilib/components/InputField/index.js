@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { EyeActiveIcon, EyeIcon, LockIcon } from '../SvgIcons'
+import { EyeActiveIcon, EyeIcon, LockIcon } from '@/components/SvgIcons'
 import { useDebounce } from '@/snippets/user/useDebounce'
 
 const InputField = ({

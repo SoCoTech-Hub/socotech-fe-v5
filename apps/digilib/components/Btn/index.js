@@ -7,56 +7,48 @@ const Btn = ({
 	color = 'current',
 	width = 'w-36',
 	textSize = 'text-xs',
-	// padding = "p-3",
 	fontWeight = 'normal',
-	trackingAction = '',
-	textColor = 'text-black'
+	trackingAction = ''
 }) => {
-	const font = `font-${fontWeight}`
-	const btnWidth = width
+	const font = fontWeight ? `font-${fontWeight}` : ''
 
 	if (link === null) {
 		return (
-			<div className='px-1 w-30'>
-				<button
-					data-tracking-action={trackingAction}
-					className={`${color} text-center ${textColor} px-3 justify-between py-2 rounded-full ${btnWidth} ${textSize} ${font}`}
-					onClick={onClickFunction}
-				>
-					{label}
-				</button>
-			</div>
+			<button
+				data-tracking-action={trackingAction}
+				className={`flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} ${font} ${color}`}
+				onClick={onClickFunction}
+			>
+				{label}
+			</button>
 		)
 	}
 	if (link.startsWith('http')) {
 		return (
-			<div className='px-1 w-30'>
-				<a href={link}>
-					<button
-						data-tracking-action={trackingAction}
-						className={`${color} text-center ${textColor} px-3 py-2 rounded-full ${btnWidth} ${textSize} ${font}`}
-					>
-						{label}
-					</button>
-				</a>
-			</div>
+			<a href={link}>
+				<button
+					data-tracking-action={trackingAction}
+					className={`flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} ${font} ${color}`}
+				>
+					{label}
+				</button>
+			</a>
 		)
 	}
 
 	return (
-		<div className='px-1 w-30'>
-			<Link
-				href={link}
-				passHref
+		<Link
+			href={link}
+			passHref
+		>
+			<button
+				className={`flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} ${font} ${color}`}
+				onClick={onClickFunction}
 			>
-				<button
-					className={`${color} text-center ${textColor} px-3 py-2 rounded-full ${btnWidth} ${textSize} ${font}`}
-					onClick={onClickFunction}
-				>
-					{label}
-				</button>
-			</Link>
-		</div>
+				{label}
+			</button>
+		</Link>
 	)
 }
+
 export default Btn

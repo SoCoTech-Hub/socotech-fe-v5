@@ -114,9 +114,9 @@ const subscribe = ({ product, user, url }) => {
 				<div className='w-full desktop:w-1/2 laptop:w-1/2 mobile:h-1/3'>
 					<div className='flex items-center w-full desktop:h-screen laptop:h-screen place-content-center'>
 						<img
-							src={product.image[0].url ?? `${mainUrl}/auth/auth-img.jpg`}
+							src={product.image[0].url ?? `${mainUrl}/auth/image.jpg`}
 							alt='Login Image'
-							className='mobile:hidden h-full object-cover object-center'
+							className='object-cover object-center h-full mobile:hidden'
 						/>
 					</div>
 				</div>
@@ -124,8 +124,8 @@ const subscribe = ({ product, user, url }) => {
 					<div className='flex items-center w-full desktop:h-screen laptop:h-screen place-content-center mobile:mx-1 mobile:-mt-4'>
 						<div className='my-10 desktop:w-3/5 mobile:w-10/12 desktop:my-0 laptop:w-3/5'>
 							<div className='pt-3 '>
-								<div className='text-4xl font-bold py-4'>{product.title}</div>
-								<div className='text-xl text-left align-left py-2'>
+								<div className='py-4 text-4xl font-bold'>{product.title}</div>
+								<div className='py-2 text-xl text-left align-left'>
 									{formatter.format(product.price)}
 									<span className='font-normal'> per month</span>
 								</div>

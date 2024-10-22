@@ -12,7 +12,7 @@ const AccordionSection = ({ id, question, answer, faqId, setFaqId }) => {
 			<div
 				onClick={Clicker}
 				style={{ cursor: 'pointer' }}
-				className='p-2 text-base text-black rounded-lg bg-themeColorMain'
+				className='p-2 text-base text-white rounded-lg bg-themeColorSecondary'
 			>
 				{question}
 				<div style={{ float: 'right' }}>
@@ -20,12 +20,9 @@ const AccordionSection = ({ id, question, answer, faqId, setFaqId }) => {
 				</div>
 			</div>
 			{faqId == id && (
-				<div className='p-2 border-2 rounded-lg border-themeColorMain text-textColor'>
+				<div className='p-2 border-2 rounded-lg border-themeColorSecondary text-textColor'>
 					<div label={question}>
-						<div
-							className=''
-							dangerouslySetInnerHTML={{ __html: answer }}
-						/>
+						<div dangerouslySetInnerHTML={{ __html: answer }} />
 					</div>
 				</div>
 			)}

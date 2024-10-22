@@ -3,19 +3,25 @@ export const checkRegisterCompletion = ({ profile }) => {
 	const registerRequiredFields = {
 		A: [
 			'dob',
+			// 'idNumber',
 			'mobileNr',
 			'gender'
 		],
-		// B: [
-		//   'addresses',
-		//   'addresses.addressLine1',
-		//   'addresses.town',
-		//   'addresses.province',
-		//   'addresses.contactNr',
-		// ],
+		B: [
+			'addresses',
+			'addresses.addressLine1',
+			'addresses.town',
+			'addresses.province'
+			// 'addresses.contactNr'
+		],
 		C: ['provinces.id', 'schools.id', 'grades.id'],
-		// D: ["serialNumber", "imei"],
-		// E: ['kins.userRelation', 'kins.firstName', 'kins.lastName', 'kins.mobileNr']
+		D: ['serialNumber', 'imei'],
+		E: [
+			'kins.userRelation',
+			'kins.firstName',
+			// 'kins.lastName',
+			'kins.mobileNr'
+		]
 	}
 
 	const registerCompleted = {}
@@ -49,7 +55,7 @@ export const checkRegisterCompletion = ({ profile }) => {
 
 	if (notCompleted.length) {
 		// Return the redirect to the first register phase not completed
-		return `/update`
+		return `/register${notCompleted[0].toLowerCase()}`
 	}
 
 	// If everything is filled properly, return the redirect to the user page

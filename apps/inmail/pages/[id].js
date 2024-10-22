@@ -13,9 +13,9 @@ import { useMutation, useQuery } from '@apollo/client'
 import InMailResponseID from 'graphql/queries/InMailResponseID'
 import DigilibLoad from '@/components/DigilibLoad'
 import InMailSetDeleted from 'graphql/mutations/InMailSetDeleted'
-import Head from 'next/head'
 import Custom404 from './404'
 import GetInMailUnreadChips from 'graphql/queries/GetInMailUnreadChips'
+import { SEO } from '@/components/SeoHead'
 
 export default function openMessage({ mail }) {
 	// const { setIsOpen, ...rest } = useTour()
@@ -79,66 +79,16 @@ export default function openMessage({ mail }) {
 	}
 
 	const seo = {
-		title: `Topic - ${mail?.subject ? mail?.subject : 'Untitled Subject'}`,
-		description: 'Topic - Inbox',
-		image: 'https://lms.topic.co.za/inmail/logo.png',
-		url: 'https://topic.co.za'
+		title: mail?.subject ? mail?.subject : 'Untitled Subject',
+		description: 'Inbox'
 	}
 
 	return (
 		<>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
 			<div className='row'>
 				<div className='desktop:w-1/4 laptop:w-1/4 mobile:hidden'>
 					<InMailMenu />

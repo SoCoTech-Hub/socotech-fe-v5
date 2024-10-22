@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Alert from '@/components/Alert'
@@ -11,19 +11,21 @@ import { baseUrl } from '@/context/constants'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import validateEmail from '@/snippets/auth/validateEmail'
 import RegisterUser2 from '@/snippets/auth/registerUser2'
-import AWSVideoPlayer from '@/components/VideoPlayer2'
-import VideoPlayer from '@/components/VideoPlayer'
-import Modal from '@/components/Modal'
 import getDataRequest from '@/snippets/getDataRequest'
+// import AWSVideoPlayer from '@/components/VideoPlayer2'
+// import VideoPlayer from '@/components/VideoPlayer'
+// import Modal from '@/components/Modal'
 
 const seo = {
 	title: 'Topic - Create Page',
-	description: 'Sign up for Topic and discover a new learning experience!',
-	image: 'https://lms.topic.co.za/auth/logo.png',
-	url: 'https://topic.co.za'
+	description: 'Sign up for Topic and discover a new learning experience!'
 }
 
-export default function ({ video }) {
+export default function Register(
+	{
+		/* video */
+	}
+) {
 	const router = useRouter()
 	const [userInput, setUserInput] = useState({
 		email: '',
@@ -33,91 +35,98 @@ export default function ({ video }) {
 	const [check, setCheck] = useState(true)
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
-	const [open, setOpen] = useState(true)
-	const [iframeSrc, setIframeSrc] = useState('')
 
-	useEffect(() => {
-		if (open && video?.url) {
-			// Use a small delay before setting the iframe src to help with autoplay
-			setTimeout(() => {
-				setIframeSrc(`${video.url}&autoplay=1&mute=0`)
-			}, 100) // Delay by 1 second
-		}
-	}, [open, video])
+	// const [open, setOpen] = useState(true)
+	// const [iframeSrc, setIframeSrc] = useState('')
 
-	const updateInput = (e, type) => {
-		setUserInput({
-			...userInput,
-			[type]: e.target.value
-		})
+	// useEffect(() => {
+	// 	if (open && video?.url) {
+	// 		// Use a small delay before setting the iframe src to help with autoplay
+	// 		setTimeout(() => {
+	// 			setIframeSrc(`${video.url}&autoplay=1&mute=0`)
+	// 		}, 100) // Delay by 1 second
+	// 	}
+	// }, [open, video])
+
+	const updateInput = (e) => {
+		const { name, value } = e.target
+		setUserInput((prevInput) => ({
+			...prevInput,
+			[name]: value
+		}))
 	}
 
 	const register = async () => {
 		setError('')
 		setLoading(true)
-		if (!userInput.email || !userInput.password || !userInput.confirm) {
-			setError(`All fields are required`)
+		const { email, password, confirm } = userInput
+
+		// Basic validation
+		if (!email || !password || !confirm) {
+			setError('All fields are required')
 			setLoading(false)
 			return
 		}
 		if (!check) {
-			setError(`Terms and conditions are required`)
+			setError('Terms and conditions are required')
 			setLoading(false)
 			return
 		}
-		if (userInput.password.length < 8) {
+		if (password.length < 8) {
 			setError('Password needs to be 8 or more characters long')
 			setLoading(false)
 			return
 		}
-
-		if (userInput.password !== userInput.confirm) {
-			setError(`Passwords don't Match`)
+		if (password !== confirm) {
+			setError(`Passwords don't match`)
 			setLoading(false)
 			return
 		}
 
-		const validEmail = await validateEmail({ email: userInput.email })
+		// Validate email
+		const validEmail = await validateEmail({ email })
 		if (validEmail?.error) {
 			setError('Email does not exist')
 			setLoading(false)
 			return
 		}
 
+		// Check if the account already exists
 		const { users } = await getGQLRequest({
 			endpoint: 'users',
 			fields: 'id',
-			where: `email:"${userInput.email}"`
+			where: `email:"${email}"`
 		})
-
 		if (users.length > 0) {
 			setError('Account already registered')
 			setLoading(false)
 			return
 		}
 
+		// Register user
 		const res = await RegisterUser2({
-			email: userInput.email,
-			password: userInput.password,
+			email,
+			password,
 			organization: { id: 1 }
 		})
 
 		if (!res.ok) {
-			setError('Something went wrong, Please verify if your email is correct')
+			setError('Something went wrong. Please verify if your email is correct')
 			setLoading(false)
 			return
 		}
+
 		setLoading(false)
-		return router.push('/verified')
+		router.push('/verified')
 	}
 
 	return (
 		<>
-			<Modal
+			{/* <Modal
 				open={open}
 				setOpen={setOpen}
 				children={
-					<div className='flex align-middle items-center justify-center'>
+					<div className='flex items-center justify-center align-middle'>
 						{iframeSrc ? (
 							<iframe
 								id='video-iframe'
@@ -139,106 +148,111 @@ export default function ({ video }) {
 						)}
 					</div>
 				}
-			/>
+			/> */}
 			<SEO seo={seo} />
 			<div className='flex justify-between gap-0 overflow-x-hidden'>
-				<div className='desktop:w-full laptop:w-1/2'>
-					<div className='relative flex items-center w-full desktop:h-screen laptop:h-screen'>
+				{/* Left section with image */}
+				<div className='relative flex items-center desktop:w-full laptop:w-1/2 desktop:h-screen laptop:h-screen'>
+					<img
+						src={`${baseUrl}/create-background.jpg`}
+						alt='Background'
+						className='absolute object-cover w-full h-full'
+					/>
+					<div className='absolute inset-0 flex items-center justify-center'>
 						<img
-							src={`${baseUrl}/regAssit0.jpg`}
-							alt='Background Image'
-							className='absolute object-cover w-full h-full'
+							src={`${baseUrl}/create-image.png`}
+							alt='Foreground'
+							className='object-contain h-2/3'
 						/>
-						<div className='absolute inset-0 flex items-center justify-center'>
-							<img
-								src={`${baseUrl}/regAssit1.png`}
-								alt='Foreground Image'
-								className='object-contain h-2/3'
-							/>
-						</div>
 					</div>
 				</div>
+				{/* Right section with form */}
 				<div className='w-full pt-16 ml-8 mobile:pt-4'>
 					<LogoOverlay />
 					<div className='mt-24 text-4xl text-textColor mobile:mt-8'>
 						Create
-						<br /> your account
+						<br />
+						your account
 					</div>
+
 					<form autoComplete='on'>
-						<div className='w-4/5 pt-2 '>
+						<div className='w-4/5 pt-2'>
 							<InputField
 								id='email'
+								name='email'
 								icon='ti-email'
 								placeholder='Your Email Address'
 								type='email'
-								onChange={(e) => updateInput(e, 'email')}
+								onChange={updateInput}
 							/>
 						</div>
-						<div className='flex desktop:flex-row laptop:flex-row mobile:flex-col'>
+
+						<div className='flex gap-1 desktop:flex-row laptop:flex-row mobile:flex-col'>
 							<div className='w-2/5 mobile:w-4/5'>
 								<InputField
 									id='password'
+									name='password'
 									icon='ti-lock'
 									placeholder='Password'
 									type='password'
-									onChange={(e) => updateInput(e, 'password')}
+									onChange={updateInput}
 								/>
 							</div>
-							<div className='mx-1'></div>
 							<div className='w-2/5 mobile:w-4/5'>
 								<InputField
-									id='repeatPassword'
+									id='confirm'
+									name='confirm'
 									icon='ti-lock'
 									placeholder='Confirm Password'
 									type='password'
-									onChange={(e) => updateInput(e, 'confirm')}
+									onChange={updateInput}
 								/>
 							</div>
 						</div>
-						<div className='flex flex-row h-10 mt-3 text-left align-middle mobile:mb-4'>
+
+						{/* Checkbox and Terms */}
+						<div className='flex items-center mt-3 mb-4 mobile:mb-4'>
 							<Checkbox
 								setter={setCheck}
 								value={check}
 							/>
-							<div className='text-sm mt-0.5 text-textColor '>
-								<span>I have read and agreed to the </span>
+							<div className='ml-2 text-sm text-textColor'>
+								I have read and agreed to the
 								<Link
 									href='/tou'
 									passHref
 								>
-									<a rel='noopener noreferrer'>
-										<span className='ml-1 font-bold underline cursor-pointer text-textHeading'>
-											Terms and Conditions
-										</span>
+									<a className='ml-1 font-bold underline text-textHeading'>
+										Terms and Conditions
 									</a>
 								</Link>
 							</div>
 						</div>
-						<div className='flex gap-3 desktop:flex-row laptop:flex-row mobile:flex-col '>
-							<Alert error={error} />
+
+						{/* Alert and Buttons */}
+						{error && <Alert error={error} />}
+						<div className='flex desktop:gap-x-3 laptop:gap-x-3 mobile:gap-y-3 desktop:flex-row laptop:flex-row mobile:flex-col'>
+							<BtnBig
+								label={loading ? 'Loading' : 'Register'}
+								disabled={loading}
+								color='bg-themeColorMain'
+								onClick={register}
+								width='w-48 mobile:w-60'
+							/>
+							<BtnBig
+								disabled={loading}
+								label='Register with Google'
+								color='bg-themeColorMain'
+								link={`${process.env.NEXT_PUBLIC_API_URL}/connect/google`}
+								width='w-58 mobile:w-60'
+							/>
 						</div>
-						<div className='flex gap-3 desktop:flex-row laptop:flex-row mobile:flex-col '>
-							<div className='w-2/5 mobile:w-5/6'>
-								<BtnBig
-									label={loading ? 'Loading' : 'Register'}
-									disabled={loading}
-									color='bg-themeColorMain'
-									onClick={register}
-								/>
-							</div>
-							<div className='w-2/5 mobile:w-5/6'>
-								<BtnBig
-									label='Register with Google'
-									color='bg-themeColorMain'
-									link={`${process.env.NEXT_PUBLIC_API_URL}/connect/google`}
-								/>
-							</div>
-						</div>
-						<div className='pt-4 text-sm text-textColor mobile:mb-5'>
+						{/* Already have an account */}
+						<div className='flex flex-row items-center my-3 text-sm text-textColor'>
 							Already have an account?
-							<span className='cursor-pointer text-themeColorMain'>
-								<Link href='/'>Login</Link>
-							</span>
+							<Link href='/'>
+								<a className='ml-1 font-semibold text-themeColorMain'>Login</a>
+							</Link>
 						</div>
 					</form>
 				</div>
@@ -248,10 +262,10 @@ export default function ({ video }) {
 }
 
 export async function getServerSideProps() {
-	const video = await getDataRequest('/register-pop-ups', () => {})
+	// const video = await getDataRequest('/register-pop-ups', () => {})
 	return {
 		props: {
-			video: video ? video[0] : video
+			// video: video ? video[0] : video
 		}
 	}
 }

@@ -1,4 +1,4 @@
 #update browsers list db
-npx browserslist@latest --update-db
+npx update-browserslist-db@latest
 #run
 yarn start

@@ -7,7 +7,7 @@ export const ImImportantIcon = (props) => {
 		>
 			<path
 				d='M3.1 6.9H17l7.3 7.4-7.4 7.4H3.1l7.6-7.6z'
-				fill='#2aaae2'
+				fill='#9aa3b3'
 				stroke='#4a5b7a'
 				strokeLinecap='round'
 				strokeLinejoin='round'

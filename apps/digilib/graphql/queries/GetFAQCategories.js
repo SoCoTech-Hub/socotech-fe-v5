@@ -9,9 +9,9 @@ const GetFAQCategories = gql`
 			image {
 				url
 			}
-			background {
-				url
-			}
+			# TODO: add background to api: background {
+			# 	url
+			# }
 		}
 	}
 `

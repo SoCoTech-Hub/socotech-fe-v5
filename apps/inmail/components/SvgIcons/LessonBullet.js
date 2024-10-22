@@ -8,7 +8,7 @@ export const LessonBullet = (props) => (
 			cx={3.6}
 			cy={3.6}
 			r={3}
-			fill='currentColor'
+			className='fill-textColor'
 		/>
 	</svg>
 )

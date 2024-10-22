@@ -1,58 +1,118 @@
-// import FilterDropdown from "@/components/FilterDropdown"
-// import { useAppContext } from '@/context/AppContext'
 import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import DigilibLoad from '@/components/DigilibLoad'
 import Btn from '@/components/Btn'
 import { profileId } from '@/context/constants'
 import { useRouter } from 'next/router'
-import getDataRequest from '@/snippets/getDataRequest'
 import Pagination from '@/components/Pagination'
+import getGQLRequest from '@/snippets/getGQLRequest'
+// import FilterDropdown from "@/components/FilterDropdown"
+// import { useAppContext } from '@/context/AppContext'
 
 const index = ({
 	articles,
 	category
 	// filters,
 }) => {
-	// const { state } = useAppContext()
 	const [loading, setLoading] = useState(false)
 	const [progresses, setReads] = useState([])
-	let pageSize = 10
 	const [currentPage, setCurrentPage] = useState(1)
-
+	const pageSize = 10
 	const router = useRouter()
-	useEffect(async () => {
-		await getDataRequest(
-			`/kb-reads?kbCategory=${category.id}&profile=${profileId}`,
-			setReads
-		)
-	}, [])
 
+	// Fetch read progress data
+	useEffect(() => {
+		const fetchProgressData = async () => {
+			await getGQLRequest({
+				endpoint: 'kbReads',
+				fields: 'read,knowledgeBase{id}',
+				where: `kbCategory:${category.id},profile:${profileId}`,
+				stateSetter: setReads
+			})
+		}
+		fetchProgressData()
+	}, [category.id])
+
+	// Reset page when articles change
+	useEffect(() => {
+		setCurrentPage(1)
+	}, [articles])
+
+	// Memoize the current page data
 	const currentTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * pageSize
 		const lastPageIndex = firstPageIndex + pageSize
 		return articles?.slice(firstPageIndex, lastPageIndex)
 	}, [currentPage, articles])
-	useEffect(() => {
-		setCurrentPage(1)
-	}, [articles])
+
+	// Helper function to render the progress status
+	const renderReadStatus = (articleId) => {
+		const progress = progresses.find(
+			(item) => item.knowledgeBase.id === articleId
+		)
+		return progress?.read ? 'Read' : 'Unread'
+	}
+
+	// Helper function to render the article row
+	const renderArticleRow = (article) => {
+		const link = article.link?.startsWith('http')
+			? article.link
+			: `/${article.link}`
+
+		return (
+			<Link
+				href={`/${article.id}`}
+				key={article.id}
+				passHref
+			>
+				<tr
+					onClick={() => setLoading(true)}
+					className='cursor-pointer'
+				>
+					<td className='w-1/2 px-8 py-4 text-sm text-textColor mobile:px-2 mobile:py-2'>
+						{article.name}
+					</td>
+					<td className='w-1/3 px-8 py-4 text-sm text-textColor mobile:hidden'>
+						{article.topics?.map((topic) => topic.name).join(', ') || ' '}
+					</td>
+					<td className='w-1/3 px-8 py-4 text-sm text-textColor desktop:hidden laptop:hidden'>
+						{article.topics?.map((topic) => topic.name).join(', ') || ' '}
+						<div
+							className={
+								renderReadStatus(article.id) == 'Read'
+									? 'text-themeColorMain'
+									: 'text-textColor'
+							}
+						>
+							{renderReadStatus(article.id)}
+						</div>
+					</td>
+					<td
+						className={`px-8 py-4 text-xs font-extrabold mobile:hidden w-1/12 ${
+							renderReadStatus(article.id) == 'Read'
+								? 'text-themeColorMain'
+								: 'text-textColor'
+						}`}
+					>
+						{renderReadStatus(article.id)}
+					</td>
+				</tr>
+			</Link>
+		)
+	}
 
 	return (
 		<div className='overflow-hidden rounded-lg shadow-md bg-compBg'>
-			<div className='flex justify-between desktop:gap-5 mobile:gap-2'>
+			<div className='flex justify-between gap-5 mobile:gap-2'>
 				<div className='pt-4 pb-3 pl-8 text-lg text-textColor mobile:pl-4'>
 					{category?.name}
 				</div>
 				<div className='mt-3 mr-6'>
-					<div className='buttonHover'>
-						<Btn
-							onClickFunction={() => router.back()}
-							label='Back'
-							color='bg-themeColorMain'
-							padding='px-3 py-2'
-							width='28'
-						/>
-					</div>
+					<Btn
+						label='Back'
+						color='bg-themeColorMain'
+						onClickFunction={() => router.back()}
+					/>
 				</div>
 				{/* <div className="">
           <FilterDropdown
@@ -74,10 +134,8 @@ const index = ({
         )} */}
 			</div>
 
-			<div className='ml-8 mr-8'>
-				<hr className='bg-compBg text-textColor' />
-			</div>
-			<div className=''>
+			<hr className='mx-8 bg-compBg text-textColor' />
+			<div className='mx-8 mobile:mx-1'>
 				<table className='w-full'>
 					<thead>
 						<tr>
@@ -95,198 +153,9 @@ const index = ({
 							</th>
 						</tr>
 					</thead>
-					<tbody>
-						{currentTableData?.map((article) => {
-							if (article.link) {
-								let link = ''
-								if (article.link.startsWith('http')) {
-									link = article.link
-								} else {
-									link = `/${article.link}`
-								}
-								return (
-									<Link
-										href={link}
-										key={article.id}
-										passHref
-									>
-										{/* <td className="px-8 py-4 text-xs font-extrabold text-gray-600 ">
-                        #{article.id}
-                      </td> */}
-										<tr
-											onClick={() => setLoading(true)}
-											className='cursor-pointer '
-										>
-											<td
-												style={{
-													width: '50%'
-												}}
-												className='px-8 py-4 text-sm text-textColor'
-											>
-												{article.name}
-											</td>
-											<td
-												style={{
-													width: '30%'
-												}}
-												className='px-8 py-4 text-sm text-textColor mobile:hidden'
-											>
-												{article.topics
-													? article.topics.map((topic) => topic.name).toString()
-													: ' '}
-											</td>
-											<td
-												style={{
-													width: '30%'
-												}}
-												className='px-8 py-4 text-sm text-textColor desktop:hidden laptop:hidden'
-											>
-												{article.topics
-													? article.topics.map((topic) => topic.name).toString()
-													: ' '}
-												<div
-													className={` ${
-														progresses[
-															progresses.findIndex(
-																(item) => item.knowledgeBase.id == article.id
-															)
-														]?.read
-															? 'text-digilibSeen'
-															: 'text-digilibUnseen'
-													}`}
-												>
-													{progresses[
-														progresses.findIndex(
-															(item) => item.knowledgeBase.id == article.id
-														)
-													]?.read
-														? 'Read'
-														: 'Unread'}
-												</div>
-											</td>
-											<td
-												style={{
-													width: '10%'
-												}}
-												className={`px-8 py-4 text-xs font-extrabold mobile:hidden ${
-													progresses[
-														progresses.findIndex(
-															(item) => item.knowledgeBase.id == article.id
-														)
-													]?.read
-														? 'text-digilibSeen'
-														: 'text-digilibUnseen'
-												}`}
-											>
-												{progresses[
-													progresses.findIndex(
-														(item) => item.knowledgeBase.id == article.id
-													)
-												]?.read
-													? 'Read'
-													: 'Unread'}
-											</td>
-										</tr>
-									</Link>
-								)
-							} else {
-								return (
-									<Link
-										href={`/${article.id}`}
-										passHref
-										key={article.id}
-									>
-										<tr
-											onClick={() => setLoading(true)}
-											className='cursor-pointer'
-										>
-											{/* <td className="px-8 py-4 text-xs font-extrabold text-gray-600 ">
-                        #{article.id}
-                      </td> */}
-											<td
-												style={{
-													width: '50%'
-												}}
-												className='px-8 py-4 text-textColor mobile:pl-4'
-											>
-												{article.name}
-											</td>
-											<td
-												style={{
-													width: '30%'
-												}}
-												className='px-8 py-4 text-textColor mobile:hidden'
-											>
-												{article.topics
-													? article.topics.map((topic) => topic.name).toString()
-													: ' '}
-											</td>
-											<td
-												style={{
-													width: '30%'
-												}}
-												className='px-8 py-4 text-textColor desktop:hidden laptop:hidden'
-											>
-												{article.topics
-													? article.topics.map((topic) => topic.name).toString()
-													: ' '}
-												<div
-													className={`${
-														progresses[
-															progresses.findIndex(
-																(item) => item.knowledgeBase.id == article.id
-															)
-														]?.read
-															? 'text-digilibSeen'
-															: 'text-digilibUnseen'
-													}`}
-												>
-													{progresses[
-														progresses.findIndex(
-															(item) => item.knowledgeBase.id == article.id
-														)
-													]?.read
-														? 'Read'
-														: 'Unread'}
-												</div>
-											</td>
-											<td
-												style={{
-													width: '10%'
-												}}
-												className={`px-8 py-4 text-xs font-extrabold mobile:hidden ${
-													progresses[
-														progresses.findIndex(
-															(item) => item.knowledgeBase.id == article.id
-														)
-													]?.read
-														? 'text-digilibSeen'
-														: 'text-digilibUnseen'
-												}`}
-											>
-												{progresses[
-													progresses.findIndex(
-														(item) => item.knowledgeBase.id == article.id
-													)
-												]?.read
-													? 'Read'
-													: 'Unread'}
-											</td>
-										</tr>
-									</Link>
-								)
-							}
-						})}
-					</tbody>
+					<tbody>{currentTableData?.map(renderArticleRow)}</tbody>
 				</table>
-				<div
-					className='desktop:flex laptop:flex'
-					style={{
-						display: '',
-						justifyContent: 'center',
-						alignItems: 'center'
-					}}
-				>
+				<div className='flex justify-center align-middle'>
 					<Pagination
 						className='pagination-bar'
 						currentPage={currentPage}
@@ -296,13 +165,7 @@ const index = ({
 					/>
 				</div>
 			</div>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center'
-				}}
-			>
+			<div className='flex justify-center mx-2 align-middle'>
 				<DigilibLoad loading={loading} />
 			</div>
 		</div>

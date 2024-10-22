@@ -27,7 +27,7 @@ export const SecondaryColor = Cookies.get("SecondaryColor")
 export const SecondaryColorDark = Cookies.get("SecondaryColorDark")
 export const Text = Cookies.get("Text")
 export const TextDark = Cookies.get("TextDark")
-export const TextHover = TextDark
+export const TextHover = PrimaryColor
 export const TextDarkHover = Text
 
 //Cookie Constants

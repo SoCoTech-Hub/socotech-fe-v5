@@ -20,12 +20,12 @@
 		}
 
 		.st4 {
-			fill: #D6F379;
+			fill: #81cc71;
 		}
 
 		.st5 {
 			fill: none;
-			stroke: #D6F379;
+			stroke: #81cc71;
 			stroke-width: 2;
 			stroke-miterlimit: 10;
 		}
@@ -65,7 +65,7 @@
 
 		.st14 {
 			fill: none;
-			stroke: #D6F379;
+			stroke: #81cc71;
 			stroke-miterlimit: 10;
 		}
 
@@ -120,7 +120,7 @@
 		</g>
 	</pattern>
 	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="34.3745" y1="34.2252" x2="7.9665" y2="7.8172">
-		<stop offset="0" style="stop-color:#D6F379" />
+		<stop offset="0" style="stop-color:#81cc71" />
 		<stop offset="1.529294e-02" style="stop-color:#D2F27A" />
 		<stop offset="0.2846" style="stop-color:#8CDC83" />
 		<stop offset="0.5273" style="stop-color:#55CA8B" />

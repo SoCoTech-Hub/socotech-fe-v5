@@ -80,7 +80,7 @@ const index = ({ articleList, setArticleList, organizationId, categoryId }) => {
 	}
 
 	return (
-		<div className='p-3 rounded-lg bg-compBg shadow-menu'>
+		<div className='p-3 rounded-lg shadow-md bg-compBg'>
 			<div className='mb-2 text-lg text-textColor mobile:mb-1'>Filter</div>
 			<div className='grid gap-2 place-items-stretch'>
 				{grades.length > 0 && (
@@ -135,21 +135,17 @@ const index = ({ articleList, setArticleList, organizationId, categoryId }) => {
 				)}
 			</div>
 			<div className='flex gap-5 pt-3 pb-2'>
-				<div className='flex flex-row justify-end w-full mobile:justify-center'>
-					<div>
-						<Btn
-							label='Clear Filters'
-							color='bg-themeColorMain'
-							onClickFunction={clearFilters}
-						/>
-					</div>
-					<div>
-						<Btn
-							label='Apply Filters'
-							color='bg-themeColorMain'
-							onClickFunction={applyFilters}
-						/>
-					</div>
+				<div className='flex flex-row justify-end w-full gap-x-2 mobile:justify-center'>
+					<Btn
+						label='Clear Filters'
+						color='bg-themeColorMain'
+						onClickFunction={clearFilters}
+					/>
+					<Btn
+						label='Apply Filters'
+						color='bg-themeColorMain'
+						onClickFunction={applyFilters}
+					/>
 				</div>
 			</div>
 		</div>

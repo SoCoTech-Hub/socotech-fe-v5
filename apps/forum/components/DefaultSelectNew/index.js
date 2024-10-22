@@ -1,16 +1,16 @@
-import { baseUrl } from '@/context/constants'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { CloseIcon as Close } from '@/components/SvgIcons'
 
 export default function DefaultSelectNew({
 	options,
 	id,
 	name,
-	className = 'w-full',
+	className = 'my-1 rounded-lg shadow-md ',
 	valueSetter,
 	placeholder = '',
 	isSearchField = false,
 	required = true,
-	value = null,
+	value = '',
 	valueKey = 'id'
 }) {
 	const [autocompleteValue, setAutocompleteValue] = useState({
@@ -20,10 +20,10 @@ export default function DefaultSelectNew({
 	const [showDropdown, setShowDropdown] = useState(false)
 
 	useEffect(() => {
-		if (!options.length || !value) {
+		if (!options?.length || !value) {
 			setAutocompleteValue({ option: null, inputValue: '' })
 		} else {
-			const selectedOption = options.find(
+			const selectedOption = options?.find(
 				(option) => option[valueKey] === value
 			)
 			setAutocompleteValue({
@@ -41,7 +41,7 @@ export default function DefaultSelectNew({
 		}))
 	}
 
-	const filteredOptions = options.filter((option) =>
+	const filteredOptions = options?.filter((option) =>
 		option.name
 			.toLowerCase()
 			.includes(autocompleteValue.inputValue.toLowerCase())
@@ -65,15 +65,17 @@ export default function DefaultSelectNew({
 	}
 
 	return (
-		<div className='relative desktop:my-2 laptop:my-2 mobile:my-1'>
+		<div
+			className='relative mt-2 rounded-md shadow-md'
+			onFocus={toggleDropdown}
+		>
 			<div className={className}>
 				<input
 					id={id}
 					type='text'
-					className='w-full p-3 text-textColor bg-compBg border-2 border-white cursor-pointer rounded-lg'
+					className='w-full p-3 border-2 border-white rounded-lg cursor-pointer bg-compbg text-textColor'
 					value={autocompleteValue.inputValue}
 					onChange={onSearchInputChange}
-					onClick={toggleDropdown}
 					autoComplete='off'
 					required={required}
 					placeholder={placeholder}
@@ -94,24 +96,22 @@ export default function DefaultSelectNew({
 					}
 				>
 					{autocompleteValue.inputValue ? (
-						<img
+						<Close
 							className='w-7 h-7'
-							src={`${baseUrl}/modal_close_topic.svg`}
-							alt='Close'
+							onClick={() => toggleDropdown()}
 						/>
 					) : (
 						''
 					)}
 				</button>
-				<div className='pl-2 border-1 border-black' />
 			</div>
 			{showDropdown && (
-				<div className='absolute z-10 w-full mt-2 text-textColor bg-compBg border-2 rounded-md shadow-md cursor-pointer overflow-y-scroll h-64'>
+				<div className='absolute z-10 w-full h-64 mt-2 overflow-y-scroll text-white border-2 rounded-md shadow-md cursor-pointer bg-themeColorSecondary'>
 					{filteredOptions.length > 0 ? (
 						filteredOptions.map((option) => (
 							<div
 								key={option[valueKey]}
-								className='p-2 cursor-pointer hover:bg-themeColorMain hover:text-black'
+								className='p-2 cursor-pointer hover:bg-themeColorMain hover:text-white'
 								onClick={() => onSelectOption(option)}
 							>
 								{option.name}

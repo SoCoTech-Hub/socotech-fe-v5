@@ -1,6 +1,6 @@
 import styles from './DigilibLoad.module.css'
 
-const DigilibLoad = ({ loading = false }) => {
+const DigilibLoad = ({ loading = true }) => {
 	return loading ? (
 		<div className='flex flex-row justify-center items-center'>
 			<div

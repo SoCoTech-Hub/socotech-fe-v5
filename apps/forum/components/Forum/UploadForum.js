@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import api from '@/api/api'
-import Alert from '../Alert'
-import Btn from '../Btn'
-import MdxEditor from '../MdxEditor/MdxEditor'
+import Alert from '@/components/Alert'
+import Btn from '@/components/Btn'
+import MdxEditor from '@/components/MdxEditor/MdxEditor'
 import { role, userId } from '@/context/constants'
 
 const UploadForum = () => {
@@ -48,7 +48,6 @@ const UploadForum = () => {
 				<div className='flex items-center justify-between'>
 					<h1 className='ml-2'>Create a New Topic</h1>
 					<Btn
-						className='text-black'
 						label='Back'
 						color='bg-themeColorMain'
 						link='/'
@@ -59,7 +58,7 @@ const UploadForum = () => {
 			<div className='flex flex-col'>
 				<div className='mx-2 my-3'>
 					<input
-						className='w-full py-2 pl-3 mx-auto rounded-lg bg-compBg'
+						className='w-full py-2 pl-3 mx-auto rounded-lg shadow-md bg-compBg'
 						type='text'
 						placeholder='Enter your title'
 						maxLength='74'

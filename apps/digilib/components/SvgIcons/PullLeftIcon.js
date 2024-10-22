@@ -9,8 +9,7 @@ export const PullLeftIcon = (props) => (
 		{...props}
 	>
 		<path
-			fill='currentColor'
-			stroke='currentColor'
+			className="fill-textColor stroke-textColor"
 			d='M432 18c-7.2 5.4-72 144-72 144l72 144V18zM432 306c-7.2 5.4-72 144-72 144l72 144V306zM432 594c-7.2 5.4-72 144-72 144l72 144V594z'
 		/>
 	</svg>

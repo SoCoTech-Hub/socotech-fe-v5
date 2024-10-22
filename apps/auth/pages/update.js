@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { gql } from '@apollo/client'
+import client from '@/api/apolloClient'
 import { baseUrl } from '@/context/constants'
 import Alert from '@/components/Alert'
 import Btn from '@/components/Btn'
@@ -14,7 +15,6 @@ import DefaultSelectNew from '@/components/DefaultSelectNew'
 import Overlay from '@/components/Overlay'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import updateUserDetails from '@/snippets/auth/updateUserDetails'
-import client from '@/api/apolloClient'
 import DatePickField from '@/components/DatePickField'
 
 export default function Update({ profile, grades, locations, genders }) {
@@ -45,12 +45,9 @@ export default function Update({ profile, grades, locations, genders }) {
 
 	useEffect(() => {
 		if (profile) {
-			const validNameCharacters = /^[A-Za-z-' ]+$/
 			setUserInput({
 				dob: profile.dob,
-				firstName: validNameCharacters.test(profile.firstName)
-					? profile.firstName
-					: '',
+				firstName: profile.firstName || '',
 				lastName: profile.lastName,
 				mobileNr: profile.mobileNr
 			})
@@ -62,7 +59,7 @@ export default function Update({ profile, grades, locations, genders }) {
 				profile?.schools.length > 0 ? profile.schools[0].district?.id : ''
 			)
 		}
-	}, [])
+	}, [profile])
 
 	useEffect(async () => {
 		if (location) {
@@ -73,6 +70,7 @@ export default function Update({ profile, grades, locations, genders }) {
 			})
 		}
 	}, [location])
+
 	useEffect(async () => {
 		if (region) {
 			await getGQLRequest({
@@ -82,6 +80,46 @@ export default function Update({ profile, grades, locations, genders }) {
 			})
 		}
 	}, [region])
+
+	const updateInput = (value, type) => {
+		setUserInput({
+			...userInput,
+			[type]: value
+		})
+	}
+
+	const updateUser = async () => {
+		setError('')
+		setLoading(true)
+
+		if (
+			!userInput.dob?.length ||
+			!userInput.firstName?.length ||
+			!userInput.lastName?.length ||
+			!userInput.mobileNr?.length
+		) {
+			setError('All fields are required')
+			setLoading(false)
+			return
+		}
+
+		const { error: errorMsg } = await updateUserDetails({
+			profileID: profile.id,
+			userInput: userInput,
+			grade: grade,
+			location: location,
+			school: school,
+			gender: gender
+		})
+
+		if (errorMsg) {
+			setError(errorMsg)
+			setLoading(false)
+			return
+		}
+		setLoading(false)
+		router.push('../user/userdashboard')
+	}
 
 	function isUnder18(dob) {
 		const today = new Date()
@@ -108,79 +146,26 @@ export default function Update({ profile, grades, locations, genders }) {
 		return age < 15
 	}
 
-	const updateInput = (value, type) => {
-		setUserInput({
-			...userInput,
-			[type]: value
-		})
-	}
-
-	const updateUser = async () => {
-		setError('')
-		setLoading(true)
-		if (
-			!userInput.dob?.length ||
-			!userInput.firstName?.length ||
-			!userInput.lastName?.length ||
-			!userInput.mobileNr?.length
-		) {
-			setError('All fields are required')
-			router.reload()
-			setLoading(false)
-			return
-		}
-		if (isUnderAge(userInput.dob)) {
-			setError('You are under age for our content')
-			setLoading(false)
-			return
-		}
-		if (!check && isUnder18(userInput.dob)) {
-			setError('Permissions from your Parents/Guardian is required')
-			setLoading(false)
-			return
-		}
-		if (userInput.mobileNr.includes('_')) {
-			setErrorMessages('Please provide your full cellphone number')
-			setLoading(false)
-			return
-		}
-		const { error: errorMsg } = await updateUserDetails({
-			profileID: profile.id,
-			userInput: userInput,
-			grade: grade,
-			location: location,
-			school: school,
-			gender: gender
-		})
-		if (errorMsg) {
-			setError(errorMsg)
-			setLoading(false)
-			return
-		}
-		setLoading(false)
-		router.push('../user/userdashboard')
-		return
-	}
-
 	return (
 		<div className='flex justify-between overflow-x-hidden min-h-svh g-0'>
+			{/* Left Section - Image */}
 			<div className='flex desktop:w-1/2 laptop:w-1/2'>
 				<div className='relative flex items-center justify-center w-full desktop:h-screen laptop:h-screen'>
 					<img
-						src={`${baseUrl}/createDetails.jpg`}
+						src={`${baseUrl}/update-background.jpg`}
 						alt='Background Login Image'
 						className='absolute object-cover w-full h-full'
 					/>
 					<div className='absolute inset-0 flex items-center justify-center'>
 						<img
-							src={`${baseUrl}/createDetails.png`}
-							alt='Login Image'
+							src={`${baseUrl}/update-image.png`}
+							alt='Update-Image'
 							className='object-contain h-screen'
 						/>
 					</div>
 				</div>
 			</div>
-
+			{/* Right Section - Form */}
 			<div className='w-1/2 pt-6 mx-10 mobile:mx-4 desktop:pt-16 mobile:w-full'>
 				<LogoOverlay />
 				<div className='flex flex-row justify-between pt-4 desktop:pt-6'>
@@ -219,10 +204,12 @@ export default function Update({ profile, grades, locations, genders }) {
 						/>
 					</div>
 				</div>
+				{/* Form Fields */}
 				<form
 					autoComplete='on'
 					className='flex mobile:flex-col desktop:flex-row laptop:flex-row'
 				>
+					{/* First Column */}
 					<div className='w-1/2 mr-3 desktop:flex laptop:flex desktop:flex-col laptop:flex-col mobile:w-full'>
 						<DatePickField
 							id='dob'
@@ -259,6 +246,7 @@ export default function Update({ profile, grades, locations, genders }) {
 							placeholder='Gender'
 						/>
 					</div>
+					{/* Second Column */}
 					<div className='desktop:flex laptop:flex desktop:flex-col laptop:flex-col w-1/2 desktop:mt-1 laptop:mt-1 mobile:-mt-1.5 mobile:w-full'>
 						<DefaultSelectNew
 							id='grade'
@@ -294,30 +282,27 @@ export default function Update({ profile, grades, locations, genders }) {
 						/>{' '}
 					</div>
 				</form>
+
 				{isUnder18(userInput.dob) && (
-					<div className='flex flex-row h-10 mt-3 text-left align-middle'>
+					<div className='flex items-center mt-3 mb-4 mobile:mb-4'>
 						<Checkbox
 							value={check}
 							setter={setCheck}
 						/>
-						<div className='text-sm mt-0.5 text-textColor '>
+						<div className='ml-2 text-sm text-textColor'>
 							<span>I have permission from my</span>
 							<Link
 								href='/'
 								passHref
 							>
-								<a
-									// target='_blank'
-									rel='noopener noreferrer'
-								>
-									<span className='ml-1 font-bold underline cursor-pointer text-textHeading'>
-										Parents/ Guardian
-									</span>
+								<a className='ml-1 font-bold underline text-textHeading'>
+									Parents/ Guardian
 								</a>
 							</Link>
 						</div>
 					</div>
 				)}
+				{/* Submit Button and Alerts */}
 				<div className=''>
 					<Alert error={error} />
 					<div

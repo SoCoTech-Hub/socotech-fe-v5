@@ -32,7 +32,7 @@ const Modal = ({ open = true, setOpen = () => {}, children }) => {
 								>
 									<img
 										className='w-8 h-8'
-										src={`${baseUrl}/modal_close_topic.svg`}
+										src={`${baseUrl}/close.svg`}
 										alt='Close'
 									/>
 								</button>

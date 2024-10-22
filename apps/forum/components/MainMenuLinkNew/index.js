@@ -64,7 +64,9 @@ const MainMenuLinkNew = ({
 							</div>
 							{title ? (
 								<div
-									className={` ${isActive ? 'text-black' : 'text-textColor'}`}
+									className={` ${
+										isActive ? 'text-textColor' : 'text-textColor'
+									}`}
 									style={{
 										textDecorationThickness: '2px'
 									}}
@@ -76,10 +78,10 @@ const MainMenuLinkNew = ({
 							)}
 							{badgeCount ? (
 								<div
-									className={`flex items-center w-6 h-6 ml-auto font-bold rounded-full ${
+									className={`flex items-center w-6 h-6 ml-auto rounded-full ${
 										isActive
-											? 'bg-compBg text-white'
-											: 'bg-themeColorMain text-black'
+											? 'bg-compBg text-textColorSecondary'
+											: 'bg-themeColorMain text-textColor'
 									}`}
 									style={{
 										height: '1.5rem',

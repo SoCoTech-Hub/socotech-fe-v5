@@ -1,11 +1,12 @@
+import { baseUrl, mainUrl } from '@/context/constants'
 import Head from 'next/head'
 
 export const SEO = ({ title, description, image, url }) => {
 	const seo = {
 		title: title ? title : 'Topic',
 		description: description ? description : 'Get ready to start!',
-		image: image ? image : 'https://lms.topic.co.za/logo.png',
-		url: url ? url : 'https://topic.co.za'
+		image: image ? image : `${mainUrl}${baseUrl}/logo.png`,
+		url: url ? url : mainUrl
 	}
 
 	return (

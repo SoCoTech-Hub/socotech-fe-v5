@@ -5,63 +5,60 @@ const Btn = ({
 	link = null,
 	onClickFunction,
 	color = 'current',
-	btnWidth = 'w-36',
-	rounded = 'rounded-full',
+	width = 'w-36',
 	textSize = 'text-xs',
-	// padding = "p-3",
-	paddingX='px-3',
-	paddingY='py-2',
 	fontWeight = 'normal',
-	trackingAction = '',
-	disabled = false
+	trackingAction = ''
 }) => {
-	const font = `font-${fontWeight}`
+	// Compose classes based on props
+	const btnClasses = `flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} font-${fontWeight} ${color}`
 
-	if (link === null) {
+	// Render button without link
+	if (!link) {
 		return (
-			<div className='px-1 w-30'>
-				<button
-					data-tracking-action={trackingAction}
-					className={`${color} text-center text-black ${paddingX} ${paddingY} ${rounded} ${btnWidth} ${textSize} ${font}`}
-					onClick={onClickFunction}
-					disabled={disabled}
-				>
-					{label}
-				</button>
-			</div>
+			<button
+				data-tracking-action={trackingAction}
+				className={btnClasses}
+				onClick={onClickFunction}
+				aria-label={label}
+			>
+				{label}
+			</button>
 		)
 	}
+
+	// Render anchor link for external URLs
 	if (link.startsWith('http')) {
 		return (
-			<div className='px-1 w-30'>
-				<a href={link}>
-					<button
-						data-tracking-action={trackingAction}
-						disabled={disabled}
-						className={`${color} text-center text-black ${paddingX} ${paddingY} ${rounded} ${btnWidth} ${textSize} ${font}`}
-					>
-						{label}
-					</button>
-				</a>
-			</div>
-		)
-	}
-
-	return (
-		<div className='px-1 w-30'>
-			<Link
+			<a
 				href={link}
-				passHref
+				aria-label={label}
 			>
 				<button
-					className={`${color} text-center text-black ${paddingX} ${paddingY} ${rounded} ${btnWidth} ${textSize} ${font}`}
-					onClick={onClickFunction}
-					disabled={disabled}
+					data-tracking-action={trackingAction}
+					className={btnClasses}
 				>
 					{label}
 				</button>
-			</Link>
-		</div>
+			</a>
+		)
+	}
+
+	// Render Next.js Link for internal routes
+	return (
+		<Link
+			href={link}
+			passHref
+		>
+			<button
+				className={btnClasses}
+				onClick={onClickFunction}
+				aria-label={label}
+			>
+				{label}
+			</button>
+		</Link>
 	)
 }
+
 export default Btn

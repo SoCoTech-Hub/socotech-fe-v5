@@ -12,24 +12,42 @@ module.exports = {
 			desktop: { min: '1441px' }
 		},
 		fontFamily: {
+			sans: ['Helvetica', 'ui-sans-serif', 'system-ui'],
+			serif: ['Helvetica', 'ui-serif', 'Georgia'],
+			mono: ['Helvetica', 'ui-monospace', 'SFMono-Regular'],
 			display: ['Helvetica'],
 			body: ['Helvetica', 'Open Sans']
 		},
+		fill: (theme) => ({
+			themeColorMain: theme('colors.themeColorMain'),
+			themeColorSecondary: theme('colors.themeColorSecondary'),
+			textColor: theme('colors.textColor'),
+			textColorSecondary: theme('colors.textColorSecondary')
+		}),
+		stroke: (theme) => ({
+			themeColorMain: theme('colors.themeColorMain'),
+			themeColorSecondary: theme('colors.themeColorSecondary'),
+			textColor: theme('colors.textColor'), 
+			textColorSecondary: theme('colors.textColorSecondary') 
+		}),
 		extend: {
 			colors: {
-				themeColorMain: '#D6F379',
-				themeColorSecondary: '#E5E5E5',
+				themeColorMain: '#81cc71',
+				themeColorSecondary: '#206969',
 				mainColor404: '#495B7A',
+				menuBlog: '#089DB0',
+				appBg: '#FAFBFD',
+				appBgDark: '#1c2234',
+				compBg: '#FFFFFF',
+				compBgDark: '#2b3143',
 				auth: '#D9DADD',
-				textColor: '#fff',
-				textColorSecondary: '#000000',
-				appBg: '#121212',
-				compBg: '#181818',
+				textColor: '#000000',
+				textColorSecondary: '#fff',
 				login: '#F8D833',
 				registerA: '#F8D833',
 				registerC: '#F4CED1',
 				registerE: '#6097E9',
-				textHeading: '#ccc'
+				textHeading: '#000000'
 			}
 		}
 	},

@@ -1,7 +1,7 @@
 const index = ({ title, description, image }) => (
 	<div
 		className='w-full desktop:p-4 laptop:p-4 mobile:p-2 card'
-		style={{ background: '#D6F379' }}
+		style={{ background: '#81cc71' }}
 	>
 		<div className='desktop:space-y-6 laptop:space-y-6 mobile:space-y-0'>
 			<div className='pr-10 mr-24 text-4xl font-bold leading-tight text-black mobile:mr-0 mobile:p-1 mobile:text-xl'>

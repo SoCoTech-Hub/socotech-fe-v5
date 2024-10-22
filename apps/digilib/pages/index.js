@@ -1,81 +1,32 @@
-import Head from 'next/head'
 import DigilibHelp from '@/components/DigilibHelp'
 import DigilibCategories from '@/components/DigilibCategories'
 import DigilibWelcome from '@/components/DigilibWelcome'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import { baseUrl } from '@/context/constants'
+import { SEO } from '@/components/SeoHead'
 
 const index = ({ categories, helpCategories }) => {
 	const seo = {
-		title: 'Topic - Digital Library Home Page',
-		description: 'Choose from different libraries!',
-		image: 'https://lms.topic.co.za/digilib/logo.png',
-		url: 'https://topic.co.za'
+		title: 'Digital Library Home Page',
+		description: 'Choose from different libraries!'
 	}
 
 	return (
 		<div className='col row mobile:mb-20'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
 
-			<div className='desktop:space-y-5 laptop:space-y-5 mobile:space-y-3'>
-				<div className=' desktop:block'>
+			<div className='flex flex-col desktop:gap-y-5 laptop:gap-y-5 mobile:gap-y-3'>
+				<div className='desktop:block'>
 					<DigilibWelcome categories={helpCategories} />
 				</div>
-				<div className='desktop:hidden laptop:hidden mobile:hidden'>
+				<div className='mobile:hidden'>
 					<DigilibHelp categories={helpCategories} />
 				</div>
 
-				<div className='grid grid-cols-3 desktop:gap-6 laptop:gap-6 mobile:gap-1 mobile:grid-cols-3 place-items-stretch mobile:overflow-x-scroll mobile:overflow-y-none'>
+				<div className='grid grid-cols-3 my-2 desktop:gap-6 laptop:gap-6 mobile:gap-1 mobile:overflow-x-scroll mobile:overflow-y-none'>
 					{categories?.map((category) => (
 						<DigilibCategories
 							img={category?.image?.url}
@@ -105,7 +56,7 @@ export async function getServerSideProps(context) {
 
 	const { kbCategories } = await getGQLRequest({
 		endpoint: 'kbCategories',
-		fields: 'id,name,description,image{url},bgColor,background{url}',
+		fields: 'id,name,description,image{url},bgColor',
 		where: `organization: { id: ${organizationId} }`
 	})
 

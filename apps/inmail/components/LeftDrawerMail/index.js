@@ -73,11 +73,11 @@ export default function LeftDrawer({ setMenu }) {
 
 	return (
 		<div>
-			<div className=''>
+			<div style={{ color: '#206969' }}>
 				<button
 					aria-label='leftSwipe'
 					onClick={toggleDrawer('left', true)}
-					className='w-8 h-8 mobile:px-1 text-textColor mt-0.5'
+					className='w-6 h-6 mt-3 mobile:px-1'
 				>
 					<div className=''>
 						<svg

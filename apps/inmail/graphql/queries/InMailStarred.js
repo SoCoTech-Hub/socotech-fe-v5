@@ -23,6 +23,7 @@ const InMailStarred = gql`
 				subject
 				body
 				created_at
+				updated_at
 				draft
 			}
 			read

@@ -1,16 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { Badge, IconButton, ListItemText } from '@mui/material'
-import { useStyles, StyledMenu, StyledMenuItem } from './styles'
 import {
 	NavBellIcon,
 	NavEventsIcon,
 	NavOptionsIcon
 } from '@/components/SvgIcons'
 import logout from '@/snippets/logout'
-// import getNotificationUnreadCount from '@/snippets/lms/getNotificationUnreadCount';
-// import getEventCount from '@/snippets/lms/getEventCount';
 import {
 	AppBg,
 	baseUrl,
@@ -19,65 +15,81 @@ import {
 	profileId,
 	ProfilePic,
 	Text,
-	organizationId
+	organizationId,
+	orgName
 } from '@/context/constants'
 import GetUserNotificationNavBar from 'graphql/queries/GetUserNotificationNavBar'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import RightSwipeDrawer from '@/components/RightSwipeDrawer'
 import Avatar from '@/components/Avatar'
+// import getNotificationUnreadCount from '@/snippets/lms/getNotificationUnreadCount';
+// import getEventCount from '@/snippets/lms/getEventCount';
 
-export const MainNavbar = ({
-	currentDate,
-	calendarEndDate
-	// notificationDate
-}) => {
-	const router = useRouter()
-	const { basePath } = router
-	const classes = useStyles()
+export const MainNavbar = () => {
+	const [open, setOpen] = useState(false)
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [notificationCount, setNotificationCount] = useState(0)
 	const [eventCount, setEventCount] = useState(0)
 	const [affiliate, setAffiliate] = useState(false)
-	const [open, setOpen] = useState(false)
+	// const currentDate = new Date().toISOString()
+	// const calendarEndDate = new Date(Date.now() + 86400000 * 7).toISOString()
+	// const notificationDate = new Date(Date.now() - 86400000).toISOString()
+	const router = useRouter()
+	const { basePath } = router
 
+	const currentDate = useMemo(() => new Date().toISOString(), [])
+	const calendarEndDate = useMemo(
+		() => new Date(Date.now() + 86400000 * 7).toISOString(),
+		[]
+	)
+
+	// GraphQL Query to get notifications and event counts
 	const { loading } = useQuery(GetUserNotificationNavBar, {
 		variables: {
 			profileID: profileId,
 			currentDate: currentDate,
-			// notificationDate: notificationDate,
 			calendarEndDate: calendarEndDate
+			// notificationDate: notificationDate,
 		},
 		onCompleted: (data) => {
-			setNotificationCount(
-				data?.notificationResponsesConnection?.aggregate?.count
-			)
-			setEventCount(data?.eventResponsesConnection?.aggregate?.count)
+			// Prevent unnecessary state updates
+			if (
+				data?.notificationResponsesConnection?.aggregate?.count !==
+				notificationCount
+			) {
+				setNotificationCount(
+					data?.notificationResponsesConnection?.aggregate?.count
+				)
+			}
+			if (data?.eventResponsesConnection?.aggregate?.count !== eventCount) {
+				setEventCount(data?.eventResponsesConnection?.aggregate?.count)
+			}
+			// setNotificationCount(
+			// 	data?.notificationResponsesConnection?.aggregate?.count
+			// )
+			// setEventCount(data?.eventResponsesConnection?.aggregate?.count)
 		}
 	})
-	useEffect(async () => {
-		const { affiliateSettings } = await getGQLRequest({
-			endpoint: 'affiliateSettings',
-			fields: 'isActive',
-			where: `organization:${organizationId}`
-		})
-		setAffiliate(affiliateSettings[0])
-	}, [])
 
-	// useEffect(async () => {
-	//   if (profileId) {
-	//     setNotificationCount(
-	//       await getNotificationUnreadCount({
-	//         profileId
-	//       })
-	//     );
-	//     setEventCount(await getEventCount({ profileId }));
-	//   }
-	// }, [profileId]);
+	// Fetch affiliate settings once
+	useEffect(() => {
+		const fetchAffiliateSettings = async () => {
+			const { affiliateSettings } = await getGQLRequest({
+				endpoint: 'affiliateSettings',
+				fields: 'isActive',
+				where: `organization:${organizationId}`
+			})
+			if (affiliateSettings && affiliateSettings[0]?.isActive !== affiliate) {
+				setAffiliate(affiliateSettings[0]?.isActive)
+			}
+		}
+		fetchAffiliateSettings()
+	}, [affiliate, organizationId])
 
 	return (
 		<>
 			<nav
-				className={`w-full mobile:h-20 h-24  shadow-md navbar navbar-light justify-content-between z-50 bg-navbarBg ${AppBg} ${Text}`}
+				className={`w-full mobile:h-20 h-24 shadow-md navbar navbar-light justify-content-between z-50 bg-navbarBg ${AppBg} ${Text}`}
 			>
 				<div className='flex flex-row align-items-center'>
 					<div className='pl-6 mobile:pl-4'>
@@ -93,182 +105,160 @@ export const MainNavbar = ({
 								src={Logo}
 								alt=''
 								className='h-14 mobile:h-8'
-								data-tracking-action='Click on Topic Logo'
+								data-tracking-action={`Click on ${orgName} Logo`}
 							/>
 						</a>
 					</div>
 				</div>
+
 				<div className='flex flex-row ml-auto mr-4 space-x-4 align-middle mobile:mr-2 mobile:space-x-1.5 align-items-center'>
+					{/* Notifications */}
 					<div
-						className='desktop:px-3 laptop:px-3'
+						className='relative desktop:px-3 laptop:px-3'
 						data-tour='notifications'
 					>
-						<IconButton
-							aria-label='notifications'
+						<a
 							href={
 								basePath == '/support'
 									? '/support/notifications'
 									: `${mainUrl}/support/notifications`
 							}
-							className={classes.margin}
-							size='small'
+							aria-label='notifications'
 						>
-							{!loading && notificationCount > 0 ? (
-								<Badge
-									variant='dot'
-									color='error'
-								>
-									<NavBellIcon className='w-8 mobile:w-6 text-themeColorMain' />
-								</Badge>
-							) : (
-								<>
-									<NavBellIcon className='w-8 mobile:w-6 text-themeColorMain' />
-								</>
-							)}
-						</IconButton>
+							<button className='relative w-8 h-8 focus:outline-none'>
+								{!loading && notificationCount > 0 && (
+									<span className='absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full'></span>
+								)}
+								<NavBellIcon className='w-8 mobile:w-6 text-themeColorMain' />
+							</button>
+						</a>
 					</div>
+
+					{/* Events */}
 					<div
-						className='desktop:px-3 laptop:px-3'
+						className='relative desktop:px-3 laptop:px-3'
 						data-tour='events'
 					>
-						<IconButton
-							aria-label='events'
+						<a
 							href={
 								basePath == '/user'
 									? `${baseUrl}/events`
 									: `${mainUrl}/user/events`
 							}
-							className={classes.margin}
-							size='small'
+							aria-label='events'
 						>
-							{!loading && eventCount > 0 ? (
-								<Badge
-									variant='dot'
-									color='error'
-								>
-									<NavEventsIcon className='w-8 mobile:w-6 text-themeColorMain' />
-								</Badge>
-							) : (
-								<>
-									<NavEventsIcon className='w-8 mobile:w-6 text-themeColorMain' />
-								</>
-							)}
-						</IconButton>
+							<button className='relative w-8 h-8 focus:outline-none'>
+								{!loading && eventCount > 0 && (
+									<span className='absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full'></span>
+								)}
+								<NavEventsIcon className='w-8 mobile:w-6 text-themeColorMain' />
+							</button>
+						</a>
 					</div>
+
+					{/* Settings Dropdown */}
 					<div
-						className='cursor-pointer desktop:px-3 laptop:px-3'
+						className='relative cursor-pointer desktop:px-3 laptop:px-3'
 						data-tour='options'
 					>
-						<NavOptionsIcon
-							className='w-8 mobile:w-6 text-themeColorMain'
-							onClick={(e) => setAnchorEl(e.currentTarget)}
-						/>
-						<StyledMenu
-							id='customized-menu'
-							anchorEl={anchorEl}
-							keepMounted
-							open={Boolean(anchorEl)}
-							onClose={() => setAnchorEl(null)}
+						<button
+							className='w-8 mobile:w-6 text-themeColorMain focus:outline-none'
+							onClick={() => setAnchorEl(!anchorEl)}
 						>
-							<div className='ml-4 text-2xl'>Settings</div>
+							<NavOptionsIcon />
+						</button>
 
-							{affiliate?.isActive && (
-								<StyledMenuItem>
-									<div className='my-2'>
+						{anchorEl && (
+							<div className='absolute right-0 w-40 mt-2 rounded-lg shadow-lg bg-compBg text-textColor'>
+								<div className='mt-2 ml-4 text-2xl'>Settings</div>
+
+								{affiliate && (
+									<div className='py-2'>
 										<a
 											href={
 												basePath == '/user'
 													? '/user/affiliate'
 													: `${mainUrl}/user/affiliate`
 											}
+											className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 										>
-											<ListItemText primary='Affiliate Program' />
+											Affiliate Program
 										</a>
 									</div>
-								</StyledMenuItem>
-							)}
-							<StyledMenuItem>
-								<div className='my-2'>
-									<button onClick={logout}>
-										<ListItemText primary='Logout' />
+								)}
+
+								<div className='py-2'>
+									<button
+										onClick={logout}
+										className='block w-full px-4 py-2 text-sm text-left text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
+									>
+										Logout
 									</button>
 								</div>
-							</StyledMenuItem>
-							<div className='py-1'>
-								<hr />
-							</div>
-							<StyledMenuItem>
-								<div className='my-2'>
+
+								<div className='py-1 border-t'>
 									<a
 										href={`${mainUrl}/auth/tou`}
-										rel='noreferrer'
+										className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 									>
-										<ListItemText primary='Terms of Use' />
+										Terms of Use
 									</a>
 								</div>
-							</StyledMenuItem>
-							<StyledMenuItem>
-								<div className='my-2'>
+								<div className='py-1'>
 									<a
 										href={`${mainUrl}/auth/safeguard`}
-										rel='noreferrer'
+										className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 									>
-										<ListItemText primary='Safeguard Policy' />
+										Safeguard Policy
 									</a>
 								</div>
-							</StyledMenuItem>
-							<StyledMenuItem>
-								<div className='my-2'>
+								<div className='py-1'>
 									<a
 										href={`${mainUrl}/auth/copyright`}
-										rel='noreferrer'
+										className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 									>
-										<ListItemText primary='Copyright' />
+										Copyright
 									</a>
 								</div>
-							</StyledMenuItem>
-							<StyledMenuItem>
-								<div className='my-2'>
+								<div className='py-1'>
 									<a
 										href={`${mainUrl}/auth/privacy`}
-										rel='noreferrer'
+										className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 									>
-										<ListItemText primary='Privacy' />
+										Privacy
 									</a>
 								</div>
-							</StyledMenuItem>
-							<StyledMenuItem>
-								<div className='my-2'>
+								<div className='py-1'>
 									<a
 										href={`${mainUrl}/auth/payment`}
-										rel='noreferrer'
+										className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 									>
-										<ListItemText primary='Payment' />
+										Payment
 									</a>
 								</div>
-							</StyledMenuItem>
-							<StyledMenuItem>
-								<div className='my-2'>
+								<div className='py-1'>
 									<a
-										rel='noreferrer'
 										href={
 											basePath == '/user'
 												? '/user/accountSettings'
 												: `${mainUrl}/user/accountSettings`
 										}
+										className='block px-4 py-2 text-sm text-textColor hover:bg-themeColorMain hover:text-textColorSecondary'
 									>
-										<ListItemText primary='Account Settings' />
+										Account Settings
 									</a>
 								</div>
-							</StyledMenuItem>
-						</StyledMenu>
+							</div>
+						)}
 					</div>
+
 					<div className='desktop:hidden laptop:hidden'>
 						<RightSwipeDrawer
 							open={open}
 							setOpen={setOpen}
 						/>
 					</div>
+
 					<div className='desktop:px-3 laptop:px-3'>
 						<a href={basePath == '/user' ? '/user' : `${mainUrl}/user`}>
 							<Avatar

@@ -2,16 +2,16 @@ export const checkRegisterCompletion = ({ profile }) => {
 	// Define the required fields for each step of the registration process
 	const registerRequiredFields = {
 		A: ['dob', 'mobileNr', 'gender'],
-		// B: [
-		//   'addresses',
-		//   'addresses.addressLine1',
-		//   'addresses.town',
-		//   'addresses.province',
-		//   'addresses.contactNr',
-		// ],
-		C: ['provinces.id', 'schools.id', 'grades.id']
-		// D: ["serialNumber", "imei"],
-		// E: ['kins.userRelation', 'kins.firstName', 'kins.lastName', 'kins.mobileNr']
+		B: [
+			'addresses',
+			'addresses.addressLine1',
+			'addresses.town',
+			'addresses.province',
+			'addresses.contactNr'
+		],
+		C: ['provinces.id', 'schools.id', 'grades.id'],
+		D: ['serialNumber', 'imei'],
+		E: ['kins.userRelation', 'kins.firstName', 'kins.lastName', 'kins.mobileNr']
 	}
 
 	const registerCompleted = {}

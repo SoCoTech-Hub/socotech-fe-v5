@@ -1,43 +1,36 @@
-import api from "@/api/api"
-import getDataRequest from "@/snippets/getDataRequest"
+import api from '@/api/api'
+import getGQLRequest from '../getGQLRequest'
 
-const handleArticleSave = async ({
-  id,
-  article,
-  setSavedArticlesList = () => {},
-}) => {
-  const res = await getDataRequest(`/saved-articles?profile=${id}`, () => {})
-  try {
-    let articles = []
-    if (res.length > 0) {
-      const articleslist = res[0].articles
-      articleslist.push(article)
-      await api
-        .put(`/saved-articles/${res[0].id}`, {
-          articles: articleslist,
-        })
-        .then((response) => {
-          setSavedArticlesList(response.data.articles)
+const handleArticleSave = async ({ id, article }) => {
+	try {
+		// Fetch saved articles for the profile
+		const { savedArticles } = await getGQLRequest({
+			endpoint: 'savedArticles',
+			fields: 'id,articles{id,title,description,image{url}}',
+			where: `profile:"${id}"`
+		})
 
-          articles = response.data.articles
-        })
-    } else {
-      await api
-        .post(`/saved-articles/`, {
-          profile: { id: id },
-          articles: article,
-        })
-        .then((response) => {
-          setSavedArticlesList(response.data.articles)
-          articles = response.data.articles
-        })
-    }
-    return {
-      articles: articles,
-    }
-  } catch (err) {
-    return err
-  }
+		if (savedArticles.length > 0) {
+			// If there are saved articles, add the new article to the list
+			const articlesList = [...savedArticles[0].articles, article]
+			// Update the existing saved articles entry
+			await api.put(`/saved-articles/${savedArticles[0].id}`, {
+				articles: articlesList
+			})
+			return articlesList
+		} else {
+			// If no saved articles, create a new entry
+			const res = await api.post(`/saved-articles/`, {
+				profile: { id: id },
+				articles: [article]
+			})
+			return res
+		}
+	} catch (err) {
+		return {
+			error: err.message || 'An error occurred while saving the article.'
+		}
+	}
 }
 
 export default handleArticleSave

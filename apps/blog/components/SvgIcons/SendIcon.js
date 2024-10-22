@@ -1,7 +1,7 @@
 export const SendIcon = (props) => (
 	<svg
-		id='Layer_2'
-		data-name='Layer 2'
+		id='SendIcon'
+		data-name='SendIcon'
 		xmlns='http://www.w3.org/2000/svg'
 		viewBox='0 0 27.26 27.26'
 		{...props}
@@ -11,27 +11,26 @@ export const SendIcon = (props) => (
 				{`
       .si-1 {
         fill: none;
-        stroke: #fff;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 2px;
+        strokeLinecap: round;
+        strokeLinejoin: round;
+        strokeWidth: 2px;
       }`}
 			</style>
 		</defs>
 		<g
-			id='Layer_1-2'
-			data-name='Layer 1'
+			id='SendIcon_1-2'
+			data-name='SendIcon 1'
 		>
 			<g id='Section'>
 				<g id='Icon-10'>
 					<path
 						id='Path-9'
-						className='si-1'
+						className='si-1 stroke-themeColorSecondary'
 						d='m26.26,1l-13.89,13.89'
 					/>
 					<path
 						id='Path-10'
-						className='si-1'
+						className='si-1 stroke-themeColorSecondary'
 						d='m26.26,1l-8.84,25.26-5.05-11.37L1,9.84,26.26,1Z'
 					/>
 				</g>

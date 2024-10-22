@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import LogoOverlay from '@/components/LogoOverlay'
 import Btn from '@/components/Btn'
+import { SEO } from '@/components/SeoHead'
 
 const copyright = () => {
 	const router = useRouter()
@@ -19,61 +20,14 @@ const copyright = () => {
 	}
 	return (
 		<>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
-
+			<SEO
+				title={seo.title}
+				description={seo.description}
+				image={seo.image}
+				url={seo.url}
+			/>
 			<div className='overflow-scroll desktop:p-4 laptop:p-4 mobile:p-1 bg-appBg desktop:h-full laptop:h-full mobile:h-full no-scrolly'>
-				<div className=''>
+				<div className='mt-4 ml-2'>
 					<LogoOverlay />
 				</div>
 				<div className='rounded-lg desktop:p-4 laptop:p-4 mobile:p-1 bg-compBg desktop:mt-28 laptop:mt-20 mobile:mt-8 drop-shadow-md no-scrolly'>

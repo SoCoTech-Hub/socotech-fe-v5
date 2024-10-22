@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import SplashScreen from '@/components/SplashScreen'
+// import SplashScreen from '@/components/SplashScreen'
 import FaviconList from '@/snippets/faviconList'
-import { baseUrl } from '@/context/constants'
+import { baseUrl, domain } from '@/context/constants'
 class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const initialProps = await Document.getInitialProps(ctx)
@@ -21,8 +21,9 @@ class MyDocument extends Document {
 						href={`${baseUrl}/manifest.json`}
 						rel='manifest'
 					/>
-					{FaviconList.map((x) => (
+					{FaviconList.map((x, i) => (
 						<link
+							key={`link-${i}`}
 							href={x.src}
 							rel='icon'
 							type='image/png'
@@ -31,12 +32,13 @@ class MyDocument extends Document {
 					))}
 					<meta
 						name='theme-color'
-						content='#000'
+						content='#fff'
 					/>
-					<script
-						id='gtm-script'
-						dangerouslySetInnerHTML={{
-							__html: `(function (w, d, s, l, i) {
+					{domain !== 'localhost' ? (
+						<script
+							id='gtm-script'
+							dangerouslySetInnerHTML={{
+								__html: `(function (w, d, s, l, i) {
 								w[l] = w[l] || []
 								w[l].push({
 									'gtm.start': new Date().getTime(),
@@ -49,22 +51,29 @@ class MyDocument extends Document {
 								j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
 								f.parentNode.insertBefore(j, f)
 							})(window, document, 'script', 'dataLayer', '${process.env.NEXT_PUBLIC_GTAG_ID}')`
-						}}
-					/>
+							}}
+						/>
+					) : (
+						<></>
+					)}
 				</Head>
 				<body className='bg-appBg'>
-					<noscript>
-						<iframe
-							src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
-							height='0'
-							width='0'
-							style={{
-								display: 'none',
-								visibility: 'hidden'
-							}}
-						></iframe>
-					</noscript>
-					<SplashScreen />
+					{domain !== 'localhost' ? (
+						<noscript>
+							<iframe
+								src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
+								height='0'
+								width='0'
+								style={{
+									display: 'none',
+									visibility: 'hidden'
+								}}
+							></iframe>
+						</noscript>
+					) : (
+						<></>
+					)}
+					{/* <SplashScreen /> */}
 					<Main />
 					<NextScript />
 				</body>

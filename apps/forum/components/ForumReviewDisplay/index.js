@@ -3,7 +3,7 @@ import { Avatar, Rating } from '@mui/material'
 import { useStyles } from './style'
 import api from '@/api/api'
 import getGQLRequest from '@/snippets/getGQLRequest'
-import { HeartIcon, LmsHelpfulIcon } from '../SvgIcons'
+import { HeartIcon, LmsHelpfulIcon } from '@/components/SvgIcons'
 import countRatings from '@/snippets/gql/countRatings'
 import router from 'next/router'
 
@@ -67,7 +67,7 @@ const ForumReviewDisplay = ({ slug }) => {
 								alt={`Profile Image of ${review.user?.firstName} ${review.user?.lastName}`}
 								src={review.user?.profilePic ? review.user?.profilePic.url : ''}
 								className={classes.review}
-								style={{ border: '2px solid #D6F379' }}
+								style={{ border: '2px solid #81cc71' }}
 							/>
 						</div>
 					</div>

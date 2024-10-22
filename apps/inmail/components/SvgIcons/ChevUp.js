@@ -1,6 +1,5 @@
 export const ChevUp = (props) => (
 	<svg
-		className=''
 		x={0}
 		y={0}
 		focusable='false'

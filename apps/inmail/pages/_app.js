@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import Head from 'next/head'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/styles'
@@ -10,6 +10,7 @@ import '@/styles/globals.css'
 import '@/styles/theme_core.css'
 import '@/styles/form_styles.css'
 import '@/styles/socoed_classes.css'
+import '@/styles/pagination.scss'
 import Layout from '@/layouts/Layout'
 import Protected from '@/snippets/protected'
 import PageTracking from '@/snippets/pageTracking'
@@ -28,14 +29,14 @@ const theme = createTheme({
 })
 
 function MyApp({ Component, pageProps, modDevice }) {
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const loader = document.getElementById('splashScreen')
-			if (loader) {
-				loader.style.display = 'none'
-			}
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const loader = document.getElementById('splashScreen')
+	// 		if (loader) {
+	// 			loader.style.display = 'none'
+	// 		}
+	// 	}
+	// }, [])
 	return (
 		<>
 			<Head>

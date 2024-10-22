@@ -1,8 +1,8 @@
-import LogoOverlay from '@/components/LogoOverlay'
-import { mainUrl } from '@/context/constants'
-import Head from 'next/head'
-import Btn from '@/components/Btn'
 import { useRouter } from 'next/router'
+import Btn from '@/components/Btn'
+import { mainUrl } from '@/context/constants'
+import LogoOverlay from '@/components/LogoOverlay'
+import { SEO } from '@/components/SeoHead'
 
 const privacy = () => {
 	const router = useRouter()
@@ -14,65 +14,15 @@ const privacy = () => {
 						this privacy notice in order for you to make an informed decision
 						about whether you want to use our website or not and/ or provide
 						your personal information. The use of the website is of your own
-						volition and the provision of any personal information.`,
-		image: 'https://lms.topic.co.za/auth/logo.png',
-		url: 'https://topic.co.za'
+						volition and the provision of any personal information.`
 	}
 
 	return (
 		<>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				title={seo.title}
+				description={seo.description}
+			/>
 			<div className='overflow-scroll desktop:p-4 laptop:p-4 mobile:p-1 bg-appBg desktop:h-full laptop:h-full mobile:h-full no-scrolly'>
 				<LogoOverlay />
 				<div className='rounded-lg bg-compBg desktop:mt-28 laptop:mt-20 mobile:mt-8 drop-shadow-md no-scrolly text-textColor desktop:p-4 laptop:p-4 mobile:p-1'>

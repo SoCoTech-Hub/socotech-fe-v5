@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import Head from 'next/head'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/styles'
@@ -21,14 +21,14 @@ const theme = createTheme({
 })
 
 function MyApp({ Component, pageProps }) {
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const loader = document.getElementById('splashScreen')
-			if (loader) {
-				loader.style.display = 'none'
-			}
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const loader = document.getElementById('splashScreen')
+	// 		if (loader) {
+	// 			loader.style.display = 'none'
+	// 		}
+	// 	}
+	// }, [])
 	return (
 		<>
 			<Head>

@@ -7,7 +7,7 @@ import {
 	// baseUrl,
 	mainUrl
 } from '@/context/constants'
-import { LessonBullet } from '../SvgIcons'
+import { LessonBullet } from '@/components/SvgIcons'
 
 const LessonProgressButton = ({ lessonProgress }) => {
 	const subjectName = lessonProgress.subject.name
@@ -33,7 +33,7 @@ const LessonProgressButton = ({ lessonProgress }) => {
 						</div>
 					</div>
 					<div className='w-2/12'>
-						<div className='flex justify-end w-full text-xs font-semibold align-middle item   text-themeColorMain'>
+						<div className='flex justify-end w-full text-xs font-semibold align-middle item text-themeColorMain'>
 							{lessonProgressCalc({
 								totalSteps: lessonProgress?.totalSteps,
 								completedSteps: lessonProgress?.completedSteps
@@ -43,7 +43,7 @@ const LessonProgressButton = ({ lessonProgress }) => {
 					</div>
 				</div>
 
-				<div className='w-full pt-1 mr-2 item'>
+				<div className='w-full pt-1 mr-2 rounded-md shadow-md item'>
 					<NoSsr>
 						<BorderLinearProgressView
 							variant='determinate'

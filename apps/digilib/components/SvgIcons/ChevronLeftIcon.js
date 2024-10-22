@@ -3,7 +3,7 @@ export const ChevronLeftIcon = (props) => (
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
-		strokeWidth={props.stroke || '2'}
+		strokeWidth={2}
 		stroke={props.stroke || 'currentColor'}
 		className={props.className || 'h-6 w-6'}
 		{...props}

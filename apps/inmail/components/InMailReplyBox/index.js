@@ -116,7 +116,7 @@ const index = ({ mail }) => {
 							<div className='cursor-pointer'>
 								<div
 									className='flex items-center justify-center w-24 h-10 align-middle rounded-full text-textColor'
-									style={{ backgroundColor: '#22273B' }}
+									style={{ backgroundColor: '#81cc71' }}
 								>
 									<button className='text-center text-md'>Send</button>
 								</div>

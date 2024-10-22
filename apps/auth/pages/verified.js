@@ -1,9 +1,70 @@
-import Link from 'next/link'
-
-import { baseUrl } from '@/context/constants'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import resendConfirmation from '@/snippets/auth/resendConfirmation'
+import { parseCookies } from '@/snippets/parseCookies'
+import { baseUrl } from '@/context/constants'
+import Alert from '@/components/Alert'
 
-export default function verified() {
+export default function Verified({ email }) {
+	const router = useRouter()
+	const rEmail = router.query?.email
+	const [error, setError] = useState('')
+	const [success, setSuccess] = useState('')
+	const [disabled, setDisabled] = useState(true)
+
+	useEffect(() => {
+		const resendEmail = async () => {
+			if (rEmail || email) {
+				const res = await resendConfirmation({
+					email: rEmail ? rEmail : email
+				})
+				if (res.ok) {
+					setSuccess(
+						`Confirmation email has been sent successfully to ${
+							rEmail ? rEmail : email
+						}`
+					)
+				} else {
+					if (res.data.message == 'already.confirmed') {
+						setError('This account has already been confirmed')
+						return
+					}
+				}
+				setDisabled(true)
+			}
+		}
+		resendEmail()
+	}, [rEmail, email])
+
+	useEffect(() => {
+		if (!disabled) {
+			setTimeout(function () {
+				setDisabled(false)
+				setSuccess('')
+			}, 120000)
+		}
+	}, [disabled])
+
+	const handleSubmit = async (event) => {
+		event.preventDefault()
+		if (rEmail || email) {
+			try {
+				await resendConfirmation({
+					email: rEmail ? rEmail : email
+				})
+				setSuccess('Confirmation email has been sent successfully.')
+				setDisabled(true)
+				return
+			} catch (err) {
+				setError('Confirmation email could not be sent, please contact support')
+			}
+		} else {
+			setError('Confirmation email could not be sent, please contact support')
+		}
+	}
+
 	return (
 		<>
 			<Head>
@@ -13,43 +74,72 @@ export default function verified() {
 					content='Verified Page'
 				/>
 			</Head>
-			<div className='overflow-scroll desktop:h-screen laptop:h-screen no-scrolly mobile:h-screen'>
+			<div className='h-screen overflow-auto'>
 				<div
-					className='flex items-center justify-center'
+					className='flex items-center justify-center h-full'
 					style={{
-						backgroundImage: `url(${baseUrl}/confirm-img.png)`,
-						height: '100%',
-						width: '100%',
+						backgroundImage: `url(${baseUrl}/background1.png)`,
 						backgroundSize: 'cover',
 						backgroundRepeat: 'no-repeat',
 						backgroundPosition: 'center'
 					}}
 				>
-					<div className='desktop:my-10 laptop:my-10 mobile:my-5 desktop:w-3/4 laptop:w-3/4 mobile:w-11/12 mobile:p-3 desktop:p-0 laptop:p-0'>
+					<div className='w-11/12 p-3 laptop:w-3/4 mobile:my-5 desktop:my-10 bg-themeColorSecondary rounded-3xl'>
 						<div className='grid justify-items-center'>
-							<div className='mobile:w-full desktop:w-1/2 laptop:w-1/2 mobile:mt-3 desktop:mt-0 laptop:mt-0'></div>
-							<div className='items-center desktop:px-20 laptop:px-20 desktop:py-8 laptop:py-8 mobile:p-4 bg-compBg rounded-3xl '>
-								<div className='my-3 font-bold text-center desktop:text-4xl text-textColor laptop:text-4xl mobile:text-2xl'>
-									Thanks!
+							<div className='items-center px-4 py-8 text-center bg-themeColorSecondary rounded-3xl'>
+								<div className='my-3 text-2xl font-bold text-white laptop:text-4xl'>
+									Thank you for registering!
 								</div>
-								<div className='my-4 font-bold text-center text-textColor desktop:text-2xl laptop:text-2xl mobile:text-xl'>
-									Your email address has been validated.{' '}
+								<div className='my-2 text-lg font-bold text-white laptop:text-xl'>
+									A verification email has been sent to your email account:
+									<div className='my-2 text-center underline'>
+										{rEmail ? rEmail : email}
+									</div>
 								</div>
-								<div className='w-full mt-3 mb-3 text-center text-textColor mobile:text-xs'>
-									<div className='flex justify-center desktop:mx-4 laptop:mx-4'>
-										Click on the button below to log in.
-										
-								</div>
+								<div className='w-full mb-3 text-xs text-center text-white'>
+									<div className='flex justify-center'>
+										{rEmail || email
+											? 'If you have not received this email, click on the button below.'
+											: 'Something went wrong, please navigate back'}
+									</div>
 								</div>
 
-								<div className='flex justify-center'>
-									<div className='w-1/2 py-3'>
-										<Link href='/'>
-											<a className='py-3 -mt-2 text-center text-black cursor-pointer auth-button bg-themeColorMain'>
-												Log In
-											</a>
-										</Link>
-									</div>
+								<div className='w-full'>
+									{rEmail || email ? (
+										<div className='flex flex-col w-1/2 py-3 mx-auto'>
+											{error === 'This account has already been confirmed' ? (
+												<Link
+													href='/'
+													passHref
+												>
+													<a className='px-2 py-3 mt-2 text-center text-white rounded-md cursor-pointer bg-themeColorMain'>
+														Login
+													</a>
+												</Link>
+											) : (
+												<button
+													onClick={handleSubmit}
+													disabled={disabled}
+													className='px-2 py-3 mt-2 text-center text-white rounded-md cursor-pointer bg-themeColorMain'
+												>
+													Resend
+												</button>
+											)}
+										</div>
+									) : (
+										<div className='flex flex-col w-1/2 py-3 mx-auto'>
+											<button
+												onClick={() => router.back()}
+												className='px-2 py-3 mt-2 text-center text-white rounded-md cursor-pointer bg-themeColorMain'
+											>
+												Back
+											</button>
+										</div>
+									)}
+									<Alert
+										error={error}
+										success={success}
+									/>
 								</div>
 							</div>
 						</div>
@@ -58,4 +148,14 @@ export default function verified() {
 			</div>
 		</>
 	)
+}
+
+export async function getServerSideProps(context) {
+	const cookies = parseCookies(context.req)
+	const email = cookies.email
+	return {
+		props: {
+			email: email ? email : null
+		}
+	}
 }

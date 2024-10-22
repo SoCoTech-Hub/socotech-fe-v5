@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import AuthNavbar from '@/components/AuthNavbar'
 import Btn from '@/components/Btn'
 import DefaultSelectNew from '@/components/DefaultSelectNew'
 import InputField from '@/components/InputField'
-import MaskedMobile from '@/components/MaskedMobile'
 import authCheck from '@/snippets/authCheck'
 import updateUserB from '@/snippets/auth/updateUserB'
 import Alert from '@/components/Alert'
 import { parseCookies } from '@/snippets/parseCookies'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import Head from 'next/head'
+import { baseUrl } from '@/context/constants'
+import AuthPage from '@/components/AuthPage'
 
 const RegisterB = ({ userId, profile, provinces }) => {
 	const router = useRouter()
@@ -20,7 +20,7 @@ const RegisterB = ({ userId, profile, provinces }) => {
 	useEffect(async () => {
 		if (userId) {
 			const routeTo = await authCheck({ userid: userId })
-			
+
 			if (routeTo.startsWith('..')) {
 				setRedirect(`${routeTo}?firstLogin=true`)
 			} else {
@@ -99,64 +99,94 @@ const RegisterB = ({ userId, profile, provinces }) => {
 					content='Register B Page'
 				/>
 			</Head>
-			<div className=''>
-				<div className='flex flex-wrap g-0'>
-					<div className='fixed w-full'>
-						<AuthNavbar />
-					</div>
-					<div className='w-full desktop:w-1/2 laptop:w-1/2 bg-RegisterB mobile:h-1/3 mobile:hidden desktop:block laptop:mt-10'>
-						<div className='flex items-center w-full desktop:h-screen laptop:h-screen place-content-center'>
-							<img
-								src='.\step2.png'
-								alt='Login Image'
-								className='w-2/5'
-							/>
+			<AuthPage
+				hasNavbar
+				bgImage={`${baseUrl}/background2-h.png`}
+				content={
+					<div
+						className='w-full p-8 overflow-x-hidden h-screen'
+						style={{ marginTop: '72px' }}
+					>
+						<h1 className='justify-start text-4xl mb-1 font-bold leading-1'>
+							Contact Information
+						</h1>
+						<div className='text-xl flex flex-row items-center'>
+							<span className='mr-1.5'>Step</span>
+							<span
+								className='bg-themeColorMain text-white font-semibold mr-1.5'
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									textAlign: 'center',
+									height: '1.5rem',
+									maxHeight: '1.5rem',
+									width: '1.5rem',
+									maxWidth: '1.5rem',
+									borderRadius: '50%'
+								}}
+							>
+								2
+							</span>{' '}
+							<span className='mr-1.5'>of</span>
+							<span
+								className='font-semibold bg-themeColorMain text-white'
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									textAlign: 'center',
+									height: '1.5rem',
+									maxHeight: '1.5rem',
+									width: '1.5rem',
+									maxWidth: '1.5rem',
+									borderRadius: '50%'
+								}}
+							>
+								5
+							</span>
 						</div>
-					</div>
-					<div className='w-full desktop:w-1/2 laptop:w-1/2 mobile:h-2/3'>
-						<div className='flex items-center w-full mt-10 mb-10 desktop:h-screen laptop:h-screen place-content-center'>
-							<div className='pt-10 desktop:w-5/6 mobile:w-10/12 desktop:my-0'>
-								<div className='w-4/5 mb-4 banner-main-text text-themeColorSecondary mobile:mt-2'>
-									You're almost
-									<br /> ready to get started!
-								</div>
-								<div className='mb-4 heading text-themeColorSecondary desktop:hidden mobile:block'>
-									Step 2 of 5 - Contact Info
-								</div>
-								<div className='w-2/4 mb-4 body-text text-themeColorSecondary'>
-									Finish your registration by completing the{' '}
-									<span className='font-bold'>Contact Info</span> fields below.
-									You'll be done in no time.
-								</div>
-								<form>
-									<InputField
-										id='addressLine1'
-										placeholder='Address line 1: House number and street name (Required)'
-										onChange={(event) => setAddressLine1(event.target.value)}
-										value={addressLine1}
-									/>
-									<InputField
-										id='addressLine2'
-										placeholder='Address line 2: Suburb can come here'
-										onChange={(event) => setAddressLine2(event.target.value)}
-										value={addressLine2}
-									/>
-									<DefaultSelectNew
-										options={provinces}
-										id='province'
-										name='province'
-										placeholder='Province (Required)'
-										value={province}
-										valueSetter={setProvince}
-										required
-									/>
-									<InputField
-										id='town'
-										placeholder='City or Town (Required)'
-										onChange={(event) => setTown(event.target.value)}
-										value={town}
-									/>
-									{/* <DefaultSelectNew
+						<p className='my-2'>
+							Finish your registration by completing the fields below. You'll be
+							done in no time.
+						</p>
+						<form>
+							<div className='mb-3'>
+								<InputField
+									id='addressLine1'
+									placeholder='Address line 1: House number and street name (Required)'
+									onChange={(event) => setAddressLine1(event.target.value)}
+									value={addressLine1}
+								/>
+							</div>
+							<div className='mb-3'>
+								<InputField
+									id='addressLine2'
+									placeholder='Address line 2: Suburb can come here'
+									onChange={(event) => setAddressLine2(event.target.value)}
+									value={addressLine2}
+								/>
+							</div>
+							<div className='mb-3'>
+								<DefaultSelectNew
+									options={provinces}
+									id='province'
+									name='province'
+									placeholder='Province (Required)'
+									value={province}
+									valueSetter={setProvince}
+									required
+								/>
+							</div>
+							<div className='mb-3'>
+								<InputField
+									id='town'
+									placeholder='City or Town (Required)'
+									onChange={(event) => setTown(event.target.value)}
+									value={town}
+								/>
+							</div>
+							{/* <DefaultSelectNew
                     options={countries}
                     id="country"
                     name="country"
@@ -166,28 +196,35 @@ const RegisterB = ({ userId, profile, provinces }) => {
                     required
                   /> */}
 
-									<MaskedMobile
+							{/* <MaskedMobile
 										required={true}
 										setter={setMobileNr}
 										value={mobileNr}
 										placeholder='Cellphone Number'
-									/>
-								</form>
-								<div className='p-0 mt-4 text-left col-sm-12'>
-									<div className=''>
-										<Alert error={errors} />
-										<Btn
-											label={loading ? 'Loading...' : 'Next'}
-											onClickFunction={handleSubmit}
-											color='bg-themeColorSecondary'
-										/>
-									</div>
-								</div>
+									/> */}
+						</form>
+						<div className='p-0 mt-4 text-left col-sm-12'>
+							<div className=''>
+								<Alert error={errors} />
+								<Btn
+									label={loading ? 'Loading...' : 'Next'}
+									onClickFunction={handleSubmit}
+									color='bg-themeColorMain'
+									textColor='text-white'
+								/>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				}
+				leftTitle={
+					<span
+						className='text-white font-bold text-6xl'
+						style={{ marginTop: '72pt' }}
+					>
+						STEP 2
+					</span>
+				}
+			/>
 		</>
 	)
 }

@@ -21,6 +21,6 @@ const LessonProgressView = ({ userId }) => {
 			</div>
 		)
 	}
-	return <div className=' text-textColor'>No lesson in progress</div>
+	return <div className='text-textColor'>No lesson in progress</div>
 }
 export default LessonProgressView

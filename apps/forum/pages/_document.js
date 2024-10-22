@@ -21,8 +21,9 @@ class MyDocument extends Document {
 						href={`${baseUrl}/manifest.json`}
 						rel='manifest'
 					/>
-					{FaviconList.map((x) => (
+					{FaviconList.map((x, i) => (
 						<link
+							key={`link-${i}`}
 							href={x.src}
 							rel='icon'
 							type='image/png'

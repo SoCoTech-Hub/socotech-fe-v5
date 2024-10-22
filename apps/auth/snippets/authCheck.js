@@ -20,7 +20,6 @@ async function authCheck({ userid = '' }) {
 			return '../user/userdashboard'
 		}
 		const redirectTo = checkRegisterCompletion({ profile: profiledata })
-
 		if (redirectTo == '/update' && user.role.name === 'Student') {
 			return redirectTo
 		}

@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
 import { thumbsContainer } from './styles'
-import CircleLoader from '@/components/CircleLoader'
-import { baseUrl } from '@/context/constants'
+import CircleLoader from '@/components/DigilibLoad'
+import { apiUrl, baseUrl } from '@/context/constants'
 import removeAttachment from '@/snippets/removeAttachment'
-const picturesPrefix = `${process.env.NEXT_PUBLIC_API_URL}`
+const picturesPrefix = apiUrl
 
 const AttachmentZone = ({
 	loading,
@@ -61,7 +61,7 @@ const AttachmentZone = ({
 								{String(file.name)}
 							</a>
 							<button
-								className='px-3 py-2 ml-2 font-bold rounded-full text-black bg-themeColorMain'
+								className='px-3 py-2 ml-2 font-bold text-black rounded-full bg-themeColorMain'
 								type='button'
 								onClick={() => handleFileRemove(file.id)}
 							>

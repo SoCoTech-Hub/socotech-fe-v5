@@ -1,73 +1,24 @@
 import { useState } from 'react'
-import Head from 'next/head'
 import DigilibTable from '@/components/DigilibTable'
 import DigilibFilter from '@/components/DigilibFilter'
-import client from '@/api/apolloClient'
+import { SEO } from '@/components/SeoHead'
 import getGQLRequest from '@/snippets/getGQLRequest'
+import { orgName } from '@/context/constants'
 
 const categoryDisplay = ({ filters, articles, category, organizationId }) => {
 	const [articleList, setArticleList] = useState(articles)
 
 	const seo = {
-		title: `Topic - ${category?.name}`,
-		description: category?.name,
-		image: 'https://lms.topic.co.za/digilib/logo.png',
-		url: 'https://topic.co.za'
+		title: `${orgName} - ${category?.name}`,
+		description: category?.name
 	}
 
 	return (
 		<div className='col row'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
 
 			<div className='space-y-10 gx-5 gy-4 mobile:px-1'>
 				{articleList?.length > 0 && (
@@ -87,7 +38,7 @@ const categoryDisplay = ({ filters, articles, category, organizationId }) => {
 						filters={filters}
 					/>
 				</div>
-				<div className='mobile:h-16'></div>
+				<div className='mobile:h-16' />
 			</div>
 		</div>
 	)

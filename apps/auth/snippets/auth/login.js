@@ -10,10 +10,13 @@ export default async function login({
 	rememberMe
 }) {
 	try {
-		const res = await publicapi.post(`/auth/local/`, { identifier, password })
-		const data = res.data
-		if (!res.ok) {
-			return data
+		const { data, ok, error } = await publicapi.post(`/auth/local/`, {
+			identifier,
+			password
+		})
+
+		if (!ok) {
+			return { data, ok, error }
 		}
 
 		modDevice =
@@ -62,7 +65,7 @@ export default async function login({
 			roleName: data.user?.role.name
 		})
 
-		return res
+		return { data, ok, error }
 	} catch (error) {
 		return 'error: ' + error
 	}

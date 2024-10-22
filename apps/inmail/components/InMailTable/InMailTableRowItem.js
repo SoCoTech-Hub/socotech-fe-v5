@@ -4,12 +4,12 @@ import {
 	ImportantBlueIcon,
 	ImportantDefaultIcon,
 	StarredIcon
-} from '../SvgIcons'
+} from '@/components/SvgIcons'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import DigilibLoad from '@/components/DigilibLoad'
-import IMComposeButton from '../InMailMenu/IMComposeButton'
+import IMComposeButton from '@/components/InMailMenu/IMComposeButton'
 import SetResponse from 'graphql/mutations/SetResponse'
 import Clamp from 'react-multiline-clamp'
 
@@ -114,7 +114,7 @@ export const InMailTableRowItem = ({
 	}
 
 	return (
-		<tr
+		<td
 			id={mailID}
 			className={`flex flex-row h-12 divTableRow ${mailRead} align-middle hover:bg-themeColorSecondary hover:bg-opacity-10`}
 			// onClick={() => handleTicketChange(ticketID, agentID)}
@@ -190,6 +190,6 @@ export const InMailTableRowItem = ({
 					</td>
 				</div>
 			</Link>
-		</tr>
+		</td>
 	)
 }

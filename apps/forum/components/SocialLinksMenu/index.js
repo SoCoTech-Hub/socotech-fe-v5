@@ -1,11 +1,11 @@
 import { SecondaryColor, Text } from '@/context/constants'
-import MainMenuLinkNew from '../MainMenuLinkNew'
+import MainMenuLinkNew from '@/components/MainMenuLinkNew'
 import {
 	FacebookIcon,
 	InstagramIcon,
 	TikTokIcon,
 	WhatsAppGroupIcon
-} from '../SvgIcons'
+} from '@/components/SvgIcons'
 
 export const SocialLinksMenu = () => {
 	const links = [
@@ -33,8 +33,8 @@ export const SocialLinksMenu = () => {
 
 	return (
 		<div className='mobile:w-full'>
-			<div className='p-3 text-xs rounded-lg mobile:bg-navbarBg bg-compBg shadow-menu mobile:font-bold mobile:w-full'>
-				<div className={`text-textColor mobile:mb-2 mobile:text-xl`}>
+			<div className='p-3 text-xs rounded-lg shadow-md mobile:bg-navbarBg bg-compBg shadow-md mobile:font-bold mobile:w-full'>
+				<div className={`text-textColor mobile:mb-2 mobile:text-lg`}>
 					Social Media
 				</div>
 				<div className='flex mt-2 text-xs mobile:px-6 mobile:bg-compBg mobile:p-2 mobile:rounded-lg text-textColor mobile:font-normal laptop:grid laptop:grid-rows-2 laptop:grid-flow-col'>

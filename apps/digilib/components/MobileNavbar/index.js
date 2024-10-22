@@ -21,9 +21,9 @@ import {
 	mainUrl,
 	profileId
 } from '@/context/constants'
-import { ForumIcon } from '../SvgIcons/ForumIcon'
-import { ChevronRightIcon } from '../SvgIcons/ChevronRightIcon'
-import { ChevronLeftIcon } from '../SvgIcons/ChevronLeftIcon'
+import { ForumIcon } from '@/components/SvgIcons/ForumIcon'
+import { ChevronRightIcon } from '@/components/SvgIcons/ChevronRightIcon'
+import { ChevronLeftIcon } from '@/components/SvgIcons/ChevronLeftIcon'
 
 export const MobileNavbar = () => {
 	const router = useRouter()

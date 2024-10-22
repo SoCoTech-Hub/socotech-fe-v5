@@ -6,13 +6,26 @@ const index = ({ categories }) => {
 	const router = useRouter()
 	const [category, setCategory] = useState('')
 	const [searchTerm, setSearchTerm] = useState('')
+	const handleSearch = () => {
+		if (category.trim() || searchTerm.trim()) {
+			router.push({
+				pathname: '/search',
+				query: { category, name_contains: searchTerm }
+			})
+		}
+	}
+	const handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			handleSearch()
+		}
+	}
 
 	return (
 		<div className=''>
-			<div className='flex flex-row justify-between px-2 mt-4 bg-compBgg rounded-lg align-items-center'>
+			<div className='flex flex-row justify-between px-2 py-2 mt-4 shadow-md rounded-xl bg-compBg align-items-center'>
 				<div className=''>
 					<select
-						className='h-8 text-center rounded-lg outline-none appearance-none text-textColor bg-digilibWelcomeButton w-36'
+						className='h-8 text-center text-white rounded-lg shadow-md outline-none appearance-none bg-themeColorMain w-36'
 						id='dropdown-button'
 						data-dropdown-toggle='dropdown'
 						type='button'
@@ -21,7 +34,7 @@ const index = ({ categories }) => {
 						onChange={(e) => setCategory(e.target.value)}
 					>
 						<option
-							className='bg-compBg text-textColor center-text'
+							className='text-center bg-compBg text-textColor'
 							value={''}
 						>
 							Category
@@ -37,12 +50,13 @@ const index = ({ categories }) => {
 						))}
 					</select>
 				</div>
-				<div className='w-full ml-2 col-xs-4'>
+				<div className='w-full ml-2 col-xs-4 text-textColor'>
 					<input
-						className='h-10 border-0 shadow-none form-control bg-compBg text-textColor'
+						className='h-10 border-0 shadow-none form-control bg-compBg placeholder-textColor'
 						type='text'
 						placeholder='Start typing to search...'
 						onChange={(e) => setSearchTerm(e.target.value)}
+						onKeyDown={(e) => handleKeyDown(e)}
 					/>
 				</div>
 				<div className='-mb-1.5'>

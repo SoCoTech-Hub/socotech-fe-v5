@@ -6,7 +6,7 @@ import { organizationId } from '@/context/constants'
 import DigilibLoad from '@/components/DigilibLoad'
 import InMailEmailList from 'graphql/queries/InMailEmailList'
 import InMailSingleDraft from 'graphql/queries/InMailSingleDraft'
-import InMailModal from '../InMailModal'
+import InMailModal from '@/components/InMailModal'
 
 const IMComposeButton = ({
 	disabled = true,

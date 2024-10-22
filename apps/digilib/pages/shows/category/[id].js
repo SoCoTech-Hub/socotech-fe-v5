@@ -1,75 +1,26 @@
-import Head from 'next/head'
+import Btn from '@/components/Btn'
+import { SEO } from '@/components/SeoHead'
 import ShowsCategories from '@/components/ShowsCategories'
 import ShowsWelcome from '@/components/ShowsWelcome'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import { baseUrl } from '@/context/constants'
-import Btn from '@/components/Btn'
 
 const ShowsCategory = ({ categories }) => {
 	const seo = {
 		title: 'Topic- Digital Library Shows',
-		description: 'Stay tuned for your favourite shows!',
-		image: 'https://lms.topic.co.za/digilib/logo.png',
-		url: 'https://topic.co.za'
+		description: 'Stay tuned for your favourite shows!'
 	}
 	const hasImage = categories.some((category) => category?.image?.url)
 	return (
 		<div className='col row mobile:mb-20'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
 
 			{hasImage ? (
 				<div className='desktop:space-y-5 laptop:space-y-5 mobile:space-y-3'>
-					<div className=' desktop:block'>
+					<div className='desktop:block'>
 						<ShowsWelcome
 							title='Battle of the Brains!'
 							description='The Schooled Series Presents Grade 12’s Going Head-to-Head in The Ultimate Trivia Showdown.'
@@ -95,17 +46,11 @@ const ShowsCategory = ({ categories }) => {
 							/>
 						))}
 					</div>
-					<div
-						className={` flex flex-row flex-wrap justify-between gap-2 p-4 `}
-					>
+					<div className='flex flex-row flex-wrap justify-between gap-2 p-4'>
 						<Btn
 							label='Back'
-							link={`/shows`}
+							link='/shows'
 							color='bg-themeColorMain'
-							width='36'
-							padding='py-2'
-							fontWeight='bold'
-							textColor='text-black'
 						/>
 					</div>
 				</div>
@@ -115,16 +60,11 @@ const ShowsCategory = ({ categories }) => {
 						src={`${baseUrl}/Shows_ComingSoon.png`}
 						alt='Coming Soon'
 					/>
-					<div
-						className={` flex flex-row flex-wrap justify-between gap-2 p-4 `}
-					>
+					<div className='flex flex-row flex-wrap justify-between gap-2 p-4'>
 						<Btn
 							label='Back to Shows'
-							link={`/shows`}
+							link='/shows'
 							color='bg-themeColorMain'
-							width='36'
-							padding='py-2'
-							fontWeight='bold'
 						/>
 					</div>
 				</>

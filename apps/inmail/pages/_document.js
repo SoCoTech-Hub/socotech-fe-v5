@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import SplashScreen from '@/components/SplashScreen'
+// import SplashScreen from '@/components/SplashScreen'
 import { baseUrl } from '@/context/constants'
 import FaviconList from '@/snippets/faviconList'
 class MyDocument extends Document {
@@ -21,8 +21,9 @@ class MyDocument extends Document {
 						href={`${baseUrl}/manifest.json`}
 						rel='manifest'
 					/>
-					{FaviconList.map((x) => (
+					{FaviconList.map((x, i) => (
 						<link
+							key={`link-${i}`}
 							href={x.src}
 							rel='icon'
 							type='image/png'
@@ -31,7 +32,7 @@ class MyDocument extends Document {
 					))}
 					<meta
 						name='theme-color'
-						content='#000'
+						content='#fff'
 					/>
 					<script
 						id='gtm-script'
@@ -64,7 +65,7 @@ class MyDocument extends Document {
 							}}
 						></iframe>
 					</noscript>
-					<SplashScreen />
+					{/* <SplashScreen /> */}
 					<Main />
 					<NextScript />
 				</body>

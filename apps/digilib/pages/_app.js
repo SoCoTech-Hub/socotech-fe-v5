@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'
 import { createTheme } from '@mui/material'
@@ -13,9 +13,9 @@ import '@/styles/socoed_classes.css'
 import '@/styles/pagination.scss'
 import Layout from '@/layouts/Layout'
 import client from '@/api/apolloClient'
+import { AppWrapper } from '@/context/AppContext'
 import Protected from '@/snippets/protected'
 import PageTracking from '@/snippets/pageTracking'
-import { AppWrapper } from '@/context/AppContext'
 
 const theme = createTheme({
 	components: {
@@ -28,14 +28,14 @@ const theme = createTheme({
 })
 
 function MyApp({ Component, pageProps, modDevice }) {
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const loader = document.getElementById('splashScreen')
-			if (loader) {
-				loader.style.display = 'none'
-			}
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const loader = document.getElementById('splashScreen')
+	// 		if (loader) {
+	// 			loader.style.display = 'none'
+	// 		}
+	// 	}
+	// }, [])
 	return (
 		<>
 			<Head>

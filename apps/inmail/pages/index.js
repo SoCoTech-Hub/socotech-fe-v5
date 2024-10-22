@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 // import { useTour } from "@reactour/tour"
 import Fuse from 'fuse.js'
-import { profileId } from '@/context/constants'
+import { useLazyQuery, useMutation } from '@apollo/client'
+import { SEO } from '@/components/SeoHead'
 import InMailMenu from '@/components/InMailMenu'
 import InMailTopMenu from '@/components/InMailTopMenu'
 import InMailTable from '@/components/InMailTable'
 import NoMail from '@/components/InMailTable/NoMail'
 import DigilibLoad from '@/components/DigilibLoad'
-import { useLazyQuery, useMutation } from '@apollo/client'
+import InMailMobileRowItem from '@/components/InMailMobileRowItem'
+import { profileId } from '@/context/constants'
 import InMailInbox from 'graphql/queries/InMailInbox'
 import InMailSetDeleted from 'graphql/mutations/InMailSetDeleted'
 import InMailAll from 'graphql/queries/InMailAll'
@@ -17,8 +19,6 @@ import InMailDraft from 'graphql/queries/InMailDraft'
 import InMailDeleted from 'graphql/queries/InMailDeleted'
 import InMailStarred from 'graphql/queries/InMailStarred'
 import InMailImportant from 'graphql/queries/InMailImportant'
-import Head from 'next/head'
-import InMailMobileRowItem from '@/components/InMailMobileRowItem'
 import InMailSetRead from 'graphql/mutations/InMailSetRead'
 
 const index = () => {
@@ -163,73 +163,23 @@ const index = () => {
 
 	if (loading) {
 		return (
-			<div className='flex justify-center'>
+			<div className='flex items-center justify-center my-8'>
 				<DigilibLoad loading={loading} />
 			</div>
 		)
 	}
 
 	const seo = {
-		title: 'Topic - Inbox',
-		description: 'Inbox',
-		image: 'https://lms.topic.co.za/inmail/logo.png',
-		url: 'https://topic.co.za'
+		title: 'Inbox',
+		description: 'Inbox'
 	}
 
 	return (
 		<div className='flex w-full gap-2 desktop:flex-nowrap mobile:flex-wrap'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
 			{showMenu ? (
 				<div className='w-1/4 mobile:hidden'>
 					<InMailMenu

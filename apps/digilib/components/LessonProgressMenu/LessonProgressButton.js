@@ -7,7 +7,7 @@ import {
 	// baseUrl,
 	mainUrl
 } from '@/context/constants'
-import { LessonBullet } from '../SvgIcons'
+import { LessonBullet } from '@/components/SvgIcons'
 
 const LessonProgressButton = ({ lessonProgress }) => {
 	const subjectName = lessonProgress.subject.name
@@ -17,23 +17,23 @@ const LessonProgressButton = ({ lessonProgress }) => {
 			<a href={`${mainUrl}/lms/${lessonProgress.lesson.id}`}>
 				<div className='flex flex-wrap align-middle place-content-center'>
 					<div className='w-full'>
-						<div className='flex align-middle text-sm font-bold'>
+						<div className='flex text-sm font-bold align-middle'>
 							<div className='w-2 h-2 mt-1.5 mr-1 text-themeColorMain'>
 								<LessonBullet />
 							</div>
-							<div className='text-textColor text-sm font-bold'>
+							<div className='text-sm font-bold text-textColor'>
 								{subjectName}
 							</div>
 						</div>
 						{/* <LessonBullet className='w-2 mr-1 ' /> */}
 					</div>
 					<div className='w-10/12'>
-						<div className='text-xs text-textColor'>
+						<div className='text-xs text-textColor line-clamp-1'>
 							<Clamp lines={1}>{lessonProgress.lesson.name}</Clamp>
 						</div>
 					</div>
 					<div className='w-2/12'>
-						<div className='flex justify-end w-full text-xs font-semibold align-middle item   text-themeColorMain'>
+						<div className='flex justify-end w-full text-xs font-semibold align-middle item text-themeColorMain'>
 							{lessonProgressCalc({
 								totalSteps: lessonProgress?.totalSteps,
 								completedSteps: lessonProgress?.completedSteps
@@ -43,7 +43,7 @@ const LessonProgressButton = ({ lessonProgress }) => {
 					</div>
 				</div>
 
-				<div className='w-full pt-1 mr-2 item'>
+				<div className='w-full pt-1 mr-2 rounded-md shadow-md item'>
 					<NoSsr>
 						<BorderLinearProgressView
 							variant='determinate'

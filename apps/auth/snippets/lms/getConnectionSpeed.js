@@ -1,7 +1,7 @@
 import { baseUrl } from '@/context/constants'
 const getConnectionSpeed = async () => {
 	return new Promise(async (resolve, reject) => {
-		var image = baseUrl + '/page500.png'
+		var image = baseUrl + '/500.png'
 		var downloadSize = 16149
 		window.setTimeout(measureConnectionSpeed, 0)
 		function measureConnectionSpeed() {

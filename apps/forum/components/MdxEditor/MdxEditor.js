@@ -54,14 +54,14 @@ export default function MdxEditor({
 	]
 
 	return (
-		<div className='px-2 border-solid rounded-md bg-compBg border-1 border-textColor '>
+		<div className='border-solid rounded-md shadow-md bg-compBg'>
 			<QuillNoSSRWrapper
 				bounds='self'
 				// theme='snow'
 				placeholder={placeholder}
 				onChange={setValue}
 				value={value}
-				className='mx-2 rounded-lg bg-compBg text-textColor input'
+				className='rounded-lg bg-compBg text-textColor input'
 				readOnly={disabled}
 				modules={({ toolbar: true }, modules)}
 				formats={formats}

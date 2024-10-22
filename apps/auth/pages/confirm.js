@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-//import styles from "@/styles/Index.module.css"
-import Alert from '@/components/Alert'
+import { useRouter } from 'next/router'
+import { Page } from '@/components/Page'
+import { SEO } from '@/components/SeoHead'
 import resendConfirmation from '@/snippets/auth/resendConfirmation'
 import { parseCookies } from '@/snippets/parseCookies'
-import { baseUrl } from '@/context/constants'
-import Head from 'next/head'
-import LogoOverlay from '@/components/LogoOverlay'
-import { useRouter } from 'next/router'
 
 export default function confirm({ email }) {
 	const router = useRouter()
@@ -67,96 +64,62 @@ export default function confirm({ email }) {
 
 	return (
 		<>
-			<Head>
-				<title>Confirm</title>
-				<meta
-					name='description'
-					content='Confirm Page'
-				/>
-			</Head>
-			<div className='overflow-scroll desktop:h-screen laptop:h-screen no-scrolly mobile:h-screen'>
-				{/* <div className='mobile:mb-10'><LogoOverlay /></div> */}
-				<div
-					className='flex items-center justify-center'
-					style={{
-						backgroundImage: `url(${baseUrl}/confirm-img.png)`,
-						height: '100%',
-						width: '100%',
-						backgroundSize: 'cover',
-						backgroundRepeat: 'no-repeat',
-						backgroundPosition: 'center'
-					}}
-				>
-					<div className='desktop:my-10 laptop:my-10 mobile:my-5 desktop:w-3/4 laptop:w-3/4 mobile:w-11/12 mobile:p-3 desktop:p-0 laptop:p-0'>
-						<div className='grid justify-items-center'>
-							<div className='mobile:w-full desktop:w-1/2 laptop:w-1/2 mobile:mt-3 desktop:mt-0 laptop:mt-0'>
-								{/* <img
-									src={`${baseUrl}/confirm-img.png`}
-									alt='Confirmation Image'
-								/> */}
-							</div>
-							<div className='items-center desktop:px-20 laptop:px-20 desktop:py-8 laptop:py-8 mobile:p-4 bg-compBg rounded-3xl '>
-								<div className='my-3 font-bold text-center desktop:text-4xl text-textColor laptop:text-4xl mobile:text-2xl'>
-									Thank you for registering!
-								</div>
-								<div className='my-4 font-bold text-center text-textColor desktop:text-2xl laptop:text-2xl mobile:text-xl'>
-									A verification link has been sent to your email account{' '}
-									{rEmail ? rEmail : email}
-								</div>
-								<div className='w-full mt-3 mb-3 text-center text-textColor mobile:text-xs'>
-									<div className='flex justify-center desktop:mx-4 laptop:mx-4'>
-										Please click on the link that has been send to your email
-										account
-										<br className='mobile:hidden' /> to verify your email and
-										continue the registration process. Rememeber to check your
-										Spam folder if the email doesn't appear in your Inbox.
-										{!disabled ? (
-											<>
-												<br />
-												<br />
-												If you have not received this email please click on the
-												resend button below.
-											</>
-										) : (
-											<></>
-										)}
-									</div>
-								</div>
-								<div className='flex justify-center px-2 mt-4 mobile:w-full'>
-									<Alert
-										error={error}
-										success={success}
-									/>
-								</div>
-								{disabled ? (
-									<></>
+			<SEO
+				title='Confirm'
+				description='Confirm Page'
+			/>
+			<Page
+				header='Thank you for registering!'
+				message={
+					<>
+						<div className='my-4 font-bold text-center text-textColor desktop:text-2xl laptop:text-2xl mobile:text-xl'>
+							A verification link has been sent to your email account{' '}
+							{rEmail ? rEmail : email}
+						</div>
+						<div className='w-full mt-3 mb-3 text-center text-textColor mobile:text-xs'>
+							<div className='flex justify-center desktop:mx-4 laptop:mx-4'>
+								This may take a few minutes. Once this email has been received,
+								Please click on the link to verify your email and continue the
+								registration process.
+								<br className='mobile:hidden' /> If you used the wrong email
+								please click on the Start Again button below.
+								{!disabled ? (
+									<>
+										<br />
+										<br />
+										If you have not received this email please click on the
+										resend button below.
+									</>
 								) : (
-									<div className='flex justify-center px-2 mt-4'>
-										<button
-											onClick={handleSubmit}
-											className='py-3 -mt-2 text-center text-black rounded-lg cursor-pointer bg-themeColorMain'
-										>
-											Resend
-										</button>
-									</div>
+									<></>
 								)}
-								<div className='flex justify-center'>
-									<div className='w-1/2 py-3'>
-										<Link
-											href='/create'
-											passHref
-										>
-											<div className='p-3 text-center text-black rounded-lg cursor-pointer bg-themeColorMain'>
-												Start Again
-											</div>
-										</Link>
-									</div>
-								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
+					</>
+				}
+				error={error}
+				success={success}
+				buttons={[
+					!disabled ? (
+						<button
+							onClick={handleSubmit}
+							className='px-8 py-3 text-center rounded-lg cursor-pointer text-textColorSecondary bg-themeColorMain'
+						>
+							Resend
+						</button>
+					) : (
+						<></>
+					),
+					<Link
+						href='/create'
+						passHref
+					>
+						<div className='p-3 text-center rounded-lg cursor-pointer text-textColorSecondary bg-themeColorSecondary'>
+							Start Again
+						</div>
+					</Link>
+				]}
+			/>
 		</>
 	)
 }

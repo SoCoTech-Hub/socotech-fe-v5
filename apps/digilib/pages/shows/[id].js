@@ -1,5 +1,4 @@
 import { forwardRef, useEffect, useState } from 'react'
-import Head from 'next/head'
 import { useMutation } from '@apollo/client'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -16,6 +15,7 @@ import getGQLRequest from '@/snippets/getGQLRequest'
 import NotesCreate from 'graphql/mutations/NotesCreate'
 import NotesUpdate from 'graphql/mutations/NotesUpdate'
 import { baseUrl, cloudinaryVideoUrl, profileId } from '@/context/constants'
+import { SEO } from '@/components/SeoHead'
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return (
@@ -28,7 +28,8 @@ const Transition = forwardRef(function Transition(props, ref) {
 })
 
 const categoryDisplay = ({ show }) => {
-	const [noteText, setNoteText] = useState('')
+	const [note, setNote] = useState([])
+	const [noteText, setNoteText] = useState(null)
 	const [noteID, setNoteID] = useState()
 	const [open, setOpen] = useState(false)
 
@@ -39,6 +40,7 @@ const categoryDisplay = ({ show }) => {
 			where: `profile: { id: ${profileId}},show:{id:${show.id} }`
 		})
 		if (notes) {
+			setNote(notes[0])
 			setNoteText(notes[0]?.note)
 			setNoteID(notes[0]?.id)
 		}
@@ -63,9 +65,7 @@ const categoryDisplay = ({ show }) => {
 
 	const seo = {
 		title: `Topic - ${show?.name}`,
-		description: show?.name,
-		image: 'https://lms.topic.co.za/digilib/logo.png',
-		url: 'https://topic.co.za'
+		description: show?.name
 	}
 
 	const handleClickOpen = () => {
@@ -73,67 +73,22 @@ const categoryDisplay = ({ show }) => {
 	}
 	const handleClose = () => {
 		setOpen(false)
-		if (noteID) {
-			updateNote()
-		} else {
-			createNote()
+		if (note?.note !== noteText) {
+			if (noteID) {
+				updateNote()
+			} else {
+				createNote()
+			}
 		}
 	}
 
 	return (
 		<div className='col row'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
-			<div className='flex text-5xl mobile:text-2xl font-semibold text-textColor'>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
+			<div className='flex text-5xl font-semibold mobile:text-2xl text-textColor'>
 				{show?.showCategory?.name}
 			</div>
 			<div className='flex justify-between mb-4'>
@@ -168,20 +123,12 @@ const categoryDisplay = ({ show }) => {
 					label='Take notes'
 					onClickFunction={handleClickOpen}
 					color={`bg-themeColorMain ${show?.url ? '' : 'hidden'}`}
-					width='36'
-					padding='py-2'
-					fontWeight='bold'
-					textColor='text-black'
 				/>
 
 				<Btn
 					label='Back to Shows'
 					link={`/shows/category/${show?.showCategory?.id}`}
 					color='bg-themeColorMain'
-					width='36'
-					padding='py-2'
-					fontWeight='bold'
-					textColor='text-black'
 				/>
 
 				<Dialog
@@ -204,7 +151,7 @@ const categoryDisplay = ({ show }) => {
 						<DialogContent>
 							<DialogContentText>
 								<TextareaAutosize
-									className='px-2 my-2 border-2 rounded-lg'
+									className='px-2 my-2 border-2 rounded-lg bg-compBg text-textColor'
 									id='user_note'
 									name='user_note'
 									maxRows={4}
@@ -212,11 +159,6 @@ const categoryDisplay = ({ show }) => {
 									value={noteText}
 									onChange={(e) => setNoteText(e.target.value)}
 									placeholder='Type notes here...'
-									style={{
-										width: '250px',
-										backgroundColor: '#181818',
-										color: 'white'
-									}}
 								></TextareaAutosize>
 							</DialogContentText>
 						</DialogContent>

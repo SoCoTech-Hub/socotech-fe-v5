@@ -6,9 +6,9 @@ import {
 	TopRecycleTrashIcon,
 	TopTrashIcon,
 	ImMarkReadIcon
-} from '../SvgIcons'
+} from '@/components/SvgIcons'
 import MailSearch from '@/components/MailSearch'
-import LeftDrawerMail from '../LeftDrawerMail'
+import LeftDrawerMail from '@/components/LeftDrawerMail'
 
 const index = ({
 	onSearch,

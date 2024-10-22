@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { isPaying } from '@/context/constants'
-import Modal from '../Modal'
+import Modal from '@/components/Modal'
 import Redirect from './redirect'
-import SubjectButton from '../SubjectButton'
-import { LockIcon } from '../SvgIcons/LockIcon'
+import SubjectButton from '@/components/SubjectButton'
+import { LockIcon } from '@/components/SvgIcons/LockIcon'
 
 const ContentLock = ({ bgColor = 'bg-lessonList', children }) => {
 	const [open, setOpen] = useState(false)

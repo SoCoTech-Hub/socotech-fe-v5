@@ -1,4 +1,4 @@
-import DigilibLoad from '../DigilibLoad'
+import DigilibLoad from '@/components/DigilibLoad'
 
 const SplashScreen = () => {
 	return (

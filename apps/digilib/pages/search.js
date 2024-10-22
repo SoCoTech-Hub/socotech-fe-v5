@@ -1,75 +1,24 @@
-import React from 'react'
-import Head from 'next/head'
 import MainSearchResults from '@/components/MainSearchResults'
+import { SEO } from '@/components/SeoHead'
 import GetKBSearchResults from 'graphql/queries/GetKBSearchResults'
 import client from './api/apolloClient'
 
 const search = ({ results }) => {
 	const seo = {
-		title: 'Topic - Search Categories',
-		description: 'Search what categories you looking for!',
-		image: 'https://lms.topic.co.za/digilib/logo.png',
-		url: 'https://topic.co.za'
+		title: 'Search Categories',
+		description: 'Search what categories you looking for!'
 	}
 
 	return (
-		<div>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
-
-			<div className='w-full'>
+		<>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
+			<div className='w-full shadow-md'>
 				<MainSearchResults results={results} />
 			</div>
-		</div>
+		</>
 	)
 }
 export async function getServerSideProps(context) {
@@ -89,7 +38,7 @@ export async function getServerSideProps(context) {
 
 	return {
 		props: {
-			results: data.knowledgeBases ? data.knowledgeBases : null
+			results: data?.knowledgeBases?.length ? data.knowledgeBases : null
 		}
 	}
 }

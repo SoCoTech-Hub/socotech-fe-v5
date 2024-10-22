@@ -1,23 +1,30 @@
+import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
-import { useState, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import Btn from '@/components/Btn'
 import Pagination from '@/components/Pagination'
 
 const index = ({ results }) => {
+	const [data, setData] = useState([])
 	const router = useRouter()
 	let pageSize = 10
 	const [currentPage, setCurrentPage] = useState(1)
 	const goBack = () => {
 		router.back()
 	}
-	const currentTableData = useMemo(() => {
-		const firstPageIndex = (currentPage - 1) * pageSize
-		const lastPageIndex = firstPageIndex + pageSize
-		return results?.slice(firstPageIndex, lastPageIndex)
-	}, [currentPage, results])
+	useEffect(() => {
+		if (results) {
+			const currentTableData = useMemo(() => {
+				const firstPageIndex = (currentPage - 1) * pageSize
+				const lastPageIndex = firstPageIndex + pageSize
+				return results?.slice(firstPageIndex, lastPageIndex)
+			}, [currentPage, results])
+			setData(currentTableData)
+		}
+	}, [data])
+
 	return (
-		<div className='rounded-lg bg-compBg shadow-menu'>
+		<div className='rounded-lg shadow-lg bg-compBg'>
 			<div className='flex justify-between'>
 				<div className='pt-4 pb-3 pl-8 text-lg font-bold text-left text-textColor'>
 					Your Search Results
@@ -36,16 +43,16 @@ const index = ({ results }) => {
 				<hr className='bg-compBg' />
 			</div>
 			<div className='mobile:overflow-scroll mobile:w-full'>
-				{currentTableData?.length > 0 ? (
+				{data?.length > 0 ? (
 					<>
-						<table className=''>
+						<table>
 							<thead>
 								<tr>
-									<th className='py-4 pl-8 text-textColor '>Name</th>
-									<th className='py-4 pr-20 text-textColor '>Type</th>
-									<th className='py-4 pr-10 text-textColor '>Topic</th>
-									<th className='py-4 pr-10 text-textColor '>Language</th>
-									<th className='py-4 pr-10 text-textColor '>Subject</th>
+									<th className='w-1/4 py-4 pl-8 text-textColor'>Name</th>
+									<th className='w-1/4 py-4 text-textColor'>Type</th>
+									<th className='w-1/4 py-4 text-textColor'>Topic</th>
+									<th className='w-1/4 py-4 text-textColor'>Language</th>
+									<th className='py-4 text-textColor'>Subject</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -60,7 +67,7 @@ const index = ({ results }) => {
 												style={{
 													width: '30%'
 												}}
-												className='py-2 pl-4 pr-10 text-xs font-extrabold text-textColor '
+												className='py-2 pl-8 pr-10 text-xs font-extrabold cursor-pointer text-textColor '
 											>
 												{result.name}
 											</td>
@@ -123,7 +130,7 @@ const index = ({ results }) => {
 						</div>
 					</>
 				) : (
-					<div className='pt-4 pb-3 pl-8 pr-20 text-lg font-bold text-left text-textColor '>
+					<div className='pt-4 pb-3 pl-8 pr-20 text-center text-md text-textColor '>
 						No Results Found
 					</div>
 				)}

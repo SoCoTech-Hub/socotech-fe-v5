@@ -7,7 +7,6 @@ const getInProgressLessonsList = async ({ userId }) => {
     })
     return result.progresses
   }
-
   return null
 }
 export default getInProgressLessonsList

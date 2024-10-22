@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Alert from '@/components/Alert'
-import AuthNavbar from '@/components/AuthNavbar'
 import Btn from '@/components/Btn'
 import DefaultSelectNew from '@/components/DefaultSelectNew'
 import InputField from '@/components/InputField'
@@ -12,8 +11,8 @@ import updateUserE from '@/snippets/auth/updateUserE'
 import { parseCookies } from '@/snippets/parseCookies'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import Head from 'next/head'
-import CssStepper from '@/components/CssStepper'
 import { baseUrl } from '@/context/constants'
+import AuthPage from '@/components/AuthPage'
 
 const RegisterE = ({ userId, profile, userRelations }) => {
 	const router = useRouter()
@@ -21,20 +20,20 @@ const RegisterE = ({ userId, profile, userRelations }) => {
 	const [userRelation, setUserRelation] = useState(
 		profile?.kins ? profile?.kins[0]?.userRelation?.id : null
 	)
-	const [firstName, setFirstName] = useState(
-		profile?.kins ? profile.kins[0]?.firstName : null
+	const [fullName, setFullName] = useState(
+		profile?.kins ? profile.kins[0]?.firstName : ''
 	)
-	const [lastName, setLastName] = useState(
-		profile?.kins ? profile.kins[0]?.lastName : null
-	)
+	// const [lastName, setLastName] = useState(
+	// 	profile?.kins ? profile.kins[0]?.lastName : ''
+	// )
 	const [mobileNr, setMobileNr] = useState(
-		profile?.kins ? profile.kins[0]?.mobileNr : null
+		profile?.kins ? profile.kins[0]?.mobileNr : ''
 	)
 	// const [workNr, setWorkNr] = useState(userProfile?.kins ? userProfile.kins[0]?.workNr : null);
 	// const [idnumber, setIdnumber] = useState(userProfile?.kins ? userProfile.kins[0]?.idnumber : null);
 	// const [title, setTitle] = useState(userProfile?.kins ? userProfile.kins[0]?.title : null);
 	const [email, setEmail] = useState(
-		profile?.kins ? profile.kins[0]?.email : null
+		profile?.kins ? profile.kins[0]?.email : ''
 	)
 
 	const [redirect, setRedirect] = useState('')
@@ -64,7 +63,7 @@ const RegisterE = ({ userId, profile, userRelations }) => {
 		event.preventDefault()
 		setLoading(true)
 		setErrorMessages('')
-		if (!firstName || !lastName || !mobileNr || !userRelation || !email) {
+		if (!fullName || !mobileNr || !userRelation || !email) {
 			setErrorMessages('Some required fields are incomplete')
 			setLoading(false)
 			return
@@ -85,8 +84,8 @@ const RegisterE = ({ userId, profile, userRelations }) => {
 			await updateUserE({
 				parentId: profile?.kins[0]?.id,
 				profileId: profile.id,
-				firstName,
-				lastName,
+				firstName: fullName,
+				// lastName,
 				mobileNr,
 				// workNr,
 				// idnumber,
@@ -109,90 +108,133 @@ const RegisterE = ({ userId, profile, userRelations }) => {
 					content='Register E Page'
 				/>
 			</Head>
-			<div className=''>
-				<div className='fixed w-full'>
-					<AuthNavbar />
-				</div>
-
-				<div className='flex flex-wrap g-0'>
-					<div className='w-1/2 mt-10 mobile:w-full bg-registerE desktop:block'>
-						<div className='flex items-center w-full'>
-							<img
-								src={`${baseUrl}/reg-step-3.jpg`}
-								alt='Registration Step 3'
-								className='object-scale-down'
-							/>
+			<AuthPage
+				hasNavbar
+				bgImage={`${baseUrl}/background2-h.png`}
+				content={
+					<div
+						className='w-full h-screen p-8 overflow-x-hidden'
+						style={{ marginTop: '72px' }}
+					>
+						<h1 className='justify-start mb-1 text-4xl font-bold leading-1'>
+							Parent(s)/Guardian/Siblings
+						</h1>
+						<div className='flex flex-row items-center text-xl'>
+							<span className='mr-1.5'>Step</span>
+							<span
+								className='bg-themeColorMain text-white font-semibold mr-1.5'
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									textAlign: 'center',
+									height: '1.5rem',
+									maxHeight: '1.5rem',
+									width: '1.5rem',
+									maxWidth: '1.5rem',
+									borderRadius: '50%'
+								}}
+							>
+								3
+							</span>{' '}
+							<span className='mr-1.5'>of</span>
+							<span
+								className='font-semibold text-white bg-themeColorMain'
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									textAlign: 'center',
+									height: '1.5rem',
+									maxHeight: '1.5rem',
+									width: '1.5rem',
+									maxWidth: '1.5rem',
+									borderRadius: '50%'
+								}}
+							>
+								3
+							</span>
 						</div>
-					</div>
-					<div className='w-full bg-compBg desktop:w-1/2 laptop:w-1/2 mobile:h-2/3 mobile:mb-4'>
-						<div className='flex items-center desktop:mx-4 laptop:mx-4 mobile:mx-1 desktop:h-screen laptop:h-screen place-content-center'>
-							<div className='w-5/6 mobile:w-10/12 desktop:my-0 desktop:pt-10 laptop:pt-10 mobile:pt-5'>
-								<div className='mb-4 text-4xl desktop:mt-10 laptop:mt-10 mobile:mt-5 text-textColor mobile:block'>
-									Next of Kin
-									<br />
-									Information
-								</div>
+						<p className='my-2'>
+							Finish your registration by completing the fields below.
+						</p>
+						<form>
+							<div className='mb-3'>
+								<DefaultSelectNew
+									options={userRelations}
+									id='relationship'
+									name='relationship'
+									placeholder='Relationship (Required)'
+									value={userRelation}
+									valueSetter={setUserRelation}
+									required
+								/>
+							</div>
 
-								<div className='w-auto mb-4 text-textColor'>
-									Finish your registration by completing the fields below. Final
-									Step.
-								</div>
+							<div className='mb-3'>
+								<InputField
+									id='fullName'
+									placeholder='Name and surname (Required)'
+									onChange={(event) => setFullName(event.target.value)}
+									value={fullName}
+									autoComplete={false}
+								/>
+							</div>
 
-								<form>
-									<DefaultSelectNew
-										options={userRelations}
-										id='relationship'
-										name='relationship'
-										placeholder='Relationship (Required)'
-										value={userRelation}
-										valueSetter={setUserRelation}
-										required
-									/>
-									<InputField
-										id='firstName'
-										placeholder='Name of parent or guardian (Required)'
-										onChange={(event) => setFirstName(event.target.value)}
-										value={firstName}
-										autoComplete='off'
-									/>
-									<InputField
+							{/* 
+							<div className='mb-3'>
+							<InputField
 										id='lastName'
 										placeholder='Surname of parent or guardian (Required)'
 										onChange={(event) => setLastName(event.target.value)}
 										value={lastName}
-										autoComplete='off'
-									/>
-									<MaskedMobile
-										required={true}
-										setter={setMobileNr}
-										value={mobileNr}
-										placeholder='Cellphone Number of parent or guardian'
-									/>
-									<InputField
-										id='email'
-										// icon="ti-email"
-										placeholder='Email Address of parent of guardian (required)'
-										type='email'
-										onChange={(e) => setEmail(e.target.value)}
-										value={email}
-										autoComplete='off'
-									/>
-								</form>
-								<div className='p-0 mt-4 text-left col-sm-12'>
-									<div className=''>
-										<Alert error={errors} />
-										<Btn
-											label={loading ? 'Loading...' : 'Next'}
-											onClickFunction={handleSubmit}
-											color='bg-themeColorMain text-black w-full'
-										/>
-									</div>
-								</div>
+										autoComplete={false}
+									/> 
+							</div>
+									*/}
+							<div className='mb-3'>
+								<MaskedMobile
+									required={true}
+									setter={setMobileNr}
+									value={mobileNr}
+									placeholder='Cellphone Number of parent or guardian'
+									autoComplete={false}
+								/>
+							</div>
+
+							<div className='mb-3'>
+								<InputField
+									id='email'
+									// icon="ti-email"
+									placeholder='Email Address of parent of guardian (required)'
+									type='email'
+									onChange={(e) => setEmail(e.target.value)}
+									value={email}
+									autoComplete={false}
+								/>
+							</div>
+						</form>
+						<div className=''>
+							<div className=''>
+								<Alert error={errors} />
+								<Btn
+									label={loading ? 'Loading...' : 'Next'}
+									onClickFunction={handleSubmit}
+									color='bg-themeColorSecondary'
+								/>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				}
+				leftTitle={
+					<span
+						className='text-6xl font-bold text-white'
+						style={{ marginTop: '72pt' }}
+					>
+						STEP 3
+					</span>
+				}
+			/>
 		</>
 	)
 }

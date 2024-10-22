@@ -11,7 +11,7 @@ const index = ({
 	return (
 		<a href={`${baseUrl}${link}`}>
 			<div
-				className='object-none w-full desktop:px-4 laptop:px-4 py-2 font-bold rounded-lg cursor-pointer desktop:h-60 laptop:h-60 mobile:h-28 mobile:w-auto shadow-menu p-2 mobile:overflow-y-hidden'
+				className='object-none w-full desktop:px-4 laptop:px-4 py-2 font-bold rounded-lg cursor-pointer desktop:h-60 laptop:h-60 mobile:h-28 mobile:w-auto shadow-md p-2 mobile:overflow-y-hidden'
 				style={{
 					backgroundImage: `url(${
 						img.startsWith('https') ? img : `/digilib/${img}`

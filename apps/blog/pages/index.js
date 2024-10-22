@@ -1,172 +1,124 @@
 import { useEffect, useState } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
-import Head from 'next/head'
 import BlogWelcome from '@/components/BlogWelcome'
 import BlogSearch from '@/components/BlogSearch'
 import BlogSavedArticles from '@/components/BlogSavedArticles'
 import BlogPost from '@/components/BlogPost'
 import DigilibLoad from '@/components/DigilibLoad'
-import { organizationId, profileId } from '@/context/constants'
+import { organizationId, orgName, profileId } from '@/context/constants'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import handleArticleSave from '@/snippets/blog/handleArticleSave'
-import handleArticleDelete from '@/snippets/blog/handleArticleDelete'
 import { useRouter } from 'next/router'
+import { SEO } from '@/components/SeoHead'
 
 const Home = () => {
 	const [articles, setArticles] = useState([])
-	const [savedList, setSavedList] = useState([])
 	const [savedArticlesList, setSavedArticlesList] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [searchFound, setSearchFound] = useState([])
 	const router = useRouter()
 
+	// Router events to track loading state
 	useEffect(() => {
-		router.events.on('routeChangeStart', setLoading(true))
-		router.events.on('routeChangeComplete', setLoading(false))
+		const handleStart = () => setLoading(true)
+		const handleComplete = () => setLoading(false)
+
+		router.events.on('routeChangeStart', handleStart)
+		router.events.on('routeChangeComplete', handleComplete)
+
+		return () => {
+			router.events.off('routeChangeStart', handleStart)
+			router.events.off('routeChangeComplete', handleComplete)
+		}
 	}, [])
-	useEffect(async () => {
-		setLoading(true)
-		if (profileId) {
-			const { savedArticles } = await getGQLRequest({
-				endpoint: `savedArticles`,
-				where: `profile:{id:${profileId}}`,
-				fields: `articles{id,title,description,shortDescription,published_at,image{url}}`
-			})
-			setSavedList(savedArticles)
-			savedArticles.map((x) => {
-				if (x.articles) {
-					x.articles.map((art) => {
-						if (
-							!savedArticlesList.find(
-								(x) => parseInt(x.id) === parseInt(art.id)
-							)
-						) {
-							savedArticlesList.push(art)
-						}
-					})
-				}
-			})
-			setSavedArticlesList(savedArticlesList)
-		}
-		setLoading(false)
-	}, [profileId, savedList.length])
 
-	useEffect(async () => {
-		setLoading(true)
-		if (organizationId) {
-			var date = new Date()
-			date.setHours(date.getHours() + 2)
-			var isodate = date.toISOString()
-
-			await getGQLRequest({
-				endpoint: `articles`,
-				stateSetter: setArticles,
-				fields: `id,title,description,published_at,image{url,formats},articleLike{id},author{firstName,lastName,profilePic{id,url,formats}}`,
-				where: `organization:{id:${organizationId}},published_at_lte:"${isodate}"`,
-				sort: 'published_at:desc'
-			})
+	// Fetch saved articles
+	useEffect(() => {
+		const fetchSavedArticles = async () => {
+			if (profileId) {
+				setLoading(true)
+				const { savedArticles } = await getGQLRequest({
+					endpoint: 'savedArticles',
+					where: `profile:{id:${profileId}}`,
+					fields: 'articles{id,title,description,published_at,image{url}}',
+					sort: 'articles.id:desc'
+				})
+				setSavedArticlesList(
+					savedArticles.length ? savedArticles[0]?.articles : []
+				)
+				setLoading(false)
+			}
 		}
+		fetchSavedArticles()
+	}, [profileId])
+	// Fetch all articles for the organization
+	useEffect(() => {
+		const fetchArticles = async () => {
+			if (organizationId) {
+				const date = new Date()
+				const isodate = date.toISOString()
+
+				const articlesData = await getGQLRequest({
+					endpoint: 'articles',
+					fields:
+						'id,title,description,published_at,image{url,formats},articleLike{id},author{firstName,lastName,profilePic{id,url,formats}}',
+					where: `organization:{id:${organizationId}},published_at_lte:"${isodate}"`,
+					sort: 'published_at:desc'
+				})
+
+				setArticles(articlesData.articles)
+				setSearchFound(articlesData)
+			}
+		}
+		setLoading(true)
+		fetchArticles()
 		setLoading(false)
 	}, [organizationId])
 
-	useEffect(async () => {
+	useEffect(() => {
 		setLoading(true)
-		setSearchFound(articles)
-		if (searchFound) {
-			setLoading(false)
+		if (searchFound !== articles) {
+			setSearchFound(articles)
+			if (searchFound) {
+				setLoading(false)
+			}
 		}
+		setLoading(false)
 	}, [articles])
 	const saveArticle = async (event) => {
-		const targetId = parseInt(event.currentTarget.id)
-		if (savedArticlesList.find(({ id }) => parseInt(id) === targetId)) {
+		const targetId = parseInt(event.target.id)
+		if (
+			savedArticlesList.find(({ id }) => parseInt(id) === parseInt(targetId))
+		) {
 			return
 		}
-		const article = articles.find(({ id }) => parseInt(id) === targetId)
-		let saveResults = await handleArticleSave({
-			id: profileId,
-			article: article,
-			handleArticleSave: setSavedArticlesList
-		})
-		setSavedArticlesList(saveResults.articles)
-	}
-
-	const deleteArticle = async (event) => {
-		event.preventDefault()
-		const userID = parseInt(profileId)
-		await handleArticleDelete(
-			event.currentTarget.id,
-			userID,
-			setSavedArticlesList
+		const article = articles.find(
+			({ id }) => parseInt(id) === parseInt(targetId)
 		)
+		const res = await handleArticleSave({
+			id: profileId,
+			article: article
+		})
+		setSavedArticlesList(res)
 	}
 
 	const seo = {
-		title: 'Topic - Blogs',
+		title: `${orgName ? orgName : 'Sunceple'} - Blogs`,
 		description:
-			"A whirlwind of wisdom, and wild adventures. It's the ultimate brain buffet, serving up captivating stories and mind-blowing insights.",
-		image: 'https://lms.topic.co.za/auth/logo.png',
-		url: 'https://topic.co.za'
+			"A whirlwind of wisdom, and wild adventures. It's the ultimate brain buffet, serving up captivating stories and mind-blowing insights."
 	}
 
 	return (
 		<div className='col row'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				description={seo.description}
+				title={seo.title}
+			/>
 			<div className='pt-2.5 space-y-5 desktop:pb-5'>
 				<div className='col-12 mobile:visible desktop:block '>
 					<BlogWelcome />
 				</div>
-				<div className='col-span-12'>
+				<div className='col-span-12 rounded-md shadow-md'>
 					<BlogSearch
 						setSearchFound={setSearchFound}
 						articles={articles}
@@ -176,7 +128,7 @@ const Home = () => {
 					<div className='desktop:w-1/3 laptop:w-1/3 mobile:w-full desktop:pr-3'>
 						<BlogSavedArticles
 							savedArticles={savedArticlesList}
-							deleteArticle={deleteArticle}
+							setSavedArticlesList={setSavedArticlesList}
 						/>
 					</div>
 
@@ -192,7 +144,8 @@ const Home = () => {
 									renderThumbVertical={({ style, ...props }) => (
 										<div
 											{...props}
-											style={{ ...style, backgroundColor: '#D6F379' }}
+											className='rounded-md bg-themeColorMain'
+											style={{ ...style }}
 										/>
 									)}
 								>

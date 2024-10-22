@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Chip, Stack } from '@mui/material'
 import { grades, organizationId } from '@/context/constants'
-import { AddressBook } from '../SvgIcons'
-import AddressSelect from '../AddressSelect'
+import { AddressBook } from '@/components/SvgIcons'
+import AddressSelect from '@/components/AddressSelect'
 import checkValidEmailAddress from '@/snippets/checkValidEmailAddress'
 import getGQLRequest from '@/snippets/getGQLRequest'
 

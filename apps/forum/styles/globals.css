@@ -21,7 +21,7 @@ a {
 }
 
 a:hover {
-	color: #d6f379;
+	color: #206969;
 }
 
 * {
@@ -129,7 +129,7 @@ tr:nth-child(even) {
 }
 
 #text-decoration:hover {
-	text-decoration: underline 2px solid rgb(214, 243, 121);
+	text-decoration: underline 2px solid #81cc71;
 }
 
 .ql-editor.ql-blank::before {
@@ -175,15 +175,14 @@ input:-ms-input-placeholder:focus {
 }
 
 ::selection {
-	background-color: #d6f379;
-	color: #000;
+	background-color: #81cc71;
+	color: #fff;
 }
 
 ::-moz-selection {
-	background-color: #d6f379;
-	color: #000;
+	background-color: #81cc71;
+	color: #fff;
 }
-
 .buttonHover {
 	transition: transform 0.4s ease;
 }

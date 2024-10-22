@@ -1,18 +1,16 @@
-import publicapi from '@/api/publicapi'
+import getGQLRequest from '../getGQLRequest'
 
 const checkEmail = async ({ email }) => {
 	if (typeof window === 'undefined') {
 		return
 	}
-	const API_URL = process.env.NEXT_PUBLIC_API_URL
-	return publicapi
-		.get(`${API_URL}/users?email=${email}`)
-		.then((response) => {
-			return response.data[0]
-		})
-		.catch((error) => {
-			console.log('An error occurred:', error.response)
-		})
+
+	const { users } = await getGQLRequest({
+		endpoint: 'users',
+		fields: 'provider',
+		where: `email:"${email}"`
+	})
+	return users ? users[0] : null
 }
 
 export default checkEmail

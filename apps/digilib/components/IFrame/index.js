@@ -1,78 +1,96 @@
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useEffect, useState, useCallback } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
-import Btn from '../Btn'
-import InputField from '../InputField'
-import { ChevronLeftIcon, ChevronRightIcon } from '../SvgIcons'
-import ContentLock from '../ContentLock'
+import Btn from '@/components/Btn'
+import InputField from '@/components/InputField'
+import { ChevronLeftIcon, ChevronRightIcon } from '@/components/SvgIcons'
+import ContentLock from '@/components/ContentLock'
 
 const IFrame = ({ src, setLoading }) => {
 	const [numPages, setNumPages] = useState(null)
 	const [pageNumber, setPageNumber] = useState(1)
 	const [width, setWidth] = useState(0)
-	const div_ref = createRef()
 	const [loader, setLoader] = useState(true)
+	const divRef = createRef()
 
 	useEffect(() => {
-		setLoader(true)
 		pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 		setLoader(false)
-		setLoading(false)
+		if (setLoading) {
+			setLoading(false)
+		}
 	}, [])
 
-	function onDocumentLoadSuccess({ numPages }) {
+	const onDocumentLoadSuccess = ({ numPages }) => {
 		setNumPages(numPages)
 	}
 
-	let encodedEmbedURL = encodeURI(`${src}#view=fitH`)
-	const navigate = async (direction) => {
-		if (direction == 'back') {
-			setPageNumber(pageNumber - 1)
-		} else if (direction == 'next') {
-			setPageNumber(pageNumber + 1)
+	const handleResize = useCallback(() => {
+		if (divRef.current) {
+			setWidth(divRef.current.getBoundingClientRect().width)
 		}
-	}
-
-	function handleResize() {
-		if (div_ref.current) {
-			setWidth(div_ref.current.getBoundingClientRect().width)
-		}
-	}
-	window.addEventListener('resize', handleResize)
-
-	useEffect(() => {
-		if (div_ref.current) {
-			setWidth(div_ref.current.getBoundingClientRect().width)
-		}
-		document.addEventListener('keyup', (e) => {
-			if (e.key == 'PrintScreen') {
-				navigator.clipboard.writeText('')
-				alert('Screenshots disabled!')
-			}
-		})
-		document.addEventListener('keydown', (e) => {
-			if (e.ctrlKey && e.key == 'p') {
-				alert('This section is not allowed to print or export to PDF')
-				e.cancelBubble = true
-				e.preventDefault()
-				e.stopImmediatePropagation()
-			}
-			if (e.ctrlKey && e.key == 's') {
-				alert('This section is not allowed to be saved')
-				e.cancelBubble = true
-				e.preventDefault()
-				e.stopImmediatePropagation()
-			}
-		})
 	}, [])
 
+	useEffect(() => {
+		handleResize()
+
+		const disablePrintAndScreenshots = (e) => {
+			// Disable PrintScreen key
+			if (e.key === 'PrintScreen') {
+				navigator.clipboard.writeText('')
+				alert('Screenshots are disabled!')
+			}
+
+			// Disable print via Ctrl+P or Command+P
+			if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+				alert('Printing is disabled!')
+				e.preventDefault()
+				e.stopImmediatePropagation()
+			}
+
+			// Disable saving the page via Ctrl+S or Command+S
+			if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+				alert('Saving this content is not allowed!')
+				e.preventDefault()
+				e.stopImmediatePropagation()
+			}
+		}
+
+		const disableContextMenu = (e) => {
+			e.preventDefault()
+		}
+
+		// Add event listeners
+		window.addEventListener('resize', handleResize)
+		document.addEventListener('keydown', disablePrintAndScreenshots)
+		document.addEventListener('contextmenu', disableContextMenu)
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+			// Clean up event listeners
+			document.removeEventListener('keydown', disablePrintAndScreenshots)
+			document.removeEventListener('contextmenu', disableContextMenu)
+		}
+	}, [])
+
+	const navigate = useCallback(
+		(direction) => {
+			if (direction === 'back' && pageNumber > 1) {
+				setPageNumber((prev) => prev - 1)
+			} else if (direction === 'next' && pageNumber < numPages) {
+				setPageNumber((prev) => prev + 1)
+			}
+		},
+		[pageNumber, numPages]
+	)
+
+	let encodedEmbedURL = encodeURI(`${src}#view=fitH`)
 	return (
 		<div
-			ref={div_ref}
-			className='overflow-y height:900px text-textColor'
-			style={{ textAlign: 'center' }}
+			ref={divRef}
+			className='h-auto overflow-y-auto text-textColor'
 		>
 			{loader ? (
-				<>Loading PDF Reader</>
+				<>Loading PDF Reader...</>
 			) : (
 				<ContentLock
 					bgColor={'bg-themeColorMain'}
@@ -94,46 +112,51 @@ const IFrame = ({ src, setLoading }) => {
 					}
 				/>
 			)}
-			<div className='flex flex-row justify-between items-center pb-4 mb-6'>
-				{numPages && (
-					<>
-						{pageNumber > 1 && (
-							<div className=''>
-								<Btn
-									width='w-14'
-									label={<ChevronLeftIcon />}
-									color='bg-themeColorMain text-textColor'
-									onClickFunction={() => navigate('back')}
-								/>
-							</div>
-						)}
-						<div className='flex flex-row justify-content gap-x-2 items-center mx-auto'>
-							<div className=''>
-								<InputField
-									type='number'
-									max={numPages}
-									min={1}
-									value={pageNumber}
-									onChange={(e) => setPageNumber(parseInt(e.target?.value))}
-								/>
-							</div>
-							/ {numPages}
-						</div>
 
-						{pageNumber < numPages && (
-							<div className=''>
-								<Btn
-									width='w-14'
-									label={<ChevronRightIcon />}
-									color='bg-themeColorMain text-textColor'
-									onClickFunction={() => navigate('next')}
-								/>
-							</div>
-						)}
-					</>
-				)}
-			</div>
+			{numPages && (
+				<div className='flex items-center justify-between desktop:flex-row laptop:flex-row mobile:flex-col mobile:my-2'>
+					{pageNumber > 1 ? (
+						<div className='flex-none'>
+							<Btn
+								label={<ChevronLeftIcon />}
+								color='bg-themeColorMain text-textColor'
+								onClickFunction={() => navigate('back')}
+							/>
+						</div>
+					) : (
+						<div className='flex-none mx-2 w-28' />
+					)}
+
+					<div className='flex flex-col items-center justify-center flex-grow text-center'>
+						<div className='flex items-center gap-2'>
+							<InputField
+								type='number'
+								max={numPages}
+								min={1}
+								value={pageNumber}
+								onChange={(e) =>
+									setPageNumber(
+										Math.max(1, Math.min(numPages, Number(e.target.value)))
+									)
+								}
+							/>
+							<span>/ {numPages}</span>
+						</div>
+					</div>
+
+					{pageNumber < numPages && (
+						<div className='flex-none'>
+							<Btn
+								label={<ChevronRightIcon />}
+								color='bg-themeColorMain text-textColor'
+								onClickFunction={() => navigate('next')}
+							/>
+						</div>
+					)}
+				</div>
+			)}
 		</div>
 	)
 }
+
 export default IFrame

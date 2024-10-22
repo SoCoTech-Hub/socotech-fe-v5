@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Chip from '@mui/material/Chip'
-import { PrimaryColor } from '@/context/constants'
+import { PrimaryColor, SecondaryColor } from '@/context/constants'
 
 const IMMenuListItem = ({
 	title,
@@ -23,7 +22,7 @@ const IMMenuListItem = ({
 			className='w-full h-12 p-1'
 			selected={selectedIndex === listItemValue}
 			style={{
-				backgroundColor: selectedIndex === listItemValue ? '#808080' : ''
+				backgroundColor: selectedIndex === listItemValue ? '#D9DADD' : ''
 			}}
 			onClick={(event) => {
 				handleListItemClick(event, listItemValue)
@@ -38,7 +37,7 @@ const IMMenuListItem = ({
 			{iconName ? <ListItemIcon>{iconName}</ListItemIcon> : <></>}
 			<ListItemText
 				primary={title}
-				style={{ color: 'white' }}
+				style={{ color: '#206969' }}
 			/>
 			{chipNumber ? (
 				<Chip

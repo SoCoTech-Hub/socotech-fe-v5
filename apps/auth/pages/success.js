@@ -24,49 +24,34 @@ export default function Success({ transaction, url, profile }) {
 				<title>Redirect</title>
 				<meta
 					name='description'
-					content='redirecting you'
+					content='Redirecting you'
 				/>
 			</Head>
-			<div className='w-full'>
-				<div className='justify-items-center'>
-					<div className='overflow-scroll desktop:h-screen laptop:h-screen no-scrolly mobile:h-screen'>
-						{/* <div className='mobile:mb-10'><LogoOverlay /></div> */}
-						<div
-							className='flex items-center justify-center'
-							style={{
-								backgroundImage: `url(${baseUrl}/confirm-img.png)`,
-								height: '100%',
-								width: '100%',
-								backgroundSize: 'cover',
-								backgroundRepeat: 'no-repeat',
-								backgroundPosition: 'center'
-							}}
-						>
-							<div className='desktop:my-10 laptop:my-10 mobile:my-5 desktop:w-1/2 laptop:w-1/2 mobile:w-11/12 mobile:p-3 desktop:p-0 laptop:p-0'>
-								<div className='justify-items-center'>
-									<div className='mobile:w-full desktop:w-1/2 laptop:w-1/2 mobile:mt-3 desktop:mt-0 laptop:mt-0'>
-										{/* <img
-									src={`${baseUrl}/confirm-img.png`}
-									alt='Confirmation Image'
-								/> */}
-									</div>
-									<div className='items-center desktop:px-20 laptop:px-20 desktop:py-8 laptop:py-8 mobile:p-4 bg-compBg rounded-3xl '>
-										<div className='my-3 font-bold text-center desktop:text-4xl text-textColor laptop:text-4xl mobile:text-2xl'>
-											Thank you for Subscribing!
+			<div className='flex items-center justify-center w-full h-screen'>
+				<div
+					className='flex items-center justify-center w-full h-full'
+					style={{
+						backgroundImage: `url(${baseUrl}/background1.png)`,
+						backgroundSize: 'cover',
+						backgroundRepeat: 'no-repeat',
+						backgroundPosition: 'center'
+					}}
+				>
+					<div className='p-4 bg-compBg rounded-3xl mobile:w-11/12 laptop:w-1/2 desktop:w-1/2 mobile:my-5 laptop:my-10'>
+						<div className='text-center'>
+							<div className='my-3 text-2xl font-bold text-textColor mobile:text-2xl laptop:text-4xl desktop:text-4xl'>
+								Thank you for Subscribing!
+							</div>
+							<div className='my-4 text-xl font-bold text-textColor mobile:text-xl laptop:text-2xl desktop:text-2xl'>
+								A receipt is on its way to your email account.
+							</div>
+							<div className='flex justify-center'>
+								<div className='w-2/3 py-3 laptop:w-1/3'>
+									<button onClick={() => submit()}>
+										<div className='p-3 text-center text-black rounded-lg cursor-pointer bg-themeColorMain'>
+											Click here to continue
 										</div>
-										<div className='my-4 font-bold text-center text-textColor desktop:text-2xl laptop:text-2xl mobile:text-xl'>
-											A receipt is on it's way to your email account
-										</div>
-										<div className='flex justify-center'>
-											<div className='w-1/3 py-3'>
-												<button onClick={() => submit()}>
-													<div className='p-3 text-center text-black rounded-lg cursor-pointer bg-themeColorMain'>
-														Click here to continue
-													</div>
-												</button>
-											</div>
-										</div>
-									</div>
+									</button>
 								</div>
 							</div>
 						</div>
@@ -76,6 +61,7 @@ export default function Success({ transaction, url, profile }) {
 		</>
 	)
 }
+
 export async function getServerSideProps(context) {
 	const { uniqueId, returnTo } = context.query
 
@@ -93,7 +79,7 @@ export async function getServerSideProps(context) {
 	})
 
 	let transactionEvent = []
-	if (transactions) {
+	if (transactions.length) {
 		const { transactionEvents } = await getGQLRequest({
 			endpoint: 'transactionEvents',
 			fields: 'id,type',
@@ -111,8 +97,8 @@ export async function getServerSideProps(context) {
 					? transactions[0]
 					: null
 				: null,
-			url: returnTo,
-			profile: profiles[0]
+			url: returnTo ? returnTo : '#',
+			profile: profiles.length ? profiles[0] : null
 		}
 	}
 }

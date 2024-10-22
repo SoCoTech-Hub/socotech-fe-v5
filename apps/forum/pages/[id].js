@@ -1,24 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Alert from '@/components/Alert'
 import Btn from '@/components/Btn'
 import MdxEditor from '@/components/MdxEditor/MdxEditor'
 import ForumReviewDisplay from '@/components/ForumReviewDisplay'
 import { ForumReply } from '@/components/ForumReviewDisplay/ForumReplyWIP'
-import { getTimeDifferenceFromPostDate } from '@/snippets/user/getTimeDifferenceFromPostDate'
-import getGQLRequest from '@/snippets/getGQLRequest'
-import { profileId, userId } from '@/context/constants'
-import api from './api/api'
 import Avatar from '@/components/Avatar'
 import {
 	CommentsIcon,
 	HeartIcon,
 	ImTrashIcon,
+	LikesIcon,
 	PencilSquareIcon
 } from '@/components/SvgIcons'
 import Overlay from '@/components/Overlay'
 import { SEO } from '@/components/SeoHead'
+import { orgName, profileId, userId } from '@/context/constants'
+import api from '@/api/api'
+import { getTimeDifferenceFromPostDate } from '@/snippets/user/getTimeDifferenceFromPostDate'
+import getGQLRequest from '@/snippets/getGQLRequest'
+import SortRepliesByParentId from '@/snippets/forum/sortRepliesByParentId'
 
 const DisplayForum = ({ forum, forumListItems, slug }) => {
+	if (!forum?.id) {
+		return <></>
+	}
 	const [add, setAdd] = useState(0)
 	const [show, setShow] = useState(false)
 	const [editMain, setEditMain] = useState(false)
@@ -29,17 +34,13 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 	const [loading, setLoading] = useState(false)
 	const [success, setSuccess] = useState('')
 	const [error, setError] = useState('')
-	let { id, name, question, user, updated_at, likes } = forum
-	const [replies, setReplies] = useState([])
+	const [replies, setReplies] = useState(forumListItems)
 	const [message, setMessage] = useState('')
-	const [likeList, setLikeList] = useState([likes])
+	const [likeList, setLikeList] = useState(forum.likes)
 
-	useEffect(() => {
-		setReplies(sortRepliesByParentId(forumListItems))
-		setLikeList(likes)
-	}, [])
+	const { id, name, question, user, updated_at } = forum
 
-	const AddReply = async () => {
+	const AddReply = useCallback(async () => {
 		setLoading(true)
 		const { data, ok } = await api.post('/forums', {
 			user: { id: parseInt(userId) },
@@ -48,50 +49,72 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 			answer: message
 		})
 		if (ok) {
-			const res = sortRepliesByParentId(replies, data)
-			setReplies(res)
+			setReplies(SortRepliesByParentId(replies, data))
 			setMessage('')
 			setSuccess('Reply posted')
 			setAdd(0)
 		} else {
-			setMessage('')
-			setError('Something Went Wrong')
+			setError('Something went wrong')
 		}
 		setLoading(false)
-	}
-	const updateReply = async () => {
+	}, [add, message, replies, slug])
+
+	const updateReply = useCallback(async () => {
 		setLoading(true)
 		if (editID) {
 			const { data, ok } = await api.put(`/forums/${editID}`, {
 				answer: message
 			})
 			if (ok) {
-				const res = sortRepliesByParentId(replies, data)
-				setReplies(res)
+				setReplies(SortRepliesByParentId(replies, data))
 				setMessage('')
 				setSuccess('Reply updated')
 				setAdd(0)
 			} else {
-				setMessage('')
-				setError('Something Went Wrong')
+				setError('Something went wrong')
 			}
 		}
 		setLoading(false)
-		return
-	}
-	const deleteReply = async () => {
+	}, [editID, message, replies])
+
+	const deleteReply = useCallback(async () => {
 		setLoading(true)
 		if (editMain) {
 			const { ok, error } = await api.delete(`/forums/${editID}`)
 			if (ok) {
-				router.reload()
+				location.reload()
 			} else {
 				setError(error)
 			}
 		}
 		setLoading(false)
-		return
-	}
+	}, [editID, editMain])
+
+	const MarkHelpful = useCallback(async () => {
+		setLoading(true)
+		try {
+			const liked = likeList.find((x) => x.id === profileId)
+
+			if (liked) {
+				const likeUpdate = likeList.filter((x) => x.id !== profileId)
+				await api.put(`/forums/${id}`, { likes: likeUpdate })
+				setLikeList(likeUpdate)
+			} else {
+				const likeUpdate = [...likeList, { id: profileId }]
+				await api.put(`/forums/${id}`, { likes: likeUpdate })
+				setLikeList(likeUpdate)
+			}
+		} catch (error) {
+			console.error('Error liking the post:', error)
+		}
+		setLoading(false)
+	}, [likeList, id])
+
+	useEffect(() => {
+		if (forumListItems.length) {
+			setReplies(SortRepliesByParentId(forumListItems))
+		}
+	}, [])
 
 	const updateMainReply = async () => {
 		setLoading(true)
@@ -124,30 +147,6 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 		return
 	}
 
-	const MarkHelpful = async () => {
-		setLoading(true)
-		try {
-			const liked = likeList.find((x) => x.id === profileId)
-
-			if (liked) {
-				const likeUpdate = likeList.filter((x) => x.id !== profileId)
-				await api.put(`/forums/${id}`, {
-					likes: likeUpdate
-				})
-				setLikeList(likeUpdate)
-			} else {
-				const likeUpdate = [...likeList, { id: profileId }]
-				await api.put(`/forums/${id}`, {
-					likes: likeUpdate
-				})
-				setLikeList(likeUpdate)
-			}
-			setLoading(false)
-		} catch (error) {
-			console.error('Error liking the post:', error)
-			setLoading(false)
-		}
-	}
 	const MarkReplyHelpful = async ({ postID, likesList }) => {
 		setLoading(true)
 		try {
@@ -212,69 +211,10 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 		}
 	}
 
-	const sortRepliesByParentId = (replyList, singleReply) => {
-		const repliesMap = new Map()
-
-		// Create a map of replies based on their parentForum.id
-
-		replyList.forEach((reply) => {
-			const parentId = singleReply
-				? singleReply.parentForum?.id.toString()
-				: reply.parentForum?.id || null
-
-			if (!repliesMap.has(parentId)) {
-				repliesMap.set(parentId, [])
-			}
-
-			if (singleReply && reply.id == singleReply.parentForum.id) {
-				if (!reply.replies) {
-					reply.replies = []
-				}
-				reply.replies.push(singleReply)
-				repliesMap.get(parentId).push(reply)
-			} else {
-				repliesMap.get(parentId).push(reply)
-			}
-		})
-
-		// Add singleReply to top level if it has no replies
-		if (
-			singleReply &&
-			!repliesMap.has(singleReply.parentForum?.id.toString())
-		) {
-			repliesMap.set(singleReply.parentForum?.id.toString(), [singleReply])
-		}
-
-		// Structure replies hierarchically
-		const structuredReplies = []
-		repliesMap.forEach((replies, parentId) => {
-			// If there are no parents, directly push replies
-			if (!parentId) {
-				structuredReplies.push(...replies)
-			} else {
-				const parentIndex = structuredReplies.findIndex(
-					(item) => item.id === parentId
-				)
-				if (parentIndex !== -1) {
-					if (!structuredReplies[parentIndex].replies) {
-						structuredReplies[parentIndex].replies = []
-					}
-					structuredReplies[parentIndex].replies.push(...replies)
-				} else {
-					structuredReplies.push(...replies)
-				}
-			}
-		})
-
-		return structuredReplies
-	}
-
 	const seo = {
-		title: `Topic - Forum:${forum.name}`,
+		title: `${orgName} - Forum:${forum.name}`,
 		description:
-			'Join the conversation and make it a positive space for everyone',
-		image: 'https://lms.topic.co.za/forum/logo.png',
-		url: 'https://topic.co.za'
+			'Join the conversation and make it a positive space for everyone'
 	}
 
 	return (
@@ -282,17 +222,14 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 			<SEO
 				title={seo.title}
 				description={seo.description}
-				image={seo.image}
-				url={seo.url}
 			/>
-			<div className='flex flex-col gap-2 mb-8 text-white mobile:mb-24'>
+			<div className='flex flex-col gap-2 mb-8 text-textColorSecondary mobile:mb-24'>
 				<div className='flex flex-row items-center justify-between mt-2.5'>
-					<h1 className='p-2 m-2 text-2xl font-bold rounded-md shadow-md text-themeColorMain'>
+					<h1 className='p-2 m-2 text-2xl font-bold rounded-md text-themeColorMain'>
 						{name}
 					</h1>
 					<div className='flex flex-row justify-end my-2'>
 						<Btn
-							className='text-black'
 							label='Back'
 							color='bg-themeColorMain'
 							link='/'
@@ -354,8 +291,7 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 							{user?.profile?.id == profileId && (
 								<div className='flex justify-end '>
 									<PencilSquareIcon
-										stroke='#D6F379'
-										className='w-4 h-4 cursor-pointer'
+										className='w-4 h-4 cursor-pointer stroke-themeColorMain'
 										onClick={() => {
 											setEditID(id)
 											setEditMain(true)
@@ -363,8 +299,7 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 									/>
 									<div className='pl-8 '>
 										<ImTrashIcon
-											className='w-4 h-4 cursor-pointer'
-											fill='#F00'
+											className='w-4 h-4 cursor-pointer fill-red'
 											label='Delete'
 											color='bg-themeColorMain'
 											type='submit'
@@ -383,16 +318,17 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 						<div className='flex flex-row items-center'>
 							<span className='pr-1 text-xs text-textColor'>
 								<div className='flex flex-row justify-between cursor-pointer text-md'>
-									<HeartIcon
-										fill={
-											likeList.find((x) => x.id == profileId) ? '#F00' : 'none'
-										}
-										stroke={
-											likeList.find((x) => x.id == profileId) ? '#F00' : '#fff'
-										}
-										className='w-6 h-6'
-										onClick={() => MarkHelpful()}
-									/>
+									{likeList.find((x) => x.id == profileId) ? (
+										<LikesIcon
+											name={'likes'}
+											onClick={() => MarkHelpful()}
+										/>
+									) : (
+										<HeartIcon
+											name={'loves'}
+											onClick={() => MarkHelpful()}
+										/>
+									)}
 									<div className='pl-1 my-auto '>
 										{likeList?.length ? likeList.length : '0'}{' '}
 									</div>
@@ -406,10 +342,9 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 							</span>
 						</div>
 					</div>
-					<div className='flex flex-row my-2'>
+					<div className='flex flex-row my-2 gap-x-2'>
 						{replies?.length ? (
 							<Btn
-								className=''
 								label={show ? 'Hide Comments' : 'Show Comments'}
 								color='bg-themeColorMain'
 								onClickFunction={() => setShow(!show)}
@@ -418,7 +353,6 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 							<></>
 						)}
 						<Btn
-							className=''
 							label={add ? 'Close Reply' : 'Reply'}
 							color='bg-themeColorMain'
 							onClickFunction={() => (add ? setAdd(0) : setAdd(id))}
@@ -493,17 +427,17 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 										<div className='flex justify-center'>
 											<div className='flex gap-2'>
 												<Btn
-													onClickFunction={() => deleteReply()}
 													label='Yes, delete'
 													color='bg-themeColorMain'
+													onClickFunction={() => deleteReply()}
 												/>
 												<Btn
+													label='No, keep'
+													color='bg-themeColorMain'
 													onClickFunction={() => {
 														setOpen(false)
 														setEditID('')
 													}}
-													label='No, keep'
-													color='bg-themeColorMain'
 												/>
 											</div>
 										</div>
@@ -525,7 +459,10 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 									<div className='flex flex-row items-start justify-between'>
 										<p className='flex flex-row items-start'>
 											<div className='items-center px-2 py-2'>
-												<Avatar src={x.user?.profile?.profilePic?.url} />
+												<Avatar
+													src={x.user?.profile?.profilePic?.url}
+													border={true}
+												/>
 											</div>
 											<div className=''>
 												<div className='flex-row'>
@@ -534,7 +471,7 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 														? x.user.profile.lastName
 														: ''}
 												</div>
-												<div className='flex-row -my-3'>
+												<div className='flex-row pt-2 -my-3 text-xs'>
 													{getTimeDifferenceFromPostDate(x.updated_at)}
 												</div>
 											</div>
@@ -560,17 +497,13 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 											</div>
 											<div className='flex flex-row'>
 												<Btn
-													disabled={loading || message.length < 1}
 													label='Update Reply'
 													color='bg-themeColorMain'
-													type='submit'
 													onClickFunction={() => updateReply()}
 												/>
 												<Btn
-													disabled={loading}
 													label='Cancel Update'
 													color='bg-themeColorMain'
-													type='submit'
 													onClickFunction={() => {
 														setEditID('')
 														setMessage('')
@@ -593,19 +526,15 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 											{x.user?.profile?.id == profileId && (
 												<div className='flex justify-end '>
 													<PencilSquareIcon
-														stroke='#D6F379'
-														className='w-4 h-4 cursor-pointer'
+														className='w-6 h-6 cursor-pointer'
 														onClick={() => {
 															setEditID(x.id)
 														}}
 													/>
 													<div className='pl-8 '>
 														<ImTrashIcon
-															className='w-4 h-4 cursor-pointer'
-															fill='#F00'
+															className='w-6 h-6 cursor-pointer'
 															label='Delete'
-															color='bg-themeColorMain'
-															type='submit'
 															onClick={() => {
 																setEditID(x.id)
 																setOpen(true)
@@ -617,22 +546,27 @@ const DisplayForum = ({ forum, forumListItems, slug }) => {
 										</div>
 									)}
 									<div className='flex flex-row cursor-pointer text-md'>
-										<HeartIcon
-											fill={
-												x.likes?.find((x) => x.id == profileId)
-													? '#F00'
-													: 'none'
-											}
-											stroke={
-												x.likes?.find((x) => x.id == profileId)
-													? '#F00'
-													: '#fff'
-											}
-											className='w-6 h-6'
-											onClick={() =>
-												MarkReplyHelpful({ postID: x.id, likesList: x.likes })
-											}
-										/>
+										{likeList.find((x) => x.id == profileId) ? (
+											<LikesIcon
+												name={'likes'}
+												onClick={() =>
+													MarkReplyHelpful({
+														postID: x.id,
+														likesList: x.likes
+													})
+												}
+											/>
+										) : (
+											<HeartIcon
+												name={'loves'}
+												onClick={() =>
+													MarkReplyHelpful({
+														postID: x.id,
+														likesList: x.likes
+													})
+												}
+											/>
+										)}
 										<div className='pl-1 my-auto '>
 											{x.likes?.length ? x.likes.length : '0'}{' '}
 										</div>
@@ -838,7 +772,7 @@ export async function getServerSideProps({ query }) {
 
 	return {
 		props: {
-			forum: item1,
+			forum: item1 || {},
 			forumListItems: otherItems,
 			slug: id
 		}

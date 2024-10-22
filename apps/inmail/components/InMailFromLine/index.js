@@ -1,6 +1,6 @@
 import React from 'react'
 import Avatar from '@/components/Avatar'
-import FromMenu from '../InMailFromMenu'
+import FromMenu from '@/components/InMailFromMenu'
 import { baseUrl } from '@/context/constants'
 
 const FromLine = ({ mail }) => {

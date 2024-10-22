@@ -7,7 +7,7 @@ const index = ({ label, value = false, onChange }) => {
 			<div className='flex justify-center'>
 				<div className='form-check form-switch'>
 					<input
-						className='float-left h-5 -ml-10 align-top bg-no-repeat bg-contain rounded-full shadow-sm appearance-none cursor-pointer bg-compBg form-check-input w-9 focus:outline-none'
+						className='float-left h-5 -ml-10 align-top bg-no-repeat bg-contain rounded-full shadow-md appearance-none cursor-pointer bg-compBg form-check-input w-9 focus:outline-none'
 						type='checkbox'
 						role='switch'
 						id='flexSwitchCheckDefault'
@@ -24,7 +24,7 @@ const index = ({ label, value = false, onChange }) => {
             <div className="flex justify-center">
                 <div className="form-check form-switch">
                     <input 
-                        className="float-left h-5 -ml-10 align-top bg-compBg bg-compBg bg-no-repeat bg-contain rounded-full shadow-sm appearance-none cursor-pointer form-check-input w-9 focus:outline-none" 
+                        className="float-left h-5 -ml-10 align-top bg-compBg bg-compBg bg-no-repeat bg-contain rounded-full shadow-md appearance-none cursor-pointer form-check-input w-9 focus:outline-none" 
                         type="checkbox" 
                         role="switch" 
                         id="flexSwitchCheckChecked"

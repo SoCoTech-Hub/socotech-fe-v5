@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { ImAttachmentIcon, ImModalCloseIcon } from '../SvgIcons'
+import { ImAttachmentIcon, ImModalCloseIcon } from '@/components/SvgIcons'
 import InMailEditor from '@/components/InMailEditor'
 import FilesDropzone from '@/components/FilesDropzone'
 import Alert from '@/components/Alert'
-import InMailEmailInput from '../InMailEmailInput'
+import InMailEmailInput from '@/components/InMailEmailInput'
 // import Switch from "react-switch"
 import TailWindToggle from '@/components/TailWindToggle'
 import api from '@/api/api'

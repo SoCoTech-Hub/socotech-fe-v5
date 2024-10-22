@@ -1,117 +1,84 @@
-import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { usePagination, DOTS } from '@/snippets/usePagination'
 
-export const PageWithText = ({
-	activeClassNames = 'btn btn-default bg-blue-500 hover:bg-blue-600 text-textColor',
-	// inactiveClassNames = "btn btn-default bg-transparent hover:bg-compBg text-gray-900  ",
-	inactiveClassNames = 'h-8 px-8 text-sm text-textColor bg-themeColorMain rounded-lg',
-	children,
-	active = false,
-	onClick
-}) => {
-	if (active) {
-		return (
-			<button
-				onClick={onClick}
-				className={activeClassNames}
-			>
-				{children}
-			</button>
-		)
+const Pagination = (props) => {
+	const {
+		onPageChange,
+		totalCount,
+		siblingCount = 1,
+		currentPage,
+		pageSize,
+		className
+	} = props
+
+	const paginationRange = usePagination({
+		currentPage,
+		totalCount,
+		siblingCount,
+		pageSize
+	})
+
+	if (currentPage === 0 || paginationRange.length < 2) {
+		return null
 	}
+
+	const onNext = () => {
+		onPageChange(currentPage + 1)
+	}
+
+	const onPrevious = () => {
+		onPageChange(currentPage - 1)
+	}
+
+	let lastPage = paginationRange[paginationRange.length - 1]
 	return (
-		<button
-			onClick={onClick}
-			className={inactiveClassNames}
+		<ul
+			className={classnames('pagination-container mb-2 mt-2', {
+				[className]: className
+			})}
 		>
-			{children}
-		</button>
-	)
-}
-
-export const Page = ({
-	activeClassNames = 'btn btn-circle bg-blue-500 hover:bg-blue-600 text-textColor',
-	inactiveClassNames = 'btn btn-circle bg-transparent hover:bg-compBg text-textColor ',
-	children,
-	active = false,
-	onClick
-}) => {
-	if (active) {
-		return (
-			<button
-				onClick={onClick}
-				className={activeClassNames}
+			<li
+				className={classnames('pagination-item', {
+					disabled: currentPage === 1
+				})}
+				onClick={onPrevious}
 			>
-				{children}
-			</button>
-		)
-	}
-	return (
-		<button
-			onClick={onClick}
-			className={inactiveClassNames}
-		>
-			{children}
-		</button>
-	)
-}
+				<div className='arrow left text-textColor' />
+			</li>
+			{paginationRange.map((pageNumber, index) => {
+				if (pageNumber === DOTS) {
+					return (
+						<li
+							key={index}
+							className='pagination-item dots'
+						>
+							<span className='text-textColor'>&#8230;</span>
+						</li>
+					)
+				}
 
-export const Pages = ({ items, active, onClick }) => (
-	<>
-		{items.map((i) => (
-			<Page
-				onClick={onClick}
-				active={i + 1 === 5 ? true : false}
-				key={i}
+				return (
+					<li
+						key={index}
+						className={classnames('pagination-item', {
+							selected: pageNumber === currentPage
+						})}
+						onClick={() => onPageChange(pageNumber)}
+					>
+						<span className='text-textColor'>{pageNumber}</span>
+					</li>
+				)
+			})}
+			<li
+				className={classnames('pagination-item', {
+					disabled: currentPage === lastPage
+				})}
+				onClick={onNext}
 			>
-				{i + 1}
-			</Page>
-		))}
-	</>
-)
-
-Pages.propTypes = {
-	items: PropTypes.array.isRequired,
-	active: PropTypes.number.isRequired
-}
-
-export const Pagination = ({
-	items,
-	active,
-	previous = null,
-	next = null,
-	icons = false,
-	onClick
-}) => {
-	if (icons) {
-		return (
-			<div className='flex flex-wrap items-center justify-start space-x-2 pagination'>
-				{previous && <Page onClick={onClick}>{previous}</Page>}
-				<Pages
-					onClick={onClick}
-					items={items}
-					active={active}
-				/>
-				{next && <Page onClick={onClick}>{next}</Page>}
-			</div>
-		)
-	}
-	return (
-		<div className='flex flex-wrap items-center justify-start space-x-2 pagination'>
-			{previous && <PageWithText onClick={onClick}>{previous}</PageWithText>}
-			<Pages
-				onClick={onClick}
-				items={items}
-				active={active}
-			/>
-			{next && <PageWithText onClick={onClick}>{next}</PageWithText>}
-		</div>
+				<div className='arrow right' />
+			</li>
+		</ul>
 	)
 }
 
-Pagination.propTypes = {
-	items: PropTypes.array.isRequired,
-	active: PropTypes.number.isRequired,
-	previous: PropTypes.any.isRequired,
-	next: PropTypes.any.isRequired,
-	icons: PropTypes.bool
-}
+export default Pagination

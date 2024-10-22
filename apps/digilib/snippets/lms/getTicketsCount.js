@@ -7,7 +7,6 @@ const getTicketsCount = async ({ profileId }) => {
     })
     return result.supportTickets
   }
-
   return 0
 }
 export default getTicketsCount

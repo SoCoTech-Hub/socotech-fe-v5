@@ -88,7 +88,7 @@ export default function reset() {
 				<div className='w-full desktop:w-1/2 laptop:w-1/2 mobile:h-1/3'>
 					<div className='flex items-center w-full desktop:h-screen laptop:h-screen place-content-center'>
 						<img
-							src={`${baseUrl}/auth-img.png`}
+							src={`${baseUrl}/brand-image.png`}
 							alt='Login Image'
 							className='mobile:hidden'
 						/>

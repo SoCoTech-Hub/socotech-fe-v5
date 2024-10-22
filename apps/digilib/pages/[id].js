@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import Head from 'next/head'
-import IFrame from '@/components/IFrame'
-import DigilibHeader from '@/components/DigilibHeader'
-import { isPaying, profileId, userId } from '@/context/constants'
-import api from '@/api/api'
-import getGQLRequest from '@/snippets/getGQLRequest'
-import client from './api/apolloClient'
+import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
+import DigilibHeader from '@/components/DigilibHeader'
+import IFrame from '@/components/IFrame'
+import { SEO } from '@/components/SeoHead'
+import { isPaying, orgName, profileId, userId } from '@/context/constants'
+import api from '@/api/api'
+import client from '@/api/apolloClient'
+import getGQLRequest from '@/snippets/getGQLRequest'
+import TimeTracks from '@/snippets/timeTracks'
 import GetKBArticle from 'graphql/queries/GetKBArticle'
 import GetKBReads from 'graphql/queries/GetKBReads'
 import kBReadUpdate from 'graphql/mutations/kBReadUpdate'
 import kBReadCreate from 'graphql/mutations/kBReadCreate'
 import GetKBPaths from 'graphql/queries/GetKBPaths'
-import TimeTracks from '@/snippets/timeTracks'
 
 export default function Article({ article }) {
 	const startTime = new Date()
@@ -20,64 +20,15 @@ export default function Article({ article }) {
 	if (!article?.attachment) {
 		const seo = {
 			title: 'Topic - Article Not Found',
-			description: 'No Articles were found!',
-			image: 'https://lms.topic.co.za/digilib/logo.png',
-			url: 'https://topic.co.za'
+			description: 'No Articles were found!'
 		}
 
 		return (
 			<div>
-				<Head>
-					<title>{seo.title}</title>
-					<meta
-						name='title'
-						content={seo.title}
-					/>
-					<meta
-						name='description'
-						content={seo.description}
-					/>
-					<meta
-						property='og:type'
-						content='website'
-					/>
-					<meta
-						property='og:url'
-						content={seo.url}
-					/>
-					<meta
-						property='og:title'
-						content={seo.title}
-					/>
-					<meta
-						property='og:description'
-						content={seo.description}
-					/>
-					<meta
-						property='og:image'
-						content={seo.image}
-					/>
-					<meta
-						property='twitter:card'
-						content='summary_large_image'
-					/>
-					<meta
-						property='twitter:url'
-						content={seo.url}
-					/>
-					<meta
-						property='twitter:title'
-						content={seo.title}
-					/>
-					<meta
-						property='twitter:description'
-						content={seo.description}
-					/>
-					<meta
-						property='twitter:image'
-						content={seo.image}
-					/>
-				</Head>
+				<SEO
+					description={seo.description}
+					title={seo.title}
+				/>
 
 				<div>Resource not found</div>
 			</div>
@@ -134,17 +85,18 @@ export default function Article({ article }) {
 		}
 	}, [])
 
+	const seo = {
+		title: `${orgName} - ${article?.name}`,
+		description: article?.name
+	}
+
 	return (
 		<>
 			<div className='col row'>
-				<Head>
-					<title>{article?.name}</title>
-					<meta
-						name='description'
-						content={article?.name}
-						key='title'
-					/>
-				</Head>
+				<SEO
+					description={seo.description}
+					title={seo.title}
+				/>
 				<div className='space-y-10 desktop:gx-5 laptop:gx-5 gy-4 mobile:gx-4'>
 					<div className=''>
 						<DigilibHeader
@@ -159,7 +111,7 @@ export default function Article({ article }) {
 					<div className='pl-3 pr-3'></div>
 				</div>
 			</div>
-			<div className='p-6 rounded-lg shadow-outline bg-compBg'>
+			<div className='p-4 rounded-lg bg-compBg'>
 				<IFrame
 					src={article?.attachment?.url}
 					setLoading={setLoading}

@@ -17,7 +17,7 @@ export * from './BlogIcon'
 export * from './BlogsActiveIcon'
 export * from './LessonIcon'
 export * from './LessonActiveIcon'
-export * from './MainNotesIcon'
+
 export * from './KnowledgeBaseIcon'
 export * from './KnowledgeBaseActiveIcon'
 export * from './ApplicationsIcon'
@@ -41,7 +41,7 @@ export * from './NotificationIcon'
 
 export * from './StatsCompletedIcon'
 export * from './StatsHoursIcon'
-export * from './StatsInprogressIcon'
+export * from './StatsInProgressIcon'
 export * from './AverageQuizScoreIcon'
 export * from './CloseIcon'
 
@@ -71,7 +71,6 @@ export * from './ImImportantIcon'
 export * from './TopTrashIcon'
 export * from './TopRecycleTrashIcon'
 export * from './ImDownArrowIcon'
-export * from './ImOptionsIcon'
 export * from './StarredIcon'
 export * from './DefaultStarredIcon'
 export * from './ImportantBlueIcon'
@@ -107,7 +106,6 @@ export * from './HeartIcon'
 export * from './ChevUp'
 export * from './ChevDown'
 export * from './LmsHelpfulIcon'
-export * from './LockIcon'
 
 // Applications Icons
 
@@ -119,8 +117,6 @@ export * from './SendIcon'
 export * from './ShowsIcon'
 export * from './ShowsActiveIcon'
 export * from './DigilibIcon'
-export * from './EyeActiveIcon'
-export * from './EyeIcon'
 
 // Social Icons
 
@@ -133,6 +129,9 @@ export * from './InstagramActiveIcon'
 export * from './TikTokIcon'
 export * from './TikTokActiveIcon'
 export * from './WhatsAppIcon'
-export * from './WhatsAppActiveIcon'
 export * from './WhatsAppGroupIcon'
 export * from './WhatsAppGroupActiveIcon'
+
+// Forum
+export * from './InfoIcon'
+export * from './PencilSquareIcon'

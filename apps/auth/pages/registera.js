@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Alert from '@/components/Alert'
-import AuthNavbar from '@/components/AuthNavbar'
 import Btn from '@/components/Btn'
 import DatePickField from '@/components/DatePickField'
 import DefaultSelectNew from '@/components/DefaultSelectNew'
 import MaskedMobile from '@/components/MaskedMobile'
-import CssStepper from '@/components/CssStepper'
 import authCheck from '@/snippets/authCheck'
 import updateUserA from '@/snippets/auth/updateUserA'
 import { baseUrl } from '@/context/constants'
 import getGQLRequest from '@/snippets/getGQLRequest'
+import AuthPage from '@/components/AuthPage'
+// import InputField from '@/components/InputField'
 
-const RegisterA = ({ userId, profile, genders,profileId }) => {
+const RegisterA = ({ userId, profile, genders, profileId }) => {
 	const router = useRouter()
 	const [redirect, setRedirect] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -41,7 +41,7 @@ const RegisterA = ({ userId, profile, genders,profileId }) => {
 		} else {
 			setRedirect('/')
 		}
-	}, [userId,profileId])
+	}, [userId, profileId])
 
 	useEffect(() => {
 		if (redirect) {
@@ -63,7 +63,11 @@ const RegisterA = ({ userId, profile, genders,profileId }) => {
 			setLoading(false)
 			return
 		}
-		if (Date.parse(dob) >= 1577836800000) {
+		const currentDate = new Date()
+		const submitDate = new Date(dob)
+		const age = currentDate.getFullYear() - submitDate.getFullYear()
+		if (age <= 13) {
+			// 13 Year age limit
 			setErrorMessages('Please provide your correct date of birth')
 			setLoading(false)
 			return
@@ -93,7 +97,8 @@ const RegisterA = ({ userId, profile, genders,profileId }) => {
 				mobileNr,
 				gender
 			})
-			router.push('/registerc')			
+			router.prefetch('/registerc')
+			setRedirect('/registerc')
 		} catch (err) {
 			setErrorMessages(err)
 			setLoading(false)
@@ -110,101 +115,147 @@ const RegisterA = ({ userId, profile, genders,profileId }) => {
 					content='Register A Page'
 				/>
 			</Head>
-			<div className=''>
-				<div className='fixed w-full'>
-					<AuthNavbar />
-				</div>
-				<div className='flex flex-wrap g-0'>
-					<div className='w-1/2 mt-10 mobile:w-full bg-registerA desktop:block mobile:mt-12'>
-						<div className='flex items-center w-full'>
-							<img
-								src={`${baseUrl}/reg-step-1.jpg`}
-								alt='Registration Step 1'
-								className='object-scale-down'
+			<AuthPage
+				hasNavbar
+				bgImage={`${baseUrl}/background2-h.png`}
+				content={
+					<div
+						className='w-full h-screen p-8 overflow-x-hidden'
+						style={{ marginTop: '72px' }}
+					>
+						<h1 className='justify-start mb-1 text-4xl font-bold leading-1'>
+							General Information
+						</h1>
+						<div className='flex flex-row items-center text-xl'>
+							<span className='mr-1.5'>Step</span>
+							<span
+								className='bg-themeColorMain text-white font-semibold mr-1.5'
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									textAlign: 'center',
+									height: '1.5rem',
+									maxHeight: '1.5rem',
+									width: '1.5rem',
+									maxWidth: '1.5rem',
+									borderRadius: '50%'
+								}}
+							>
+								1
+							</span>{' '}
+							<span className='mr-1.5'>of</span>
+							<span
+								className='font-semibold text-white bg-themeColorMain'
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									textAlign: 'center',
+									height: '1.5rem',
+									maxHeight: '1.5rem',
+									width: '1.5rem',
+									maxWidth: '1.5rem',
+									borderRadius: '50%'
+								}}
+							>
+								3
+							</span>
+						</div>
+						<p className='my-2'>
+							Finish your registration by completing the fields below. You'll be
+							done in no time.
+						</p>
+						<form>
+							<div className='mb-3'>
+								{/* <InputField
+									id='dob'
+									placeholder='Date of birth (Required)'
+									type='date'
+									onChange={(event) =>
+										Date.parse(event.target.value) >= 1577836800000
+											? ''
+											: setDob(event.target.value)
+									}
+								/> */}
+								<DatePickField
+									placeholder='Date of birth (Required)'
+									onChange={(event) =>
+										Date.parse(event.target.value) >= 1577836800000
+											? ''
+											: setDob(event.target.value)
+									}
+									value={dob}
+								/>
+							</div>
+							<div className='mb-3'>
+								<MaskedMobile
+									required={true}
+									setter={setMobileNr}
+									value={mobileNr}
+									placeholder='Cellphone Number'
+								/>
+							</div>
+							<div className='mb-3'>
+								<DefaultSelectNew
+									options={genders}
+									id='gender'
+									name='gender'
+									placeholder='Gender (Required)'
+									valueSetter={setGender}
+									value={gender}
+									required
+								/>
+							</div>
+						</form>
+						<div className=''>
+							<Alert error={errors} />
+							<Btn
+								label={loading ? 'Loading...' : 'Next'}
+								onClickFunction={handleSubmit}
+								color='bg-themeColorSecondary'
 							/>
 						</div>
 					</div>
-					<div className='w-full bg-compBg desktop:w-1/2 laptop:w-1/2 mobile:h-2/3 mobile:mb-4'>
-						<div className='flex items-center desktop:mx-4 laptop:mx-4 mobile:mx-1 desktop:h-screen laptop:h-screen place-content-center'>
-							<div className='w-5/6 pt-10 mobile:w-10/12 desktop:my-0 mobile:pt-5'>
-								<div className='mt-10 mb-4 text-4xl text-textColor mobile:block mobile:mt-5 mobile:mb-2 mobile:text-3xl'>
-									General <br />
-									Information
-								</div>
-								<div className='w-auto mb-4 text-textColor mobile:text-sm'>
-									Finish your registration by completing the{' '}
-									<span className='font-bold'>Biological Info</span> fields
-									below. You'll be done in no time.
-								</div>
-								<form>
-									<DatePickField
-										placeholder='Date of birth (Required)'
-										onChange={(event) =>
-											Date.parse(event.target.value) >= 1577836800000
-												? ''
-												: setDob(event.target.value)
-										}
-										value={dob}
-									/>
-									<MaskedMobile
-										required={true}
-										setter={setMobileNr}
-										value={mobileNr}
-										placeholder='Cellphone Number'
-									/>
-									<DefaultSelectNew
-										options={genders}
-										id='gender'
-										name='gender'
-										placeholder='Gender (Required)'
-										valueSetter={setGender}
-										value={gender}
-										required
-									/>
-								</form>
-								<div className='p-0 mt-4 text-left col-sm-12'>
-									<div className=''>
-										<Alert error={errors} />
-										<Btn
-											label={loading ? 'Loading...' : 'Next'}
-											onClickFunction={handleSubmit}
-											color='bg-themeColorMain text-black w-full'
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				}
+				leftTitle={
+					<span
+						className='text-6xl font-bold text-white'
+						style={{ marginTop: '72pt' }}
+					>
+						STEP 1
+					</span>
+				}
+			/>
 		</>
 	)
 }
 export async function getServerSideProps(context) {
 	const { userid, profile: profileId } = context.req.cookies
-if(profileId){
-	const { profile } = await getGQLRequest({
-		endpoint: 'profile',
-		fields: ' id,dob,gender{id},mobileNr',
-		findOne: true,
-		id: profileId
-	})
-	
-	const { genders } = await getGQLRequest({
-		endpoint: 'genders'
-	})
+	if (profileId) {
+		const { profile } = await getGQLRequest({
+			endpoint: 'profile',
+			fields: ' id,dob,gender{id},mobileNr',
+			findOne: true,
+			id: profileId
+		})
 
-	return {
-		props: {
-			userId: userid ? userid : null,
-			profileId:  profileId,
-			profile: profile ? profile : null,
-			genders: genders
-		}
-	}}else{
+		const { genders } = await getGQLRequest({
+			endpoint: 'genders'
+		})
+
 		return {
 			props: {
-				profileId:  profileId,
+				userId: userid ? userid : null,
+				profileId: profileId,
+				profile: profile ? profile : null,
+				genders: genders
+			}
+		}
+	} else {
+		return {
+			props: {
+				profileId: profileId ? profileId : null
 			}
 		}
 	}

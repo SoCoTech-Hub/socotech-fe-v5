@@ -20,28 +20,28 @@ const index = ({
 	// })
 
 	return (
-		<div className='flex flex-row justify-between w-full p-3 rounded-lg bg-themeColorMain shadow-menu'>
+		<div className='flex flex-row justify-between w-full p-3 rounded-lg shadow-md bg-themeColorMain'>
 			<div className=''>
 				<div className='grid content-center my-2 align-middle ml-28 desktop:hidden laptop:hidden'>
 					<DigilibLoad loading={Boolean(loading)} />
 				</div>
-				<div className='pt-2 pb-1 pl-4 text-4xl font-bold leading-tight text-black mobile:text-xl'>
+				<div className='pt-2 pb-1 pl-4 text-4xl font-bold leading-tight text-textColor mobile:text-xl'>
 					{name}
 				</div>
-				<div className='pb-3 pl-4 text-xl leading-tight text-black mobile:text-sm'>
+				<div className='pb-3 pl-4 text-xl leading-tight text-textColor mobile:text-sm'>
 					{category} {subject}
 				</div>
 				<div className='flex flex-wrap mobile:gap-1 text-textColor'>
 					<Btn
 						label='Back to List'
 						onClickFunction={() => router.back()}
-						color='bg-compBg text-white'
+						color='bg-compBg text-textColor'
 					/>
 					{download && isPaying ? (
 						<Btn
 							label='Download'
 							onClickFunction={() => downloadHTMLLink(downloadLink, name)}
-							color='bg-compBg text-white'
+							color='bg-compBg text-textColor'
 						/>
 					) : (
 						<></>

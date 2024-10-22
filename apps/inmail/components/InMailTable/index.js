@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { InMailTableRowItem } from './InMailTableRowItem'
-import Pagination from 'TablePagination'
+import Pagination from '../Pagination'
 
 const index = ({
 	mailsToDisplay,
@@ -59,13 +59,7 @@ const index = ({
 							</div>
 						</div>
 					</div>
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center'
-						}}
-					>
+					<div className='flex justify-center align-middle'>
 						<Pagination
 							className='pagination-bar'
 							currentPage={currentPage}

@@ -1,12 +1,12 @@
 import React from 'react'
-import { MailPlaneIcon } from '../SvgIcons'
+import { MailPlaneIcon } from '@/components/SvgIcons'
 import { baseUrl } from '@/context/constants'
 
 const NoMail = () => {
 	return (
-		<div className='w-full p-4 card mobile:p-2 mobile:mb-28 bg-themeColorMain'>
+		<div className='w-full p-4 card mobile:p-2 mobile:mb-28 bg-themeColorSecondary'>
 			<div className='space-y-6 '>
-				<div className='pr-10 mr-24 text-4xl font-bold leading-tight text-black mobile:mr-0 mobile:p-1 mobile:leading-10'>
+				<div className='pr-10 mr-24 text-4xl font-bold leading-tight text-white mobile:mr-0 mobile:p-1 mobile:leading-10'>
 					There is no mail
 				</div>
 				<div className='mobile:float-right laptop:hidden desktop:hidden'>
@@ -19,7 +19,7 @@ const NoMail = () => {
 					/> */}
 				</div>
 				<div className='w-3/4 mr-28 mobile:p-1 mobile:mr-0 mobile:w-4/5'>
-					<p className='text-xl font-normal leading-tight text-black'>
+					<p className='text-xl font-normal leading-tight text-white'>
 						When you have messages, they will display here
 					</p>
 				</div>

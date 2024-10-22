@@ -96,7 +96,7 @@ export default function DefaultSelectNew({
 					{autocompleteValue.inputValue ? (
 						<img
 							className='w-7 h-7'
-							src={`${baseUrl}/modal_close_topic.svg`}
+							src={`${baseUrl}/close.svg`}
 							alt='Close'
 						/>
 					) : (

@@ -12,7 +12,7 @@ export const ChevronRightIcon = (props) => (
 			strokeLinecap='round'
 			strokeLinejoin='round'
 			strokeWidth='2'
-			d='M9 5l7 6-6 6'
+			d='M9 5l7 7-7 7'
 		/>
 	</svg>
 )

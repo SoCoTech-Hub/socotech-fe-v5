@@ -28,7 +28,7 @@ const LessonProgressView = () => {
 	}
 	return (
 		<>
-			<div className=' text-textColor'>No lesson in progress</div>
+			<div className='text-textColor font-bold'>No lesson in progress</div>
 		</>
 	)
 }

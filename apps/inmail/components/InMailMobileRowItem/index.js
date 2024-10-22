@@ -7,7 +7,7 @@ import {
 	ImportantBlueIcon,
 	ImportantDefaultIcon,
 	StarredIcon
-} from '../SvgIcons'
+} from '@/components/SvgIcons'
 import DigilibLoad from '@/components/DigilibLoad'
 import Clamp from 'react-multiline-clamp'
 
@@ -67,7 +67,7 @@ const index = ({
 		return null
 	}
 
-	let mailRead = mailToDisplay.read ? '' : 'font-bold'
+	let mailRead = mailToDisplay.read ? '' : 'font-bold bg-gray-200'
 
 	const handleChecked = () => {
 		setIsChecked(!isChecked)
@@ -104,7 +104,7 @@ const index = ({
 					>
 						<div className='cursor-pointer hover:bg-themeColorSecondary hover:bg-opacity-10'>
 							<div className='flex justify-between w-full'>
-								<div className='flex text-textColor'>
+								<div className='flex text-themeColorSecondary'>
 									{/* <div
                 className=''
                 onClick={() =>
@@ -118,19 +118,19 @@ const index = ({
               </div> */}
 									{/* <Link href={`/${mailToDisplay?.inMail?.id}`} passHref> */}
 									<Clamp lines={1}>
-										<div className='w-32 text-textColor'>
+										<div className='w-32 text-themeColorSecondary'>
 											{mailToDisplay?.inMail?.subject}
 										</div>
 									</Clamp>
 									{/* </Link> */}
 								</div>
-								<div className=''>
+								<div className='text-themeColorSecondary'>
 									{mailToDisplay?.inMail?.created_at
 										.split('T')[0]
 										.replace('-', '/')}
 								</div>
 							</div>
-							<div className='flex justify-between w-full text-textColor'>
+							<div className='flex justify-between w-full text-themeColorSecondary'>
 								<div className=''>
 									<Clamp lines={1}>
 										<div className=''>
