@@ -10,7 +10,6 @@ export const BurgerBarIcon = (props) => (
 			<style>
 				{`.bb-1 {
         fill: none;
-        stroke: #fff;
         stroke-linecap: round;
         stroke-miterlimit: 10;
         stroke-width: 2px;
@@ -23,21 +22,21 @@ export const BurgerBarIcon = (props) => (
 		>
 			<g>
 				<line
-					className='bb-1'
+					className='bb-1 stroke-themeColorSecondary'
 					x1='1'
 					y1='1'
 					x2='24.81'
 					y2='1'
 				/>
 				<line
-					className='bb-1'
+					className='bb-1 stroke-themeColorSecondary'
 					x1='1'
 					y1='7.7'
 					x2='24.81'
 					y2='7.7'
 				/>
 				<line
-					className='bb-1'
+					className='bb-1 stroke-themeColorSecondary'
 					x1='1'
 					y1='14.41'
 					x2='24.81'

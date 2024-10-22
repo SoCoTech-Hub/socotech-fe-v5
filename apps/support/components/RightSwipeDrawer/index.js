@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
-import SupportMenu from '@/components/SupportMenu'
-import LiveLessonMenu from '@/components/LiveLessonMenu'
-import LessonProgressMenu from '@/components/LessonProgressMenu'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { MainNavbar } from '../MainNavbar'
-import SocialLinksMenu from '../SocialLinksMenu'
+// import LiveLessonMenu from '@/components/LiveLessonMenu'
+import LessonProgressMenu from '@/components/LessonProgressMenu'
+import { MainNavbar } from '@/components/MainNavbar'
+import SocialLinksMenu from '@/components/SocialLinksMenu'
+import SupportMenu from '@/components/SupportMenu'
 
 const theme = createTheme({
 	components: {
@@ -49,7 +49,7 @@ export default function RightDrawer({ open, setOpen }) {
 		>
 			{/* <button
 				onClick={toggleDrawer('top', true)}
-				className='w-8 h-10 p-2 z-20 text-textColor opacity-80'
+				className='z-20 w-8 h-10 p-2 text-textColor opacity-80'
 			>
 				<div className=''>
 					<svg
@@ -68,15 +68,15 @@ export default function RightDrawer({ open, setOpen }) {
 					</svg>
 				</div>
 			</button> */}
-			<div className='mobile:m-3 card bg-navbarBg z-10 '>
+			<div className='z-10 mobile:m-3 card bg-navbarBg '>
 				<MainNavbar />
 				<div className='space-y-2'>
 					<SupportMenu
 						setOpen={setOpen}
 						open={open}
 					/>
-					{/* <LiveLessonMenu /> */}
 					<SocialLinksMenu />
+					{/* <LiveLessonMenu /> */}
 					<LessonProgressMenu />
 				</div>
 			</div>
@@ -89,7 +89,7 @@ export default function RightDrawer({ open, setOpen }) {
 				<button
 					aria-label='topSwipe'
 					onClick={toggleDrawer('top', true)}
-					className='w-10 h-10 mobile:px-1 text-textColor '
+					className='w-10 h-10 mobile:px-1 text-textColor'
 				>
 					<div className=''>
 						<svg

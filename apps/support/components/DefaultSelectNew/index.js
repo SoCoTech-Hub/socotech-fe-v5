@@ -1,11 +1,11 @@
+import { useState, useEffect } from 'react'
 import { baseUrl } from '@/context/constants'
-import React, { useState, useEffect } from 'react'
 
 export default function DefaultSelectNew({
 	options,
 	id,
 	name,
-	className = 'w-full',
+	className = 'my-1 rounded-lg shadow-md ',
 	valueSetter,
 	placeholder = '',
 	isSearchField = false,
@@ -66,14 +66,14 @@ export default function DefaultSelectNew({
 
 	return (
 		<div
-			className='relative my-2'
+			className='relative mt-2 rounded-md shadow-md'
 			onFocus={toggleDropdown}
 		>
 			<div className={className}>
 				<input
 					id={id}
 					type='text'
-					className='w-full p-3 bg-black border-2 border-white rounded-lg cursor-pointer text-themeColorMain'
+					className='w-full p-3 border-2 border-white rounded-lg cursor-pointer bg-compbg text-themeColorMain'
 					value={autocompleteValue.inputValue}
 					onChange={onSearchInputChange}
 					autoComplete='off'
@@ -98,7 +98,7 @@ export default function DefaultSelectNew({
 					{autocompleteValue.inputValue ? (
 						<img
 							className='w-7 h-7'
-							src={`${baseUrl}/modal_close_topic.svg`}
+							src={`${baseUrl}/close.svg`}
 							alt='Close'
 						/>
 					) : (
@@ -107,12 +107,12 @@ export default function DefaultSelectNew({
 				</button>
 			</div>
 			{showDropdown && (
-				<div className='absolute z-10 w-full mt-2 bg-black border-2 rounded-md shadow-md cursor-pointer text-textColor overflow-y-scroll h-64'>
+				<div className='absolute z-10 w-full h-64 mt-2 overflow-y-scroll text-white border-2 rounded-md shadow-md cursor-pointer bg-themeColorSecondary'>
 					{filteredOptions.length > 0 ? (
 						filteredOptions.map((option) => (
 							<div
 								key={option[valueKey]}
-								className='p-2 cursor-pointer hover:bg-themeColorMain hover:text-black'
+								className='p-2 cursor-pointer hover:bg-themeColorMain hover:text-white'
 								onClick={() => onSelectOption(option)}
 							>
 								{option.name}

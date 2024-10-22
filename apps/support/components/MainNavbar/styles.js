@@ -69,7 +69,7 @@ export const StyledMenuItem = withStyles(() => {
 			'&:hover': {
 				backgroundColor: ComponentBgHover,
 				'& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-					color: TextHover
+					color: '#206969'
 				}
 			},
 			padding: '5px',

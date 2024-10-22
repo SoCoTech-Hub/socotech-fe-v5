@@ -96,14 +96,14 @@ export const Support = ({ setShowModal, showModal, url }) => {
 		}).then((res) => {
 			if (!res.ok) {
 				setErrorMessages(res.data.message)
-				delay(2000).then(() => setShowModal(!showModal))
+				// delay(2000).then(() => setShowModal(!showModal))
 			} else {
 				setSuccessMessage('Ticket created Successfully 👍')
 				delay(2000).then(() => {
 					if (url) {
 						router.back()
 					} else {
-						setShowModal(!showModal)
+						// setShowModal(!showModal)
 					}
 				})
 			}

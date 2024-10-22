@@ -30,7 +30,7 @@ const index = () => {
 			{showButton ? (
 				<div
 					onClick={scrollToTop}
-					className='absolute flex justify-center p-3 align-middle rounded-full cursor-pointer text-textColor w-14 h-14 shadow-menu'
+					className='absolute flex justify-center p-3 align-middle rounded-full cursor-pointer text-textColor w-14 h-14 shadow-md'
 					style={{
 						bottom: 50,
 						right: 300,

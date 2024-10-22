@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import Avatar from '@/components/Avatar'
 import { NoSsr } from '@mui/material'
 import getBannerUrl from '@/snippets/getBannerUrl'
 import ProfilePicUrl from '@/snippets/getProfilePicUrl'
 import { uniqueId, userName } from '@/context/constants'
 
-const UserCover = () => (
-	<div className=''>
+const UserCover = ({ edit = false }) => {
+	// Create refs for profilePicFile and bannerFile
+	const bannerFileRef = createRef()
+
+	return (
 		<NoSsr>
 			<div className='p-3 rounded-lg bg-compBg shadow-menu mobile:w-full'>
 				<div
@@ -34,7 +37,7 @@ const UserCover = () => (
 				</div>
 			</div>
 		</NoSsr>
-	</div>
-)
+	)
+}
 
 export default UserCover

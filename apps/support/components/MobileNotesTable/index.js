@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { TopTrashIcon } from '../SvgIcons'
-import NotesModal from '../NotesModal'
+import { TopTrashIcon } from '@/components/SvgIcons'
+import NotesModal from '@/components/NotesModal'
 
 const index = ({
 	notes,

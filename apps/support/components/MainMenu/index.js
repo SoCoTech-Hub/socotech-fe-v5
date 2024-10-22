@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import MainMenuLinkNew from '@/components/MainMenuLinkNew'
 import {
+	ForumIcon,
+	LogoIcon,
 	DashboardIcon,
 	InMailIcon,
 	KnowledgeBaseIcon,
@@ -11,11 +14,9 @@ import {
 	ShowsIcon,
 	BlogIcon
 } from '@/components/SvgIcons'
+
 import { mainUrl, Text, profileId, isPaying } from '@/context/constants'
 import getMailCount from '@/snippets/lms/getMailCount'
-import MainMenuLinkNew from '../MainMenuLinkNew'
-import { ForumIcon } from '../SvgIcons/ForumIcon'
-import { LogoIcon } from '../SvgIcons/LogoIcon'
 
 const MainMenu = () => {
 	const [mailCount, setMailCount] = useState(0)
@@ -30,7 +31,7 @@ const MainMenu = () => {
 	return (
 		<div>
 			<div
-				className={`bg-compBg p-3 shadow-menu rounded-lg mt-1.5
+				className={`bg-compBg p-3 shadow-md rounded-lg mt-1.5
 				${Text}`}
 			>
 				<div className={`text-xs text-textColor mb-1.5 ${Text}`}>Menu</div>

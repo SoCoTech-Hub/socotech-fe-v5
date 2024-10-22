@@ -5,14 +5,15 @@ import DefaultSelectNew from '@/components/DefaultSelectNew'
 import Alert from '@/components/Alert'
 import createNote from '@/snippets/support/createNote'
 import editNote from '@/snippets/support/editNote'
-// import setNoteRead from '@/snippets/support/setNoteRead'
 import getGQLRequest from '@/snippets/getGQLRequest'
 import delay from '@/snippets/delay'
+import InputField from '@/components/InputField'
+// import setNoteRead from '@/snippets/support/setNoteRead'
 
 const index = ({ subjects, profileId, note, edit }) => {
 	const router = useRouter()
-	const fullDate = new Date().toISOString()
-	const currentDate = fullDate.split('T')
+	// const fullDate = new Date().toISOString()
+	// const currentDate = fullDate.split('T')
 
 	const [title, setTitle] = useState(note?.name)
 	const [subject, setSubject] = useState(note?.subject?.id)
@@ -90,25 +91,19 @@ const index = ({ subjects, profileId, note, edit }) => {
 	// }
 
 	return (
-		<div className='p-4 rounded-lg bg-compBg shadow-menu  '>
-			<div className='pb-2 text-lg font-bold text-textColor'>
-				<input
-					label='Create Title'
-					className='text-lg font-bold text-textColor placeholder-textColor bg-compBg focus:outline-none'
-					placeholder='Create Title'
-					type='text'
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-				/>
-			</div>
-			<div className='pb-3'>
-				<hr className='bg-compBg' />
-			</div>
-			<div className='pb-1'>
-				<div className='text-md font-bold text-textColor focus:outline-none'>
+		<div className='p-4 rounded-lg shadow-md bg-compBg'>
+			<InputField
+				id='titleInput'
+				placeholder='Title'
+				type='text'
+				onChange={(e) => setTitle(e.target.value)}
+				value={title}
+			/>
+			{/* <div className='px-1 py-2'>
+				<div className='font-bold text-md text-textColor focus:outline-none'>
 					{currentDate[0]}
 				</div>
-			</div>
+			</div> */}
 			<div className='pb-3 placeholder-textColor'>
 				<DefaultSelectNew
 					options={subjects}
@@ -117,15 +112,15 @@ const index = ({ subjects, profileId, note, edit }) => {
 					placeholder='Subject'
 					value={subject}
 					valueSetter={setSubject}
-					className='text-lg font-bold placeholder-textColor focus:outline-none'
+					// className='text-lg font-bold placeholder-textColor focus:outline-none'
 				/>
 			</div>
-			<div className='pb-3'>
+			{/* <div className='pb-3'>
 				<hr className='bg-compBg' />
-			</div>
+			</div> */}
 			<div className='pb-3'>
 				<textarea
-					className='block w-full pt-3 mt-1 border-0 rounded-lg resize-none bg-compBg placeholder-textColor text-textColor form-textarea focus:outline-none'
+					className='block w-full p-2 mt-1 border-2 rounded-lg resize-none border-themeColorSecondary bg-compBg placeholder-textColor text-textColor form-textarea focus:outline-none'
 					rows='13'
 					placeholder='Start typing your note...'
 					value={description}
@@ -139,7 +134,8 @@ const index = ({ subjects, profileId, note, edit }) => {
 				/>
 				<div className='mt-4'>
 					<Btn
-						color='bg-themeColorMain'
+						textColor='text-white'
+						color='bg-themeColorSecondary'
 						onClickFunction={onSubmit}
 					/>
 				</div>
@@ -154,6 +150,7 @@ const index = ({ subjects, profileId, note, edit }) => {
 					<div className='mt-4'>
 						<Btn
 							label='Back'
+							textColor='text-white'
 							color='bg-themeColorMain'
 							onClickFunction={() => router.back()}
 						/>
@@ -169,6 +166,7 @@ const index = ({ subjects, profileId, note, edit }) => {
 					<div className='mt-4'>
 						<Btn
 							label='Back'
+							textColor='text-white'
 							onClickFunction={() => router.back()}
 							color='bg-themeColorMain'
 						/>

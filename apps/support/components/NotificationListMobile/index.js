@@ -5,7 +5,7 @@ import Pagination from '@/components/Pagination'
 import { baseUrl } from '@/context/constants'
 import { useRouter } from 'next/router'
 import ReadAllUpdate from '@/snippets/readall'
-import Btn from '../Btn'
+import Btn from '@/components/Btn'
 
 const NotificationListMobile = ({
 	notificationList = [],
@@ -32,7 +32,8 @@ const NotificationListMobile = ({
 					<Btn
 						onClickFunction={() => refreshPage()}
 						label='Mark as read'
-						textColor='black'
+						textColor='text-white'
+						color='bg-themeColorSecondary'
 						textSize='text-lg'
 						buttonAnimation=''
 					/>

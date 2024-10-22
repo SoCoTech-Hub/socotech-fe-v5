@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Head from 'next/head'
 import UserCover from '@/components/UserCover'
 import NotificationStatus from '@/components/NotificationStatus'
 import NotificationTable from '@/components/NotificationTable'
@@ -7,6 +6,7 @@ import DigilibLoad from '@/components/DigilibLoad'
 import NotificationListMobile from '@/components/NotificationListMobile'
 import { useQuery } from '@apollo/client'
 import GetNotifications from 'graphql/queries/GetNotifications'
+import { SEO } from '@/components/SeoHead'
 
 const Notifications = ({ newNotificationExpiry, profileId }) => {
 	const [page, setPage] = useState(1)
@@ -25,65 +25,16 @@ const Notifications = ({ newNotificationExpiry, profileId }) => {
 		console.error(error)
 		return null
 	}
-const seo = {
-	title: 'Topic - Support Notifications Page',
-	description: 'Receive important Topic notifications!',
-	image: 'https://lms.topic.co.za/support/logo.png',
-	url: 'https://topic.co.za'
-}
+	const seo = {
+		title: 'Support Notifications Page',
+		description: 'Receive important TDP notifications!'
+	}
 	return (
 		<div className='col row'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+			<SEO
+				title={seo.title}
+				description={seo.description}
+			/>
 			<div className='space-y-10 desktop:gy-4 mobile:space-y-3'>
 				<div className=''>
 					<UserCover />

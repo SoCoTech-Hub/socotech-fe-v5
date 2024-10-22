@@ -2,29 +2,53 @@ import Link from 'next/link'
 
 const Btn = ({
 	label = 'Save',
-	link = '#',
+	link = null,
 	onClickFunction,
 	color = 'current',
+	width = 'w-36',
 	textSize = 'text-xs',
-	trackingAction = '',
-	textColor = 'text-black',
-	borderColor = 'border-none'
+	fontWeight = 'normal',
+	trackingAction = ''
 }) => {
-	return (
-		<div className='px-1 w-30'>
-			<Link
-				href={link}
-				passHref
+	const font = fontWeight ? `font-${fontWeight}` : ''
+
+	if (link === null) {
+		return (
+			<button
+				data-tracking-action={trackingAction}
+				className={`flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} ${font} ${color}`}
+				onClick={onClickFunction}
 			>
+				{label}
+			</button>
+		)
+	}
+	if (link.startsWith('http')) {
+		return (
+			<a href={link}>
 				<button
 					data-tracking-action={trackingAction}
-					className={`${color} text-center border-2 ${textColor} ${borderColor} px-3 py-2 rounded-full w-36 font-bold ${textSize} `}
-					onClick={onClickFunction}
+					className={`flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} ${font} ${color}`}
 				>
 					{label}
 				</button>
-			</Link>
-		</div>
+			</a>
+		)
+	}
+
+	return (
+		<Link
+			href={link}
+			passHref
+		>
+			<button
+				className={`flex items-center justify-center text-center text-textColor px-3 py-2 rounded-full ${width} ${textSize} ${font} ${color}`}
+				onClick={onClickFunction}
+			>
+				{label}
+			</button>
+		</Link>
 	)
 }
+
 export default Btn
