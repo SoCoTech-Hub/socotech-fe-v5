@@ -1,0 +1,144 @@
+import { useState, ChangeEvent } from 'react';
+import Alert from '@/components/Alert';
+
+interface DatePickFieldProps {
+  id: string;
+  placeholder?: string;
+  onChange: (event: { target: { value: string; name: string } }) => void;
+  value?: string;
+  required?: boolean;
+}
+
+const DatePickField: React.FC<DatePickFieldProps> = ({
+  id,
+  placeholder = 'Input Text Here',
+  onChange,
+  value = '',
+  required = false,
+}) => {
+  const [showInput, setShowInput] = useState(false);
+  const [year, setYear] = useState(value ? new Date(value).getFullYear().toString() : '');
+  const [month, setMonth] = useState(value ? (new Date(value).getMonth() + 1).toString() : '');
+  const [day, setDay] = useState(value ? new Date(value).getDate().toString() : '');
+  const [error, setError] = useState('');
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const newYear = event.target.value;
+    setYear(newYear);
+    updateDate(newYear, month, day);
+  };
+
+  const handleMonthChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const monthIndex = monthNames.indexOf(event.target.value) + 1;
+    setMonth(monthIndex.toString());
+    updateDate(year, monthIndex.toString(), day);
+  };
+
+  const handleDayChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const newDay = event.target.value;
+    setDay(newDay);
+    updateDate(year, month, newDay);
+  };
+
+  const updateDate = (year: string, month: string, day: string) => {
+    if (!year || !month || !day) {
+      setError('Please complete the date');
+      return;
+    }
+    const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    if (isValidDate(formattedDate)) {
+      setError('');
+      onChange({ target: { value: formattedDate, name: id } });
+    } else {
+      setError('Please enter a valid date');
+    }
+  };
+
+  const isValidDate = (dateString: string) => {
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateString.match(dateRegex)) return false;
+    const date = new Date(dateString);
+    return !isNaN(date.getTime());
+  };
+
+  const yearOptions = Array.from({ length: 80 }, (_, i) => new Date().getFullYear() - i);
+  const monthOptions = monthNames;
+  const dayOptions = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
+
+  const toggleInputVisibility = () => {
+    setShowInput(!showInput);
+  };
+
+  return (
+    <div className="relative my-3 rounded-md shadow-md">
+      <div className="rounded-lg shadow-md">
+        {showInput ? (
+          <div className="flex flex-row">
+            <select
+              value={year}
+              onChange={handleYearChange}
+              className="block w-1/3 px-3 py-3 pl-12 mr-2 border-2 border-white rounded-lg placeholder-compBg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+            >
+              <option value="" disabled className="bg-compBg">
+                Year
+              </option>
+              {yearOptions.map((y, index) => (
+                <option key={`${y}-${index}`} value={y} className="bg-compBg">
+                  {y}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={month ? monthNames[parseInt(month) - 1] : ''}
+              onChange={handleMonthChange}
+              className="block w-1/3 px-3 py-3 pl-12 mr-2 border-2 border-white rounded-lg placeholder-compBg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+            >
+              <option value="" disabled className="bg-compBg">
+                Month
+              </option>
+              {monthOptions.map((m, index) => (
+                <option key={`${m}-${index}`} value={m} className="bg-compBg">
+                  {m}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={day}
+              onChange={handleDayChange}
+              className="block w-1/3 px-3 py-3 pl-12 placeholder-gray-300 border-2 border-white rounded-lg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+            >
+              <option value="" disabled className="bg-compBg">
+                Day
+              </option>
+              {dayOptions.map((d, index) => (
+                <option key={`${d}-${index}`} value={d} className="bg-compBg">
+                  {d}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <input
+            type="text"
+            onFocus={toggleInputVisibility}
+            onBlur={toggleInputVisibility}
+            required={required}
+            className="block w-full px-3 py-3 pl-12 placeholder-gray-300 border-2 border-white rounded-lg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+            placeholder={`${placeholder} ${required && !value ? '(Required)' : ''} ${value ? value : ''}`}
+          />
+        )}
+
+        <Alert error={error} />
+      </div>
+    </div>
+  );
+};
+
+export default DatePickField;
