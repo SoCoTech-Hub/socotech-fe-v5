@@ -31,13 +31,12 @@ const Modal = ({ open = true, setOpen = () => {}, children }) => {
 									className='cursor-pointer'
 								>
 									<img
-										className='w-8 h-8'
-										src={`${baseUrl}/modal_close_topic.svg`}
-										alt='Close'
+										className='w-7 h-7'
+										src={`${baseUrl}/modal_close.svg`}
 									/>
 								</button>
+								{children}
 							</div>
-							{children}
 						</div>
 					</div>
 				</div>

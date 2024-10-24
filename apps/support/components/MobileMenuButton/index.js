@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { NotificationDot } from '../NotificationDot'
+import { NotificationDot } from '@/components/NotificationDot'
 import { Icon1 } from '@/context/constants'
 
 const MobileMenuButton = ({

@@ -91,7 +91,7 @@ const MainMenuLink = ({
 							className='flex items-center justify-center w-8 h-8 font-bold text-black align-middle rounded-lg bg-themeColorMain'
 							// style={{
 							//   backgroundColor:
-							//      PrimaryColor,
+							//     PrimaryColor
 							// }}
 						>
 							{badgeCount}

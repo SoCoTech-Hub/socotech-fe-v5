@@ -101,24 +101,26 @@ const index = ({ ticketId, profileId }) => {
 					error={error}
 					success={success}
 				/>
-				<div className='flex flex-row justify-end w-full pt-4'>
-					<FilesDropzone
-						files={attachments}
-						filesSetter={setAttachments}
-						filesPreviews={attachmentPreviews}
-						onDrop={handleDocumentUpload}
-						acceptFileTypes=''
-						dropzonePlaceholder='Attachments'
-					/>
-
-					<Btn
-						disabled={comment.length ? true : false}
-						label='Save'
-						onClickFunction={onSubmit}
-						color='bg-themeColorMain'
-						width='32'
-						padding='px-3 py-2'
-					/>
+				<div className='flex flex-row justify-end w-full pt-4 align-items-center'>
+					<div>
+						<FilesDropzone
+							files={attachments}
+							filesSetter={setAttachments}
+							filesPreviews={attachmentPreviews}
+							onDrop={handleDocumentUpload}
+							acceptFileTypes=''
+							dropzonePlaceholder='Attachments'
+						/>
+					</div>
+					<div className='-mt-4'>
+						<Btn
+							disabled={comment.length ? true : false}
+							label='Save'
+							onClickFunction={onSubmit}
+							color='bg-themeColorMain text-white'
+							width='32'
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

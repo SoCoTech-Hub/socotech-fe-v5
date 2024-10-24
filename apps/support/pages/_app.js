@@ -9,13 +9,14 @@ import '@/styles/globals.css'
 import '@/styles/theme_core.css'
 import '@/styles/form_styles.css'
 import '@/styles/socoed_classes.css'
-import '@/styles/pagination.scss'
 import Layout from '@/layouts/Layout'
 import Protected from '@/snippets/protected'
 import PageTracking from '@/snippets/pageTracking'
+// import getBlogAccess from '@/snippets/blog'
 import { AppWrapper } from '@/context/AppContext'
 import { ApolloProvider } from '@apollo/client'
-import client from './api/apolloClient'
+import client from '@/api/apolloClient'
+// import { organizationId } from '@/context/constants'
 
 const theme = createTheme({
 	components: {
@@ -27,7 +28,13 @@ const theme = createTheme({
 	}
 })
 
-function MyApp({ Component, pageProps, modDevice }) {
+function MyApp({
+	Component,
+	pageProps,
+	modDevice
+	// , blogAccess
+}) {
+	// const access = checkAccess({ access:blogAccess })
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const loader = document.getElementById('splashScreen')
@@ -36,6 +43,7 @@ function MyApp({ Component, pageProps, modDevice }) {
 			}
 		}
 	}, [])
+
 	return (
 		<>
 			<Head>
@@ -44,6 +52,7 @@ function MyApp({ Component, pageProps, modDevice }) {
 					content='width=device-width, initial-scale=1.0, user-scalable=no'
 				/>
 			</Head>
+			{/* {access ? ( */}
 			<AppWrapper>
 				<ThemeProvider theme={theme}>
 					<Protected device={modDevice}>
@@ -56,6 +65,9 @@ function MyApp({ Component, pageProps, modDevice }) {
 					</Protected>
 				</ThemeProvider>
 			</AppWrapper>
+			{/* ) : (
+				<AccessDenied />
+			)} */}
 		</>
 	)
 }
@@ -64,9 +76,11 @@ MyApp.getInitialProps = async (ctx) => {
 	if (typeof window === 'undefined') {
 		const deviceDetail = ctx.ctx.req.headers['user-agent']
 		const modDevice = `device:${deviceDetail}`
+		// const blogAccess = await getBlogAccess({ orgId: organizationId })
 
 		return {
 			modDevice
+			// blogAccess
 		}
 	} else {
 		return {}

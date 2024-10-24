@@ -18,7 +18,7 @@ const BtnBig = ({
 			>
 				<button
 					data-tracking-action={trackingAction}
-					className={`${color} text-center border-2 ${textColor} ${borderColor} p-3 rounded-full w-60 ${textSize}`}
+					className={`${color} text-center border-2 ${textColor} ${borderColor} p-3 rounded-md w-60 ${textSize}`}
 					onClick={onClickFunction}
 				>
 					{label}

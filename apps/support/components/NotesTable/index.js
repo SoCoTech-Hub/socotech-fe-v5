@@ -67,7 +67,7 @@ const index = ({
 										<Btn
 											onClickFunction={() => setDelete(note.id)}
 											label='Delete note'
-											color='bg-themeColorMain'
+											color='bg-themeColorMain text-white'
 											padding='px-3 py-2'
 											width='32'
 										/>

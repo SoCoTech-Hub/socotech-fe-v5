@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Head from 'next/head'
 import UserCover from '@/components/UserCover'
 import NotesSearch from '@/components/NotesSearch'
 import NotesTable from '@/components/NotesTable'
@@ -10,6 +9,7 @@ import getGQLRequest from '@/snippets/getGQLRequest'
 import BtnBig from '@/components/BtnBig'
 import Btn from '@/components/Btn'
 import MobileNotesTable from '@/components/MobileNotesTable'
+import SeoHead, { SEO } from '@/components/SeoHead'
 
 const notes = ({ profileId }) => {
 	//const router = useRouter()
@@ -42,65 +42,16 @@ const notes = ({ profileId }) => {
 		setIsOpen(!isOpen)
 		setDeleteId(id)
 	}
-const seo = {
-	title: 'Topic - Support Notes Home Page',
-	description: 'Explore Topic Support Notes!',
-	image: 'https://lms.topic.co.za/support/logo.png',
-	url: 'https://topic.co.za'
-}
+	const seo = {
+		title: 'Support Notes Home Page',
+		description: 'Explore Topic Support Notes!'
+	}
 	return (
 		<div className='desktop:mb-4 laptop:mb-4 mobile:mb-10 col row'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+				<SEO
+				title={seo.title}
+				description={seo.description}
+			/>
 			<div className='space-y-10 desktop:gx-5 desktop:gy-4 mobile:space-y-3'>
 				<div>
 					<UserCover />
@@ -110,49 +61,51 @@ const seo = {
 						<BtnBig
 							label='New Note'
 							link='/notes/createnote'
-							color='bg-themeColorMain text-black'
+							color='bg-themeColorMain text-white'
 						/>
 					</div>
 					<div className='desktop:hidden laptop:hidden'>
 						<Btn
 							label='New Note'
 							link='/notes/createnote'
-							color='bg-themeColorMain'
+							color='bg-themeColorMain text-white'
 						/>
 					</div>
 				</div>
-				{/* <Link href="/notes/createnote" passHref>
-          <div className="w-64 px-6 py-3 text-lg font-bold text-center text-white rounded-full cursor-pointer bg-themeColorMain">
-            New Note
-          </div>
-        </Link> */}
-				<div className='px-4 pt-3 pb-4 rounded-lg bg-compBg shadow-menu'>
+
+				<div className='px-4 pt-3 pb-4 rounded-lg shadow-menu bg-compBg'>
 					<div className='pb-2 pl-4 text-textColor'>Filter your search</div>
 					<NotesSearch
 						notes={initialNotes}
 						setNoteList={setNoteList}
 					/>
 				</div>
-				<div className='mobile:hidden'>
-					<NotesTable
-						notes={noteList}
-						refetchNotes={refetchNotes}
-						setDelete={setDelete}
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-						deleteId={deleteId}
-					/>
-				</div>
-				<div className='p-2 rounded-lg bg-compBg desktop:hidden laptop:hidden text-textColor'>
-					<MobileNotesTable
-						notes={noteList}
-						refetchNotes={refetchNotes}
-						setDelete={setDelete}
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-						deleteId={deleteId}
-					/>
-				</div>
+				{noteList?.length ? (
+					<>
+						<div className='shadow-md mobile:hidden'>
+							<NotesTable
+								notes={noteList}
+								refetchNotes={refetchNotes}
+								setDelete={setDelete}
+								isOpen={isOpen}
+								setIsOpen={setIsOpen}
+								deleteId={deleteId}
+							/>
+						</div>
+						<div className='p-2 rounded-lg shadow-md bg-compBg desktop:hidden laptop:hidden text-textColor'>
+							<MobileNotesTable
+								notes={noteList}
+								refetchNotes={refetchNotes}
+								setDelete={setDelete}
+								isOpen={isOpen}
+								setIsOpen={setIsOpen}
+								deleteId={deleteId}
+							/>
+						</div>
+					</>
+				) : (
+					<></>
+				)}
 			</div>
 		</div>
 	)

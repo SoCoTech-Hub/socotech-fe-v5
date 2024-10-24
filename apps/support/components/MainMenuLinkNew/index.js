@@ -37,18 +37,21 @@ const MainMenuLinkNew = ({
 			>
 				<div data-tour={dataTour}>
 					<div
-						className={`w-full cursor-pointer rounded-3xl ${isActive
-							? 'bg-themeColorMain text-white'
-							: 'bg-compBg text-themeColorSecondary'
-							}`}
+						className={`w-full cursor-pointer rounded-3xl ${
+							isActive
+								? 'bg-themeColorMain text-white'
+								: 'bg-compBg text-themeColorSecondary'
+						}`}
 						style={{
 							marginTop: '0.2rem',
-							marginBottom: '0.2rem',
+							marginBottom: '0.2rem'
 						}}
 					>
 						<div className='flex flex-row items-center'>
 							<div
-								className={`${title ? 'mr-3 laptop:mr-0' : ''} menu-icon-hover ${styles.menuIconHover}`}
+								className={`${
+									title ? 'mr-3 laptop:mr-0' : ''
+								} menu-icon-hover ${styles.menuIconHover}`}
 								style={{
 									height: '3rem',
 									width: '3rem',
@@ -59,20 +62,27 @@ const MainMenuLinkNew = ({
 							>
 								{isActive ? activeIcon : icon}
 							</div>
-							{title ? <div
-								className={` ${isActive ? 'text-black' : 'text-textColor'}`}
-								style={{
-									textDecorationThickness: '2px'
-								}}
-							>
-								{title}
-							</div> : <></>}
+							{title ? (
+								<div
+									className={` ${
+										isActive ? 'text-textColor' : 'text-textColor'
+									}`}
+									style={{
+										textDecorationThickness: '2px'
+									}}
+								>
+									{title}
+								</div>
+							) : (
+								<></>
+							)}
 							{badgeCount ? (
 								<div
-									className={`flex items-center w-6 h-6 ml-auto font-bold rounded-full ${isActive
-										? 'bg-compBg text-white'
-										: 'bg-themeColorMain text-black'
-										}`}
+									className={`flex items-center w-6 h-6 ml-auto rounded-full ${
+										isActive
+											? 'bg-compBg text-textColorSecondary'
+											: 'bg-themeColorMain text-textColor'
+									}`}
 									style={{
 										height: '1.5rem',
 										width: '1.5rem',

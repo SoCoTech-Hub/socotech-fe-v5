@@ -2,8 +2,7 @@ export const LightbulbIcon = (props) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		data-supported-dps='24x24'
-		fill='currentColor'
-		className='mercado-match'
+		className='fill-textColor'
 		width='1em'
 		height='1em'
 		{...props}

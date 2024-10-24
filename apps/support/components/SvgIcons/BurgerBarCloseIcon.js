@@ -10,7 +10,6 @@ export const BurgerBarCloseIcon = (props) => (
 			<style>
 				{`.bbci-1 {
         fill: none;
-        stroke: #fff;
         stroke-linecap: round;
         stroke-miterlimit: 10;
         stroke-width: 2px;
@@ -22,14 +21,14 @@ export const BurgerBarCloseIcon = (props) => (
 			data-name='Burger Bar Close Icon 1'
 		>
 			<line
-				className='bbci-1'
+				className='bbci-1 stroke-textColorSecondary'
 				x1='1'
 				y1='17.84'
 				x2='17.84'
 				y2='1'
 			/>
 			<line
-				className='bbci-1'
+				className='bbci-1 stroke-textColorSecondary'
 				x1='1'
 				y1='1'
 				x2='17.84'

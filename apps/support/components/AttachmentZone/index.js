@@ -78,7 +78,7 @@ const AttachmentZone = ({
 
 	return (
 		<div {...getRootProps({ style })}>
-			<div className='flex items-center py-1 pl-2 mt-3 align-middle bg-compBg rounded-lg'>
+			<div className='flex items-center py-1 pl-2 mt-3 align-middle bg-compBg  rounded-lg'>
 				<div className='w-8 h-8 mr-3'>
 					<input {...getInputProps()} />
 					<Image

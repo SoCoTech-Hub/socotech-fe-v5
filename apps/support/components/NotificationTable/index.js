@@ -57,7 +57,8 @@ const index = ({
 					<Btn
 						onClickFunction={() => refreshPage()}
 						label='Mark as read'
-						textColor='black'
+						textColor='text-white'
+						color='bg-themeColorMain'
 						buttonAnimation=''
 						textSize='text-lg'
 					/>
@@ -89,9 +90,6 @@ const index = ({
 												<Avatar
 													src={
 														notification?.notification?.author?.profilePic?.url
-															? notification?.notification?.author?.profilePic
-																	?.url
-															: defaultAvatar
 													}
 													size='56px'
 													border={true}

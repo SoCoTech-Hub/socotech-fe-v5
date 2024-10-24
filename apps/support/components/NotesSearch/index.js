@@ -11,7 +11,7 @@ const index = ({ notes, setNoteList }) => {
 	}
 
 	return (
-		<div className='w-full pr-4 ml-2 rounded-lg col-xs-4'>
+		<div className='w-full pr-4 ml-2 rounded-lg shadow-md col-xs-4'>
 			<div className='relative ml-1 '>
 				<img
 					src='/support/search_icon.svg'
@@ -21,7 +21,7 @@ const index = ({ notes, setNoteList }) => {
 			</div>
 			<div className=''>
 				<input
-					className='bg-compBg rounded-lg pl-14 border-2 border-white text-textColor py-3 pr-3 w-full'
+					className='w-full py-3 pr-3 border-2 border-white rounded-lg bg-compBg pl-14 text-textColor'
 					type='text'
 					placeholder='Type your subject or date...'
 					style={{ border: 'solid #EBEBEB 2px' }}

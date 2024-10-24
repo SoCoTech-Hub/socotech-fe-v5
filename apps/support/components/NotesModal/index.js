@@ -33,12 +33,12 @@ const NotesModal = ({ id, isOpen, setIsOpen, refetchNotes }) => {
 								<Btn
 									onClickFunction={submit}
 									label='Yes, delete'
-									color='bg-themeColorMain'
+									color='bg-themeColorMain text-white'
 								/>
 								<Btn
 									onClickFunction={() => setIsOpen(!isOpen)}
 									label='No, keep'
-									color='bg-themeColorMain'
+									color='bg-themeColorMain text-white'
 								/>
 							</div>
 						</div>

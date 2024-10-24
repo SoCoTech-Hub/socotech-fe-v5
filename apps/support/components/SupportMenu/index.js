@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { NoSsr } from '@mui/material'
-import MainMenuLinkNew from '../MainMenuLinkNew'
+import MainMenuLinkNew from '@/components/MainMenuLinkNew'
 import {
 	NotesIcon,
 	// LogTicketIcon,
@@ -21,7 +21,7 @@ import {
 	userName
 } from '@/context/constants'
 
-const SupportMenu = ({ open, setOpen }) => {
+const SupportMenu = () => {
 	const router = useRouter()
 	const [ticketsCount, setTicketsCount] = useState(0)
 	// const [notificationsCount, setNotificationCount] = useState(0)
@@ -36,15 +36,15 @@ const SupportMenu = ({ open, setOpen }) => {
 
 	return (
 		<div className='mobile:w-full'>
-			<div className='p-3 text-xs rounded-lg mobile:p-1 mobile:bg-navbarBg bg-compBg shadow-menu mobile:font-bold mobile:w-full'>
-				<div className={`text-textColor mobile:mb-2 mobile:text-xl ${Text}`}>
+			<div className='p-3 text-xs rounded-lg shadow-md mobile:p-1 mobile:bg-navbarBg bg-compBg mobile:font-bold mobile:w-full'>
+				<div className={`text-textColor mobile:mb-2 mobile:text-xl`}>
 					Support Menu
 				</div>
 				<div className='flex flex-col text-xs text-textColor mobile:font-normal'>
 					<NoSsr>
 						{/* <MainMenuLinkNew
 							title='Log Ticket'
-							textColor={Text}
+							
 							icon={
 								basePath == '/support' && pathname == '/logTicket' ? (
 										<LogTicketIcon  />
@@ -58,7 +58,7 @@ const SupportMenu = ({ open, setOpen }) => {
 						/>
 						<MainMenuLinkNew
 							title='My Tickets'
-							textColor={Text}
+							
 							icon={
 								basePath == '/support' && pathname == '/' ? (
 									<TicketIcon />
@@ -74,7 +74,7 @@ const SupportMenu = ({ open, setOpen }) => {
 						{/* <div className='flex items-center justify-between align-middle '>
 							<MainMenuLinkNew
 								title='Notifications'
-								textColor={Text}
+								
 								icon={<NotificationIcon />}
 								iconColor={
 									SecondaryColor
@@ -85,7 +85,6 @@ const SupportMenu = ({ open, setOpen }) => {
 						</div> */}
 						<MainMenuLinkNew
 							title='WhatsApp'
-							textColor={Text}
 							icon={<WhatsAppIcon />}
 							iconColor={SecondaryColor}
 							link={`https://wa.me/27799196543?text=Hi,%20I'm%20${userName}`}
@@ -94,7 +93,6 @@ const SupportMenu = ({ open, setOpen }) => {
 						<MainMenuLinkNew
 							title='Notes'
 							activeIcon={<NotesIcon />}
-							textColor={Text}
 							icon={
 								basePath == '/support' && pathname == '/notes' ? (
 									<NotesIcon />
