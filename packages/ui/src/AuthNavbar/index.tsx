@@ -1,7 +1,6 @@
 // import Btn from '@/components/Btn'
 // import logout from '@/snippets/logout'
 
-
 const AuthNavbar: React.FC = () => (
   // USE MainMenu instead
   /*
@@ -28,6 +27,7 @@ const AuthNavbar: React.FC = () => (
   //     />
   //   </div>
   // </nav>
+  <></>
 );
 
 export default AuthNavbar;
