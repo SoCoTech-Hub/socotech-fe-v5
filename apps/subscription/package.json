@@ -1,5 +1,5 @@
 {
-  "name": "subscription",
+  "name": "@acme/subscription",
   "version": "0.1.0",
   "private": true,
   "scripts": {

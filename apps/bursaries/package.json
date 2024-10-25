@@ -1,5 +1,5 @@
 {
-  "name": "bursaries",
+  "name": "@acme/bursaries",
   "version": "0.1.0",
   "private": true,
   "scripts": {

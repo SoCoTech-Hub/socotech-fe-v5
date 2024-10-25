@@ -1,5 +1,5 @@
 {
-  "name": "assignment",
+  "name": "@acme/assignment",
   "version": "0.1.0",
   "private": true,
   "scripts": {

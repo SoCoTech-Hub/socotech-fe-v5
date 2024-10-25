@@ -1,5 +1,5 @@
 {
-  "name": "zoomsdk",
+  "name": "@acme/zoomsdk",
   "version": "1.0.0",
   "description": "Genrerate a signature to Start and Join Meetings and Webinars with the Zoom Web Meeting SDK.",
   "main": "server.js",

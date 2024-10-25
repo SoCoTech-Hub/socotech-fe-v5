@@ -1,5 +1,5 @@
 {
-  "name": "forum-v5",
+  "name": "@acme/forum-v5",
   "version": "0.1.0",
   "private": true,
   "scripts": {

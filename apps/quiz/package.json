@@ -1,5 +1,5 @@
 {
-  "name": "quiz",
+  "name": "@acme/quiz",
   "version": "0.1.0",
   "private": true,
   "scripts": {
