@@ -1,15 +1,16 @@
-import React, { useMemo } from "react"
-import { useDropzone } from "react-dropzone"
+import React, { useMemo } from "react";
+import { baseUrl } from "@/context/constants";
+import removeAttachment from "@/snippets/removeAttachment";
+import { useDropzone } from "react-dropzone";
+
 import {
-  baseStyle,
-  thumbsContainer,
-  removeImageButton,
-  activeStyle,
   acceptStyle,
+  activeStyle,
+  baseStyle,
   rejectStyle,
-} from "./styles"
-import removeAttachment from "@/snippets/removeAttachment"
-import { baseUrl } from "@/context/constants"
+  removeImageButton,
+  thumbsContainer,
+} from "./styles";
 
 // const picturesPrefix = `${process.env.NEXT_PUBLIC_MAIN_URL}`
 
@@ -32,7 +33,7 @@ const FilesDropzone = ({
     onDrop,
     multiple: false,
     accept: acceptFileTypes,
-  })
+  });
 
   const style = useMemo(
     () => ({
@@ -41,39 +42,37 @@ const FilesDropzone = ({
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
     }),
-    [isDragActive, isDragReject, isDragAccept]
-  )
+    [isDragActive, isDragReject, isDragAccept],
+  );
 
   const handleFileRemove = async (fileId) => {
     if (filesSetter) {
-      filesSetter(files.filter((f) => f.id !== fileId))
+      filesSetter(files.filter((f) => f.id !== fileId));
     }
-    await removeAttachment({ fileId: fileId })
-  }
+    await removeAttachment({ fileId: fileId });
+  };
 
   const thumbs = filesPreviews?.map((file) => (
-    <div key={file.id} className=''>
+    <div key={file.id} className="">
       <div key={`material-${file.id}`}>
-        <div className=''>
-          <a href={file.preview} target='_blank' rel='noreferrer'>
+        <div className="">
+          <a href={file.preview} target="_blank" rel="noreferrer">
             <img
               src={
                 file?.mime?.startsWith("image")
                   ? file.preview
                   : `${baseUrl}/attachment_white.svg`
               }
-              alt='attachment Image'
-              className='object-contain w-20 h-20 centerImage'
+              alt="attachment Image"
+              className="centerImage h-20 w-20 object-contain"
             />
-            <span
-              className='px-3 py-1 bg-white bg-opacity-50 rounded-lg'
-            >
+            <span className="rounded-lg bg-white bg-opacity-50 px-3 py-1">
               {String(file.name)}
             </span>
           </a>
           <button
             style={removeImageButton}
-            type='button'
+            type="button"
             onClick={() => handleFileRemove(file.id)}
           >
             <span>Remove</span>
@@ -81,26 +80,26 @@ const FilesDropzone = ({
         </div>
       </div>
     </div>
-  ))
+  ));
 
   return (
-    <div className=''>
+    <div className="">
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
         <img
           src={`${baseUrl}/modal_attachment_white.svg`}
-          alt='attachment'
+          alt="attachment"
           width={30}
           height={30}
-          className='mr-1'
-          style={{fill: '#fff'}}
+          className="mr-1"
+          style={{ fill: "#fff" }}
         />
         <span>{dropzonePlaceholder}</span>
         {loading && <div>Loading... </div>}
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
     </div>
-  )
-}
+  );
+};
 
-export default FilesDropzone
+export default FilesDropzone;

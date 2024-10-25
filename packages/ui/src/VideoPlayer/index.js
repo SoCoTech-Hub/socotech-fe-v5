@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react"
-import videojs from "video.js"
-import "video.js/dist/video-js.css"
-require("@silvermine/videojs-quality-selector")(videojs)
-require("@silvermine/videojs-quality-selector/dist/css/quality-selector.css")
-import { useAppContext } from "@/context/AppContext"
-import getConnectionSpeed from "@/snippets/lms/getConnectionSpeed"
+import { useEffect, useState } from "react";
+import videojs from "video.js";
+
+import "video.js/dist/video-js.css";
+
+import { useAppContext } from "@/context/AppContext";
+import getConnectionSpeed from "@/snippets/lms/getConnectionSpeed";
+
+require("@silvermine/videojs-quality-selector")(videojs);
+require("@silvermine/videojs-quality-selector/dist/css/quality-selector.css");
 
 const VideoPlayer = ({ src }) => {
-  const { state, dispatch } = useAppContext()
-  const [resolution, setResolution] = useState(4160)
+  const { state, dispatch } = useAppContext();
+  const [resolution, setResolution] = useState(4160);
 
   useEffect(async () => {
     const videoJsOptions = {
@@ -24,51 +27,51 @@ const VideoPlayer = ({ src }) => {
           "fullscreenToggle",
         ],
       },
-    }
+    };
     var player = videojs(
       "video_1",
       videoJsOptions,
       async function onPlayerReady() {
-        setResolution(await getConnectionSpeed())
+        setResolution(await getConnectionSpeed());
         this.on("play", function () {
           if (state?.videoProgress.find((e) => e.videoLink == src)) {
             player.currentTime(
-              state?.videoProgress.find((e) => e.videoLink === src).startTime
-            )
+              state?.videoProgress.find((e) => e.videoLink === src).startTime,
+            );
           }
-        })
+        });
         this.on("pause", function () {
           if (state?.videoProgress.find((e) => e.videoLink === src)) {
-            let progressArr = state?.videoProgress
+            let progressArr = state?.videoProgress;
             progressArr[
               progressArr.findIndex((item) => item.videoLink === src)
-            ].startTime = player.currentTime()
-            dispatch({ type: "change_video_progress", value: progressArr })
+            ].startTime = player.currentTime();
+            dispatch({ type: "change_video_progress", value: progressArr });
           } else {
-            let progressArr = state?.videoProgress
+            let progressArr = state?.videoProgress;
             progressArr.push({
               videoLink: src,
               startTime: player.currentTime(),
-            })
+            });
             dispatch({
               type: "change_video_progress",
               value: progressArr,
-            })
+            });
           }
-        })
+        });
         this.on("ended", function () {
-          let progressArr = state?.videoProgress
+          let progressArr = state?.videoProgress;
           progressArr[
             progressArr.findIndex((item) => item.videoLink === src)
-          ].startTime = player.currentTime(0)
-          dispatch({ type: "change_video_progress", value: progressArr })
-        })
-      }
-    )
-    const baseUrl = src?.split("/upload/")
+          ].startTime = player.currentTime(0);
+          dispatch({ type: "change_video_progress", value: progressArr });
+        });
+      },
+    );
+    const baseUrl = src?.split("/upload/");
 
     if (baseUrl?.length) {
-      const baseFormat = "f_auto,q_auto:"
+      const baseFormat = "f_auto,q_auto:";
       let sources = [
         {
           src: `${baseUrl[0]}/upload/f_auto/${baseUrl[1]}`,
@@ -112,15 +115,15 @@ const VideoPlayer = ({ src }) => {
           label: "144p",
           selected: false,
         },
-      ]
+      ];
       sources.map((x) => {
         if (x.res === resolution) {
-          x.selected = true
-          player.src(sources)
+          x.selected = true;
+          player.src(sources);
         }
-      })
+      });
     }
-  }, [resolution])
+  }, [resolution]);
 
   return (
     <div data-vjs-player>
@@ -129,9 +132,10 @@ const VideoPlayer = ({ src }) => {
         className="video-js vjs-big-play-centered"
         controls
         preload="auto"
-        data-setup=""></video>
+        data-setup=""
+      ></video>
     </div>
-  )
-}
+  );
+};
 
-export default VideoPlayer
+export default VideoPlayer;

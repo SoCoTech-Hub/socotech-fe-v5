@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import React from 'react'
+import React, { useState } from "react";
 
 // Define the prop types
 interface CheckboxProps {
@@ -9,9 +8,9 @@ interface CheckboxProps {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
-  label = ' ',
+  label = " ",
   setter,
-  value = false
+  value = false,
 }) => {
   const [checked, setChecked] = useState<boolean>(value);
 
@@ -26,27 +25,27 @@ const Checkbox: React.FC<CheckboxProps> = ({
   };
 
   return (
-    <div className='flex flex-row items-center'>
+    <div className="flex flex-row items-center">
       <input
-        id={label.trim() ? label.replace(' ', '') : 'check'}
-        className='mr-1'
-        type='checkbox'
+        id={label.trim() ? label.replace(" ", "") : "check"}
+        className="mr-1"
+        type="checkbox"
         onChange={onChange}
-        value={checked ? 'true' : 'false'}
+        value={checked ? "true" : "false"}
         checked={checked}
         style={{
-          backgroundColor: checked ? 'rgb(14,134,212)' : 'white',
-          borderColor: checked ? 'white' : '#181818'
+          backgroundColor: checked ? "rgb(14,134,212)" : "white",
+          borderColor: checked ? "white" : "#181818",
         }}
       />
       <label
-        className='form-check-label'
-        htmlFor={label.trim() ? label.replace(' ', '') : 'check'}
+        className="form-check-label"
+        htmlFor={label.trim() ? label.replace(" ", "") : "check"}
       >
         {label}
       </label>
     </div>
   );
-}
+};
 
 export default Checkbox;

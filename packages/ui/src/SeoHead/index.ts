@@ -1,2 +1,2 @@
-export * from './Manifest'
-export * from './SEO'
+export * from "./Manifest";
+export * from "./SEO";

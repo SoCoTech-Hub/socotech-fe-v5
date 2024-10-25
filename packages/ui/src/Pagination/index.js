@@ -1,5 +1,6 @@
-import classnames from "classnames"
-import { usePagination, DOTS } from "@/snippets/usePagination"
+import { DOTS, usePagination } from "@/snippets/usePagination";
+import classnames from "classnames";
+
 const Pagination = (props) => {
   const {
     onPageChange,
@@ -8,28 +9,28 @@ const Pagination = (props) => {
     currentPage,
     pageSize,
     className,
-  } = props
+  } = props;
 
   const paginationRange = usePagination({
     currentPage,
     totalCount,
     siblingCount,
     pageSize,
-  })
+  });
 
-  if (currentPage === 0 || paginationRange.length < 2) {
-    return null
+  if (currentPage === 0 ?? paginationRange.length < 2) {
+    return null;
   }
 
   const onNext = () => {
-    onPageChange(currentPage + 1)
-  }
+    onPageChange(currentPage + 1);
+  };
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1)
-  }
+    onPageChange(currentPage - 1);
+  };
 
-  let lastPage = paginationRange[paginationRange.length - 1]
+  let lastPage = paginationRange[paginationRange.length - 1];
   return (
     <ul
       className={classnames("pagination-container mb-2 mt-2", {
@@ -50,7 +51,7 @@ const Pagination = (props) => {
             <li key={index} className="pagination-item dots">
               &#8230;
             </li>
-          )
+          );
         }
 
         return (
@@ -63,7 +64,7 @@ const Pagination = (props) => {
           >
             {pageNumber}
           </li>
-        )
+        );
       })}
       <li
         className={classnames("pagination-item", {
@@ -74,7 +75,7 @@ const Pagination = (props) => {
         <div className="arrow right" />
       </li>
     </ul>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

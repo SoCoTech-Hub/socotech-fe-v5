@@ -1,6 +1,6 @@
-import { withStyles } from "@mui/styles"
-import { LinearProgress, Rating, linearProgressClasses } from "@mui/material"
-import { styled } from "@mui/material/styles"
+import { LinearProgress, linearProgressClasses, Rating } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { withStyles } from "@mui/styles";
 
 // export const BorderLinearProgress = withStyles(() => ({
 //   root: {
@@ -29,7 +29,7 @@ export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     borderRadius: 5,
     backgroundColor: theme.palette.mode === "light" ? "#63D480" : "#63D480",
   },
-}))
+}));
 
 export const StyledRating = withStyles({
   iconFilled: {
@@ -41,4 +41,4 @@ export const StyledRating = withStyles({
   iconHover: {
     color: "#FCcc00",
   },
-})(Rating)
+})(Rating);

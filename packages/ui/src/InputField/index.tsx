@@ -1,21 +1,21 @@
-import { useState, ChangeEvent } from 'react';
-import { EyeActiveIcon, EyeIcon, LockIcon } from '@/components/SvgIcons';
+import { ChangeEvent, useState } from "react";
+import { EyeActiveIcon, EyeIcon, LockIcon } from "@/components/SvgIcons";
 
 interface InputFieldProps {
   id?: string;
   placeholder?: string;
   icon?: string;
-  type?: 'text' | 'password' | 'email' | 'date' | 'checkbox';
+  type?: "text" | "password" | "email" | "date" | "checkbox";
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string | boolean;
   max?: number;
 }
 
 const InputField = ({
-  id = 'input',
-  placeholder = 'Input Text Here',
+  id = "input",
+  placeholder = "Input Text Here",
   icon,
-  type = 'text',
+  type = "text",
   onChange,
   value,
   max,
@@ -26,17 +26,17 @@ const InputField = ({
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleDateVisibility = () => setShowDateInput(!showDateInput);
 
-  const isPassword = type === 'password';
-  const isDate = type === 'date';
+  const isPassword = type === "password";
+  const isDate = type === "date";
   const inputType = isPassword
     ? showPassword
-      ? 'text'
-      : 'password'
+      ? "text"
+      : "password"
     : isDate
-    ? showDateInput
-      ? 'date'
-      : 'text'
-    : type;
+      ? showDateInput
+        ? "date"
+        : "text"
+      : type;
 
   return (
     <div
@@ -44,14 +44,14 @@ const InputField = ({
       onFocus={isDate ? toggleDateVisibility : undefined}
       onBlur={isDate ? toggleDateVisibility : undefined}
     >
-      <div className={`my-1 rounded-lg shadow-md ${icon ? 'relative' : ''}`}>
+      <div className={`my-1 rounded-lg shadow-md ${icon ? "relative" : ""}`}>
         {/* Icon Handling */}
         {icon && (
           <div className="absolute inset-y-0 left-0 flex items-center pl-4">
-            {icon === 'ti-lock' ? (
+            {icon === "ti-lock" ? (
               showPassword ? (
                 <i
-                  className="-mt-1 text-lg cursor-pointer text-themeColorMain ti-unlock"
+                  className="text-themeColorMain ti-unlock -mt-1 cursor-pointer text-lg"
                   onClick={togglePasswordVisibility}
                 ></i>
               ) : (
@@ -62,7 +62,7 @@ const InputField = ({
                 />
               )
             ) : (
-              <i className={`-mt-1 text-lg text-themeColorMain ${icon}`}></i>
+              <i className={`text-themeColorMain -mt-1 text-lg ${icon}`}></i>
             )}
           </div>
         )}
@@ -72,27 +72,29 @@ const InputField = ({
           id={id}
           name={id}
           type={inputType}
-          className={`w-full text-themeColorMain bg-compBg bg-opacity-20 rounded-lg pl-12 py-3 block border-2 ring-inset ring-white placeholder-gray-300 focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6 ${
-            icon ? (isPassword ? 'py-1.5 pl-7 pr-12' : 'py-1.5 pl-7') : 'px-3'
+          className={`text-themeColorMain bg-compBg focus:ring-themeColorMain mobile:text-sm mobile:leading-6 block w-full rounded-lg border-2 bg-opacity-20 py-3 pl-12 placeholder-gray-300 ring-inset ring-white focus:ring-2 focus:ring-inset ${
+            icon ? (isPassword ? "py-1.5 pl-7 pr-12" : "py-1.5 pl-7") : "px-3"
           }`}
           placeholder={placeholder}
           onChange={onChange}
           autoComplete={
-            type === 'password'
-              ? 'current-password'
-              : type === 'email'
-              ? 'username'
-              : type
+            type === "password"
+              ? "current-password"
+              : type === "email"
+                ? "username"
+                : type
           }
-          value={typeof value === 'boolean' ? (value ? 'true' : 'false') : value}
+          value={
+            typeof value === "boolean" ? (value ? "true" : "false") : value
+          }
           max={max}
-          checked={type === 'checkbox' ? value as boolean : undefined}
+          checked={type === "checkbox" ? (value as boolean) : undefined}
         />
 
         {/* Password Visibility Toggle */}
         {isPassword && (
           <div
-            className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer"
+            className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-4"
             onClick={togglePasswordVisibility}
           >
             {showPassword ? (

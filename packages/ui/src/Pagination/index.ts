@@ -27,7 +27,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
     pageSize,
   })
 
-  if (currentPage === 0 || paginationRange.length < 2) {
+  if (currentPage === 0 ?? paginationRange.length < 2) {
     return null
   }
 
@@ -44,7 +44,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
   return (
     <ul
       className={classnames('pagination-container mb-2 mt-2', {
-        [className || '']: !!className,
+        [className ?? '']: !!className,
       })}
     >
       <li

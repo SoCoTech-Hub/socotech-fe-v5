@@ -30,7 +30,7 @@ export default function RightDrawer({ open, setOpen }: RightDrawerProps) {
 
   const toggleDrawer = (anchor: 'top' | 'bottom' | 'left' | 'right', open: boolean) => 
     (event: KeyboardEvent | MouseEvent) => {
-      if (event && event.type === 'keydown' && ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')) {
+      if (event && event.type === 'keydown' && ((event as KeyboardEvent).key === 'Tab' ?? (event as KeyboardEvent).key === 'Shift')) {
         return
       }
       setState({ ...state, [anchor]: open })
@@ -39,7 +39,7 @@ export default function RightDrawer({ open, setOpen }: RightDrawerProps) {
   const list = (anchor: 'top' | 'bottom' | 'left' | 'right') => (
     <Box
       sx={{
-        width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250,
+        width: anchor === 'top' ?? anchor === 'bottom' ? 'auto' : 250,
         hideBackdrop: true
       }}
       role="presentation"

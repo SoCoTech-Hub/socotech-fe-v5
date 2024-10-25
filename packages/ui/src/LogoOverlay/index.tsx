@@ -35,7 +35,7 @@ export default function LogoOverlay({
           alt={imageAlt}
           width={32}
           height={32}
-          className="w-auto h-8"
+          className="h-8 w-auto"
         />
       )}
       {text && <span className="text-xl font-bold text-primary">{text}</span>}

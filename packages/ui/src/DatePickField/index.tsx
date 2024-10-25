@@ -1,5 +1,5 @@
-import { useState, ChangeEvent } from 'react';
-import Alert from '@/components/Alert';
+import { ChangeEvent, useState } from "react";
+import Alert from "@/components/Alert";
 
 interface DatePickFieldProps {
   id: string;
@@ -11,20 +11,36 @@ interface DatePickFieldProps {
 
 const DatePickField: React.FC<DatePickFieldProps> = ({
   id,
-  placeholder = 'Input Text Here',
+  placeholder = "Input Text Here",
   onChange,
-  value = '',
+  value = "",
   required = false,
 }) => {
   const [showInput, setShowInput] = useState(false);
-  const [year, setYear] = useState(value ? new Date(value).getFullYear().toString() : '');
-  const [month, setMonth] = useState(value ? (new Date(value).getMonth() + 1).toString() : '');
-  const [day, setDay] = useState(value ? new Date(value).getDate().toString() : '');
-  const [error, setError] = useState('');
+  const [year, setYear] = useState(
+    value ? new Date(value).getFullYear().toString() : "",
+  );
+  const [month, setMonth] = useState(
+    value ? (new Date(value).getMonth() + 1).toString() : "",
+  );
+  const [day, setDay] = useState(
+    value ? new Date(value).getDate().toString() : "",
+  );
+  const [error, setError] = useState("");
 
   const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -46,16 +62,16 @@ const DatePickField: React.FC<DatePickFieldProps> = ({
   };
 
   const updateDate = (year: string, month: string, day: string) => {
-    if (!year || !month || !day) {
-      setError('Please complete the date');
+    if (!year ?? !month ?? !day) {
+      setError("Please complete the date");
       return;
     }
-    const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     if (isValidDate(formattedDate)) {
-      setError('');
+      setError("");
       onChange({ target: { value: formattedDate, name: id } });
     } else {
-      setError('Please enter a valid date');
+      setError("Please enter a valid date");
     }
   };
 
@@ -66,7 +82,10 @@ const DatePickField: React.FC<DatePickFieldProps> = ({
     return !isNaN(date.getTime());
   };
 
-  const yearOptions = Array.from({ length: 80 }, (_, i) => new Date().getFullYear() - i);
+  const yearOptions = Array.from(
+    { length: 80 },
+    (_, i) => new Date().getFullYear() - i,
+  );
   const monthOptions = monthNames;
   const dayOptions = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
 
@@ -82,7 +101,7 @@ const DatePickField: React.FC<DatePickFieldProps> = ({
             <select
               value={year}
               onChange={handleYearChange}
-              className="block w-1/3 px-3 py-3 pl-12 mr-2 border-2 border-white rounded-lg placeholder-compBg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+              className="placeholder-compBg bg-compBg text-textColor focus:ring-themeColorMain mobile:text-sm mobile:leading-6 mr-2 block w-1/3 rounded-lg border-2 border-white bg-opacity-20 px-3 py-3 pl-12 ring-inset ring-white focus:ring-2 focus:ring-inset"
             >
               <option value="" disabled className="bg-compBg">
                 Year
@@ -95,9 +114,9 @@ const DatePickField: React.FC<DatePickFieldProps> = ({
             </select>
 
             <select
-              value={month ? monthNames[parseInt(month) - 1] : ''}
+              value={month ? monthNames[parseInt(month) - 1] : ""}
               onChange={handleMonthChange}
-              className="block w-1/3 px-3 py-3 pl-12 mr-2 border-2 border-white rounded-lg placeholder-compBg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+              className="placeholder-compBg bg-compBg text-textColor focus:ring-themeColorMain mobile:text-sm mobile:leading-6 mr-2 block w-1/3 rounded-lg border-2 border-white bg-opacity-20 px-3 py-3 pl-12 ring-inset ring-white focus:ring-2 focus:ring-inset"
             >
               <option value="" disabled className="bg-compBg">
                 Month
@@ -112,7 +131,7 @@ const DatePickField: React.FC<DatePickFieldProps> = ({
             <select
               value={day}
               onChange={handleDayChange}
-              className="block w-1/3 px-3 py-3 pl-12 placeholder-gray-300 border-2 border-white rounded-lg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
+              className="bg-compBg text-textColor focus:ring-themeColorMain mobile:text-sm mobile:leading-6 block w-1/3 rounded-lg border-2 border-white bg-opacity-20 px-3 py-3 pl-12 placeholder-gray-300 ring-inset ring-white focus:ring-2 focus:ring-inset"
             >
               <option value="" disabled className="bg-compBg">
                 Day
@@ -130,8 +149,8 @@ const DatePickField: React.FC<DatePickFieldProps> = ({
             onFocus={toggleInputVisibility}
             onBlur={toggleInputVisibility}
             required={required}
-            className="block w-full px-3 py-3 pl-12 placeholder-gray-300 border-2 border-white rounded-lg bg-compBg text-textColor bg-opacity-20 ring-inset ring-white focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6"
-            placeholder={`${placeholder} ${required && !value ? '(Required)' : ''} ${value ? value : ''}`}
+            className="bg-compBg text-textColor focus:ring-themeColorMain mobile:text-sm mobile:leading-6 block w-full rounded-lg border-2 border-white bg-opacity-20 px-3 py-3 pl-12 placeholder-gray-300 ring-inset ring-white focus:ring-2 focus:ring-inset"
+            placeholder={`${placeholder} ${required && !value ? "(Required)" : ""} ${value ? value : ""}`}
           />
         )}
 

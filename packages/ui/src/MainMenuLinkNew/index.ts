@@ -1,3 +1,5 @@
+//USE MainMenu
+
 import Link from 'next/link'
 import styles from './MainMenuLink.module.css'
 import React from 'react'
@@ -23,16 +25,16 @@ const MainMenuLinkNew: React.FC<MainMenuLinkNewProps> = ({
 }) => {
   const IsLocal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return link?.startsWith('http') ? (
-      <a href={link || undefined}>{children}</a>
+      <a href={link ?? undefined}>{children}</a>
     ) : (
-      <Link href={link || ''} passHref>
+      <Link href={link ?? ''} passHref>
         <a>{children}</a>
       </Link>
     )
   }
 
   return (
-    <a id="text-decoration" href={link || undefined} className={styles.menuParentHover}>
+    <a id="text-decoration" href={link ?? undefined} className={styles.menuParentHover}>
       <div data-tour={dataTour}>
         <div
           className={`w-full cursor-pointer rounded-3xl ${

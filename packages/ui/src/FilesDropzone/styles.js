@@ -13,7 +13,7 @@ export const baseStyle = {
   color: "#fff",
   outline: "none",
   transition: "border .24s ease-in-out",
-}
+};
 
 export const thumbsContainer = {
   display: "flex",
@@ -21,7 +21,7 @@ export const thumbsContainer = {
   flexWrap: "wrap",
   justifyContent: "flex-start",
   marginTop: 16,
-}
+};
 
 export const thumb = {
   display: "inline-flex",
@@ -34,13 +34,13 @@ export const thumb = {
   height: 98,
   padding: 4,
   boxSizing: "border-box",
-}
+};
 
 export const thumbInner = {
   display: "flex",
   minWidth: 0,
   overflow: "hidden",
-}
+};
 
 export const removeImageButton = {
   display: "flex",
@@ -54,21 +54,21 @@ export const removeImageButton = {
   backgroundColor: "transparent",
   border: "none",
   marginBottom: 15,
-}
+};
 
 export const img = {
   width: "100%",
   height: "100%",
-}
+};
 
 export const activeStyle = {
   borderColor: "#2196f3",
-}
+};
 
 export const acceptStyle = {
   borderColor: "#00e676",
-}
+};
 
 export const rejectStyle = {
   borderColor: "#ff1744",
-}
+};

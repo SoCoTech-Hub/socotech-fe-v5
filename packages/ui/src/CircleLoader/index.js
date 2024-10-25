@@ -1,8 +1,9 @@
-import CircularProgress from "@mui/material/CircularProgress"
-import { useStylesFacebook } from "./styles"
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { useStylesFacebook } from "./styles";
 
 const CircleLoader = (props) => {
-  const classes = useStylesFacebook()
+  const classes = useStylesFacebook();
 
   return (
     <div className="ml-2">
@@ -28,7 +29,7 @@ const CircleLoader = (props) => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CircleLoader
+export default CircleLoader;

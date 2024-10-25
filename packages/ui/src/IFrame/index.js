@@ -1,51 +1,52 @@
-import React, { useEffect, useState } from "react"
-import { Document, Page, pdfjs } from "react-pdf"
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+import React, { useEffect, useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const IFrame = ({ src, setLoading }) => {
-  const [numPages, setNumPages] = useState(null)
-  const [pageNumber, setPageNumber] = useState(1)
-  const [width, setWidth] = useState(0)
-  const div_ref = React.createRef()
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [width, setWidth] = useState(0);
+  const div_ref = React.createRef();
   function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages)
-    setLoading(false)
+    setNumPages(numPages);
+    setLoading(false);
   }
 
-  let encodedEmbedURL = encodeURI(`${src}#view=fitH`)
+  let encodedEmbedURL = encodeURI(`${src}#view=fitH`);
   const navigate = async (direction) => {
     if (direction == "back") {
-      setPageNumber(pageNumber - 1)
+      setPageNumber(pageNumber - 1);
     } else if (direction == "next") {
-      setPageNumber(pageNumber + 1)
+      setPageNumber(pageNumber + 1);
     }
-  }
+  };
   function handleResize() {
     if (div_ref.current) {
-      setWidth(div_ref.current.getBoundingClientRect().width)
+      setWidth(div_ref.current.getBoundingClientRect().width);
     }
   }
-  window.addEventListener("resize", handleResize)
+  window.addEventListener("resize", handleResize);
 
   useEffect(() => {
     if (div_ref.current) {
-      setWidth(div_ref.current.getBoundingClientRect().width)
+      setWidth(div_ref.current.getBoundingClientRect().width);
     }
     document.addEventListener("keyup", (e) => {
       if (e.key == "PrintScreen") {
-        navigator.clipboard.writeText("")
-        alert("Screenshots disabled!")
+        navigator.clipboard.writeText("");
+        alert("Screenshots disabled!");
       }
-    })
+    });
     document.addEventListener("keydown", (e) => {
       if (e.ctrlKey && e.key == "p") {
-        alert("This section is not allowed to print or export to PDF")
-        e.cancelBubble = true
-        e.preventDefault()
-        e.stopImmediatePropagation()
+        alert("This section is not allowed to print or export to PDF");
+        e.cancelBubble = true;
+        e.preventDefault();
+        e.stopImmediatePropagation();
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <div
@@ -79,6 +80,6 @@ const IFrame = ({ src, setLoading }) => {
       )}
       <br></br>
     </div>
-  )
-}
-export default IFrame
+  );
+};
+export default IFrame;

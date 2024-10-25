@@ -1,4 +1,4 @@
-import AccordionSection from './AccordionSection'
+import AccordionSection from "./AccordionSection";
 
 const Accordion = ({ faqs }) => (
   <>
@@ -8,5 +8,5 @@ const Accordion = ({ faqs }) => (
       </div>
     ))}
   </>
-)
-export default Accordion
+);
+export default Accordion;

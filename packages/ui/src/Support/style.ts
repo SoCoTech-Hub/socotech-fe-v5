@@ -1,5 +1,5 @@
-import { Badge, BadgeProps } from "@mui/material"
-import { withStyles } from "@mui/styles"
+import { Badge, BadgeProps } from "@mui/material";
+import { withStyles } from "@mui/styles";
 
 // Modal Styling
 export const style: React.CSSProperties = {
@@ -13,7 +13,7 @@ export const style: React.CSSProperties = {
   boxShadow: 24,
   padding: "16px",
   borderRadius: 25,
-}
+};
 // Modal Styling End
 
 export const StyledBadge = withStyles(() => ({
@@ -27,7 +27,7 @@ export const StyledBadge = withStyles(() => ({
     height: "60%",
     width: "15%",
   },
-}))(Badge) as React.ComponentType<BadgeProps>
+}))(Badge) as React.ComponentType<BadgeProps>;
 
 export const customStyles = {
   content: {
@@ -38,4 +38,4 @@ export const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
-}
+};

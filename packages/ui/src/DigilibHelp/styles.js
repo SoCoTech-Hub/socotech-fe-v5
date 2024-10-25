@@ -1,5 +1,5 @@
-import { Menu, MenuItem } from "@mui/material"
-import { withStyles } from "@mui/styles"
+import { Menu, MenuItem } from "@mui/material";
+import { withStyles } from "@mui/styles";
 
 export const StyledMenu = withStyles({
   paper: {
@@ -21,7 +21,7 @@ export const StyledMenu = withStyles({
     }}
     {...props}
   />
-))
+));
 
 export const StyledMenuItem = withStyles(() => ({
   root: {
@@ -40,4 +40,4 @@ export const StyledMenuItem = withStyles(() => ({
     padding: "5px",
     borderRadius: "8px",
   },
-}))(MenuItem)
+}))(MenuItem);

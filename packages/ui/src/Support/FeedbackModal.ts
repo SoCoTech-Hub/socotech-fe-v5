@@ -66,7 +66,7 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ closeModal }) => {
           },
         })
         if (!uploadedFiles.ok) {
-          setErrorMessages(uploadedFiles.problem || 'Upload failed')
+          setErrorMessages(uploadedFiles.problem ?? 'Upload failed')
         } else {
           setAttachments((state) => [...state, ...uploadedFiles.data])
           setSuccessMessage('Upload successful 👍')

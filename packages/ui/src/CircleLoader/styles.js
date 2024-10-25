@@ -1,4 +1,5 @@
-import { makeStyles } from "@mui/styles"
+import { makeStyles } from "@mui/styles";
+
 export const useStylesFacebook = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -15,4 +16,4 @@ export const useStylesFacebook = makeStyles((theme) => ({
   circle: {
     strokeLinecap: "round",
   },
-}))
+}));

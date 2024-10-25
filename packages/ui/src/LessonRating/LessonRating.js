@@ -1,238 +1,235 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from "react";
+import api from "@/api/api";
+import LessonReplyForm from "@/components/LessonReplyForm";
+import LessonReviewDisplay from "@/components/LessonReviewDisplay";
+import RatingBox from "@/components/RatingBox";
+import RatingsDisplay from "@/components/RatingsDisplay";
+import { mapLessonRating, range, STARS } from "@/lib/utils";
 import {
-	Button,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle,
-	InputBase,
-	Rating,
-	TextareaAutosize
-} from '@mui/material'
-import RatingsDisplay from '@/components/RatingsDisplay'
-import RatingBox from '@/components/RatingBox'
-import LessonReplyForm from '@/components/LessonReplyForm'
-import LessonReviewDisplay from '@/components/LessonReviewDisplay'
-import api from '@/api/api'
-import { mapLessonRating, range, STARS } from '@/lib/utils'
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  InputBase,
+  Rating,
+  TextareaAutosize,
+} from "@mui/material";
 
 const LessonRating = ({ lesson, userid }) => {
-	const emptyReview = {
-		starRating: 0,
-		description: '',
-		user: { id: userid },
-		lesson: { id: lesson.id }
-	}
+  const emptyReview = {
+    starRating: 0,
+    description: "",
+    user: { id: userid },
+    lesson: { id: lesson.id },
+  };
 
-	const replyInputRef = useRef(null)
+  const replyInputRef = useRef(null);
 
-	const [total, setTotal] = useState(0)
-	const [reply, setReply] = useState(emptyReview)
-	const [review, setReview] = useState(emptyReview)
-	const [average, setAverage] = useState(0)
-	const [disabled, setDisabled] = useState(true)
-	const [submitted, setSubmitted] = useState(0)
-	const [isModalOpen, setModalOpen] = useState(false)
-	const [ratings, setRatings] = useState(STARS)
+  const [total, setTotal] = useState(0);
+  const [reply, setReply] = useState(emptyReview);
+  const [review, setReview] = useState(emptyReview);
+  const [average, setAverage] = useState(0);
+  const [disabled, setDisabled] = useState(true);
+  const [submitted, setSubmitted] = useState(0);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [ratings, setRatings] = useState(STARS);
 
-	const isEmptyReview = review.starRating === 0 || review.description === ''
+  const isEmptyReview = review.starRating === 0 ?? review.description === "";
 
-	const toggleReviewModal = () => setModalOpen(!isModalOpen)
+  const toggleReviewModal = () => setModalOpen(!isModalOpen);
 
-	const getCount = async (id) =>
-		api
-			.get(`/lesson-ratings/count?starRating=${id}&lesson=${lesson.id}`)
-			.then((response) => ({
-				id: id,
-				percentage: 0,
-				total: response.data ?? 0
-			}))
+  const getCount = async (id) =>
+    api
+      .get(`/lesson-ratings/count?starRating=${id}&lesson=${lesson.id}`)
+      .then((response) => ({
+        id: id,
+        percentage: 0,
+        total: response.data ?? 0,
+      }));
 
-	const submit = async (obj) =>
-		api
-			.post('lesson-ratings', obj)
-			.then(({ ok }) => (ok ? setSubmitted(submitted + 1) : null))
+  const submit = async (obj) =>
+    api
+      .post("lesson-ratings", obj)
+      .then(({ ok }) => (ok ? setSubmitted(submitted + 1) : null));
 
-	const submitReply = async () => {
-		submit(reply)
-		setReply(emptyReview)
-		setDisabled(true)
-		replyInputRef.current.value = ''
-	}
+  const submitReply = async () => {
+    submit(reply);
+    setReply(emptyReview);
+    setDisabled(true);
+    replyInputRef.current.value = "";
+  };
 
-	const submitReview = async () => submit(review)
+  const submitReview = async () => submit(review);
 
-	useEffect(async () => {
-		const requests = range(1, 5).map(getCount)
+  useEffect(async () => {
+    const requests = range(1, 5).map(getCount);
 
-		await Promise.all(requests)
-			.then(mapLessonRating)
-			.then(({ total, average, ratings }) => {
-				setTotal(total)
-				setAverage(average)
-				setRatings(ratings)
-			})
-			.catch((error) => console.error('[getting ratings]', error.message))
-	}, [submitted])
+    await Promise.all(requests)
+      .then(mapLessonRating)
+      .then(({ total, average, ratings }) => {
+        setTotal(total);
+        setAverage(average);
+        setRatings(ratings);
+      })
+      .catch((error) => console.error("[getting ratings]", error.message));
+  }, [submitted]);
 
-	useEffect(async () => {
-		if (!isModalOpen && !isEmptyReview) {
-			await submitReview()
-				.catch((error) => console.error('[submitting review]', error.message))
-				.finally(() => setReview(emptyReview))
-		}
-	}, [isModalOpen, isEmptyReview])
+  useEffect(async () => {
+    if (!isModalOpen && !isEmptyReview) {
+      await submitReview()
+        .catch((error) => console.error("[submitting review]", error.message))
+        .finally(() => setReview(emptyReview));
+    }
+  }, [isModalOpen, isEmptyReview]);
 
-	return (
-		<div className=''>
-			<div className='mb-3 ml-3 font-semibold text-ls'>Ratings & Reviews</div>
-			<div className='p-4 rounded-lg shadow-outline bg-compBg'>
-				<div className='flex flex-row items-center justify-between w-full space-x-2'>
-					<div className=''>
-						<RatingBox
-							average={average}
-							total={total}
-						/>
-					</div>
-					<div className='border-l-2 border-r-2 col-4 border-borderRating'>
-						<div className='flex h-48 justify-self-center item'>
-							<div className='self-center w-full'>
-								<RatingsDisplay ratings={ratings} />
-							</div>
-						</div>
-					</div>
+  return (
+    <div className="">
+      <div className="text-ls mb-3 ml-3 font-semibold">Ratings & Reviews</div>
+      <div className="shadow-outline bg-compBg rounded-lg p-4">
+        <div className="flex w-full flex-row items-center justify-between space-x-2">
+          <div className="">
+            <RatingBox average={average} total={total} />
+          </div>
+          <div className="col-4 border-borderRating border-l-2 border-r-2">
+            <div className="item flex h-48 justify-self-center">
+              <div className="w-full self-center">
+                <RatingsDisplay ratings={ratings} />
+              </div>
+            </div>
+          </div>
 
-					{lesson.hasReview ? (
-						<div className=''>
-							<div className='h-48 p-4 rounded-lg w-52 bg-themeColorMain'>
-								<div className='mb-1 text-textColor text-md'>
-									Tell us about your experience.
-								</div>
-								<div className='text-textColor text-md '>
-									We would love to know.
-								</div>
-								<div className='mt-2'>
-									<button
-										onClick={toggleReviewModal}
-										className='w-full pt-2 pb-2 text-base font-bold text-center roundedBg-full bg-comp text-themeColorMain '
-									>
-										Write a review
-									</button>
-									<Dialog
-										open={isModalOpen}
-										onClose={toggleReviewModal}
-										aria-labelledby='form-dialog-title'
-									>
-										<DialogTitle id='form-dialog-title text-center'>
-											Review this lesson
-										</DialogTitle>
-										<DialogContent>
-											<DialogContentText>
-												Rate your experience
-											</DialogContentText>
-											<Rating
-												name='user-rating-stars'
-												onChange={(_, value) =>
-													setReview({
-														...review,
-														starRating: value
-													})
-												}
-												size='small'
-											/>
+          {lesson.hasReview ? (
+            <div className="">
+              <div className="bg-themeColorMain h-48 w-52 rounded-lg p-4">
+                <div className="text-textColor text-md mb-1">
+                  Tell us about your experience.
+                </div>
+                <div className="text-textColor text-md">
+                  We would love to know.
+                </div>
+                <div className="mt-2">
+                  <button
+                    onClick={toggleReviewModal}
+                    className="roundedBg-full bg-comp text-themeColorMain w-full pb-2 pt-2 text-center text-base font-bold"
+                  >
+                    Write a review
+                  </button>
+                  <Dialog
+                    open={isModalOpen}
+                    onClose={toggleReviewModal}
+                    aria-labelledby="form-dialog-title"
+                  >
+                    <DialogTitle id="form-dialog-title text-center">
+                      Review this lesson
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        Rate your experience
+                      </DialogContentText>
+                      <Rating
+                        name="user-rating-stars"
+                        onChange={(_, value) =>
+                          setReview({
+                            ...review,
+                            starRating: value,
+                          })
+                        }
+                        size="small"
+                      />
 
-											<div className='my-2 text-base font-bold'>
-												Tell us about it:
-											</div>
-											<TextareaAutosize
-												minRows={3}
-												maxRows={5}
-												onChange={(e) =>
-													setReview({
-														...review,
-														description: e.target.value
-													})
-												}
-												placeholder='Write a description of your experience...'
-												defaultValue=''
-												value={review.description}
-												className='w-full p-5 bg-gray-200 rounded-lg'
-											/>
-										</DialogContent>
-										<DialogActions className='mx-auto'>
-											<Button
-												onClick={toggleReviewModal}
-												disabled={isEmptyReview}
-												style={{
-													backgroundColor: '#6255D0',
-													width: '240px',
-													borderRadius: '99999px',
-													color: '#ffffff',
-													textTransform: 'none',
-													fontWeight: 'bold',
-													paddingTop: '1em',
-													paddingBottom: '1em',
-													paddingLeft: '1em',
-													paddingRight: '1em'
-												}}
-											>
-												Submit
-											</Button>
-										</DialogActions>
-									</Dialog>
-								</div>
-							</div>
-						</div>
-					) : (
-						<></>
-					)}
-				</div>
-				{lesson.hasComment ? (
-					<div className='flex flex-row w-full mt-3 space-x-5 justify-evenly'>
-						<div className='w-1/2 item'>
-							<div className='ml-5 text-base font-bold'>Sort by:</div>
-							<InputBase
-								className='w-full px-4 py-2 rounded-lg bg-compBg text-textColor'
-								placeholder='Type something...'
-							/>
-						</div>
-						{/* <div className="w-1/2 item">
+                      <div className="my-2 text-base font-bold">
+                        Tell us about it:
+                      </div>
+                      <TextareaAutosize
+                        minRows={3}
+                        maxRows={5}
+                        onChange={(e) =>
+                          setReview({
+                            ...review,
+                            description: e.target.value,
+                          })
+                        }
+                        placeholder="Write a description of your experience..."
+                        defaultValue=""
+                        value={review.description}
+                        className="w-full rounded-lg bg-gray-200 p-5"
+                      />
+                    </DialogContent>
+                    <DialogActions className="mx-auto">
+                      <Button
+                        onClick={toggleReviewModal}
+                        disabled={isEmptyReview}
+                        style={{
+                          backgroundColor: "#6255D0",
+                          width: "240px",
+                          borderRadius: "99999px",
+                          color: "#ffffff",
+                          textTransform: "none",
+                          fontWeight: "bold",
+                          paddingTop: "1em",
+                          paddingBottom: "1em",
+                          paddingLeft: "1em",
+                          paddingRight: "1em",
+                        }}
+                      >
+                        Submit
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+        {lesson.hasComment ? (
+          <div className="mt-3 flex w-full flex-row justify-evenly space-x-5">
+            <div className="item w-1/2">
+              <div className="ml-5 text-base font-bold">Sort by:</div>
+              <InputBase
+                className="bg-compBg text-textColor w-full rounded-lg px-4 py-2"
+                placeholder="Type something..."
+              />
+            </div>
+            {/* <div className="w-1/2 item">
               <div className="ml-5 text-base font-bold">Filter by:</div>
               <InputBase
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg"
                 placeholder="Type something..."
               />
             </div> */}
-					</div>
-				) : (
-					<></>
-				)}
-			</div>
-			{lesson.hasComment ? (
-				<div>
-					<LessonReviewDisplay
-						userId={userid}
-						lessonId={lesson.id}
-						setReply={setReply}
-						submitted={submitted}
-						setIsDisabled={setDisabled}
-						setSubmitted={setSubmitted}
-						replyInputRef={replyInputRef}
-					/>
-					<div className='mt-4 '>
-						<LessonReplyForm
-							isDisabled={disabled}
-							inputRef={replyInputRef}
-							onSubmit={submitReply}
-						/>
-					</div>
-				</div>
-			) : (
-				<></>
-			)}
-		</div>
-	)
-}
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      {lesson.hasComment ? (
+        <div>
+          <LessonReviewDisplay
+            userId={userid}
+            lessonId={lesson.id}
+            setReply={setReply}
+            submitted={submitted}
+            setIsDisabled={setDisabled}
+            setSubmitted={setSubmitted}
+            replyInputRef={replyInputRef}
+          />
+          <div className="mt-4">
+            <LessonReplyForm
+              isDisabled={disabled}
+              inputRef={replyInputRef}
+              onSubmit={submitReply}
+            />
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
 
-export default LessonRating
+export default LessonRating;

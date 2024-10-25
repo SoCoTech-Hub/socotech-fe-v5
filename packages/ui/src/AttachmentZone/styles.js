@@ -3,4 +3,4 @@ export const thumbsContainer = {
   flexDirection: "row",
   flexWrap: "wrap",
   justifyContent: "flex-start",
-}
+};

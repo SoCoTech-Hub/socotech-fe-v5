@@ -17,17 +17,17 @@ type NavItems = {
 export default function Header(props: HeaderProps) {
   return (
     <header className="border-b">
-      <div className="container flex items-center justify-between h-16 px-4 mx-auto">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <LogoOverlay text={props.logoName} imageSrc={props.logoUrl} />
         {props.navItems && (
           <nav className="flex items-center space-x-4">
             {props.navItems.map((x, i) => (
               <Button
-                variant={x.variant || "ghost"}
+                variant={x.variant ?? "ghost"}
                 asChild
                 key={`button-${i}`}
               >
-                <a href={x.url || "#"}>{x.name}</a>
+                <a href={x.url ?? "#"}>{x.name}</a>
               </Button>
             ))}
           </nav>

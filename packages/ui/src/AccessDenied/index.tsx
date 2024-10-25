@@ -32,11 +32,11 @@ import { AlertOctagon, Home } from "lucide-react";
 
 export default function AccessDenied() {
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-background">
+    <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="flex items-center justify-center gap-2 text-2xl font-bold text-destructive">
-            <AlertOctagon className="w-8 h-8" />
+            <AlertOctagon className="h-8 w-8" />
             Access Denied
           </CardTitle>
         </CardHeader>
@@ -49,7 +49,7 @@ export default function AccessDenied() {
         <CardFooter className="flex justify-center">
           <Button asChild>
             <Link href="/" className="flex items-center gap-2">
-              <Home className="w-4 h-4" />
+              <Home className="h-4 w-4" />
               Return to Home
             </Link>
           </Button>

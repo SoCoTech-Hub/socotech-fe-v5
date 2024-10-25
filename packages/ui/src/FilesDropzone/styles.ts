@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react'
+import { CSSProperties } from "react";
 
 export const baseStyle: CSSProperties = {
   flex: 1,
@@ -15,7 +15,7 @@ export const baseStyle: CSSProperties = {
   color: "#fff",
   outline: "none",
   transition: "border .24s ease-in-out",
-}
+};
 
 export const thumbsContainer: CSSProperties = {
   display: "flex",
@@ -23,7 +23,7 @@ export const thumbsContainer: CSSProperties = {
   flexWrap: "wrap",
   justifyContent: "flex-start",
   marginTop: 16,
-}
+};
 
 export const thumb: CSSProperties = {
   display: "inline-flex",
@@ -36,13 +36,13 @@ export const thumb: CSSProperties = {
   height: 98,
   padding: 4,
   boxSizing: "border-box",
-}
+};
 
 export const thumbInner: CSSProperties = {
   display: "flex",
   minWidth: 0,
   overflow: "hidden",
-}
+};
 
 export const removeImageButton: CSSProperties = {
   display: "flex",
@@ -56,21 +56,21 @@ export const removeImageButton: CSSProperties = {
   backgroundColor: "transparent",
   border: "none",
   marginBottom: 15,
-}
+};
 
 export const img: CSSProperties = {
   width: "100%",
   height: "100%",
-}
+};
 
 export const activeStyle: CSSProperties = {
   borderColor: "#2196f3",
-}
+};
 
 export const acceptStyle: CSSProperties = {
   borderColor: "#00e676",
-}
+};
 
 export const rejectStyle: CSSProperties = {
   borderColor: "#ff1744",
-}
+};

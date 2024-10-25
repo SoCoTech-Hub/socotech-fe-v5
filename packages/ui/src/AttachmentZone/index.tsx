@@ -219,7 +219,7 @@ export function Dropzone({
       <input {...getInputProps()} />
       {uploadStatus === "idle" && (
         <>
-          <Upload className="w-8 h-8 mb-2 text-muted-foreground" />
+          <Upload className="mb-2 h-8 w-8 text-muted-foreground" />
           <p className="mb-1 text-sm text-muted-foreground">
             <span className="font-semibold">Click to upload</span> or drag and
             drop
@@ -232,8 +232,8 @@ export function Dropzone({
       )}
       {uploadStatus === "uploading" && (
         <div className="flex flex-col items-center">
-          <div className="relative w-12 h-12 mb-2">
-            <svg className="w-12 h-12 animate-spin" viewBox="0 0 24 24">
+          <div className="relative mb-2 h-12 w-12">
+            <svg className="h-12 w-12 animate-spin" viewBox="0 0 24 24">
               <circle
                 className="opacity-25"
                 cx="12"
@@ -265,13 +265,13 @@ export function Dropzone({
       )}
       {uploadStatus === "success" && (
         <div className="flex flex-col items-center">
-          <CheckCircle className="w-12 h-12 mb-2 text-green-500" />
+          <CheckCircle className="mb-2 h-12 w-12 text-green-500" />
           <p className="text-sm text-muted-foreground">Upload successful!</p>
         </div>
       )}
       {uploadStatus === "error" && (
         <div className="flex flex-col items-center">
-          <AlertCircle className="w-12 h-12 mb-2 text-destructive" />
+          <AlertCircle className="mb-2 h-12 w-12 text-destructive" />
           <p className="text-sm text-muted-foreground">
             Upload failed. Please try again.
           </p>

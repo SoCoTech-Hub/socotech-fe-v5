@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import { withStyles } from "@mui/styles";
 
@@ -46,15 +46,19 @@ export default function DefaultSelect({
   value = null,
   valueKey = "id",
 }: DefaultSelectProps) {
-  const [autocompleteValue, setAutocompleteValue] = useState<Option | null>(null);
+  const [autocompleteValue, setAutocompleteValue] = useState<Option | null>(
+    null,
+  );
 
   useEffect(() => {
-    if (!options.length || value === null) {
+    if (!options.length ?? value === null) {
       setAutocompleteValue(null);
     }
 
     if (options.length && value) {
-      const selectedOption = options.find((option) => parseInt(option.id as string) === parseInt(value as string));
+      const selectedOption = options.find(
+        (option) => parseInt(option.id as string) === parseInt(value as string),
+      );
       setAutocompleteValue(selectedOption ? selectedOption : null);
     }
   }, [options.length, value]);
@@ -78,7 +82,7 @@ export default function DefaultSelect({
   };
 
   return (
-    <div className="mt-2 mb-2 font-bold form-group text-textColor bg-compBg">
+    <div className="form-group text-textColor bg-compBg mb-2 mt-2 font-bold">
       <Autocomplete
         value={autocompleteValue}
         className={className}
@@ -86,7 +90,7 @@ export default function DefaultSelect({
         options={options}
         getOptionLabel={(option: Option) => option.name}
         autoComplete={false}
-        disabled={false || !options.length}
+        disabled={false ?? !options.length}
         style={{ color: "#fff" }}
         renderInput={(params) => (
           <div className="pt-1.5">

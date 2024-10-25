@@ -66,7 +66,7 @@ const Dropdowns: React.FC<DropdownsProps> = (props) => {
               <ChevronDownIcon
                 className="w-5 h-5 -mr-1"
                 aria-hidden="true"
-                style={{ color: props.iconColor || '#cbd5e0' }}
+                style={{ color: props.iconColor ?? '#cbd5e0' }}
               />
             </>
           )}
@@ -87,7 +87,7 @@ const Dropdowns: React.FC<DropdownsProps> = (props) => {
           style={{
             ...props.listStyle,
             backgroundColor: props.listBgColor,
-            width: props.width || '14rem',
+            width: props.width ?? '14rem',
           }}
         >
           {props.heading && <div className="px-4 py-3">{props.heading}</div>}

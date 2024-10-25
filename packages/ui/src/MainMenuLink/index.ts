@@ -1,3 +1,5 @@
+//USE MainMenu
+
 import { baseUrl } from '@/context/constants'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -42,7 +44,7 @@ const MainMenuLink: React.FC<MainMenuLinkProps> = ({
       className="hover:shadow-md rounded-lg w-full cursor-pointer"
       data-tour={dataTour}
     >
-      <a onClick={doWhat} href={link || undefined}>
+      <a onClick={doWhat} href={link ?? undefined}>
         <div
           className={`flex items-center mobile:pb-2 justify-between mobile:bg-compBg mobile:px-3 rounded-lg w-full mt-2 align-middle ${
             link === url ? `${color}` : ''

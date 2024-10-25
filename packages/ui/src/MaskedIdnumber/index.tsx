@@ -1,5 +1,6 @@
-import React from 'react';
-import InputMask from 'react-input-mask';
+//USE InputMask
+import React from "react";
+import InputMask from "react-input-mask";
 
 interface MaskedIdnumberProps {
   name: string;
@@ -16,10 +17,10 @@ const MaskedIdnumber: React.FC<MaskedIdnumberProps> = ({
 }) => {
   return (
     <InputMask
-      className="w-full text-themeColorMain bg-white bg-opacity-20 rounded-lg p-3 block border-2 ring-inset ring-white placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-themeColorMain mobile:text-sm mobile:leading-6 shadow-md"
+      className="text-themeColorMain focus:ring-themeColorMain mobile:text-sm mobile:leading-6 block w-full rounded-lg border-2 bg-white bg-opacity-20 p-3 placeholder-gray-500 shadow-md ring-inset ring-white focus:ring-2 focus:ring-inset"
       mask="** ** ** *** *** *"
       onChange={(event) => setter(event.target.value)}
-      placeholder={`ID Number / Passport Number ${required ? '(Required)' : ''}`}
+      placeholder={`ID Number / Passport Number ${required ? "(Required)" : ""}`}
       name={name}
       id={name}
       value={value}

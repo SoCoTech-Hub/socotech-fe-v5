@@ -1,20 +1,21 @@
-import LessonProgress from './LessonProgressView'
-import { useAppContext } from '@/context/AppContext'
+import { useAppContext } from "@/context/AppContext";
+
+import LessonProgress from "./LessonProgressView";
 
 const LessonProgressMenu = () => {
-	const { state } = useAppContext()
-	return (
-		<div>
-			<div className='p-3 text-xs rounded-lg shadow-md mobile:p-1 mobile:bg-navbarBg bg-compBg shadow-md mobile:font-bold mobile:w-full'>
-				<div className='text-textColor mobile:mb-2 mobile:text-xl'>
-					Lessons in progress
-				</div>
-				<div>
-					<LessonProgress />
-				</div>
-			</div>
-		</div>
-	)
-}
+  const { state } = useAppContext();
+  return (
+    <div>
+      <div className="mobile:p-1 mobile:bg-navbarBg bg-compBg mobile:font-bold mobile:w-full rounded-lg p-3 text-xs shadow-md">
+        <div className="text-textColor mobile:mb-2 mobile:text-xl">
+          Lessons in progress
+        </div>
+        <div>
+          <LessonProgress />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default LessonProgressMenu
+export default LessonProgressMenu;

@@ -1,32 +1,32 @@
-import React from 'react';
-import { baseUrl } from '@/context/constants';
-import LogoOverlay from '@/components/LogoOverlay';
+import React from "react";
+import LogoOverlay from "@/components/LogoOverlay";
+import { baseUrl } from "@/context/constants";
 
 interface TwoColPageProps {
-  col1Image?: string;  // Optional string for the first column image
-  header: string;      // Required string for the header
+  col1Image?: string; // Optional string for the first column image
+  header: string; // Required string for the header
   col2: React.ReactNode; // Required node for the second column content
 }
 
 const TwoColPage: React.FC<TwoColPageProps> = ({ col1Image, header, col2 }) => {
   return (
     <>
-      <div className='flex flex-wrap overflow-x-hidden g-0'>
-        <div className='w-full desktop:w-1/2 laptop:w-1/2 mobile:h-1/3'>
-          <div className='flex items-center w-full desktop:h-screen laptop:h-screen place-content-center'>
+      <div className="g-0 flex flex-wrap overflow-x-hidden">
+        <div className="desktop:w-1/2 laptop:w-1/2 mobile:h-1/3 w-full">
+          <div className="desktop:h-screen laptop:h-screen flex w-full place-content-center items-center">
             <img
               src={col1Image ? col1Image : `${baseUrl}/brand-image.png`}
-              alt='Image'
-              className='mobile:hidden'
+              alt="Image"
+              className="mobile:hidden"
             />
           </div>
         </div>
-        <div className='w-full bg-compBg desktop:w-1/2 laptop:w-1/2 mobile:h-2/3'>
-          <div className='flex items-center w-full desktop:h-screen laptop:h-screen place-content-center mobile:mx-1 mobile:-mt-4'>
-            <div className='my-10 desktop:w-3/5 mobile:w-10/12 desktop:my-0'>
-              <div className='w-4/5 pt-16 text-3xl font-bold mobile:pt-2 text-textHeading'>
+        <div className="bg-compBg desktop:w-1/2 laptop:w-1/2 mobile:h-2/3 w-full">
+          <div className="desktop:h-screen laptop:h-screen mobile:mx-1 mobile:-mt-4 flex w-full place-content-center items-center">
+            <div className="desktop:w-3/5 mobile:w-10/12 desktop:my-0 my-10">
+              <div className="mobile:pt-2 text-textHeading w-4/5 pt-16 text-3xl font-bold">
                 <LogoOverlay />
-                <div className='pt-4'>{header}</div>
+                <div className="pt-4">{header}</div>
               </div>
               {col2}
             </div>

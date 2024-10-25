@@ -1,5 +1,7 @@
-import React from 'react';
-import InputField from '@/components/InputField';
+//USE InputMask
+
+import React from "react";
+import InputField from "@/components/InputField";
 
 interface MaskedMobileProps {
   required?: boolean;
@@ -18,14 +20,14 @@ const MaskedMobile: React.FC<MaskedMobileProps> = ({
     let inputValue = event.target.value;
 
     // Remove all non-digit characters
-    let numericValue = inputValue.replace(/\D/g, '');
+    let numericValue = inputValue.replace(/\D/g, "");
     numericValue = numericValue.slice(0, 10);
 
     if (numericValue.length <= 10) {
       if (numericValue.length > 6) {
         numericValue = `${numericValue.slice(0, 3)}-${numericValue.slice(
           3,
-          6
+          6,
         )}-${numericValue.slice(6)}`;
       } else if (numericValue.length > 3) {
         numericValue = `${numericValue.slice(0, 3)}-${numericValue.slice(3)}`;
@@ -36,7 +38,7 @@ const MaskedMobile: React.FC<MaskedMobileProps> = ({
 
   return (
     <InputField
-      placeholder={`${placeholder} ${required ? '(Required)' : ''}`}
+      placeholder={`${placeholder} ${required ? "(Required)" : ""}`}
       value={value}
       onChange={handleChange}
       autoComplete="off"

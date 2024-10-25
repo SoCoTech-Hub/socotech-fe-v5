@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import BlogLoad from '@/components/DigilibLoad'
-import Alert from '@/components/Alert'
-import { getTimeDifferenceFromPostDate } from '@/snippets/user/getTimeDifferenceFromPostDate'
-import handleArticleSave from '@/snippets/blog/handleArticleSave'
-import ReactMarkdown from 'react-markdown'
-import {
-  baseUrl,
-  PrimaryColor,
-  profileId,
-} from '@/context/constants'
-import { useAppContext } from '@/context/AppContext'
-import Btn from '@/components/Btn'
-import getGQLRequest from '@/snippets/getGQLRequest'
-import ShareLinks from '@/components/ShareLinks'
-import { HeartIcon, LikesIcon } from '@/components/SvgIcons'
-import api from '@/api/api'
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import api from "@/api/api";
+import Alert from "@/components/Alert";
+import Btn from "@/components/Btn";
+import BlogLoad from "@/components/DigilibLoad";
+import ShareLinks from "@/components/ShareLinks";
+import { HeartIcon, LikesIcon } from "@/components/SvgIcons";
+import { useAppContext } from "@/context/AppContext";
+import { baseUrl, PrimaryColor, profileId } from "@/context/constants";
+import handleArticleSave from "@/snippets/blog/handleArticleSave";
+import getGQLRequest from "@/snippets/getGQLRequest";
+import { getTimeDifferenceFromPostDate } from "@/snippets/user/getTimeDifferenceFromPostDate";
+import ReactMarkdown from "react-markdown";
 
 interface BlogPostProps {
   blogPostId: string;
@@ -38,193 +34,201 @@ const Index: React.FC<BlogPostProps> = ({
   textContent,
   loading,
   setLoading,
-  imgSrc = '',
+  imgSrc = "",
   blogPost,
 }) => {
-  const { state } = useAppContext()
-  const [isLoved, setIsLoved] = useState<boolean>(false)
-  const [socialId, setSocialId] = useState<string | null>(null)
-  const [socialLoves, setSocialLoves] = useState<any[]>([])
-  const [allLoves, setAllLoves] = useState<any[]>([])
-  const [blogPostSocials, setBlogPostSocials] = useState<number>(0)
-  const [articleLikeLoves, setArticleLikeLoves] = useState<any[]>([])
-  const [lovesTotal, setLovesTotal] = useState<number>(0)
-  const [success, setSuccess] = useState<string>('')
-  const router = useRouter()
-  let mediaUrl = imgSrc ? imgSrc : `${baseUrl}/dummypost.png`
+  const { state } = useAppContext();
+  const [isLoved, setIsLoved] = useState<boolean>(false);
+  const [socialId, setSocialId] = useState<string | null>(null);
+  const [socialLoves, setSocialLoves] = useState<any[]>([]);
+  const [allLoves, setAllLoves] = useState<any[]>([]);
+  const [blogPostSocials, setBlogPostSocials] = useState<number>(0);
+  const [articleLikeLoves, setArticleLikeLoves] = useState<any[]>([]);
+  const [lovesTotal, setLovesTotal] = useState<number>(0);
+  const [success, setSuccess] = useState<string>("");
+  const router = useRouter();
+  let mediaUrl = imgSrc ? imgSrc : `${baseUrl}/dummypost.png`;
 
   useEffect(() => {
-    const socialLovesArray = socialLoves || []
-    const articleLikeLovesArray = articleLikeLoves || []
+    const socialLovesArray = socialLoves ?? [];
+    const articleLikeLovesArray = articleLikeLoves ?? [];
 
-    if (socialLovesArray.length || articleLikeLovesArray.length) {
-      const mergedArray = [...socialLovesArray, ...articleLikeLovesArray]
+    if (socialLovesArray.length ?? articleLikeLovesArray.length) {
+      const mergedArray = [...socialLovesArray, ...articleLikeLovesArray];
 
       const uniqueArray = mergedArray.length
         ? Array.from(new Set(mergedArray.map(JSON.stringify)), JSON.parse)
-        : []
+        : [];
       if (uniqueArray.length > 0) {
-        setAllLoves(uniqueArray)
-        setLovesTotal(uniqueArray.length)
+        setAllLoves(uniqueArray);
+        setLovesTotal(uniqueArray.length);
 
-        setIsLoved(uniqueArray.find((x: { id: string }) => x.id === profileId) ? true : false)
+        setIsLoved(
+          uniqueArray.find((x: { id: string }) => x.id === profileId)
+            ? true
+            : false,
+        );
       }
     }
-  }, [socialLoves, articleLikeLoves])
+  }, [socialLoves, articleLikeLoves]);
 
   useEffect(() => {
     const fetchBlogPostData = async () => {
       if (blogPostId) {
         const { article } = await getGQLRequest({
-          endpoint: 'article',
+          endpoint: "article",
           id: blogPostId,
           findOne: true,
-          fields: `articleLike{id,loves{id}}`
-        })
-        setBlogPostSocials(article.articleLike.id)
-        setArticleLikeLoves(article.articleLike.loves)
-        setIsLoved(article.articleLike.loves.find((x: { id: string }) => x.id === profileId))
+          fields: `articleLike{id,loves{id}}`,
+        });
+        setBlogPostSocials(article.articleLike.id);
+        setArticleLikeLoves(article.articleLike.loves);
+        setIsLoved(
+          article.articleLike.loves.find(
+            (x: { id: string }) => x.id === profileId,
+          ),
+        );
 
         let { feeds } = await getGQLRequest({
           endpoint: `feeds`,
           fields: `social{id,loves{id}}`,
-          where: `url:"/blog/${blogPostId}"`
-        })
+          where: `url:"/blog/${blogPostId}"`,
+        });
         if (feeds.length) {
-          setSocialId(feeds[0]?.social.id)
-          setSocialLoves(feeds[0]?.social?.loves)
+          setSocialId(feeds[0]?.social.id);
+          setSocialLoves(feeds[0]?.social?.loves);
         }
       }
-    }
+    };
 
-    fetchBlogPostData()
-  }, [blogPostId])
+    fetchBlogPostData();
+  }, [blogPostId]);
 
-  const upvoteEventHandler = async (upvoted: 'loves') => {
+  const upvoteEventHandler = async (upvoted: "loves") => {
     let updatedSocialsList = !isLoved
       ? [...allLoves, { id: profileId }]
-      : [...allLoves.filter((x: { id: string }) => x.id !== profileId)]
-    
-    setSocialLoves(updatedSocialsList)
-    setArticleLikeLoves(updatedSocialsList)
+      : [...allLoves.filter((x: { id: string }) => x.id !== profileId)];
 
-    if (upvoted === 'loves') {
-      setIsLoved(!isLoved)
+    setSocialLoves(updatedSocialsList);
+    setArticleLikeLoves(updatedSocialsList);
+
+    if (upvoted === "loves") {
+      setIsLoved(!isLoved);
       if (socialId) {
         await api.put(`/socials/${socialId}`, {
-          loves: updatedSocialsList
-        })
+          loves: updatedSocialsList,
+        });
       } else {
         const res = await api.post(`/socials`, {
-          loves: updatedSocialsList
-        })
-        setSocialId(res.data.id)
+          loves: updatedSocialsList,
+        });
+        setSocialId(res.data.id);
       }
       if (blogPostSocials) {
         const res = await api.put(`/article-likes/${blogPostSocials}`, {
-          loves: updatedSocialsList
-        })
+          loves: updatedSocialsList,
+        });
 
-        setLovesTotal(res.data.loves.length)
+        setLovesTotal(res.data.loves.length);
       } else {
         const res = await api.post(`/article-likes`, {
-          loves: updatedSocialsList
-        })
+          loves: updatedSocialsList,
+        });
 
-        setLovesTotal(res.data.loves.length)
+        setLovesTotal(res.data.loves.length);
       }
     }
-  }
+  };
 
   const handleSaveArticle = () => {
     handleArticleSave({
       id: profileId,
-      article: blogPost
-    })
-    setSuccess('Article Saved')
-  }
+      article: blogPost,
+    });
+    setSuccess("Article Saved");
+  };
 
   return (
     <>
       <Head>
-        <meta property='og:type' content='article' />
-        <meta property='twitter:card' content='summary_large_image' />
-        <meta property='og:image' content={mediaUrl} />
-        <meta property='twitter:image' content={mediaUrl} />
-        <meta property='twitter:title' content={title} />
-        <meta property='twitter:url' content={process.env.NEXT_PUBLIC_MAIN_URL} />
-        <meta property='og:url' content={process.env.NEXT_PUBLIC_MAIN_URL} />
+        <meta property="og:type" content="article" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="og:image" content={mediaUrl} />
+        <meta property="twitter:image" content={mediaUrl} />
+        <meta property="twitter:title" content={title} />
+        <meta
+          property="twitter:url"
+          content={process.env.NEXT_PUBLIC_MAIN_URL}
+        />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_MAIN_URL} />
       </Head>
-      <div className='w-full p-3 rounded-lg bg-compBg shadow-md'>
-        <div className=''>
-          <div className='pt-2 pb-1 pl-6 pr-6 text-lg text-textColor mobile:p-1'>
+      <div className="bg-compBg w-full rounded-lg p-3 shadow-md">
+        <div className="">
+          <div className="text-textColor mobile:p-1 pb-1 pl-6 pr-6 pt-2 text-lg">
             {title}
           </div>
-          <div className='px-6 text-textColor mobile:p-1'>
-            {author !== 'undefined undefined' ? author : 'No Name'} -{' '}
+          <div className="text-textColor mobile:p-1 px-6">
+            {author !== "undefined undefined" ? author : "No Name"} -{" "}
             {getTimeDifferenceFromPostDate(datePosted)}
           </div>
-          <div className='p-6 rounded-lg shadow-outline bg-compBg mobile:p-1'>
+          <div className="shadow-outline bg-compBg mobile:p-1 rounded-lg p-6">
             <img
               src={mediaUrl}
               alt={title}
               onLoad={() => setLoading(false)}
-              className='object-contain w-full rounded-lg'
+              className="w-full rounded-lg object-contain"
             />
           </div>
-          <div className='w-full'>
-            <div className='flex justify-content-center'>
+          <div className="w-full">
+            <div className="justify-content-center flex">
               <Alert success={success} />
             </div>
-            <div className='flex flex-row justify-between px-6 pb-1 mobile:p-1'>
-              <div className='flex flex-row items-center h-10 align-middle'>
-                <div className='flex'>
-                  <div className='flex flex-row items-center h-5 align-middle'>
+            <div className="mobile:p-1 flex flex-row justify-between px-6 pb-1">
+              <div className="flex h-10 flex-row items-center align-middle">
+                <div className="flex">
+                  <div className="flex h-5 flex-row items-center align-middle">
                     <div
-                      className='pl-3 rounded-lg shadow-none cursor-pointer'
-                      onClick={() => upvoteEventHandler('loves')}
+                      className="cursor-pointer rounded-lg pl-3 shadow-none"
+                      onClick={() => upvoteEventHandler("loves")}
                       data-tracking-action={`Loved article: ${title}`}
                     >
                       {isLoved ? (
                         <LikesIcon
-                          className='w-6'
-                          name={'loves'}
+                          className="w-6"
+                          name={"loves"}
                           data-tracking-action={`Loved article: ${title}`}
                         />
                       ) : (
                         <HeartIcon
-                          className='w-5'
-                          name={'loves'}
+                          className="w-5"
+                          name={"loves"}
                           data-tracking-action={`Loved article: ${title}`}
                         />
                       )}
                     </div>
-                    <div className='ml-1 text-xs text-textColor mobile:mt-1'>
+                    <div className="text-textColor mobile:mt-1 ml-1 text-xs">
                       {lovesTotal}
                     </div>
                   </div>
                 </div>
-                <div className='ml-2'>
-                  <ShareLinks
-                    news={{ url: `/${blogPostId}` }}
-                    name={'share'}
-                  />
+                <div className="ml-2">
+                  <ShareLinks news={{ url: `/${blogPostId}` }} name={"share"} />
                 </div>
               </div>
 
-              <div className='flex flex-wrap gap-2 mobile:ml-8'>
-                <div className=''>
+              <div className="mobile:ml-8 flex flex-wrap gap-2">
+                <div className="">
                   <Btn
-                    color='bg-themeColorMain'
-                    label='Back'
-                    onClickFunction={() => router.push('/')}
+                    color="bg-themeColorMain"
+                    label="Back"
+                    onClickFunction={() => router.push("/")}
                     trackingAction={`return to blogs from article: ${title}`}
                   />
                 </div>
-                <div className=''>
+                <div className="">
                   <Btn
-                    color='bg-themeColorMain'
-                    label='Save'
+                    color="bg-themeColorMain"
+                    label="Save"
                     onClickFunction={handleSaveArticle}
                     trackingAction={`Saved article: ${title}`}
                     id={blogPostId}
@@ -232,33 +236,33 @@ const Index: React.FC<BlogPostProps> = ({
                 </div>
               </div>
             </div>
-            <div className='pt-3'>
-              <div className='flex-shrink px-6 text-textColor mobile:p-1'>
-                {textContent.indexOf('<br/>') || textContent.indexOf('<br>') ? (
+            <div className="pt-3">
+              <div className="text-textColor mobile:p-1 flex-shrink px-6">
+                {textContent.indexOf("<br/>") ?? textContent.indexOf("<br>") ? (
                   <div dangerouslySetInnerHTML={{ __html: textContent }}></div>
                 ) : (
                   <ReactMarkdown children={textContent} />
                 )}
               </div>
             </div>
-            <div className='flex justify-end mr-4'>
-              <div className='mt-4'>
+            <div className="mr-4 flex justify-end">
+              <div className="mt-4">
                 <Btn
-                  color='bg-themeColorMain'
-                  label='Back to list'
+                  color="bg-themeColorMain"
+                  label="Back to list"
                   onClickFunction={() => router.back()}
                   trackingAction={`return to blogs from article: ${title}`}
                 />
               </div>
             </div>
           </div>
-          <div className='flex items-center align-middle'>
+          <div className="flex items-center align-middle">
             <BlogLoad loading={loading} />
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

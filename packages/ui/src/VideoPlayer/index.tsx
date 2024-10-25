@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import videojs from "video.js";
+
 import "video.js/dist/video-js.css";
 import "@silvermine/videojs-quality-selector"; // This might need adjustment based on your setup
 import "@silvermine/videojs-quality-selector/dist/css/quality-selector.css";
+
 import { useAppContext } from "@/context/AppContext";
 import getConnectionSpeed from "@/snippets/lms/getConnectionSpeed";
 
@@ -30,40 +32,52 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
       },
     };
 
-    const player = videojs("video_1", videoJsOptions, async function onPlayerReady() {
-      setResolution(await getConnectionSpeed());
+    const player = videojs(
+      "video_1",
+      videoJsOptions,
+      async function onPlayerReady() {
+        setResolution(await getConnectionSpeed());
 
-      this.on("play", function () {
-        const videoProgress = state?.videoProgress.find((e) => e.videoLink === src);
-        if (videoProgress) {
-          player.currentTime(videoProgress.startTime);
-        }
-      });
+        this.on("play", function () {
+          const videoProgress = state?.videoProgress.find(
+            (e) => e.videoLink === src,
+          );
+          if (videoProgress) {
+            player.currentTime(videoProgress.startTime);
+          }
+        });
 
-      this.on("pause", function () {
-        const videoProgress = state?.videoProgress.find((e) => e.videoLink === src);
-        let progressArr = state?.videoProgress || [];
+        this.on("pause", function () {
+          const videoProgress = state?.videoProgress.find(
+            (e) => e.videoLink === src,
+          );
+          let progressArr = state?.videoProgress ?? [];
 
-        if (videoProgress) {
-          progressArr[progressArr.findIndex((item) => item.videoLink === src)].startTime = player.currentTime();
-        } else {
-          progressArr.push({
-            videoLink: src,
-            startTime: player.currentTime(),
-          });
-        }
-        dispatch({ type: "change_video_progress", value: progressArr });
-      });
+          if (videoProgress) {
+            progressArr[
+              progressArr.findIndex((item) => item.videoLink === src)
+            ].startTime = player.currentTime();
+          } else {
+            progressArr.push({
+              videoLink: src,
+              startTime: player.currentTime(),
+            });
+          }
+          dispatch({ type: "change_video_progress", value: progressArr });
+        });
 
-      this.on("ended", function () {
-        let progressArr = state?.videoProgress || [];
-        const videoProgress = progressArr.find((item) => item.videoLink === src);
-        if (videoProgress) {
-          videoProgress.startTime = 0; // Reset startTime on video end
-        }
-        dispatch({ type: "change_video_progress", value: progressArr });
-      });
-    });
+        this.on("ended", function () {
+          let progressArr = state?.videoProgress ?? [];
+          const videoProgress = progressArr.find(
+            (item) => item.videoLink === src,
+          );
+          if (videoProgress) {
+            videoProgress.startTime = 0; // Reset startTime on video end
+          }
+          dispatch({ type: "change_video_progress", value: progressArr });
+        });
+      },
+    );
 
     const baseUrl = src?.split("/upload/");
 

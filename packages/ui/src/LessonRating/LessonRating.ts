@@ -58,7 +58,7 @@ const LessonRating: React.FC<LessonRatingProps> = ({ lesson, userid }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [ratings, setRatings] = useState(STARS)
 
-  const isEmptyReview = review.starRating === 0 || review.description === ''
+  const isEmptyReview = review.starRating === 0 ?? review.description === ''
 
   const toggleReviewModal = () => setModalOpen(!isModalOpen)
 
@@ -161,7 +161,7 @@ const LessonRating: React.FC<LessonRatingProps> = ({ lesson, userid }) => {
                         onChange={(_, value) =>
                           setReview({
                             ...review,
-                            starRating: value || 0
+                            starRating: value ?? 0
                           })
                         }
                         size="small"

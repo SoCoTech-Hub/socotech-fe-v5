@@ -1,5 +1,5 @@
-import AuthNavbar from '@/components/AuthNavbar'
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react";
+import AuthNavbar from "@/components/AuthNavbar";
 
 // Define the prop types
 interface AuthPageProps {
@@ -30,9 +30,9 @@ const AuthPage: React.FC<AuthPageProps> = ({
           customNavbar
         ) : (
           <div
-            className='fixed w-full'
+            className="fixed w-full"
             style={{
-              zIndex: '999'
+              zIndex: "999",
             }}
           >
             <AuthNavbar />
@@ -40,37 +40,37 @@ const AuthPage: React.FC<AuthPageProps> = ({
         )
       ) : null}
       <div
-        className='flex desktop:flex-row laptop:flex-row mobile:flex-col w-full h-screen'
-        style={{ zIndex: '1' }}
+        className="desktop:flex-row laptop:flex-row mobile:flex-col flex h-screen w-full"
+        style={{ zIndex: "1" }}
       >
         <div
           style={{
-            backgroundImage: bgImage ? `url(${bgImage})` : 'none',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: bgColor || 'inherit',
-            backgroundPosition: 'center',
-            backgroundSize: bgSize || 'cover',
-            height: '110vh',
-            userSelect: 'none',
-            msUserSelect: 'none',
-            MozUserSelect: 'none',
-            WebkitUserSelect: 'none'
+            backgroundImage: bgImage ? `url(${bgImage})` : "none",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: bgColor ?? "inherit",
+            backgroundPosition: "center",
+            backgroundSize: bgSize ?? "cover",
+            height: "110vh",
+            userSelect: "none",
+            msUserSelect: "none",
+            MozUserSelect: "none",
+            WebkitUserSelect: "none",
           }}
-          className='w-1/2 h-auto mobile:hidden flex justify-center items-center'
+          className="mobile:hidden flex h-auto w-1/2 items-center justify-center"
         >
-          {leftTitle || null}
+          {leftTitle ?? null}
         </div>
         <div
-          className='w-1/2 h-auto mobile:w-full flex justify-center items-start overflow-y-scroll'
+          className="mobile:w-full flex h-auto w-1/2 items-start justify-center overflow-y-scroll"
           style={{
-            backgroundColor: contentBgColor || 'inherit'
+            backgroundColor: contentBgColor ?? "inherit",
           }}
         >
-          {content || null}
+          {content ?? null}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default AuthPage;

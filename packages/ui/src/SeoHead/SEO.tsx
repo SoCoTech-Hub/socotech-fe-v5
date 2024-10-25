@@ -1,24 +1,19 @@
-import { baseUrl, mainUrl } from '@/context/constants';
-import Head from 'next/head';
+import Head from "next/head";
+import { baseUrl, mainUrl } from "@/context/constants";
 
 interface SEOProps {
-  title?: string;        // Optional title prop
-  description?: string;  // Optional description prop
-  image?: string;        // Optional image prop
-  url?: string;          // Optional URL prop
+  title?: string; // Optional title prop
+  description?: string; // Optional description prop
+  image?: string; // Optional image prop
+  url?: string; // Optional URL prop
 }
 
-export const SEO: React.FC<SEOProps> = ({
-  title,
-  description,
-  image,
-  url,
-}) => {
+export const SEO: React.FC<SEOProps> = ({ title, description, image, url }) => {
   const seo = {
-    title: title || 'Topic',
-    description: description || 'Get ready to start!',
-    image: image || `${mainUrl}${baseUrl}/logo.png`,
-    url: url || mainUrl,
+    title: title ?? "Topic",
+    description: description ?? "Get ready to start!",
+    image: image ?? `${mainUrl}${baseUrl}/logo.png`,
+    url: url ?? mainUrl,
   };
 
   return (

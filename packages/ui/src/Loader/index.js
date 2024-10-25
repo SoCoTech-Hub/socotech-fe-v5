@@ -1,4 +1,5 @@
-import styles from "./Loader.module.css"
+import styles from "./Loader.module.css";
+
 const Loader = () => {
   return (
     <div id={styles.outer}>
@@ -6,7 +7,7 @@ const Loader = () => {
         <div id={styles.inner}></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;

@@ -1,5 +1,5 @@
-import { Badge } from "@mui/material"
-import { withStyles } from "@mui/styles"
+import { Badge } from "@mui/material";
+import { withStyles } from "@mui/styles";
 
 // Modal Styling
 export const style = {
@@ -13,7 +13,7 @@ export const style = {
   boxShadow: 24,
   p: 2,
   borderRadius: 25,
-}
+};
 // Modal Styling End
 
 export const StyledBadge = withStyles(() => ({
@@ -28,7 +28,7 @@ export const StyledBadge = withStyles(() => ({
     height: "60%",
     width: "15%",
   },
-}))(Badge)
+}))(Badge);
 
 export const customStyles = {
   content: {
@@ -39,4 +39,4 @@ export const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
-}
+};

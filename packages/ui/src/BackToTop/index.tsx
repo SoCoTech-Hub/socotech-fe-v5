@@ -1,53 +1,56 @@
-import { useEffect, useState } from 'react'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
-import { PrimaryColor } from '@/context/constants'
+import { useEffect, useState } from "react";
+import { PrimaryColor } from "@/context/constants";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 const Index: React.FC = () => {
-  const [showButton, setShowButton] = useState<boolean>(false)
-  const scroller = typeof document !== 'undefined' ? document.getElementById('scrollplz') : null
+  const [showButton, setShowButton] = useState<boolean>(false);
+  const scroller =
+    typeof document !== "undefined"
+      ? document.getElementById("scrollplz")
+      : null;
 
   const toggleVisibility = () => {
     if (scroller?.scrollTop && scroller.scrollTop > 10) {
-      setShowButton(true)
+      setShowButton(true);
     } else {
-      setShowButton(false)
+      setShowButton(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (scroller) {
-      scroller.addEventListener('scroll', toggleVisibility)
+      scroller.addEventListener("scroll", toggleVisibility);
     }
     return () => {
-      scroller?.removeEventListener('scroll', toggleVisibility)
-    }
-  }, [scroller])
+      scroller?.removeEventListener("scroll", toggleVisibility);
+    };
+  }, [scroller]);
 
   const scrollToTop = () => {
     scroller?.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    })
-    setShowButton(false)
-  }
+      behavior: "smooth",
+    });
+    setShowButton(false);
+  };
 
   return (
     <>
       {showButton && (
         <div
           onClick={scrollToTop}
-          className='absolute flex justify-center p-3 align-middle rounded-full cursor-pointer text-textColor w-14 h-14 shadow-md'
+          className="text-textColor absolute flex h-14 w-14 cursor-pointer justify-center rounded-full p-3 align-middle shadow-md"
           style={{
             bottom: 50,
             right: 300,
-            background: PrimaryColor
+            background: PrimaryColor,
           }}
         >
-          <ArrowUpwardIcon fontSize='large' />
+          <ArrowUpwardIcon fontSize="large" />
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

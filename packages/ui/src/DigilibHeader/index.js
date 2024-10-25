@@ -1,20 +1,20 @@
-import { useRouter } from "next/router"
-import DigilibLoad from "@/components/DigilibLoad"
-import Btn from "@/components/Btn"
+import { useRouter } from "next/router";
+import Btn from "@/components/Btn";
+import DigilibLoad from "@/components/DigilibLoad";
 
 const index = ({ name, loading, category, subject }) => {
-  const router = useRouter()
+  const router = useRouter();
   const goBack = () => {
-    router.back()
-  }
+    router.back();
+  };
 
   return (
-    <div className="flex flex-row justify-between w-full p-3 rounded-lg bg-digilibWelcome shadow-menu">
+    <div className="bg-digilibWelcome shadow-menu flex w-full flex-row justify-between rounded-lg p-3">
       <div className="">
-        <div className="pt-2 pb-1 pl-4 font-bold leading-tight banner-main-text text-digilibWelcomeFont">
+        <div className="banner-main-text text-digilibWelcomeFont pb-1 pl-4 pt-2 font-bold leading-tight">
           {name}
         </div>
-        <div className="pb-3 pl-4 leading-tight text-textColor desktop:text-5xl laptop:text-4xl mobile:text-3xl">
+        <div className="text-textColor desktop:text-5xl laptop:text-4xl mobile:text-3xl pb-3 pl-4 leading-tight">
           {category} {subject}
         </div>
         <Btn
@@ -27,7 +27,7 @@ const index = ({ name, loading, category, subject }) => {
         <DigilibLoad loading={loading} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default index
+export default index;
