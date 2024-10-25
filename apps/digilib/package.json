@@ -56,10 +56,10 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.1",
     "next-unused": "0.0.6",
     "postcss": "^8.4.41",
-    "tailwindcss": "^2.2.7"
+    "tailwindcss": "^3.4.1"
   }
 }
