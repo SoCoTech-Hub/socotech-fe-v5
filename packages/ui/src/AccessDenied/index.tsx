@@ -19,10 +19,16 @@
 // };
 
 // export default AccessDenied;
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertOctagon, Home } from "lucide-react"
-import Link from "next/link"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { AlertOctagon, Home } from "lucide-react";
 
 export default function AccessDenied() {
   return (
@@ -36,7 +42,8 @@ export default function AccessDenied() {
         </CardHeader>
         <CardContent>
           <p className="text-center text-muted-foreground">
-            Sorry, you don't have permission to access this page. If you believe this is an error, please contact the administrator.
+            Sorry, you don't have permission to access this page. If you believe
+            this is an error, please contact the administrator.
           </p>
         </CardContent>
         <CardFooter className="flex justify-center">
@@ -49,21 +56,23 @@ export default function AccessDenied() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
 
 // USE:
-// import AccessDenied from '@acme/ui/AccessDenied'
+/*
+import AccessDenied from '@acme/ui/AccessDenied'
 
-// export default function ProtectedPage() {
-//   const userHasAccess = false // Replace with your actual access check logic
+export default function ProtectedPage() {
+  const userHasAccess = false // Replace with your actual access check logic
 
-//   if (!userHasAccess) {
-//     return <AccessDenied />
-//   }
+  if (!userHasAccess) {
+    return <AccessDenied />
+  }
 
-//   // Render the protected content here
-//   return (
-//     // ...
-//   )
-// }
+  // Render the protected content here
+  return (
+    // ...
+  )
+}
+*/
