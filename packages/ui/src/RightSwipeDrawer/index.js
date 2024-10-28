@@ -40,7 +40,7 @@ export default function RightDrawer({ open, setOpen }) {
   const list = (anchor) => (
     <Box
       sx={{
-        width: anchor === "top" ?? anchor === "bottom" ? "auto" : 250,
+        width: (anchor === "top" ?? anchor === "bottom") ? "auto" : 250,
         hideBackdrop: true,
       }}
       role="presentation"

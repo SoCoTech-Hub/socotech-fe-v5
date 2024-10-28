@@ -40,7 +40,7 @@ export default function DefaultSelect({
       const selectedOption = options.filter(
         (option) => parseInt(option.id) === parseInt(value),
       );
-      setAutocompleteValue(selectedOption ? selectedOption[0] : "" ?? value);
+      setAutocompleteValue(selectedOption ? selectedOption[0] : ("" ?? value));
       // } else {
       //   setAutocompleteValue(value)
       // }

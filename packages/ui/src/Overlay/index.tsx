@@ -1,3 +1,4 @@
+// USE: dialog
 import React, { useRef } from "react";
 import { InfoIcon } from "@/components/SvgIcons/InfoIcon";
 

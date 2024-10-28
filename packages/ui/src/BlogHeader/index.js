@@ -223,7 +223,8 @@ const index = ({
             </div>
             <div className="pt-3">
               <div className="text-textColor mobile:p-1 flex-shrink px-6">
-                {textContent.indexOf("<br/>") ?? textContent.indexOf("<br>") ? (
+                {(textContent.indexOf("<br/>") ??
+                textContent.indexOf("<br>")) ? (
                   <div dangerouslySetInnerHTML={{ __html: textContent }}></div>
                 ) : (
                   <ReactMarkdown children={textContent} />
