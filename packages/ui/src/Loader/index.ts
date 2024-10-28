@@ -10,3 +10,15 @@ const Loader = () => {
 }
 
 export default Loader
+
+
+// USE:
+/*
+import Loader from '@acem/ui/Loader'
+
+return (
+---
+  <Loader src=''/>
+---
+)
+*/
