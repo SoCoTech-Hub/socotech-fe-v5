@@ -15,29 +15,24 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: "I am a primary button.",
-    variant: "default",
-    size: "default",
   },
 };
 export const Secondary: Story = {
   args: {
     children: "I am a secondary button.",
     variant: "secondary",
-    size: "default",
   },
 };
 export const Ghost: Story = {
   args: {
     children: "I am a ghost button.",
     variant: "ghost",
-    size: "default",
   },
 };
 export const Outline: Story = {
   args: {
     children: "I am a outline button.",
     variant: "outline",
-    size: "default",
   },
 };
 
@@ -45,7 +40,6 @@ export const Destructive: Story = {
   args: {
     children: "I am a destructive button.",
     variant: "destructive",
-    size: "default",
   },
 };
 
@@ -53,7 +47,6 @@ export const Link: Story = {
   args: {
     children: "I am a link button.",
     variant: "link",
-    size: "default",
   },
 };
 
