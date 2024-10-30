@@ -37,7 +37,7 @@ export const Default: Story = {
       <SelectTrigger className="w-48">
         <SelectValue placeholder="Select an option" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-white">
         <SelectGroup>
           <SelectLabel>Options</SelectLabel>
           <SelectItem value="option1">Option 1</SelectItem>

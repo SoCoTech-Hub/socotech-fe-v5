@@ -36,7 +36,7 @@ export const Default: Story = {
       <PopoverTrigger className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white">
         Open Popover
       </PopoverTrigger>
-      <PopoverContent {...args} className="p-4">
+      <PopoverContent {...args} className="bg-white p-4">
         This is the popover content. You can place any elements here.
       </PopoverContent>
     </Popover>

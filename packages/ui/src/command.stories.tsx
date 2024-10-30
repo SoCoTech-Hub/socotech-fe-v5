@@ -35,7 +35,7 @@ export const Default: Story = {
   render: (args) => (
     <CommandDialog {...args}>
       <CommandInput placeholder="Search..." />
-      <CommandList>
+      <CommandList className="bg-white">
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup>
           <CommandItem>
@@ -65,7 +65,7 @@ export const Default: Story = {
 
 export const WithEmptyState: Story = {
   args: {
-    open: true,
+    open: false,
   },
   render: (args) => (
     <CommandDialog {...args}>

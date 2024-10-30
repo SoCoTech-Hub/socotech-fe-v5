@@ -38,7 +38,7 @@ export const Default: Story = {
       <SheetTrigger asChild>
         <Button variant="outline">Open</Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="bg-white">
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>

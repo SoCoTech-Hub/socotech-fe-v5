@@ -37,7 +37,7 @@ export const Default: Story = {
       <DialogTrigger className="rounded bg-blue-500 px-4 py-2 text-white">
         Open Dialog
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="bg-white">
         <DialogHeader>
           <DialogTitle>Dialog Title</DialogTitle>
           <DialogDescription>

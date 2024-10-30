@@ -36,14 +36,14 @@ type Story = StoryObj<typeof DropdownMenu>;
 
 export const Default: Story = {
   args: {
-    open: false,
+    open: true,
   },
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger className="rounded bg-blue-500 px-4 py-2 text-white">
         Open Menu
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="bg-white">
         <DropdownMenuLabel>Options</DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem inset>
@@ -69,7 +69,7 @@ export const Default: Story = {
         <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger inset>More Options</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
+          <DropdownMenuSubContent className="bg-white">
             <DropdownMenuItem>Option 1</DropdownMenuItem>
             <DropdownMenuItem>Option 2</DropdownMenuItem>
           </DropdownMenuSubContent>

@@ -30,14 +30,14 @@ type Story = StoryObj<typeof Drawer>;
 
 export const Default: Story = {
   args: {
-    open: false,
+    open: true,
   },
   render: (args) => (
     <Drawer {...args}>
       <DrawerTrigger className="rounded bg-blue-500 px-4 py-2 text-white">
         Open Drawer
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="bg-white">
         <DrawerHeader>
           <DrawerTitle>Drawer Title</DrawerTitle>
           <DrawerDescription>
