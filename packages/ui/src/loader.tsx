@@ -1,15 +1,4 @@
-// import styles from "./Loader.module.css"
-// const Loader = () => {
-//   return (
-//     <div id={styles.outer}>
-//       <div id={styles.middle}>
-//         <div id={styles.inner}></div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Loader
+import React from "react";
 
 interface LoaderProps {
   src?: string;
@@ -30,14 +19,3 @@ export default function Loader(props: LoaderProps) {
     </div>
   );
 }
-
-// USE:
-/*
-import Loader from '@acme/ui/Loader'
-
-return (
----
-  <Loader />
----
-)
-*/

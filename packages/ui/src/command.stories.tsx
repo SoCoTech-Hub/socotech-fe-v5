@@ -35,7 +35,7 @@ export const Default: Story = {
   render: (args) => (
     <CommandDialog {...args}>
       <CommandInput placeholder="Search..." />
-      <CommandList className="bg-white">
+      <CommandList className="bg-primaryForeground/10">
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup>
           <CommandItem>

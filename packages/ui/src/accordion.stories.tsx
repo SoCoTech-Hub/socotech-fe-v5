@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
 
 import {
   Accordion,
@@ -29,7 +29,7 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 export const Default: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <Accordion {...args} className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -52,5 +52,5 @@ export const Default: Story = {
       </AccordionItem>
     </Accordion>
   ),
-  args: {},
+  args: { type: "single" },
 };
