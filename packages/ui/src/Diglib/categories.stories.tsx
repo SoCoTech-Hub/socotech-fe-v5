@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import DigilibCategories from "./digilibCategories";
+import DigilibCategories from "./categories";
 
 const meta: Meta<typeof DigilibCategories> = {
-  title: "Digilib/DigilibCategories",
+  title: "Digilib/Categories",
   component: DigilibCategories,
   tags: ["autodocs"],
   argTypes: {
@@ -43,22 +43,20 @@ export const GridLayout: Story = {
     const categories = [
       {
         img: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-        // title: "Mathematics",
-        description: "Description for category 1",
+        description: "Description for category 1 without a title",
         link: "/category-1",
       },
       {
         img: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-        title: "Category 2",
-        description: "Description for category 2",
+        title: "Category 2 without a description",
         link: "/category-2",
-        badge: "New",
       },
       {
         img: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
         title: "Category 3",
-        description: "Description for category 3",
+        description: "Description for category 3 with a badge",
         link: "/category-3",
+        badge: "New",
       },
       {
         img: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
@@ -71,6 +69,12 @@ export const GridLayout: Story = {
         title: "Category 5",
         description: "Description for category 5",
         link: "/category-5",
+      },
+      {
+        img: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+        title: "Category 6",
+        description: "Description for category 6",
+        link: "/category-6",
       },
     ];
 

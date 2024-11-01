@@ -1,8 +1,24 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import { ChevronUp } from "lucide-react";
+import {
+  Calendar,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Inbox,
+  MoreHorizontal,
+  Plus,
+  Search,
+  Settings,
+  User2,
+} from "lucide-react";
 
 import { Button } from "./button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./collapsible";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,8 +29,13 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
@@ -37,6 +58,34 @@ const meta: Meta<typeof SidebarProvider> = {
 
 export default meta;
 type Story = StoryObj<typeof SidebarProvider>;
+const items = [
+  {
+    title: "Home",
+    url: "#",
+    icon: Home,
+    isActive: true,
+  },
+  {
+    title: "Inbox",
+    url: "#",
+    icon: Inbox,
+  },
+  {
+    title: "Calendar",
+    url: "#",
+    icon: Calendar,
+  },
+  {
+    title: "Search",
+    url: "#",
+    icon: Search,
+  },
+  {
+    title: "Settings",
+    url: "#",
+    icon: Settings,
+  },
+];
 
 export const Default: Story = {
   args: {
@@ -44,38 +93,47 @@ export const Default: Story = {
   },
   render: (args) => (
     <SidebarProvider {...args}>
-      <SidebarTrigger className="mb-4">
-        <Button>Toggle Sidebar</Button>
-      </SidebarTrigger>
-      <Sidebar side="left" collapsible="offcanvas">
-        <SidebarHeader>
-          <h2 className="text-lg font-semibold">Sidebar Header</h2>
-        </SidebarHeader>
-        <SidebarSeparator />
+      <div className="flex flex-row">
+        <SidebarTrigger className="self-end">
+          <Button>Toggle Sidebar</Button>
+        </SidebarTrigger>
+      </div>
+      <Sidebar>
         <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Dashboard</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Settings</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Profile</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Notifications</SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
+          <Collapsible defaultOpen className="group/collapsible">
+            <SidebarGroup>
+              <SidebarGroupLabel asChild>
+                <CollapsibleTrigger>
+                  Applications
+                  <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                </CollapsibleTrigger>
+              </SidebarGroupLabel>
+              <CollapsibleContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {items.map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton asChild>
+                          <a href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
         </SidebarContent>
-        <SidebarSeparator />
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuButton>
-                    Username
+                    <User2 /> Username
                     <ChevronUp className="ml-auto" />
                   </SidebarMenuButton>
                 </DropdownMenuTrigger>
@@ -118,24 +176,74 @@ export const CollapsibleIconMode: Story = {
         <SidebarSeparator />
         <SidebarContent>
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Home">🏠 Home</SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Messages">
-                💬 Messages
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Notifications">
-                🔔 Notifications
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            {items.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild>
+                  <a href={item.url}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
           </SidebarMenu>
         </SidebarContent>
         <SidebarSeparator />
         <SidebarFooter>
           <Button variant="ghost">Close</Button>
+        </SidebarFooter>
+      </Sidebar>
+    </SidebarProvider>
+  ),
+};
+
+export const SidebarAction: Story = {
+  args: {
+    defaultOpen: false,
+  },
+  render: (args) => (
+    <SidebarProvider {...args}>
+      <div className="flex flex-row">
+        <SidebarTrigger className="justify-end">
+          <Button>Toggle Sidebar</Button>
+        </SidebarTrigger>
+      </div>
+      <Sidebar>
+        <SidebarContent>
+          <Collapsible defaultOpen className="group/collapsible">
+            <SidebarGroup>
+              <SidebarGroupLabel asChild>Applications</SidebarGroupLabel>
+              <SidebarMenuAction>
+                <MoreHorizontal />
+              </SidebarMenuAction>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {items.map((item) => (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton asChild isActive={item.isActive}>
+                        <a href={item.url}>
+                          <item.icon />
+                          <span>{item.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </Collapsible>
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <DropdownMenu>
+                <SidebarMenuButton>
+                  <User2 /> Username
+                  <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenu>
+            </SidebarMenuItem>
+          </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
     </SidebarProvider>

@@ -1,14 +1,7 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "./button";
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "./form";
+import { Label } from "./label";
 import { Switch } from "./switch";
 
 const meta: Meta<typeof Switch> = {
@@ -36,7 +29,12 @@ export const Default: Story = {
   args: {
     defaultChecked: false,
   },
-  render: (args) => <Switch {...args} />,
+  render: (args) => (
+    <div className="flex items-center space-x-2">
+      <Switch id="airplane-mode" />
+      <Label htmlFor="airplane-mode">Airplane Mode</Label>
+    </div>
+  ),
 };
 
 export const Checked: Story = {
