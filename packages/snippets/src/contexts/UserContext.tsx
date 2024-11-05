@@ -82,7 +82,7 @@ export const useOrganization = () => {
 
 // USE:
 /*
-import { useThemeColors } from '../contexts/UserContext';
+import { useThemeColors } from '@acme/snippets/contexts/UserContext';
 
 const Component: React.FC = () => {
   const { appBg, appBgDark } = useThemeColors();

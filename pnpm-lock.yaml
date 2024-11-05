@@ -17,7 +17,7 @@ catalogs:
       version: 3.4.10
     typescript:
       specifier: ^5.5.4
-      version: 5.6.3
+      version: 5.5.4
     zod:
       specifier: ^3.23.8
       version: 3.23.8
@@ -2091,6 +2091,10 @@ importers:
         version: 2.0.22
 
   packages/snippets:
+    dependencies:
+      cookie-handler-pro:
+        specifier: ^1.0.7
+        version: 1.0.7
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:*
@@ -7341,6 +7345,9 @@ packages:
 
   cookie-es@1.2.2:
     resolution: {integrity: sha512-+W7VmiVINB+ywl1HGXJXmrqkOhpKrIiVZV6tQuV54ZyQC7MMuBt81Vc336GMLoHBq5hV/F9eXgt5Mnx0Rha5Fg==}
+
+  cookie-handler-pro@1.0.7:
+    resolution: {integrity: sha512-vVzCeY+252V2Pk/YwCEf6Vju2+Z6SmF5FCrUmcXSM1WUUu6PBGwXJCKtgVJG172JqeujHjmwBMF9l2snIzC6oQ==}
 
   cookie-parser@1.4.7:
     resolution: {integrity: sha512-nGUvgXnotP3BsjiLX2ypbQnWoGUPIIfHQNZkkC668ntrzGWEZVW70HDEB1qnNGMicPje6EttlIgzo51YSwNQGw==}
@@ -19519,6 +19526,8 @@ snapshots:
   convert-source-map@2.0.0: {}
 
   cookie-es@1.2.2: {}
+
+  cookie-handler-pro@1.0.7: {}
 
   cookie-parser@1.4.7:
     dependencies:
