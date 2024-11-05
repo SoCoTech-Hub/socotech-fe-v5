@@ -1,0 +1,8 @@
+schema: "http://localhost:4000/graphql" # Replace with the GraphQL endpoint
+documents: "./src/**/*.tsx" # Adjust the path to the query files
+generates:
+  ./src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
