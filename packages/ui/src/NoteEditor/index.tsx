@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { createNote, editNote, getGQLRequest } from "@acme/snippets";
+import { GetNoteRead } from "@acme/snippets/graphql/notes";
+import saveNote from "@acme/snippets/posts/notes";
 
 import { Alert, AlertDescription } from "../alert";
 import { Button } from "../button";
@@ -44,18 +45,10 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
-    const fetchNoteDetails = async () => {
-      if (note) {
-        const { notes } = await getGQLRequest({
-          endpoint: `notes`,
-          where: `id:${note.id},profile:{id:${profileId}}`,
-          fields: `read`,
-        });
-        setRead(notes[0].read);
-      }
-    };
-
-    fetchNoteDetails();
+    if (note) {
+      const res = GetNoteRead({ profileId });
+      setRead(res);
+    }
   }, [note, profileId]);
 
   const onSubmit = async () => {
@@ -68,31 +61,21 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
       setError("Please provide a title");
       return;
     }
-
     try {
-      if (note) {
-        await editNote({
-          id: note.id,
-          name: title,
-          note: description,
-          read: read,
-          subjectId: subject,
-          profileId: profileId,
-        });
-      } else {
-        await createNote({
-          name: title,
-          note: description,
-          read: read,
-          subjectId: subject,
-          profileId: profileId,
-        });
-      }
+      await saveNote({
+        id: note?.id,
+        name: title,
+        note: description,
+        read: read,
+        subjectId: subject,
+        profileId: profileId,
+      });
       setSuccess("Note saved successfully 👍");
       setTimeout(() => {
         onSave();
       }, 3000);
     } catch (error) {
+      console.log(error);
       setError("An error occurred while saving the note");
     }
   };

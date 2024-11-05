@@ -3,8 +3,8 @@ import api from "../api/api";
 
 interface NoteParams {
   id?: string;
-  name: string;
-  note: string;
+  name?: string;
+  note?: string;
   read?: boolean;
   lessonModuleId?: string | null;
   subjectId?: string | null;
