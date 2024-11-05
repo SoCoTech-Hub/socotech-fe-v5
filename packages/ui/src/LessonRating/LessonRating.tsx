@@ -10,8 +10,8 @@ import {
   Rating,
   TextareaAutosize
 } from '@mui/material'
-import RatingsDisplay from '@/components/RatingsDisplay'
-import RatingBox from '@/components/RatingBox'
+import RatingsDisplay from '@acme/RatingsDisplay'
+import RatingBox from '@/components/Rating'
 import LessonReplyForm from '@/components/LessonReplyForm'
 import LessonReviewDisplay from '@/components/LessonReviewDisplay'
 import api from '@/api/api'
