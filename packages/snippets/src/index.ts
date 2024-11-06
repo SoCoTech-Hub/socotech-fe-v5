@@ -1,1 +1,3 @@
-export * from "./graphql/queries";
+export * from "./functions";
+export * from "./graphql";
+export * from "./posts";
