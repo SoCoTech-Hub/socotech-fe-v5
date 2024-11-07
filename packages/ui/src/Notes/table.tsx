@@ -87,14 +87,13 @@ export const NotesTable: React.FC<NotesProps> = ({
 
   const onDelete = async () => {
     if (deleteItem) {
-      console.log(`Deleting note id: ${deleteItem.id}`);
       await deleteNote({ id: deleteItem.id, profile: deleteItem.profile });
       refetchNotes();
     }
   };
 
-  const renderSkeletonRows = () => {
-    return Array(pageSize)
+  const renderSkeletonRows = () =>
+    Array(pageSize)
       .fill(0)
       .map((_, index) => (
         <TableRow key={`skeleton-${index}`}>
@@ -112,19 +111,45 @@ export const NotesTable: React.FC<NotesProps> = ({
           </TableCell>
         </TableRow>
       ));
-  };
 
-  const renderSortableHeader = (label: string, key: SortKey) => (
-    <TableHead>
+  const renderNoteRow = (note: Note) => (
+    <TableRow key={note.id}>
+      <TableCell>
+        <a href={`/notes/${note.id}`} className="font-medium">
+          {new Date(note.created_at).toLocaleDateString()}
+        </a>
+      </TableCell>
+      <TableCell>
+        <a href={`/notes/${note.id}`}>{note.name}</a>
+      </TableCell>
+      <TableCell>
+        <a href={`/notes/${note.id}`} className="font-medium">
+          {note.subject?.name ?? ""}
+        </a>
+      </TableCell>
+      <TableCell>
+        <Button variant="destructive" onClick={() => handleDelete(note)}>
+          Delete note
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+
+  const renderNoteCard = (note: Note) => (
+    <div className="mb-2 rounded-md border p-4" key={note.id}>
+      <div className="flex justify-between">
+        <div className="font-bold">{note.name}</div>
+        <div>{new Date(note.created_at).toLocaleDateString()}</div>
+      </div>
+      <div>{note.subject?.name ?? ""}</div>
       <Button
-        variant="ghost"
-        onClick={() => handleSort(key)}
-        className="hover:bg-transparent"
+        variant="destructive"
+        onClick={() => handleDelete(note)}
+        className="mt-2"
       >
-        {label}
-        <ArrowUpDown className="ml-2 h-4 w-4" />
+        Delete note
       </Button>
-    </TableHead>
+    </div>
   );
 
   return (
@@ -133,53 +158,46 @@ export const NotesTable: React.FC<NotesProps> = ({
         <CardTitle>Your Notes</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              {renderSortableHeader("Date", "created_at")}
-              {renderSortableHeader("Note", "name")}
-              {renderSortableHeader("Subject", "subject.name")}
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {isLoading ? (
-              renderSkeletonRows()
-            ) : currentTableData.length > 0 ? (
-              currentTableData.map((note) => (
-                <TableRow key={note.id}>
-                  <TableCell>
-                    <a href={`/notes/${note.id}`} className="font-medium">
-                      {new Date(note.created_at).toLocaleDateString()}
-                    </a>
-                  </TableCell>
-                  <TableCell>
-                    <a href={`/notes/${note.id}`}>{note.name}</a>
-                  </TableCell>
-                  <TableCell>
-                    <a href={`/notes/${note.id}`} className="font-medium">
-                      {note.subject?.name ?? ""}
-                    </a>
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      variant="destructive"
-                      onClick={() => handleDelete(note)}
-                    >
-                      Delete note
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
+        <div className="hidden md:block">
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell colSpan={4} className="text-center">
-                  No notes found
-                </TableCell>
+                <TableHead>
+                  <Button
+                    variant="ghost"
+                    onClick={() => handleSort("created_at")}
+                  >
+                    Date <ArrowUpDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </TableHead>
+                <TableHead>
+                  <Button variant="ghost" onClick={() => handleSort("name")}>
+                    Note <ArrowUpDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </TableHead>
+                <TableHead>
+                  <Button
+                    variant="ghost"
+                    onClick={() => handleSort("subject.name")}
+                  >
+                    Subject <ArrowUpDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {isLoading
+                ? renderSkeletonRows()
+                : currentTableData.map(renderNoteRow)}
+            </TableBody>
+          </Table>
+        </div>
+        <div className="md:hidden">
+          {isLoading
+            ? renderSkeletonRows()
+            : currentTableData.map(renderNoteCard)}
+        </div>
         <div className="mt-4 flex justify-center">
           <Pagination
             currentPage={currentPage}

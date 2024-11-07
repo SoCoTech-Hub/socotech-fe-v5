@@ -31,10 +31,11 @@
 "use client";
 
 import type { VariantProps } from "class-variance-authority";
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import React from "react";
 import { cva } from "class-variance-authority";
 import { AlertCircle, CheckCircle, Info, X } from "lucide-react";
+
+import { cn } from "..";
 
 const alertVariants = cva(
   "fixed bottom-4 left-4 w-full max-w-sm rounded-lg border p-4 shadow-lg transition-all duration-300 ease-in-out",
@@ -123,7 +124,7 @@ export function PopupAlert({
 
 import {useState} from 'react'
 import { PopupAlert } from './popup-alert'
-import { Button } from '@/components/ui/button'
+import { Button } from '@acme/ui/button'
 
 export default function PopupAlertExample() {
   const [showAlert, setShowAlert] = useState(false)

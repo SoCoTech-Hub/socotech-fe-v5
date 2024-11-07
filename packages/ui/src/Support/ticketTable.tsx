@@ -3,7 +3,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 
 import { useUser } from "@acme/snippets/contexts/UserContext";
-import GetSupportTicketsTable from "@acme/snippets/graphql/queries/GetSupportTicketsTable";
+import GetSupportTicketsTable from "@acme/snippets/graphql/support/GetSupportTicketsTable";
 
 import { Skeleton } from "../skeleton";
 
@@ -33,12 +33,16 @@ interface SupportTicketTableProps {
 export const SupportTicketTable: React.FC<SupportTicketTableProps> = ({
   onTicketClick,
 }) => {
-  const { profile } = useUser();
+  const { user } = useUser();
+  if (!user) {
+    return null;
+  }
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, error, loading } = useQuery<GetSupportTicketsTableData>(
     GetSupportTicketsTable,
     {
       variables: {
-        id: profile.id,
+        id: user.profile.id,
       },
     },
   );

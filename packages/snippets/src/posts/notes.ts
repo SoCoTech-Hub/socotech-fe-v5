@@ -12,7 +12,7 @@ export interface NoteParams {
   profile?: { id: string };
 }
 interface ApiResponse {
-  data: any; // Adjust this to the actual expected type if known
+  data?: any;
 }
 
 export const saveNote = async ({
@@ -27,6 +27,9 @@ export const saveNote = async ({
     return;
   }
   const { user } = useUser();
+  if (!user) {
+    return { ok: false, message: "Unable to find your Profile" };
+  }
   try {
     const payload: Record<string, any> = {
       name,

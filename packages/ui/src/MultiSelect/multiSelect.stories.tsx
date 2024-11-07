@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { MultiSelect } from "./";
 
@@ -38,8 +38,7 @@ type Story = StoryObj<typeof MultiSelect>;
 // Default story for MultiSelect
 export const Default: Story = {
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [selected, setSelected] = useState<Option[]>([]);
+    const [selected, setSelected] = useState<(typeof Option)[]>([]);
     return (
       <MultiSelect
         {...args}
@@ -50,6 +49,14 @@ export const Default: Story = {
   },
   args: {
     placeholder: "Select items...",
+    options: [
+      { value: "apple", label: "Apple" },
+      { value: "banana", label: "Banana" },
+      { value: "cherry", label: "Cherry" },
+      { value: "date", label: "Date" },
+      { value: "fig", label: "Fig" },
+      { value: "grape", label: "Grape" },
+    ],
   },
 };
 

@@ -41,7 +41,7 @@ const DigilibHelp: React.FC<DigilibHelpProps> = ({
   };
 
   if (loading) {
-    return <Skeleton className="h-12 w-full rounded-lg bg-gray-200" />;
+    return <Skeleton className="h-12 w-full rounded-lg bg-gray-700" />;
   }
 
   return (

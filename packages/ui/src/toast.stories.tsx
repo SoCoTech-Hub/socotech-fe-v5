@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "./button";
 import {
@@ -25,7 +25,7 @@ const meta: Meta<typeof Toast> = {
       control: "text",
       defaultValue: "Notification",
     },
-    description: {
+    children: {
       control: "text",
       defaultValue: "This is a toast notification.",
     },
@@ -39,7 +39,7 @@ export const Default: Story = {
   args: {
     variant: "default",
     title: "Default Notification",
-    description: "This is an example of a default toast notification.",
+    children: "This is an example of a default toast notification.",
   },
   render: (args) => {
     const [open, setOpen] = useState(false);
@@ -56,7 +56,7 @@ export const Default: Story = {
             variant={args.variant}
           >
             <ToastTitle>{args.title}</ToastTitle>
-            <ToastDescription>{args.description}</ToastDescription>
+            <ToastDescription>{args.children}</ToastDescription>
             <ToastAction altText="Undo">Undo</ToastAction>
             <ToastClose />
           </Toast>
@@ -71,6 +71,6 @@ export const Destructive: Story = {
   args: {
     variant: "destructive",
     title: "Destructive Notification",
-    description: "This is an example of a destructive toast notification.",
+    children: "This is an example of a destructive toast notification.",
   },
 };

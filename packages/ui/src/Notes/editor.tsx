@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import saveNote from "@acme/snippets/posts/notes";
+import { saveNote } from "@acme/snippets/posts/notes";
 
 import { Alert, AlertDescription } from "../alert";
 import { Button } from "../button";

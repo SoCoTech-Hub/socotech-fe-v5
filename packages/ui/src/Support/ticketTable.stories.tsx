@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
 
-import GetSupportTicketsTable from "@acme/snippets/graphql/queries/GetSupportTicketsTable";
+import GetSupportTicketsTable from "@acme/snippets/graphql/support/GetSupportTicketsTable";
 
 import { Skeleton } from "../skeleton";
 import { SupportTicketTable } from "./ticketTable";

@@ -2,7 +2,7 @@ import React, { createContext, useContext } from "react";
 import { useQuery } from "@apollo/client";
 
 import type { User } from "../types/UserProfile";
-import { GetUserProfile } from "../graphql/queries";
+import { GetUserProfile } from "../graphql/user";
 
 interface UserContextType {
   user: User | null;
@@ -27,6 +27,7 @@ export const UserProvider: React.FC<{ userId: string }> = ({
   const user = data?.user || null;
 
   return (
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     <UserContext.Provider value={{ user, loading, error }}>
       {children}
     </UserContext.Provider>
