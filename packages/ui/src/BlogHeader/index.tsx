@@ -269,16 +269,16 @@
 // export default Index;
 import React from "react";
 import Image from "next/image";
+import { Facebook, Heart, Instagram, Linkedin, Twitter } from "lucide-react";
+
+import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+import { Button } from "../button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@acme/ui/tooltip";
-import { Facebook, Heart, Instagram, Linkedin, Twitter } from "lucide-react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
-import { Button } from "@acme/ui/button";
+} from "../tooltip";
 
 interface SocialLink {
   platform: "facebook" | "twitter" | "instagram" | "linkedin";

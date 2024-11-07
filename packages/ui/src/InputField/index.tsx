@@ -115,11 +115,12 @@ import { format } from "date-fns";
 import { Calendar, Eye, EyeOff } from "lucide-react";
 
 import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
-import { Calendar as CalendarComponent } from "@acme/ui/calendar";
-import { Input } from "@acme/ui/input";
-import { Label } from "@acme/ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "@acme/ui/popover";
+
+import { Button } from "../button";
+import { Calendar as CalendarComponent } from "../calendar";
+import { Input } from "../input";
+import { Label } from "../label";
+import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 
 interface InputFieldProps {
   type: "text" | "password" | "date";

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@acme/ui/card';
 import { Dropzone } from '@acme/ui/dropzone';
-import { Toast } from "@acme/ui/toast";
+import { Toast } from "../toast";
 
 
 

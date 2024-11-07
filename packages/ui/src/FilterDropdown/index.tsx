@@ -47,12 +47,14 @@
 // }
 
 // export default FilterDropdown
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { Check, ChevronDown } from 'lucide-react'
-import { cn } from "@acme/ui"
-import { Button } from "@acme/ui/button"
+import React, { useState } from "react";
+import { Check, ChevronDown } from "lucide-react";
+
+import { cn } from "@acme/ui";
+
+import { Button } from "../button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -60,19 +62,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@acme/ui/dropdown-menu"
+} from "../dropdown-menu";
 
 export interface FilterOption {
-  id: string
-  label: string
+  id: string;
+  label: string;
 }
 
 interface FilterDropdownProps {
-  options: FilterOption[]
-  selectedOptions: string[]
-  onFilterChange: (selectedOptions: string[]) => void
-  label: string
-  className?: string
+  options: FilterOption[];
+  selectedOptions: string[];
+  onFilterChange: (selectedOptions: string[]) => void;
+  label: string;
+  className?: string;
 }
 
 export function FilterDropdown({
@@ -82,14 +84,14 @@ export function FilterDropdown({
   label,
   className,
 }: FilterDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionToggle = (optionId: string) => {
     const updatedOptions = selectedOptions.includes(optionId)
-      ? selectedOptions.filter(id => id !== optionId)
-      : [...selectedOptions, optionId]
-    onFilterChange(updatedOptions)
-  }
+      ? selectedOptions.filter((id) => id !== optionId)
+      : [...selectedOptions, optionId];
+    onFilterChange(updatedOptions);
+  };
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
@@ -99,14 +101,16 @@ export function FilterDropdown({
           className={cn(
             "w-full justify-between",
             isOpen && "border-primary",
-            className
+            className,
           )}
         >
           {label}
-          <ChevronDown className={cn(
-            "ml-2 h-4 w-4 transition-transform duration-200",
-            isOpen && "rotate-180"
-          )} />
+          <ChevronDown
+            className={cn(
+              "ml-2 h-4 w-4 transition-transform duration-200",
+              isOpen && "rotate-180",
+            )}
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
@@ -121,7 +125,9 @@ export function FilterDropdown({
             <Check
               className={cn(
                 "mr-2 h-4 w-4",
-                selectedOptions.includes(option.id) ? "opacity-100" : "opacity-0"
+                selectedOptions.includes(option.id)
+                  ? "opacity-100"
+                  : "opacity-0",
               )}
             />
             {option.label}
@@ -129,5 +135,5 @@ export function FilterDropdown({
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

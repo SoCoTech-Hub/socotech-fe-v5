@@ -151,8 +151,8 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 
-import { Button } from "@acme/ui/button";
-import { Input } from "@acme/ui/input";
+import { Button } from "../button";
+import { Input } from "../input";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;

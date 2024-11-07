@@ -120,10 +120,12 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import { Button } from "@acme/ui/button";
-import { cn } from "@acme/ui";
 import { Upload, X } from "lucide-react";
 import { useDropzone } from "react-dropzone";
+
+import { cn } from "@acme/ui";
+
+import { Button } from "../button";
 
 interface FileDropzoneProps {
   onFilesAdded: (files: File[]) => void;

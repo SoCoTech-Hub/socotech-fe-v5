@@ -87,7 +87,7 @@
 import React from "react";
 import { X } from "lucide-react";
 
-import { Button } from "@acme/ui/button";
+import { Button } from "../button";
 import {
   Dialog,
   DialogContent,
@@ -95,7 +95,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@acme/ui/dialog";
+} from "../dialog";
 
 interface ModalProps {
   trigger: React.ReactNode;
@@ -140,7 +140,7 @@ export default function Modal({
 
 // import { useState } from 'react'
 // import Modal from './path-to/modal'
-// import { Button } from "@acme/ui/button"
+// import { Button } from "../button"
 
 // export default function ModalExample() {
 //   const [isOpen, setIsOpen] = useState(false)

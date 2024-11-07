@@ -4,11 +4,10 @@
 import React from "react";
 import { Star, ThumbsUp, User } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
-import { Button } from "@acme/ui/button";
-import { Progress } from "@acme/ui/progress";
-
 import { cn } from "../";
+import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+import { Button } from "../button";
+import { Progress } from "../progress";
 
 interface Review {
   id: string;

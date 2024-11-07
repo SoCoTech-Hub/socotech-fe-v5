@@ -34,15 +34,16 @@ import { format } from "date-fns";
 import { Calendar, Clock } from "lucide-react";
 
 import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
+
+import { Button } from "../button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@acme/ui/card";
-import { ScrollArea } from "@acme/ui/scroll-area";
+} from "../card";
+import { ScrollArea } from "../scroll-area";
 
 interface LiveLesson {
   id: string;

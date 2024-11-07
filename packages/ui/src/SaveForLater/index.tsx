@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Button } from "@acme/ui/button";
+import { Bookmark, X } from "lucide-react";
+
+import { Button } from "../button";
 import {
   Card,
   CardContent,
@@ -9,10 +11,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@acme/ui/card";
-import { ScrollArea } from "@acme/ui/scroll-area";
-import { toast } from "@acme/ui/use-toast";
-import { Bookmark, X } from "lucide-react";
+} from "../card";
+import { ScrollArea } from "../scroll-area";
+import { toast } from "../use-toast";
 
 interface Blog {
   id: string;

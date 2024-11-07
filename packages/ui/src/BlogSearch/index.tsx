@@ -63,10 +63,10 @@
 import React, { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 
-import { Button } from "@acme/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@acme/ui/card";
-import { Input } from "@acme/ui/input";
-import { ScrollArea } from "@acme/ui/scroll-area";
+import { Button } from "../button";
+import { Card, CardContent, CardHeader, CardTitle } from "../card";
+import { Input } from "../input";
+import { ScrollArea } from "../scroll-area";
 
 interface BlogPost {
   id: string;

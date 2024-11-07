@@ -171,8 +171,8 @@ import {
 } from "lucide-react";
 import ReactPlayer from "react-player";
 
-import { Button } from "@acme/ui/button";
-import { Slider } from "@acme/ui/slider";
+import { Button } from "../button";
+import { Slider } from "../slider";
 
 interface VideoPlayerProps {
   url: string;

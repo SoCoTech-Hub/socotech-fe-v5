@@ -60,7 +60,8 @@ import React, { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
+
+import { Button } from "../button";
 
 interface BackToTopProps {
   threshold?: number;

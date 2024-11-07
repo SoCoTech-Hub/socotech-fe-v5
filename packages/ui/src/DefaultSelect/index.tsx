@@ -118,13 +118,14 @@ import React from "react";
 import { ChevronDown } from "lucide-react";
 
 import { cn } from "@acme/ui";
+
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@acme/ui/select";
+} from "../select";
 
 export interface Option {
   value: string;

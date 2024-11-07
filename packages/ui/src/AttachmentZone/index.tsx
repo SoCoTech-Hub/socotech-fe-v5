@@ -120,8 +120,8 @@ import * as React from "react";
 import { AlertCircle, CheckCircle, Upload } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 
-import { useToast } from "@acme/ui/hooks/use-toast";
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../";
+import { useToast } from "../hooks/use-toast";
 
 interface DropzoneProps {
   maxSize?: number;
@@ -287,7 +287,7 @@ export function Dropzone({
 
 import { Dropzone } from '@acme/ui/dropzone'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@acme/ui/card'
-import { Toast } from "@acme/ui/toast"
+import { Toast } from "../toast"
 
 export default function DropzoneExample() {
   return (

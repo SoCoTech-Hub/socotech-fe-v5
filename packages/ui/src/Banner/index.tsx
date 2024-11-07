@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
-import { Button } from "@acme/ui/button";
-import { Card, CardContent } from "@acme/ui/card";
+import { Button } from "../button";
+import { Card, CardContent } from "../card";
 
 interface BannerProps {
   title: string;

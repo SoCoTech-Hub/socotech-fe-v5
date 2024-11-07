@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 
-import { Input } from "@acme/ui/input";
-import { Label } from "@acme/ui/label";
+import { Input } from "../input";
+import { Label } from "../label";
 
 type MaskType = "id" | "imei" | "mobile" | "serial";
 

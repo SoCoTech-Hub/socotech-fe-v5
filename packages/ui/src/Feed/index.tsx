@@ -1,13 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@acme/ui/card";
 import { formatDistanceToNow } from "date-fns";
+
+import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+import { Card, CardContent, CardFooter, CardHeader } from "../card";
 
 interface FeedItem {
   id: string;
