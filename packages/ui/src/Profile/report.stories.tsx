@@ -1,7 +1,7 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
-import ReportSection from "./ReportSection";
+import ReportSection from "./section";
 
 const meta: Meta<typeof ReportSection> = {
   title: "Components/ReportSection",

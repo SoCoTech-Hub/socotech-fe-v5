@@ -2275,6 +2275,9 @@ importers:
       vaul:
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.1)(@types/react@18.3.3)(react-dom@19.0.0-rc-69d4b800-20241021(react@18.3.1))(react@18.3.1)
+      web-push:
+        specifier: ^3.6.7
+        version: 3.6.7
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:*
@@ -2369,7 +2372,7 @@ importers:
         version: 7.35.0(eslint@9.9.0(jiti@2.4.0))
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-33c7bd9a-20241104(eslint@9.9.0(jiti@2.4.0))
+        version: 5.1.0-rc-5c56b873-20241107(eslint@9.9.0(jiti@2.4.0))
       eslint-plugin-turbo:
         specifier: ^2.1.1
         version: 2.1.1(eslint@9.9.0(jiti@2.4.0))
@@ -6662,6 +6665,9 @@ packages:
   asn1.js@4.10.1:
     resolution: {integrity: sha512-p32cOF5q0Zqs9uBiONKYLm6BClCoBCM5O9JfeUSlnQLBTxYdTK+pW+nXflm8UkKd2UYlEbYz5qEi0JuZR9ckSw==}
 
+  asn1.js@5.4.1:
+    resolution: {integrity: sha512-+I//4cYPccV8LdmBLiX8CYvf9Sp3vQsrqu2QNXRcrbiWvcx/UdlFiqUJJzxRQxgsZmvhXhn4cSKeSmoFjVdupA==}
+
   assert@1.5.1:
     resolution: {integrity: sha512-zzw1uCAgLbsKwBfFc8CX78DDg+xZeBksSO3vwVIDDN5i94eOrPsSSyiVhmsSABFDM/OcpE2aagCat9dnWQLG1A==}
 
@@ -8238,8 +8244,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-33c7bd9a-20241104:
-    resolution: {integrity: sha512-9apCYmPWXFpdOlKX299C0A5WZRzyCw8sPtIadYlWEeD+AXc/7OhwfxcV9xm9OruP2tS0GcrmvrwLmz0+6/whoQ==}
+  eslint-plugin-react-hooks@5.1.0-rc-5c56b873-20241107:
+    resolution: {integrity: sha512-lnmAUpbMdH1tvor/oju3CZ4oB/nG/+iSkv3tOA6OenLyODxQujH1p1X6vW9XdI9M8bCAI0JDVGdjTmjCp3hxEA==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -8940,6 +8946,10 @@ packages:
   http-shutdown@1.2.2:
     resolution: {integrity: sha512-S9wWkJ/VSY9/k4qcjG318bqJNruzE4HySUhFYknwmu6LBP97KLLfwNf+n4V1BHurvFNkSKLFnK/RsuUnRTf9Vw==}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
+
+  http_ece@1.2.0:
+    resolution: {integrity: sha512-JrF8SSLVmcvc5NducxgyOrKXe3EsyHMgBFgSaIUGmArKe+rwr0uphRkRXvwiom3I+fpIfoItveHrfudL8/rxuA==}
+    engines: {node: '>=16'}
 
   https-browserify@1.0.0:
     resolution: {integrity: sha512-J+FkSdyD+0mA0N+81tMotaRMfSL9SGi+xpD3T6YApKsc3bGSXJlfXri3VyFOeYkfLRQisDk1W+jIFFKBeUBbBg==}
@@ -9686,8 +9696,14 @@ packages:
   jwa@1.4.1:
     resolution: {integrity: sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==}
 
+  jwa@2.0.0:
+    resolution: {integrity: sha512-jrZ2Qx916EA+fq9cEAeCROWPTfCwi1IVHqT2tapuqLEVVDKFDENFw1oL+MwrTvH6msKxsd1YTDVw6uKEcsrLEA==}
+
   jws@3.2.2:
     resolution: {integrity: sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==}
+
+  jws@4.0.0:
+    resolution: {integrity: sha512-KDncfTmOZoOMTFG4mBlG0qUIOlc03fmzH+ru6RgYVZhPkyiy/92Owlt/8UEN+a4TXR1FQetfIpJE8ApdvdVxTg==}
 
   keycode@2.2.1:
     resolution: {integrity: sha512-Rdgz9Hl9Iv4QKi8b0OlCRQEzp4AgVxyCtz5S/+VIHezDmrDhkp2N2TqBWOLz0/gbeREXOOiI9/4b8BY9uw2vFg==}
@@ -13015,6 +13031,11 @@ packages:
 
   web-namespaces@2.0.1:
     resolution: {integrity: sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==}
+
+  web-push@3.6.7:
+    resolution: {integrity: sha512-OpiIUe8cuGjrj3mMBFWY+e4MMIkW3SVT+7vEIjvD9kejGUypv8GPDf84JdPWskK8zMRIJ6xYGm+Kxr8YkPyA0A==}
+    engines: {node: '>= 16'}
+    hasBin: true
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -18694,6 +18715,13 @@ snapshots:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
 
+  asn1.js@5.4.1:
+    dependencies:
+      bn.js: 4.12.0
+      inherits: 2.0.4
+      minimalistic-assert: 1.0.1
+      safer-buffer: 2.1.2
+
   assert@1.5.1:
     dependencies:
       object.assign: 4.1.5
@@ -20814,7 +20842,7 @@ snapshots:
     dependencies:
       eslint: 9.13.0(jiti@2.4.0)
 
-  eslint-plugin-react-hooks@5.1.0-rc-33c7bd9a-20241104(eslint@9.9.0(jiti@2.4.0)):
+  eslint-plugin-react-hooks@5.1.0-rc-5c56b873-20241107(eslint@9.9.0(jiti@2.4.0)):
     dependencies:
       eslint: 9.9.0(jiti@2.4.0)
 
@@ -21810,6 +21838,8 @@ snapshots:
       - supports-color
 
   http-shutdown@1.2.2: {}
+
+  http_ece@1.2.0: {}
 
   https-browserify@1.0.0: {}
 
@@ -22877,9 +22907,20 @@ snapshots:
       ecdsa-sig-formatter: 1.0.11
       safe-buffer: 5.2.1
 
+  jwa@2.0.0:
+    dependencies:
+      buffer-equal-constant-time: 1.0.1
+      ecdsa-sig-formatter: 1.0.11
+      safe-buffer: 5.2.1
+
   jws@3.2.2:
     dependencies:
       jwa: 1.4.1
+      safe-buffer: 5.2.1
+
+  jws@4.0.0:
+    dependencies:
+      jwa: 2.0.0
       safe-buffer: 5.2.1
 
   keycode@2.2.1: {}
@@ -27138,6 +27179,16 @@ snapshots:
   weakmap-polyfill@2.0.4: {}
 
   web-namespaces@2.0.1: {}
+
+  web-push@3.6.7:
+    dependencies:
+      asn1.js: 5.4.1
+      http_ece: 1.2.0
+      https-proxy-agent: 7.0.5
+      jws: 4.0.0
+      minimist: 1.2.8
+    transitivePeerDependencies:
+      - supports-color
 
   webidl-conversions@3.0.1: {}
 
