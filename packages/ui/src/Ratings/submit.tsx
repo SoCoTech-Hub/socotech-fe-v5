@@ -7,24 +7,16 @@ import { Button } from "../button";
 import { useToast } from "../hooks/use-toast";
 import { Textarea } from "../textarea";
 
-interface Rating {
-  id: number;
-  userId: string;
-  userName: string;
-  userAvatar: string;
-  rating: number;
-  comment: string;
-  usefulCount: number;
-  timestamp: Date;
+interface RatingSubmissionProps {
+  onSubmit: (rating: { rating: number; comment: string }) => void;
 }
 
-export default function Rating() {
-  const [ratings, setRatings] = useState<Rating[]>();
+export default function RatingSubmission({ onSubmit }: RatingSubmissionProps) {
   const [userRating, setUserRating] = useState(0);
   const [userComment, setUserComment] = useState("");
   const { toast } = useToast();
 
-  const handleRatingSubmit = () => {
+  const handleSubmit = () => {
     if (userRating === 0) {
       toast({
         title: "Error",
@@ -33,17 +25,8 @@ export default function Rating() {
       });
       return;
     }
-    const newRating: Rating = {
-      id: ratings.length + 1,
-      userId: `user${ratings.length + 1}`,
-      userName: `User ${ratings.length + 1}`, // This would be the actual user's name in a real app
-      userAvatar: "/placeholder.svg?height=40&width=40", // This would be the actual user's avatar in a real app
-      rating: userRating,
-      comment: userComment,
-      usefulCount: 0,
-      timestamp: new Date(),
-    };
-    setRatings([...ratings, newRating]);
+
+    onSubmit({ rating: userRating, comment: userComment });
     setUserRating(0);
     setUserComment("");
     toast({
@@ -77,7 +60,7 @@ export default function Rating() {
           onChange={(e) => setUserComment(e.target.value)}
           className="mb-4"
         />
-        <Button onClick={handleRatingSubmit}>Submit Rating</Button>
+        <Button onClick={handleSubmit}>Submit Rating</Button>
       </div>
     </div>
   );

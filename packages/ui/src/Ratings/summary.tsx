@@ -13,10 +13,14 @@ interface Rating {
   timestamp: Date;
 }
 
-export default function RatingComponent(props: Rating[]) {
+interface RatingSummaryProps {
+  ratings: Rating[];
+}
+
+export default function RatingSummary({ ratings }: RatingSummaryProps) {
   const averageRating =
-    props.reduce((sum, r) => sum + r.rating, 0) / props.length;
-  const ratingCounts = props.reduce(
+    ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length;
+  const ratingCounts = ratings.reduce(
     (counts, r) => {
       counts[r.rating] = (counts[r.rating] ?? 0) + 1;
       return counts;
@@ -45,7 +49,7 @@ export default function RatingComponent(props: Rating[]) {
             ))}
           </div>
           <div className="ml-2 text-sm text-gray-500">
-            ({props.length} ratings)
+            ({ratings.length} ratings)
           </div>
         </div>
         <div className="space-y-2">
@@ -57,7 +61,7 @@ export default function RatingComponent(props: Rating[]) {
                 <div
                   className="h-2 rounded-full bg-yellow-400"
                   style={{
-                    width: `${((ratingCounts[star] ?? 0) / props.length) * 100}%`,
+                    width: `${((ratingCounts[star] ?? 0) / ratings.length) * 100}%`,
                   }}
                 ></div>
               </div>

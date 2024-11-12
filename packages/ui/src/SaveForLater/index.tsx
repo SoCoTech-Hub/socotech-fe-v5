@@ -12,8 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from "../card";
+import { toast } from "../hooks/use-toast";
 import { ScrollArea } from "../scroll-area";
-import { toast } from "../use-toast";
 
 interface Blog {
   id: string;
@@ -112,7 +112,7 @@ export function SavedBlogsList() {
                     onClick={() => handleRemove(blog.id)}
                     aria-label={`Remove ${blog.title} from saved`}
                   >
-                    <X className="h-4 w-4" />
+                    <X className="w-4 h-4" />
                   </Button>
                 </li>
               ))}

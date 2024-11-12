@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import type { Notification } from "./list";
 import { Button } from "../button";
 import {
@@ -11,15 +13,22 @@ import {
 
 interface NotificationModalProps {
   notification: Notification;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function NotificationModal({
   notification,
   onClose,
 }: NotificationModalProps) {
+  const [open, setOpen] = useState<boolean>(true);
+  const closeModal = () => {
+    setOpen(!open);
+    if (onClose) {
+      onClose();
+    }
+  };
   return (
-    <Dialog open={true} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={closeModal}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{notification.title}</DialogTitle>
@@ -31,7 +40,7 @@ export default function NotificationModal({
           <p>{notification.message}</p>
         </div>
         <DialogFooter>
-          <Button onClick={onClose}>Close</Button>
+          <Button onClick={closeModal}>Close</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
