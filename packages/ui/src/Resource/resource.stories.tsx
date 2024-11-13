@@ -4,7 +4,7 @@ import React from "react";
 import ResourcePage from "./";
 
 export default {
-  title: "Components/ResourcePage",
+  title: "Resource/ResourcePage",
   component: ResourcePage,
   parameters: {
     layout: "centered",

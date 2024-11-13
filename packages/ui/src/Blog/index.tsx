@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import { toast } from "../hooks/use-toast";
 import BlogGrid from "./grid";
 import SavedArticlesList from "./savedArticles";
-import BlogSearch from "./search"
+import BlogSearch from "./search";
 
 export interface BlogPost {
   id: string;
@@ -76,6 +77,10 @@ export default function Blog() {
         post.id === id ? { ...post, saved: !post.saved } : post,
       ),
     );
+    toast({
+      title: "Blog Saved",
+      description: "The blog has been saved to your saved list.",
+    });
     setSavedPosts((prevSaved) => {
       const post = posts.find((p) => p.id === id);
       if (post) {
@@ -96,13 +101,20 @@ export default function Blog() {
         post.id === id ? { ...post, likes: post.likes + 1 } : post,
       ),
     );
-
+    toast({
+      title: "Blog Liked",
+      description: "The blog has been liked.",
+    });
     //TODO: Implement like function here
   };
 
   const handleShare = (id: string) => {
     // TODO: Implement sharing functionality here
     console.log(`Sharing post with id: ${id}`);
+    toast({
+      title: "Blog Shared",
+      description: "Thank you for sharing",
+    });
   };
 
   const handleRemove = (id: string) => {
@@ -110,22 +122,21 @@ export default function Blog() {
     setPosts(
       posts.map((post) => (post.id === id ? { ...post, saved: false } : post)),
     );
+    toast({
+      title: "Blog Removed",
+      description: "The blog has been removed from your saved list.",
+    });
     //TODO: Implement remove saved function here
   };
 
-  // const handleReadLater = (id: string) => {
-  //   // TODO: Implement read later functionality here
-  //   console.log(`Marking post with id: ${id} for reading later`);
-  // };
-
   return (
     <div className="flex flex-col md:flex-row">
-      <aside className="w-full mb-4 md:mb-0 md:mr-8 md:w-64">
+      <aside className="mb-4 w-full md:mb-0 md:mr-8 md:w-64">
         <SavedArticlesList savedPosts={savedPosts} onRemove={handleRemove} />
       </aside>
       <main className="flex-1">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <BlogSearch />
+          <BlogSearch posts={posts} setPosts={setPosts} />
           <BlogGrid
             posts={posts}
             handleShare={handleShare}

@@ -4,7 +4,7 @@ import React from "react";
 import PDFViewer from "./pdfViewer";
 
 export default {
-  title: "Components/PDFViewer",
+  title: "Resource/PDFViewer",
   component: PDFViewer,
   parameters: {
     layout: "centered",

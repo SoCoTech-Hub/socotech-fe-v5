@@ -4,16 +4,15 @@ import type { BlogPost } from ".";
 import { Button } from "../button";
 import { ScrollArea } from "../scroll-area";
 
-const SavedArticlesList = ({
-  savedPosts,
-  onRemove,
-}: {
+export interface SavedArticlesListProps {
   savedPosts: BlogPost[];
   onRemove?: (id: string) => void;
-}) => (
+}
+
+const SavedArticlesList = (props: SavedArticlesListProps) => (
   <ScrollArea className="h-[50vh] w-full rounded-md border p-4 lg:h-[calc(100vh-2rem)] lg:w-64">
     <h2 className="mb-4 font-semibold">Saved Articles</h2>
-    {savedPosts.map((post) => (
+    {props.savedPosts.map((post) => (
       <div key={post.id} className="mb-4 flex items-start space-x-2">
         <div className="relative h-12 w-12 flex-shrink-0">
           <img
@@ -31,12 +30,12 @@ const SavedArticlesList = ({
           </a>
           <p className="mt-1 text-xs text-muted-foreground">{post.date}</p>
         </div>
-        {onRemove && (
+        {props.onRemove && (
           <div className="flex flex-shrink-0 space-x-1">
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => onRemove(post.id)}
+              onClick={() => props.onRemove?.(post.id)} //used optional chaining due to TS Error 2722
             >
               <Trash2 className="h-4 w-4" />
               <span className="sr-only">Remove from saved</span>

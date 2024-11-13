@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import type { BlogPost } from ".";
 import { Input } from "../input";
 
-interface BlogSearchProps {
+export interface BlogSearchProps {
   posts: BlogPost[];
   setPosts?: (posts: BlogPost[]) => void;
 }

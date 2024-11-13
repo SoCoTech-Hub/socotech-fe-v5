@@ -4,7 +4,7 @@ import type { BlogPost } from ".";
 import BlogCard from "./card";
 import BlogCardSkeleton from "./loader";
 
-interface BlogGridProps {
+export interface BlogGridProps {
   handleShare?: (id: string) => void;
   handleLike?: (id: string) => void;
   handleSave?: (id: string) => void;
