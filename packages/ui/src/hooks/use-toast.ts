@@ -101,7 +101,7 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         toasts: state.toasts.map((t) =>
-          (t.id === toastId ?? toastId === undefined)
+          t.id === toastId || toastId === undefined
             ? {
                 ...t,
                 open: false,
@@ -124,7 +124,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 };
 
-const listeners: Array<(state: State) => void> = [];
+const listeners: ((state: State) => void)[] = [];
 
 let memoryState: State = { toasts: [] };
 

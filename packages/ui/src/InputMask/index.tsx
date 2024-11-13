@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Input } from "../input";
 import { Label } from "../label";
@@ -21,6 +21,7 @@ const masks: Record<MaskType, string> = {
   serial: "AAAA-9999-AAAA-9999",
 };
 
+// Format the input value based on the mask provided
 const formatValue = (value: string, mask: string) => {
   let maskedValue = "";
   let valueIndex = 0;
@@ -29,7 +30,7 @@ const formatValue = (value: string, mask: string) => {
     if (valueIndex >= value.length) break;
 
     if (mask[i] === "9") {
-      if (/\d/.test(value[valueIndex])) {
+      if (/\d/.test(value[valueIndex] ?? "")) {
         maskedValue += value[valueIndex];
         valueIndex++;
       } else {
@@ -37,8 +38,8 @@ const formatValue = (value: string, mask: string) => {
         i--;
       }
     } else if (mask[i] === "A") {
-      if (/[A-Za-z]/.test(value[valueIndex])) {
-        maskedValue += value[valueIndex].toUpperCase();
+      if (/[A-Za-z]/.test(value[valueIndex] ?? "")) {
+        maskedValue += value[valueIndex]?.toUpperCase();
         valueIndex++;
       } else {
         valueIndex++;
@@ -58,16 +59,21 @@ export default function InputMask({
   value,
   onChange,
 }: InputMaskProps) {
-  const [displayValue, setDisplayValue] = useState("");
+  const [displayValue, setDisplayValue] = useState<string>("");
 
+  // Update display value whenever the value or type changes
   useEffect(() => {
     setDisplayValue(formatValue(value, masks[type]));
   }, [value, type]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value.replace(/[^A-Za-z0-9]/g, "");
-    onChange(newValue);
-  };
+  // Handle changes to the input field
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value.replace(/[^A-Za-z0-9]/g, ""); // Strip out non-alphanumeric characters
+      onChange(newValue);
+    },
+    [onChange],
+  );
 
   return (
     <div className="space-y-2">
@@ -75,9 +81,9 @@ export default function InputMask({
       <Input
         id={`input-${type}`}
         type="text"
-        value={displayValue}
+        value={displayValue || ""}
         onChange={handleChange}
-        placeholder={masks[type]}
+        placeholder={masks[type] || ""}
         aria-describedby={`${type}-format`}
       />
       <p id={`${type}-format`} className="text-sm text-gray-500">

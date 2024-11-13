@@ -1,63 +1,100 @@
-import React from "react";
-import Image from "next/image";
-import { formatDistanceToNow } from "date-fns";
+"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
-import { Card, CardContent, CardFooter, CardHeader } from "../card";
+import { useEffect, useState } from "react";
 
-interface FeedItem {
+import FeedGrid from "./grid";
+import FeedSearch from "./search";
+
+export interface FeedPost {
   id: string;
-  image: string;
   title: string;
-  description: string;
-  author: {
-    name: string;
-    avatar: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  likes: number;
+  imageUrl: string;
+}
+
+export default function Feed() {
+  const [posts, setPosts] = useState<FeedPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setIsLoading(true);
+      // Simulating an API call
+      //TODO: Fetch feeds here
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const fetchedPosts: FeedPost[] = [
+        {
+          id: "1",
+          title: "Getting Started with React",
+          excerpt:
+            "Learn the basics of React and start building your first component.",
+          author: "Jane Doe",
+          date: "2023-06-01",
+          likes: 120,
+          imageUrl: "/placeholder.svg?height=200&width=400",
+        },
+        {
+          id: "2",
+          title: "Advanced TypeScript Techniques",
+          excerpt:
+            "Dive deep into TypeScript and learn advanced types and patterns.",
+          author: "John Smith",
+          date: "2023-06-05",
+          likes: 85,
+          imageUrl: "/placeholder.svg?height=200&width=400",
+        },
+        {
+          id: "3",
+          title: "Building Responsive Layouts with Tailwind CSS",
+          excerpt:
+            "Master the art of creating responsive designs using Tailwind CSS.",
+          author: "Alice Johnson",
+          date: "2023-06-10",
+          likes: 150,
+          imageUrl: "/placeholder.svg?height=200&width=400",
+        },
+      ];
+      setPosts(fetchedPosts);
+      setIsLoading(false);
+    };
+
+    void fetchPosts();
+  }, []);
+
+  const handleLike = (id: string) => {
+    setPosts(
+      posts.map((post) =>
+        post.id === id ? { ...post, likes: post.likes + 1 } : post,
+      ),
+    );
+
+    //TODO: Implement like function here
   };
-  date: Date;
-}
 
-interface FeedProps {
-  items: FeedItem[];
-}
+  const handleShare = (id: string) => {
+    // TODO: Implement sharing functionality here
+    console.log(`Sharing post with id: ${id}`);
+  };
 
-export default function Feed({ items }: FeedProps) {
   return (
-    <div className="space-y-6">
-      {items.map((item) => (
-        <Card key={item.id} className="overflow-hidden">
-          <div className="relative h-48 w-full sm:h-64">
-            <Image
-              src={item.image}
-              alt={item.title}
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-          <CardHeader>
-            <h2 className="text-2xl font-bold">{item.title}</h2>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600 dark:text-gray-300">
-              {item.description}
-            </p>
-          </CardContent>
-          <CardFooter className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Avatar>
-                <AvatarImage src={item.author.avatar} alt={item.author.name} />
-                <AvatarFallback>{item.author.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="font-semibold">{item.author.name}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {formatDistanceToNow(item.date, { addSuffix: true })}
-                </p>
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-      ))}
+    <div className="flex flex-col md:flex-row">
+      <main className="flex-1">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <FeedSearch posts={posts} setPosts={setPosts} />
+          <FeedGrid
+            posts={posts}
+            handleShare={handleShare}
+            handleLike={handleLike}
+            isLoading={isLoading}
+          />
+        </div>
+        {!isLoading && posts.length === 0 && (
+          <p className="mt-8 text-center text-gray-500">No feed posts found.</p>
+        )}
+      </main>
     </div>
   );
 }
