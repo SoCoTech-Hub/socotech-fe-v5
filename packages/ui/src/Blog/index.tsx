@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import BlogGrid from "./grid";
 import SavedArticlesList from "./savedArticles";
+import BlogSearch from "./search"
 
 export interface BlogPost {
   id: string;
@@ -119,11 +120,12 @@ export default function Blog() {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <aside className="mb-4 w-full md:mb-0 md:mr-8 md:w-64">
+      <aside className="w-full mb-4 md:mb-0 md:mr-8 md:w-64">
         <SavedArticlesList savedPosts={savedPosts} onRemove={handleRemove} />
       </aside>
       <main className="flex-1">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <BlogSearch />
           <BlogGrid
             posts={posts}
             handleShare={handleShare}
@@ -132,6 +134,9 @@ export default function Blog() {
             isLoading={isLoading}
           />
         </div>
+        {!isLoading && posts.length === 0 && (
+          <p className="mt-8 text-center text-gray-500">No blog posts found.</p>
+        )}
       </main>
     </div>
   );
