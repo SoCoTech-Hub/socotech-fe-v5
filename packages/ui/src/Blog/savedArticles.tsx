@@ -1,6 +1,6 @@
 import { Trash2 } from "lucide-react";
 
-import type { BlogPost } from "./grid";
+import type { BlogPost } from ".";
 import { Button } from "../button";
 import { ScrollArea } from "../scroll-area";
 
