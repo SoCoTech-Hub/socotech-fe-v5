@@ -2227,6 +2227,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.20.5
         version: 8.20.5(react-dom@19.0.0-rc-69d4b800-20241021(react@18.3.1))(react@18.3.1)
+      '@wixc3/react-board':
+        specifier: ^4.3.3
+        version: 4.3.3(react-dom@19.0.0-rc-69d4b800-20241021(react@18.3.1))(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -2378,7 +2381,7 @@ importers:
         version: 7.35.0(eslint@9.9.0(jiti@2.4.0))
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-ed15d500-20241110(eslint@9.9.0(jiti@2.4.0))
+        version: 5.1.0-rc-7ac8e612-20241113(eslint@9.9.0(jiti@2.4.0))
       eslint-plugin-turbo:
         specifier: ^2.1.1
         version: 2.1.1(eslint@9.9.0(jiti@2.4.0))
@@ -6409,6 +6412,15 @@ packages:
     resolution: {integrity: sha512-tcZAhrpx6oVlkEsRngeTEEE7I5/QdLjeEz4IlekabGaESP7+Dkm/6a9KcF1KdCBB7mO9PXtBkwCuTCt8+UPg8Q==}
     engines: {node: '>=18.0.0'}
 
+  '@wixc3/board-core@4.3.3':
+    resolution: {integrity: sha512-H031wzntdtdtuu5w7T5WLz9IdHQM2ChGaMH3Y5lMSqGZLzMjCpAviEekpPaHWwNu3w5RveadbMownS6JVb8U5Q==}
+
+  '@wixc3/react-board@4.3.3':
+    resolution: {integrity: sha512-Ltq9uLTwPFT7+OTOHivG4B6P2Nusca7qSV/ng6x0P2/QL9zFLmSEy0Olh4li6QOXNsDyQq6CvUFBORfRpIuuBg==}
+    peerDependencies:
+      react: '>=18.0.0 || ^19.0.0-rc.0'
+      react-dom: '>=18.0.0 || ^19.0.0-rc.0'
+
   '@wry/context@0.6.1':
     resolution: {integrity: sha512-LOmVnY1iTU2D8tv4Xf6MVMZZ+juIJ87Kt/plMijjN20NMAXGmH4u8bS1t0uT74cZ5gwpocYueV58YwyI8y+GKw==}
     engines: {node: '>=8'}
@@ -8250,8 +8262,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-ed15d500-20241110:
-    resolution: {integrity: sha512-haCpY5fh8E4E1WOSg+KvEC0nX2mN9OuEzpihogf6HL8XTo7LIrb8n5foJxwI4NvhGAhD5z9joGrtSY4pTH4x3Q==}
+  eslint-plugin-react-hooks@5.1.0-rc-7ac8e612-20241113:
+    resolution: {integrity: sha512-uulvjvLYvt7glRFznJdR+ruLXGsYke1IrhfdI4chxzlOLbIQ+tAhLdmqK9jWmZZoKlCu91/LqBl5gxauSPZ6Kg==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -18435,6 +18447,14 @@ snapshots:
       fast-querystring: 1.1.2
       tslib: 2.6.3
 
+  '@wixc3/board-core@4.3.3': {}
+
+  '@wixc3/react-board@4.3.3(react-dom@19.0.0-rc-69d4b800-20241021(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@wixc3/board-core': 4.3.3
+      react: 18.3.1
+      react-dom: 19.0.0-rc-69d4b800-20241021(react@18.3.1)
+
   '@wry/context@0.6.1':
     dependencies:
       tslib: 2.6.3
@@ -20862,7 +20882,7 @@ snapshots:
     dependencies:
       eslint: 9.13.0(jiti@2.4.0)
 
-  eslint-plugin-react-hooks@5.1.0-rc-ed15d500-20241110(eslint@9.9.0(jiti@2.4.0)):
+  eslint-plugin-react-hooks@5.1.0-rc-7ac8e612-20241113(eslint@9.9.0(jiti@2.4.0)):
     dependencies:
       eslint: 9.9.0(jiti@2.4.0)
 
