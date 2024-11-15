@@ -1,2 +1,2 @@
-export * from './displayForum'
-export * from './UploadForum'
+export * from "./displayForum";
+export * from "./uploadForum";

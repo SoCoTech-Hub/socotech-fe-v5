@@ -1,3 +1,4 @@
+// TODO:data fetch and push
 "use client";
 
 import React, { useMemo, useState } from "react";
@@ -145,7 +146,6 @@ const ForumDisplay: React.FC = () => {
             <SelectContent>
               <SelectItem value="lastActivity">Last Activity</SelectItem>
               <SelectItem value="replies">Replies</SelectItem>
-              
             </SelectContent>
           </Select>
         </div>
