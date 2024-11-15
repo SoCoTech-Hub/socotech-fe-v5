@@ -5,41 +5,43 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../dropdown-menu";
-import { SidebarMenuButton, SidebarMenuItem } from "../sidebar";
+import { SidebarMenuButton } from "../sidebar";
 
 export interface SidebarItemProps {
   isExpanded: boolean;
   item: SidebarItemListProps;
 }
-const SidebarItem = (props: SidebarItemProps) => (
-  <SidebarMenuItem>
-    {props.item.subItems ? (
+
+const SidebarItem = ({ isExpanded, item }: SidebarItemProps) => (
+  <SidebarMenuButton>
+    {item.subItems ? (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <SidebarMenuButton>
-            <div className="mr-2 h-4 w-4">{props.item.icon}</div>
-            {props.isExpanded && <span>{props.item.title}</span>}
-          </SidebarMenuButton>
+          <div className="flex items-center">
+            {item.icon && <div className="mr-2 h-4 w-4">{item.icon}</div>}
+            {isExpanded && <span>{item.title}</span>}
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
-          {props.item.subItems.map((subItem, subIndex) => (
-            <DropdownMenuItem key={subIndex} asChild>
+          {item.subItems.map((subItem, index) => (
+            <DropdownMenuItem key={index}>
               <a href={subItem.href}>
-                <div className="mr-2 h-4 w-4">{subItem.icon}</div>
-                {props.isExpanded && <span>{subItem.title}</span>}
+                {subItem.icon && (
+                  <div className="mr-2 h-4 w-4">{subItem.icon}</div>
+                )}
+                {isExpanded && <span>{subItem.title}</span>}
               </a>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
     ) : (
-      <SidebarMenuButton asChild>
-        <a href={props.item.href} className="flex items-center">
-          <div className="mr-2 h-4 w-4">{props.item.icon}</div>
-          {props.isExpanded && <span>{props.item.title}</span>}
-        </a>
-      </SidebarMenuButton>
+      <a href={item.href} className="flex items-center">
+        {item.icon && <div className="mr-2 h-4 w-4">{item.icon}</div>}
+        {isExpanded && <span>{item.title}</span>}
+      </a>
     )}
-  </SidebarMenuItem>
+  </SidebarMenuButton>
 );
+
 export default SidebarItem;
