@@ -1,9 +1,6 @@
 import { Star, Trash2, X } from "lucide-react";
 
-
-
 import { Button } from "../button";
-
 
 export interface EmailProps {
   id: number;

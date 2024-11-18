@@ -11,7 +11,7 @@ import InmailList from "./list";
 import InmailSidebar from "./sidebar";
 import InmailView from "./view";
 
-// Mock data structure for emails
+// Mock data structure for emails //TODO:fetch Emails
 const initialEmails = [
   {
     id: 1,
@@ -74,7 +74,7 @@ export default function EmailApp() {
       ),
     );
 
-  const updateEmail = (id, updates) => {
+  const updateEmail = (id: number, updates: Partial<EmailProps>) => {
     setEmails((prevEmails) =>
       prevEmails.map((email) =>
         email.id === id ? { ...email, ...updates } : email,
@@ -85,14 +85,14 @@ export default function EmailApp() {
     }
   };
 
-  const trashEmail = (id) => updateEmail(id, { trash: true });
-  const untrashEmail = (id) => updateEmail(id, { trash: false });
-  const starEmail = (id) =>
+  const trashEmail = (id: number) => updateEmail(id, { trash: true });
+  const untrashEmail = (id: number) => updateEmail(id, { trash: false });
+  const starEmail = (id: number) =>
     updateEmail(id, { starred: !emails.find((e) => e.id === id)?.starred });
 
   const handleAttachment = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.length) {
-      setAttachment(event.target.files[0]);
+      setAttachment(event.target.files[0] ?? null);
     }
   };
 
