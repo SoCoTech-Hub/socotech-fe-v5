@@ -1,4 +1,5 @@
 import "../../../packages/ui/src/output.css";
+import "../../../packages/ui/unused.css";
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
