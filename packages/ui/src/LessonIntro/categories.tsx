@@ -1,20 +1,20 @@
 import { ChevronRight } from "lucide-react";
 
-import type { SubjectProps } from "./subjects";
+import type { Subject } from "./subjects";
 import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
 import { ScrollArea } from "../scroll-area";
 
-export interface SubjectCategoryProps {
+export interface SubjectCategory {
   id: number;
   title: string;
-  subjects: SubjectProps[];
+  subjects: Subject[];
 }
 
 export interface SubjectCategoriesProps {
-  categories: SubjectCategoryProps[];
-  selectedCategory?: SubjectCategoryProps;
-  handleCategorySelect: (category: SubjectCategoryProps) => void;
+  categories: SubjectCategory[];
+  selectedCategory?: SubjectCategory;
+  handleCategorySelect: (category: SubjectCategory) => void;
 }
 const SubjectCategories = (props: SubjectCategoriesProps) => (
   <Card className="m-4 flex-1">

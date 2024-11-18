@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 
-import type { SubjectCategoryProps } from "./categories";
+import type { SubjectCategory } from "./categories";
 import type { Lesson } from "./lessons";
 import type { Subject } from "./subjects";
+import SubjectCategories from "./categories";
+import Lessons from "./lessons";
+import Subjects from "./subjects";
 
 interface SubjectHierarchyProps {
-  categories: SubjectCategoryProps[];
+  categories: SubjectCategory[];
   onLessonSelect: (
     lesson: Lesson,
     subject: Subject,
-    category: SubjectCategoryProps,
+    category: SubjectCategory,
   ) => void;
 }
 
@@ -17,13 +20,12 @@ export default function SubjectHierarchy({
   categories,
   onLessonSelect,
 }: SubjectHierarchyProps) {
-  const [selectedCategory, setSelectedCategory] =
-    useState<SubjectCategory | null>(null);
-  const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<SubjectCategory>();
+  const [selectedSubject, setSelectedSubject] = useState<Subject>();
 
   const handleCategorySelect = (category: SubjectCategory) => {
     setSelectedCategory(category);
-    setSelectedSubject(null);
+    setSelectedSubject(undefined);
   };
 
   const handleSubjectSelect = (subject: Subject) => {
@@ -38,17 +40,33 @@ export default function SubjectHierarchy({
 
   const handleBack = () => {
     if (selectedSubject) {
-      setSelectedSubject(null);
+      setSelectedSubject(undefined);
     } else if (selectedCategory) {
-      setSelectedCategory(null);
+      setSelectedCategory(undefined);
     }
   };
 
   return (
     <div className="flex h-screen flex-col bg-gray-100">
-      {renderCategories()}
-      {selectedCategory && !selectedSubject && renderSubjects()}
-      {selectedSubject && renderLessons()}
+      <SubjectCategories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        handleCategorySelect={handleCategorySelect}
+      />
+      {selectedCategory && !selectedSubject && (
+        <Subjects
+          selectedCategory={selectedCategory}
+          handleBack={handleBack}
+          handleSubjectSelect={handleSubjectSelect}
+        />
+      )}
+      {selectedSubject && (
+        <Lessons
+          selectedSubject={selectedSubject}
+          handleBack={handleBack}
+          handleLessonSelect={handleLessonSelect}
+        />
+      )}
     </div>
   );
 }
