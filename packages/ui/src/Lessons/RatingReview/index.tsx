@@ -4,7 +4,7 @@
 import React from "react";
 import { Star, ThumbsUp, User } from "lucide-react";
 
-import { cn } from "../";
+import { cn } from "../select";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 import { Button } from "../button";
 import { Progress } from "../progress";
