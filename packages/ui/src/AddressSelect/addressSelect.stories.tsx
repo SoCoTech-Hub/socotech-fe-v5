@@ -32,16 +32,16 @@ const addresses = [
     fullAddress: "123 Main St, Springfield, IL 62701",
     street: "123 Main St",
     city: "Springfield",
-    state: "IL",
-    zipCode: "62701",
+    province: "IL",
+    postalCode: "62701",
   },
   {
     id: "2",
     fullAddress: "456 Elm St, Springfield, IL 62702",
     street: "456 Elm St",
     city: "Springfield",
-    state: "IL",
-    zipCode: "62702",
+    province: "IL",
+    postalCode: "62702",
   },
 ];
 

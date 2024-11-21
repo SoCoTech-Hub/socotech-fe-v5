@@ -7,7 +7,6 @@ import {
   Home,
   Inbox,
   MoreHorizontal,
-  Plus,
   Search,
   Settings,
   User2,
@@ -30,7 +29,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
@@ -93,8 +91,8 @@ export const Default: Story = {
   },
   render: (args) => (
     <SidebarProvider {...args}>
-      <div className="flex flex-row">
-        <SidebarTrigger className="self-end">
+      <div className="flex flex-row justify-end">
+        <SidebarTrigger className="">
           <Button>Toggle Sidebar</Button>
         </SidebarTrigger>
       </div>

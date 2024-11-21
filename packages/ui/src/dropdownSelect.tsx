@@ -17,7 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Skeleton } from "./skeleton";
 
 interface SearchableDropdownProps {
-  items?: { value: string; label: string }[] | null;
+  items?: { value: string; label: string }[];
   placeholder?: string;
   emptyMessage?: string;
   onChange?: (value: string) => void;
@@ -31,7 +31,7 @@ export default function SearchableDropdown({
 }: SearchableDropdownProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
-
+  console.log({ items, value });
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -62,20 +62,19 @@ export default function SearchableDropdown({
                 ))}
               </>
             ) : (
-              // Render items when available
-              items.map((item) => (
+              items.map((item, index) => (
                 <CommandItem
-                  key={item.value}
+                  key={`${item.value}-${index}`}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : item.value);
-                    onChange?.(currentValue === value ? "" : item.value);
+                    setValue(currentValue == value ? "" : item.value);
+                    onChange?.(currentValue == value ? "" : item.value);
                     setOpen(false);
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === item.value ? "opacity-100" : "opacity-0",
+                      value == item.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                   {item.label}

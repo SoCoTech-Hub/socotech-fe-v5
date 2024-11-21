@@ -129,14 +129,14 @@ interface Address {
   fullAddress: string;
   street: string;
   city: string;
-  state: string;
-  zipCode: string;
+  province: string;
+  postalCode: string;
 }
 
 interface AddressSelectProps {
-  addresses: Address[];
+  addresses?: Address[];
   onAddressChange: (address: Address | null) => void;
-  onNewAddress: (address: Omit<Address, "id">) => void;
+  onNewAddress?: (address: Omit<Address, "id">) => void;
 }
 
 export function AddressSelect({
@@ -150,14 +150,14 @@ export function AddressSelect({
     fullAddress: "",
     street: "",
     city: "",
-    state: "",
-    zipCode: "",
+    province: "",
+    postalCode: "",
   });
 
   const handleSelect = (currentValue: string) => {
     setValue(currentValue);
     setOpen(false);
-    const selectedAddress = addresses.find(
+    const selectedAddress = addresses?.find(
       (address) => address.id === currentValue,
     );
     onAddressChange(selectedAddress ?? null);
@@ -165,13 +165,15 @@ export function AddressSelect({
 
   const handleNewAddressSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onNewAddress(newAddress);
+    if (onNewAddress) {
+      onNewAddress(newAddress);
+    }
     setNewAddress({
       fullAddress: "",
       street: "",
       city: "",
-      state: "",
-      zipCode: "",
+      province: "",
+      postalCode: "",
     });
   };
 
@@ -185,72 +187,81 @@ export function AddressSelect({
           className="w-full justify-between"
         >
           {value
-            ? addresses.find((address) => address.id === value)?.fullAddress
+            ? addresses?.find((address) => address.id === value)?.fullAddress
             : "Select an address..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-0">
+      <PopoverContent className="w-[400px] rounded-md bg-white p-0">
         <Command>
           <CommandInput placeholder="Search address..." />
           <CommandEmpty>No address found.</CommandEmpty>
-          <CommandGroup heading="Saved Addresses">
-            {addresses.map((address) => (
-              <CommandItem
-                key={address.id}
-                onSelect={() => handleSelect(address.id)}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === address.id ? "opacity-100" : "opacity-0",
-                  )}
-                />
-                {address.fullAddress}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandGroup heading="Add New Address">
-            <form onSubmit={handleNewAddressSubmit} className="space-y-2 p-4">
-              <Input
-                placeholder="Street"
-                value={newAddress.street}
-                onChange={(e) =>
-                  setNewAddress({ ...newAddress, street: e.target.value })
-                }
-                required
-              />
-              <Input
-                placeholder="City"
-                value={newAddress.city}
-                onChange={(e) =>
-                  setNewAddress({ ...newAddress, city: e.target.value })
-                }
-                required
-              />
-              <div className="flex space-x-2">
+          {addresses?.length ? (
+            <CommandGroup heading="Saved Addresses">
+              {addresses.map((address) => (
+                <CommandItem
+                  key={address.id}
+                  onSelect={() => handleSelect(address.id)}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      value === address.id ? "opacity-100" : "opacity-0",
+                    )}
+                  />
+                  {address.fullAddress}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ) : (
+            <></>
+          )}
+          {onNewAddress && (
+            <CommandGroup heading="Add New Address">
+              <form onSubmit={handleNewAddressSubmit} className="space-y-2 p-4">
                 <Input
-                  placeholder="State"
-                  value={newAddress.state}
+                  placeholder="Street"
+                  value={newAddress.street}
                   onChange={(e) =>
-                    setNewAddress({ ...newAddress, state: e.target.value })
+                    setNewAddress({ ...newAddress, street: e.target.value })
                   }
                   required
                 />
                 <Input
-                  placeholder="Zip Code"
-                  value={newAddress.zipCode}
+                  placeholder="City"
+                  value={newAddress.city}
                   onChange={(e) =>
-                    setNewAddress({ ...newAddress, zipCode: e.target.value })
+                    setNewAddress({ ...newAddress, city: e.target.value })
                   }
                   required
                 />
-              </div>
-              <Button type="submit" className="w-full">
-                Add Address
-              </Button>
-            </form>
-          </CommandGroup>
+                <div className="flex space-x-2">
+                  <Input
+                    placeholder="province"
+                    value={newAddress.province}
+                    onChange={(e) =>
+                      setNewAddress({ ...newAddress, province: e.target.value })
+                    }
+                    required
+                  />
+                  <Input
+                    placeholder="Postal Code"
+                    value={newAddress.postalCode}
+                    onChange={(e) =>
+                      setNewAddress({
+                        ...newAddress,
+                        postalCode: e.target.value,
+                      })
+                    }
+                    required
+                  />
+                </div>
+                <Button type="submit" className="text-primaryForeground w-full">
+                  Add Address
+                </Button>
+              </form>
+            </CommandGroup>
+          )}
         </Command>
       </PopoverContent>
     </Popover>

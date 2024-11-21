@@ -2,6 +2,13 @@ import type { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 
 import type { SidebarProfileSectionProps } from "./profileSection";
+import { Button } from "../button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "../dropdown-menu";
+import SidebarProfile from "./profile";
 import SidebarProfileSection from "./profileSection";
 
 export default {
@@ -10,17 +17,24 @@ export default {
 } as Meta;
 
 const Template: StoryFn<SidebarProfileSectionProps> = (args) => (
-  <div className="bg-gray-900 p-4">
-    <SidebarProfileSection {...args} />
-  </div>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="ghost">
+        <SidebarProfile
+          isExpanded={args.isExpanded}
+          avatarSrc={"https://via.placeholder.com/100"}
+          name={"John Doe"}
+          email={"@johnDoe.com"}
+        />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <SidebarProfileSection {...args} />
+    </DropdownMenuContent>
+  </DropdownMenu>
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  isExpanded: true,
-  items: [
-    { icon: <span>👤</span>, name: "Profile", href: "/profile" },
-    { icon: <span>⚙️</span>, name: "Settings", href: "/settings" },
-    { icon: <span>🚪</span>, name: "Sign Out", href: "/sign-out" },
-  ],
+  isExpanded: false,
 };

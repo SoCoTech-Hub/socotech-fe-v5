@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 
-import CustomSidebar from ".";
+import CustomSidebar from "./index";
 import { sidebarItems } from "./itemlist";
 
 export default {
@@ -25,13 +25,6 @@ Expanded.args = {
     avatarSrc: "https://via.placeholder.com/40",
     name: "John Doe",
     email: "johndoe@example.com",
-  },
-  userProfileMenuItems: {
-    items: [
-      { icon: <span>👤</span>, name: "Profile", href: "/profile" },
-      { icon: <span>⚙️</span>, name: "Settings", href: "/settings" },
-      { icon: <span>🚪</span>, name: "Sign Out", href: "/sign-out" },
-    ],
   },
 };
 

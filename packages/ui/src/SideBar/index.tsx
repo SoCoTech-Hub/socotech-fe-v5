@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronsLeft } from "lucide-react";
 
 import type { SidebarItemListProps } from "./itemlist";
 import type { SidebarLogoProps } from "./logo";
 import type { SidebarProfileProps } from "./profile";
-import type { SidebarProfileSectionProps } from "./profileSection";
+import type { SidebarProfileListItem } from "./profileList";
 import { cn } from "..";
 import { Button } from "../button";
 import {
@@ -32,7 +32,7 @@ interface SidebarProps {
   logo: SidebarLogoProps;
   menuItems: SidebarItemListProps[];
   userProfileOptions: SidebarProfileProps;
-  userProfileMenuItems: SidebarProfileSectionProps;
+  userProfileMenuItems?: SidebarProfileListItem[];
 }
 
 export default function CustomSidebar({
@@ -41,7 +41,7 @@ export default function CustomSidebar({
   userProfileOptions,
   userProfileMenuItems,
 }: SidebarProps) {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const toggleSidebar = () => {
     setIsExpanded((prev) => !prev);
@@ -52,24 +52,24 @@ export default function CustomSidebar({
       <Sidebar
         className={cn(
           "flex h-screen flex-col justify-between bg-gray-900 p-4 text-white transition-all duration-300",
-          isExpanded ? "w-64" : "w-20",
+          isExpanded ? "w-1/2" : "w-1/12",
         )}
       >
         {/* Header */}
         <SidebarHeader className="flex items-center justify-between pb-4">
-          {isExpanded ? (
-            <SidebarLogo url={logo.url} />
-          ) : (
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
-              <SidebarLogo altUrl={logo.altUrl} />
-            </div>
-          )}
-          <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+          <a href="/">
             {isExpanded ? (
-              <ChevronsLeft className="h-4 w-4" />
+              <SidebarLogo url={logo.url} />
             ) : (
-              <ChevronsRight className="h-4 w-4" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full">
+                <SidebarLogo url={logo.altUrl} />
+              </div>
             )}
+          </a>
+          <Button variant="outline" size="icon" onClick={toggleSidebar}>
+            <ChevronsLeft
+              className={`h-8 w-8 fill-black ${isExpanded ? "rotate-180" : ""}`}
+            />
           </Button>
         </SidebarHeader>
 
@@ -77,7 +77,7 @@ export default function CustomSidebar({
         <SidebarContent>
           <SidebarMenu>
             {menuItems.map((item, index) => (
-              <SidebarMenuItem key={index}>
+              <SidebarMenuItem key={index} className="text-primaryForeground">
                 <SidebarItem isExpanded={isExpanded} item={item} />
               </SidebarMenuItem>
             ))}
@@ -88,17 +88,19 @@ export default function CustomSidebar({
         <SidebarFooter>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <SidebarProfile
-                isExpanded={isExpanded}
-                avatarSrc={userProfileOptions.avatarSrc}
-                email={userProfileOptions.email}
-                name={userProfileOptions.name}
-              />
+              <Button variant="ghost">
+                <SidebarProfile
+                  isExpanded={isExpanded}
+                  avatarSrc={userProfileOptions.avatarSrc}
+                  name={userProfileOptions.name}
+                  email={userProfileOptions.email}
+                />
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
               <SidebarProfileSection
                 isExpanded={isExpanded}
-                items={userProfileMenuItems.items}
+                items={userProfileMenuItems}
               />
             </DropdownMenuContent>
           </DropdownMenu>

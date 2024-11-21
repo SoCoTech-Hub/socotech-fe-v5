@@ -1,28 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { cn } from ".";
 import { Button } from "./button";
 
-interface ExpandableContentProps {
+export interface ExpandableContentProps {
   content: string;
   maxHeight?: number;
   className?: string;
 }
-
+//TODO: Check if max height works as expected, not working on storybook
 export function ExpandableContent({
   content,
-  maxHeight = 100,
+  maxHeight = 2,
   className,
 }: ExpandableContentProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (contentRef.current) {
-      setShowButton(contentRef.current.scrollHeight > maxHeight);
+      // Calculate if content overflows based on scrollHeight and clientHeight
+      const currentHeight = contentRef.current.clientHeight;
+      const fullHeight = contentRef.current.scrollHeight;
+      setShowButton(fullHeight > currentHeight);
     }
   }, [content, maxHeight]);
 
@@ -32,7 +34,11 @@ export function ExpandableContent({
         ref={contentRef}
         className={cn(
           "overflow-hidden transition-all duration-300",
-          !isExpanded && `max-h-[${maxHeight}px]`,
+          isExpanded
+            ? "line-clamp-none"
+            : maxHeight > 6
+              ? `line-clamp-[${maxHeight}]`
+              : `line-clamp-${maxHeight}`,
         )}
       >
         {content}
@@ -47,9 +53,6 @@ export function ExpandableContent({
             {isExpanded ? "Read less" : "Read more"}
           </Button>
         </div>
-      )}
-      {!isExpanded && showButton && (
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-background to-transparent" />
       )}
     </div>
   );

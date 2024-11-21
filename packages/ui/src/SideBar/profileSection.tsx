@@ -1,18 +1,27 @@
-import type { ReactNode } from "react";
+import React from "react";
 
+
+
+import type { SidebarProfileListItem } from "./profileList";
 import { DropdownMenuItem } from "../dropdown-menu";
+import { SidebarProfileList } from "./profileList";
+
 
 export interface SidebarProfileSectionProps {
-  items: { icon: ReactNode; name: string; href: string }[];
-  isExpanded: boolean;
+  items?: SidebarProfileListItem[];
+  isExpanded?: boolean;
 }
-const SidebarProfileSection = (props: SidebarProfileSectionProps) =>
-  props.items.map((item, index) => (
+const SidebarProfileSection = ({
+  items = SidebarProfileList, // Fallback to SidebarProfileList
+  isExpanded = false,
+}: SidebarProfileSectionProps) => {
+  items.map((item, index) => (
     <DropdownMenuItem key={`dropdown-${index}`}>
-      <a href={item.href}>
-        <div className="mr-2 h-4 w-4">{item.icon}</div>
-        {props.isExpanded && <span>{item.name}</span>}
+      <a href={item.url}>
+        <div className="w-4 h-4 mr-2">{item.icon}</div>
+        {isExpanded && <span>{item.title}</span>}
       </a>
     </DropdownMenuItem>
   ));
+};
 export default SidebarProfileSection;

@@ -2,6 +2,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 
 import type { SidebarItemProps } from "./item";
+import { SidebarProvider } from "../sidebar";
 import SidebarItem from "./item";
 
 export default {
@@ -10,9 +11,9 @@ export default {
 } as Meta;
 
 const Template: StoryFn<SidebarItemProps> = (args) => (
-  <div className="w-64 bg-gray-900 p-4">
+  <SidebarProvider className="w-64 bg-gray-900 p-4">
     <SidebarItem {...args} />
-  </div>
+  </SidebarProvider>
 );
 
 export const Default = Template.bind({});

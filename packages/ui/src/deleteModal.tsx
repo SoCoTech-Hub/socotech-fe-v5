@@ -1,43 +1,42 @@
 import type { FC } from "react";
 import React from "react";
 
-import { Button } from "../button";
+import { Button } from "./button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "../dialog";
+  DialogTrigger,
+} from "./dialog";
 
 interface DeleteModalProps {
   id: string;
   name: string;
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-  refetchNotes: () => void;
+  triggerName?: string;
+  refetchData: () => void;
   onDelete: (id: string) => Promise<void>;
 }
 
 export const DeleteModal: FC<DeleteModalProps> = ({
   id,
   name,
-  isOpen,
-  setIsOpen,
-  refetchNotes,
+  triggerName = "Delete",
+  refetchData,
   onDelete,
 }) => {
   const handleDelete = async () => {
     await onDelete(id);
-    setIsOpen(false);
-    refetchNotes();
+    refetchData();
   };
 
-  const handleClose = () => setIsOpen(false);
-
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">{triggerName}</Button>
+      </DialogTrigger>
+      <DialogContent className="bg-white sm:max-w-[305px]">
         <DialogHeader>
           <DialogTitle>Delete {name}</DialogTitle>
           <DialogDescription>
@@ -46,12 +45,14 @@ export const DeleteModal: FC<DeleteModalProps> = ({
           </DialogDescription>
         </DialogHeader>
         <div className="mt-6 flex justify-end space-x-2">
-          <Button variant="outline" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="destructive" onClick={handleDelete}>
-            Delete
-          </Button>
+          <DialogTrigger asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogTrigger>
+          <DialogTrigger asChild>
+            <Button variant="destructive" onClick={handleDelete}>
+              Delete
+            </Button>
+          </DialogTrigger>
         </div>
       </DialogContent>
     </Dialog>

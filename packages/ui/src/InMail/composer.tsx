@@ -1,19 +1,21 @@
 import { Paperclip, Send, X } from "lucide-react";
 
+import type { Attachment } from "./attachments";
 import { Button } from "../button";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
+import Attachments from "./attachments";
 
 export interface InmailComposerProps {
   setComposing: (composing: boolean) => void;
   handleAttachment: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  attachment?: File | null;
+  attachments?: Attachment[];
 }
 
 const InmailComposer: React.FC<InmailComposerProps> = ({
   setComposing,
   handleAttachment,
-  attachment,
+  attachments,
 }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
     <div className="w-full max-w-2xl rounded-lg bg-white p-4">
@@ -42,7 +44,7 @@ const InmailComposer: React.FC<InmailComposerProps> = ({
             <Paperclip className="mr-2 h-4 w-4" />
             Attach File
           </Button>
-          {attachment && <span className="ml-2">{attachment.name}</span>}
+          {attachments && <Attachments attachments={attachments} />}
         </div>
         <Button>
           <Send className="mr-2 h-4 w-4" /> Send

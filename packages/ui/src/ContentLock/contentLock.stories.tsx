@@ -4,7 +4,7 @@ import React from "react";
 import ContentLock from "./";
 
 const meta: Meta<typeof ContentLock> = {
-  title: "Components/ContentLock",
+  title: "ContentLock",
   component: ContentLock,
   tags: ["autodocs"],
   argTypes: {

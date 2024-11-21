@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import type { Meta, StoryFn } from "@storybook/react";
+import React from "react";
 
-import { DeleteModal } from "./";
+import { DeleteModal } from "./deleteModal";
 
 const meta: Meta<typeof DeleteModal> = {
   title: "DeleteModal",
@@ -17,30 +17,25 @@ const meta: Meta<typeof DeleteModal> = {
       description: "Name of the item to be displayed in the modal",
       defaultValue: "Sample Note",
     },
-    isOpen: {
-      control: "boolean",
-      description: "Controls the open state of the modal",
+    triggerName: {
+      control: "text",
+      description: "Name of the button to trigger the modal",
       defaultValue: true,
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof DeleteModal>;
+type Story = StoryFn<typeof DeleteModal>;
 
 const Template: Story = (args) => {
-  const [isOpen, setIsOpen] = useState(args.isOpen);
-
   const mockRefetchNotes = () => alert("Refetch notes called");
-  const mockOnDelete = async (id: string) =>
-    alert(`Deleted note with ID: ${id}`);
+  const mockOnDelete = (id: string) => alert(`Deleted note with ID: ${id}`);
 
   return (
     <DeleteModal
       {...args}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      refetchNotes={mockRefetchNotes}
+      refetchData={mockRefetchNotes}
       onDelete={mockOnDelete}
     />
   );
@@ -50,4 +45,5 @@ export const Default: Story = Template.bind({});
 Default.args = {
   id: "note-123",
   name: "Sample Note",
+  triggerName: "Delete",
 };

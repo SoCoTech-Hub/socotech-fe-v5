@@ -1,7 +1,7 @@
 "use client";
 
 import type { PanInfo } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useDragControls } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
@@ -38,7 +38,7 @@ export default function LeftSwipeDrawer({
   return (
     <div className="relative overflow-hidden" ref={constraintsRef}>
       <motion.div
-        className="fixed inset-y-0 left-0 z-40 bg-background shadow-lg"
+        className="fixed inset-y-0 right-0 z-40 bg-primary shadow-lg"
         initial="closed"
         animate={controls}
         variants={{
@@ -55,12 +55,12 @@ export default function LeftSwipeDrawer({
       >
         <div className="h-full overflow-y-auto p-4">{drawerContent}</div>
         <button
-          className="absolute -right-6 top-1/2 -translate-y-1/2 transform rounded-r-full bg-primary p-2 text-primary-foreground"
+          className="bg-primaryForeground text-primaryForeground absolute -right-6 top-1/2 -translate-y-1/2 transform rounded-r-full p-2"
           onClick={toggleDrawer}
           aria-label={isOpen ? "Close drawer" : "Open drawer"}
         >
           <ChevronRight
-            className={`h-6 w-6 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            className={`h-6 w-6 transition-transform ${isOpen ? "rotate-180" : ""} fill-white`}
           />
         </button>
       </motion.div>

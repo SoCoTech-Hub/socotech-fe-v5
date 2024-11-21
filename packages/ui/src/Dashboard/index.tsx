@@ -138,18 +138,17 @@ export default function UserDashboard() {
   };
 
   return (
-		<div className="container p-4 mx-auto space-y-6 dark:bg-gray-900">
-			
+    <div className="container mx-auto space-y-6 p-4 dark:bg-gray-900">
       <div className="relative">
         <img
           src={user.bannerImage}
           alt="Profile Banner"
           width={1000}
           height={300}
-          className="object-cover w-full h-48 rounded-t-lg"
+          className="h-48 w-full rounded-t-lg object-cover"
         />
-        <div className="absolute border-4 border-white rounded-full -bottom-16 left-4 dark:border-gray-800">
-          <Avatar className="w-32 h-32">
+        <div className="absolute -bottom-16 left-4 rounded-full border-4 border-white dark:border-gray-800">
+          <Avatar className="h-32 w-32">
             <AvatarImage src={user.profilePic} alt={user.name} />
             <AvatarFallback>
               {user.name
@@ -161,12 +160,12 @@ export default function UserDashboard() {
         </div>
       </div>
 
-      <div className="flex flex-col items-start justify-between ml-40 md:flex-row md:items-center">
+      <div className="ml-40 flex flex-col items-start justify-between md:flex-row md:items-center">
         <div>
           <h1 className="text-2xl font-bold dark:text-white">{user.name}</h1>
           <p className="text-gray-500 dark:text-gray-400">{user.username}</p>
         </div>
-        <div className="flex mt-4 space-x-4 md:mt-0">
+        <div className="mt-4 flex space-x-4 md:mt-0">
           <div className="text-center">
             <p className="text-xl font-semibold dark:text-white">
               {user.followers}
@@ -187,19 +186,19 @@ export default function UserDashboard() {
             variant="outline"
             className="dark:border-gray-600 dark:text-white"
           >
-            <UserPlus className="w-4 h-4 mr-2" />
+            <UserPlus className="mr-2 h-4 w-4" />
             Follow
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 mt-6 md:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         <Card className="dark:bg-gray-800">
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium dark:text-white">
               Total Hours Spent
             </CardTitle>
-            <Clock className="w-4 h-4 text-muted-foreground" />
+            <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold dark:text-white">
@@ -209,11 +208,11 @@ export default function UserDashboard() {
           </CardContent>
         </Card>
         <Card className="dark:bg-gray-800">
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium dark:text-white">
               Completed Lessons
             </CardTitle>
-            <BookOpen className="w-4 h-4 text-muted-foreground" />
+            <BookOpen className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold dark:text-white">
@@ -223,11 +222,11 @@ export default function UserDashboard() {
           </CardContent>
         </Card>
         <Card className="dark:bg-gray-800">
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium dark:text-white">
               Lessons in Progress
             </CardTitle>
-            <BookMarked className="w-4 h-4 text-muted-foreground" />
+            <BookMarked className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold dark:text-white">
@@ -245,15 +244,15 @@ export default function UserDashboard() {
       >
         <TabsList className="grid w-full grid-cols-3 dark:bg-gray-800">
           <TabsTrigger value="news">
-            <Newspaper className="w-4 h-4 mr-2" />
+            <Newspaper className="mr-2 h-4 w-4" />
             News Feed
           </TabsTrigger>
           <TabsTrigger value="about">
-            <Users className="w-4 h-4 mr-2" />
+            <Users className="mr-2 h-4 w-4" />
             About
           </TabsTrigger>
           <TabsTrigger value="achievments">
-            <Trophy className="w-4 h-4 mr-2" />
+            <Trophy className="mr-2 h-4 w-4" />
             Achievments
           </TabsTrigger>
         </TabsList>
@@ -273,7 +272,7 @@ export default function UserDashboard() {
                   className="mb-4 dark:bg-gray-700 dark:text-white"
                 />
                 <Button type="submit">
-                  <Send className="w-4 h-4 mr-2" />
+                  <Send className="mr-2 h-4 w-4" />
                   Post
                 </Button>
               </form>
@@ -313,7 +312,7 @@ export default function UserDashboard() {
                         size="sm"
                         className="ml-auto dark:border-gray-600 dark:text-white"
                       >
-                        <UserPlus className="w-4 h-4 mr-2" />
+                        <UserPlus className="mr-2 h-4 w-4" />
                         Follow
                       </Button>
                     </CardHeader>
@@ -322,19 +321,19 @@ export default function UserDashboard() {
                         {item.title}
                       </h3>
                       {item.image && (
-                        <Image
+                        <img
                           src={item.image}
                           alt={item.title}
                           width={400}
                           height={200}
-                          className="object-cover w-full h-48 rounded-md"
+                          className="h-48 w-full rounded-md object-cover"
                         />
                       )}
                       {item.video && (
                         <video
                           src={item.video}
                           controls
-                          className="object-cover w-full h-48 rounded-md"
+                          className="h-48 w-full rounded-md object-cover"
                         >
                           Your browser does not support the video tag.
                         </video>
@@ -342,13 +341,13 @@ export default function UserDashboard() {
                       <p className="dark:text-gray-300">{item.content}</p>
                     </CardContent>
                     <CardFooter className="flex flex-col space-y-4">
-                      <div className="flex items-center justify-between w-full">
+                      <div className="flex w-full items-center justify-between">
                         <Button
                           variant="ghost"
                           size="sm"
                           className="dark:text-gray-300"
                         >
-                          <Heart className="w-4 h-4 mr-2" />
+                          <Heart className="mr-2 h-4 w-4" />
                           {item.likes} Likes
                         </Button>
                         <Button
@@ -356,7 +355,7 @@ export default function UserDashboard() {
                           size="sm"
                           className="dark:text-gray-300"
                         >
-                          <Share2 className="w-4 h-4 mr-2" />
+                          <Share2 className="mr-2 h-4 w-4" />
                           {item.shares} Shares
                         </Button>
                         <Button
@@ -364,7 +363,7 @@ export default function UserDashboard() {
                           size="sm"
                           className="dark:text-gray-300"
                         >
-                          <MessageSquare className="w-4 h-4 mr-2" />
+                          <MessageSquare className="mr-2 h-4 w-4" />
                           {item.comments.length} Comments
                         </Button>
                       </div>
@@ -374,12 +373,12 @@ export default function UserDashboard() {
                             key={index}
                             className="flex items-start space-x-2"
                           >
-                            <Avatar className="w-8 h-8">
+                            <Avatar className="h-8 w-8">
                               <AvatarFallback>
                                 {comment.author[0]}
                               </AvatarFallback>
                             </Avatar>
-                            <div className="flex-1 p-2 bg-gray-100 rounded-lg dark:bg-gray-600">
+                            <div className="flex-1 rounded-lg bg-gray-100 p-2 dark:bg-gray-600">
                               <p className="text-sm font-semibold dark:text-white">
                                 {comment.author}
                               </p>
@@ -390,10 +389,10 @@ export default function UserDashboard() {
                           </div>
                         ))}
                       </div>
-                      <div className="flex items-center w-full space-x-2">
+                      <div className="flex w-full items-center space-x-2">
                         <Input
                           placeholder="Add a comment..."
-                          value={comments[item.id] || ""}
+                          value={comments[item.id] ?? ""}
                           onChange={(e) =>
                             setComments((prev) => ({
                               ...prev,
@@ -403,7 +402,7 @@ export default function UserDashboard() {
                           className="flex-1 dark:bg-gray-600 dark:text-white"
                         />
                         <Button onClick={() => handleCommentSubmit(item.id)}>
-                          <Send className="w-4 h-4" />
+                          <Send className="h-4 w-4" />
                         </Button>
                       </div>
                     </CardFooter>

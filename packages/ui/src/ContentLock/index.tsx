@@ -1,8 +1,6 @@
-// TODO:fix import
 "use client";
 
 import React, { useState } from "react";
-import { isPaying } from "@/context/constants";
 import { Lock } from "lucide-react";
 
 import { cn } from "../";
@@ -11,6 +9,7 @@ import { Dialog, DialogContent, DialogTrigger } from "../dialog";
 
 interface ContentLockProps {
   bgColor?: string;
+  isPaying: boolean;
   children: React.ReactNode;
 }
 
@@ -26,6 +25,7 @@ const Redirect: React.FC = () => (
 
 const ContentLock: React.FC<ContentLockProps> = ({
   bgColor = "bg-gray-100",
+  isPaying = "false",
   children,
 }) => {
   const [open, setOpen] = useState(false);
@@ -51,7 +51,7 @@ const ContentLock: React.FC<ContentLockProps> = ({
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="mx-auto max-w-md">
+      <DialogContent className="mx-auto max-w-md bg-white">
         <Redirect />
       </DialogContent>
     </Dialog>

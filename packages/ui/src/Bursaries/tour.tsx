@@ -1,8 +1,6 @@
 // TODO:data fetch
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { baseUrl } from "@/context/constants";
 import { X } from "lucide-react";
 
 import { Button } from "../button";
@@ -24,12 +22,10 @@ const BursaryWelcomeBanner: React.FC<BursaryWelcomeBannerProps> = ({
       <CardContent className="p-0">
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-1 items-center justify-center p-6 md:p-10">
-            <Image
-              src={`${baseUrl}/applications-tour.png`}
+            <img
+              src={`/applications-tour.png`}
               alt="Welcome Image"
-              width={400}
-              height={300}
-              className="object-contain"
+              className="h-72 w-96 object-contain"
             />
           </div>
           <div className="relative flex-1 p-6">

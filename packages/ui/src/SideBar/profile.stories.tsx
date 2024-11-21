@@ -10,9 +10,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn<SidebarProfileProps> = (args) => (
-  <div className="w-64 bg-gray-900 p-4">
-    <SidebarProfile {...args} />
-  </div>
+  <SidebarProfile {...args} />
 );
 
 export const Expanded = Template.bind({});

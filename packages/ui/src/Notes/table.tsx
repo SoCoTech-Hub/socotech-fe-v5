@@ -211,7 +211,7 @@ export const NotesTable: React.FC<NotesProps> = ({
         name="Note"
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        refetchNotes={refetchNotes}
+        refetchData={refetchNotes}
         onDelete={onDelete}
       />
     </Card>

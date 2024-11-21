@@ -76,7 +76,6 @@
 // TODO:data fetch
 
 import React from "react";
-import Image from "next/image";
 
 import { cn } from "../";
 import { Button } from "../button";
@@ -122,7 +121,7 @@ export function ApplicationsListing({
                 dangerouslySetInnerHTML={{ __html: svgIcon }}
               />
             ) : applicationFeatureImage ? (
-              <Image
+              <img
                 src={applicationFeatureImage}
                 alt={courseTitle}
                 width={56}
