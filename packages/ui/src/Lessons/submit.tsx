@@ -7,7 +7,7 @@ import { Button } from "../button";
 import { useToast } from "../hooks/use-toast";
 import { Textarea } from "../textarea";
 
-interface RatingSubmissionProps {
+export interface RatingSubmissionProps {
   onSubmit: (rating: { rating: number; comment: string }) => void;
 }
 

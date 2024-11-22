@@ -2,7 +2,7 @@ import React from "react";
 
 import CardSkeleton from "./skeleton";
 
-interface GridProps<T> {
+export interface GridProps<T> {
   items: T[];
   renderItem: (item: T) => React.ReactNode;
   isLoading?: boolean;

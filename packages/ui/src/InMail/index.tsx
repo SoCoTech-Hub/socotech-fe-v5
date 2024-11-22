@@ -160,7 +160,8 @@ export default function EmailApp() {
         <InmailComposer
           setComposing={setComposing}
           handleAttachment={handleAttachment}
-          attachment={attachment}
+          attachments={attachment}
+          
         />
       )}
     </div>

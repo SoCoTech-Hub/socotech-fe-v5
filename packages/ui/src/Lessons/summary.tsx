@@ -2,7 +2,7 @@
 
 import { Star } from "lucide-react";
 
-interface Rating {
+export interface Rating {
   id: number;
   userId: string;
   userName: string;
@@ -13,7 +13,7 @@ interface Rating {
   timestamp: Date;
 }
 
-interface RatingSummaryProps {
+export interface RatingSummaryProps {
   ratings: Rating[];
 }
 

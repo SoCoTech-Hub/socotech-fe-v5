@@ -10,7 +10,7 @@ export interface Grade {
   subjects: Subject[];
 }
 
-interface ScrollTabsProps {
+export interface ScrollTabsProps {
   grades: Grade[];
   selectedGrade: string;
   setSelectedGrade: (gradeId: string) => void;

@@ -15,7 +15,7 @@ export interface Subject {
   lessons: Lesson[];
 }
 
-interface LessonCardProps {
+export interface LessonCardProps {
   item: Lesson | Subject;
   type: "lesson" | "subject";
 }

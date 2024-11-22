@@ -1,32 +1,39 @@
 import React from "react";
-import { Button } from "../button";
 import { ArrowLeft, Share2 } from "lucide-react";
 
-interface HeaderSectionProps {
+import { Button } from "../button";
+
+export interface HeaderSectionProps {
   subject: string;
   title: string;
-  onBackClick: () => void;
-  onTakeNotesClick: () => void;
-  onShareClick: () => void;
 }
+//TODO: add the functions
+const HeaderSection: React.FC<HeaderSectionProps> = ({ subject, title }) => {
+  const handleBackClick = () => {
+    console.log("Back button clicked");
+    // Add navigation logic here, e.g., window.history.back();
+  };
 
-const HeaderSection: React.FC<HeaderSectionProps> = ({
-  subject,
-  title,
-  onBackClick,
-  onTakeNotesClick,
-  onShareClick,
-}) => {
+  const handleTakeNotesClick = () => {
+    console.log("Take Notes button clicked");
+    // Add logic for taking notes here
+  };
+
+  const handleShareClick = () => {
+    console.log("Share button clicked");
+    // Add logic for sharing here
+  };
+
   return (
     <div className="mb-8">
       <div className="mb-4 flex items-center justify-between">
-        <Button variant="outline" onClick={onBackClick}>
+        <Button variant="outline" onClick={handleBackClick}>
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
         </Button>
         <div className="flex gap-2">
-          <Button onClick={onTakeNotesClick}>Take Notes</Button>
-          <Button variant="outline" onClick={onShareClick}>
+          <Button onClick={handleTakeNotesClick}>Take Notes</Button>
+          <Button variant="outline" onClick={handleShareClick}>
             <Share2 className="h-4 w-4" />
           </Button>
         </div>

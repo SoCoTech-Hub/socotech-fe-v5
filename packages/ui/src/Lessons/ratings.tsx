@@ -8,7 +8,7 @@ import { Button } from "../button";
 import { useToast } from "../hooks/use-toast";
 import { Input } from "../input";
 
-interface Rating {
+export interface Rating {
   id: number;
   userId: string;
   userName: string;
