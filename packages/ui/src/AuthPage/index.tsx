@@ -1,8 +1,10 @@
-import React, { ReactNode } from "react";
-import AuthNavbar from "@/components/AuthNavbar";
+import type { ReactNode } from "react";
+import React from "react";
 
-// Define the prop types
-interface AuthPageProps {
+import type { AuthNavbarProps } from "../AuthNavbar";
+import { AuthNavbar } from "../AuthNavbar";
+
+export interface AuthPageProps {
   bgImage?: string;
   bgColor?: string;
   bgSize?: string;
@@ -11,62 +13,56 @@ interface AuthPageProps {
   contentBgColor?: string;
   hasNavbar?: boolean;
   customNavbar?: ReactNode;
+  authNavbar?: AuthNavbarProps;
+  className?: string;
 }
 
 const AuthPage: React.FC<AuthPageProps> = ({
   bgImage,
-  bgColor,
-  bgSize,
+  bgColor = "inherit",
+  bgSize = "cover",
   leftTitle,
   content,
-  contentBgColor,
-  hasNavbar = true, // You can set default values for props like this
+  contentBgColor = "inherit",
+  hasNavbar = true,
   customNavbar,
+  authNavbar,
+  className,
 }) => {
   return (
     <>
-      {hasNavbar ? (
-        customNavbar ? (
-          customNavbar
-        ) : (
-          <div
-            className="fixed w-full"
-            style={{
-              zIndex: "999",
-            }}
-          >
-            <AuthNavbar />
-          </div>
-        )
-      ) : null}
+      {hasNavbar &&
+        (customNavbar
+          ? customNavbar
+          : authNavbar && (
+              <div className="fixed z-[999] w-full">
+                <AuthNavbar {...authNavbar} />
+              </div>
+            ))}
       <div
-        className="desktop:flex-row laptop:flex-row mobile:flex-col flex h-screen w-full"
-        style={{ zIndex: "1" }}
+        className={`flex h-screen w-full ${
+          className ?? ""
+        } desktop:flex-row laptop:flex-row mobile:flex-col`}
       >
         <div
+          className={`mobile:hidden flex h-auto w-1/2 items-center justify-center ${
+            bgImage ? "" : "bg-none"
+          }`}
           style={{
-            backgroundImage: bgImage ? `url(${bgImage})` : "none",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: bgColor ?? "inherit",
+            backgroundImage: bgImage ? `url(${bgImage})` : undefined,
+            backgroundColor: bgColor,
             backgroundPosition: "center",
-            backgroundSize: bgSize ?? "cover",
-            height: "110vh",
-            userSelect: "none",
-            msUserSelect: "none",
-            MozUserSelect: "none",
-            WebkitUserSelect: "none",
+            backgroundSize: bgSize,
           }}
-          className="mobile:hidden flex h-auto w-1/2 items-center justify-center"
+          aria-hidden={leftTitle ? "false" : "true"}
         >
-          {leftTitle ?? null}
+          {leftTitle}
         </div>
         <div
           className="mobile:w-full flex h-auto w-1/2 items-start justify-center overflow-y-scroll"
-          style={{
-            backgroundColor: contentBgColor ?? "inherit",
-          }}
+          style={{ backgroundColor: contentBgColor }}
         >
-          {content ?? null}
+          {content}
         </div>
       </div>
     </>

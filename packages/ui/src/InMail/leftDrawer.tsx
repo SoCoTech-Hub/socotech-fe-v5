@@ -3,7 +3,7 @@
 import React from "react";
 import { X } from "lucide-react";
 
-import { cn } from "../";
+import { cn } from "..";
 import { Button } from "../button";
 import { ScrollArea } from "../scroll-area";
 

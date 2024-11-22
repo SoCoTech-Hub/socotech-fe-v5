@@ -44,7 +44,7 @@ export const DeleteModal: FC<DeleteModalProps> = ({
             action cannot be undone.
           </DialogDescription>
         </DialogHeader>
-        <div className="mt-6 flex justify-end space-x-2">
+        <div className="flex justify-end mt-6 space-x-2">
           <DialogTrigger asChild>
             <Button variant="outline">Cancel</Button>
           </DialogTrigger>

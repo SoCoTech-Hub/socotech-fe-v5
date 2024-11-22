@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
 import { Button } from "../button";
-import LeftDrawer from "./";
+import LeftDrawer from ".";
 
 const meta: Meta<typeof LeftDrawer> = {
   title: "Components/LeftDrawer",

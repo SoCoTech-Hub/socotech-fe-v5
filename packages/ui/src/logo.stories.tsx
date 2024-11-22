@@ -1,17 +1,17 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 
-import type { SidebarLogoProps } from "./logo";
-import SidebarLogo from "./logo";
+import type { LogoProps } from "./logo";
+import Logo from "./logo";
 
 export default {
-  title: "Sidebar/Logo",
-  component: SidebarLogo,
+  title: "Logo",
+  component: Logo,
 } as Meta;
 
-const Template: StoryFn<SidebarLogoProps> = (args) => (
+const Template: StoryFn<LogoProps> = (args) => (
   <div className="bg-gray-900 p-4">
-    <SidebarLogo {...args} />
+    <Logo {...args} />
   </div>
 );
 

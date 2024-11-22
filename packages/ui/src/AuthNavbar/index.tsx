@@ -1,33 +1,93 @@
-// import Btn from '@/components/Btn'
-// import logout from '@/snippets/logout'
+"use client";
 
-const AuthNavbar: React.FC = () => (
-  // USE MainMenu instead
-  /*
-  import MainMenu from '@acme/ui/MainMenu'
-  ...
-  <MainMenu/>
-  ...
-  */
-  // <nav className='absolute w-full py-2 shadow-md navbar navbar-light bg-light justify-content-between'>
-  //   <div className='pl-10'>
-  //     <img
-  //       src='./logo.png'
-  //       alt='Logo'
-  //       className='desktop:h-14 laptop:h-14 mobile:h-10'
-  //     />
-  //   </div>
-  //   <div className='flex flex-row mr-4'>
-  //     {/* <Btn label="Help" color="bg-themeColorMain" /> */}
-  //     <Btn
-  //       label='Logout'
-  //       color='bg-themeColorSecondary'
-  //       textColor='text-white'
-  //       onClickFunction={logout}
-  //     />
-  //   </div>
-  // </nav>
-  <></>
-);
+import React, { useState } from "react";
+import { Menu } from "lucide-react";
 
-export default AuthNavbar;
+import { cn } from "../";
+import { Button } from "../button";
+import Logo from "../logo";
+import MobileMenu from "./mobileMenu";
+import UserMenu from "./userMenu";
+
+export interface NavItem {
+  title: string;
+  href: string;
+}
+
+export interface User {
+  name: string;
+  email: string;
+  image?: string;
+}
+
+export interface AuthNavbarProps extends React.HTMLAttributes<HTMLElement> {
+  items?: NavItem[];
+  user?: User | null;
+  companyName: string;
+  companyLogo: string;
+}
+
+export function AuthNavbar({
+  companyName,
+  companyLogo,
+  className,
+  items,
+  user,
+  ...props
+}: AuthNavbarProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <header className={cn("bg-background", className)} {...props}>
+      <nav
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
+        <div className="flex lg:flex-1">
+          <a href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">{companyName}</span>
+            <Logo url={companyLogo} />
+          </a>
+        </div>
+        <div className="flex lg:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <Menu className="h-6 w-6" aria-hidden="true" />
+          </Button>
+        </div>
+        <div className="hidden lg:flex lg:gap-x-12">
+          {items?.map((item) => (
+            <a
+              key={item.title}
+              href={item.href}
+              className="text-sm font-semibold leading-6 text-foreground hover:text-foreground/80"
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          {user ? (
+            <UserMenu {...user} />
+          ) : (
+            <a
+              href="/login"
+              className="text-sm font-semibold leading-6 text-foreground hover:text-foreground/80"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
+        </div>
+      </nav>
+      <MobileMenu
+        open={mobileMenuOpen}
+        setOpen={setMobileMenuOpen}
+        user={user}
+      />
+    </header>
+  );
+}

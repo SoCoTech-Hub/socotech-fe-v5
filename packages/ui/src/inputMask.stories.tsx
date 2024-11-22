@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
-import InputMask from "./";
+import InputMask from "./inputMask";
 
 const meta: Meta<typeof InputMask> = {
   title: "Components/InputMask",
