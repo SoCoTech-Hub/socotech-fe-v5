@@ -42,7 +42,7 @@ export default function ButtonGroup({
               index !== 0 && "-ml-px",
             )}
           >
-            {Icon && <Icon className="mr-2 h-4 w-4" />}
+            {Icon && <Icon className="w-4 h-4 mr-2" />}
             {button.label}
           </Button>
         );
@@ -68,7 +68,7 @@ export default function ButtonGroup({
 
 //   return (
 //     <div className="p-4">
-//       <h1 className="text-2xl font-bold mb-4">Button Group Example</h1>
+//       <h1 className="mb-4 text-2xl font-bold">Button Group Example</h1>
 //       <ButtonGroup buttons={buttons} variant="outline" />
 //     </div>
 //   )

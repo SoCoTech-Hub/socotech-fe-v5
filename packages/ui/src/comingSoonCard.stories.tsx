@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import ComingSoonCard from "./";
+import ComingSoonCard from "./ComingSoonCard/comingSoonCard";
 
 const meta: Meta<typeof ComingSoonCard> = {
-  title: "Components/ComingSoonCard",
+  title: "ComingSoonCard",
   component: ComingSoonCard,
   tags: ["autodocs"],
   argTypes: {

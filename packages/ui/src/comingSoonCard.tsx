@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "../button";
+import { Button } from "./button";
 import {
   Card,
   CardContent,
@@ -8,8 +8,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../card";
-import { Toast } from "../toast";
+} from "./card";
+import { Toast } from "./toast";
 
 export default function ComingSoonCard({
   title = "Coming Soon",

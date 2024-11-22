@@ -17,8 +17,8 @@ import {
 } from "date-fns";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 
-import { Button } from "../button";
-import { Card, CardContent, CardHeader, CardTitle } from "../card";
+import { Button } from "./button";
+import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import {
   Dialog,
   DialogContent,
@@ -27,16 +27,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../dialog";
-import { Input } from "../input";
-import { Label } from "../label";
+} from "./dialog";
+import { Input } from "./input";
+import { Label } from "./label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../select";
+} from "./select";
 
 interface Event {
   id: string;
