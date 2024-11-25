@@ -1,7 +1,7 @@
 "use client";
 
 import type { VariantProps } from "class-variance-authority";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { cva } from "class-variance-authority";
 import { AlertCircle, CheckCircle, Info, X } from "lucide-react";
 
@@ -40,12 +40,12 @@ export function PopupAlert({
   onClose,
   ...props
 }: AlertProps) {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isVisible, setIsVisible] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-      onClose && onClose();
+      if (onClose) onClose();
     }, duration);
 
     return () => clearTimeout(timer);
@@ -64,24 +64,23 @@ export function PopupAlert({
     <div
       className={cn(
         alertVariants({ variant }),
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
         className,
       )}
       role="alert"
       {...props}
     >
       <div className="flex items-start">
-        <IconComponent className="mr-2 h-5 w-5 flex-shrink-0" />
+        <IconComponent className="flex-shrink-0 w-5 h-5 mr-2" />
         <div className="flex-1">{message}</div>
         <button
           onClick={() => {
             setIsVisible(false);
             onClose && onClose();
           }}
-          className="ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary-foreground/50"
+          className="inline-flex items-center justify-center w-6 h-6 ml-4 rounded-full bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary-foreground/50"
           aria-label="Close alert"
         >
-          <X className="h-4 w-4" />
+          <X className="w-4 h-4" />
         </button>
       </div>
     </div>

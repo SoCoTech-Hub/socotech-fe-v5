@@ -3,7 +3,7 @@ import React from "react";
 
 import { cn } from "@acme/ui";
 
-import { Button } from "../button";
+import { Button } from "./button";
 
 interface ButtonItem {
   label: string;
@@ -42,7 +42,7 @@ export default function ButtonGroup({
               index !== 0 && "-ml-px",
             )}
           >
-            {Icon && <Icon className="w-4 h-4 mr-2" />}
+            {Icon && <Icon className="mr-2 h-4 w-4" />}
             {button.label}
           </Button>
         );

@@ -1,11 +1,11 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 
-import type { BackToTopProps } from "./BackToTop/backToTop";
-import { BackToTop } from "./BackToTop/backToTop";
+import type { BackToTopProps } from "./backToTop";
+import { BackToTop } from "./backToTop";
 
 export default {
-  title: "Components/BackToTop",
+  title: "BackToTop",
   component: BackToTop,
 } as Meta;
 
