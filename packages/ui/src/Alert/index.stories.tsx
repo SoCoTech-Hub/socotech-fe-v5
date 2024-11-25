@@ -1,61 +1,53 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
 
-import type { AlertProps } from "./index";
-import { Button } from "../button";
-import { PopupAlert } from "./index";
+import { PopupAlert } from "./";
 
 export default {
-  title: "Components/Alert",
+  title: "Alert/PopupAlert",
   component: PopupAlert,
-  argTypes: {
-    variant: {
-      control: {
-        type: "select",
-        options: ["default", "destructive", "success"],
-      },
-    },
-    duration: {
-      control: { type: "number" },
-    },
-    message: {
-      control: { type: "text" },
-    },
-  },
-} as Meta<AlertProps>;
+} as Meta;
 
-const Template: StoryFn<AlertProps> = (args) => {
-  const [showAlert, setShowAlert] = useState(true);
+const Template: StoryFn = (args) => {
+  const [visible, setVisible] = useState(true);
 
   return (
-    <div>
-      <Button onClick={() => setShowAlert(true)} className="mb-4">
+    <div className="flex h-screen w-screen items-center justify-center">
+      <button
+        className="mb-4 rounded bg-blue-500 px-4 py-2 text-white"
+        onClick={() => setVisible(true)}
+      >
         Show Alert
-      </Button>
-      {showAlert && (
-        <PopupAlert {...args} onClose={() => setShowAlert(false)} />
-      )}
+      </button>
+      <PopupAlert
+        {...args}
+        visible={visible}
+        onClose={() => setVisible(false)}
+      />
     </div>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: "default",
   message: "This is a default alert.",
+  variant: "default",
   duration: 5000,
+  position: "bottom-right",
 };
 
 export const Destructive = Template.bind({});
 Destructive.args = {
-  variant: "destructive",
   message: "This is a destructive alert.",
+  variant: "destructive",
   duration: 5000,
+  position: "top-right",
 };
 
 export const Success = Template.bind({});
 Success.args = {
-  variant: "success",
   message: "This is a success alert.",
-  duration: 5000,
+  variant: "success",
+  duration: 3000,
+  position: "bottom-left",
 };

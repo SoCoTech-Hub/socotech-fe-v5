@@ -8,7 +8,7 @@ import { AlertCircle, CheckCircle, Info, X } from "lucide-react";
 import { cn } from "..";
 
 const alertVariants = cva(
-  "fixed bottom-4 left-4 w-full max-w-sm rounded-lg border p-4 shadow-lg transition-all duration-300 ease-in-out",
+  "fixed w-full max-w-sm rounded-lg border p-4 shadow-lg transition-all duration-300 ease-in-out",
   {
     variants: {
       variant: {
@@ -24,12 +24,14 @@ const alertVariants = cva(
   },
 );
 
-export interface AlertProps
+export interface PopupAlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {
   message: string;
   duration?: number;
   onClose?: () => void;
+  visible?: boolean;
+  position?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 }
 
 export function PopupAlert({
@@ -38,18 +40,24 @@ export function PopupAlert({
   message,
   duration = 5000,
   onClose,
+  visible = true,
+  position = "bottom-right",
   ...props
-}: AlertProps) {
-  const [isVisible, setIsVisible] = useState(true);
+}: PopupAlertProps) {
+  const [isVisible, setIsVisible] = useState(visible);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      if (onClose) onClose();
-    }, duration);
+    setIsVisible(visible);
 
-    return () => clearTimeout(timer);
-  }, [duration, onClose]);
+    if (visible && duration > 0) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        if (onClose) onClose();
+      }, duration);
+
+      return () => clearTimeout(timer);
+    }
+  }, [visible, duration, onClose]);
 
   if (!isVisible) return null;
 
@@ -60,65 +68,35 @@ export function PopupAlert({
         ? CheckCircle
         : Info;
 
+  const positionClass = {
+    "top-left": "top-4 left-4",
+    "top-right": "top-4 right-4",
+    "bottom-left": "bottom-4 left-4",
+    "bottom-right": "bottom-4 right-4",
+  }[position];
+
   return (
     <div
-      className={cn(
-        alertVariants({ variant }),
-        className,
-      )}
+      className={cn(alertVariants({ variant }), positionClass, className)}
       role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
       {...props}
     >
       <div className="flex items-start">
-        <IconComponent className="flex-shrink-0 w-5 h-5 mr-2" />
+        <IconComponent className="mr-2 h-5 w-5 flex-shrink-0" />
         <div className="flex-1">{message}</div>
         <button
           onClick={() => {
             setIsVisible(false);
-            onClose && onClose();
+            if (onClose) onClose();
           }}
-          className="inline-flex items-center justify-center w-6 h-6 ml-4 rounded-full bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary-foreground/50"
+          className="ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary-foreground/50"
           aria-label="Close alert"
         >
-          <X className="w-4 h-4" />
+          <X className="h-4 w-4" />
         </button>
       </div>
     </div>
   );
 }
-
-// USE:
-/*
-'use client'
-
-import {useState} from 'react'
-import { PopupAlert } from './popup-alert'
-import { Button } from '@acme/ui/button'
-
-export default function PopupAlertExample() {
-  const [showAlert, setShowAlert] = useState(false)
-  const [alertVariant, setAlertVariant] = useState<'default' | 'destructive' | 'success'>('default')
-
-  const handleShowAlert = (variant: 'default' | 'destructive' | 'success') => {
-    setAlertVariant(variant)
-    setShowAlert(true)
-  }
-
-  return (
-    <div className="p-4">
-      <div className="space-x-2">
-        <Button onClick={() => handleShowAlert('default')}>Show Default Alert</Button>
-        <Button onClick={() => handleShowAlert('destructive')} variant="destructive">Show Destructive Alert</Button>
-        <Button onClick={() => handleShowAlert('success')} className="text-white bg-green-500 hover:bg-green-600">Show Success Alert</Button>
-      </div>
-      {showAlert && (
-        <PopupAlert
-          variant={alertVariant}
-          message={`This is a ${alertVariant} alert that will appear in the bottom left and disappear in 5 seconds.`}
-          onClose={() => setShowAlert(false)}
-        />
-      )}
-    </div>
-  )
-}
-*/
