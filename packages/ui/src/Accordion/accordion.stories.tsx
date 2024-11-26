@@ -29,6 +29,7 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 export const Default: Story = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (args: any) => (
     <Accordion {...args} className="w-full">
       <AccordionItem value="item-1">

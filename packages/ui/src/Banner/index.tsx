@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
 
-interface BannerProps {
+export interface BannerProps {
   title: string;
   paragraphs: string[];
   gifSrc: string;

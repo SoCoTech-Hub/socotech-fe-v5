@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
 
-import { PopupAlert } from "./";
+import { PopupAlert } from "./index";
 
 export default {
   title: "Alert/PopupAlert",
@@ -20,6 +20,7 @@ const Template: StoryFn = (args) => {
         Show Alert
       </button>
       <PopupAlert
+        message={""}
         {...args}
         visible={visible}
         onClose={() => setVisible(false)}

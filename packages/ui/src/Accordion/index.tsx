@@ -1,9 +1,5 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
+
 
 export interface AccordionItem {
   key: string;

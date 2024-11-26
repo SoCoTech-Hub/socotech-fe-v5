@@ -4,15 +4,14 @@
 
 import React from "react";
 
-import applyQualification from "@acme/snippets/applyQualification";
-import { getTimeDifferenceFromPostDate } from "@acme/snippets/getTimeDifferenceFromPostDate";
-
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader } from "../card";
 import { Skeleton } from "../skeleton";
 import { BriefcaseIcon, BuildingIcon, LightbulbIcon } from "../SvgIcons";
 
 interface ApplicationsPostProps {
+  applyQualification?: (qualificationId: string) => void;
+  getTimeDifferenceFromPostDate?: (date: string) => string;
   loading: boolean;
   qualificationId: string;
   qualificationUrl: string;
@@ -33,10 +32,11 @@ interface ApplicationsPostProps {
 }
 
 export function ApplicationsPost({
+  applyQualification,
+  getTimeDifferenceFromPostDate,
   loading,
   qualificationId,
   qualificationUrl,
-  profileId,
   courseTitle = "",
   companyDescription = "",
   timePosted = "",
@@ -51,12 +51,8 @@ export function ApplicationsPost({
   bgColor = "",
   svgIcon = "",
 }: ApplicationsPostProps) {
-  const apply = async () => {
-    await applyQualification({
-      profileId,
-      qualificationId,
-      qualificationUrl,
-    });
+  const apply = () => {
+    if (applyQualification) applyQualification(qualificationId);
   };
 
   if (loading) {
@@ -95,7 +91,7 @@ export function ApplicationsPost({
             {companyDescription}
             {timePosted && numberOfApplicants && (
               <span className="ml-4">
-                {getTimeDifferenceFromPostDate(timePosted)} -{" "}
+                {getTimeDifferenceFromPostDate?.(timePosted)} -{" "}
                 {numberOfApplicants}{" "}
                 {parseInt(numberOfApplicants) !== 1
                   ? "applicants"

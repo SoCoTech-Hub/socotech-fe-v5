@@ -4,7 +4,7 @@ import React from "react";
 import Banner from "./";
 
 const meta: Meta<typeof Banner> = {
-  title: "Components/Banner",
+  title: "Banner",
   component: Banner,
   tags: ["autodocs"],
   argTypes: {

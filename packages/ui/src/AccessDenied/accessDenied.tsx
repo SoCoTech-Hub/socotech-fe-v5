@@ -1,6 +1,6 @@
 "use client";
 
-import React from // { useState } //TODO: Future Feature, request access to the platform
+import React from // { useState } //TODO: Future Feature, request access to the platform and fix styling
 "react";
 import { AlertCircle, Lock } from "lucide-react";
 
@@ -24,6 +24,7 @@ interface AccessDeniedModalProps {
 
 export default function Component({
   isOpen = false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClose = () => {},
   // onRequestAccess = () => {},
   title = "Access Denied",
