@@ -2,11 +2,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
-import { MultiSelect } from "./";
+import { MultiSelect } from "./multiSelect";
 
 // Setting up the Meta configuration for Storybook
 const meta: Meta<typeof MultiSelect> = {
-  title: "Data/MultiSelect",
+  title: "MultiSelect",
   component: MultiSelect,
   parameters: {
     layout: "centered",

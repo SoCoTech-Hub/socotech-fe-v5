@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import type { Notification } from "./list";
-import { Button } from "../button";
+import { Button } from "./button";
 import {
   Dialog,
   DialogContent,
@@ -9,17 +8,21 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../dialog";
+} from "./dialog";
 
-interface NotificationModalProps {
-  notification: Notification;
+interface ModalProps {
+  title: string;
+  message: string;
+  timestamp: string;
   onClose?: () => void;
 }
 
-export default function NotificationModal({
-  notification,
+export default function Modal({
+  title,
+  message,
+  timestamp,
   onClose,
-}: NotificationModalProps) {
+}: ModalProps) {
   const [open, setOpen] = useState<boolean>(true);
   const closeModal = () => {
     setOpen(!open);
@@ -31,13 +34,11 @@ export default function NotificationModal({
     <Dialog open={open} onOpenChange={closeModal}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{notification.title}</DialogTitle>
-          <DialogDescription>
-            {notification.timestamp.toLocaleString()}
-          </DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{timestamp.toLocaleString()}</DialogDescription>
         </DialogHeader>
         <div className="mt-4">
-          <p>{notification.message}</p>
+          <p>{message}</p>
         </div>
         <DialogFooter>
           <Button onClick={closeModal}>Close</Button>

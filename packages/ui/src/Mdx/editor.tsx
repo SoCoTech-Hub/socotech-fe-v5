@@ -1,84 +1,48 @@
-"use client";
+import React, { forwardRef, useEffect, useRef } from "react";
+import Quill from "quill";
 
-import React from "react";
-import dynamic from "next/dynamic";
-
-import "react-quill/dist/quill.snow.css";
-
-import { Card, CardContent } from "../card";
-import { Skeleton } from "../skeleton";
-
-// Dynamically load ReactQuill with SSR disabled and a skeleton loading component
-const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
-  ssr: false,
-  loading: () => <Skeleton className="h-64 w-full" />,
-});
-
-interface MdxEditorProps {
-  value: string;
-  setValue: (value: string) => void;
-  placeholder?: string;
-  disabled?: boolean;
+interface EditorProps {
+  defaultValue?: string;
 }
 
-// Quill editor configuration for modules and formats
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link"],
-    ["clean"],
-  ],
-  clipboard: {
-    matchVisual: false,
+const Editor = forwardRef<Quill | null, EditorProps>(
+  ({ defaultValue }, ref) => {
+    const containerRef = useRef<HTMLDivElement>();
+    const defaultValueRef = useRef(defaultValue);
+
+    useEffect(() => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const editorContainer = container.appendChild(
+        container.ownerDocument.createElement("div"),
+      );
+      const quill = new Quill(editorContainer, {
+        theme: "snow",
+      });
+
+      if (typeof ref === "function") {
+        ref(quill);
+      } else if (ref && "current" in ref) {
+        ref.current = quill;
+      }
+
+      if (defaultValueRef.current) {
+        quill.setContents(defaultValueRef?.current);
+      }
+
+      return () => {
+        if (ref && "current" in ref) {
+          ref.current = null;
+        }
+        container.innerHTML = "";
+      };
+    }, [ref]);
+
+    return <div ref={containerRef}></div>;
   },
-};
+);
 
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-];
+Editor.displayName = "Editor";
 
-// Main MDX Editor component
-export const MdxEditor: React.FC<MdxEditorProps> = ({
-  value,
-  setValue,
-  placeholder = "Compose your message here...",
-  disabled = false,
-}) => {
-  return (
-    <Card className="mx-auto w-full max-w-4xl">
-      <CardContent className="p-0">
-        <QuillNoSSRWrapper
-          value={value}
-          onChange={setValue}
-          modules={modules}
-          formats={formats}
-          placeholder={placeholder}
-          readOnly={disabled}
-          theme="snow"
-          className="min-h-[200px] rounded-lg bg-background text-foreground"
-        />
-      </CardContent>
-    </Card>
-  );
-};
-
-export default MdxEditor;
+export default Editor;
