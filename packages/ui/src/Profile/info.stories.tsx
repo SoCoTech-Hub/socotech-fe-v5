@@ -15,32 +15,7 @@ export default meta;
 type Story = StoryObj<typeof InfoSection>;
 
 export const Default: Story = {
-  render: () => <InfoSection initialUserInfo={
-  personalInfo: {
-    idNumber: "",
-    dateOfBirth: "",
-    gender: "",
-    province: "",
-    school: "",
-    district: "",
-  },
-  deviceInfo: { serialNumber: "", imei: "" },
-  parentInfo: {
-    name: "",
-    surname: "",
-    mobileNumber: "",
-    workNumber: "",
-    idNumber: "",
-    title: "",
-    relation: "",
-  },
-  contactInfo: {
-    addressLine1: "",
-    addressLine2: "",
-    town: "",
-    mobileNumber: "",
-  },
-} />,
+  render: () => <InfoSection />,
 };
 
 export const LoadingState: Story = {
