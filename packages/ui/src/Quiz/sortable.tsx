@@ -1,8 +1,9 @@
 "use client";
 
+import type { DraggableData, DraggableEvent } from "react-draggable";
 import React, { useEffect, useRef, useState } from "react";
 import { CheckCircle, GripVertical, XCircle } from "lucide-react";
-import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
+import Draggable from "react-draggable";
 
 import { Button } from "../button";
 import { Card, CardContent } from "../card";

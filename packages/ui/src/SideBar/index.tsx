@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { ChevronsLeft } from "lucide-react";
 
+import type { LogoProps } from "../logo";
 import type { SidebarItemListProps } from "./itemlist";
-import type { SidebarLogoProps } from "./logo";
 import type { SidebarProfileProps } from "./profile";
 import type { SidebarProfileListItem } from "./profileList";
 import { cn } from "..";
@@ -14,6 +14,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../dropdown-menu";
+import SidebarLogo from "../logo";
 import {
   Sidebar,
   SidebarContent,
@@ -24,12 +25,11 @@ import {
   SidebarProvider,
 } from "../sidebar";
 import SidebarItem from "./item";
-import SidebarLogo from "./logo";
 import SidebarProfile from "./profile";
 import SidebarProfileSection from "./profileSection";
 
 interface SidebarProps {
-  logo: SidebarLogoProps;
+  logo: LogoProps;
   menuItems: SidebarItemListProps[];
   userProfileOptions: SidebarProfileProps;
   userProfileMenuItems?: SidebarProfileListItem[];

@@ -1,15 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { Button } from "../../button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../card";
+import { Button } from "../button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
 import FreeChoiceQuestion from "./freeChoice";

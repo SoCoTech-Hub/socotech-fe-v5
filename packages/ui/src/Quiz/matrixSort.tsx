@@ -1,12 +1,12 @@
 "use client";
 
 import type { DraggableData, DraggableEvent } from "react-draggable";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 
 import type { Question } from "./quiz";
-import { Card, CardContent } from "../../card";
-import { Label } from "../../label";
+import { Card, CardContent } from "../card";
+import { Label } from "../label";
 
 interface MatrixSortQuestionProps {
   question: Question;

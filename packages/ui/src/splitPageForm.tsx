@@ -1,6 +1,5 @@
 import React from "react";
 import { ChevronLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 import { Button } from "./button";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
@@ -32,8 +31,6 @@ export default function SplitPageForm({
   onSubmit,
   imageSide = "left",
 }: SplitPageFormProps) {
-  const navigate = useNavigate();
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -66,7 +63,7 @@ export default function SplitPageForm({
       <nav className="bg-gray-100 p-4">
         <Button
           variant="ghost"
-          onClick={() => navigate(-1)}
+          onClick={() => history.back()}
           className="flex items-center text-gray-600 hover:text-gray-900"
         >
           <ChevronLeft className="mr-2 h-4 w-4" />

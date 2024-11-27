@@ -32,7 +32,7 @@ export default function Modal({
   };
   return (
     <Dialog open={open} onOpenChange={closeModal}>
-      <DialogContent>
+      <DialogContent className="bg-white">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{timestamp.toLocaleString()}</DialogDescription>

@@ -1,6 +1,8 @@
+import React from "react";
+
 import type { Question } from "./quiz";
-import { Checkbox } from "../../checkbox";
-import { Label } from "../../label";
+import { Checkbox } from "../checkbox";
+import { Label } from "../label";
 
 interface MultipleChoiceQuestionProps {
   question: Question;

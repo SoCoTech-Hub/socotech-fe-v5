@@ -1,18 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Frown, Star, ThumbsUp, Trophy } from "lucide-react";
 
 import type { Question } from "./quiz";
-import { Button } from "../../button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../card";
+import { Button } from "../button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import ReviewQuiz from "./review";
 
 interface QuizReportProps {
