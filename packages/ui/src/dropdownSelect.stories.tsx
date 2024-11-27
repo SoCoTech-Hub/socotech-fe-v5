@@ -1,39 +1,42 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 
-import SearchableDropdown from "./dropdownSelect";
+import type { Option } from "./dropdownSelect";
+import { DropdownSelect } from "./dropdownSelect";
 
 export default {
   title: "DropdownSelect",
-  component: SearchableDropdown,
-  argTypes: {
-    onChange: { action: "value changed" },
-  },
+  component: DropdownSelect,
 } as Meta;
 
-const Template: StoryFn = (args) => <SearchableDropdown {...args} />;
+const options: Option[] = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  { value: "cherry", label: "Cherry" },
+];
+
+const Template: StoryFn = (args) => {
+  const [selectedValue, setSelectedValue] = useState("");
+
+  return (
+    <div>
+      <DropdownSelect
+        {...args}
+        onChange={(value) => {
+          setSelectedValue(value);
+          console.log("Selected Value:", value);
+        }}
+      />
+      <p className="mt-4">
+        <strong>Selected:</strong> {selectedValue || "None"}
+      </p>
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
-  items: [
-    { value: "apple", label: "Apple" },
-    { value: "banana", label: "Banana" },
-    { value: "cherry", label: "Cherry" },
-  ],
-  placeholder: "Select a fruit...",
-  emptyMessage: "No fruits found.",
-};
-
-export const EmptyState = Template.bind({});
-EmptyState.args = {
-  items: [],
-  placeholder: "Select a fruit...",
-  emptyMessage: "No fruits available.",
-};
-
-export const LoadingState = Template.bind({});
-LoadingState.args = {
-  items: null, // Simulates loading state
-  placeholder: "Select a fruit...",
-  emptyMessage: "No fruit found.",
+  label: "Fruits",
+  options,
+  placeholder: "Select a fruit",
 };

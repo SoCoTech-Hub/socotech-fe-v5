@@ -1,89 +1,47 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-"use client";
+import React from "react";
 
-import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-
-import { cn } from "./";
-import { Button } from "./button";
+import { Label } from "./label";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "./command";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { Skeleton } from "./skeleton";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./select";
 
-interface SearchableDropdownProps {
-  items?: { value: string; label: string }[];
-  placeholder?: string;
-  emptyMessage?: string;
-  onChange?: (value: string) => void;
+export interface Option {
+  value: string;
+  label: string;
 }
 
-export default function SearchableDropdown({
-  items,
-  placeholder = "Select an item...",
-  emptyMessage = "No items found.",
+interface DropdownSelectProps {
+  label: string;
+  options: Option[];
+  onChange: (value: string) => void;
+  placeholder?: string;
+}
+
+export function DropdownSelect({
+  label,
+  options,
   onChange,
-}: SearchableDropdownProps) {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
-  console.log({ items, value });
+  placeholder = "Select an option",
+}: DropdownSelectProps) {
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-full justify-between"
-        >
-          {value
-            ? items?.find((item) => item.value === value)?.label
-            : placeholder}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
-        <Command>
-          <CommandInput placeholder="Search items..." />
-          <CommandEmpty>{emptyMessage}</CommandEmpty>
-          <CommandGroup className="max-h-60 overflow-auto">
-            {!items ? (
-              // Skeleton loading state
-              <>
-                {[...Array(3)].map((_, index) => (
-                  <div key={index} className="px-2 py-1.5">
-                    <Skeleton className="h-5 w-full" />
-                  </div>
-                ))}
-              </>
-            ) : (
-              items.map((item, index) => (
-                <CommandItem
-                  key={`${item.value}-${index}`}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue == value ? "" : item.value);
-                    onChange?.(currentValue == value ? "" : item.value);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value == item.value ? "opacity-100" : "opacity-0",
-                    )}
-                  />
-                  {item.label}
-                </CommandItem>
-              ))
-            )}
-          </CommandGroup>
-        </Command>
-      </PopoverContent>
-    </Popover>
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor={label}>{label}</Label>
+      <Select onValueChange={onChange}>
+        <SelectTrigger id={label}>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 }
