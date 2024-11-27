@@ -4,7 +4,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { baseUrl, organizationId } from "@/context/constants";
+import { baseUrl, organizationId } from "@acme/snippets/constants";
 import getGQLRequest from "@/snippets/getGQLRequest";
 
 import { Button } from "../button";

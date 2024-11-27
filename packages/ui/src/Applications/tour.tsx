@@ -4,8 +4,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { baseUrl } from "@/context/constants";
 import { X } from "lucide-react";
+
+import { baseUrl } from "@acme/snippets/constants";
 
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
