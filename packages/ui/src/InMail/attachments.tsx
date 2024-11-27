@@ -1,3 +1,4 @@
+import React from "react";
 import { Paperclip } from "lucide-react";
 
 export interface Attachment {

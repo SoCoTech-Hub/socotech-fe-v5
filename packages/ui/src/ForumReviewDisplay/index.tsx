@@ -1,4 +1,4 @@
-//TODO:fix liek button and data fetch and push
+//TODO:fix like button and data fetch and push
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 

@@ -5,7 +5,7 @@ import type { HeaderSectionProps } from "./viewHeader";
 import HeaderSection from "./viewHeader";
 
 export default {
-  title: "Components/HeaderSection",
+  title: "Lesson/HeaderSection",
   component: HeaderSection,
 } as Meta;
 

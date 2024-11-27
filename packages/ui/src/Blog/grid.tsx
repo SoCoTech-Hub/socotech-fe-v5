@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import type { BlogPost } from ".";
 import BlogCard from "./card";
 import BlogCardSkeleton from "./loader";

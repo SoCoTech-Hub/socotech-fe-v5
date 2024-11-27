@@ -1,4 +1,6 @@
-export const LightbulbIcon = (props) => (
+import React from "react";
+
+export const LightbulbIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     data-supported-dps="24x24"

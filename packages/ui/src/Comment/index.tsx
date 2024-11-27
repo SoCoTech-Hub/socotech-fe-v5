@@ -11,13 +11,13 @@ import { SpinningLoader } from "../spinningLoader";
 import { Textarea } from "../textarea";
 
 // Define the Comment type
-interface Comment {
+export interface Comment {
   id: number;
   author: User;
   content: string;
   created_at: string;
 }
-interface User {
+export interface User {
   id: number;
   firstName: string;
   lastName: string;

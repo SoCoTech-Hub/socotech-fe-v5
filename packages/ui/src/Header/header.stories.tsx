@@ -4,7 +4,7 @@ import React from "react";
 import Header from "./";
 
 const meta: Meta<typeof Header> = {
-  title: "Components/Header",
+  title: "Header",
   component: Header,
   tags: ["autodocs"],
   argTypes: {

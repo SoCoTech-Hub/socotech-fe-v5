@@ -5,7 +5,7 @@ import type { BlogPost } from "./index";
 import BlogGrid from "./grid";
 
 export default {
-  title: "Components/BlogGrid",
+  title: "Blog/Grid",
   component: BlogGrid,
   parameters: {
     layout: "centered",
