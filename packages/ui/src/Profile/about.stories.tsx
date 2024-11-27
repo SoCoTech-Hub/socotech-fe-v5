@@ -1,62 +1,37 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
+import React, { useState } from "react";
 
-import about from "./about";
+import type { Profile } from "./about";
+import AboutSection from "./about";
 
-const meta: Meta<typeof about> = {
+export default {
   title: "Profile/About",
-  component: about,
-  parameters: {
-    layout: "centered",
-  },
-  argTypes: {
-    firstName: {
-      control: "text",
-      description: "The user's first name",
-      defaultValue: "John",
-    },
-    surname: {
-      control: "text",
-      description: "The user's surname",
-      defaultValue: "Doe",
-    },
-    email: {
-      control: "text",
-      description: "The user's email",
-      defaultValue: "john.doe@example.com",
-    },
-    bio: {
-      control: "text",
-      description: "A short biography of the user",
-      defaultValue: "A passionate developer with a love for coding.",
-    },
-    location: {
-      control: "text",
-      description: "The user's location",
-      defaultValue: "San Francisco, CA",
-    },
-  },
+  component: AboutSection,
+} as Meta;
+
+const Template: StoryFn = (args) => {
+  const [profile, setProfile] = useState<Profile>(args.profile);
+
+  return (
+    <AboutSection
+      {...args}
+      profile={profile}
+      updateProfile={(updatedProfile) => {
+        console.log("Profile Updated:", updatedProfile);
+        setProfile(updatedProfile);
+      }}
+    />
+  );
 };
 
-export default meta;
-type Story = StoryObj<typeof about>;
-
-export const Default: Story = {
-  args: {
+export const Default = Template.bind({});
+Default.args = {
+  profile: {
+    id: "123",
     firstName: "John",
     surname: "Doe",
     email: "john.doe@example.com",
-    bio: "A passionate developer with a love for coding.",
+    bio: "Software Engineer with a passion for building scalable applications.",
     location: "San Francisco, CA",
   },
-};
-
-export const LoadingState: Story = {
-  args: {
-    firstName: "Loading",
-    surname: "Loading",
-    email: "loading@example.com",
-    bio: "Loading bio...",
-    location: "Loading location...",
-  },
-  decorators: [(Story) => <div>{Story()}</div>],
 };

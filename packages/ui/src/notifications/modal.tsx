@@ -29,7 +29,7 @@ export default function NotificationModal({
   };
   return (
     <Dialog open={open} onOpenChange={closeModal}>
-      <DialogContent>
+      <DialogContent className="bg-white">
         <DialogHeader>
           <DialogTitle>{notification.title}</DialogTitle>
           <DialogDescription>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Save } from "lucide-react";
 
 import { Button } from "../button";
@@ -11,7 +11,8 @@ import { Skeleton } from "../skeleton";
 import { Switch } from "../switch";
 import { Textarea } from "../textarea";
 
-interface UserProfile {
+export interface Profile {
+  id: string;
   firstName: string;
   surname: string;
   email: string;
@@ -19,9 +20,14 @@ interface UserProfile {
   location?: string;
 }
 
+interface UserProfile {
+  profile: Profile;
+  updateProfile?: (profile: Profile) => void;
+}
+
 export default function AboutSection(props: UserProfile) {
   const [isEditing, setIsEditing] = useState(false);
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,11 +35,12 @@ export default function AboutSection(props: UserProfile) {
     const fetchData = async () => {
       await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate network delay
       setProfile({
-        firstName: props.firstName,
-        surname: props.surname,
-        email: props.email,
-        bio: props.bio,
-        location: props.location,
+        id: props.profile.id,
+        firstName: props.profile.firstName,
+        surname: props.profile.surname,
+        email: props.profile.email,
+        bio: props.profile.bio,
+        location: props.profile.location,
       });
       setIsLoading(false);
     };
@@ -49,24 +56,27 @@ export default function AboutSection(props: UserProfile) {
   };
 
   const handleSave = () => {
-    // Here you would typically send the updated profile to your backend
-    console.log("Saving profile:", profile);
-    setIsEditing(false);
+    if (profile && props.updateProfile) {
+      props.updateProfile(profile);
+    }
+    setIsEditing(!isEditing);
   };
 
   return (
     <Card className="mx-auto w-full max-w-2xl">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-2xl font-bold">About Me</CardTitle>
-        <div className="flex items-center space-x-2">
-          <Switch
-            checked={isEditing}
-            onCheckedChange={setIsEditing}
-            id="edit-mode"
-            disabled={isLoading}
-          />
-          <Label htmlFor="edit-mode">Edit Mode</Label>
-        </div>
+        {props.updateProfile && (
+          <div className="flex items-center space-x-2">
+            <Switch
+              checked={isEditing}
+              onCheckedChange={handleSave}
+              id="edit-mode"
+              disabled={isLoading}
+            />
+            <Label htmlFor="edit-mode">Edit Mode</Label>
+          </div>
+        )}
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -132,7 +142,9 @@ export default function AboutSection(props: UserProfile) {
                       rows={4}
                     />
                   ) : (
-                    <p className="text-lg">{profile.bio}</p>
+                    <p className="text-lg">
+                      <div children={profile.bio} />
+                    </p>
                   )}
                 </div>
                 <div>

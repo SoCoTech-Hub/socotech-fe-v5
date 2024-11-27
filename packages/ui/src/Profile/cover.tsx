@@ -1,29 +1,43 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Camera, Pencil } from "lucide-react";
 
-import { useUser } from "@acme/snippets/contexts/UserContext";
 import { uploadImage } from "@acme/snippets/posts/user";
 
+import { PopupAlert } from "../Alert/index";
 import { Button } from "../button";
 
 interface CoverProps {
   name?: string;
   bannerImage?: string;
   avatarImage?: string;
+  user: { id: string; profile: { id: string } };
+  updateImages?: ({
+    profileId,
+    avatarImage,
+    bannerImage,
+  }: {
+    profileId: string;
+    avatarImage: string;
+    bannerImage: string;
+  }) => void;
 }
 export default function Cover(props: CoverProps) {
-  const { user } = useUser();
   const [bannerImage, setBannerImage] = useState(
-    props.bannerImage ?? "/placeholder.svg?height=300&width=1000",
+    props.bannerImage ?? "https://via.placeholder.com/1000x300",
   );
   const [avatarImage, setAvatarImage] = useState(
-    props.avatarImage ?? "/placeholder.svg?height=150&width=150",
+    props.avatarImage ?? "https://via.placeholder.com/150",
   );
 
   const bannerInputRef = useRef<HTMLInputElement>(null);
   const avatarInputRef = useRef<HTMLInputElement>(null);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState<"default" | "success" | "destructive">(
+    "default",
+  );
+  const [visible, setVisible] = useState(false);
 
   const handleImageUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -46,21 +60,38 @@ export default function Cover(props: CoverProps) {
         const reader = new FileReader();
         reader.onload = (e) => setImage(e.target?.result as string);
         reader.readAsDataURL(file);
-        if (user) {
-          await uploadImage({ profileId: user.profile.id, file, uploadType });
-        }
-        alert(
+
+        await uploadImage({
+          profileId: props.user.profile.id,
+          file,
+          uploadType,
+        });
+        props.updateImages?.({
+          profileId: props.user.profile.id,
+          avatarImage: avatarImage,
+          bannerImage: bannerImage,
+        });
+        setMessage(
           `${uploadType === "profilePic" ? "Profile picture" : "Banner"} uploaded successfully!`,
         );
+        setVariant("success");
       } catch (error) {
         console.error("Error uploading image:", error);
-        alert("Failed to upload the image. Please try again.");
+        setMessage("Failed to upload the image. Please try again.");
+        setVariant("destructive");
       }
+      setVisible(true);
     }
   };
 
   return (
     <div className="mx-auto w-full max-w-4xl">
+      <PopupAlert
+        message={message}
+        variant={variant}
+        visible={visible}
+        onClose={() => setVisible(false)}
+      />
       <div className="relative">
         {/* Banner */}
         <div className="h-60 overflow-hidden rounded-t-xl">

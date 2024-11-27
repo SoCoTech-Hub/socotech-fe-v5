@@ -1,19 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Save } from "lucide-react";
 
 import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
+import { DropdownSelect } from "../dropdownSelect";
 import { Input } from "../input";
 import { Label } from "../label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../select";
 import { Skeleton } from "../skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
@@ -47,34 +41,17 @@ interface UserInfo {
   };
 }
 
-const initialUserInfo: UserInfo = {
-  personalInfo: {
-    idNumber: "",
-    dateOfBirth: "",
-    gender: "",
-    province: "",
-    school: "",
-    district: "",
-  },
-  deviceInfo: { serialNumber: "", imei: "" },
-  parentInfo: {
-    name: "",
-    surname: "",
-    mobileNumber: "",
-    workNumber: "",
-    idNumber: "",
-    title: "",
-    relation: "",
-  },
-  contactInfo: {
-    addressLine1: "",
-    addressLine2: "",
-    town: "",
-    mobileNumber: "",
-  },
-};
+interface InfoSectionProps {
+  dropdowns: { section: { id: string; name: string }[] }[];
+  initialUserInfo: UserInfo;
+  onSave: (user: UserInfo[keyof UserInfo]) => void;
+}
 
-export default function InfoSection() {
+export default function InfoSection({
+  dropdowns,
+  initialUserInfo,
+  onSave,
+}: InfoSectionProps) {
   const [activeTab, setActiveTab] = useState("personal");
   const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo);
   const [loading, setLoading] = useState<Record<string, boolean>>({
@@ -85,26 +62,7 @@ export default function InfoSection() {
   });
 
   useEffect(() => {
-    const fetchData = async (section: string) => {
-      // TODO: fetch actual data here
-      // Simulate API call to fetch user data for each section
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setLoading((prev) => ({ ...prev, [section]: false }));
-      setUserInfo((prev) => ({
-        ...prev,
-        [section]: {
-          ...initialUserInfo[section as keyof UserInfo],
-          ...(section === "personalInfo"
-            ? { idNumber: "", dateOfBirth: "" }
-            : {}),
-          ...(section === "deviceInfo" ? { serialNumber: "", imei: "" } : {}),
-          ...(section === "parentInfo" ? { name: "", surname: "" } : {}),
-          ...(section === "contactInfo" ? { addressLine1: "", town: "" } : {}),
-        },
-      }));
-    };
-
-    void fetchData(activeTab + "Info");
+    setLoading((prev) => ({ ...prev, [activeTab]: false }));
   }, [activeTab]);
 
   const handleInputChange = (
@@ -122,8 +80,7 @@ export default function InfoSection() {
   };
 
   const handleSave = (section: keyof UserInfo) => {
-    console.log(`Saving ${section}:`, userInfo[section]);
-    // TODO: send the updated info to your backend
+    onSave(userInfo[section]);
   };
 
   const renderInputField = (
@@ -151,29 +108,18 @@ export default function InfoSection() {
     section: keyof UserInfo,
     field: string,
     label: string,
-    options: string[],
+    options: { id: string; value: string }[],
   ) => (
     <div className="mb-4">
-      <Label htmlFor={`${section}-${field}`}>{label}</Label>
-      <Select
-        value={
-          userInfo[section][field as keyof (typeof userInfo)[typeof section]]
-        }
-        onValueChange={(value: string) =>
-          handleInputChange(section, field, value)
-        }
-      >
-        <SelectTrigger id={`${section}-${field}`}>
-          <SelectValue placeholder={`Select ${label}`} />
-        </SelectTrigger>
-        <SelectContent>
-          {options.map((option) => (
-            <SelectItem key={option} value={option}>
-              {option}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <DropdownSelect
+        label={label}
+        placeholder={`Select ${label}`}
+        options={options.map(({ id, value }) => ({
+          value: id,
+          label: value,
+        }))}
+        onChange={(value: string) => handleInputChange(section, field, value)}
+      />
     </div>
   );
 
@@ -211,14 +157,30 @@ export default function InfoSection() {
                   "Date of Birth",
                   "date",
                 )}
-                {renderSelect("personalInfo", "gender", "Gender", [
-                  "Male",
-                  "Female",
-                  "Other",
-                ])}
-                {renderInputField("personalInfo", "province", "Province")}
-                {renderInputField("personalInfo", "school", "School")}
-                {renderInputField("personalInfo", "district", "District")}
+                {renderSelect(
+                  "personalInfo",
+                  "gender",
+                  "Gender",
+                  dropdowns.genders,
+                )}
+                {renderSelect(
+                  "personalInfo",
+                  "province",
+                  "Province",
+                  dropdowns.provinces,
+                )}
+                {renderSelect(
+                  "personalInfo",
+                  "school",
+                  "School",
+                  dropdowns.schools,
+                )}
+                {renderSelect(
+                  "personalInfo",
+                  "district",
+                  "District",
+                  dropdowns.districts,
+                )}
                 <Button
                   onClick={() => handleSave("personalInfo")}
                   className="w-full"
@@ -268,17 +230,18 @@ export default function InfoSection() {
                   "Parent Work Number",
                 )}
                 {renderInputField("parentInfo", "idNumber", "Parent ID")}
-                {renderSelect("parentInfo", "title", "Parent Title", [
-                  "Mr",
-                  "Mrs",
-                  "Ms",
-                  "Dr",
-                ])}
-                {renderSelect("parentInfo", "relation", "Parent Relation", [
-                  "Mother",
-                  "Father",
-                  "Guardian",
-                ])}
+                {renderSelect(
+                  "parentInfo",
+                  "title",
+                  "Parent Title",
+                  dropdowns.titles,
+                )}
+                {renderSelect(
+                  "parentInfo",
+                  "relation",
+                  "Parent Relation",
+                  dropdowns.relationships,
+                )}
                 <Button
                   onClick={() => handleSave("parentInfo")}
                   className="w-full"

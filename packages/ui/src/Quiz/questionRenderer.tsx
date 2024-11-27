@@ -7,7 +7,7 @@ import FreeChoiceQuestion from "./freeChoice";
 import MatrixSortQuestion from "./matrixSort";
 import MultipleChoiceQuestion from "./multipleChoice";
 import SingleChoiceQuestion from "./singleChoice";
-import SortingChoiceQuestion from "./sortingChoice";
+import SortingChoiceQuestion from "./sortable";
 
 interface QuestionRendererProps {
   question: Question;

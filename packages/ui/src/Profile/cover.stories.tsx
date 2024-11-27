@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
 import Cover from "./cover";
 
@@ -7,27 +8,32 @@ const meta: Meta<typeof Cover> = {
   component: Cover,
   parameters: {
     layout: "centered",
-	},
-	args: {
-		name,
-		bannerImage,
-		avatarImage
-	}
+  },
+  argTypes: {
+    name: { control: "text", description: "The user's name" },
+    bannerImage: { control: "text", description: "The user's banner's url" },
+    avatarImage: { control: "text", description: "The user's avatar url" },
+    user: {
+      control: "object",
+      description: "The user's details, only need user id and profile id",
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Cover>;
 
 export const Default: Story = {
-  render: () => <Cover />,
+  render: () => <Cover name="John" user={{ id: "1", profile: { id: "1" } }} />,
 };
 
 export const WithCustomImages: Story = {
   render: () => (
     <Cover
-    // Mock initial state for images
-    // initialBannerImage="/example-banner.jpg"
-    // initialAvatarImage="/example-avatar.jpg"
+      name="John"
+      bannerImage="https://via.placeholder.com/200x100"
+      avatarImage="https://via.placeholder.com/100"
+      user={{ id: "1", profile: { id: "1" } }}
     />
   ),
   parameters: {
