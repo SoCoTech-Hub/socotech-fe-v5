@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Search } from "lucide-react";
 
 import type { EmailProps } from "./view";
@@ -161,7 +161,6 @@ export default function EmailApp() {
           setComposing={setComposing}
           handleAttachment={handleAttachment}
           attachments={attachment}
-          
         />
       )}
     </div>

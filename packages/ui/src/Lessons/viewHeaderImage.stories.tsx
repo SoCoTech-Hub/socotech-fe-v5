@@ -5,7 +5,7 @@ import type { HeaderImageProps } from "./viewHeaderImage";
 import HeaderImage from "./viewHeaderImage";
 
 export default {
-  title: "Components/HeaderImage",
+  title: "Lesson/HeaderImage",
   component: HeaderImage,
 } as Meta;
 

@@ -4,7 +4,7 @@ import React from "react";
 import Comment from "./";
 
 const meta: Meta<typeof Comment> = {
-  title: "Components/Comment",
+  title: "Comment",
   component: Comment,
   tags: ["autodocs"],
   argTypes: {},

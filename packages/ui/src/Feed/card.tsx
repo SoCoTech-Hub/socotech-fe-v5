@@ -1,3 +1,4 @@
+import React from "react";
 import { Heart, Share2 } from "lucide-react";
 
 import type { FeedPost } from ".";

@@ -1,3 +1,4 @@
+import React from "react";
 import { ArrowLeft, BookOpen } from "lucide-react";
 
 import type { Subject } from "./subjects";

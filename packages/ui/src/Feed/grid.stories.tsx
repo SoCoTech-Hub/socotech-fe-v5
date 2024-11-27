@@ -5,7 +5,7 @@ import type { FeedPost } from "./index";
 import FeedGrid from "./grid";
 
 export default {
-  title: "Components/FeedGrid",
+  title: "Feed/Grid",
   component: FeedGrid,
   parameters: {
     layout: "centered",
