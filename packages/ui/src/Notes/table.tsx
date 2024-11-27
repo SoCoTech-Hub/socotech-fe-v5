@@ -1,12 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { ArrowUpDown } from "lucide-react";
 
-import { deleteNote } from "@acme/snippets";
-
 import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
-import { DeleteModal } from "../DeleteModal";
+import { DeleteModal } from "../deleteModal";
 import { Pagination } from "../pagination";
+import { PaginationComponent } from "../paginationComponent";
 import { Skeleton } from "../skeleton";
 import {
   Table,
@@ -31,6 +30,7 @@ interface NotesProps {
   notes: Note[];
   refetchNotes: () => void;
   isLoading: boolean;
+  deleteNote?: ({ id, profileId }: { id: string; profileId: string }) => void;
 }
 
 type SortKey = "created_at" | "name" | "subject.name";
@@ -38,11 +38,11 @@ type SortOrder = "asc" | "desc";
 
 export const NotesTable: React.FC<NotesProps> = ({
   notes,
+  deleteNote,
   refetchNotes,
   isLoading,
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isOpen, setIsOpen] = useState(false);
   const [deleteItem, setDeleteItem] = useState<Note | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>("created_at");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
@@ -82,12 +82,11 @@ export const NotesTable: React.FC<NotesProps> = ({
 
   const handleDelete = (note: Note) => {
     setDeleteItem(note);
-    setIsOpen(true);
   };
 
-  const onDelete = async () => {
+  const onDelete = () => {
     if (deleteItem) {
-      await deleteNote({ id: deleteItem.id, profile: deleteItem.profile });
+      deleteNote?.({ id: deleteItem.id, profileId: deleteItem.profile.id });
       refetchNotes();
     }
   };
@@ -128,9 +127,12 @@ export const NotesTable: React.FC<NotesProps> = ({
         </a>
       </TableCell>
       <TableCell>
-        <Button variant="destructive" onClick={() => handleDelete(note)}>
-          Delete note
-        </Button>
+        <DeleteModal
+          id={note.id}
+          name="Note"
+          refetchData={refetchNotes}
+          onDelete={onDelete}
+        />
       </TableCell>
     </TableRow>
   );
@@ -198,22 +200,16 @@ export const NotesTable: React.FC<NotesProps> = ({
             ? renderSkeletonRows()
             : currentTableData.map(renderNoteCard)}
         </div>
-        <div className="mt-4 flex justify-center">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        </div>
+        {totalPages > 1 && (
+          <div className="mt-4 flex justify-center">
+            <PaginationComponent
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
+        )}
       </CardContent>
-      <DeleteModal
-        id={deleteItem?.id ?? ""}
-        name="Note"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        refetchData={refetchNotes}
-        onDelete={onDelete}
-      />
     </Card>
   );
 };

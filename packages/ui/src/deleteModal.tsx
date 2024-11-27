@@ -16,18 +16,17 @@ interface DeleteModalProps {
   name: string;
   triggerName?: string;
   refetchData: () => void;
-  onDelete: (id: string) => Promise<void>;
+  onDelete: () => void;
 }
 
 export const DeleteModal: FC<DeleteModalProps> = ({
-  id,
   name,
   triggerName = "Delete",
   refetchData,
   onDelete,
 }) => {
-  const handleDelete = async () => {
-    await onDelete(id);
+  const handleDelete = () => {
+    onDelete();
     refetchData();
   };
 
@@ -44,7 +43,7 @@ export const DeleteModal: FC<DeleteModalProps> = ({
             action cannot be undone.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex justify-end mt-6 space-x-2">
+        <div className="mt-6 flex justify-end space-x-2">
           <DialogTrigger asChild>
             <Button variant="outline">Cancel</Button>
           </DialogTrigger>

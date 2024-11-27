@@ -2,8 +2,6 @@ import React, { useCallback, useState } from "react";
 import Fuse from "fuse.js";
 import { Search } from "lucide-react";
 
-import { Debounce } from "@acme/snippets";
-
 import { Input } from "../input";
 
 interface Note {
@@ -26,7 +24,6 @@ export const NoteSearch: React.FC<NoteSearchProps> = ({
   notes,
   setNoteList,
   placeholder = "Search notes...",
-  debounceTime = 300,
 }) => {
   const [search, setSearch] = useState("");
 
@@ -45,20 +42,15 @@ export const NoteSearch: React.FC<NoteSearchProps> = ({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearch(searchTerm);
-    debounceFilterNotes(searchTerm);
+    setTimeout(() => {
+      filterNotes(searchTerm);
+    }, 300);
   };
-
-  // Debounce to prevent excessive re-rendering.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debounceFilterNotes = useCallback(
-    Debounce((searchTerm: string) => filterNotes(searchTerm), debounceTime),
-    [filterNotes, debounceTime],
-  );
 
   return (
     <div className="w-full max-w-sm">
       <div className="relative">
-        <Search className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           type="search"
           placeholder={placeholder}

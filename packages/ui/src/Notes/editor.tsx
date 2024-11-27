@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import { Alert, AlertDescription } from "../alert";
 import { Button } from "../button";
+import { DropdownSelect } from "../dropdownSelect";
 import { Input } from "../input";
+import { Label } from "../label";
 import MDX from "../Mdx";
 import { Select } from "../select";
 import { Skeleton } from "../skeleton";
@@ -85,26 +87,21 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   }
 
   return (
-    <div className="p-4 rounded-lg shadow-md bg-card">
-      <Input
-        id="titleInput"
-        placeholder="Title"
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-        className="mb-4"
+    <div className="flex flex-col space-y-4 rounded-lg bg-card p-4 shadow-md">
+      <div>
+        <Label htmlFor="titleInput">Title</Label>
+        <Input
+          id="titleInput"
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+        />
+      </div>
+      <DropdownSelect
+        label="Select a Subject"
+        onChange={(value: string) => setSubject(value)}
+        options={subjects.map(({ id, name }) => ({ value: id, label: name }))}
       />
-
-      <Select
-        options={}
-        value={subject}
-        onChange={(value: React.SetStateAction<string>) => setSubject(value)}
-        placeholder="Select a Subject"
-        className="mb-4"
-      >
-       { subjects.map(({ id, name }) => (<SelectItem value="option1">Option 1</SelectItem> ))}
-       
-      </Select>
       <MDX value={description} setValue={setDescription} />
       {(error ?? success) && (
         <Alert variant={error ? "destructive" : "default"} className="mb-4">
@@ -123,13 +120,13 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
 
 // Skeleton for NoteEditor
 const NoteEditorSkeleton: React.FC = () => (
-  <div className="p-4 space-y-4 rounded-lg shadow-md bg-card">
-    <Skeleton className="w-1/2 h-8" />
-    <Skeleton className="w-full h-10" />
-    <Skeleton className="w-full h-32" />
+  <div className="space-y-4 rounded-lg bg-card p-4 shadow-md">
+    <Skeleton className="h-8 w-1/2" />
+    <Skeleton className="h-10 w-full" />
+    <Skeleton className="h-32 w-full" />
     <div className="flex gap-4">
-      <Skeleton className="w-24 h-10" />
-      <Skeleton className="w-24 h-10" />
+      <Skeleton className="h-10 w-24" />
+      <Skeleton className="h-10 w-24" />
     </div>
   </div>
 );

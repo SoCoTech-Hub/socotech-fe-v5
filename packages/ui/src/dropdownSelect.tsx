@@ -34,7 +34,7 @@ export function DropdownSelect({
         <SelectTrigger id={label}>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white">
           {options.map((option) => (
             <SelectItem key={option.value} value={option.value}>
               {option.label}
