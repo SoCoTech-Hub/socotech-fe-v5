@@ -62,7 +62,13 @@
     "AUTH_REDIRECT_PROXY_URL",
     "AUTH_SECRET",
     "PORT",
-    "VAPID_PUB_KEY"
+    "VAPID_PUB_KEY",
+    "NEXT_PUBLIC_GTAG_ID",
+    "NEXT_PUBLIC_DOMAIN",
+    "NEXT_PUBLIC_MAIN_URL",
+    "NEXT_PUBLIC_API_URL",
+    "NEXT_PUBLIC_GQL_URL",
+    "ENV_MODE"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",

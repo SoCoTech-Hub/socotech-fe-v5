@@ -1,4 +1,3 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
 export const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID ?? "";
 export const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN ?? "";
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";

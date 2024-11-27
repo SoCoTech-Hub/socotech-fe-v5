@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { saveNote } from "@acme/snippets/posts/notes";
-
 import { Alert, AlertDescription } from "../alert";
 import { Button } from "../button";
 import { Input } from "../input";
+import MDX from "../Mdx";
 import { Select } from "../select";
 import { Skeleton } from "../skeleton";
 import { Textarea } from "../textarea";
@@ -25,7 +24,13 @@ interface Note {
 interface NoteEditorProps {
   subjects: Subject[];
   note?: Note;
-  onSave: () => void;
+  onSave: (
+    title: string,
+    description: string,
+    read: boolean,
+    subject: string,
+    id?: string,
+  ) => void;
   onCancel: () => void;
   loading?: boolean;
 }
@@ -56,7 +61,7 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
     }
   }, [description, subject, title]);
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     setError(null);
     if (!subject || !title) {
       setError("Please provide a title and a subject");
@@ -64,16 +69,9 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
     }
 
     try {
-      await saveNote({
-        id: note?.id,
-        name: title,
-        note: description,
-        read,
-        subjectId: subject,
-      });
       setSuccess("Note saved successfully 👍");
       setTimeout(() => {
-        onSave();
+        onSave(title, description, read, subject, note?.id);
         setSuccess(null);
       }, 2000);
     } catch (error) {
@@ -87,7 +85,7 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   }
 
   return (
-    <div className="rounded-lg bg-card p-4 shadow-md">
+    <div className="p-4 rounded-lg shadow-md bg-card">
       <Input
         id="titleInput"
         placeholder="Title"
@@ -96,20 +94,18 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
         value={title}
         className="mb-4"
       />
+
       <Select
-        options={subjects.map(({ id, name }) => ({ value: id, label: name }))}
+        options={}
         value={subject}
         onChange={(value: React.SetStateAction<string>) => setSubject(value)}
         placeholder="Select a Subject"
         className="mb-4"
-      />
-      <Textarea
-        className="mb-4"
-        rows={13}
-        placeholder="Start typing your note..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+      >
+       { subjects.map(({ id, name }) => (<SelectItem value="option1">Option 1</SelectItem> ))}
+       
+      </Select>
+      <MDX value={description} setValue={setDescription} />
       {(error ?? success) && (
         <Alert variant={error ? "destructive" : "default"} className="mb-4">
           <AlertDescription>{error ?? success}</AlertDescription>
@@ -127,13 +123,13 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
 
 // Skeleton for NoteEditor
 const NoteEditorSkeleton: React.FC = () => (
-  <div className="space-y-4 rounded-lg bg-card p-4 shadow-md">
-    <Skeleton className="h-8 w-1/2" />
-    <Skeleton className="h-10 w-full" />
-    <Skeleton className="h-32 w-full" />
+  <div className="p-4 space-y-4 rounded-lg shadow-md bg-card">
+    <Skeleton className="w-1/2 h-8" />
+    <Skeleton className="w-full h-10" />
+    <Skeleton className="w-full h-32" />
     <div className="flex gap-4">
-      <Skeleton className="h-10 w-24" />
-      <Skeleton className="h-10 w-24" />
+      <Skeleton className="w-24 h-10" />
+      <Skeleton className="w-24 h-10" />
     </div>
   </div>
 );
