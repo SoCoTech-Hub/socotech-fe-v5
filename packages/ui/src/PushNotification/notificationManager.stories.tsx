@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-
-
 import NotificationManager from "./notificationManager";
 
-
 export default {
-  title: "Components/NotificationManager",
+  title: "PushNotification/NotificationManager",
   component: NotificationManager,
   parameters: {
     layout: "centered",

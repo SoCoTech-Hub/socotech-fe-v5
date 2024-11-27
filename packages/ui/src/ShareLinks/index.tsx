@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import Dropdowns from '@/components/Dropdowns'
 
 const GetSocials = gql`
   query GetSocials {

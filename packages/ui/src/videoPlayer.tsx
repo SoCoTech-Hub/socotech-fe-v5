@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import ReactPlayer from "react-player";
 
-import { Button } from "../button";
-import { Slider } from "../slider";
+import { Button } from "./button";
+import { Slider } from "./slider";
 
 interface HLSVideoPlayerProps {
   url: string;

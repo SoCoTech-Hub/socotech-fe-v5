@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React from "react";
+
 import type { Question } from "./quiz";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
@@ -72,9 +72,13 @@ export default function QuestionRenderer({
     case "sortingChoice":
       return (
         <SortingChoiceQuestion
-          question={question}
-          onAnswer={onAnswer}
-          answer={answer}
+          items={question}
+          correctOrder={answer}
+          onReorder={onAnswer}
+
+          // question={question}
+          // onAnswer={onAnswer}
+          // answer={answer}
         />
       );
     default:

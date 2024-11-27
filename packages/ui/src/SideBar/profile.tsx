@@ -1,7 +1,4 @@
 import React from "react";
-import { ChevronUp } from "lucide-react";
-
-import { Button } from "../button";
 
 export interface SidebarProfileProps {
   isExpanded: boolean;

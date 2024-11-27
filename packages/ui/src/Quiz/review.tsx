@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { SetStateAction } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { CheckCircle2, XCircle } from "lucide-react";
 
 import type { Question } from "./quiz";
@@ -11,22 +11,16 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../../accordion";
-import { Button } from "../../button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../card";
+} from "../Accordion/accordion";
+import { Button } from "../button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
 import FreeChoiceQuestion from "./freeChoice";
 import MatrixSortQuestion from "./matrixSort";
 import MultipleChoiceQuestion from "./multipleChoice";
 import SingleChoiceQuestion from "./singleChoice";
-import SortingChoiceQuestion from "./sortingChoice";
+import SortingChoiceQuestion from "./sortable";
 
 interface ReviewQuizProps {
   questions: Question[];
