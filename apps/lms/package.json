@@ -31,15 +31,15 @@
     "graphql": "^16.2.0",
     "js-cookie": "^3.0.1",
     "lodash.shuffle": "^4.2.0",
-    "next": "^15.0.0",
-    "react": "^19.0.0",
+    "next": "catalog:",
+    "react": "catalog:react19",
     "react-circular-progressbar": "^2.0.4",
     "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^14.0.4",
     "react-dnd-html5-backend": "^14.0.2",
     "react-dnd-preview": "^6.0.2",
     "react-dnd-touch-backend": "^14.1.1",
-    "react-dom": "^19.0.0",
+    "react-dom": "catalog:react19",
     "react-draggable": "^4.4.5",
     "react-dropzone": "^11.4.2",
     "react-multiline-clamp": "^2.0.0",
@@ -55,10 +55,10 @@
     "video.js": "^7.15.4"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "catalog:",
     "eslint": "^9.13.0",
     "eslint-config-next": "15.0.1",
-    "postcss": "^8.4.41",
-    "tailwindcss": "^3.4.14"
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:"
   }
 }
