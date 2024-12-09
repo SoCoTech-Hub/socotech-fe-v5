@@ -10,6 +10,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@acme/snippets": "workspace:*",
     "@acme/ui": "workspace:*",
     "next": "^15.0.0",
     "react": "^19.0.0",

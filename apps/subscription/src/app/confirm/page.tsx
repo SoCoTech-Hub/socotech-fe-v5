@@ -6,8 +6,8 @@ import resendConfirmation from "@/snippets/auth/resendConfirmation";
 import { parseCookies } from "@/snippets/parseCookies";
 
 //TODO:fix imports.
-import { Page } from "../../../packages/ui/src/PageLayout";
-import { SEO } from "../../../packages/ui/src/SeoHead";
+import { Page } from "@acme/ui/PageLayout/index";
+import { SEO } from "@acme/ui/SeoHead/index";
 
 type ConfirmProps = {
   email: string | null;
@@ -81,12 +81,12 @@ const Confirm: FC<ConfirmProps> = ({ email }) => {
         header="Thank you for registering!"
         message={
           <>
-            <div className="text-textColor desktop:text-2xl laptop:text-2xl mobile:text-xl my-4 text-center font-bold">
+            <div className="my-4 font-bold text-center text-textColor desktop:text-2xl laptop:text-2xl mobile:text-xl">
               A verification link has been sent to your email account{" "}
               {rEmail ? rEmail : email}
             </div>
-            <div className="text-textColor mobile:text-xs mb-3 mt-3 w-full text-center">
-              <div className="desktop:mx-4 laptop:mx-4 flex justify-center">
+            <div className="w-full mt-3 mb-3 text-center text-textColor mobile:text-xs">
+              <div className="flex justify-center desktop:mx-4 laptop:mx-4">
                 This may take a few minutes. Once this email has been received,
                 Please click on the link to verify your email and continue the
                 registration process.
@@ -112,7 +112,7 @@ const Confirm: FC<ConfirmProps> = ({ email }) => {
           !disabled ? (
             <button
               onClick={handleSubmit}
-              className="text-textColorSecondary bg-themeColorMain cursor-pointer rounded-lg px-8 py-3 text-center"
+              className="px-8 py-3 text-center rounded-lg cursor-pointer text-textColorSecondary bg-themeColorMain"
               key="resend"
             >
               Resend
@@ -121,7 +121,7 @@ const Confirm: FC<ConfirmProps> = ({ email }) => {
             <></>
           ),
           <Link href="/create" passHref key="start-again">
-            <div className="text-textColorSecondary bg-themeColorSecondary cursor-pointer rounded-lg p-3 text-center">
+            <div className="p-3 text-center rounded-lg cursor-pointer text-textColorSecondary bg-themeColorSecondary">
               Start Again
             </div>
           </Link>,

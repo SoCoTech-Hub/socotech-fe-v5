@@ -320,6 +320,9 @@ importers:
 
   apps/auth-v5:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
         specifier: workspace:*
         version: link:../../packages/ui

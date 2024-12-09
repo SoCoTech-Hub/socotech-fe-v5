@@ -5,11 +5,11 @@ import getGQLRequest from "@/snippets/getGQLRequest";
 import createTransaction from "@/snippets/payfast/createTransaction";
 import sendTransaction from "@/snippets/payfast/sendTransaction";
 
-import { Alert } from "../../../packages/ui/src/alert";
-import { Button } from "../../../packages/ui/src/button";
-import { Checkbox } from "../../../packages/ui/src/Checkbox";
-import { InputField } from "../../../packages/ui/src/InputField";
-import { SEO } from "../../../packages/ui/src/SeoHead";
+import { Alert } from "@acme/ui/alert";
+import { Button } from "@acme/ui/button";
+import { Checkbox } from "@acme/ui/Checkbox";
+import InputField from "@acme/ui/InputField/index";
+import { SEO } from "@acme/ui/SeoHead/index";
 
 interface SubscribeProps {
   product: any;

@@ -1,9 +1,9 @@
 import { FC } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { baseUrl, mainUrl, orgName } from "@/context/constants";
 
-import { Page } from "../../../packages/ui/src/PageLayout";
+import { baseUrl, mainUrl, orgName } from "@acme/snippets";
+import { Page } from "@acme/ui/PageLayout/index";
 
 type CancelProps = {
   url: string;

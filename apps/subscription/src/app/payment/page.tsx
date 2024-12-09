@@ -2,9 +2,9 @@ import React from "react";
 import { useRouter } from "next/router";
 import { mainUrl } from "@/context/constants";
 
-import { Button } from "../../../packages/ui/src/button";
-import LogoOverlay from "../../../packages/ui/src/LogoOverlay";
-import { SEO } from "../../../packages/ui/src/SeoHead";
+import { Button } from "@acme/ui/button";
+import LogoOverlay from "@acme/ui/LogoOverlay/index";
+import { SEO } from "@acme/ui/SeoHead/index";
 
 interface Seo {
   title: string;
