@@ -2,9 +2,15 @@ import { FC } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import { Button } from "../../../packages/ui/src/button";
+
+
+import { Button } from "@acme/ui/src/button";
+
+
+
 import LogoOverlay from "../../../packages/ui/src/LogoOverlay";
 import { SEO } from "../../../packages/ui/src/SeoHead";
+
 
 const seo = {
   title: "Topic - Copyright Policy",
