@@ -11,18 +11,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@chromatic-com/storybook": "1.9.0",
-    "@storybook/addon-essentials": "8.3.6",
-    "@storybook/addon-interactions": "8.3.6",
-    "@storybook/addon-links": "8.3.6",
-    "@storybook/addon-themes": "^8.3.6",
-    "@storybook/blocks": "8.3.6",
-    "@storybook/react": "8.3.6",
-    "@storybook/react-vite": "8.3.6",
-    "@storybook/test": "8.3.6",
-    "prop-types": "15.8.1",
-    "storybook": "8.3.6",
-    "tailwindcss": "^3.4.14"
+    "@chromatic-com/storybook": "catalog:storybook",
+    "@storybook/addon-essentials": "catalog:storybook",
+    "@storybook/addon-interactions": "catalog:storybook",
+    "@storybook/addon-links": "catalog:storybook",
+    "@storybook/addon-themes": "catalog:storybook",
+    "@storybook/blocks": "catalog:storybook",
+    "@storybook/react": "catalog:storybook",
+    "@storybook/react-vite": "catalog:storybook",
+    "@storybook/test": "catalog:storybook",
+    "prop-types": "catalog:storybook",
+    "storybook": "catalog:storybook",
+    "tailwindcss": "catalog:"
   },
   "dependencies": {
     "@acme/ui": "workspace:^"
