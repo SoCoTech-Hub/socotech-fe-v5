@@ -1,6 +1,5 @@
 // import { useEffect } from 'react'
 import Head from 'next/head'
-import { ApolloProvider } from '@apollo/client'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/styles'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,12 +9,6 @@ import '@/styles/globals.css'
 import '@/styles/theme_core.css'
 import '@/styles/form_styles.css'
 import '@/styles/socoed_classes.css'
-import '@/styles/pagination.scss'
-import Layout from '@/layouts/Layout'
-import client from '@/api/apolloClient'
-import { AppWrapper } from '@/context/AppContext'
-import Protected from '@/snippets/protected'
-import PageTracking from '@/snippets/pageTracking'
 
 const theme = createTheme({
 	components: {
@@ -27,7 +20,7 @@ const theme = createTheme({
 	}
 })
 
-function MyApp({ Component, pageProps, modDevice }) {
+function MyApp({ Component, pageProps }) {
 	// useEffect(() => {
 	// 	if (typeof window !== 'undefined') {
 	// 		const loader = document.getElementById('splashScreen')
@@ -44,33 +37,11 @@ function MyApp({ Component, pageProps, modDevice }) {
 					content='width=device-width, initial-scale=1.0, user-scalable=no'
 				/>
 			</Head>
-			<AppWrapper>
-				<ThemeProvider theme={theme}>
-					<Protected device={modDevice}>
-						<PageTracking />
-						<ApolloProvider client={client}>
-							<Layout>
-								<Component {...pageProps} />
-							</Layout>
-						</ApolloProvider>
-					</Protected>
-				</ThemeProvider>
-			</AppWrapper>
+			<ThemeProvider theme={theme}>
+				<Component {...pageProps} />
+			</ThemeProvider>
 		</>
 	)
-}
-
-MyApp.getInitialProps = async (ctx) => {
-	if (typeof window === 'undefined') {
-		const deviceDetail = ctx.ctx.req.headers['user-agent']
-		const modDevice = `device:${deviceDetail}`
-
-		return {
-			modDevice
-		}
-	} else {
-		return {}
-	}
 }
 
 export default MyApp

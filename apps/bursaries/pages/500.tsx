@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { baseUrl } from "@/context/constants";
+import React from "react"
 
 const Custom500: FC = () => {
   const router = useRouter();

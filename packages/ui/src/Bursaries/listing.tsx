@@ -19,7 +19,7 @@ interface BursaryListingProps {
   iconSvg?: string;
 }
 
-const BursaryListing: React.FC<BursaryListingProps> = ({
+export const BursaryListing: React.FC<BursaryListingProps> = ({
   id,
   applicationFeatureImage = "",
   courseTitle = "Course Title Goes Here",
