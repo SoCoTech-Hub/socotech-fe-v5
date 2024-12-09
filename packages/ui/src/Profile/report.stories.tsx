@@ -4,7 +4,7 @@ import React from "react";
 import ReportSection from "./section";
 
 const meta: Meta<typeof ReportSection> = {
-  title: "Components/ReportSection",
+  title: "Profile/Report",
   component: ReportSection,
   parameters: {
     layout: "centered",

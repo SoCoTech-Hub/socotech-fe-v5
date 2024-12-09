@@ -1,11 +1,12 @@
 "use client";
 
 import type { SetStateAction } from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight, Book, CheckCircle, Clock, Lock } from "lucide-react";
 
 import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
+import { DropdownSelect } from "../dropdownSelect";
 import { Progress } from "../progress";
 import { Select, SelectItem } from "../select";
 import { Skeleton } from "../skeleton";
@@ -27,38 +28,23 @@ interface UserReport {
 }
 
 interface FilterOptions {
-  grades: string[];
-  subjectCategories: string[];
-  subjects: string[];
+  grades: { id: string; name: string }[];
+  subjectCategories: { id: string; name: string }[];
+  subjects: { id: string; name: string }[];
 }
 
-export default function ReportSection() {
-  const [report, setReport] = useState<UserReport | null>(null);
+export default function ReportSection(
+  filterOptions?: FilterOptions,
+  report?: UserReport,
+) {
   const [loading, setLoading] = useState(true);
   const [selectedGrade, setSelectedGrade] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  //TODO: fetch filterOptions
-  const filterOptions: FilterOptions = {
-    grades: ["Grade 1", "Grade 2", "Grade 3"],
-    subjectCategories: ["Math", "Science", "History"],
-    subjects: ["Algebra", "Biology", "World History"],
-  };
 
   useEffect(() => {
-    const fetchReport = async () => {
-      //TODO: Fetch report data
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setReport({
-        totalTimeSpent: 3600,
-        lessonsCompleted: 5,
-        lessonsInProgress: 2,
-        lessons: [],
-      });
-      setLoading(false);
-    };
-    void fetchReport();
-  }, []);
+    if (report) setLoading(false);
+  }, [report]);
 
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
@@ -104,42 +90,33 @@ export default function ReportSection() {
         <div className="space-y-4">
           {/* Filters */}
           <div className="flex gap-4">
-            <Select
+            <DropdownSelect
+              label="Grade"
               placeholder="Select Grade"
-              onChange={(e: {
-                target: { value: SetStateAction<string | null> };
-              }) => setSelectedGrade(e.target.value)}
-            >
-              {filterOptions.grades.map((grade) => (
-                <SelectItem key={grade} value={grade}>
-                  {grade}
-                </SelectItem>
-              ))}
-            </Select>
-            <Select
+              onChange={setSelectedGrade}
+              options={filterOptions?.grades.map(({ id, name }) => ({
+                value: id,
+                label: name,
+              }))}
+            />
+            <DropdownSelect
+              label="Category"
               placeholder="Select Category"
-              onChange={(e: {
-                target: { value: SetStateAction<string | null> };
-              }) => setSelectedCategory(e.target.value)}
-            >
-              {filterOptions.subjectCategories.map((category) => (
-                <SelectItem key={category} value={category}>
-                  {category}
-                </SelectItem>
-              ))}
-            </Select>
-            <Select
+              onChange={setSelectedCategory}
+              options={filterOptions?.subjectCategories.map(({ id, name }) => ({
+                value: id,
+                label: name,
+              }))}
+            />
+            <DropdownSelect
+              label="Subject"
               placeholder="Select Subject"
-              onChange={(e: {
-                target: { value: SetStateAction<string | null> };
-              }) => setSelectedSubject(e.target.value)}
-            >
-              {filterOptions.subjects.map((subject) => (
-                <SelectItem key={subject} value={subject}>
-                  {subject}
-                </SelectItem>
-              ))}
-            </Select>
+              onChange={setSelectedSubject}
+              options={filterOptions.subjects.map(({ id, name }) => ({
+                value: id,
+                label: name,
+              }))}
+            />
           </div>
 
           {/* Report Summary */}
