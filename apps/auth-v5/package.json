@@ -19,7 +19,7 @@
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
-    "@acme/typescript-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
     "@next/eslint-plugin-next": "catalog:",
     "@types/node": "catalog:react19",
     "@types/react": "catalog:react19",
