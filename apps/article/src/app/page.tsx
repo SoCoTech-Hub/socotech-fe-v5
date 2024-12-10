@@ -1,5 +1,16 @@
 import React from "react";
 
-export default function Home() {
-  return <div></div>;
-}
+import Blog from "@acme/ui/Blog";
+
+//TODO: add functions and fetches
+const IndexPage: React.FC = () => {
+  return (
+    <div>
+      <main className="container mx-auto px-4 py-8">
+        <Blog />
+      </main>
+    </div>
+  );
+};
+
+export default IndexPage;
