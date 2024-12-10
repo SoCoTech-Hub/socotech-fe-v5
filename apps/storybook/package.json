@@ -1,30 +1,32 @@
 {
-  "name": "storybook",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@acme/storybook",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@chromatic-com/storybook": "catalog:storybook",
-    "@storybook/addon-essentials": "catalog:storybook",
-    "@storybook/addon-interactions": "catalog:storybook",
-    "@storybook/addon-links": "catalog:storybook",
-    "@storybook/addon-themes": "catalog:storybook",
-    "@storybook/blocks": "catalog:storybook",
-    "@storybook/react": "catalog:storybook",
-    "@storybook/react-vite": "catalog:storybook",
-    "@storybook/test": "catalog:storybook",
-    "prop-types": "catalog:storybook",
-    "storybook": "catalog:storybook",
-    "tailwindcss": "catalog:"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@acme/ui": "workspace:^"
-  }
+    "@acme/ui": "workspace:^",
+    "next": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tailwind-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
+    "@types/node": "catalog:react19",
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
+    "eslint": "catalog:",
+    "eslint-config-next": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@acme/prettier-config"
 }

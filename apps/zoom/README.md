@@ -1,30 +1,10 @@
-This is a custom built Next.js Boilerplate with all the latest udpates and trends and a bit of SocoTech usages
+## WTF
 
-The following can be used to ease the import process along with what you will find inside each folder
-// api requests
-`"@/api/*"` => "pages/api/_"
-// fonts, icons, images
-`"@/assets/_"`=> ["assets/*"] // components`"@/components/_"` => ["components/_"]
-// graphql queries
-`"@/graphql/*"` => ["snippets/graphql/*"]
-// hooks
-`"@/hooks/*"` => ["hooks/*"]
-// theming library
-`"@/lib/*"` => ["lib/*"]
-// code snippets
-`"@/snippets/*"` => ["snippets/*"]
-// page styling
-`"@/styles/*"` => ["styles/*"]
+This package is setup to be replicated as a base of Nextjs
 
-The aim with this boilerplate is to ease and speed up the process of creating new systems using the SocoTech API
-Code is to be written once in the appropriate folder, and referenced where needed
-This gives a clean setup and way of coding
-also debugging will be substantiully easier since you will know it's only on 1 place to be fixed
-
-To get started:
-// install dependencies
-yarn
-// start development mode
-yarn dev
-// start production mode (build is included in this command)
-yarn start
+- The following has been setup to ease uniformity of code
+  [tailwind config](./tailwind.config.ts)
+  [typescript config](./tsconfig.json)
+  [postcss config](./postcss.config.mjs)
+  [next config](./next.config.ts)
+  [eslint](./.eslintrc.json)

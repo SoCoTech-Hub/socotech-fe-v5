@@ -9,22 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@acme/ui": "workspace:*",
+    "@acme/ui": "workspace:^",
     "next": "catalog:",
     "react": "catalog:react19",
     "react-dom": "catalog:react19"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@next/eslint-plugin-next": "catalog:",
     "@types/node": "catalog:react19",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "autoprefixer": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-next": "catalog:",
     "postcss": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
-  }
+  },
+  "prettier": "@acme/prettier-config"
 }

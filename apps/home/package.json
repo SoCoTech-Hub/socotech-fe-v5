@@ -3,41 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3003",
-    "build": "npm run clean && next build",
-    "start": "npm run build && next start -p 3603",
-    "clean": "npx rimraf .next",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "3.5.7",
-    "@emotion/react": "^11.7.0",
-    "@emotion/styled": "^11.6.0",
-    "@imbios/next-pwa": "^1.1.1",
-    "@mui/material": "^5.2.2",
-    "@mui/styles": "^5.2.2",
-    "@popperjs/core": "^2.11.0",
-    "apisauce": "^2.1.2",
-    "bootstrap": "^5.2.3",
-    "chart.js": "^3.7.0",
-    "cookie": "^0.4.1",
-    "graphql": "^16.2.0",
-    "html2canvas": "^1.4.1",
-    "js-cookie": "^3.0.1",
+    "@acme/ui": "workspace:^",
     "next": "catalog:",
     "react": "catalog:react19",
-    "react-chartjs-2": "^4.0.1",
-    "react-dom": "catalog:react19",
-    "react-input-mask": "^2.0.4",
-    "react-redux": "^7.2.6",
-    "recharts": "^2.1.8",
-    "sass": "^1.38.1",
-    "sharp": "^0.29.3",
-    "typescript": "~5.6.2"
+    "react-dom": "catalog:react19"
   },
   "devDependencies": {
-    "autoprefixer": "catalog:",
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tailwind-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
+    "@types/node": "catalog:react19",
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
+    "eslint": "catalog:",
+    "eslint-config-next": "catalog:",
     "postcss": "catalog:",
-    "tailwindcss": "catalog:"
-  }
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@acme/prettier-config"
 }

@@ -1,0 +1,43 @@
+{
+  "name": "@acme/auth",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "npm run clean && next build",
+    "start": "npm run build && next start -p 3600",
+    "clean": "npx rimraf .next",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "3.5.7",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@imbios/next-pwa": "^1.1.1",
+    "@mui/material": "^5.2.2",
+    "@mui/styles": "^5.2.2",
+    "@popperjs/core": "^2.11.0",
+    "@silvermine/videojs-quality-selector": "^1.2.5",
+    "apisauce": "^2.1.2",
+    "bootstrap": "^5.2.3",
+    "cookie": "^0.4.1",
+    "form-data": "^4.0.0",
+    "graphql": "^16.2.0",
+    "js-cookie": "^3.0.1",
+    "mailgun.js": "^9.2.1",
+    "next": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "react-input-mask": "^2.0.4",
+    "sass": "^1.38.1",
+    "typescript": "~5.6.2",
+    "video.js": "^7.15.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "catalog:",
+    "eslint": "^9.13.0",
+    "eslint-config-next": "15.0.1",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:"
+  }
+}
