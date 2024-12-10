@@ -1,8 +1,8 @@
 
-import BursaryWelcomeBanner from "../../../../packages/ui/src/Bursaries/tour";
-import { Button } from "../../../../packages/ui/src/button";
-import ContentLock from "../../../../packages/ui/src/ContentLock";
-import DigilibCategories from "../../../../packages/ui/src/Digilib/categories";
+import BursaryWelcomeBanner from "../../../../../packages/ui/src/Bursaries/tour";
+import { Button } from "../../../../../packages/ui/src/button";
+import ContentLock from "../../../../../packages/ui/src/ContentLock";
+import DigilibCategories from "../../../../../packages/ui/src/Digilib/categories";
 
 //TODO: fix components
 interface BursaryCategory {
