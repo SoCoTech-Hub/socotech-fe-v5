@@ -1,6 +1,7 @@
 "use client";
 
 // Error boundaries must be Client Components
+import React from "react";
 import { useRouter } from "next/router";
 
 export default function GlobalError({
