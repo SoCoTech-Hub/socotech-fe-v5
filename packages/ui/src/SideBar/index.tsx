@@ -61,7 +61,7 @@ export default function CustomSidebar({
             {isExpanded ? (
               <SidebarLogo url={logo.url} />
             ) : (
-              <div className="flex h-10 w-10 items-center justify-center rounded-full">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full">
                 <SidebarLogo url={logo.altUrl} />
               </div>
             )}
@@ -78,7 +78,7 @@ export default function CustomSidebar({
           <SidebarMenu>
             {menuItems.map((item, index) => (
               <SidebarMenuItem key={index} className="text-primaryForeground">
-                <SidebarItem isExpanded={isExpanded} item={item} />
+                <SidebarItem isExpanded={isExpanded} item={item}  />
               </SidebarMenuItem>
             ))}
           </SidebarMenu>

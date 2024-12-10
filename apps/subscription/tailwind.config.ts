@@ -1,19 +1,10 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
-  },
-  plugins: [],
+import webConfig from "@acme/tailwind-config/web";
+
+const config: Pick<Config, "content" | "presets"> = {
+  content: ["./src/app/**/*.tsx"],
+  presets: [webConfig],
 };
+
 export default config;

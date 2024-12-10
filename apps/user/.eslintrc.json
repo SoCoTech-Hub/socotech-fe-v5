@@ -1,11 +1,3 @@
 {
-  "extends": ["next/core-web-vitals", "next/babel"],
-  "rules": {
-    "no-unused-vars": "error",
-    // "indent": ["error", 2],
-    "react-hooks/rules-of-hooks": "off",
-    "react-hooks/exhaustive-deps": "off",
-    "react/no-unescaped-entities": "off",
-    "@next/next/no-img-element": "off"
-  }
+  "extends": ["@acme/eslint-config/next.js"]
 }
