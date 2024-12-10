@@ -1,7 +1,0 @@
-{
-  "extends": "@acme/tsconfig/next.json",
-  "compilerOptions": {
-    "rootDir": "."
-  },
-  "include": [".next/types/**/*.ts"]
-}
