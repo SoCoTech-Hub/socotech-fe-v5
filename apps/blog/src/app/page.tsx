@@ -1,6 +1,7 @@
 import React from "react";
 
-import Blog from "../../../packages/ui/src/Blog";
+import Blog from "@acme/ui/src/Blog";
+
 //TODO: add functions and fetches
 const IndexPage: React.FC = () => {
   return (
