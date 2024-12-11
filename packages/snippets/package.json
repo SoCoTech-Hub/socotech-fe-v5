@@ -43,7 +43,7 @@
     "@graphql-codegen/typescript": "^4.1.1",
     "@graphql-codegen/typescript-operations": "^4.3.1",
     "@graphql-codegen/typescript-react-apollo": "^4.3.2",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.13",
     "@types/node": "^20",
@@ -61,8 +61,9 @@
     "react": "catalog:react19",
     "zod": "catalog:"
   },
-  "prettier": "@acme/prettier-config",
   "dependencies": {
+    "@apollo/client": "catalog:api",
     "cookie-handler-pro": "^1.0.7"
-  }
+  },
+  "prettier": "@acme/prettier-config"
 }
