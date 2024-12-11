@@ -1,26 +1,21 @@
-import axios from "axios";
+import createClient from "openapi-fetch";
 
-// Create Axios instance
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337/api",
+import type { paths } from "./types/strapi";
+
+const token = getAuthToken();
+const headers: Record<string, string> = {
+  Accept: "application/json",
+};
+if (token) {
+  headers.Authorization = `Bearer ${token}`;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+const client = createClient<paths>({
+  baseUrl: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337/api",
+  headers,
 });
-
-// Add an interceptor to include the token dynamically
-api.interceptors.request.use(
-  (config) => {
-    const token = getAuthToken();
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
-
-export default api;
+export { client };
 
 /**
  * Example function to retrieve the token

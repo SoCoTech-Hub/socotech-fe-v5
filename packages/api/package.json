@@ -33,6 +33,7 @@
   "dependencies": {
     "@strapi/strapi": "5.1.0",
     "axios": "catalog:api",
+    "openapi-fetch": "^0.13.3",
     "openapi-typescript": "catalog:api"
   },
   "devDependencies": {
