@@ -1,12 +1,14 @@
+"use client";
+
 import React, { createContext, useContext } from "react";
 import { useQuery } from "@apollo/client";
 
-import type { User } from "@acme/api/types";
+import type { PluginUsersPermissionsUser } from "@acme/api";
 
 import { GetUserProfile } from "../graphql/user";
 
 interface UserContextType {
-  user: User | null;
+  user: PluginUsersPermissionsUser | null;
   loading: boolean;
   error: unknown;
 }
@@ -17,10 +19,7 @@ const UserContext = createContext<UserContextType>({
   error: null,
 });
 
-export const UserProvider: React.FC<{ userId: string }> = ({
-  userId,
-  children,
-}) => {
+export const UserProvider: React.FC<{ userId: string }> = ({ userId }) => {
   const { data, loading, error } = useQuery(GetUserProfile, {
     variables: { id: userId },
   });

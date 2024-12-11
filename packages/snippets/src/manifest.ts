@@ -1,7 +1,9 @@
-const Manifest = {
+import type { MetadataRoute } from "next";
+
+const Manifest: MetadataRoute.Manifest = {
+  id: "twa.pwa.za.co.tdponline.dev",
   name: "Talent Development Program",
   short_name: "TDP",
-  id: "twa.pwa.za.co.tdponline.dev",
   description: "",
   background_color: "#fff",
   theme_color: "#81cc71",
@@ -11,14 +13,14 @@ const Manifest = {
   lang: "en",
   orientation: "any",
   display: "fullscreen",
-  permissions: {
-    "desktop-notification": {
-      description: "Needed for creating system notifications.",
-    },
-  },
-  enableNotifications: true,
-  enableSiteSettingsShortcut: true,
-  isChromeOSOnly: false,
+  // permissions: {
+  //   "desktop-notification": {
+  //     description: "Needed for creating system notifications.",
+  //   },
+  // },
+  // enableNotifications: true,
+  // enableSiteSettingsShortcut: true,
+  // isChromeOSOnly: false,
   shortcuts: [
     {
       name: "Dashboard",
@@ -707,7 +709,6 @@ const Manifest = {
       src: "screenshot.jpg",
       sizes: "1280x720",
       type: "image/jpg",
-      platform: "wide",
     },
   ],
   related_applications: [

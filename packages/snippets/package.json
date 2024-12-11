@@ -63,7 +63,8 @@
   },
   "dependencies": {
     "@apollo/client": "catalog:api",
-    "cookie-handler-pro": "^1.0.7"
+    "cookie-handler-pro": "^1.0.7",
+    "web-push": "^3.6.7"
   },
   "prettier": "@acme/prettier-config"
 }

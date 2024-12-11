@@ -1935,6 +1935,9 @@ importers:
       cookie-handler-pro:
         specifier: ^1.0.7
         version: 1.0.7
+      web-push:
+        specifier: ^3.6.7
+        version: 3.6.7
     devDependencies:
       '@acme/api':
         specifier: workspace:*
