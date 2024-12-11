@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import api from "../api/api";
+import api from "@acme/api/api";
+
 import { useUser } from "../contexts/UserContext";
 
 export interface NoteParams {

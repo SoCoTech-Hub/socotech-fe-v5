@@ -38,3 +38,6 @@ catalogs:
     "@storybook/test": 8.3.6
     prop-types: 15.8.1
     storybook: 8.3.6
+  api:
+    axios: 1.7.9
+    openapi-typescript: 7.4.4

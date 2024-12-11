@@ -1,0 +1,42 @@
+{
+  "name": "@acme/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "types": "./dist/src/*.d.ts",
+      "default": [
+        "./src/*.ts",
+        "./src/*.tsx"
+      ]
+    },
+    "./**/*": {
+      "types": "./dist/src/**/*.d.ts",
+      "default": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "generate:types": "openapi-typescript http://localhost:1337/documentation/v1/openapi.json --output src/types/strapi.d.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@strapi/strapi": "5.1.0",
+    "axios": "catalog:api",
+    "openapi-typescript": "catalog:api"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*"
+  }
+}

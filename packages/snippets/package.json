@@ -35,6 +35,7 @@
     "gen-types": "npx graphql-codegen"
   },
   "devDependencies": {
+    "@acme/api": "workspace:*",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",

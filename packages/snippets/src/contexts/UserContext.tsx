@@ -1,7 +1,8 @@
 import React, { createContext, useContext } from "react";
 import { useQuery } from "@apollo/client";
 
-import type { User } from "../types/UserProfile";
+import type { User } from "@acme/api/types";
+
 import { GetUserProfile } from "../graphql/user";
 
 interface UserContextType {
