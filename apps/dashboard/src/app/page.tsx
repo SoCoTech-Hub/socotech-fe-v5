@@ -1,5 +1,11 @@
 import React from "react";
 
+import UserDashboard from "@acme/ui/Dashboard";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <UserDashboard />
+    </div>
+  );
 }

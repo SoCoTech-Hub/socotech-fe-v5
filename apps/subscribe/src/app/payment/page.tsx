@@ -5,7 +5,7 @@ import { mainUrl } from "@/context/constants";
 import { Button } from "@acme/ui/button";
 import LogoOverlay from "@acme/ui/LogoOverlay/index";
 import { SEO } from "@acme/ui/SeoHead/index";
-
+//TODO: move to info
 interface Seo {
   title: string;
   description: string;

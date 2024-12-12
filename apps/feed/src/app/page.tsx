@@ -1,5 +1,11 @@
 import React from "react";
 
+import Feed from "@acme/ui/Feed/index";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <Feed />
+    </div>
+  );
 }

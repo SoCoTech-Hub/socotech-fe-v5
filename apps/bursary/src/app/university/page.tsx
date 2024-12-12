@@ -1,3 +1,4 @@
+import React from "react";
 
 import BursaryWelcomeBanner from "../../../../../packages/ui/src/Bursaries/tour";
 import { Button } from "../../../../../packages/ui/src/button";

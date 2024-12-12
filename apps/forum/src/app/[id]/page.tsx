@@ -1,11 +1,11 @@
 import React from "react";
 
-import EmailApp from "@acme/ui/inmail/index";
+import ForumPost from "@acme/ui/ForumReviewDisplay/index";
 
 export default function Home() {
   return (
     <div>
-      <EmailApp />
+      <ForumPost />
     </div>
   );
 }
