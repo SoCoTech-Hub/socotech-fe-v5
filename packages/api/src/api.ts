@@ -1,4 +1,5 @@
 import createClient from "openapi-fetch";
+import qs from "qs";
 
 import type { paths } from "./types/strapi";
 
@@ -10,12 +11,17 @@ if (token) {
   headers.Authorization = `Bearer ${token}`;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-const client = createClient<paths>({
+const api = createClient<paths>({
   baseUrl: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337/api",
   headers,
+  querySerializer(params) {
+    console.log("querySerializer", params, qs.stringify(params));
+    return qs.stringify(params, {
+      encodeValuesOnly: true, // prettify URL
+    });
+  },
 });
-export { client };
+export { api };
 
 /**
  * Example function to retrieve the token

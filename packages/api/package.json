@@ -34,10 +34,12 @@
     "@strapi/strapi": "5.1.0",
     "axios": "catalog:api",
     "openapi-fetch": "^0.13.3",
-    "openapi-typescript": "catalog:api"
+    "openapi-typescript": "catalog:api",
+    "qs": "^6.13.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*"
+    "@acme/tsconfig": "workspace:*",
+    "@types/qs": "^6.9.17"
   }
 }
