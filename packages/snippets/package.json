@@ -48,6 +48,7 @@
     "@types/jest": "catalog:jest",
     "@types/node": "^20",
     "@types/react": "catalog:react19",
+    "@types/web-push": "^3.6.4",
     "eslint": "catalog:",
     "jest": "catalog:jest",
     "jest-environment-jsdom": "catalog:jest",

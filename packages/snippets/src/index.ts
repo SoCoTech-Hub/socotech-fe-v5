@@ -3,3 +3,4 @@ export * from "./graphql";
 export * from "./hooks";
 export * from "./posts";
 export * from "./meta";
+export * from "./nextConfig";
