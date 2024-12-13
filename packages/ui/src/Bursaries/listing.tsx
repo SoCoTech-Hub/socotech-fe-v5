@@ -8,7 +8,7 @@ import { cn } from "../";
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
 
-interface BursaryListingProps {
+export interface BursaryListingProps {
   id: string;
   applicationFeatureImage?: string;
   courseTitle?: string;
@@ -19,7 +19,7 @@ interface BursaryListingProps {
   iconSvg?: string;
 }
 
-export const BursaryListing: React.FC<BursaryListingProps> = ({
+const BursaryListing = ({
   id,
   applicationFeatureImage = "",
   courseTitle = "Course Title Goes Here",
@@ -28,7 +28,7 @@ export const BursaryListing: React.FC<BursaryListingProps> = ({
   setSelection,
   bgColor = "",
   iconSvg = "",
-}) => {
+}: BursaryListingProps) => {
   return (
     <Card className="w-full">
       <CardContent className="p-0">

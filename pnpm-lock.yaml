@@ -607,11 +607,14 @@ importers:
 
   apps/bursary:
     dependencies:
+      '@acme/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@acme/snippets':
         specifier: workspace:*
         version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -2352,6 +2355,9 @@ importers:
       react-hook-form:
         specifier: catalog:ui
         version: 7.52.2(react@19.0.0)
+      react-multiline-clamp:
+        specifier: ^2.0.0
+        version: 2.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-pdf:
         specifier: catalog:ui
         version: 9.1.1(@types/react@19.0.1)(encoding@0.1.13)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -12972,6 +12978,12 @@ packages:
 
   react-is@19.0.0:
     resolution: {integrity: sha512-H91OHcwjZsbq3ClIDHMzBShc1rotbfACdWENsmEf0IFvZ3FgGPtdHMcsv45bQ1hAbgdfiA8SnxTKfDS+x/8m2g==}
+
+  react-multiline-clamp@2.0.0:
+    resolution: {integrity: sha512-iPm3HxFD6LO63lE5ZnThiqs+6A3c+LW3WbsEM0oa0iNTa0qN4SKx/LK/6ZToSmXundEcQXBFVNzKDvgmExawTw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   react-native-gesture-handler@2.20.2:
     resolution: {integrity: sha512-HqzFpFczV4qCnwKlvSAvpzEXisL+Z9fsR08YV5LfJDkzuArMhBu2sOoSPUF/K62PCoAb+ObGlTC83TKHfUd0vg==}
@@ -28983,6 +28995,11 @@ snapshots:
   react-is@18.3.1: {}
 
   react-is@19.0.0: {}
+
+  react-multiline-clamp@2.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   react-native-gesture-handler@2.20.2(react-native@0.76.5(@babel/core@7.25.2)(@babel/preset-env@7.26.0(@babel/core@7.25.2))(@types/react@19.0.1)(encoding@0.1.13)(react@19.0.0))(react@19.0.0):
     dependencies:

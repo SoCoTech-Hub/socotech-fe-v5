@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
 
-interface BursaryWelcomeBannerProps {
+export interface BursaryWelcomeBannerProps {
   header?: string;
   subHeader?: string;
   img?: string;

@@ -71,6 +71,7 @@
     "react-draggable": "catalog:ui",
     "react-dropzone": "catalog:ui",
     "react-hook-form": "catalog:ui",
+    "react-multiline-clamp": "^2.0.0",
     "react-pdf": "catalog:ui",
     "react-player": "catalog:ui",
     "react-quill": "catalog:ui",

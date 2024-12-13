@@ -2,24 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 
-// import getGQLRequest from "@acme/snippets/getGQLRequest";
+import type { components } from "@acme/api";
+import BursaryListing from "@acme/ui/Bursaries/listing";
 import BursaryWelcomeBanner from "@acme/ui/Bursaries/tour";
-import DigilibCategories from "@acme/ui/Digilib/categories";
+
+// import getGQLRequest from "@acme/snippets/getGQLRequest";
 
 //TODO: fix links and add component needs
-interface BursaryCategory {
-  id: string;
-  name: string;
-  description?: string;
-  color?: string;
-  icon?: string;
-  iconSvg?: string;
-}
 
 const Bursaries = () => {
-  const [bursaryCategories, setBursaryCategories] = useState<
-    BursaryCategory[] | undefined
-  >();
+  const [bursaryCategories, setBursaryCategories] = useState([]);
   useEffect(() => {
     const fetch = async () => {
       //TODO: Fix fetch
@@ -37,15 +29,15 @@ const Bursaries = () => {
         <div className="space-y-6">
           <div className="mobile:mr-0 mobile:p-1 mobile:text-xl mr-24 pr-10 text-center text-4xl font-bold leading-tight text-white">
             <BursaryWelcomeBanner
-              header="Explore bursaries currently available in SA"
-              subHeader="Start your journey by exploring and applying for bursaries that can help fund your education and future career."
-              img="/applications-tour.png"
+              header="Your Future Is Bright, Bright Like A Diamond."
+              subHeader="Discover Scholarships and Bursaries That Are Looking For Students Like You."
+              img="/bursaries_banner.gif"
             />
           </div>
         </div>
       </div>
       <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 desktop:grid-cols-5 laptop:grid-cols-3 mobile:grid-cols-1 grid place-items-stretch gap-3">
-        {bursaryCategories?.map((bursary) => <DigilibCategories link={""} />)}
+        {bursaryCategories?.map((bursary) => <BursaryListing link={""} />)}
       </div>
     </div>
   );
