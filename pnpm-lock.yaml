@@ -277,8 +277,11 @@ importers:
 
   apps/account:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -329,8 +332,11 @@ importers:
 
   apps/affiliate:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -381,8 +387,11 @@ importers:
 
   apps/application:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -433,8 +442,11 @@ importers:
 
   apps/article:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -485,8 +497,11 @@ importers:
 
   apps/assignment:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -537,8 +552,11 @@ importers:
 
   apps/auth:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -589,6 +607,9 @@ importers:
 
   apps/bursary:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
         specifier: workspace:^
         version: link:../../packages/ui
@@ -641,8 +662,11 @@ importers:
 
   apps/dashboard:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -693,8 +717,11 @@ importers:
 
   apps/event:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -745,8 +772,11 @@ importers:
 
   apps/faq:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -797,8 +827,11 @@ importers:
 
   apps/feed:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -849,8 +882,11 @@ importers:
 
   apps/forum:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -901,8 +937,11 @@ importers:
 
   apps/home:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -953,8 +992,11 @@ importers:
 
   apps/info:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1005,8 +1047,11 @@ importers:
 
   apps/inmail:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1057,8 +1102,11 @@ importers:
 
   apps/kin:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1109,8 +1157,11 @@ importers:
 
   apps/knowledge-base:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1161,8 +1212,11 @@ importers:
 
   apps/lesson:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1313,8 +1367,11 @@ importers:
 
   apps/note:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1365,8 +1422,11 @@ importers:
 
   apps/notification:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1417,8 +1477,11 @@ importers:
 
   apps/profile:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1469,8 +1532,11 @@ importers:
 
   apps/qualification:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1521,8 +1587,11 @@ importers:
 
   apps/quiz:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1573,8 +1642,11 @@ importers:
 
   apps/report:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1625,8 +1697,11 @@ importers:
 
   apps/show:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1720,8 +1795,11 @@ importers:
 
   apps/subscribe:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1772,8 +1850,11 @@ importers:
 
   apps/support:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1824,8 +1905,11 @@ importers:
 
   apps/survey:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -1986,8 +2070,11 @@ importers:
 
   apps/zoomsdk:
     dependencies:
+      '@acme/snippets':
+        specifier: workspace:*
+        version: link:../../packages/snippets
       '@acme/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/ui
       next:
         specifier: 'catalog:'
@@ -2038,12 +2125,21 @@ importers:
 
   packages/api:
     dependencies:
+      '@apollo/client':
+        specifier: catalog:api
+        version: 3.12.2(@types/react@18.3.14)(graphql-ws@5.16.0(graphql@16.9.0))(graphql@16.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@strapi/strapi':
         specifier: 5.1.0
         version: 5.1.0(@babel/runtime@7.25.0)(@codemirror/autocomplete@6.18.3(@codemirror/language@6.10.6)(@codemirror/state@6.5.0)(@codemirror/view@6.35.3)(@lezer/common@1.2.3))(@codemirror/language@6.10.6)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.8)(@codemirror/state@6.5.0)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.35.3)(@swc/core@1.7.40(@swc/helpers@0.5.15))(@swc/helpers@0.5.15)(@types/hoist-non-react-statics@3.3.6)(@types/node@22.10.1)(@types/react-dom@18.3.1)(@types/react@18.3.14)(codemirror@5.65.18)(encoding@0.1.13)(koa@2.15.2)(lightningcss@1.27.0)(react-dom@19.0.0(react@19.0.0))(react-native@0.76.5(@babel/core@7.25.2)(@babel/preset-env@7.26.0(@babel/core@7.25.2))(@types/react@18.3.14)(encoding@0.1.13)(react@19.0.0))(react-router-dom@6.28.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(redux@4.2.1)(sass@1.38.1)(styled-components@6.1.13(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.31.6)(type-fest@4.30.0)
       axios:
         specifier: catalog:api
         version: 1.7.9
+      graphql:
+        specifier: ^16.9.0
+        version: 16.9.0
+      graphql-tag:
+        specifier: ^2.12.6
+        version: 2.12.6(graphql@16.9.0)
       openapi-fetch:
         specifier: ^0.13.3
         version: 0.13.3
@@ -15289,6 +15385,30 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
+  '@apollo/client@3.12.2(@types/react@18.3.14)(graphql-ws@5.16.0(graphql@16.9.0))(graphql@16.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.9.0)
+      '@wry/caches': 1.0.1
+      '@wry/equality': 0.5.7
+      '@wry/trie': 0.5.0
+      graphql: 16.9.0
+      graphql-tag: 2.12.6(graphql@16.9.0)
+      hoist-non-react-statics: 3.3.2
+      optimism: 0.18.1
+      prop-types: 15.8.1
+      rehackt: 0.1.0(@types/react@18.3.14)(react@19.0.0)
+      response-iterator: 0.2.6
+      symbol-observable: 4.0.0
+      ts-invariant: 0.10.3
+      tslib: 2.8.1
+      zen-observable-ts: 1.2.5
+    optionalDependencies:
+      graphql-ws: 5.16.0(graphql@16.9.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    transitivePeerDependencies:
+      - '@types/react'
+
   '@apollo/client@3.12.2(@types/react@19.0.1)(graphql-ws@5.16.0(graphql@16.9.0))(graphql@16.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.9.0)
@@ -15304,7 +15424,7 @@ snapshots:
       response-iterator: 0.2.6
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
-      tslib: 2.6.3
+      tslib: 2.8.1
       zen-observable-ts: 1.2.5
     optionalDependencies:
       graphql-ws: 5.16.0(graphql@16.9.0)
@@ -17589,7 +17709,7 @@ snapshots:
       '@graphql-tools/utils': 10.5.5(graphql@16.9.0)
       '@whatwg-node/fetch': 0.9.23
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
     transitivePeerDependencies:
       - encoding
 
@@ -17607,7 +17727,7 @@ snapshots:
       '@graphql-tools/utils': 10.5.5(graphql@16.9.0)
       globby: 11.1.0
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -17684,7 +17804,7 @@ snapshots:
       graphql: 16.9.0
       is-glob: 4.0.3
       micromatch: 4.0.8
-      tslib: 2.6.3
+      tslib: 2.8.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -17697,7 +17817,7 @@ snapshots:
       '@graphql-tools/utils': 10.5.5(graphql@16.9.0)
       '@whatwg-node/fetch': 0.9.23
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
       value-or-promise: 1.0.12
     transitivePeerDependencies:
       - '@types/node'
@@ -17710,7 +17830,7 @@ snapshots:
       '@graphql-tools/utils': 10.5.5(graphql@16.9.0)
       globby: 11.1.0
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
       unixify: 1.0.0
 
   '@graphql-tools/graphql-tag-pluck@8.3.3(graphql@16.9.0)':
@@ -17738,7 +17858,7 @@ snapshots:
       '@graphql-tools/utils': 10.5.5(graphql@16.9.0)
       globby: 11.1.0
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
       unixify: 1.0.0
 
   '@graphql-tools/load@8.0.3(graphql@16.9.0)':
@@ -17747,7 +17867,7 @@ snapshots:
       '@graphql-tools/utils': 10.5.5(graphql@16.9.0)
       graphql: 16.9.0
       p-limit: 3.1.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/merge@9.0.8(graphql@16.9.0)':
     dependencies:
@@ -17782,7 +17902,7 @@ snapshots:
       js-yaml: 4.1.0
       lodash: 4.17.21
       scuid: 1.1.0
-      tslib: 2.6.3
+      tslib: 2.8.1
       yaml-ast-parser: 0.0.43
     transitivePeerDependencies:
       - '@types/node'
@@ -17831,7 +17951,7 @@ snapshots:
       '@whatwg-node/fetch': 0.9.23
       graphql: 16.9.0
       isomorphic-ws: 5.0.0(ws@8.18.0)
-      tslib: 2.6.3
+      tslib: 2.8.1
       value-or-promise: 1.0.12
       ws: 8.18.0
     transitivePeerDependencies:
@@ -17846,7 +17966,7 @@ snapshots:
       cross-inspect: 1.0.1
       dset: 3.1.4
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/utils@8.13.1(graphql@16.9.0)':
     dependencies:
@@ -22068,7 +22188,7 @@ snapshots:
 
   '@wry/caches@1.0.1':
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@wry/context@0.7.4':
     dependencies:
@@ -22076,11 +22196,11 @@ snapshots:
 
   '@wry/equality@0.5.7':
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@wry/trie@0.5.0':
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@xmldom/xmldom@0.7.13': {}
 
@@ -25368,7 +25488,7 @@ snapshots:
       jiti: 2.4.0
       minimatch: 9.0.5
       string-env-interpolation: 1.0.1
-      tslib: 2.6.3
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -25387,7 +25507,7 @@ snapshots:
   graphql-tag@2.12.6(graphql@16.9.0):
     dependencies:
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   graphql-ws@5.16.0(graphql@16.9.0):
     dependencies:
@@ -28117,7 +28237,7 @@ snapshots:
       '@wry/caches': 1.0.1
       '@wry/context': 0.7.4
       '@wry/trie': 0.5.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   optionator@0.9.4:
     dependencies:
@@ -29441,6 +29561,11 @@ snapshots:
     dependencies:
       jsesc: 3.0.2
 
+  rehackt@0.1.0(@types/react@18.3.14)(react@19.0.0):
+    optionalDependencies:
+      '@types/react': 18.3.14
+      react: 19.0.0
+
   rehackt@0.1.0(@types/react@19.0.1)(react@19.0.0):
     optionalDependencies:
       '@types/react': 19.0.1
@@ -30687,7 +30812,7 @@ snapshots:
 
   ts-invariant@0.10.3:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   ts-jest@29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@20.14.15)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.7.40(@swc/helpers@0.5.15))(@types/node@20.14.15)(typescript@5.5.4)))(typescript@5.5.4):
     dependencies:

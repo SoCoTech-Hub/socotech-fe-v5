@@ -1,0 +1,5 @@
+query GetRead($id: ID!, $profileId: String!) {
+  note(where: { id: $id, profile: { id: $profileId } }) {
+    read
+  }
+}

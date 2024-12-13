@@ -1,9 +1,10 @@
-import React from "react";
-import { GetServerSideProps } from "next";
-import getGQLRequest from "@/snippets/getGQLRequest";
+"use client";
 
-import BursaryWelcomeBanner from "../../../packages/ui/src/Bursaries/tour";
-import DigilibCategories from "../../../packages/ui/src/Digilib/categories";
+import React, { useEffect, useState } from "react";
+
+// import getGQLRequest from "@acme/snippets/getGQLRequest";
+import BursaryWelcomeBanner from "@acme/ui/Bursaries/tour";
+import DigilibCategories from "@acme/ui/Digilib/categories";
 
 //TODO: fix links and add component needs
 interface BursaryCategory {
@@ -15,17 +16,31 @@ interface BursaryCategory {
   iconSvg?: string;
 }
 
-interface BursariesProps {
-  bursaryCategories: BursaryCategory[];
-}
-
-const Bursaries = ({ bursaryCategories }: BursariesProps) => {
+const Bursaries = () => {
+  const [bursaryCategories, setBursaryCategories] = useState<
+    BursaryCategory[] | undefined
+  >();
+  useEffect(() => {
+    const fetch = async () => {
+      //TODO: Fix fetch
+      // const bursaryCategories = await getGQLRequest({
+      //   endpoint: "bursaryCategories",
+      //   fields: "id,name,description,color,icon,iconSvg",
+      // });
+      // setBursaryCategories(bursaryCategories.bursaryCategories);
+    };
+    fetch();
+  }, []);
   return (
     <div>
       <div className="card mobile:p-1 mobile:mb-5 bg-themeColorSecondary w-full p-4">
         <div className="space-y-6">
           <div className="mobile:mr-0 mobile:p-1 mobile:text-xl mr-24 pr-10 text-center text-4xl font-bold leading-tight text-white">
-            <BursaryWelcomeBanner />
+            <BursaryWelcomeBanner
+              header="Explore bursaries currently available in SA"
+              subHeader="Start your journey by exploring and applying for bursaries that can help fund your education and future career."
+              img="/applications-tour.png"
+            />
           </div>
         </div>
       </div>
@@ -34,19 +49,6 @@ const Bursaries = ({ bursaryCategories }: BursariesProps) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { bursaryCategories } = await getGQLRequest({
-    endpoint: "bursaryCategories",
-    fields: "id,name,description,color,icon,iconSvg",
-  });
-
-  return {
-    props: {
-      bursaryCategories,
-    },
-  };
 };
 
 export default Bursaries;

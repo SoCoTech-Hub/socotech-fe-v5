@@ -8,11 +8,15 @@ import { Card, CardContent } from "../card";
 
 interface BursaryWelcomeBannerProps {
   header?: string;
+  subHeader?: string;
+  img?: string;
 }
 
-const BursaryWelcomeBanner: React.FC<BursaryWelcomeBannerProps> = ({
+const BursaryWelcomeBanner = ({
   header = "Explore bursaries currently available in SA",
-}) => {
+  subHeader = "Start your journey by exploring and applying for bursaries that can help fund your education and future career.",
+  img = "/applications-tour.png",
+}: BursaryWelcomeBannerProps) => {
   const [isClosed, setIsClosed] = useState(false);
 
   if (isClosed) return null;
@@ -23,7 +27,7 @@ const BursaryWelcomeBanner: React.FC<BursaryWelcomeBannerProps> = ({
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-1 items-center justify-center p-6 md:p-10">
             <img
-              src={`/applications-tour.png`}
+              src={img}
               alt="Welcome Image"
               className="h-72 w-96 object-contain"
             />
@@ -42,8 +46,7 @@ const BursaryWelcomeBanner: React.FC<BursaryWelcomeBannerProps> = ({
               {header}
             </h2>
             <p className="text-textColor mb-6 text-lg leading-snug">
-              Start your journey by exploring and applying for bursaries that
-              can help fund your education and future career.
+              {subHeader}
             </p>
           </div>
         </div>
