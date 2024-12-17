@@ -30,9 +30,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
-    "paths": {
-      "@acme/*": ["../*/src"]
-    },
     "noEmit": true
   },
   "exclude": ["node_modules", "build", "dist", ".next", ".expo"]

@@ -1,24 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { sendNotification, subscribeUser, unsubscribeUser } from "./actions";
-
-function urlBase64ToUint8Array(base64String: string) {
-  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\\-/g, "+")
-    .replace(/_/g, "/");
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
+import AccessDenied from "@acme/ui/AccessDenied/accessDenied";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <AccessDenied isOpen={true} />
+    </div>
+  );
 }
