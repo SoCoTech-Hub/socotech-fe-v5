@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { SocialMediaShareProps } from "./socialLinks";
 import Component from "./socialLinks"; // Replace with the actual file path

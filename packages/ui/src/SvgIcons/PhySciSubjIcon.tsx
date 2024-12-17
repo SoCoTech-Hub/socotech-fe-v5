@@ -1,4 +1,8 @@
-export const PhySciSubjIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const PhySciSubjIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="prefix__Layer_1"

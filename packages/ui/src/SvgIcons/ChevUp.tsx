@@ -1,4 +1,8 @@
-export const ChevUp = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ChevUp = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     x={0}
     y={0}

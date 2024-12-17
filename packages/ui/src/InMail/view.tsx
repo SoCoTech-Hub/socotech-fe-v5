@@ -1,4 +1,3 @@
-import React from "react";
 import { Star, Trash2, X } from "lucide-react";
 
 import { Button } from "../button";

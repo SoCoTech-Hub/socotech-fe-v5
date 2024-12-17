@@ -1,4 +1,3 @@
-import React from "react";
 import { AlertCircle, Bell, CheckCircle2 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../card";

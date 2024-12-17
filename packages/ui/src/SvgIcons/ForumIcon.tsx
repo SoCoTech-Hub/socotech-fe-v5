@@ -1,4 +1,8 @@
-export const ForumIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ForumIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="ForumIcon_2"
     data-name="ForumIcon 2"

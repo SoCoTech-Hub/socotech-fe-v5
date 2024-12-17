@@ -1,4 +1,8 @@
-export const MoreIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const MoreIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="MoreIcon_2"
     data-name="MoreIcon 2"

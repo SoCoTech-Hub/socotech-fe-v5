@@ -38,9 +38,16 @@ const AccessDenied = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-destructive sm:max-w-[425px]">
+      <DialogContent
+        className="bg-destructive sm:max-w-[425px]"
+        aria-labelledby="access-denied-title"
+        aria-describedby="access-denied-description"
+      >
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-destructiveForeground">
+          <DialogTitle
+            id="access-denied-title"
+            className="flex items-center gap-2 text-destructiveForeground"
+          >
             <AlertCircle className="w-5 h-5" />
             {title}
           </DialogTitle>

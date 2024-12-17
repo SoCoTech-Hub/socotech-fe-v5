@@ -1,4 +1,8 @@
-export const DashboardActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const DashboardActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="Dashboard_2"
     data-name="Dashboard 2"

@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import { Alert, AlertDescription, AlertTitle } from "./alert";
 
@@ -16,7 +15,7 @@ const Template: StoryFn = (args) => (
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="h-6 w-6"
+      className="w-6 h-6"
     >
       <path
         strokeLinecap="round"

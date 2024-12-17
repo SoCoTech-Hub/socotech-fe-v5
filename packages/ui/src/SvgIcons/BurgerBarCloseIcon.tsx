@@ -1,4 +1,8 @@
-export const BurgerBarCloseIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const BurgerBarCloseIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="BurgerBarCloseIcon_2"
     data-name="Burger Bar Close Icon 2"

@@ -1,4 +1,8 @@
-export const EngFALSubjIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const EngFALSubjIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="prefix__Layer_1"

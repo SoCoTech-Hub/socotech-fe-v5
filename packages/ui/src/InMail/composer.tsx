@@ -1,4 +1,3 @@
-import React from "react";
 import { Paperclip, Send, X } from "lucide-react";
 
 import type { Attachment } from "./attachments";

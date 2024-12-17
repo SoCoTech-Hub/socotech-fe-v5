@@ -1,4 +1,8 @@
-export const EyeActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const EyeActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="EyeActiveIcon_2"
     data-name="EyeActiveIcon 2"

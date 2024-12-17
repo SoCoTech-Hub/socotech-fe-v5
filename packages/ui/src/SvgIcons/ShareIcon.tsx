@@ -1,4 +1,8 @@
-export const ShareIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ShareIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="ShareIcon_1"
     data-name="ShareIcon 2"

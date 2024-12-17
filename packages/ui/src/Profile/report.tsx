@@ -1,7 +1,7 @@
 "use client";
 
 import type { SetStateAction } from "react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Book, CheckCircle, Clock, Lock } from "lucide-react";
 
 import { Button } from "../button";

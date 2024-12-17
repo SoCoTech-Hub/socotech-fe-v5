@@ -1,4 +1,8 @@
-export const BioIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const BioIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="BioIcon"
     data-name="BioIcon"

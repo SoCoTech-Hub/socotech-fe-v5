@@ -1,9 +1,13 @@
-export const Close = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const Close = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 27 27"
-    className="h-full w-full"
+    className="w-full h-full"
     {...props}
   >
     <circle cx="13.5" cy="13.5" r="13.5" className="fill-themeColorMain" />

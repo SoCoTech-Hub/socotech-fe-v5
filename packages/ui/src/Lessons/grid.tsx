@@ -1,5 +1,3 @@
-import React from "react";
-
 import CardSkeleton from "./skeleton";
 
 export interface GridProps<T> {

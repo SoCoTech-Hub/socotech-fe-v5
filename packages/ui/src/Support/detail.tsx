@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Paperclip, Send } from "lucide-react";
 import ReactQuill from "react-quill";
 
@@ -85,7 +85,7 @@ export default function TicketDetail({ ticket }: TicketDetailProps) {
   };
 
   return (
-    <Card className="mx-auto w-full max-w-4xl">
+    <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
@@ -125,7 +125,7 @@ export default function TicketDetail({ ticket }: TicketDetailProps) {
                   {message.attachment && (
                     <div className="mt-2">
                       <a href="#" className="flex items-center text-blue-500">
-                        <Paperclip className="mr-1 h-4 w-4" />
+                        <Paperclip className="w-4 h-4 mr-1" />
                         {message.attachment}
                       </a>
                     </div>
@@ -146,11 +146,11 @@ export default function TicketDetail({ ticket }: TicketDetailProps) {
           />
           <div className="flex items-center justify-between">
             <Button variant="outline">
-              <Paperclip className="mr-2 h-4 w-4" />
+              <Paperclip className="w-4 h-4 mr-2" />
               Attach File
             </Button>
             <Button onClick={handleSendMessage}>
-              <Send className="mr-2 h-4 w-4" />
+              <Send className="w-4 h-4 mr-2" />
               Send
             </Button>
           </div>

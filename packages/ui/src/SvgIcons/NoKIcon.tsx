@@ -1,4 +1,8 @@
-export const NoKIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const NoKIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="NoKIcon"
     data-name="NoKIcon"

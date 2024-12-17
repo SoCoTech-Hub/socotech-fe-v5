@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import SplitPageForm from "./splitPageForm";
 

@@ -1,9 +1,4 @@
-import React from "react";
-
-
-
 import { Card, CardContent } from "../card";
-
 
 export interface Material {
   id: string;

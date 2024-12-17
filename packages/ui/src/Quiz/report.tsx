@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Frown, Star, ThumbsUp, Trophy } from "lucide-react";
 

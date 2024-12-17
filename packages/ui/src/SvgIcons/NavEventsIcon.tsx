@@ -1,4 +1,8 @@
-export const NavEventsIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const NavEventsIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.58 38.5" {...props}>
       <g id="NavEventsIcon-2" data-name="Nav Events Icon 1">

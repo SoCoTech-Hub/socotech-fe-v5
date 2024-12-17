@@ -1,4 +1,8 @@
-export const ImImportantIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const ImImportantIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" {...props}>
       <path

@@ -1,5 +1,3 @@
-import React from "react";
-
 import type { Subject } from "./card";
 import { ScrollArea } from "../scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "../tabs";

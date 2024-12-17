@@ -2,7 +2,7 @@
 
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronsUpDown } from "lucide-react";
 
 import { Button } from "../button";

@@ -1,11 +1,12 @@
-export const TopRecycleTrashIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const TopRecycleTrashIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      style={{
-        enableBackground: "new 0 0 32 32",
-      }}
       xmlSpace="preserve"
       {...props}
     >

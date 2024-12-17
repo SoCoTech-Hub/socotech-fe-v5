@@ -1,5 +1,3 @@
-import React from "react";
-
 import type { Question } from "./quiz";
 import { Checkbox } from "../checkbox";
 import { Label } from "../label";

@@ -1,4 +1,8 @@
-export const ImModalCloseIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const ImModalCloseIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" {...props}>
       <circle cx={16.31} cy={16.25} r={13.5} fill="#e6e6e5" />

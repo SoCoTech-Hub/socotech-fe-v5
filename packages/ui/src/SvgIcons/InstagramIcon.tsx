@@ -1,4 +1,8 @@
-export const InstagramIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const InstagramIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="InstagramIcon"
     data-name="InstagramIcon"

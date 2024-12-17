@@ -1,4 +1,8 @@
-export const ApplicationActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ApplicationActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="Applications_2"
     data-name="Applications 2"

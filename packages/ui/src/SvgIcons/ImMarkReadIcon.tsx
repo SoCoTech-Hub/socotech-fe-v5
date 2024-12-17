@@ -1,4 +1,8 @@
-export const ImMarkReadIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const ImMarkReadIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

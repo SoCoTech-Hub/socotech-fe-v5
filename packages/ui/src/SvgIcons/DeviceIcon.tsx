@@ -1,4 +1,8 @@
-export const DeviceIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const DeviceIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="DeviceIcon_1"
     data-name="DeviceIcon 1"

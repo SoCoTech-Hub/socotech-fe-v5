@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Card } from "../card";
 import { Skeleton } from "../skeleton";
 

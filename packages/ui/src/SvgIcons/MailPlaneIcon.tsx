@@ -1,4 +1,8 @@
-export const MailPlaneIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const MailPlaneIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="Layer_2"

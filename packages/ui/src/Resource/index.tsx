@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Download, Pause, Play, RotateCw } from "lucide-react";
 
 import { Button } from "../button";

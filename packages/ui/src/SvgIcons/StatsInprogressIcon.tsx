@@ -1,4 +1,8 @@
-export const StatsInprogressIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const StatsInprogressIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="Layer_2"

@@ -1,4 +1,8 @@
-export const KnowledgeBaseIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const KnowledgeBaseIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="KnowledgeBase_2"
     data-name="KnowledgeBase 2"

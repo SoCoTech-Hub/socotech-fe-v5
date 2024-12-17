@@ -1,4 +1,8 @@
-export const NotificationIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const NotificationIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="Notification_2"
     data-name="Notification 2"

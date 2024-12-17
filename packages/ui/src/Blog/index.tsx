@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { toast } from "../hooks/use-toast";
 import BlogGrid from "./grid";
 import SavedArticlesList from "./savedArticles";
 import BlogSearch from "./search";
-
 
 export interface BlogPost {
   id: string;

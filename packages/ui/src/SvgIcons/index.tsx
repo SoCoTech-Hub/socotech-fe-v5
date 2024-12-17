@@ -41,7 +41,6 @@ export * from "./NotificationIcon";
 
 export * from "./StatsCompletedIcon";
 export * from "./StatsHoursIcon";
-export * from "./StatsInProgressIcon";
 export * from "./AverageQuizScoreIcon";
 export * from "./CloseIcon";
 
@@ -80,7 +79,6 @@ export * from "./ImAttachmentIcon";
 export * from "./PullLeftIcon";
 export * from "./PullRightIcon";
 export * from "./LessonBullet";
-export * from "./AddressBook";
 export * from "./LikesIcon";
 export * from "./CommentsIcon";
 export * from "./ImMarkReadIcon";

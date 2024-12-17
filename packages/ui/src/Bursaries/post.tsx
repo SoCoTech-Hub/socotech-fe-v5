@@ -1,6 +1,5 @@
 // TODO:data fetch
 
-import React from "react";
 import Image from "next/image";
 import DigilibLoad from "@/components/DigilibLoad";
 import { BuildingIcon } from "@/components/SvgIcons";

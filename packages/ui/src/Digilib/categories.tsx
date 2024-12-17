@@ -1,5 +1,3 @@
-import React from "react";
-
 import { cn } from "..";
 import { Badge } from "../badge";
 import {

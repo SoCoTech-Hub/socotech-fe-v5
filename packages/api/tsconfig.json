@@ -6,6 +6,6 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src"],
+  "include": ["src", "generate-graphql.ts"],
   "exclude": ["node_modules"]
 }

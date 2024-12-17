@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { UserMenuProps } from "./userMenu";
 import UserMenu from "./userMenu";

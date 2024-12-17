@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface HeaderImageProps {
   headerImageUrl: string;
   headerImageAlt: string;

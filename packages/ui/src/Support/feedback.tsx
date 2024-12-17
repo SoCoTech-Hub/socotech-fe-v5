@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { ArrowLeft, Send, Star } from "lucide-react";
 
 import { Button } from "../button";

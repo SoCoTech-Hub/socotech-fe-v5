@@ -1,4 +1,3 @@
-import React from "react";
 import { AlertCircle, CheckCircle, Upload } from "lucide-react";
 
 export interface StatusContentProps {

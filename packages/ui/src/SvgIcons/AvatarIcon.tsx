@@ -1,4 +1,8 @@
-export const AvatarIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const AvatarIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="Layer_2"

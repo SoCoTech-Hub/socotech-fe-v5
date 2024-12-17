@@ -1,4 +1,3 @@
-import React from "react";
 import { Bookmark, Heart, Share2 } from "lucide-react";
 
 import type { BlogPost } from ".";

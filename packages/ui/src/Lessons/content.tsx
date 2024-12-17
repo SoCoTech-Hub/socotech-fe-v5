@@ -1,4 +1,3 @@
-import React from "react";
 import { FileText, Play } from "lucide-react";
 
 import { Card, CardContent } from "../card";

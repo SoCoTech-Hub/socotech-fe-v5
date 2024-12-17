@@ -1,4 +1,8 @@
-export const LikesIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const LikesIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

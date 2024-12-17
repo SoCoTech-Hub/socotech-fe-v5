@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "generate:types": "openapi-typescript http://localhost:1337/documentation/v1/openapi.json --output src/types/strapi.d.ts"
+    "generate:types": "openapi-typescript http://localhost:1337/documentation/v1/openapi.json --output src/types/strapi.d.ts",
+    "generate:graphql": "tsx ./generate-graphql.cjs"
   },
   "keywords": [],
   "author": "",
@@ -34,15 +35,22 @@
     "@apollo/client": "catalog:api",
     "@strapi/strapi": "5.1.0",
     "axios": "catalog:api",
-    "graphql": "catalog:api",
+    "globby": "^14.0.2",
     "graphql-tag": "^2.12.6",
     "openapi-fetch": "^0.13.3",
     "openapi-typescript": "catalog:api",
-    "qs": "^6.13.1"
+    "qs": "^6.13.1",
+    "ts-morph": "^24.0.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@types/qs": "^6.9.17"
+    "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/typescript": "^4.1.1",
+    "@graphql-codegen/typescript-operations": "^4.3.1",
+    "@types/node": "catalog:react19",
+    "graphql": "catalog:api",
+    "tsx": "^4.19.2"
   }
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 import type { SidebarItemListProps } from "./itemlist";
 import {
   DropdownMenu,

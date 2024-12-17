@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import React from "react";
 import { BookOpen, FileText, Rabbit, Settings, User } from "lucide-react";
 
 export interface SidebarProfileListItem {

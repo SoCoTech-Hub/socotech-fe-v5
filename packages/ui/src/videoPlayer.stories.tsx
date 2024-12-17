@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import HLSVideoPlayer from "./videoPlayer";
 
@@ -8,7 +7,9 @@ export default {
   component: HLSVideoPlayer,
 } as Meta;
 
-const Template: StoryFn = (args) => <HLSVideoPlayer {...args} />;
+const Template: StoryFn = (args) => (
+  <HLSVideoPlayer title="" url="" {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

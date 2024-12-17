@@ -1,4 +1,8 @@
-export const WhatsAppGroupIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const WhatsAppGroupIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="WhatsAppGroupIcon_1"
     data-name="WhatsAppGroupIcon 1"

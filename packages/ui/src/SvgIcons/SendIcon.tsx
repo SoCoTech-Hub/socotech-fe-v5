@@ -1,4 +1,8 @@
-export const SendIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const SendIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="SendIcon"
     data-name="SendIcon"

@@ -1,4 +1,8 @@
-export const LmsHelpfulIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const LmsHelpfulIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="LmsHelpfulIcon_1"

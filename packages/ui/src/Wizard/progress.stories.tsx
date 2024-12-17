@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { Step } from ".";
 import Progress from "./progress";
@@ -15,7 +14,9 @@ const steps: Step[] = [
   { id: "step-3", title: "Step 3", description: "This is the final step." },
 ];
 
-const Template: StoryFn = (args) => <Progress {...args} />;
+const Template: StoryFn = (args) => (
+  <Progress currentStepIndex={0} steps={steps} className="" {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

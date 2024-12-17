@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { Rating } from "./ratings";
 import RatingComponent from "./ratings";

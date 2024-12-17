@@ -1,4 +1,3 @@
-import React from "react";
 import { Facebook, Instagram, Linkedin, Share2, Twitter } from "lucide-react";
 
 import { Button } from "./button";

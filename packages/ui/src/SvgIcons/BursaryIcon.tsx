@@ -1,4 +1,8 @@
-export const BursaryIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const BursaryIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="Layer_2"
     data-name="Layer 2"

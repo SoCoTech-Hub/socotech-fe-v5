@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Maximize,
   Minimize,
@@ -95,7 +95,7 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
       <h1 className="mb-8 text-4xl font-bold">{title}</h1>
       <div
         ref={playerWrapperRef}
-        className="relative mx-auto w-full max-w-3xl bg-black"
+        className="relative w-full max-w-3xl mx-auto bg-black"
       >
         <ReactPlayer
           ref={playerRef}
@@ -109,7 +109,7 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
           height="auto"
           style={{ aspectRatio: "16 / 9" }}
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent px-4 py-2">
+        <div className="absolute bottom-0 left-0 right-0 px-4 py-2 bg-gradient-to-t from-black to-transparent">
           <Slider
             value={[played]}
             onValueChange={handleSeekChange}
@@ -117,9 +117,9 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
             onPointerUp={(value) => handleSeekMouseUp(value)}
             max={1}
             step={0.01}
-            className="mb-2 w-full"
+            className="w-full mb-2"
           />
-          <div className="mb-2 flex items-center justify-between text-sm text-white">
+          <div className="flex items-center justify-between mb-2 text-sm text-white">
             <span>{formatTime(played * duration)}</span>
             <span>{formatTime(duration * (1 - played))}</span>
           </div>
@@ -127,17 +127,17 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
             <div className="flex items-center space-x-2">
               <Button variant="ghost" size="icon" onClick={handlePlayPause}>
                 {playing ? (
-                  <Pause className="h-4 w-4" />
+                  <Pause className="w-4 h-4" />
                 ) : (
-                  <Play className="h-4 w-4" />
+                  <Play className="w-4 h-4" />
                 )}
               </Button>
               <div className="relative">
                 <Button variant="ghost" size="icon" onClick={handleToggleMute}>
                   {muted ? (
-                    <VolumeX className="h-4 w-4" />
+                    <VolumeX className="w-4 h-4" />
                   ) : (
-                    <Volume2 className="h-4 w-4" />
+                    <Volume2 className="w-4 h-4" />
                   )}
                 </Button>
                 <Slider
@@ -154,7 +154,7 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
                   className="w-20"
                 />
                 {showVolume && (
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 transform rounded bg-black bg-opacity-75 px-2 py-1 text-xs text-white">
+                  <div className="absolute px-2 py-1 text-xs text-white transform -translate-x-1/2 bg-black bg-opacity-75 rounded -top-6 left-1/2">
                     {Math.round(volume * 100)}%
                   </div>
                 )}
@@ -166,9 +166,9 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
               onClick={handleToggleFullscreen}
             >
               {fullscreen ? (
-                <Minimize className="h-4 w-4" />
+                <Minimize className="w-4 h-4" />
               ) : (
-                <Maximize className="h-4 w-4" />
+                <Maximize className="w-4 h-4" />
               )}
             </Button>
           </div>

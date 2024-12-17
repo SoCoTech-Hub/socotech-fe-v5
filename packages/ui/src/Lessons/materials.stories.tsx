@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 import { FileText, Link } from "lucide-react";
 
 import type { HelpfulMaterialsProps, Material } from "./materials";

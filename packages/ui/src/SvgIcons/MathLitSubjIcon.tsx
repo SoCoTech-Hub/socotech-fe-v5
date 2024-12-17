@@ -1,4 +1,8 @@
-export const MathLitSubjIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const MathLitSubjIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="prefix__Layer_1"

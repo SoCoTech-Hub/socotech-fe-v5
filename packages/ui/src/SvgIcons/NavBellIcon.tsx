@@ -1,4 +1,8 @@
-export const NavBellIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const NavBellIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="NavBell_2"
     data-name="NavBell 2"

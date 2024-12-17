@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta } from "@storybook/react";
-import React from "react";
 
 import QuestionRenderer from "./questionRenderer";
 

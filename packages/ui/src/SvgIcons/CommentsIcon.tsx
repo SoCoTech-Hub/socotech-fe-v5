@@ -1,4 +1,8 @@
-export const CommentsIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const CommentsIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="CommentsIcon"
     data-name="Layer 2"

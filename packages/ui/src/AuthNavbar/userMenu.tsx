@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 import { Button } from "../button";
 import {

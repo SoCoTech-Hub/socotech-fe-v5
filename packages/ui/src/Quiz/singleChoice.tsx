@@ -1,5 +1,3 @@
-import React from "react";
-
 import type { Question } from "./quiz";
 import { Label } from "../label";
 import { RadioGroup, RadioGroupItem } from "../radio-group";

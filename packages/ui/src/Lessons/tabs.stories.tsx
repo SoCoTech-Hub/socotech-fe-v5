@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { Grade, ScrollTabsProps } from "./tabs";
 import ScrollTabs from "./tabs";

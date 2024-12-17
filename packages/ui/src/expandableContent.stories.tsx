@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { ExpandableContentProps } from "./expandableContent";
 import { ExpandableContent } from "./expandableContent";

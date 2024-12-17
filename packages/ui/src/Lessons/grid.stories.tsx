@@ -1,11 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-
-
 
 import type { GridProps } from "./grid";
 import Grid from "./grid";
-
 
 export default {
   title: "Lesson/Grid",

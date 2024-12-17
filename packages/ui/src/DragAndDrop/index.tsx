@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Button } from "../button";
-import { Card, CardContent } from "../card";
-import { cn } from "../";
+import { useEffect, useState } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
+
+import { cn } from "../";
+import { Button } from "../button";
+import { Card, CardContent } from "../card";
 
 interface Item {
   id: string;

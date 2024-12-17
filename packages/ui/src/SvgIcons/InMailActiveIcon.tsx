@@ -1,4 +1,8 @@
-export const InMailActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const InMailActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="InMail_2"
     data-name="InMail 2"

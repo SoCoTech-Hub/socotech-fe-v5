@@ -1,4 +1,8 @@
-export const ImOptionsIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const ImOptionsIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="prefix__Layer_1"

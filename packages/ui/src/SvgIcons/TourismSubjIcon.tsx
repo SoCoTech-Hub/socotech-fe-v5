@@ -1,4 +1,8 @@
-export const TourismSubjIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const TourismSubjIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="prefix__Layer_1"

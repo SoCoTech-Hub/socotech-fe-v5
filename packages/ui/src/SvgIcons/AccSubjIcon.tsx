@@ -1,4 +1,8 @@
-export const AccSubjIcon = (props) => {
+import type { JSX, SVGProps } from "react";
+
+export const AccSubjIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => {
   return (
     <svg
       id="AccSubjIcon_1"

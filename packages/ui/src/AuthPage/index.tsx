@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import React from "react";
 
 import type { AuthNavbarProps } from "../AuthNavbar";
 import { AuthNavbar } from "../AuthNavbar";

@@ -1,4 +1,8 @@
-export const ChevDown = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ChevDown = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     x={0}
     y={0}

@@ -1,10 +1,11 @@
-export const PullLeftIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const PullLeftIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 595.3 841.9"
-    style={{
-      enableBackground: "new 0 0 595.3 841.9",
-    }}
     xmlSpace="preserve"
     {...props}
   >

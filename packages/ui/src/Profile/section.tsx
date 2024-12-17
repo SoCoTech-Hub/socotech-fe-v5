@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Card, CardContent } from "../card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
@@ -8,15 +8,14 @@ import AboutSection from "./about";
 import InfoSection from "./info";
 import ReportSection from "./report";
 
-
 export default function Section() {
   const [activeTab, setActiveTab] = useState("about");
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="mx-auto w-full max-w-4xl">
       <CardContent className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="mb-8 grid w-full grid-cols-3">
             <TabsTrigger value="about">About</TabsTrigger>
             <TabsTrigger value="info">Info</TabsTrigger>
             <TabsTrigger value="report">Report</TabsTrigger>

@@ -1,4 +1,8 @@
-export const ProfileIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ProfileIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="Profile_2"
     data-name="Profile 2"

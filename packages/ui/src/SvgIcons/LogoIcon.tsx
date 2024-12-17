@@ -1,4 +1,8 @@
-export const LogoIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const LogoIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="LogoIcon_1"
     data-name="LogoIcon 1"

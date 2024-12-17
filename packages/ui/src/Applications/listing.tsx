@@ -1,7 +1,5 @@
 // TODO:data fetch
 
-import React from "react";
-
 import { cn } from "../";
 import { Button } from "../button";
 

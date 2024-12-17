@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import {
   ChevronDown,

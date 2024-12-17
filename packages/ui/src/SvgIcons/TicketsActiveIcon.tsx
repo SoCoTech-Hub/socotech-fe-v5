@@ -1,4 +1,8 @@
-export const TicketsActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const TicketsActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="TicketsActiveIcon_2"
     data-name="TicketsActiveIcon 2"

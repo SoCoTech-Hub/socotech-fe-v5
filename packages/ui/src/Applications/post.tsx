@@ -2,8 +2,6 @@
 
 "use client";
 
-import React from "react";
-
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader } from "../card";
 import { Skeleton } from "../skeleton";

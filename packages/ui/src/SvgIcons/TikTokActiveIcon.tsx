@@ -1,4 +1,8 @@
-export const TikTokActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const TikTokActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="TikTokActiveIcon"
     data-name="TikTokActiveIcon"

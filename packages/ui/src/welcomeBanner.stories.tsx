@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import WelcomeBanner from "./welcomeBanner";
 
@@ -8,7 +7,9 @@ export default {
   component: WelcomeBanner,
 } as Meta;
 
-const Template: StoryFn = (args) => <WelcomeBanner {...args} />;
+const Template: StoryFn = (args) => (
+  <WelcomeBanner title="" subheading="" backgroundClass="" {...args} />
+);
 export const Default = Template.bind({});
 
 Default.args = {

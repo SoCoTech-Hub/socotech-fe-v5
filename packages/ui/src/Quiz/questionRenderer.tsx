@@ -1,5 +1,3 @@
-import React from "react";
-
 import type { Question } from "./quiz";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";

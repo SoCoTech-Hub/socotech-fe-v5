@@ -1,4 +1,8 @@
-export const FacebookActiveIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const FacebookActiveIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="FacebookActiveIcon"
     data-name="FacebookActiveIcon"

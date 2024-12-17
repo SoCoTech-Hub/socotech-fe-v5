@@ -1,5 +1,4 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 
 import type { Step } from "./";
 import { Button } from "../button";
@@ -57,7 +56,9 @@ const steps: Step[] = [
   },
 ];
 
-const Template: StoryFn = (args) => <Wizard {...args} />;
+const Template: StoryFn = (args) => (
+  <Wizard onComplete={() => console.log("completed")} steps={steps} {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

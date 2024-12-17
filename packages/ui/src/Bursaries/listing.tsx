@@ -1,6 +1,5 @@
 // TODO:data fetch
 
-import React from "react";
 import Image from "next/image";
 import Clamp from "react-multiline-clamp";
 

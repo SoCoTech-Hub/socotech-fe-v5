@@ -1,4 +1,8 @@
-export const ChevronDownIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const ChevronDownIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"

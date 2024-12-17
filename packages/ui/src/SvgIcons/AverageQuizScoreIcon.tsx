@@ -1,4 +1,8 @@
-export const AverageQuizScoreIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const AverageQuizScoreIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="AverageQuizScore_2"
     data-name="AverageQuizScore 2"

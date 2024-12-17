@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import type { FeedPost } from ".";
 import FeedCard from "./card";
 import FeedCardSkeleton from "./loader";

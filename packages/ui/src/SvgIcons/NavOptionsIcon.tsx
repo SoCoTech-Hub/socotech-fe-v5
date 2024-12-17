@@ -1,4 +1,8 @@
-export const NavOptionsIcon = (props) => (
+import type { JSX, SVGProps } from "react";
+
+export const NavOptionsIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg
     id="NavOptionsIcon_2"
     data-name="Nav Options Icon 2"

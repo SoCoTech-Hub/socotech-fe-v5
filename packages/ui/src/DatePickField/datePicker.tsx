@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
@@ -61,7 +61,7 @@ export function DatePicker({
             aria-describedby={isDateInvalid ? `${label}-error` : undefined}
             aria-invalid={isDateInvalid ? "true" : "false"}
           >
-            <CalendarIcon className="w-4 h-4 mr-2" />
+            <CalendarIcon className="mr-2 h-4 w-4" />
             {date ? format(date, "PPP") : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>

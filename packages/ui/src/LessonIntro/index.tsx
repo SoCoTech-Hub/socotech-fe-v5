@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import type { SubjectCategory } from "./categories";
 import type { Lesson } from "./lessons";

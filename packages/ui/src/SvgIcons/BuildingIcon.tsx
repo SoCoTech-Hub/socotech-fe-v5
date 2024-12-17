@@ -1,5 +1,4 @@
 import type { JSX, SVGProps } from "react";
-import React from "react";
 
 export const BuildingIcon = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
