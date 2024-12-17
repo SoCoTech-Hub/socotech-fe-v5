@@ -1,7 +1,7 @@
 import React from "react";
 
-import Cover from "@acme/ui/profile/cover";
 import Section from "@acme/ui/profile/section";
+import Cover from "@acme/ui/support/cover";
 
 export default function Home() {
   return (
