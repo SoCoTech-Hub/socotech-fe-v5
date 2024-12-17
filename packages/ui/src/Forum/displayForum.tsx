@@ -1,7 +1,7 @@
 // TODO:data fetch and push
 "use client";
 
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { ChevronDown, ChevronUp, MessageSquare, User } from "lucide-react";
 

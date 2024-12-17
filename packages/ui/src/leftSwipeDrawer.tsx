@@ -1,7 +1,7 @@
 "use client";
 
 import type { PanInfo } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useDragControls } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 

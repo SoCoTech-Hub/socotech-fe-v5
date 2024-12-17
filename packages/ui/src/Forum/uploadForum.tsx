@@ -1,7 +1,7 @@
 // TODO:data fetch and push
 "use client";
 
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/router";
 import { Loader2, PinIcon } from "lucide-react";
 

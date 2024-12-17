@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 import { cn } from "..";
@@ -88,7 +88,7 @@ function Dropzone({
           return newProgress > 100 ? 100 : newProgress;
         });
       }, 500);
-      return () => clearInterval(timer);
+      clearInterval(timer);
     } else {
       setUploadProgress(0);
     }

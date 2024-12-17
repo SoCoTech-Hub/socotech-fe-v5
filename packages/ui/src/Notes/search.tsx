@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Fuse from "fuse.js";
 import { Search } from "lucide-react";
 

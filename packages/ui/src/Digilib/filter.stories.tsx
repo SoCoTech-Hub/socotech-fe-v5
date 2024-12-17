@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 import ArticleFilter from "./filter";
 
@@ -32,7 +33,7 @@ type Story = StoryObj<typeof ArticleFilter>;
 export const Default: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [articleList, setArticleList] = React.useState(args.articleList);
+    const [articleList, setArticleList] = useState(args.articleList);
     return (
       <ArticleFilter
         {...args}

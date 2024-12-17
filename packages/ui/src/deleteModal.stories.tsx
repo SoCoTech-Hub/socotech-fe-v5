@@ -29,7 +29,7 @@ type Story = StoryFn<typeof DeleteModal>;
 
 const Template: Story = (args) => {
   const mockRefetchNotes = () => alert("Refetch notes called");
-  const mockOnDelete = (id: string) => alert(`Deleted note with ID: ${id}`);
+  const mockOnDelete = () => alert(`Deleted note`);
 
   return (
     <DeleteModal

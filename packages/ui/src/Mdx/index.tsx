@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Quill from "quill";
 
 import Editor from "./editor";
@@ -18,8 +18,8 @@ const MDX = ({ value, setValue }: MDXProps) => {
     if (value !== quillRef.current?.root?.innerHTML && setValue) {
       setValue(quillRef.current?.root?.innerHTML);
     }
-  },[quillRef]);
-  
+  }, [quillRef]);
+
   return (
     <div>
       <Editor ref={quillRef} defaultValue={new Delta().insert(value)} />

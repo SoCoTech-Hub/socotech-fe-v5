@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Check, File, Image, Upload, X } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 
@@ -84,7 +84,7 @@ export default function FileUploader() {
   };
 
   return (
-    <div className="w-full max-w-md p-4 mx-auto space-y-4">
+    <div className="mx-auto w-full max-w-md space-y-4 p-4">
       <div
         {...getRootProps()}
         className={`cursor-pointer rounded-xl border-2 border-dashed p-8 text-center transition-all duration-200 ease-in-out ${
@@ -94,7 +94,7 @@ export default function FileUploader() {
         }`}
       >
         <input {...getInputProps()} />
-        <Upload className="w-12 h-12 mx-auto text-gray-400 dark:text-gray-600" />
+        <Upload className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" />
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
           {isDragActive
             ? "Drop the files here..."
@@ -107,32 +107,32 @@ export default function FileUploader() {
 
       {files.length > 0 && (
         <ScrollArea className="h-[300px] w-full rounded-xl border dark:border-gray-700">
-          <div className="p-4 space-y-4">
+          <div className="space-y-4 p-4">
             {files.map((file) => (
               <div key={file.name} className="flex items-center space-x-4">
-                <div className="relative w-10 h-10 overflow-hidden rounded shrink-0">
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded">
                   {file.type.startsWith("image/") ? (
                     file.preview ? (
                       <img
                         src={file.preview}
                         alt={file.name}
-                        className="object-cover w-full h-full"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
-                      <Image className="w-full h-full text-gray-400 dark:text-gray-600" />
+                      <Image className="h-full w-full text-gray-400 dark:text-gray-600" />
                     )
                   ) : (
-                    <File className="w-full h-full text-gray-400 dark:text-gray-600" />
+                    <File className="h-full w-full text-gray-400 dark:text-gray-600" />
                   )}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-100">
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium text-gray-900 dark:text-gray-100">
                     {file.name}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     {(file.size / 1024 / 1024).toFixed(2)} MB
                   </p>
-                  <Progress value={file.progress} className="h-1 mt-1" />
+                  <Progress value={file.progress} className="mt-1 h-1" />
                 </div>
                 {file.status === "idle" && (
                   <Button
@@ -155,7 +155,7 @@ export default function FileUploader() {
                   </Button>
                 )}
                 {file.status === "done" && (
-                  <Check className="w-5 h-5 text-green-500" />
+                  <Check className="h-5 w-5 text-green-500" />
                 )}
                 {file.status !== "uploading" && (
                   <Button
@@ -164,7 +164,7 @@ export default function FileUploader() {
                     onClick={() => removeFile(file)}
                     className="shrink-0"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="h-4 w-4" />
                   </Button>
                 )}
               </div>

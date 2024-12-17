@@ -22,7 +22,7 @@ export interface User {
 
 export interface AuthNavbarProps extends React.HTMLAttributes<HTMLElement> {
   items?: NavItem[];
-  user?: User | null;
+  user?: User;
   companyName: string;
   companyLogo: string;
 }
@@ -40,7 +40,7 @@ export function AuthNavbar({
   return (
     <header className={cn("bg-background", className)} {...props}>
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-6 mx-auto max-w-7xl lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
@@ -56,7 +56,7 @@ export function AuthNavbar({
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            <Menu className="w-6 h-6" aria-hidden="true" />
           </Button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">

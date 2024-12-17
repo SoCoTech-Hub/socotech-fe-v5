@@ -12,7 +12,14 @@ const meta: Meta<typeof Comment> = {
 export default meta;
 type Story = StoryObj<typeof Comment>;
 
+const User = {
+  id: 1,
+  firstName: "john",
+  lastName: "dow",
+  avatar: "",
+};
+
 export const Default: Story = {
-  render: () => <Comment />,
+  render: () => <Comment user={User} />,
   args: {},
 };

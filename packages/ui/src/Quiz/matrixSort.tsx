@@ -1,7 +1,7 @@
 "use client";
 
 import type { DraggableData, DraggableEvent } from "react-draggable";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 
 import type { Question } from "./quiz";

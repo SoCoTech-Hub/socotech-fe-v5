@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { format } from "date-fns";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
@@ -28,7 +28,7 @@ export interface CommentComponentProps {
   onFetchComments?: () => Promise<Comment[]>; // Fetch comments handler
   onPostComment?: (newComment: Comment) => Promise<Comment>; // Post comment handler
   className?: string; // Additional class names
-  user: User;
+  user?: User;
 }
 
 export default function CommentComponent({
@@ -106,7 +106,7 @@ export default function CommentComponent({
         <ScrollArea className="mb-4 h-[300px]" ref={scrollAreaRef}>
           {comments.length > 0 ? (
             comments.map((comment) => (
-              <div key={comment.id} className="mb-4 flex items-start space-x-4">
+              <div key={comment.id} className="flex items-start mb-4 space-x-4">
                 <Avatar>
                   <AvatarImage
                     src={comment.author.avatar}

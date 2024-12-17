@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Camera, Pencil } from "lucide-react";
 
 import { uploadImage } from "@acme/snippets/posts/user";

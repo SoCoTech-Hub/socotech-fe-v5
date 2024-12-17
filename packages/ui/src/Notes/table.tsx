@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowUpDown } from "lucide-react";
 
 import { Button } from "../button";
