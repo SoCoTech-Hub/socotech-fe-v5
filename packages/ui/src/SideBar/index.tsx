@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronsLeft } from "lucide-react";
 
 import type { LogoProps } from "../logo";
@@ -78,7 +78,7 @@ export default function CustomSidebar({
           <SidebarMenu>
             {menuItems.map((item, index) => (
               <SidebarMenuItem key={index} className="text-primaryForeground">
-                <SidebarItem isExpanded={isExpanded} item={item}  />
+                <SidebarItem isExpanded={isExpanded} item={item} />
               </SidebarMenuItem>
             ))}
           </SidebarMenu>

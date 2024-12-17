@@ -50,6 +50,5 @@
     "react-test-renderer": "catalog:jest",
     "typescript": "catalog:"
   },
-  
   "private": true
 }

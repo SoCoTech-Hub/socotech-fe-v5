@@ -44,7 +44,9 @@ const AccessDenied = ({
             <AlertCircle className="w-5 h-5" />
             {title}
           </DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogDescription id="access-denied-description">
+            {description}
+          </DialogDescription>
         </DialogHeader>
         <div className="flex items-center justify-center py-4">
           <Lock className="w-16 h-16 text-destructiveForeground" />
