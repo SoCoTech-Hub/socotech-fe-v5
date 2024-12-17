@@ -39,9 +39,10 @@ catalogs:
     prop-types: 15.8.1
     storybook: 8.4.7
   api:
+    "@apollo/client": 3.12.2
     axios: 1.7.9
     openapi-typescript: 7.4.4
-    "@apollo/client": 3.12.2
+    graphql: ^16.9.0
   ui:
     "@hookform/resolvers": ^3.9.0
     "@radix-ui/react-accordion": ^1.2.1

@@ -66,6 +66,7 @@
     "@apollo/client": "catalog:api",
     "@tanstack/react-query": "^5.62.7",
     "cookie-handler-pro": "^1.0.7",
+    "graphql": "catalog:api",
     "web-push": "^3.6.7"
   },
   "prettier": "@acme/prettier-config"

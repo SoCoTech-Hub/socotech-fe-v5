@@ -1,7 +1,6 @@
 "use client";
 
-import React from // { useState } //TODO: Future Feature, request access to the platform and fix styling
-"react";
+//import { useState } from "react" //TODO: Future Feature, request access to the platform and fix styling
 import { AlertCircle, Lock } from "lucide-react";
 
 import { Button } from "../button";
@@ -22,14 +21,13 @@ interface AccessDeniedModalProps {
   description?: string;
 }
 
-export default function Component({
+const AccessDenied = ({
   isOpen = false,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClose = () => {},
+  onClose = () => console.log("Dialog closed"),
   // onRequestAccess = () => {},
   title = "Access Denied",
   description = "This area is restricted. Please contact the administrator.",
-}: AccessDeniedModalProps) {
+}: AccessDeniedModalProps) => {
   // const [isRequesting, setIsRequesting] = useState(false);
 
   // const handleRequestAccess = async () => {
@@ -42,14 +40,14 @@ export default function Component({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-destructive sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="text-destructiveForeground flex items-center gap-2">
-            <AlertCircle className="h-5 w-5" />
+          <DialogTitle className="flex items-center gap-2 text-destructiveForeground">
+            <AlertCircle className="w-5 h-5" />
             {title}
           </DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <div className="flex items-center justify-center py-4">
-          <Lock className="text-destructiveForeground h-16 w-16" />
+          <Lock className="w-16 h-16 text-destructiveForeground" />
         </div>
         <DialogFooter className="sm:justify-center">
           <Button type="button" variant="secondary" onClick={onClose}>
@@ -66,4 +64,5 @@ export default function Component({
       </DialogContent>
     </Dialog>
   );
-}
+};
+export default AccessDenied;

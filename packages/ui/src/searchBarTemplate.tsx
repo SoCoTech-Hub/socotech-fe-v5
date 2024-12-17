@@ -8,7 +8,7 @@ import { Input } from "./input";
 
 interface SearchBarProps {
   initData?: []; //TODO: populate with data to search
-  onSearch: (query: []) => void;//TODO: update data type, usually useState function datatype
+  onSearch: (query: []) => void; //TODO: update data type, usually useState function datatype
   placeholder?: string;
   initialQuery?: string;
 }
@@ -27,6 +27,7 @@ export default function SearchBar({
       // data.title.toLowerCase().includes(query.toLowerCase()) ||
       // data.excerpt.toLowerCase().includes(query.toLowerCase()) ||
       // data.author.toLowerCase().includes(query.toLowerCase()),
+      console.log("count", data),
   );
 
   const handleSearch = useCallback(() => {
@@ -35,7 +36,7 @@ export default function SearchBar({
 
   const handleClear = useCallback(() => {
     setQuery("");
-    onSearch(initData);//TODO: check here
+    onSearch(initData); //TODO: check here
   }, [onSearch]);
 
   const handleKeyPress = useCallback(

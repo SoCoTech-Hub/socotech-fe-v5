@@ -12,6 +12,9 @@ catalogs:
     axios:
       specifier: 1.7.9
       version: 1.7.9
+    graphql:
+      specifier: ^16.9.0
+      version: 16.9.0
     openapi-typescript:
       specifier: 7.4.4
       version: 7.4.4
@@ -2138,7 +2141,7 @@ importers:
         specifier: catalog:api
         version: 1.7.9
       graphql:
-        specifier: ^16.9.0
+        specifier: catalog:api
         version: 16.9.0
       graphql-tag:
         specifier: ^2.12.6
@@ -2174,6 +2177,9 @@ importers:
       cookie-handler-pro:
         specifier: ^1.0.7
         version: 1.0.7
+      graphql:
+        specifier: catalog:api
+        version: 16.9.0
       web-push:
         specifier: ^3.6.7
         version: 3.6.7

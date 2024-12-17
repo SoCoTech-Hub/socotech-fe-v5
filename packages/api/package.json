@@ -34,7 +34,7 @@
     "@apollo/client": "catalog:api",
     "@strapi/strapi": "5.1.0",
     "axios": "catalog:api",
-    "graphql": "^16.9.0",
+    "graphql": "catalog:api",
     "graphql-tag": "^2.12.6",
     "openapi-fetch": "^0.13.3",
     "openapi-typescript": "catalog:api",
