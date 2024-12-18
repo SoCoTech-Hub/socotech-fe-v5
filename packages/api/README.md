@@ -1,9 +1,6 @@
 # TODO:
 
-Fetch the latest types from the api using `pnpm ts` and copy the genereated file from `types\strapi.d.ts` to here `src\types\`
--- or if api is live --
-run `pnpm generate:types`
+- Fetch the latest types from the api using `pnpm ts` and copy the genereated file from `types\generated\` to here `src\types\`
 
--- then --
-run `generate:graphql`
-this will generate graphql types for all endpoints on the api
+- run `pnpm generate:graphql`
+  this will generate graphql types for all endpoints on the api
