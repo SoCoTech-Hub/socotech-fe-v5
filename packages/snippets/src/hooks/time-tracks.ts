@@ -1,4 +1,4 @@
-interface PageVisit {
+export interface PageVisit {
   path: string;
   startTime: number;
   endTime?: number;

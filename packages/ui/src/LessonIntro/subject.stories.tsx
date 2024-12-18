@@ -25,11 +25,21 @@ const sampleCategory: SubjectCategory = {
   ],
 };
 
-const Template: StoryFn = (args) => <Subjects {...args} />;
+const Template: StoryFn = (args) => (
+  <Subjects
+    selectedCategory={sampleCategory}
+    handleBack={() => alert("Back to Categories")}
+    handleSubjectSelect={(subject) =>
+      alert(`Selected Subject: ${subject.title}`)
+    }
+    {...args}
+  />
+);
 
 export const Default = Template.bind({});
 Default.args = {
   selectedCategory: sampleCategory,
   handleBack: () => alert("Back to Categories"),
-  handleSubjectSelect: (subject) => alert(`Selected Subject: ${subject.title}`),
+  handleSubjectSelect: (subject: { title: any }) =>
+    alert(`Selected Subject: ${subject.title}`),
 };

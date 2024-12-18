@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 
 // import getGQLRequest from "@/snippets/getGQLRequest";
 
-import { organizationId } from "@acme/snippets/constants";
+import { organizationId } from "@acme/snippets/constant";
 
 import { Button } from "../button";
 import {
@@ -59,6 +59,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ setQualifications }) => {
   };
 
   const searchResult = async () => {
+    //TODO: Fix this search function
     // if (filter === "Subjects") {
     //   const { subjects } = await getGQLRequest({
     //     endpoint: `subjects`,
@@ -82,7 +83,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ setQualifications }) => {
   };
 
   return (
-    <div className="flex items-center p-4 space-x-2 rounded-lg bg-background">
+    <div className="flex items-center space-x-2 rounded-lg bg-background p-4">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline">{filter}</Button>
@@ -105,7 +106,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ setQualifications }) => {
         onChange={(e) => searchQuery(e.target.value)}
       />
       <Button onClick={searchResult} size="icon">
-        <Search className="w-6 h-6" />
+        <Search className="h-6 w-6" />
       </Button>
     </div>
   );

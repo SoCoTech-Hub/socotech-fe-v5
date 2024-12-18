@@ -47,8 +47,8 @@ export const saveNote = async ({
     }
 
     const response: ApiResponse = id
-      ? await api.put(`/notes/${id}`, payload)
-      : await api.post("/notes", payload);
+      ? await api.PUT(`/notes/${id}`, payload)
+      : await api.POST("/notes", payload);
 
     return response.data ?? null; // Return response data or null if empty
   } catch (e) {

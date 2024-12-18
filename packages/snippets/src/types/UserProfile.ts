@@ -1,3 +1,4 @@
+// TODO: this needs to rather be fetched from api since we have the types from strapi stored on @acme/api
 export interface Organization {
   id: string;
   name: string;

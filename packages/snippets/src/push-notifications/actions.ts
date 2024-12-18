@@ -1,9 +1,8 @@
 "use server";
 
-import { useQuery } from "@tanstack/react-query";
 import webpush from "web-push";
 
-import { api } from "@acme/api";
+import { api } from "@acme/api/api";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 webpush.setVapidDetails(
@@ -27,8 +26,7 @@ export async function subscribeUser(sub: PushSubscription) {
 export async function unsubscribeUser() {
   subscription = null;
   // TODO: remove the subscription
-  await api.DELETE("/subscriptions");
-  // await api.delete('/subscriptions',{ where:{ ... }})
+  // await api.DELETE('/subscriptions',{ where:{ user:{id:userId} }}) //This needs work
   return { success: true };
 }
 
