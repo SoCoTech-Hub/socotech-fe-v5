@@ -1,9 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
-
-
-
-
 interface Organization {
   id: string;
   name: string;

@@ -6,43 +6,31 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "default": "./src/index.ts"
+      "default": "./dist/src/index.js"
     },
-    "./*": {
-      "types": "./dist/src/*.d.ts",
-      "default": [
-        "./src/*.ts",
-        "./src/*.tsx"
-      ]
+    "./graphql/*": {
+      "types": "./dist/src/graphql/*.d.ts",
+      "default": "./dist/src/graphql/*.js"
     },
-    "./**/*": {
-      "types": "./dist/src/**/*.d.ts",
-      "default": [
-        "./src/**/*.ts",
-        "./src/**/*.tsx"
-      ]
+    "./cookies/*": {
+      "types": "./dist/src/cookies/*.d.ts",
+      "default": "./dist/src/cookies/*.js"
     }
   },
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "test": "jest",
-    "gen-types": "npx graphql-codegen"
+    "test": "jest"
   },
   "devDependencies": {
     "@acme/api": "workspace:*",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@graphql-codegen/cli": "^5.0.3",
-    "@graphql-codegen/typescript": "^4.1.1",
-    "@graphql-codegen/typescript-operations": "^4.3.1",
-    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
     "@testing-library/react": "catalog:jest",
     "@testing-library/user-event": "catalog:jest",
     "@types/jest": "catalog:jest",

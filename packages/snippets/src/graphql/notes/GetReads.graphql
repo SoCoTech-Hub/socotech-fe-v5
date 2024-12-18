@@ -1,6 +1,0 @@
-query GetReads($profileId: String!) {
-  notes(where: { profile: { id: $profileId } }) {
-    id
-    read
-  }
-}
