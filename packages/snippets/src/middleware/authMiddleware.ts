@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { GetToken } from "../cookies/token";
 import { verifyToken } from "../utils/verifyToken";
 
-const PUBLIC_ROUTES = ["/auth", "/info"]; //TODO: add more routes without authentication here
+const PUBLIC_ROUTES = ["/", "/auth", "/info"]; //TODO: add more routes without authentication here
 
 export default function authMiddleware(request: NextRequest) {
   const token = GetToken();
