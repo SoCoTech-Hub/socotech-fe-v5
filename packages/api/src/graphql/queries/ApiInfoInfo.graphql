@@ -1,0 +1,21 @@
+
+query GetApiInfoInfo($limit: Int!) {
+  apiinfoinfo(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        content
+        createdAt
+        createdBy
+        image
+        locale
+        localizations
+        organization
+        publishedAt
+        title
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+
+query GetApiKbCategoryKbCategory($limit: Int!) {
+  apikbcategorykbcategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        background
+        bgColor
+        createdAt
+        createdBy
+        description
+        image
+        knowledgeBases
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        slug
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

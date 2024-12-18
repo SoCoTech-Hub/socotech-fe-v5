@@ -1,0 +1,21 @@
+
+query GetApiCommentComment($limit: Int!) {
+  apicommentcomment(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        comment
+        createdAt
+        createdBy
+        locale
+        localizations
+        parent
+        profile
+        publishedAt
+        social
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

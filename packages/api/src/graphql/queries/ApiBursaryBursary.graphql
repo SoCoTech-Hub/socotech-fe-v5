@@ -1,0 +1,27 @@
+
+query GetApiBursaryBursary($limit: Int!) {
+  apibursarybursary(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        application
+        categories
+        close
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        note
+        open
+        particulars
+        publishedAt
+        updatedAt
+        updatedBy
+        url
+        value
+        whoQualifies
+      }
+    }
+  }
+}

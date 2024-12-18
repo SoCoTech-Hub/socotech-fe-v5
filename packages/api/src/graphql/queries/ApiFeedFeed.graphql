@@ -1,0 +1,26 @@
+
+query GetApiFeedFeed($limit: Int!) {
+  apifeedfeed(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        author
+        createdAt
+        createdBy
+        description
+        locale
+        localizations
+        media
+        organization
+        publishedAt
+        social
+        targets
+        title
+        updatedAt
+        updatedBy
+        url
+        videoLink
+      }
+    }
+  }
+}

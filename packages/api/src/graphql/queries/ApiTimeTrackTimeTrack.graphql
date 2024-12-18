@@ -1,0 +1,23 @@
+
+query GetApiTimeTrackTimeTrack($limit: Int!) {
+  apitimetracktimetrack(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        duration
+        from
+        isComplete
+        locale
+        localizations
+        organization
+        publishedAt
+        to
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

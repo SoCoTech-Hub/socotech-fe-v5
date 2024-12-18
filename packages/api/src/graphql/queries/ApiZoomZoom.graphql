@@ -1,0 +1,26 @@
+
+query GetApiZoomZoom($limit: Int!) {
+  apizoomzoom(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        access
+        createdAt
+        createdBy
+        email
+        key
+        locale
+        localizations
+        organization
+        publishedAt
+        sdkKey
+        secret
+        stsAccountId
+        stsApiKey
+        stsApiSecret
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

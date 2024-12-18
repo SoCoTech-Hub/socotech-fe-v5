@@ -1,0 +1,23 @@
+
+query GetApiInMailResponseInMailResponse($limit: Int!) {
+  apiinmailresponseinmailresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        deleted
+        important
+        inMail
+        locale
+        localizations
+        profile
+        publishedAt
+        read
+        starred
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+
+query GetApiAccessAccess($limit: Int!) {
+  apiaccessaccess(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        paid
+        publishedAt
+        updatedAt
+        updatedBy
+        url
+      }
+    }
+  }
+}

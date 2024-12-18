@@ -1,0 +1,29 @@
+
+query GetApiProgressProgress($limit: Int!) {
+  apiprogressprogress(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        completedSteps
+        createdAt
+        createdBy
+        grade
+        isComplete
+        lesson
+        locale
+        localizations
+        organization
+        profile
+        province
+        publishedAt
+        school
+        subject
+        timeSpent
+        totalSteps
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

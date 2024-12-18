@@ -1,0 +1,34 @@
+
+query GetPluginUploadFile($limit: Int!) {
+  pluginuploadfile(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        alternativeText
+        caption
+        createdAt
+        createdBy
+        ext
+        folder
+        folderPath
+        formats
+        hash
+        height
+        locale
+        localizations
+        mime
+        name
+        previewUrl
+        provider
+        provider_metadata
+        publishedAt
+        related
+        size
+        updatedAt
+        updatedBy
+        url
+        width
+      }
+    }
+  }
+}

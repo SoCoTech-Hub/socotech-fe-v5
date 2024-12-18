@@ -1,0 +1,21 @@
+
+query GetApiKbTopicKbTopic($limit: Int!) {
+  apikbtopickbtopic(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        knowledgeBases
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        slug
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

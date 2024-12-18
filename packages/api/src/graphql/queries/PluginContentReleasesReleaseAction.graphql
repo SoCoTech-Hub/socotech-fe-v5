@@ -1,0 +1,22 @@
+
+query GetPluginContentReleasesReleaseAction($limit: Int!) {
+  plugincontentreleasesreleaseaction(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        contentType
+        createdAt
+        createdBy
+        entryDocumentId
+        isEntryValid
+        locale
+        localizations
+        publishedAt
+        release
+        type
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

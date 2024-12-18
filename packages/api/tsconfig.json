@@ -1,11 +1,12 @@
 {
   "extends": "@acme/tsconfig/internal-package.json",
   "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "lib": ["ES2022", "dom", "dom.iterable"],
     "jsx": "preserve",
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src", "generate-graphql.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,21 @@
+
+query GetApiSubjectCategorySubjectCategory($limit: Int!) {
+  apisubjectcategorysubjectcategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        color
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        subjects
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

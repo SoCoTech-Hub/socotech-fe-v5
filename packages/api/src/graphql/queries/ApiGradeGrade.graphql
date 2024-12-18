@@ -1,0 +1,24 @@
+
+query GetApiGradeGrade($limit: Int!) {
+  apigradegrade(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        color
+        createdAt
+        createdBy
+        icon
+        knowledgeBases
+        lessons
+        locale
+        localizations
+        name
+        profiles
+        publishedAt
+        subjects
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+
+query GetApiNotificationSubscriberNotificationSubscriber($limit: Int!) {
+  apinotificationsubscribernotificationsubscriber(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

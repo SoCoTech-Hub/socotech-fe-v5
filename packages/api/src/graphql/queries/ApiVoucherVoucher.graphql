@@ -1,0 +1,23 @@
+
+query GetApiVoucherVoucher($limit: Int!) {
+  apivouchervoucher(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        days
+        discount
+        isUsed
+        locale
+        localizations
+        name
+        number
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

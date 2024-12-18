@@ -1,0 +1,23 @@
+
+query GetAdminPermission($limit: Int!) {
+  adminpermission(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        action
+        actionParameters
+        conditions
+        createdAt
+        createdBy
+        locale
+        localizations
+        properties
+        publishedAt
+        role
+        subject
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

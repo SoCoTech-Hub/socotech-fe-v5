@@ -1,0 +1,21 @@
+
+query GetApiLessonSurveyLessonSurvey($limit: Int!) {
+  apilessonsurveylessonsurvey(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        lessons
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        questions
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

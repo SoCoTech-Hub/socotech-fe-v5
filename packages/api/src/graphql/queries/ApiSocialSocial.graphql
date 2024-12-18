@@ -1,0 +1,26 @@
+
+query GetApiSocialSocial($limit: Int!) {
+  apisocialsocial(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        article
+        comments
+        createdAt
+        createdBy
+        forum
+        knowledgeBase
+        lesson
+        likes
+        locale
+        localizations
+        publishedAt
+        ratings
+        read
+        share
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

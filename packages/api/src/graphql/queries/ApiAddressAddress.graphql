@@ -1,0 +1,25 @@
+
+query GetApiAddressAddress($limit: Int!) {
+  apiaddressaddress(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        addressLine1
+        addressLine2
+        contactNr
+        country
+        createdAt
+        createdBy
+        locale
+        localizations
+        postalCode
+        profile
+        province
+        publishedAt
+        town
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

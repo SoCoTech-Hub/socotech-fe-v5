@@ -1,12 +1,38 @@
-import { readdirSync } from "fs";
-import path from "path";
+import createClient from "openapi-fetch";
+import qs from "qs";
 
-const queriesPath = path.join(__dirname, "queries");
-const queryFiles = readdirSync(queriesPath).filter((file) =>
-  file.endsWith(".ts"),
-);
+import type { paths } from "./types/strapi";
 
-queryFiles.forEach((file) => {
-  const module = require(path.join(queriesPath, file));
-  Object.assign(exports, module);
+const token = getAuthToken();
+const headers: Record<string, string> = {
+  Accept: "application/json",
+};
+if (token) {
+  headers.Authorization = `Bearer ${token}`;
+}
+
+const api = createClient<paths>({
+  baseUrl: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337/api",
+  headers,
+  querySerializer(params) {
+    console.log("querySerializer", params, qs.stringify(params));
+    return qs.stringify(params, {
+      encodeValuesOnly: true, // prettify URL
+    });
+  },
 });
+export { api };
+
+/**
+ * Example function to retrieve the token
+ * Replace with your own token retrieval logic
+ */
+function getAuthToken(): string | null {
+  // Example: Retrieve token from cookies
+  return (
+    document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("authToken="))
+      ?.split("=")[1] ?? null
+  );
+}

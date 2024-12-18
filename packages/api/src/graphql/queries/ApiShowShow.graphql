@@ -1,0 +1,24 @@
+
+query GetApiShowShow($limit: Int!) {
+  apishowshow(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        description
+        image
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        show_categories
+        transcript
+        updatedAt
+        updatedBy
+        url
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+
+query GetApiLessonAudioLessonAudio($limit: Int!) {
+  apilessonaudiolessonaudio(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        audio
+        audioLinks
+        createdAt
+        createdBy
+        description
+        duration
+        lessons
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+query GetApiArticleArticle($limit: Int!) {
+  apiarticlearticle(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        author
+        categories
+        content
+        createdAt
+        createdBy
+        description
+        image
+        locale
+        localizations
+        organization
+        publishedAt
+        shortDescription
+        slug
+        social
+        tags
+        targets
+        title
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

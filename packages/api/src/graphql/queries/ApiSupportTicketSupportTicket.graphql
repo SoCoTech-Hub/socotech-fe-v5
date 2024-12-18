@@ -1,0 +1,32 @@
+
+query GetApiSupportTicketSupportTicket($limit: Int!) {
+  apisupportticketsupportticket(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        assignedTo
+        attachments
+        comments
+        createdAt
+        createdBy
+        description
+        device
+        grade
+        locale
+        localizations
+        name
+        open
+        organization
+        province
+        publishedAt
+        supportDepartment
+        supportStatus
+        supportTopic
+        timeSpent
+        updatedAt
+        updatedBy
+        url
+      }
+    }
+  }
+}

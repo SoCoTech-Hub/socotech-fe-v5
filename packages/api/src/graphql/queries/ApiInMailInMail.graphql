@@ -1,0 +1,27 @@
+
+query GetApiInMailInMail($limit: Int!) {
+  apiinmailinmail(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        attachments
+        bcc
+        body
+        cc
+        createdAt
+        createdBy
+        draft
+        from
+        locale
+        localizations
+        publishedAt
+        reply
+        replyParent
+        subject
+        to
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

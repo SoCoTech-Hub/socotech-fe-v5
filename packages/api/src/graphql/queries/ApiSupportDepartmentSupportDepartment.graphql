@@ -1,0 +1,21 @@
+
+query GetApiSupportDepartmentSupportDepartment($limit: Int!) {
+  apisupportdepartmentsupportdepartment(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        description
+        locale
+        localizations
+        name
+        organization
+        profiles
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+
+query GetApiFaqCategoryFaqCategory($limit: Int!) {
+  apifaqcategoryfaqcategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        background
+        createdAt
+        createdBy
+        description
+        faqs
+        image
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

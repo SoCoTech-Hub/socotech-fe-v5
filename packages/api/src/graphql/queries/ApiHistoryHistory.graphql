@@ -1,0 +1,20 @@
+
+query GetApiHistoryHistory($limit: Int!) {
+  apihistoryhistory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        action
+        content
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        type
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

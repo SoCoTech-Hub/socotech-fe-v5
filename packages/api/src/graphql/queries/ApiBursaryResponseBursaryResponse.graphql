@@ -1,0 +1,19 @@
+
+query GetApiBursaryResponseBursaryResponse($limit: Int!) {
+  apibursaryresponsebursaryresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        bursary
+        createdAt
+        createdBy
+        locale
+        localizations
+        profile
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+
+query GetApiQueryStructureQueryStructure($limit: Int!) {
+  apiquerystructurequerystructure(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        display
+        field
+        locale
+        localizations
+        name
+        publishedAt
+        queryHeaders
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

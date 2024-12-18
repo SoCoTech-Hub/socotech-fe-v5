@@ -1,0 +1,20 @@
+
+query GetApiLikeLike($limit: Int!) {
+  apilikelike(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        emoticon
+        locale
+        localizations
+        profile
+        publishedAt
+        social
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

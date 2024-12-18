@@ -1,0 +1,21 @@
+
+query GetApiProductCategoryProductCategory($limit: Int!) {
+  apiproductcategoryproductcategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        products
+        publishedAt
+        slug
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

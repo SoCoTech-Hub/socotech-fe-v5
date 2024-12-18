@@ -1,0 +1,20 @@
+
+query GetApiCountryCountry($limit: Int!) {
+  apicountrycountry(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        currency
+        locale
+        localizations
+        name
+        publishedAt
+        shortCode
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

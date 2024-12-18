@@ -1,0 +1,20 @@
+
+query GetApiEmoticonEmoticon($limit: Int!) {
+  apiemoticonemoticon(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        icon
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

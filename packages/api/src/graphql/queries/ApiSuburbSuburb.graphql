@@ -1,0 +1,21 @@
+
+query GetApiSuburbSuburb($limit: Int!) {
+  apisuburbsuburb(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        district
+        locale
+        localizations
+        name
+        province
+        publishedAt
+        schools
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

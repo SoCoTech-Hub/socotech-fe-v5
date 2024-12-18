@@ -1,0 +1,19 @@
+
+query GetApiParenRelationParenRelation($limit: Int!) {
+  apiparenrelationparenrelation(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+
+query GetApiQualificationResponseQualificationResponse($limit: Int!) {
+  apiqualificationresponsequalificationresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        applied
+        createdAt
+        createdBy
+        isSaved
+        locale
+        localizations
+        profile
+        publishedAt
+        qualification
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

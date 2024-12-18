@@ -1,0 +1,21 @@
+
+query GetApiEventResponseEventResponse($limit: Int!) {
+  apieventresponseeventresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        attending
+        createdAt
+        createdBy
+        event
+        locale
+        localizations
+        profile
+        publishedAt
+        read
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

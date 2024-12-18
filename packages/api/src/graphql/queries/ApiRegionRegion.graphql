@@ -1,0 +1,19 @@
+
+query GetApiRegionRegion($limit: Int!) {
+  apiregionregion(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        province
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

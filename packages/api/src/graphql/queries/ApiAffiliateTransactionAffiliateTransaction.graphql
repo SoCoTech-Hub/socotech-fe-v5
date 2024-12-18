@@ -1,0 +1,23 @@
+
+query GetApiAffiliateTransactionAffiliateTransaction($limit: Int!) {
+  apiaffiliatetransactionaffiliatetransaction(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        accountNumber
+        affiliate
+        affiliateStatus
+        balance
+        createdAt
+        createdBy
+        locale
+        localizations
+        paid
+        paidDate
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

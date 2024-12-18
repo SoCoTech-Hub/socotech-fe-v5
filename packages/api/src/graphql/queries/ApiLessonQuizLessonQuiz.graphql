@@ -1,0 +1,23 @@
+
+query GetApiLessonQuizLessonQuiz($limit: Int!) {
+  apilessonquizlessonquiz(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        isSiyavula
+        lessons
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        questions
+        siyavulaActivityIds
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

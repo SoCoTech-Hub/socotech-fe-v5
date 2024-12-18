@@ -1,0 +1,22 @@
+
+query GetApiSupportCommentSupportComment($limit: Int!) {
+  apisupportcommentsupportcomment(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        attachments
+        comment
+        createdAt
+        createdBy
+        locale
+        localizations
+        profile
+        publishedAt
+        support_ticket
+        timeSpent
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

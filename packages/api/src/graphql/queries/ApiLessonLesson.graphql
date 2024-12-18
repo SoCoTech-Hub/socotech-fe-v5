@@ -1,0 +1,48 @@
+
+query GetApiLessonLesson($limit: Int!) {
+  apilessonlesson(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        assignments
+        audios
+        createdAt
+        createdBy
+        description
+        downloadResources
+        duration
+        endDate
+        featuredImage
+        grades
+        hasComment
+        hasRating
+        hasReview
+        isLiveLesson
+        link
+        locale
+        localizations
+        modules
+        name
+        notes
+        organization
+        overview
+        presenter
+        price
+        provinces
+        publishedAt
+        quizes
+        requiredLesson
+        resources
+        social
+        startDate
+        subject
+        subject_category
+        surveys
+        topic
+        updatedAt
+        updatedBy
+        zoom
+      }
+    }
+  }
+}

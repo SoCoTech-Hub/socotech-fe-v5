@@ -1,0 +1,50 @@
+
+query GetApiTransactionTransaction($limit: Int!) {
+  apitransactiontransaction(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        additionalInformation
+        addressLine1
+        affiliate
+        amount
+        billingDate
+        cellnr
+        company
+        createdAt
+        createdBy
+        currency
+        cycles
+        description
+        email
+        emailBcc
+        emailCc
+        emailConfirmation
+        expiryTime
+        firstName
+        frequency
+        item
+        lastName
+        locale
+        localizations
+        mPaymentId
+        notes
+        organization
+        password
+        paymentMethod
+        postalCode
+        profile
+        province
+        publishedAt
+        recurringAmount
+        referral
+        sendEmail
+        signature
+        subscriptionType
+        updatedAt
+        updatedBy
+        vatNr
+      }
+    }
+  }
+}

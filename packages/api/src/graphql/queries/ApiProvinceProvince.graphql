@@ -1,0 +1,22 @@
+
+query GetApiProvinceProvince($limit: Int!) {
+  apiprovinceprovince(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        country
+        createdAt
+        createdBy
+        lessons
+        locale
+        localizations
+        name
+        profiles
+        publishedAt
+        regions
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

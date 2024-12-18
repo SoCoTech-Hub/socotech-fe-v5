@@ -1,0 +1,21 @@
+
+query GetApiFaqFaq($limit: Int!) {
+  apifaqfaq(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        answer
+        category
+        createdAt
+        createdBy
+        locale
+        localizations
+        organization
+        publishedAt
+        question
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

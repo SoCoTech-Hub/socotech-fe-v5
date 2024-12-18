@@ -1,0 +1,29 @@
+
+query GetApiAssignmentReplyAssignmentReply($limit: Int!) {
+  apiassignmentreplyassignmentreply(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        answer
+        attachmentReply
+        attachments
+        attempt
+        createdAt
+        createdBy
+        feedback
+        grade
+        instructor
+        isCompleted
+        isGrouped
+        lesson
+        lesson_assignment
+        locale
+        localizations
+        publishedAt
+        students
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

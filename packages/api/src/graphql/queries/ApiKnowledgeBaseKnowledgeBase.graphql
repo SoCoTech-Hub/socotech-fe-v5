@@ -1,0 +1,32 @@
+
+query GetApiKnowledgeBaseKnowledgeBase($limit: Int!) {
+  apiknowledgebaseknowledgebase(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        access
+        attachment
+        author
+        categories
+        createdAt
+        createdBy
+        download
+        estimatedReadingTime
+        grades
+        language
+        link
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        releaseYear
+        social
+        subject
+        topics
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

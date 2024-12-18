@@ -1,0 +1,28 @@
+
+query GetApiLessonModuleLessonModule($limit: Int!) {
+  apilessonmodulelessonmodule(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        attachment
+        audioFiles
+        content
+        createdAt
+        createdBy
+        description
+        downloadAttachment
+        downloadAudio
+        duration
+        lessons
+        locale
+        localizations
+        name
+        price
+        publishedAt
+        updatedAt
+        updatedBy
+        videoLink
+      }
+    }
+  }
+}

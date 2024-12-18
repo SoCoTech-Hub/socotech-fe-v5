@@ -1,0 +1,18 @@
+
+query GetApiRegisterPopUpRegisterPopUp($limit: Int!) {
+  apiregisterpopupregisterpopup(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        updatedAt
+        updatedBy
+        url
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+
+query GetAdminTransferToken($limit: Int!) {
+  admintransfertoken(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        accessKey
+        createdAt
+        createdBy
+        description
+        expiresAt
+        lastUsedAt
+        lifespan
+        locale
+        localizations
+        name
+        permissions
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

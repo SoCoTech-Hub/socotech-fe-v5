@@ -1,0 +1,21 @@
+
+query GetApiDistrictDistrict($limit: Int!) {
+  apidistrictdistrict(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        country
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        province
+        publishedAt
+        suburbs
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+
+query GetApiAffiliateSettingAffiliateSetting($limit: Int!) {
+  apiaffiliatesettingaffiliatesetting(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        isActive
+        locale
+        localizations
+        organization
+        publishedAt
+        rate
+        terms
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

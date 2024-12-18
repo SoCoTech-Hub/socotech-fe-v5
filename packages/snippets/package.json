@@ -8,6 +8,10 @@
       "types": "./dist/src/index.d.ts",
       "default": "./dist/src/index.js"
     },
+    "./constants/*": {
+      "types": "./dist/src/constants/*.d.ts",
+      "default": "./dist/src/constants/*.js"
+    },
     "./graphql/*": {
       "types": "./dist/src/graphql/*.d.ts",
       "default": "./dist/src/graphql/*.js"

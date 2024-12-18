@@ -1,0 +1,24 @@
+
+query GetApiForumForum($limit: Int!) {
+  apiforumforum(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        answer
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        pin
+        publishedAt
+        question
+        slug
+        social
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

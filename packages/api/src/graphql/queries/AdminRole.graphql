@@ -1,0 +1,22 @@
+
+query GetAdminRole($limit: Int!) {
+  adminrole(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        code
+        createdAt
+        createdBy
+        description
+        locale
+        localizations
+        name
+        permissions
+        publishedAt
+        updatedAt
+        updatedBy
+        users
+      }
+    }
+  }
+}

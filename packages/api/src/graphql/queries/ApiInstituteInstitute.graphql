@@ -1,0 +1,23 @@
+
+query GetApiInstituteInstitute($limit: Int!) {
+  apiinstituteinstitute(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        background
+        bursaryCategories
+        color
+        createdAt
+        createdBy
+        faculties
+        icon
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

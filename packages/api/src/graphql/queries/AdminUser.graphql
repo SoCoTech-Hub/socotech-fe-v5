@@ -1,0 +1,28 @@
+
+query GetAdminUser($limit: Int!) {
+  adminuser(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        blocked
+        createdAt
+        createdBy
+        email
+        firstname
+        isActive
+        lastname
+        locale
+        localizations
+        password
+        preferedLanguage
+        publishedAt
+        registrationToken
+        resetPasswordToken
+        roles
+        updatedAt
+        updatedBy
+        username
+      }
+    }
+  }
+}

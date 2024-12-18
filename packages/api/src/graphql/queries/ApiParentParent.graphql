@@ -1,0 +1,26 @@
+
+query GetApiParentParent($limit: Int!) {
+  apiparentparent(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        email
+        firstName
+        idnumber
+        lastName
+        locale
+        localizations
+        mobileNr
+        parenRelation
+        parentTitle
+        profiles
+        publishedAt
+        updatedAt
+        updatedBy
+        workNr
+      }
+    }
+  }
+}

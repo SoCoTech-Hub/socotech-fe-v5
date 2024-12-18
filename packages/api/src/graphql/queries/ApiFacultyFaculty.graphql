@@ -1,0 +1,24 @@
+
+query GetApiFacultyFaculty($limit: Int!) {
+  apifacultyfaculty(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        about
+        background
+        color
+        createdAt
+        createdBy
+        icon
+        institutes
+        locale
+        localizations
+        name
+        publishedAt
+        qualifications
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+
+query GetApiParentTitleParentTitle($limit: Int!) {
+  apiparenttitleparenttitle(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+
+query GetPluginReviewWorkflowsWorkflow($limit: Int!) {
+  pluginreviewworkflowsworkflow(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        contentTypes
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        publishedAt
+        stageRequiredToPublish
+        stages
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

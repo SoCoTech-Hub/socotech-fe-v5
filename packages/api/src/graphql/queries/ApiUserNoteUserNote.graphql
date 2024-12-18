@@ -1,0 +1,24 @@
+
+query GetApiUserNoteUserNote($limit: Int!) {
+  apiusernoteusernote(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        lessonModule
+        locale
+        localizations
+        name
+        note
+        profile
+        publishedAt
+        read
+        show
+        subject
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

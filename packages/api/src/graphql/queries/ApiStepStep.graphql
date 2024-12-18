@@ -1,0 +1,19 @@
+
+query GetApiStepStep($limit: Int!) {
+  apistepstep(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        lesson
+        locale
+        localizations
+        publishedAt
+        steps
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

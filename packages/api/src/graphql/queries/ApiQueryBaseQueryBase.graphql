@@ -1,0 +1,19 @@
+
+query GetApiQueryBaseQueryBase($limit: Int!) {
+  apiquerybasequerybase(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        baseQuery
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        query_type
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

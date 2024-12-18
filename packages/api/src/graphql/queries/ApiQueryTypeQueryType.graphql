@@ -1,0 +1,21 @@
+
+query GetApiQueryTypeQueryType($limit: Int!) {
+  apiquerytypequerytype(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        publishedAt
+        queryFilters
+        queryHeaders
+        table
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

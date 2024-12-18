@@ -1,0 +1,20 @@
+
+query GetApiSupportStatusSupportStatus($limit: Int!) {
+  apisupportstatussupportstatus(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        color
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

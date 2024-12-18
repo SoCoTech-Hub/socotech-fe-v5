@@ -1,0 +1,40 @@
+
+query GetApiOrganizationOrganization($limit: Int!) {
+  apiorganizationorganization(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        appBg
+        appBgDark
+        componentBg
+        componentBgDark
+        createdAt
+        createdBy
+        entityId
+        favicon
+        freemium
+        icon1
+        icon1Dark
+        icon2
+        icon2Dark
+        locale
+        localizations
+        logo
+        logoDark
+        merchantId
+        merchantKey
+        name
+        primaryColor
+        primaryColorDark
+        publishedAt
+        secondaryColor
+        secondaryColorDark
+        text
+        textDark
+        updatedAt
+        updatedBy
+        vouchers
+      }
+    }
+  }
+}

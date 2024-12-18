@@ -1,0 +1,21 @@
+
+query GetApiSocialLinkSocialLink($limit: Int!) {
+  apisociallinksociallink(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        color
+        createdAt
+        createdBy
+        icon
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+        url
+      }
+    }
+  }
+}

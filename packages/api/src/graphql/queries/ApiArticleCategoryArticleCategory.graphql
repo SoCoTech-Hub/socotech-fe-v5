@@ -1,0 +1,20 @@
+
+query GetApiArticleCategoryArticleCategory($limit: Int!) {
+  apiarticlecategoryarticlecategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        articles
+        createdAt
+        createdBy
+        image
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+
+query GetPluginI18NLocale($limit: Int!) {
+  plugini18nlocale(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        code
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

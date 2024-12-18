@@ -1,0 +1,20 @@
+
+query GetApiRatingRating($limit: Int!) {
+  apiratingrating(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        profile
+        publishedAt
+        rating
+        social
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+
+query GetApiJobApplicationJobApplication($limit: Int!) {
+  apijobapplicationjobapplication(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        author
+        body
+        createdAt
+        createdBy
+        institution
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        term
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

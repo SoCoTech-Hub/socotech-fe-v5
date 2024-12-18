@@ -1,0 +1,21 @@
+
+query GetApiQueryHeaderQueryHeader($limit: Int!) {
+  apiqueryheaderqueryheader(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        display
+        locale
+        localizations
+        name
+        publishedAt
+        queryStructures
+        queryTypes
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+
+query GetApiNotificationResponseNotificationResponse($limit: Int!) {
+  apinotificationresponsenotificationresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        notification
+        profile
+        publishedAt
+        read
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

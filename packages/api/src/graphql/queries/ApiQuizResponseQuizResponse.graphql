@@ -1,0 +1,26 @@
+
+query GetApiQuizResponseQuizResponse($limit: Int!) {
+  apiquizresponsequizresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        answer
+        attempt
+        createdAt
+        createdBy
+        isCompleted
+        lesson
+        lesson_quiz
+        locale
+        localizations
+        points
+        publishedAt
+        response
+        totalPoints
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+query GetApiLessonAssignmentLessonAssignment($limit: Int!) {
+  apilessonassignmentlessonassignment(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        attachments
+        createdAt
+        createdBy
+        dueDate
+        isCompleted
+        isGrouped
+        lessons
+        locale
+        localizations
+        name
+        organization
+        price
+        publishedAt
+        question
+        reminderDate
+        retry
+        rubicon
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

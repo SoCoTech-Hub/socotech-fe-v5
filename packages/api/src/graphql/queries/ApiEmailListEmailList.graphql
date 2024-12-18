@@ -1,0 +1,21 @@
+
+query GetApiEmailListEmailList($limit: Int!) {
+  apiemaillistemaillist(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        body
+        createdAt
+        createdBy
+        from
+        locale
+        localizations
+        publishedAt
+        subject
+        to
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

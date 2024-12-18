@@ -1,0 +1,22 @@
+
+query GetApiPageTrackPageTrack($limit: Int!) {
+  apipagetrackpagetrack(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        action
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        time
+        title
+        updatedAt
+        updatedBy
+        url
+        user
+      }
+    }
+  }
+}

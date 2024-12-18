@@ -1,0 +1,25 @@
+
+query GetApiTransactionEventTransactionEvent($limit: Int!) {
+  apitransactioneventtransactionevent(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        amountFee
+        amountGross
+        amountNet
+        billingDate
+        createdAt
+        createdBy
+        locale
+        localizations
+        paymentId
+        publishedAt
+        testmode
+        transaction
+        type
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

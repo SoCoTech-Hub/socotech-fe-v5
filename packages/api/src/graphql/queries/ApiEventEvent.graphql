@@ -1,0 +1,36 @@
+
+query GetApiEventEvent($limit: Int!) {
+  apieventevent(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        author
+        color
+        createdAt
+        createdBy
+        desciption
+        end
+        grade
+        image
+        isLive
+        lesson
+        locale
+        localizations
+        location
+        organization
+        private
+        province
+        publishedAt
+        school
+        start
+        student
+        suburb
+        teacher
+        title
+        updatedAt
+        updatedBy
+        url
+      }
+    }
+  }
+}

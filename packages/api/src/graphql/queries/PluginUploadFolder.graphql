@@ -1,0 +1,23 @@
+
+query GetPluginUploadFolder($limit: Int!) {
+  pluginuploadfolder(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        children
+        createdAt
+        createdBy
+        files
+        locale
+        localizations
+        name
+        parent
+        path
+        pathId
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+
+query GetApiArticleTagArticleTag($limit: Int!) {
+  apiarticletagarticletag(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        articles
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

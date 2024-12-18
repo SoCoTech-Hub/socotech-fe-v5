@@ -1,0 +1,23 @@
+
+query GetApiSurveyResponseSurveyResponse($limit: Int!) {
+  apisurveyresponsesurveyresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        answer
+        createdAt
+        createdBy
+        isCompleted
+        lesson
+        lessonSurvey
+        locale
+        localizations
+        publishedAt
+        response
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

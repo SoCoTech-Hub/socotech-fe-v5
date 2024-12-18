@@ -1,0 +1,21 @@
+
+query GetApiInvoiceInvoice($limit: Int!) {
+  apiinvoiceinvoice(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        body
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        sender
+        shipTo
+        transaction
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

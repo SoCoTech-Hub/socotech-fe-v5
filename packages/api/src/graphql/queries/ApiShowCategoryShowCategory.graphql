@@ -1,0 +1,22 @@
+
+query GetApiShowCategoryShowCategory($limit: Int!) {
+  apishowcategoryshowcategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        description
+        image
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        shows
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

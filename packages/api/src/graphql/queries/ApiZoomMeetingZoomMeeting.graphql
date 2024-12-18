@@ -1,0 +1,21 @@
+
+query GetApiZoomMeetingZoomMeeting($limit: Int!) {
+  apizoommeetingzoommeeting(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        host
+        locale
+        localizations
+        meetingLink
+        participants
+        publishedAt
+        updatedAt
+        updatedBy
+        zoom
+      }
+    }
+  }
+}

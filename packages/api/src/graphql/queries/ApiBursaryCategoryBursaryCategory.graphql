@@ -1,0 +1,23 @@
+
+query GetApiBursaryCategoryBursaryCategory($limit: Int!) {
+  apibursarycategorybursarycategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        bursaries
+        color
+        createdAt
+        createdBy
+        description
+        icon
+        institutes
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

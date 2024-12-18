@@ -1,0 +1,19 @@
+
+query GetApiArticleSavedArticleSaved($limit: Int!) {
+  apiarticlesavedarticlesaved(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        article
+        createdAt
+        createdBy
+        locale
+        localizations
+        profile
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

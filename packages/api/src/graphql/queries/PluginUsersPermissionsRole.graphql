@@ -1,0 +1,22 @@
+
+query GetPluginUsersPermissionsRole($limit: Int!) {
+  pluginuserspermissionsrole(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        description
+        locale
+        localizations
+        name
+        permissions
+        publishedAt
+        type
+        updatedAt
+        updatedBy
+        users
+      }
+    }
+  }
+}

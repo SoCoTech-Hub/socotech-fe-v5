@@ -1,0 +1,18 @@
+
+query GetApiGenderGender($limit: Int!) {
+  apigendergender(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

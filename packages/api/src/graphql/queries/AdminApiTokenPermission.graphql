@@ -1,0 +1,19 @@
+
+query GetAdminApiTokenPermission($limit: Int!) {
+  adminapitokenpermission(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        action
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        token
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

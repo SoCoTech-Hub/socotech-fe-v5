@@ -1,0 +1,19 @@
+
+query GetApiZoomLessonZoomLesson($limit: Int!) {
+  apizoomlessonzoomlesson(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        lesson
+        locale
+        localizations
+        profile
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

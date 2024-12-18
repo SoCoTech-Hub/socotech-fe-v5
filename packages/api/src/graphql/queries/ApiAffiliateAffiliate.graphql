@@ -1,0 +1,22 @@
+
+query GetApiAffiliateAffiliate($limit: Int!) {
+  apiaffiliateaffiliate(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        affiliate_details
+        createdAt
+        createdBy
+        isApproved
+        locale
+        localizations
+        note
+        profile
+        publishedAt
+        updatedAt
+        updatedBy
+        user
+      }
+    }
+  }
+}

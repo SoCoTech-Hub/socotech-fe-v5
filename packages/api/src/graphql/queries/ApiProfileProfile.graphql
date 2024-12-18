@@ -1,0 +1,55 @@
+
+query GetApiProfileProfile($limit: Int!) {
+  apiprofileprofile(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        about
+        addresses
+        banner
+        cancelDate
+        createdAt
+        createdBy
+        darkMode
+        dob
+        documents
+        examNumber
+        firstName
+        gender
+        grades
+        hasSiyavulaAccess
+        idNumber
+        imei
+        inMailsBCC
+        inMailsCC
+        inMailsTos
+        isAffiliate
+        isDeveloper
+        isPaying
+        isPayingDate
+        lastName
+        locale
+        localizations
+        mobileNr
+        notifications
+        organization
+        parents
+        profilePic
+        progresses
+        provinces
+        publishedAt
+        referral
+        schools
+        serialNumber
+        shares
+        socialRead
+        subjects
+        supportDepartments
+        uniqueId
+        updatedAt
+        updatedBy
+        voucher
+      }
+    }
+  }
+}

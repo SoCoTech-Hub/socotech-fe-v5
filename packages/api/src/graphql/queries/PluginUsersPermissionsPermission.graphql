@@ -1,0 +1,19 @@
+
+query GetPluginUsersPermissionsPermission($limit: Int!) {
+  pluginuserspermissionspermission(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        action
+        createdAt
+        createdBy
+        locale
+        localizations
+        publishedAt
+        role
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

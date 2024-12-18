@@ -1,0 +1,28 @@
+
+query GetPluginUsersPermissionsUser($limit: Int!) {
+  pluginuserspermissionsuser(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        assignmentReplies
+        blocked
+        confirmationToken
+        confirmed
+        createdAt
+        createdBy
+        email
+        locale
+        localizations
+        password
+        provider
+        publishedAt
+        resetPasswordToken
+        role
+        updatedAt
+        updatedBy
+        username
+        zoomMeetings
+      }
+    }
+  }
+}

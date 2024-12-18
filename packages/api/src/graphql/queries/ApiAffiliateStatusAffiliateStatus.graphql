@@ -1,0 +1,20 @@
+
+query GetApiAffiliateStatusAffiliateStatus($limit: Int!) {
+  apiaffiliatestatusaffiliatestatus(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        color
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

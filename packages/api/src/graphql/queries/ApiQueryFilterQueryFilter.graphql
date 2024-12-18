@@ -1,0 +1,19 @@
+
+query GetApiQueryFilterQueryFilter($limit: Int!) {
+  apiqueryfilterqueryfilter(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        publishedAt
+        queryType
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

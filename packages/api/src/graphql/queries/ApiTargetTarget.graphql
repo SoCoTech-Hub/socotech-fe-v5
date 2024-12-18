@@ -1,0 +1,26 @@
+
+query GetApiTargetTarget($limit: Int!) {
+  apitargettarget(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        articles
+        createdAt
+        createdBy
+        feed
+        gender
+        grade
+        locale
+        localizations
+        name
+        province
+        publishedAt
+        school
+        subject
+        subject_category
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}
