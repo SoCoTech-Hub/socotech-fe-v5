@@ -69,6 +69,7 @@
     "NEXT_PUBLIC_MAIN_URL",
     "NEXT_PUBLIC_API_URL",
     "NEXT_PUBLIC_GQL_URL",
+    "JWT_SECRET_KEY",
     "ENV_MODE"
   ],
   "globalPassThroughEnv": [

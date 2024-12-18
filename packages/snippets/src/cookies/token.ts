@@ -3,11 +3,20 @@ import DeleteCookie from "./deleteCookie";
 import GetCookie from "./getCookie";
 
 export const GetToken = () => {
-  return GetCookie({ key: "token" });
+  try {
+    const token = GetCookie({ key: "token" });
+    return token;
+  } catch {
+    return;
+  }
 };
 
 export const DeleteToken = () => {
-  return DeleteCookie({ key: "token" });
+  try {
+    return DeleteCookie({ key: "token" });
+  } catch {
+    return;
+  }
 };
 
 export interface SetTokenProps {
@@ -15,5 +24,9 @@ export interface SetTokenProps {
   time?: string;
 }
 export const SetToken = ({ jwt, time }: SetTokenProps) => {
-  return CreateCookie({ key: "token", value: jwt, time: time });
+  try {
+    return CreateCookie({ key: "token", value: jwt, time: time });
+  } catch {
+    return;
+  }
 };
