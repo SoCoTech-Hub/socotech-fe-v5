@@ -16,19 +16,14 @@ export default function authMiddleware(request: NextRequest) {
 
   // Allow access to public routes without authentication
   if (PUBLIC_ROUTES.find((route) => pathname.startsWith(route))) {
-    console.log("you are here");
     return NextResponse.next();
   }
 
   // If no token or token not valid, redirect to login
   if (!token || !verifyToken(token)) {
     const loginUrl = new URL("/auth/login", request.url);
-    console.log("you are not authenticated");
     return NextResponse.redirect(loginUrl);
   }
-  console.log("you are authenticated");
-
-  // Optionally validate token server-side here
 
   return NextResponse.next();
 }
