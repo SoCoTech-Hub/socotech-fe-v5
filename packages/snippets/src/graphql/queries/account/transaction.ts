@@ -4,3 +4,4 @@
 
 //UPDATE:
 // PUT/POST transactions: company,vatNr,firstName,lastName,email,addressLine1,postalCode,cellNr,additionalInformation
+export const FetchTransactions = () => {};

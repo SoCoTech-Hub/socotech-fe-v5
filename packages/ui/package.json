@@ -58,6 +58,7 @@
     "@radix-ui/react-toast": "catalog:ui",
     "@radix-ui/react-tooltip": "catalog:ui",
     "@tanstack/react-table": "catalog:ui",
+    "@zoomus/websdk": "^2.18.3",
     "class-variance-authority": "catalog:ui",
     "cmdk": "catalog:ui",
     "date-fns": "catalog:ui",
