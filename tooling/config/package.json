@@ -1,0 +1,8 @@
+{
+  "name": "@acme/config",
+  "version": "1.0.0",
+  "description": "Centralized configuration for managing app ports and other settings.",
+  "main": "ports.js",
+  "author": "",
+  "license": "MIT"
+}

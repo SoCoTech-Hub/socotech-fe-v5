@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 import Config from "@acme/snippets/nextConfig";
 
 const nextConfig: NextConfig = {
+  serverRuntimeConfig: { port: ports.info },
   basePath: '/info',
 reactStrictMode: true,
   transpilePackages: ["@acme/ui"],
