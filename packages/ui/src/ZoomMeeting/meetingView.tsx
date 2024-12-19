@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import { Input } from "../input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
-interface MeetingViewProps {
+export interface MeetingViewProps {
   meetingId: string;
 }
 

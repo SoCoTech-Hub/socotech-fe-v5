@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import ZoomMeeting from ".";
 
 export default {
-  title: "Components/ZoomMeeting",
+  title: "Zoom/ZoomMeeting",
   component: ZoomMeeting,
 } as Meta;
 

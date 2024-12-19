@@ -12,7 +12,7 @@ interface PollOption {
   text: string;
 }
 
-interface PollProps {
+export interface PollProps {
   question: string;
   options: PollOption[];
   onSubmit: (selectedOption: string) => void;
