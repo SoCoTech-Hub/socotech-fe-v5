@@ -35,42 +35,42 @@ export default function Article({ article }: ArticleProps) {
   const [success, setSuccess] = useState<boolean>(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchArticleReaders = async () => {
-      const { articleReaders } = await getGQLRequest({
-        endpoint: `articleReaders`,
-        where: `article:{id:${article.id}},profile:{id:${profileId}},organization:{id:${organizationId}}`,
-        fields: `id`,
-      });
-      if (!articleReaders.length) {
-        const { profiles } = await getGQLRequest({
-          endpoint: `profiles`,
-          where: `id:${profileId}`,
-          fields: `schools{id}`,
-        });
-        await api.post("/article-readers", {
-          profile: { id: profileId },
-          article: { id: article.id },
-          organization: { id: organizationId },
-          school: {
-            id:
-              profiles[0]?.schools && profiles[0].schools.length > 0
-                ? profiles[0].schools[0].id
-                : null,
-          },
-        });
-      }
-    };
+  // useEffect(() => {
+  //   const fetchArticleReaders = async () => {
+  //     const { articleReaders } = await getGQLRequest({
+  //       endpoint: `articleReaders`,
+  //       where: `article:{id:${article.id}},profile:{id:${profileId}},organization:{id:${organizationId}}`,
+  //       fields: `id`,
+  //     });
+  //     if (!articleReaders.length) {
+  //       const { profiles } = await getGQLRequest({
+  //         endpoint: `profiles`,
+  //         where: `id:${profileId}`,
+  //         fields: `schools{id}`,
+  //       });
+  //       await api.post("/article-readers", {
+  //         profile: { id: profileId },
+  //         article: { id: article.id },
+  //         organization: { id: organizationId },
+  //         school: {
+  //           id:
+  //             profiles[0]?.schools && profiles[0].schools.length > 0
+  //               ? profiles[0].schools[0].id
+  //               : null,
+  //         },
+  //       });
+  //     }
+  //   };
 
-    fetchArticleReaders();
-  }, [article.id]);
+  //   fetchArticleReaders();
+  // }, [article.id]);
 
-  const seo = {
-    title: article.title ? `Topic - ${article.title}` : "Topic - Blog",
-    description: article?.shortDescription || article?.description || "",
-    image: article?.image?.url || "https://lms.topic.co.za/auth/logo.png",
-    url: "https://topic.co.za",
-  };
+  // const seo = {
+  //   title: article.title ? `Topic - ${article.title}` : "Topic - Blog",
+  //   description: article?.shortDescription || article?.description || "",
+  //   image: article?.image?.url || "https://lms.topic.co.za/auth/logo.png",
+  //   url: "https://topic.co.za",
+  // };
 
   const handleSaveArticle = () => {
     // Implement save article logic here
@@ -79,36 +79,36 @@ export default function Article({ article }: ArticleProps) {
 
   return (
     <>
-      <div className="bg-compBg w-full rounded-lg p-3 shadow-md">
+      <div className="w-full p-3 rounded-lg shadow-md bg-compBg">
         <div className="">
-          <div className="text-textColor mobile:p-1 pb-1 pl-6 pr-6 pt-2 text-lg">
+          <div className="pt-2 pb-1 pl-6 pr-6 text-lg text-textColor mobile:p-1">
             {article.title}
           </div>
-          <div className="text-textColor mobile:p-1 px-6">
+          <div className="px-6 text-textColor mobile:p-1">
             {`${article?.author?.firstName} ${article?.author?.lastName}` !==
             "undefined undefined"
               ? `${article?.author?.firstName} ${article?.author?.lastName}`
               : "No Name"}{" "}
             - {new Date(article?.published_at || "").toLocaleDateString()}
           </div>
-          <div className="shadow-outline bg-compBg mobile:p-1 rounded-lg p-6">
+          <div className="p-6 rounded-lg shadow-outline bg-compBg mobile:p-1">
             <img
               src={article?.image?.url}
               alt={article.title}
               onLoad={() => setLoading(false)}
-              className="w-full rounded-lg object-contain"
+              className="object-contain w-full rounded-lg"
             />
           </div>
           <div className="w-full">
-            <div className="justify-content-center flex">
+            <div className="flex justify-content-center">
               <Alert />
             </div>
-            <div className="mobile:p-1 flex flex-row justify-between px-6 pb-1">
-              <div className="flex h-10 flex-row items-center align-middle">
+            <div className="flex flex-row justify-between px-6 pb-1 mobile:p-1">
+              <div className="flex flex-row items-center h-10 align-middle">
                 <div className="flex">
-                  <div className="flex h-5 flex-row items-center align-middle">
+                  <div className="flex flex-row items-center h-5 align-middle">
                     <div
-                      className="cursor-pointer rounded-lg pl-3 shadow-none"
+                      className="pl-3 rounded-lg shadow-none cursor-pointer"
                       onClick={() =>
                         console.log("Loved article:", article.title)
                       }
@@ -121,7 +121,7 @@ export default function Article({ article }: ArticleProps) {
                         data-tracking-action={`Loved article: ${article.title}`}
                       />
                     </div>
-                    <div className="text-textColor mobile:mt-1 ml-1 text-xs">
+                    <div className="ml-1 text-xs text-textColor mobile:mt-1">
                       {/* Replace lovesTotal with appropriate count */}0
                     </div>
                   </div>
@@ -136,7 +136,7 @@ export default function Article({ article }: ArticleProps) {
                   />
                 </div>
               </div>
-              <div className="mobile:ml-8 flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mobile:ml-8">
                 <div className="">
                   <Button
                     color="bg-themeColorMain"
@@ -157,7 +157,7 @@ export default function Article({ article }: ArticleProps) {
               </div>
             </div>
             <div className="pt-3">
-              <div className="text-textColor mobile:p-1 flex-shrink px-6">
+              <div className="flex-shrink px-6 text-textColor mobile:p-1">
                 {article.description?.includes("<br/>") ||
                 article.description?.includes("<br>") ? (
                   <div
@@ -168,7 +168,7 @@ export default function Article({ article }: ArticleProps) {
                 )}
               </div>
             </div>
-            <div className="mr-4 flex justify-end">
+            <div className="flex justify-end mr-4">
               <div className="mt-4">
                 <Button
                   color="bg-themeColorMain"
