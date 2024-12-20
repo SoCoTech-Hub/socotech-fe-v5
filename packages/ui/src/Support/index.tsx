@@ -34,21 +34,11 @@ import FeedbackForm from "./feedback";
 import CreateSupportForm from "./form";
 import TicketList from "./list";
 
-// Mock data
-const mockTickets = Array.from({ length: 50 }, (_, i) => ({
-  id: i + 1,
-  title: `Ticket ${i + 1}`,
-  description: `This is a description for Ticket ${i + 1}`,
-  status: ["Open", "In Progress", "Closed"][Math.floor(Math.random() * 3)],
-  created: new Date(Date.now() - Math.floor(Math.random() * 10000000000))
-    .toISOString()
-    .split("T")[0],
-  location: ["Frontend", "Backend", "Database", "Network"][
-    Math.floor(Math.random() * 4)
-  ],
-}));
-
-export default function TicketingDashboard() {
+export interface TicketingDashboardProps {
+  tickets: TicketItem[];
+  createTicket?: (ticket: TicketItem) => void;
+}
+export default function TicketingDashboard(props: TicketingDashboardProps) {
   const [tickets, setTickets] = useState<TicketItem[]>([]);
   const [activeTicket, setActiveTicket] = useState<TicketItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,15 +50,10 @@ export default function TicketingDashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
-    // TOOD: Fetch Tickets
-    const timer = setTimeout(() => {
-      setTickets(mockTickets);
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
+    if (props.tickets.length === 0) return;
+    setTickets(props.tickets);
+    setIsLoading(false);
+  }, [props.tickets]);
 
   const itemsPerPage = 10;
   const filteredTickets = tickets
@@ -106,15 +91,16 @@ export default function TicketingDashboard() {
       location,
     };
     setTickets([newTicket, ...tickets]);
+    props.createTicket?.(newTicket);
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container p-4 mx-auto">
       <h1 className="mb-4 text-2xl font-bold">Ticketing System</h1>
       <Sheet open={isFeedbackOpen} onOpenChange={setIsFeedbackOpen}>
         <SheetTrigger asChild>
           <Button variant="outline">
-            <MessageSquare className="mr-2 h-4 w-4" />
+            <MessageSquare className="w-4 h-4 mr-2" />
             Feedback
           </Button>
         </SheetTrigger>
@@ -156,7 +142,7 @@ export default function TicketingDashboard() {
                         className="flex-grow"
                       />
                       <Button variant="outline" size="icon">
-                        <Search className="h-4 w-4" />
+                        <Search className="w-4 h-4" />
                       </Button>
                     </div>
                     <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">

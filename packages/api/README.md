@@ -4,3 +4,7 @@
 
 - run `pnpm generate:graphql`
   this will generate graphql types for all endpoints on the api
+
+# Notes
+
+- removed the script: "postbuild": "ts-node ./copy-graphql-files.cjs"

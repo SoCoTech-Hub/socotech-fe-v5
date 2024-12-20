@@ -1,39 +1,33 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
-interface Organization {
-  id: string;
-  name: string;
-  //TODO: Add all fields defined in your types
-}
-
-interface User {
-  id: string;
-  email: string;
-  profile: {
-    id?: string;
-    firstName?: string;
-    lastName?: string;
-    organization: Organization;
-  };
-  //TODO: Add any other necessary fields
-}
+import type { Organization, Profile, User } from "../types";
 
 interface AppContextProps {
-  user: User | null;
-  setUser: (user: User | null) => void;
   organization: Organization | null;
   setOrganization: (org: Organization | null) => void;
+  profile: Profile | null;
+  setProfile: (profile: Profile | null) => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
 }
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
   const [organization, setOrganization] = useState<Organization | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   return (
     <AppContext.Provider
-      value={{ user, setUser, organization, setOrganization }}
+      value={{
+        organization,
+        setOrganization,
+        profile,
+        setProfile,
+        user,
+        setUser,
+      }}
     >
       {children}
     </AppContext.Provider>

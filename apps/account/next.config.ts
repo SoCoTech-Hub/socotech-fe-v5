@@ -1,3 +1,4 @@
+import ports from "@acme/config/ports";
 import type { NextConfig } from "next";
 
 import Config from "@acme/snippets/nextConfig";

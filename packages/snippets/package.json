@@ -8,6 +8,10 @@
       "types": "./dist/src/index.d.ts",
       "default": "./dist/src/index.js"
     },
+    "./*": {
+      "types": "./dist/src/*.d.ts",
+      "default": "./dist/src/*.js"
+    },
     "./constants/*": {
       "types": "./dist/src/constants/*.d.ts",
       "default": "./dist/src/constants/*.js"
@@ -15,6 +19,14 @@
     "./graphql/*": {
       "types": "./dist/src/graphql/*.d.ts",
       "default": "./dist/src/graphql/*.js"
+    },
+    "./utils/*": {
+      "types": "./dist/src/utils/*.d.ts",
+      "default": "./dist/src/utils/*.js"
+    },
+    "./theme/*": {
+      "types": "./dist/src/theme/*.d.ts",
+      "default": "./dist/src/theme/*.js"
     },
     "./cookies/*": {
       "types": "./dist/src/cookies/*.d.ts",
@@ -31,7 +43,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@acme/api": "workspace:*",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
@@ -55,6 +66,8 @@
     "zod": "catalog:"
   },
   "dependencies": {
+    "@acme/api": "workspace:*",
+    "@acme/config": "workspace:*",
     "@apollo/client": "catalog:api",
     "@tanstack/react-query": "^5.62.7",
     "cookie-handler-pro": "^1.0.7",

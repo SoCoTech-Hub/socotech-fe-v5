@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { API_URL } from "../constants";
+import { API_URL } from "@acme/config/url";
+
 import { GetToken } from "../cookies/token";
 
 const apiClient = axios.create({

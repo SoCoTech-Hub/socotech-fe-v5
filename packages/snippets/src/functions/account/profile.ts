@@ -1,3 +1,5 @@
+import { GET_PROFILE, runQuery } from "../../graphql";
+
 // const cancelSub = async () => {
 //   const date = new Date();
 //   if (transactions[0].signature) {
@@ -20,3 +22,13 @@
 //   setIsOpen(false);
 //   setProfile({ ...profile, cancelDate: "" });
 // };
+export const FetchProfile = async () => {
+  return await runQuery<{
+    profile: {
+      id: string;
+      cancelDate: string;
+      isPaying: boolean;
+      isPayingDate: string;
+    };
+  }>(GET_PROFILE);
+};

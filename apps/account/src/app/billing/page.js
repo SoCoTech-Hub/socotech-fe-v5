@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react'
-import Alert from '@/components/Alert'
-import BtnBig from '@/components/BtnBig'
-import ProfileUserCover from '@/components/ProfileUserCover'
-import InputField from '@/components/InputField'
-import Btn from '@/components/Btn'
-import getGQLRequest from '@/snippets/getGQLRequest'
-import { organizationId, profileId, uniqueId } from '@/context/constants'
-import api from './api/api'
-import Head from 'next/head'
-import Overlay from '@/components/Overlay'
-import { pauseSubscription, unpauseSubscription } from './api/payfastApi'
-import getReadableDate from '@/snippets/user/getReadableDate'
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Alert from '@/components/Alert';
+import Btn from '@/components/Btn';
+import BtnBig from '@/components/BtnBig';
+import InputField from '@/components/InputField';
+import Overlay from '@/components/Overlay';
+import ProfileUserCover from '@/components/ProfileUserCover';
+import { organizationId, profileId, uniqueId } from '@/context/constants';
+import getGQLRequest from '@/snippets/getGQLRequest';
+import getReadableDate from '@/snippets/user/getReadableDate';
+
+import {createOrUpdateTransaction} from '@acme/snippets/graphql/user/transactions';
+
+import api from './api/api';
+import { pauseSubscription, unpauseSubscription } from './api/payfastApi';
+
 
 const billing = () => {
 	const [success, setSuccess] = useState('')
@@ -99,36 +103,40 @@ const billing = () => {
 		setSuccess('')
 		setError('')
 		if (transactions.length) {
-			const res = await api.put(`transactions/${transactions[0].id}`, {
-				company: company,
-				vatNr: vatNr,
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				addressLine1: addressLine1,
-				postalCode: postalCode,
-				cellNr: cellNr,
-				additionalInformation: additionalInformation
-			})
-			if (!res.ok) {
-				setError('Something went wrong')
-			}
-		} else {
-			const res = await api.post(`transactions`, {
-				company: company,
-				vatNr: vatNr,
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				addressLine1: addressLine1,
-				postalCode: postalCode,
-				cellNr: cellNr,
-				additionalInformation: additionalInformation
-			})
-			if (!res.ok) {
-				setError('Something went wrong')
-			}
-		}
+      const result = await createOrUpdateTransaction(
+        transactions[0].id,
+        transactionData,
+      );
+      const res = await api.put(`transactions/${transactions[0].id}`, {
+        company: company,
+        vatNr: vatNr,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        addressLine1: addressLine1,
+        postalCode: postalCode,
+        cellNr: cellNr,
+        additionalInformation: additionalInformation,
+      });
+      if (!res.ok) {
+        setError("Something went wrong");
+      }
+    } else {
+      const res = await api.post(`transactions`, {
+        company: company,
+        vatNr: vatNr,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        addressLine1: addressLine1,
+        postalCode: postalCode,
+        cellNr: cellNr,
+        additionalInformation: additionalInformation,
+      });
+      if (!res.ok) {
+        setError("Something went wrong");
+      }
+    }
 		setSuccess('Billing Information Updated')
 		return
 	}

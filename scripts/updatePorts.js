@@ -53,8 +53,8 @@ const updateAppConfig = (appName, port) => {
 
   // Update package.json scripts
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-  packageJson.scripts.start = `PORT=${port} next start`;
-  packageJson.scripts.dev = `PORT=${port} next dev`;
+  packageJson.scripts.start = `next start --port ${port} `;
+  packageJson.scripts.dev = `next dev --turbopack --port ${port}`;
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 };
 

@@ -5,8 +5,9 @@
     "lib": ["ES2022", "dom", "dom.iterable"],
     "jsx": "preserve",
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", "src/**/*.graphql"],
   "exclude": ["node_modules"]
 }

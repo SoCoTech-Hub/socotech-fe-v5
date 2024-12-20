@@ -14,13 +14,17 @@ webpush.setVapidDetails(
 let subscription: PushSubscription | null = null;
 
 export async function subscribeUser(sub: PushSubscription) {
-  subscription = sub;
-  const { data } = await api.GET("/users/me");
-  // TODO: store the subscription
-  await api.POST("/notification-subscribers", {
-    body: { data: { user: data } },
-  });
-  return { success: true };
+  try {
+    const { data } = await api.GET("/users/me");
+    // TODO: store the subscription
+    await api.POST("/notification-subscribers", {
+      body: { data: { user: data, subscription: sub } },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Subscription failed:", error);
+    return { success: false, error: (error as Error).message };
+  }
 }
 
 export async function unsubscribeUser() {

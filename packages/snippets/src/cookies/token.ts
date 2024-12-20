@@ -6,7 +6,8 @@ export const GetToken = () => {
   try {
     const token = GetCookie({ key: "token" });
     return token;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return;
   }
 };
@@ -14,7 +15,8 @@ export const GetToken = () => {
 export const DeleteToken = () => {
   try {
     return DeleteCookie({ key: "token" });
-  } catch {
+  } catch (error) {
+    console.log(error);
     return;
   }
 };
@@ -26,7 +28,8 @@ export interface SetTokenProps {
 export const SetToken = ({ jwt, time }: SetTokenProps) => {
   try {
     return CreateCookie({ key: "token", value: jwt, time: time });
-  } catch {
+  } catch (error) {
+    console.log(error);
     return;
   }
 };

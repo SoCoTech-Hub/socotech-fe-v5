@@ -1,10 +1,11 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
-import { GQL_URL } from "../constants";
+import { CONFIG } from "@acme/config/url";
+
 import { GetToken } from "../cookies/token";
 
 const httpLink = new HttpLink({
-  uri: GQL_URL,
+  uri: CONFIG.GQL_URL,
   headers: {
     "Content-Type": "application/json",
     ...(GetToken() && { Authorization: `Bearer ${GetToken()}` }),

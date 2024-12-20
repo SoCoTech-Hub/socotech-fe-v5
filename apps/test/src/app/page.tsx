@@ -3,12 +3,14 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 
+import { AdminApiTokenPermissionQuery } from "@acme/api";
+
 export default function Home() {
   const matching = ["/about", "/about/topic/cats", "/public/disclaimer"];
   const notMatching = ["/public", "/public/disclaimer/nested", "/static"];
   const pathname = usePathname();
   console.log({ pathname });
-  
+  console.log(AdminApiTokenPermissionQuery);
   return (
     <div>
       <h1>Middleware matching</h1>

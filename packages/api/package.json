@@ -18,11 +18,15 @@
     "./graphql/*": {
       "types": "./dist/src/graphql/*",
       "default": "./src/graphql/*"
+    },
+    "./graphql/queries/*": {
+      "default": "./src/graphql/queries/*"
     }
   },
   "scripts": {
     "build": "tsc",
-    "generate:graphql": "tsx ./generate-graphql.cjs"
+    "generate:graphql": "tsx ./generate-graphql.cjs",
+    "generate:index": "tsx ./generate-index.cjs"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +34,7 @@
   "dependencies": {
     "@strapi/strapi": "5.1.0",
     "axios": "catalog:api",
+    "graphql-tag": "^2.12.6",
     "openapi-fetch": "^0.13.3",
     "qs": "^6.13.1",
     "ts-morph": "^24.0.0",
@@ -39,6 +44,7 @@
     "@acme/eslint-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@types/node": "catalog:react19",
+    "chokidar": "^4.0.3",
     "tsx": "^4.19.2"
   }
 }
