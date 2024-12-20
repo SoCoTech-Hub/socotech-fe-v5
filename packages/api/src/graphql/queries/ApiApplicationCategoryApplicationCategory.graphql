@@ -1,0 +1,24 @@
+
+query GetApiApplicationCategoryApplicationCategory($limit: Int!) {
+  apiapplicationcategoryapplicationcategory(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        applications
+        color
+        companies
+        createdAt
+        createdBy
+        description
+        icon
+        locale
+        localizations
+        name
+        organization
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

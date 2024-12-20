@@ -1,0 +1,20 @@
+
+query GetApiApplicationResponseApplicationResponse($limit: Int!) {
+  apiapplicationresponseapplicationresponse(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        application
+        createdAt
+        createdBy
+        locale
+        localizations
+        organization
+        profile
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

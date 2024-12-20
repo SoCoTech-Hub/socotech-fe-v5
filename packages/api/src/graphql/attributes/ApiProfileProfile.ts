@@ -1,18 +1,10 @@
-import { ApiOrganizationOrganization } from "./ApiOrganizationOrganization";
-import { ApiParentParent } from "./ApiParentParent";
-import { ApiProvinceProvince } from "./ApiProvinceProvince";
-import { ApiSchoolSchool } from "./ApiSchoolSchool";
-import { ApiSubjectSubject } from "./ApiSubjectSubject";
-import { ApiSupportDepartmentSupportDepartment } from "./ApiSupportDepartmentSupportDepartment";
-import { ApiVoucherVoucher } from "./ApiVoucherVoucher";
-import { PluginUploadFile } from "./PluginUploadFile";
 
 export interface ApiProfileProfile {
   id: string;
   attributes: {
     about: string;
     addresses: string;
-    banner: PluginUploadFile;
+    banner: string;
     cancelDate: string;
     createdAt: string;
     createdBy: string;
@@ -38,22 +30,22 @@ export interface ApiProfileProfile {
     localizations: string;
     mobileNr: string;
     notifications: string;
-    organization: ApiOrganizationOrganization;
-    parents: ApiParentParent;
-    profilePic: PluginUploadFile;
+    organization: string;
+    parents: string;
+    profilePic: string;
     progresses: string;
-    provinces: ApiProvinceProvince;
+    provinces: string;
     publishedAt: string;
     referral: string;
-    schools: ApiSchoolSchool;
+    schools: string;
     serialNumber: string;
     shares: string;
     socialRead: string;
-    subjects: ApiSubjectSubject;
-    supportDepartments: ApiSupportDepartmentSupportDepartment;
+    subjects: string;
+    supportDepartments: string;
     uniqueId: string;
     updatedAt: string;
     updatedBy: string;
-    voucher: ApiVoucherVoucher;
+    voucher: string;
   };
 }

@@ -625,6 +625,171 @@ export interface ApiAffiliateAffiliate extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiApplicationCategoryApplicationCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'application_categories';
+  info: {
+    description: '';
+    displayName: 'Application Category';
+    pluralName: 'application-categories';
+    singularName: 'application-category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    applications: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::application.application'
+    >;
+    color: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::color-picker.color'>;
+    companies: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::application-company.application-company'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::application-category.application-category'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    organization: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::organization.organization'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiApplicationCompanyApplicationCompany
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'application_companies';
+  info: {
+    displayName: 'Application Company';
+    pluralName: 'application-companies';
+    singularName: 'application-company';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    background: Schema.Attribute.Media<'images'>;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::application-category.application-category'
+    >;
+    color: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::color-picker.color'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::application-company.application-company'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiApplicationResponseApplicationResponse
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'application_responses';
+  info: {
+    displayName: 'Application Response';
+    pluralName: 'application-responses';
+    singularName: 'application-response';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    application: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::application.application'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::application-response.application-response'
+    > &
+      Schema.Attribute.Private;
+    organization: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::organization.organization'
+    >;
+    profile: Schema.Attribute.Relation<'oneToOne', 'api::profile.profile'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
+  collectionName: 'applications';
+  info: {
+    description: '';
+    displayName: 'Application';
+    pluralName: 'applications';
+    singularName: 'application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    application: Schema.Attribute.Blocks;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::application-category.application-category'
+    >;
+    close: Schema.Attribute.DateTime;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::application.application'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    note: Schema.Attribute.Blocks;
+    open: Schema.Attribute.DateTime;
+    organization: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::organization.organization'
+    >;
+    particulars: Schema.Attribute.Blocks;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+    value: Schema.Attribute.Blocks;
+    whoQualifies: Schema.Attribute.Blocks;
+  };
+}
+
 export interface ApiArticleCategoryArticleCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'article_categories';
@@ -4545,6 +4710,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    profile: Schema.Attribute.Relation<'oneToOne', 'api::profile.profile'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -4585,6 +4751,10 @@ declare module '@strapi/strapi' {
       'api::affiliate-status.affiliate-status': ApiAffiliateStatusAffiliateStatus;
       'api::affiliate-transaction.affiliate-transaction': ApiAffiliateTransactionAffiliateTransaction;
       'api::affiliate.affiliate': ApiAffiliateAffiliate;
+      'api::application-category.application-category': ApiApplicationCategoryApplicationCategory;
+      'api::application-company.application-company': ApiApplicationCompanyApplicationCompany;
+      'api::application-response.application-response': ApiApplicationResponseApplicationResponse;
+      'api::application.application': ApiApplicationApplication;
       'api::article-category.article-category': ApiArticleCategoryArticleCategory;
       'api::article-saved.article-saved': ApiArticleSavedArticleSaved;
       'api::article-tag.article-tag': ApiArticleTagArticleTag;

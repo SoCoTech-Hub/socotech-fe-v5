@@ -1,0 +1,22 @@
+
+query GetApiApplicationCompanyApplicationCompany($limit: Int!) {
+  apiapplicationcompanyapplicationcompany(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        background
+        categories
+        color
+        createdAt
+        createdBy
+        icon
+        locale
+        localizations
+        name
+        publishedAt
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

@@ -12,6 +12,7 @@ export interface PluginUsersPermissionsUser {
     locale: string;
     localizations: string;
     password: string;
+    profile: string;
     provider: string;
     publishedAt: string;
     resetPasswordToken: string;

@@ -1,0 +1,28 @@
+
+query GetApiApplicationApplication($limit: Int!) {
+  apiapplicationapplication(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        application
+        categories
+        close
+        createdAt
+        createdBy
+        locale
+        localizations
+        name
+        note
+        open
+        organization
+        particulars
+        publishedAt
+        updatedAt
+        updatedBy
+        url
+        value
+        whoQualifies
+      }
+    }
+  }
+}
