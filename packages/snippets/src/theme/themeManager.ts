@@ -7,9 +7,9 @@ export const useApplyTheme = () => {
 
   useEffect(() => {
     if (organization) {
-      setTheme(organization.primaryColor);
-      setTheme(organization.secondaryColor);
-      setTheme(organization.text);
+      setTheme({ primaryColor: organization.attributes.primaryColor });
+      setTheme({ secondaryColor: organization.attributes.secondaryColor });
+      setTheme({ text: organization.attributes.text });
       // Add more colors here and on API's side
     }
   }, [organization]);

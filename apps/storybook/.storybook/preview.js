@@ -11,6 +11,8 @@ const preview = {
       },
     },
   },
+
+  tags: ["autodocs", "autodocs"]
 };
 
 export default preview;

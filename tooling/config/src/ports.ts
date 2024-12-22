@@ -1,4 +1,4 @@
-const ports = {
+const ports: Record<string, number> = {
   account: 3001,
   affiliate: 3002,
   application: 3003,
@@ -34,4 +34,4 @@ const ports = {
   zoomsdk: 3033,
 };
 
-module.exports = ports;
+export default ports;

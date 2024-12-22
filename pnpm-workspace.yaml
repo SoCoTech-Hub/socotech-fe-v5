@@ -27,7 +27,7 @@ catalogs:
     "@types/react-dom": ^19.0.0
     "@types/node": ^22.10.1
   storybook:
-    "@chromatic-com/storybook": 1.9.0
+    "@chromatic-com/storybook": ^3.2.3
     "@storybook/addon-essentials": 8.4.7
     "@storybook/addon-interactions": 8.4.7
     "@storybook/addon-links": 8.4.7
@@ -36,6 +36,7 @@ catalogs:
     "@storybook/react": 8.4.7
     "@storybook/react-vite": 8.4.7
     "@storybook/test": 8.4.7
+    "@vitejs/plugin-react": ^4.3.4
     prop-types: 15.8.1
     storybook: 8.4.7
   api:

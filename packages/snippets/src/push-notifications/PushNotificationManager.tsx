@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { CONFIG } from "@acme/config/url";
+
 import { sendNotification, subscribeUser, unsubscribeUser } from "./actions";
 import UrlBase64ToUint8Array from "./urlBase64ToUint8Array";
 
@@ -30,12 +32,18 @@ export default function PushNotificationManager() {
     const registration = await navigator.serviceWorker.ready;
     const sub = await registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: UrlBase64ToUint8Array(
-        process.env.VAPID_PUB_KEY ?? "",
-      ),
+      applicationServerKey: UrlBase64ToUint8Array(CONFIG.VAPID_KEY),
     });
     setSubscription(sub);
-    await subscribeUser(sub);
+    const convertedSub = {
+      endpoint: sub.endpoint,
+      expirationTime: sub.expirationTime,
+      keys: {
+        p256dh: sub.toJSON().keys?.p256dh || "",
+        auth: sub.toJSON().keys?.auth || "",
+      },
+    };
+    await subscribeUser(convertedSub);
   }
 
   async function unsubscribeFromPush() {

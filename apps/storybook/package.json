@@ -2,16 +2,16 @@
   "name": "@acme/storybook",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
-    "@chromatic-com/storybook": "catalog:storybook",
+    "@acme/tsconfig": "workspace:*",
+    "@chromatic-com/storybook": "^3.2.3",
     "@storybook/addon-essentials": "catalog:storybook",
     "@storybook/addon-interactions": "catalog:storybook",
     "@storybook/addon-links": "catalog:storybook",
@@ -20,11 +20,17 @@
     "@storybook/react": "catalog:storybook",
     "@storybook/react-vite": "catalog:storybook",
     "@storybook/test": "catalog:storybook",
+    "@types/node": "catalog:react19",
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
     "prop-types": "catalog:storybook",
     "storybook": "catalog:storybook",
     "tailwindcss": "catalog:"
   },
   "dependencies": {
-    "@acme/ui": "workspace:*"
+    "@acme/ui": "workspace:*",
+    "@vitejs/plugin-react": "catalog:storybook",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
   }
 }

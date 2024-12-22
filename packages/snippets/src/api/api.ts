@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { API_URL } from "@acme/config/url";
+import { CONFIG } from "@acme/config/url";
 
 import { GetToken } from "../cookies/token";
 
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: CONFIG.API_URL,
   headers: {
     "Content-Type": "application/json",
   },

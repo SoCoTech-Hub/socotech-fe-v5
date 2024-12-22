@@ -1,38 +1,37 @@
 "use client";
 
-import React from "react";
-import { usePathname } from "next/navigation";
-
-import { AdminApiTokenPermissionQuery } from "@acme/api";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@acme/ui/Accordion/accordion";
 
 export default function Home() {
-  const matching = ["/about", "/about/topic/cats", "/public/disclaimer"];
-  const notMatching = ["/public", "/public/disclaimer/nested", "/static"];
-  const pathname = usePathname();
-  console.log({ pathname });
-  console.log(AdminApiTokenPermissionQuery);
   return (
     <div>
-      <h1>Middleware matching</h1>
-      <p>The current middleware configuration is:</p>
-      <pre>
-        export const config = {"{"}
-        <br />
-        {"  "}matcher: [ <br />
-        {"    "}'/public/disclaimer', // match a single, specific page
-        <br />
-        {"    "}'/((?!public|static).*) // match all pages not starting with
-        'public' or 'static' <br />
-        {"   "}] <br />
-        {"}"}
-      </pre>
-      <ul>
-        {[...notMatching, ...matching].map((href) => (
-          <li key={href}>
-            <a href={href}>{href}</a>
-          </li>
-        ))}
-      </ul>
+      <h1>Home Page</h1>
+      <Accordion className="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It comes with default styles that match the aesthetic of other
+            components.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Is it animated?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It's animated by default, but you can disable it if you prefer.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }

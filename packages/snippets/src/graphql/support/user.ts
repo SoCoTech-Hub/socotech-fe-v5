@@ -1,9 +1,6 @@
 import { gql } from "graphql-tag";
 
-
-
-import { runQuery } from "../../runQuery";
-
+import { runQuery } from "../runQuery";
 
 export interface UserProfileResponse {
   user: {
@@ -19,7 +16,7 @@ export interface UserProfileResponse {
 
 const GET_USER_PROFILE = gql`
   query GetUserProfile {
-    user(id:string) {
+    user(id: string) {
       id
       profile {
         firstName
@@ -42,10 +39,9 @@ export const GET_ME = gql`
     }
   }
 `;
-export const fetchUserProfile = async () => {
-  const me = await runQuery<{ user: { id: string } }>(
-    GET_ME,
-    { id },
-  );
-  return await runQuery<UserProfileResponse>(GET_USER_PROFILE);
+export const fetchUserProfile = async (id: string) => {
+  const me = await runQuery<{ user: { id: string } }>(GET_ME, { id });
+  return await runQuery<UserProfileResponse>(GET_USER_PROFILE, {
+    id: me.user.id,
+  });
 };

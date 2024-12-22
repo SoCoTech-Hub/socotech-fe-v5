@@ -9,5 +9,5 @@
     "resolveJsonModule": true
   },
   "include": ["src", "src/**/*.graphql"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

@@ -11,18 +11,22 @@
       "default": "./src/index.ts"
     },
     "./graphql/*": {
-      "types": "./dist/src/graphql/*",
+      "types": "./src/graphql/*",
       "default": "./src/graphql/*"
     },
-    "./graphql/queries/*": {
-      "default": "./src/graphql/queries/*"
-    },
-    "./types*": {
+    "./types/*": {
+      "types": "./src/types/*",
       "default": "./src/types/*"
     }
   },
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf dist .cache",
     "generate:graphql": "tsx ./scripts/generate-graphql.cjs",
     "generate:index": "tsx ./scripts/generate-index.cjs"
   },

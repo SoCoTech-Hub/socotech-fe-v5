@@ -69,7 +69,9 @@
     "lucide-react": "catalog:ui",
     "next-themes": "catalog:ui",
     "quill": "catalog:ui",
+    "react": "catalog:react19",
     "react-day-picker": "catalog:ui",
+    "react-dom": "catalog:react19",
     "react-draggable": "catalog:ui",
     "react-dropzone": "catalog:ui",
     "react-hook-form": "catalog:ui",
@@ -83,7 +85,8 @@
     "sonner": "catalog:ui",
     "tailwind-merge": "catalog:ui",
     "vaul": "catalog:ui",
-    "web-push": "catalog:ui"
+    "web-push": "catalog:ui",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
@@ -100,11 +103,6 @@
     "prettier": "catalog:",
     "ts-jest": "catalog:jest",
     "typescript": "catalog:"
-  },
-  "peerDependencies": {
-    "react": "catalog:react19",
-    "react-dom": "catalog:react19",
-    "zod": "catalog:"
   },
   "prettier": "@acme/prettier-config"
 }
