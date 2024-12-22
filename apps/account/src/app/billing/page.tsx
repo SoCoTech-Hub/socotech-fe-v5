@@ -57,6 +57,89 @@ const billing = () => {
         fields: "merchantId",
       });
     }
+import { organizationId, profileId, uniqueId } from "@/context/constants";
+import getGQLRequest from "@/snippets/getGQLRequest";
+import getReadableDate from "@/snippets/user/getReadableDate";
+
+import Alert from "@acme/ui/alert";
+import Button from "@acme/ui/button";
+import InputField from "@acme/ui/InputField/index";
+import Modal from "@acme/ui/modal";
+import Cover from "@acme/ui/profile/cover";
+
+interface Transaction {
+  id: string;
+  company: string;
+  vatNr: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  addressLine1: string;
+  postalCode: string;
+  cellnr: string;
+  additionalInformation: string;
+  signature: string | null;
+}
+
+interface Profile {
+  id: string;
+  cancelDate: string | null;
+  isPaying: boolean;
+  isPayingDate: string;
+}
+
+interface Organization {
+  merchantId: string;
+}
+
+const Billing: React.FC = () => {
+  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false);
+  const [transactions, setTransactions] = useState<Transaction[] | null>(null);
+  const [company, setCompany] = useState<string>("");
+  const [vatNr, setVatNr] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [addressLine1, setAddressLine1] = useState<string>("");
+  const [postalCode, setPostalCode] = useState<string>("");
+  const [additionalInformation, setAdditionalInformation] =
+    useState<string>("");
+  const [cellNr, setCellNr] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [org, setOrg] = useState<Organization>({ merchantId: "" });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (uniqueId && organizationId) {
+        await getGQLRequest({
+          endpoint: "transactions",
+          stateSetter: setTransactions,
+          fields: `id,company,vatNr,firstName,lastName,email,addressLine1,postalCode,cellnr,additionalInformation,signature`,
+          where: `mPaymentId:"${uniqueId}"`,
+        });
+
+        await getGQLRequest({
+          endpoint: "profile",
+          stateSetter: setProfile,
+          findOne: true,
+          id: profileId,
+          fields: "id,cancelDate,isPaying,isPayingDate",
+        });
+
+        await getGQLRequest({
+          endpoint: "organization",
+          stateSetter: setOrg,
+          findOne: true,
+          id: organizationId,
+          fields: "merchantId",
+        });
+      }
+    };
+
+    fetchData();
   }, [uniqueId]);
 
   useEffect(() => {
