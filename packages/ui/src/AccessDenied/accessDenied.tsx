@@ -16,7 +16,7 @@ import {
 interface AccessDeniedModalProps {
   isOpen?: boolean;
   onClose?: () => void;
-  // onRequestAccess?: () => void;
+  // onRequestAccess?: () => void; //should do something like send an email to admin to grant access
   title?: string;
   description?: string;
 }
@@ -48,7 +48,7 @@ const AccessDenied = ({
             id="access-denied-title"
             className="flex items-center gap-2 text-destructiveForeground"
           >
-            <AlertCircle className="w-5 h-5" />
+            <AlertCircle className="h-5 w-5" />
             {title}
           </DialogTitle>
           <DialogDescription id="access-denied-description">
@@ -56,7 +56,7 @@ const AccessDenied = ({
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center justify-center py-4">
-          <Lock className="w-16 h-16 text-destructiveForeground" />
+          <Lock className="h-16 w-16 text-destructiveForeground" />
         </div>
         <DialogFooter className="sm:justify-center">
           <Button type="button" variant="secondary" onClick={onClose}>

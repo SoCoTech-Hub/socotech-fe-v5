@@ -40,10 +40,14 @@ catalogs:
     storybook: 8.4.7
   api:
     "@apollo/client": 3.12.3
-    "@strapi/strapi": 5.5.1
+    "@strapi/strapi": 5.6.0
     axios: 1.7.9
-    openapi-typescript: 7.4.4
     graphql: ^16.10.0
+    graphql-tag: ^2.12.5
+    openapi-typescript: 7.4.4
+    openapi-fetch: ^0.13.3
+    qs: ^6.13.1
+    ts-morph: ^24.0.0
   ui:
     "@hookform/resolvers": ^3.9.1
     "@radix-ui/react-accordion": ^1.2.2

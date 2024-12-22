@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { Button } from "../button";
-
 const ZoomMeeting: React.FC = () => {
   const router = useRouter();
   const { meetingLink, lessonId } = router.query;
@@ -29,19 +27,19 @@ const ZoomMeeting: React.FC = () => {
   return (
     <div>
       {lessonId ? (
-        <Button
-          label="Join Webinar"
-          link={`/webinar/${lessonId}/${meetingNumber}/${meetingPassword}`}
-          onClickFunction={() => {}}
-          color="bg-themeColorMain"
-        />
+        <a
+          href={`/webinar/${lessonId}/${meetingNumber}/${meetingPassword}`}
+          className="bg-themeColorMain"
+        >
+          Join Webinar
+        </a>
       ) : (
-        <Button
-          label="Join Meeting"
-          link={`/meeting/${meetingNumber}/${meetingPassword}`}
-          onClickFunction={() => {}}
-          color="bg-themeColorMain"
-        />
+        <a
+          href={`/meeting/${meetingNumber}/${meetingPassword}`}
+          className="bg-themeColorMain"
+        >
+          Join Meeting
+        </a>
       )}
     </div>
   );

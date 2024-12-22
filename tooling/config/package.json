@@ -1,12 +1,25 @@
 {
   "name": "@acme/config",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Centralized configuration for managing app ports and other settings.",
+  "main": "./dist/index.js",
   "exports": {
     "./*": {
-      "default": "./dist/*.js"
+      "types": "./dist/src/*.d.ts",
+      "default": [
+        "./src/*.ts",
+        "./src/*.tsx"
+      ]
     }
   },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist"
+  },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@acme/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
 }

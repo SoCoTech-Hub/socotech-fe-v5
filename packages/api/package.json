@@ -3,17 +3,12 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "author": "",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
       "default": "./src/index.ts"
-    },
-    "./**/*": {
-      "types": "./dist/src/**/*.d.ts",
-      "default": [
-        "./src/**/*.ts",
-        "./src/**/*.tsx"
-      ]
     },
     "./graphql/*": {
       "types": "./dist/src/graphql/*",
@@ -21,30 +16,29 @@
     },
     "./graphql/queries/*": {
       "default": "./src/graphql/queries/*"
+    },
+    "./types*": {
+      "default": "./src/types/*"
     }
   },
   "scripts": {
     "build": "tsc",
-    "generate:graphql": "tsx ./generate-graphql.cjs",
-    "generate:index": "tsx ./generate-index.cjs"
+    "generate:graphql": "tsx ./scripts/generate-graphql.cjs",
+    "generate:index": "tsx ./scripts/generate-index.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "@strapi/strapi": "5.1.0",
+    "@strapi/strapi": "catalog:api",
     "axios": "catalog:api",
-    "graphql-tag": "^2.12.6",
-    "openapi-fetch": "^0.13.3",
-    "qs": "^6.13.1",
-    "ts-morph": "^24.0.0",
-    "zod": "^3.24.1"
+    "graphql-tag": "catalog:api",
+    "openapi-fetch": "catalog:api",
+    "qs": "catalog:api",
+    "ts-morph": "catalog:api",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@types/node": "catalog:react19",
-    "chokidar": "^4.0.3",
-    "tsx": "^4.19.2"
+    "typescript": "catalog:"
   }
 }

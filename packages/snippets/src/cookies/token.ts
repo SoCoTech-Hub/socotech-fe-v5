@@ -1,6 +1,4 @@
-import CreateCookie from "./createCookie";
-import DeleteCookie from "./deleteCookie";
-import GetCookie from "./getCookie";
+import { CreateCookie, DeleteCookie, GetCookie } from "./crudCookie";
 
 export const GetToken = () => {
   try {

@@ -23,16 +23,12 @@ const api = createClient<paths>({
 });
 export { api };
 
-/**
- * Example function to retrieve the token
- * Replace with your own token retrieval logic
- */
 function getAuthToken(): string | null {
-  // Example: Retrieve token from cookies
+  // Retrieve token from cookies
   return (
     document.cookie
       .split("; ")
-      .find((row) => row.startsWith("authToken="))
+      .find((row) => row.startsWith("token="))
       ?.split("=")[1] ?? null
   );
 }
