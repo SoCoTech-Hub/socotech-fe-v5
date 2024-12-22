@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { profileId } from "@/context/constants";
-import getSelectedBursary from "@/snippets/user/getSelectedBursary";
+import getSelectedQualification from "@/snippets/user/getSelectedQualification";
 
-import BursaryListing from "../../../../../../packages/ui/src/Bursaries/listing";
-import BursaryPost from "../../../../../../packages/ui/src/Bursaries/Post";
-import { Button } from "../../../../../../packages/ui/src/button";
+import { Button } from "../../../../../packages/ui/src/button";
+import QualificationListing from "../../../../../packages/ui/src/qualifications/listing";
+import QualificationPost from "../../../../../packages/ui/src/qualifications/Post";
 
-interface Bursary {
+interface Qualification {
   id: string;
   name: string;
   whoQualifies?: string;
@@ -21,7 +21,7 @@ interface Bursary {
   url?: string;
 }
 
-interface BursaryCategory {
+interface QualificationCategory {
   id: string;
   name: string;
   color?: string;
@@ -29,31 +29,33 @@ interface BursaryCategory {
   iconSvg?: string;
 }
 
-interface BursaryProps {
+interface QualificationProps {
   universityId: string;
-  bursariesArr: Bursary[];
-  bursaryCategory: BursaryCategory;
+  qualificationsArr: Qualification[];
+  qualificationCategory: QualificationCategory;
 }
 
-const Bursary = ({
+const Qualification = ({
   universityId,
-  bursariesArr,
-  bursaryCategory,
-}: BursaryProps) => {
-  const [bursaries] = useState<Bursary[]>(bursariesArr ? bursariesArr : []);
+  qualificationsArr,
+  qualificationCategory,
+}: QualificationProps) => {
+  const [qualifications] = useState<Qualification[]>(
+    qualificationsArr ? qualificationsArr : [],
+  );
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [selected, setSelected] = useState<Bursary | {}>({});
+  const [selected, setSelected] = useState<Qualification | {}>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [numberOfApplications, setNumberOfApplications] = useState<number>(0);
 
   useEffect(() => {
-    const fetchSelectedBursary = async () => {
+    const fetchSelectedQualification = async () => {
       setLoading(true);
       setSelected({});
       setSelectedId(null);
-      if (bursaries.length) {
-        let resultData = await getSelectedBursary({
-          bursaryId: bursaries[0].id,
+      if (qualifications.length) {
+        let resultData = await getSelectedQualification({
+          qualificationId: qualifications[0].id,
           selectedId: selectedId,
         });
         setSelected(resultData.selected);
@@ -65,15 +67,15 @@ const Bursary = ({
       }
       setLoading(false);
     };
-    fetchSelectedBursary();
-  }, [bursaries]);
+    fetchSelectedQualification();
+  }, [qualifications]);
 
   useEffect(() => {
-    const fetchSelectedBursary = async () => {
+    const fetchSelectedQualification = async () => {
       setLoading(true);
-      if (bursaries.length) {
-        let resultData = await getSelectedBursary({
-          bursaryId: bursaries[0].id,
+      if (qualifications.length) {
+        let resultData = await getSelectedQualification({
+          qualificationId: qualifications[0].id,
           selectedId: selectedId,
         });
         setSelected(resultData.selected);
@@ -85,7 +87,7 @@ const Bursary = ({
       }
       setLoading(false);
     };
-    fetchSelectedBursary();
+    fetchSelectedQualification();
   }, [selectedId]);
 
   return (
@@ -93,33 +95,33 @@ const Bursary = ({
       <div className="w-full">
         <div>
           <div className="mobile:p-2 bg-themeColorMain desktop:py-2 laptop:py-2 grid place-content-center rounded-lg text-xl text-black">
-            {bursaryCategory?.name}
+            {qualificationCategory?.name}
           </div>
         </div>
         <div className="my-4 flex justify-end font-bold">
-          <Button title="Back" link={`/bursaries`} color="bg-themeColorMain" />
+          <Button title="Back" link={`/qualifications`} color="bg-themeColorMain" />
         </div>
 
-        {bursaries?.length > 0 && (
+        {qualifications?.length > 0 && (
           <div className="bg-compBg shadow-menu flex divide-x rounded-lg p-3">
             <div
               className="desktop:w-1/3 laptop:w-1/3 mobile:hidden no-scrolly grid grid-cols-1 space-y-2 divide-y shadow-inner"
               id="scrollplz"
             >
-              {bursaries.map((item) => (
+              {qualifications.map((item) => (
                 <div key={item.id}>
-                  <BursaryListing
+                  <QualificationListing
                     id={item.id}
                     courseTitle={item.name}
-                    courseCompanyName={bursaryCategory?.name}
+                    courseCompanyName={qualificationCategory?.name}
                     courseDescription={item.whoQualifies}
                     applicationFeatureImage={
-                      bursaryCategory?.icon
-                        ? bursaryCategory?.icon
+                      qualificationCategory?.icon
+                        ? qualificationCategory?.icon
                         : "/user/Icon_School.png"
                     }
-                    bgColor={bursaryCategory?.color}
-                    iconSvg={bursaryCategory?.iconSvg}
+                    bgColor={qualificationCategory?.color}
+                    iconSvg={qualificationCategory?.iconSvg}
                     setSelection={setSelectedId}
                   />
                 </div>
@@ -129,20 +131,20 @@ const Bursary = ({
               className="mobile:w-full desktop:hidden laptop:hidden no-scrolly grid grid-cols-1 space-y-2 divide-y"
               id="scrollplz"
             >
-              {bursaries.map((item) => (
+              {qualifications.map((item) => (
                 <div key={item.id}>
-                  <BursaryListing
+                  <QualificationListing
                     id={item.id}
                     courseTitle={item.name}
-                    courseCompanyName={bursaryCategory?.name}
+                    courseCompanyName={qualificationCategory?.name}
                     courseDescription={item.whoQualifies}
                     applicationFeatureImage={
-                      bursaryCategory?.icon
-                        ? bursaryCategory?.icon
+                      qualificationCategory?.icon
+                        ? qualificationCategory?.icon
                         : "/user/Icon_School.png"
                     }
-                    bgColor={bursaryCategory?.color}
-                    iconSvg={bursaryCategory?.iconSvg}
+                    bgColor={qualificationCategory?.color}
+                    iconSvg={qualificationCategory?.iconSvg}
                     setSelection={setSelectedId}
                   />
                 </div>
@@ -153,28 +155,28 @@ const Bursary = ({
               id="scrollplz"
             >
               {selected && (
-                <BursaryPost
+                <QualificationPost
                   loading={loading}
-                  courseTitle={(selected as Bursary).name}
-                  companyDescription={bursaryCategory?.name}
-                  timePosted={(selected as Bursary).updated_at}
-                  open={(selected as Bursary).open}
-                  close={(selected as Bursary).close}
-                  whoQualifies={(selected as Bursary).whoQualifies}
-                  application={(selected as Bursary).application}
-                  particulars={(selected as Bursary).particulars}
-                  notes={(selected as Bursary).note}
-                  value={(selected as Bursary).value}
-                  iconSvg={bursaryCategory?.iconSvg}
-                  bgColor={bursaryCategory?.color}
+                  courseTitle={(selected as Qualification).name}
+                  companyDescription={qualificationCategory?.name}
+                  timePosted={(selected as Qualification).updated_at}
+                  open={(selected as Qualification).open}
+                  close={(selected as Qualification).close}
+                  whoQualifies={(selected as Qualification).whoQualifies}
+                  application={(selected as Qualification).application}
+                  particulars={(selected as Qualification).particulars}
+                  notes={(selected as Qualification).note}
+                  value={(selected as Qualification).value}
+                  iconSvg={qualificationCategory?.iconSvg}
+                  bgColor={qualificationCategory?.color}
                   applicationFeatureImage={
-                    bursaryCategory?.icon
-                      ? bursaryCategory?.icon
+                    qualificationCategory?.icon
+                      ? qualificationCategory?.icon
                       : "/user/Icon_School.png"
                   }
                   numberOfApplicants={numberOfApplications}
-                  bursaryUrl={(selected as Bursary).url}
-                  bursaryId={(selected as Bursary).id}
+                  qualificationUrl={(selected as Qualification).url}
+                  qualificationId={(selected as Qualification).id}
                   profileId={profileId}
                 />
               )}
@@ -182,12 +184,12 @@ const Bursary = ({
           </div>
         )}
 
-        {bursaries?.length === 0 && !loading && (
-          <div align="center">No Bursaries found</div>
+        {qualifications?.length === 0 && !loading && (
+          <div align="center">No Qualifications found</div>
         )}
       </div>
     </div>
   );
 };
 
-export default Bursary;
+export default Qualification;

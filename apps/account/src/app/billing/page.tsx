@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Alert from "@/components/Alert";
 import Btn from "@/components/Btn";
 import BtnBig from "@/components/BtnBig";
@@ -128,13 +128,13 @@ const billing = () => {
 
   return (
     <div className="w-full">
-      <div className="pt-3 pl-3 pr-3 mb-4 rounded-lg bg-compBg shadow-menu">
+      <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
         <ProfileUserCover edit="true" />
-        <div className="pb-3 mt-4 ml-2 mr-2">
+        <div className="ml-2 mr-2 mt-4 pb-3">
           <hr className="bg-compBg" />
         </div>
       </div>
-      <div className="flex my-4 gap-x-4">
+      <div className="my-4 flex gap-x-4">
         <BtnBig
           link="invoice"
           label="Generate Invoice"
@@ -160,14 +160,14 @@ const billing = () => {
         onClose={() => setIsOpen(false)}
         content={
           <>
-            <div className="p-4 mb-4 leading-tight text-center rounded-lg text-textColor heading bg-themeColorMain">
+            <div className="text-textColor heading bg-themeColorMain mb-4 rounded-lg p-4 text-center leading-tight">
               ARE YOU SURE YOU WISH TO
               {profile?.cancelDate ? " UNCANCEL" : " CANCEL"} YOUR SUBSCRIPTION?
             </div>
             <div className="flex items-center justify-center">
               <img src="/user/CancelSub.png" alt="" />
             </div>
-            <div className="mt-2 mb-4 text-xl text-center text-textColor">
+            <div className="text-textColor mb-4 mt-2 text-center text-xl">
               Your account will be
               {profile?.cancelDate
                 ? ` uncanceled and your next payment will be on ${isPayingDate}.`
@@ -201,9 +201,9 @@ const billing = () => {
         }
       />
       <div className="space-y-5">
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
-            <div className="my-3 ml-4 text-lg font-bold text-textColor">
+            <div className="text-textColor my-3 ml-4 text-lg font-bold">
               Personal Information
             </div>
           </div>
@@ -256,9 +256,9 @@ const billing = () => {
             </div>
           </div>
         </div>
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
-            <div className="my-3 ml-4 text-lg font-bold text-textColor">
+            <div className="text-textColor my-3 ml-4 text-lg font-bold">
               Invoice Information
             </div>
           </div>
@@ -296,7 +296,7 @@ const billing = () => {
               />
             </div>
           </div>
-          <div className="flex flex-row justify-start w-full pt-4">
+          <div className="flex w-full flex-row justify-start pt-4">
             <Alert success={success} error={error} />
             <Btn
               label="Save"
