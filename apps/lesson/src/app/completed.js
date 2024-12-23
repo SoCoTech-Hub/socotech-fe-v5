@@ -1,153 +1,117 @@
-import React, { useEffect, useState } from 'react'
-import Head from 'next/head'
-import UserCover from '@/components/UserCover'
-import LessonCard from '@/components/LessonCard'
-import LessonSelector from '@/components/LessonSelector'
-import LessonList from '@/components/LessonList'
-import getGQLRequest from '@/snippets/getGQLRequest'
-import { profileId } from '@/context/constants'
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+import LessonCard from "@/components/LessonCard";
+import LessonList from "@/components/LessonList";
+import LessonSelector from "@/components/LessonSelector";
+import UserCover from "@/components/UserCover";
+import { profileId } from "@/context/constants";
+import getGQLRequest from "@/snippets/getGQLRequest";
 
-const Home = ({ subjectCategories }) => {
-	const [subjectCategory, setSubjectCategory] = useState(1)
-	const [completedProgress, setCompletedProgress] = useState([])
-	const [subjectId, setSubject] = useState(null)
+import { FetchLessonProgresses } from "@acme/snippets/functions/lessons/progress";
+import { FetchSubjectCategories } from "@acme/snippets/functions/lessons/subjectCategories";
 
-	useEffect(async () => {
-		setCompletedProgress([])
-		if (profileId) {
-			if (subjectId && subjectCategory) {
-				await getGQLRequest({
-					endpoint: `progresses`,
-					stateSetter: setCompletedProgress,
-					where: `subject:{id:${subjectId}},lesson:{subjectCategory:{id:${subjectCategory}}}profile:{id:${profileId}},isComplete:true`,
-					fields: `id,lesson{id,subject{name},name,duration,featuredImage{id,url}},subject{id,name}`
-				})
-			}
-		}
-	}, [subjectId, subjectCategory])
+const Home = () => {
+  const [subjectCategories, setSubjectCategories] = useState(subjectCategories);
+  const [subjectCategory, setSubjectCategory] = useState(1);
+  const [completedProgress, setCompletedProgress] = useState([]);
+  const [subjectId, setSubject] = useState(null);
 
-	const seo = {
-		title: 'Topic - LMS Home Page',
-		description: 'Lesson has been completed!',
-		image: 'https://lms.topic.co.za/lms/logo.png',
-		url: 'https://topic.co.za'
-	}
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await FetchSubjectCategories(organizationId); //TODO: get Organization ID
+      setSubjectCategories(res);
+    };
+    fetchData();
+  }, []);
 
-	return (
-		<div className='mb-3 col row'>
-			<Head>
-				<title>{seo.title}</title>
-				<meta
-					name='title'
-					content={seo.title}
-				/>
-				<meta
-					name='description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:url'
-					content={seo.url}
-				/>
-				<meta
-					property='og:title'
-					content={seo.title}
-				/>
-				<meta
-					property='og:description'
-					content={seo.description}
-				/>
-				<meta
-					property='og:image'
-					content={seo.image}
-				/>
-				<meta
-					property='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					property='twitter:url'
-					content={seo.url}
-				/>
-				<meta
-					property='twitter:title'
-					content={seo.title}
-				/>
-				<meta
-					property='twitter:description'
-					content={seo.description}
-				/>
-				<meta
-					property='twitter:image'
-					content={seo.image}
-				/>
-			</Head>
+  useEffect(async () => {
+    setCompletedProgress([]);
 
-			<div className='w-full px-3 pt-2'>
-				<div className='pt-3 pl-3 pr-3 mb-4 rounded-lg bg-compBg shadow-menu '>
-					<UserCover />
-					<LessonSelector
-						subjectCategories={subjectCategories}
-						setSubjectCategory={setSubjectCategory}
-						subjectCategory={subjectCategory}
-					/>
-				</div>
-				<div className='flex flex-row row'>
-					<div className='desktop:w-4/12 laptop:w-4/12 mobile:w-full'>
-						{subjectCategory && (
-							<div className=' row'>
-								<div className='w-full '>
-									<LessonList
-										subjectCategory={subjectCategories[subjectCategory - 1]}
-										setSubject={setSubject}
-									/>
-								</div>
-							</div>
-						)}
-					</div>
-					<div className='desktop:w-8/12 laptop:w-8/12 mobile:w-full mobile:mt-6 desktop:mt-0 '>
-						{completedProgress.length ? (
-							<div className='grid gap-2 desktop:grid-cols-2 laptop:grid-cols-2 mobile:grid-cols-1 place-items-stretch'>
-								{completedProgress.map((progress) => {
-									return (
-										<div key={progress.id}>
-											<LessonCard
-												imageUrl={progress.lesson?.featuredImage?.url}
-												subject={progress.lesson?.subject?.name}
-												lessonTitle={progress.lesson?.name}
-												duration={progress.lesson?.duration}
-												link={`/${parseInt(progress.lesson.id)}`}
-											/>
-										</div>
-									)
-								})}
-							</div>
-						) : (
-							<LessonCard
-								lessonTitle='Choose a subject on the left'
-								subject='to view the completed lessons'
-							/>
-						)}
-					</div>
-				</div>
-			</div>
-		</div>
-	)
-}
+    if (profileId && subjectId && subjectCategory) {
+      const res = await FetchLessonProgresses(
+        subjectId,
+        subjectCategory,
+        profileId,
+      );
+      setCompletedProgress(res);
+    }
+  }, [subjectId, subjectCategory]);
 
-export async function getServerSideProps() {
-	const { subjectCategories } = await getGQLRequest({
-		endpoint: `subjectCategories`,
-		fields: `id,name,subjects{id,name}`
-	})
+  const seo = {
+    title: "Topic - LMS Home Page",
+    description: "Lesson has been completed!",
+    image: "https://lms.topic.co.za/lms/logo.png",
+    url: "https://topic.co.za",
+  };
 
-	return {
-		props: { subjectCategories: subjectCategories }
-	}
-}
+  return (
+    <div className="col row mb-3">
+      <Head>
+        <title>{seo.title}</title>
+        <meta name="title" content={seo.title} />
+        <meta name="description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={seo.url} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:image" content={seo.image} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={seo.url} />
+        <meta property="twitter:title" content={seo.title} />
+        <meta property="twitter:description" content={seo.description} />
+        <meta property="twitter:image" content={seo.image} />
+      </Head>
 
-export default Home
+      <div className="w-full px-3 pt-2">
+        <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
+          <UserCover />
+          <LessonSelector
+            subjectCategories={subjectCategories}
+            setSubjectCategory={setSubjectCategory}
+            subjectCategory={subjectCategory}
+          />
+        </div>
+        <div className="row flex flex-row">
+          <div className="desktop:w-4/12 laptop:w-4/12 mobile:w-full">
+            {subjectCategory && (
+              <div className="row">
+                <div className="w-full">
+                  <LessonList
+                    subjectCategory={subjectCategories[subjectCategory - 1]}
+                    setSubject={setSubject}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="desktop:w-8/12 laptop:w-8/12 mobile:w-full mobile:mt-6 desktop:mt-0">
+            {completedProgress.length ? (
+              <div className="desktop:grid-cols-2 laptop:grid-cols-2 mobile:grid-cols-1 grid place-items-stretch gap-2">
+                {completedProgress.map((progress) => {
+                  return (
+                    <div key={progress.id}>
+                      <LessonCard
+                        imageUrl={progress.lesson?.featuredImage?.url}
+                        subject={progress.lesson?.subject?.name}
+                        lessonTitle={progress.lesson?.name}
+                        duration={progress.lesson?.duration}
+                        link={`/${parseInt(progress.lesson.id)}`}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <LessonCard
+                lessonTitle="Choose a subject on the left"
+                subject="to view the completed lessons"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

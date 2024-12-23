@@ -10,3 +10,10 @@ export const GET_IS_AFFILIATE = gql`
     }
   }
 `;
+export const GET_AFFILIATE_REFERRER = gql`
+  query GetIsAffiliate($uniqueId: string) {
+    affiliates(where: { profile: { uniqueId: $uniqueId } }) {
+      id
+    }
+  }
+`;

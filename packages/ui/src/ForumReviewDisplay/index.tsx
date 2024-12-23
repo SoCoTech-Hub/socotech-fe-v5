@@ -86,8 +86,8 @@ const mockPost: ForumPost = {
   ],
 };
 
-const ForumPostView: React.FC = () => {
-  const [post, setPost] = useState<ForumPost>(mockPost);
+const ForumPostView = (postData: ForumPost) => {
+  const [post, setPost] = useState<ForumPost>(postData);
   const [newReply, setNewReply] = useState("");
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest" | "mostLiked">(
     "newest",

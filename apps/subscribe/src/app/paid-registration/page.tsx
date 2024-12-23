@@ -7,9 +7,9 @@ import { authUrl, baseUrl } from "@/context/constants";
 import checkEmail from "@/snippets/auth/checkEmail";
 import validateEmail from "@/snippets/auth/validateEmail";
 import getDataRequest from "@/snippets/getDataRequest";
-import getGQLRequest from "@/snippets/getGQLRequest";
 import registerUser from "@/snippets/registerUser";
 
+import { fetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
 import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
@@ -41,11 +41,7 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
         if (res) {
           setTransaction(res[0]);
           if (res[0]?.ref) {
-            const { affiliates } = await getGQLRequest({
-              endpoint: "affiliates",
-              where: `profile:{uniqueId:${res[0].ref}}`,
-              fields: "id",
-            });
+            const { affiliates } = await fetchAffiliateReferrer(res[0].ref);
             if (affiliates?.length) {
               setRefferal(affiliates[0]);
             }

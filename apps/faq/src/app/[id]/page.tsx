@@ -1,10 +1,7 @@
-import React from "react";
-import { GetServerSideProps } from "next";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-// import DigilibHelp from '@/components/DigilibHelp';
-import getGQLRequest from "@/snippets/getGQLRequest";
 
-// import Faq from '@/components/Faq';
+import { FetchFaqCategory } from "@acme/snippets/functions/faq/faqCategory";
 import Accordion from "@acme/ui/Accordion";
 import { Button } from "@acme/ui/button";
 
@@ -20,12 +17,16 @@ interface FaqCategory {
   faqs: Faq[];
 }
 
-interface FaqDisplayProps {
-  category: FaqCategory | null;
-}
-
-const FaqDisplay: React.FC<FaqDisplayProps> = ({ category }) => {
+const FaqDisplay = () => {
   const router = useRouter();
+  const [category, setCategory] = useState<FaqCategory | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const faqCategory = await FetchFaqCategory(router.query.id as string);
+      setCategory(faqCategory);
+    };
+  }, []);
 
   const seo = {
     title: category?.name || "FAQ",
@@ -36,7 +37,7 @@ const FaqDisplay: React.FC<FaqDisplayProps> = ({ category }) => {
     <div className="col row">
       <div className="gx-5 gy-4 space-y-10">
         <div className="text-textColor text-4xl">{category?.name}</div>
-        <Button
+        <Button //TODO: @Garreth replace with the correct button component
           onClickFunction={() => router.back()}
           label="Back"
           color="bg-themeColorMain"
@@ -53,24 +54,6 @@ const FaqDisplay: React.FC<FaqDisplayProps> = ({ category }) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<FaqDisplayProps> = async (
-  context,
-) => {
-  const { id } = context.query;
-  const { faqCategory } = await getGQLRequest({
-    endpoint: "faqCategory",
-    fields: "id,name,faqs{id,question,answer}",
-    findOne: true,
-    id: id as string, // Explicitly cast `id` as string
-  });
-
-  return {
-    props: {
-      category: faqCategory || null,
-    },
-  };
 };
 
 export default FaqDisplay;

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { GetServerSideProps } from "next";
-import { SEO } from "@/components/SeoHead";
-import { orgName } from "@/context/constants";
-import getGQLRequest from "@/snippets/getGQLRequest";
+import React, { useEffect, useState } from "react";
 
+import { FetchKnowledgeBases } from "@acme/functions/knowledgeBase/knowledgeBase";
+import { FetchKnowledgeBaseCategory } from "@acme/functions/knowledgeBase/knowledgeBaseCategory";
 import ArticleFilter from "@acme/ui/ArticleFilter";
 import DigilibCategories from "@acme/ui/DigilibCategories";
 
@@ -23,20 +21,19 @@ interface Article {
   grades: { id: string; name: string }[];
 }
 
-interface CategoryDisplayProps {
-  filters: any[]; // Replace `any` with the specific type if available
-  articles: Article[];
-  category: Category | null;
-  organizationId: string | null;
-}
+const CategoryDisplay = () => {
+  const [articleList, setArticleList] = useState<Article[]>();
+  const [category, setCategory] = useState<Category>();
 
-const CategoryDisplay: React.FC<CategoryDisplayProps> = ({
-  filters,
-  articles,
-  category,
-  organizationId,
-}) => {
-  const [articleList, setArticleList] = useState<Article[]>(articles);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await FetchKnowledgeBases(categoryId, organizationId); //TODO: get categoryId and organizationId
+      setArticleList(res);
+      const cat = await FetchKnowledgeBaseCategory(categoryId);
+      setCategory(cat);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="col row">
@@ -52,7 +49,7 @@ const CategoryDisplay: React.FC<CategoryDisplayProps> = ({
           </div>
         )}
         <div>
-          <DigilibCategories
+          <DigilibCategories //TODO: @Garreth, should use a different component for this
             articles={articleList}
             category={category}
             filters={filters}
@@ -62,36 +59,6 @@ const CategoryDisplay: React.FC<CategoryDisplayProps> = ({
       </div>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<
-  CategoryDisplayProps
-> = async (context) => {
-  const { id } = context.query;
-  const { organizationId } = context.req.cookies;
-
-  const { knowledgeBases } = await getGQLRequest({
-    endpoint: "knowledgeBases",
-    fields:
-      "id,link,name,categories{id,name},language,releaseYear,subject{id,name},grades{id,name}",
-    where: `categories: ${id},organization: { id: ${organizationId} }`,
-  });
-
-  const { kbCategory } = await getGQLRequest({
-    endpoint: "kbCategory",
-    fields: "id,name",
-    findOne: true,
-    id: id as string,
-  });
-
-  return {
-    props: {
-      articles: knowledgeBases || [],
-      filters: [],
-      category: kbCategory || null,
-      organizationId: organizationId || null,
-    },
-  };
 };
 
 export default CategoryDisplay;

@@ -1,65 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { baseUrl } from "@/context/constants";
-import getGQLRequest from "@/snippets/getGQLRequest";
+import {FetchEvent} from "@acme/snippets/functions/event/event";
 
 import Modal from "@acme/ui/Modal";
 
-const EditEvent = ({ events }) => {
-  const router = useRouter();
-  const [eventList, setEventList] = useState(events);
+interface Event {
+      id: string;
+      title?: string;
+      start?: string;
+      end?: string;
+      image?: { url: string };
+      desciption?: string;
+      lesson?: { id: string };
+      url?: string;
+      location?: string;
+      author?: {
+        id: string;
+      };
+    }
 
-  return events.id ? (
-    <Modal
+const EditEvent = () => {
+  const router = useRouter();
+  const { event } = await FetchEvent(id);//TODO: fetch id for edit page
+  const [eventList,setEventList] = useState<Event|null>(null);
+
+  useEffect(() => {
+    if (event.author.id !== profileId) {//TODO: fetch profileId
+      router.push("/events");
+    } else {
+      setEventList(event);
+    }
+  },[event])
+
+  return eventList?.id ? <Modal //TODO: @Garreth return a form to edit the event instead of a modal
       eventList={eventList}
-      setEventList={setEventList} // Ensure setEventList is typed for Event[]
+      setEventList={setEventList}
       isEdit={true}
       isOpen={true}
       setIsOpen={() => router.back()}
-      eventData={events}
-    />
-  ) : (
-    <div className="flex h-screen flex-col items-center justify-center space-y-10">
-      <div className="grid justify-items-center">
-        <div className="flex flex-col items-center justify-center">
-          <img
-            src={`${baseUrl}/page404.gif`}
-            alt="Error 404"
-            className="w-full max-w-xl"
-          />
-        </div>
-        <div className="text-textColor font-bold">
-          Oops! This page does not exist
-        </div>
-        <div className="my-4">
-          <a
-            onClick={() => router.push("/events")}
-            className="d-inline-block bg-themeColorMain w-64 cursor-pointer rounded-full py-2 text-center font-bold text-black"
-          >
-            Back to Events
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+      eventData={event}
+    />:<></>
+  
 };
 
-export async function getServerSideProps({ req }) {
-  const { profile } = req.cookies;
-  const { id } = req.__NEXT_INIT_QUERY;
-
-  const { events } = await getGQLRequest({
-    endpoint: "events",
-    fields:
-      "id, title, start, end, image {url},desciption, lesson {id},url,location",
-    where: `editable: true, author: { id: ${profile} },id:${id}`,
-  });
-
-  return {
-    props: {
-      events: events.length ? events[0] : [],
-    },
-  };
-}
 
 export default EditEvent;
