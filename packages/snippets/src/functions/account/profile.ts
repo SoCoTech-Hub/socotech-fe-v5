@@ -22,7 +22,7 @@ import { GET_PROFILE, runQuery } from "../../graphql";
 //   setIsOpen(false);
 //   setProfile({ ...profile, cancelDate: "" });
 // };
-export const FetchProfile = async () => {
+export const FetchProfile = async (id: string) => {
   return await runQuery<{
     profile: {
       id: string;
@@ -30,5 +30,5 @@ export const FetchProfile = async () => {
       isPaying: boolean;
       isPayingDate: string;
     };
-  }>(GET_PROFILE);
+  }>(GET_PROFILE, { id });
 };

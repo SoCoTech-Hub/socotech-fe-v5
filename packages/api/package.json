@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf dist .cache",
-    "generate:graphql": "tsx ./scripts/generate-graphql.cjs",
+    "generate:graphql": "node ./scripts/generate-graphql.cjs",
     "generate:index": "tsx ./scripts/generate-index.cjs"
   },
   "dependencies": {

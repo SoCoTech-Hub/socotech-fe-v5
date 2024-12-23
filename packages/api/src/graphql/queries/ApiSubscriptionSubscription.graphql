@@ -1,0 +1,21 @@
+
+query GetApiSubscriptionSubscription($limit: Int!) {
+  apisubscriptionsubscription(pagination: { limit: $limit }) {
+    data {
+      id
+      attributes {
+        createdAt
+        createdBy
+        locale
+        localizations
+        newsletterActive
+        organization
+        profile
+        publishedAt
+        smsActive
+        updatedAt
+        updatedBy
+      }
+    }
+  }
+}

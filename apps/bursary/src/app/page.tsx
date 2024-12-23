@@ -2,11 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 
-import type { components } from "@acme/api";
+import { FetchDistrictsByProvince } from "@acme/snippets/functions/bursary/bursaryCategory";
 import BursaryListing from "@acme/ui/Bursaries/listing";
 import BursaryWelcomeBanner from "@acme/ui/Bursaries/tour";
-
-// import getGQLRequest from "@acme/snippets/getGQLRequest";
 
 //TODO: fix links and add component needs
 
@@ -14,12 +12,8 @@ const Bursaries = () => {
   const [bursaryCategories, setBursaryCategories] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      //TODO: Fix fetch
-      // const bursaryCategories = await getGQLRequest({
-      //   endpoint: "bursaryCategories",
-      //   fields: "id,name,description,color,icon,iconSvg",
-      // });
-      // setBursaryCategories(bursaryCategories.bursaryCategories);
+      const { bursaryCategories } = await FetchDistrictsByProvince();
+      setBursaryCategories(bursaryCategories);
     };
     fetch();
   }, []);

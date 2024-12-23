@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { organizationId, profileId, userId } from "@/context/constants";
 import getDataRequest from "@/snippets/getDataRequest";
-import getGQLRequest from "@/snippets/getGQLRequest";
 
-import { Alert } from "../../../../../packages/ui/src/alert";
-import { Button } from "../../../../../packages/ui/src/button";
+import FetchIsAffiliate from "@acme/snippets/functions/affiliate/affiliate";
+import { Alert } from "@acme/ui/alert";
+import { Button } from "@acme/ui/button";
 
 const RegisterAffiliate: React.FC = () => {
   const router = useRouter();
+  const [affiliate, setAffiliate] = useState<{
+    id?: string;
+    profile?: { isAffiliate: boolean };
+  }>({});
   const [responses, setResponses] = useState<{ terms: string }[]>([]);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
@@ -20,11 +24,11 @@ const RegisterAffiliate: React.FC = () => {
         `/affiliate-settings?organization=${organizationId}`,
         setResponses,
       );
-      const { affiliates } = await getGQLRequest({
-        endpoint: "affiliates",
-        fields: "id,profile{isAffiliate}",
-        where: `profile:{id:${profileId}}`,
-      });
+      const { affiliates } = await FetchIsAffiliate(profileId);
+      if (affiliates.length) {
+        setAffiliate(affiliates[0]);
+      }
+
       if (affiliates.length) {
         if (affiliates[0].profile.isAffiliate) {
           setSuccess("You are already an affiliate.");
@@ -39,13 +43,7 @@ const RegisterAffiliate: React.FC = () => {
   }, []);
 
   const Apply = async () => {
-    const { affiliates } = await getGQLRequest({
-      endpoint: "affiliates",
-      fields: "id",
-      where: `user:{id:${userId}}`,
-    });
-
-    if (affiliates.length) {
+    if (affiliate.id) {
       setError("You Already Applied.");
     } else {
       await api.post("/affiliates", {

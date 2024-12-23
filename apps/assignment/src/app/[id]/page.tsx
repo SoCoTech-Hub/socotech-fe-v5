@@ -3,16 +3,17 @@ import { useRouter } from "next/router";
 import api from "@/api/api";
 import { grades, userId } from "@/context/constants";
 import { getNextButtonHref } from "@/lib/utils";
-import getGQLRequest from "@/snippets/getGQLRequest";
 import getReadableDate from "@/snippets/user/getReadableDate";
 
-import AccordionBase from "../../../../../packages/ui/src/Accordion";
-import { Alert } from "../../../../../packages/ui/src/Alert";
-import { Button } from "../../../../../packages/ui/src/button";
-import FileUploader from "../../../../../packages/ui/src/FileUploader";
-import { MultiSelect } from "../../../../../packages/ui/src/MultiSelect";
-import { Textarea } from "../../../../../packages/ui/src/Textarea";
-import UploadThumbnail from "../../../../../packages/ui/src/UploadThumbnail";
+import { FetchAssignmentReplies } from "@acme/snippets/functions/assignment/assignmentReplies";
+import { FetchUserProfilesByGrades } from "@acme/snippets/functions/assignment/user";
+import AccordionBase from "@acme/ui/Accordion";
+import { Alert } from "@acme/ui/Alert";
+import { Button } from "@acme/ui/button";
+import FileUploader from "@acme/ui/FileUploader";
+import { MultiSelect } from "@acme/ui/MultiSelect";
+import { Textarea } from "@acme/ui/Textarea";
+import UploadThumbnail from "@acme/ui/UploadThumbnail";
 
 //TODO:fix components
 interface AssignmentProps {
@@ -67,11 +68,10 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
 
   useEffect(() => {
     const fetchAssignmentReplies = async () => {
-      const res = await getGQLRequest({
-        endpoint: "assignmentReplies",
-        fields:
-          "id, answer, attachments{id,mime,name,url},students{id,profile{id,firstName,lastName}},isCompleted",
-        where: `lesson:{id:${lessonId}}, students:{id:${userId}}, assignment:{id:${assignment.id}}`,
+      const res = await FetchAssignmentReplies({
+        lessonId,
+        userId,
+        assignmentId: assignment.id,
       });
 
       if (res) {
@@ -93,11 +93,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await getGQLRequest({
-        endpoint: "users",
-        fields: "id, profile{id,firstName, lastName, uniqueId}",
-        where: `profile:{grades: ${parseInt(grades.split(","))}}`,
-      });
+      const res = await FetchUserProfilesByGrades(grades);
       setUsers(res?.users || []);
     };
 

@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import router from "next/router";
-import {
-  email,
-  isPaying,
-  organizationId,
-  profileId,
-} from "@/context/constants";
-import getGQLRequest from "@/snippets/getGQLRequest";
 
-import Alert from "@acme/ui/Alert";
+import { isPaying, profileId } from "@acme/snippets/context/constants";
+import { FetchSubscription } from "@acme/snippets/functions/account/subscription";
+import { Alert } from "@acme/ui/Alert";
 import Cover from "@acme/ui/Cover";
 import { Switch } from "@acme/ui/switch";
 
@@ -33,19 +27,13 @@ const AccountSettings: React.FC = () => {
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
-      const { subscriptions } = await getGQLRequest({
-        endpoint: "subscriptions",
-        fields: "id,newsletterActive,smsActive",
-        where: `profiles:{id:${profileId}},organization:{id:${organizationId}}`,
-      });
-
+      const subscriptions = await FetchSubscription(profileId);
       if (subscriptions.length) {
         setSubscriptions(subscriptions[0]);
         setNewsLetterActive(subscriptions[0].newsletterActive);
         setSmsActive(subscriptions[0].smsActive);
       }
     };
-
     fetchSubscriptions();
   }, []);
 

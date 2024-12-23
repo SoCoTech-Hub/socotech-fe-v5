@@ -3578,6 +3578,42 @@ export interface ApiSubjectSubject extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSubscriptionSubscription
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'subscriptions';
+  info: {
+    displayName: 'Subscription';
+    pluralName: 'subscriptions';
+    singularName: 'subscription';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription.subscription'
+    > &
+      Schema.Attribute.Private;
+    newsletterActive: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    organization: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::organization.organization'
+    >;
+    profile: Schema.Attribute.Relation<'oneToOne', 'api::profile.profile'>;
+    publishedAt: Schema.Attribute.DateTime;
+    smsActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSuburbSuburb extends Struct.CollectionTypeSchema {
   collectionName: 'suburbs';
   info: {
@@ -4827,6 +4863,7 @@ declare module '@strapi/strapi' {
       'api::step.step': ApiStepStep;
       'api::subject-category.subject-category': ApiSubjectCategorySubjectCategory;
       'api::subject.subject': ApiSubjectSubject;
+      'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::suburb.suburb': ApiSuburbSuburb;
       'api::support-comment.support-comment': ApiSupportCommentSupportComment;
       'api::support-department.support-department': ApiSupportDepartmentSupportDepartment;

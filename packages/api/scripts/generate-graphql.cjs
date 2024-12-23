@@ -2,10 +2,13 @@ const { Project } = require("ts-morph");
 const path = require("path");
 const fs = require("fs");
 
-const contentTypesPath = path.resolve(__dirname, "src/types/contentTypes.d.ts");
-const attributesDir = path.resolve(__dirname, "src/graphql/attributes");
-const queriesDir = path.resolve(__dirname, "src/graphql/queries");
-const combinedDir = path.resolve(__dirname, "src/graphql/generated");
+const contentTypesPath = path.resolve(
+  __dirname,
+  "../src/types/contentTypes.d.ts",
+);
+const attributesDir = path.resolve(__dirname, "../src/graphql/attributes");
+const queriesDir = path.resolve(__dirname, "../src/graphql/queries");
+const combinedDir = path.resolve(__dirname, "../src/graphql/generated");
 
 const project = new Project();
 project.addSourceFileAtPath(contentTypesPath);

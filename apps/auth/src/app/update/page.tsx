@@ -16,8 +16,10 @@ import updateUserDetails from "@/snippets/auth/updateUserDetails";
 import getGQLRequest from "@/snippets/getGQLRequest";
 import { gql } from "@apollo/client";
 
-import { Alert } from "../../../packages/ui/src/Alert";
-import { Button } from "../../../packages/ui/src/button";
+import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
+import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
+import { Alert } from "@acme/ui/Alert";
+import { Button } from "@acme/ui/button";
 
 type UpdateProps = {
   profile: any;
@@ -73,11 +75,8 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
   useEffect(() => {
     const fetchRegions = async () => {
       if (location) {
-        await getGQLRequest({
-          endpoint: "districts",
-          where: `province:{id:${location}}`,
-          stateSetter: setRegions,
-        });
+        const res = await FetchDistrictsByProvince(location);
+        setRegions(res.districts);
       }
     };
     fetchRegions();
@@ -86,11 +85,8 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
   useEffect(() => {
     const fetchSchools = async () => {
       if (region) {
-        await getGQLRequest({
-          endpoint: "schools",
-          where: `district:{id:${region}}`,
-          stateSetter: setSchools,
-        });
+        const res = await FetchSchoolsByDistrict(region);
+        setSchools(res.schools);
       }
     };
     fetchSchools();

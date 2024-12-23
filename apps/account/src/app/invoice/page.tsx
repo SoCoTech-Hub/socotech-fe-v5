@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import api from "@/api/api";
 import { isPaying, mainUrl } from "@/context/constants";
 import invoice from "@/snippets/email/invoice";
 import getDataRequest from "@/snippets/getDataRequest";
-import getGQLRequest from "@/snippets/getGQLRequest";
 import { parseCookies } from "@/snippets/parseCookies";
 
+import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import Alert from "@acme/ui/Alert";
 
 interface Transaction {
@@ -204,13 +203,7 @@ export async function getServerSideProps({ req }: { req: any }) {
       () => {},
     );
   }
-
-  const { organization } = await getGQLRequest({
-    endpoint: "organization",
-    findOne: true,
-    id: cookies.organizationId,
-    fields: "logo{url},name,logoDark{url}",
-  });
+  const { organization } = await FetchOrganizationLogos(cookies.organizationId);
 
   return {
     props: {

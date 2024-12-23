@@ -5,62 +5,18 @@ import BtnBig from "@/components/BtnBig";
 import InputField from "@/components/InputField";
 import Overlay from "@/components/Overlay";
 import ProfileUserCover from "@/components/ProfileUserCover";
-
 // import { organizationId, profileId, uniqueId } from "@/context/constants";
 // import getGQLRequest from "@/snippets/getGQLRequest";
 // import getReadableDate from "@/snippets/user/getReadableDate";
 
-import { createOrUpdateTransaction } from "@acme/snippets/functions/account/transaction";
+import { createOrUpdateTransaction, FetchTransactions } from "@acme/snippets/functions/account/transaction";
+import {FetchProfile } from "@acme/snippets/functions/account/profile";
+import { FetchOrganizationMerchantId } from "@acme/snippets/functions/account/organization";
 
 import api from "./api/api";
 import { pauseSubscription, unpauseSubscription } from "./api/payfastApi";
-
-const billing = () => {
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
-  const [open, setOpen] = useState(false);
-  const [transactions, setTransactions] = useState(null);
-  const [company, setCompany] = useState("");
-  const [vatNr, setVatNr] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [additionalInformation, setAdditionalInformation] = useState("");
-  const [cellNr, setCellNr] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [profile, setProfile] = useState();
-  const [org, setOrg] = useState({});
-
-  useEffect(async () => {
-    if (uniqueId && organizationId) {
-      await getGQLRequest({
-        endpoint: "transactions",
-        stateSetter: setTransactions,
-        fields:
-          "id,company,vatNr,firstName,lastName,email,addressLine1,postalCode,cellnr,additionalInformation,signature",
-        where: `mPaymentId:"${uniqueId}"`,
-      });
-      await getGQLRequest({
-        endpoint: "profile",
-        stateSetter: setProfile,
-        findOne: true,
-        id: profileId,
-        fields: "id,cancelDate,isPaying,isPayingDate",
-      });
-      await getGQLRequest({
-        endpoint: "organization",
-        stateSetter: setOrg,
-        findOne: true,
-        id: organizationId,
-        fields: "merchantId",
-      });
-    }
 import { organizationId, profileId, uniqueId } from "@/context/constants";
-import getGQLRequest from "@/snippets/getGQLRequest";
 import getReadableDate from "@/snippets/user/getReadableDate";
-
 import Alert from "@acme/ui/alert";
 import Button from "@acme/ui/button";
 import InputField from "@acme/ui/InputField/index";
@@ -114,49 +70,33 @@ const Billing: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (uniqueId && organizationId) {
-        await getGQLRequest({
-          endpoint: "transactions",
-          stateSetter: setTransactions,
-          fields: `id,company,vatNr,firstName,lastName,email,addressLine1,postalCode,cellnr,additionalInformation,signature`,
-          where: `mPaymentId:"${uniqueId}"`,
-        });
+        const trans = await FetchTransactions(uniqueId);
+      if (trans.length) {
+        setTransactions(trans);
+        setCompany(trans[0].company);
+        setVatNr(trans[0].vatNr);
+        setFirstName(trans[0].firstName);
+        setLastName(trans[0].lastName);
+        setEmail(trans[0].email);
+        setAddressLine1(trans[0].addressLine1);
+        setPostalCode(trans[0].postalCode);
+        setAdditionalInformation(trans[0].additionalInformation);
+        setCellNr(trans[0].cellnr);
+        }
 
-        await getGQLRequest({
-          endpoint: "profile",
-          stateSetter: setProfile,
-          findOne: true,
-          id: profileId,
-          fields: "id,cancelDate,isPaying,isPayingDate",
-        });
-
-        await getGQLRequest({
-          endpoint: "organization",
-          stateSetter: setOrg,
-          findOne: true,
-          id: organizationId,
-          fields: "merchantId",
-        });
+        const prof = await FetchProfile(profileId);
+        if(prof){
+        setProfile(prof)}
+        
+        const merch = await FetchOrganizationMerchantId
+        setOrg(merch)
       }
     };
 
     fetchData();
   }, [uniqueId]);
 
-  useEffect(() => {
-    if (transactions?.length) {
-      setCompany(transactions ? transactions[0]?.company : "");
-      setVatNr(transactions ? transactions[0]?.vatNr : "");
-      setFirstName(transactions ? transactions[0]?.firstName : "");
-      setLastName(transactions ? transactions[0]?.lastName : "");
-      setEmail(transactions ? transactions[0]?.email : "");
-      setAddressLine1(transactions ? transactions[0]?.addressLine1 : "");
-      setPostalCode(transactions ? transactions[0]?.postalCode : "");
-      setAdditionalInformation(
-        transactions ? transactions[0]?.additionalInformation : "",
-      );
-      setCellNr(transactions ? transactions[0]?.cellnr : "");
-    }
-  }, [transactions]);
+
 
   const cancelSub = async () => {
     const date = new Date();
@@ -211,13 +151,13 @@ const Billing: React.FC = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
+      <div className="pt-3 pl-3 pr-3 mb-4 rounded-lg bg-compBg shadow-menu">
         <ProfileUserCover edit="true" />
-        <div className="ml-2 mr-2 mt-4 pb-3">
+        <div className="pb-3 mt-4 ml-2 mr-2">
           <hr className="bg-compBg" />
         </div>
       </div>
-      <div className="my-4 flex gap-x-4">
+      <div className="flex my-4 gap-x-4">
         <BtnBig
           link="invoice"
           label="Generate Invoice"
@@ -243,14 +183,14 @@ const Billing: React.FC = () => {
         onClose={() => setIsOpen(false)}
         content={
           <>
-            <div className="text-textColor heading bg-themeColorMain mb-4 rounded-lg p-4 text-center leading-tight">
+            <div className="p-4 mb-4 leading-tight text-center rounded-lg text-textColor heading bg-themeColorMain">
               ARE YOU SURE YOU WISH TO
               {profile?.cancelDate ? " UNCANCEL" : " CANCEL"} YOUR SUBSCRIPTION?
             </div>
             <div className="flex items-center justify-center">
               <img src="/user/CancelSub.png" alt="" />
             </div>
-            <div className="text-textColor mb-4 mt-2 text-center text-xl">
+            <div className="mt-2 mb-4 text-xl text-center text-textColor">
               Your account will be
               {profile?.cancelDate
                 ? ` uncanceled and your next payment will be on ${isPayingDate}.`
@@ -284,9 +224,9 @@ const Billing: React.FC = () => {
         }
       />
       <div className="space-y-5">
-        <div className="bg-compBg shadow-menu rounded-lg p-4">
+        <div className="p-4 rounded-lg bg-compBg shadow-menu">
           <div className="flex flex-row">
-            <div className="text-textColor my-3 ml-4 text-lg font-bold">
+            <div className="my-3 ml-4 text-lg font-bold text-textColor">
               Personal Information
             </div>
           </div>
@@ -339,9 +279,9 @@ const Billing: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-compBg shadow-menu rounded-lg p-4">
+        <div className="p-4 rounded-lg bg-compBg shadow-menu">
           <div className="flex flex-row">
-            <div className="text-textColor my-3 ml-4 text-lg font-bold">
+            <div className="my-3 ml-4 text-lg font-bold text-textColor">
               Invoice Information
             </div>
           </div>
@@ -379,7 +319,7 @@ const Billing: React.FC = () => {
               />
             </div>
           </div>
-          <div className="flex w-full flex-row justify-start pt-4">
+          <div className="flex flex-row justify-start w-full pt-4">
             <Alert success={success} error={error} />
             <Btn
               label="Save"
