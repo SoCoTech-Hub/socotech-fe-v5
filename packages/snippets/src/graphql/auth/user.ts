@@ -8,3 +8,14 @@ export const GET_USER_BY_EMAIL = gql`
     }
   }
 `;
+
+export const GET_USER_DETAIL = gql`
+  query GetUserDetail($id: string) {
+    user(id: $id) {
+      id
+      profile {
+        id
+      }
+    }
+  }
+`;

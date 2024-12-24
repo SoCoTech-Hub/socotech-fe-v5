@@ -9,7 +9,7 @@ import ProfileUserCover from "@/components/ProfileUserCover";
 // import getGQLRequest from "@/snippets/getGQLRequest";
 // import getReadableDate from "@/snippets/user/getReadableDate";
 
-import { createOrUpdateTransaction, FetchTransactions } from "@acme/snippets/functions/account/transaction";
+import { createOrUpdateTransaction, FetchTransactionByPaymentId } from "@acme/snippets/functions/account/transaction";
 import {FetchProfile } from "@acme/snippets/functions/account/profile";
 import { FetchOrganizationMerchantId } from "@acme/snippets/functions/account/organization";
 
@@ -70,7 +70,7 @@ const Billing: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (uniqueId && organizationId) {
-        const trans = await FetchTransactions(uniqueId);
+        const trans = await FetchTransactionByPaymentId(uniqueId);
       if (trans.length) {
         setTransactions(trans);
         setCompany(trans[0].company);

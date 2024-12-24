@@ -1,5 +1,6 @@
 import { runQuery } from "../../graphql";
 import {
+  GET_LESSON_REQUIRED_LESSONS,
   GET_LESSON_RESOURCES,
   GET_LESSON_SECTIONS,
   GET_LESSONS_CARD_DETAIL,
@@ -76,6 +77,15 @@ export const FetchLessonResources = async (lessonId: string) => {
       resources: { id: string; url: string; name: string; mime: string };
     };
   }>(GET_LESSON_RESOURCES, {
+    lessonId,
+  });
+};
+export const FetchLessonRequiredLessons = async (lessonId: string) => {
+  return await runQuery<{
+    lesson: {
+      required: { id: string };
+    };
+  }>(GET_LESSON_REQUIRED_LESSONS, {
     lessonId,
   });
 };

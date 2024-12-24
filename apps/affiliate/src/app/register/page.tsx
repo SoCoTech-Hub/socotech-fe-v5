@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { organizationId, profileId, userId } from "@/context/constants";
-import getDataRequest from "@/snippets/getDataRequest";
 
-import FetchIsAffiliate from "@acme/snippets/functions/affiliate/affiliate";
+import { FetchIsAffiliate } from "@acme/snippets/functions/affiliate/affiliate";
+import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
 import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 
-const RegisterAffiliate: React.FC = () => {
+const RegisterAffiliate = () => {
   const router = useRouter();
   const [affiliate, setAffiliate] = useState<{
     id?: string;
@@ -20,10 +20,9 @@ const RegisterAffiliate: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await getDataRequest(
-        `/affiliate-settings?organization=${organizationId}`,
-        setResponses,
-      );
+      const terms = await FetchAffiliateSettingTerms(organizationId);
+      setResponses(terms);
+
       const { affiliates } = await FetchIsAffiliate(profileId);
       if (affiliates.length) {
         setAffiliate(affiliates[0]);

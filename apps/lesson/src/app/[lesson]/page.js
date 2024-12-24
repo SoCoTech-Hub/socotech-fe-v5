@@ -19,9 +19,11 @@ import ZoomLessonUpdate from "graphql/mutations/ZoomLessonUpdate";
 import GetZoomLessonOccupancy from "graphql/queries/GetZoomLessonOccupancy";
 
 import { FetchAssignmentReplyCheck } from "@acme/snippets/functions/lesson/assignmentReplies";
+import { FetchLessonRequiredLessons } from "@acme/snippets/functions/lesson/lesson";
 import { FetchLessonProgress } from "@acme/snippets/functions/lesson/progress";
 import { FetchQuizResponseCheck } from "@acme/snippets/functions/lesson/quizResponse";
 import { FetchSurveyResponseCheck } from "@acme/snippets/functions/lesson/surveyResponse";
+import { FetchCheckLessonTimeTrack } from "@acme/snippets/functions/lesson/timeTrack";
 
 const lesson = ({
   lesson,
@@ -106,10 +108,7 @@ const lesson = ({
         progress?.id &&
         !progress?.isComplete
       ) {
-        const response = await getDataRequest(
-          `/time-tracks?lesson=${lesson?.id}&user=${userId}&quiz_null=true&survey_null=true`,
-          () => {},
-        );
+        const response = await FetchCheckLessonTimeTrack(lesson?.id, userId);
         if (
           response.length &&
           response[0]?.timeSpent >= lesson?.modules[0]?.duration
@@ -274,9 +273,9 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  const lessonObj = await getDataRequest(`/lessons/${lesson}`, () => {});
+  const lessonObj = await FetchLessonRequiredLessons(lesson);
   const progresses = await FetchLessonProgress(userId, lesson.id); //TODO: get Lesson Id from page route
-
+  //TODO: check ratings requirements before writing the fetch statement
   // const rating = await getDataRequest(
   //   `/lesson-ratings?user=${userId}&lesson=${lesson}`,
   //   () => {}

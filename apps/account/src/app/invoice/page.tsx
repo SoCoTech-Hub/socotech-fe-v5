@@ -3,11 +3,17 @@ import { useRouter } from "next/router";
 import api from "@/api/api";
 import { isPaying, mainUrl } from "@/context/constants";
 import invoice from "@/snippets/email/invoice";
-import getDataRequest from "@/snippets/getDataRequest";
 import { parseCookies } from "@/snippets/parseCookies";
 
+
+
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
+import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
 import Alert from "@acme/ui/Alert";
+
+
+
+
 
 interface Transaction {
   email: string;
@@ -35,21 +41,14 @@ interface Organization {
   logoDark: { url: string };
 }
 
-interface InvoiceProps {
-  transaction: Transaction;
-  event: Event;
-  organization: Organization;
-}
-
-const Invoice: React.FC<InvoiceProps> = ({
-  transaction,
-  event,
-  organization,
-}) => {
+const Invoice = () => {
   const router = useRouter();
-  const [email, setEmail] = useState(transaction?.email || "");
+  const [transactionEvent, setTransactionEvent] = useState();
+  const [organization, setOrganization] = useState();
+
+  const [email, setEmail] = useState(transactionEvent?.email || "");
   const [alert, setAlert] = useState<string>("");
-  const date = new Date(event?.created_at || Date.now());
+  const date = new Date(transactionEvent?.created_at || Date.now());
   const formatter = new Intl.NumberFormat("en-ZA", {
     style: "currency",
     currency: "ZAR",
@@ -61,6 +60,13 @@ const Invoice: React.FC<InvoiceProps> = ({
     if (!isPaying) {
       router.push(`${mainUrl}/user`);
     }
+    const fetchData = async () => {
+      const event = await FetchTransactionEventsByPaymentId(uniqueId); //TODO: get uniqueId
+      setTransactionEvent(event);
+      const org = await FetchOrganizationLogos(organizationId); //TODO: Get organizationId
+      setOrganization(org);
+    };
+    fetchData();
   }, []);
 
   const zeroPad = (num: number, places: number): string =>
@@ -126,16 +132,16 @@ const Invoice: React.FC<InvoiceProps> = ({
   return (
     <>
       <div className="col row">
-        <form className="bg-compBg mb-4 rounded-lg px-8 pb-8 pt-6 shadow-md">
+        <form className="px-8 pt-6 pb-8 mb-4 rounded-lg shadow-md bg-compBg">
           <div className="mb-4">
             <label
-              className="text-textColor mb-2 block text-sm font-bold"
+              className="block mb-2 text-sm font-bold text-textColor"
               htmlFor="sender"
             >
               Email invoice to:
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded-lg border px-3 py-2 leading-tight text-black shadow focus:outline-none"
+              className="w-full px-3 py-2 leading-tight text-black border rounded-lg shadow appearance-none focus:shadow-outline focus:outline-none"
               id="sender"
               name="sender"
               type="email"
@@ -147,14 +153,14 @@ const Invoice: React.FC<InvoiceProps> = ({
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-themeColorMain focus:shadow-outline rounded-full px-4 py-2 font-bold text-black focus:outline-none"
+              className="px-4 py-2 font-bold text-black rounded-full bg-themeColorMain focus:shadow-outline focus:outline-none"
               type="button"
               onClick={handleSendInvoice}
             >
               Send Invoice
             </button>
             <button
-              className="text-textColor focus:shadow-outline rounded-full bg-blue-500 px-4 py-2 font-bold hover:bg-blue-700 focus:outline-none"
+              className="px-4 py-2 font-bold bg-blue-500 rounded-full text-textColor focus:shadow-outline hover:bg-blue-700 focus:outline-none"
               type="button"
               onClick={handlePrintInvoice}
             >
@@ -191,24 +197,13 @@ export async function getServerSideProps({ req }: { req: any }) {
   const cookies = parseCookies(req);
   const uniqueId = cookies.uniqueId;
 
-  const transaction = await getDataRequest(
-    `/transactions?mPaymentId=${uniqueId}`,
-    () => {},
-  );
+  const event = await FetchTransactionEventsByPaymentId(uniqueId);
 
-  let event: Event[] = [];
-  if (transaction.length) {
-    event = await getDataRequest(
-      `transaction-events?eventId=${transaction[0].id}`,
-      () => {},
-    );
-  }
   const { organization } = await FetchOrganizationLogos(cookies.organizationId);
 
   return {
     props: {
-      transaction: transaction.length ? transaction[0] : {},
-      event: event.length ? event.pop() : {},
+      event: event,
       organization,
     },
   };

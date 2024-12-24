@@ -95,3 +95,13 @@ export const GET_LESSON_RESOURCES = gql`
     }
   }
 `;
+
+export const GET_LESSON_REQUIRED_LESSONS = gql`
+  query GetLessonRequiredLessons($lessonId: string) {
+    lesson(id: $lessonId) {
+      required {
+        id
+      }
+    }
+  }
+`;

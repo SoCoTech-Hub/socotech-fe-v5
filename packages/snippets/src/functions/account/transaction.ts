@@ -1,3 +1,5 @@
+import { ApiTransactionTransaction } from "@acme/api/graphql/index.js";
+
 import {
   CREATE_TRANSACTION,
   GET_TRANSACTION_BY_PAYMENT_ID,
@@ -6,26 +8,11 @@ import {
   UPDATE_TRANSACTION,
 } from "../../graphql";
 
-export const FetchTransactions = async (mPaymentId: string) => {
+export const FetchTransactionByPaymentId = async (mPaymentId: string) => {
   return await runQuery<{
-    transactions: Transaction[];
+    transactions: ApiTransactionTransaction[];
   }>(GET_TRANSACTION_BY_PAYMENT_ID, { mPaymentId });
 };
-
-export interface Transaction {
-  id?: string;
-  company?: string;
-  vatNr?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  addressLine1?: string;
-  postalCode?: string;
-  cellnr?: string;
-  additionalInformation?: string;
-  signature?: string;
-  mPaymentId?: string;
-}
 
 export async function createOrUpdateTransaction({
   id,

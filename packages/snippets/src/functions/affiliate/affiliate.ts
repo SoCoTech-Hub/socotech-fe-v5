@@ -12,6 +12,7 @@ export const FetchIsAffiliate = async (profileId: string) => {
     };
   }>(GET_IS_AFFILIATE, { profileId });
 };
+
 export const FetchAffiliateReferrer = async (uniqueId: string) => {
   return await runQuery<{
     id: string;

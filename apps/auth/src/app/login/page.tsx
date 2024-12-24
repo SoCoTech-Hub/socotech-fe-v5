@@ -7,6 +7,8 @@ import authCheck from "@/snippets/authCheck";
 import { CreateAllCookies } from "@/snippets/createCookies";
 import getDataRequest from "@/snippets/getDataRequest";
 
+import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
+
 import { Button } from "../../../packages/ui/src/button";
 import { Page } from "../../../packages/ui/src/PageLayout";
 import { SEO } from "../../../packages/ui/src/SeoHead";
@@ -95,7 +97,7 @@ const Login: React.FC<LoginProps> = ({
           error ? (
             "You are being redirected! Try Again"
           ) : (
-            <div className="desktop:mx-4 laptop:mx-4 flex justify-center">
+            <div className="flex justify-center desktop:mx-4 laptop:mx-4">
               If you aren't redirected yet,
               <br className="mobile:hidden" /> please click on the Continue
               button to continue.
@@ -158,13 +160,9 @@ export async function getServerSideProps(context: any) {
           profileId: profileData.data.id,
         });
       }
-
-      const user = await getDataRequest(`/users/${res.data.user.id}`, () => {});
-      const profile = await getDataRequest(
-        `/profiles/${user.profile.id}`,
-        () => {},
-      );
-      const organization = profile?.organization;
+      const user = await FetchUserDetail(res.data.user.id);
+      const { profile } = user;
+      const { organization } = profile;
 
       return {
         props: {
