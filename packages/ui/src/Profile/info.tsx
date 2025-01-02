@@ -11,7 +11,7 @@ import { Label } from "../label";
 import { Skeleton } from "../skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
-interface UserInfo {
+export interface UserInfo {
   personalInfo: {
     idNumber: string;
     dateOfBirth: string;
@@ -41,8 +41,24 @@ interface UserInfo {
   };
 }
 
-interface InfoSectionProps {
-  dropdowns: { section: { id: string; name: string }[] }[];
+export interface DropdownOption {
+  id: string;
+  value: string;
+  section: string;
+  name: string;
+}
+
+export interface Dropdowns {
+  genders: DropdownOption[];
+  provinces: DropdownOption[];
+  schools: DropdownOption[];
+  districts: DropdownOption[];
+  titles: DropdownOption[];
+  relationships: DropdownOption[];
+}
+
+export interface InfoSectionProps {
+  dropdowns: Dropdowns;
   initialUserInfo: UserInfo;
   onSave: (user: UserInfo[keyof UserInfo]) => void;
 }
@@ -108,15 +124,15 @@ export default function InfoSection({
     section: keyof UserInfo,
     field: string,
     label: string,
-    options: { id: string; value: string }[],
+    options: DropdownOption[],
   ) => (
     <div className="mb-4">
       <DropdownSelect
         label={label}
         placeholder={`Select ${label}`}
-        options={options.map(({ id, value }) => ({
+        options={options.map(({ id, section, name }) => ({
           value: id,
-          label: value,
+          label: `${name} (${section})`,
         }))}
         onChange={(value: string) => handleInputChange(section, field, value)}
       />

@@ -4,11 +4,24 @@ import { useState } from "react";
 
 import { Card, CardContent } from "../card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
-import AboutSection from "./about";
-import InfoSection from "./info";
-import ReportSection from "./report";
+import AboutSection, { UserProfile } from "./about";
+import InfoSection, { Dropdowns, UserInfo } from "./info";
+import ReportSection, { ReportSectionProps } from "./report";
 
-export default function Section() {
+// Props for the Section Component
+export interface SectionProps {
+  aboutInfo: UserProfile;
+  dropdowns: Dropdowns;
+  initialUserInfo: UserInfo;
+  ReportSectionProps: ReportSectionProps;
+}
+
+export default function Section({
+  aboutInfo,
+  dropdowns,
+  initialUserInfo,
+  ReportSectionProps,
+}: SectionProps) {
   const [activeTab, setActiveTab] = useState("about");
 
   return (
@@ -21,19 +34,19 @@ export default function Section() {
             <TabsTrigger value="report">Report</TabsTrigger>
           </TabsList>
           <TabsContent value="about">
-            <AboutSection
-              firstName="John"
-              surname="Doe"
-              email="john.doe@example.com"
-              bio="I am a software developer with a passion for creating user-friendly applications."
-              location="San Francisco, CA"
-            />
+            <AboutSection {...aboutInfo} />
           </TabsContent>
           <TabsContent value="info">
-            <InfoSection />
+            <InfoSection
+              dropdowns={dropdowns}
+              initialUserInfo={initialUserInfo}
+              onSave={(updatedSection) =>
+                console.log("Saved section:", updatedSection)
+              }
+            />
           </TabsContent>
           <TabsContent value="report">
-            <ReportSection />
+            <ReportSection {...ReportSectionProps} />
           </TabsContent>
         </Tabs>
       </CardContent>

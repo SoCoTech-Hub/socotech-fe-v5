@@ -20,7 +20,7 @@ export interface Profile {
   location?: string;
 }
 
-interface UserProfile {
+export interface UserProfile {
   profile: Profile;
   updateProfile?: (profile: Profile) => void;
 }

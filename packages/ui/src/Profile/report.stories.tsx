@@ -1,109 +1,74 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ReportSection from "./section";
+import ReportSection from "./report"; // Adjust path if necessary
 
-const meta: Meta<typeof ReportSection> = {
-  title: "Profile/Report",
-  component: ReportSection,
-  parameters: {
-    layout: "centered",
-  },
-  args: {
-    // Default args can be set here if needed
-  },
+const sampleFilterOptions = {
+  grades: [
+    { id: "1", name: "Grade 1" },
+    { id: "2", name: "Grade 2" },
+  ],
+  subjectCategories: [
+    { id: "1", name: "Mathematics" },
+    { id: "2", name: "Science" },
+  ],
+  subjects: [
+    { id: "1", name: "Algebra" },
+    { id: "2", name: "Biology" },
+  ],
 };
 
-export default meta;
-
-type Story = StoryObj<typeof ReportSection>;
-
-// Mock data for the stories
-const mockReport = {
-  totalTimeSpent: 7200,
-  lessonsCompleted: 10,
-  lessonsInProgress: 3,
+const sampleReport = {
+  totalTimeSpent: 7200, // 2 hours
+  lessonsCompleted: 5,
+  lessonsInProgress: 2,
   lessons: [
     {
       id: "1",
-      title: "Introduction to React",
-      status: "completed",
-      quizScore: 90,
+      title: "Algebra Basics",
+      status: "completed" as const,
+      quizScore: 85,
       completionRate: 100,
-      paid: false,
+      price: 0,
     },
     {
       id: "2",
-      title: "State Management",
-      status: "completed",
-      quizScore: 85,
-      completionRate: 100,
-      paid: true,
+      title: "Introduction to Biology",
+      status: "in_progress" as const,
+      quizScore: null,
+      completionRate: 60,
+      price: 10,
     },
     {
       id: "3",
-      title: "Hooks in Depth",
-      status: "in_progress",
+      title: "Advanced Calculus",
+      status: "not_started" as const,
       quizScore: null,
-      completionRate: 60,
-      paid: false,
-    },
-    {
-      id: "4",
-      title: "React Router",
-      status: "completed",
-      quizScore: 95,
-      completionRate: 100,
-      paid: true,
-    },
-    {
-      id: "5",
-      title: "Redux Fundamentals",
-      status: "in_progress",
-      quizScore: null,
-      completionRate: 30,
-      paid: false,
+      completionRate: 0,
+      price: 0,
     },
   ],
 };
 
-const Template: Story = (args) => <ReportSection {...args} />;
-
-export const Loading: Story = Template.bind({});
-Loading.args = {
-  loading: true,
-};
-
-export const Default: Story = Template.bind({});
-Default.args = {
-  report: mockReport,
-  loading: false,
-};
-
-export const WithFilters: Story = Template.bind({});
-WithFilters.args = {
-  report: mockReport,
-  loading: false,
-  // Simulate filter selection
-  selectedGrade: "Grade 2",
-  selectedCategory: "Science",
-  selectedSubject: "Biology",
-};
-
-export const WithPaidLessons: Story = Template.bind({});
-WithPaidLessons.args = {
-  report: {
-    ...mockReport,
-    lessons: [
-      ...mockReport.lessons,
-      {
-        id: "6",
-        title: "Advanced React Patterns",
-        status: "not_started",
-        quizScore: null,
-        completionRate: 0,
-        paid: true,
-      },
-    ],
+const meta: Meta<typeof ReportSection> = {
+  title: "Reports/User Report",
+  component: ReportSection,
+  parameters: {
+    layout: "centered",
   },
-  loading: false,
+};
+
+export default meta;
+type Story = StoryObj<typeof ReportSection>;
+
+export const Default: Story = {
+  render: () => (
+    <ReportSection filterOptions={sampleFilterOptions} report={sampleReport} />
+  ),
+};
+
+export const Loading: Story = {
+  render: () => <ReportSection filterOptions={sampleFilterOptions} />,
+  parameters: {
+    chromatic: { delay: 200 }, // Adds a delay for visual regression testing tools
+  },
 };

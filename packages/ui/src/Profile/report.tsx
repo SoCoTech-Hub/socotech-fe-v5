@@ -1,6 +1,5 @@
 "use client";
 
-import type { SetStateAction } from "react";
 import { useEffect, useState } from "react";
 import { ArrowRight, Book, CheckCircle, Clock, Lock } from "lucide-react";
 
@@ -8,7 +7,6 @@ import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
 import { DropdownSelect } from "../dropdownSelect";
 import { Progress } from "../progress";
-import { Select, SelectItem } from "../select";
 import { Skeleton } from "../skeleton";
 
 interface Lesson {
@@ -33,10 +31,19 @@ interface FilterOptions {
   subjects: { id: string; name: string }[];
 }
 
-export default function ReportSection(
-  filterOptions?: FilterOptions,
-  report?: UserReport,
-) {
+export interface ReportSectionProps {
+  filterOptions?: FilterOptions;
+  report?: UserReport;
+}
+
+export default function ReportSection({
+  filterOptions = {
+    grades: [],
+    subjectCategories: [],
+    subjects: [],
+  },
+  report,
+}: ReportSectionProps) {
   const [loading, setLoading] = useState(true);
   const [selectedGrade, setSelectedGrade] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -94,7 +101,7 @@ export default function ReportSection(
               label="Grade"
               placeholder="Select Grade"
               onChange={setSelectedGrade}
-              options={filterOptions?.grades.map(({ id, name }) => ({
+              options={filterOptions.grades.map(({ id, name }) => ({
                 value: id,
                 label: name,
               }))}
@@ -103,7 +110,7 @@ export default function ReportSection(
               label="Category"
               placeholder="Select Category"
               onChange={setSelectedCategory}
-              options={filterOptions?.subjectCategories.map(({ id, name }) => ({
+              options={filterOptions.subjectCategories.map(({ id, name }) => ({
                 value: id,
                 label: name,
               }))}
