@@ -11,7 +11,7 @@ import { Checkbox } from "../checkbox";
 import { useToast } from "../hooks/use-toast";
 import { Input } from "../input";
 import { Label } from "../label";
-import MdxEditor from "../MdxEditor";
+import MdxEditor from "../Mdx";
 
 interface UploadForumProps {
   userId: number;

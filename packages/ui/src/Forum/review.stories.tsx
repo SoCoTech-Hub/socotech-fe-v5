@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ForumPostView from "./";
+import ForumPostView from "./review";
 
 const meta: Meta<typeof ForumPostView> = {
   title: "Forum/PostView",
@@ -11,8 +11,19 @@ const meta: Meta<typeof ForumPostView> = {
 export default meta;
 type Story = StoryObj<typeof ForumPostView>;
 
+const date = new Date();
 export const Default: Story = {
   render: function DefaultRender() {
-    return <ForumPostView />;
+    return (
+      <ForumPostView
+        author=""
+        content=""
+        createdAt={date}
+        likes={5}
+        replies={[]}
+        title="a"
+        id="6"
+      />
+    );
   },
 };
