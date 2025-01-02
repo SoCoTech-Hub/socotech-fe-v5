@@ -21,7 +21,7 @@ interface Notification {
   timestamp: Date;
 }
 
-interface PushNotificationsProps {
+export interface PushNotificationsProps {
   apiEndpoint: string; // API endpoint to send push notifications
   vapidPublicKey: string; // Public VAPID key for PushManager
   userId: string; // User ID for associating subscriptions
