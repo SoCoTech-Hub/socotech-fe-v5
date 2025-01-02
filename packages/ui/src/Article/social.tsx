@@ -1,9 +1,7 @@
-import { FC, SVGProps } from "react";
-
 export interface SocialLinksProps {
   links?: {
     href: string;
-    social: FC<SVGProps<SVGSVGElement>>;
+    social: React.ReactNode;
     label: string;
   }[];
   publisher: {
@@ -23,7 +21,7 @@ const SocialLinks = ({ links, publisher }: SocialLinksProps) => (
         className="text-blue-500 hover:text-blue-600"
         aria-label={`${publisher.firstName} ${publisher.lastName}'s ${link.label} profile`}
       >
-        <link.social width={24} height={24} />
+        <div className="h-6 w-6">{link.social}</div>
       </a>
     ))}
   </div>

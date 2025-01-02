@@ -20,7 +20,7 @@ const Template: StoryFn<SidebarProfileSectionProps> = (args) => (
     <DropdownMenuTrigger asChild>
       <Button variant="ghost">
         <SidebarProfile
-          isExpanded={args.isExpanded}
+          isExpanded={args.isExpanded || false}
           avatarSrc={"https://via.placeholder.com/100"}
           name={"John Doe"}
           email={"@johnDoe.com"}

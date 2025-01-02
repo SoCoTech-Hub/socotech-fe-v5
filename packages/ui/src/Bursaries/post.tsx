@@ -1,10 +1,6 @@
-// TODO:data fetch
+import { Building2 } from "lucide-react";
 
-import Image from "next/image";
-import DigilibLoad from "@/components/DigilibLoad";
-import { BuildingIcon } from "@/components/SvgIcons";
-import applyBursary from "@/snippets/user/applyBursary";
-import { getTimeDifferenceFromPostDate } from "@/snippets/user/getTimeDifferenceFromPostDate";
+import TimeDifferenceFromDate from "@acme/snippets/functions/timeDifferenceFromDate";
 
 import { Button } from "../button";
 import { Card, CardContent, CardFooter } from "../card";
@@ -28,9 +24,16 @@ interface BursaryPostProps {
   bursaryId?: string;
   bursaryUrl?: string;
   profileId?: string;
+  applyBursary?: ({
+    bursaryId,
+    bursaryUrl,
+  }: {
+    bursaryId: string;
+    bursaryUrl: string;
+  }) => void;
 }
 
-const BursaryPost: React.FC<BursaryPostProps> = ({
+const BursaryPost = ({
   loading,
   courseTitle = "",
   companyDescription = "",
@@ -48,14 +51,13 @@ const BursaryPost: React.FC<BursaryPostProps> = ({
   numberOfApplicants = "",
   bursaryId,
   bursaryUrl,
-  profileId,
-}) => {
+  applyBursary,
+}: BursaryPostProps) => {
   const apply = async () => {
-    if (bursaryId && bursaryUrl && profileId) {
-      await applyBursary({
+    if (bursaryId && bursaryUrl && applyBursary) {
+      applyBursary({
         bursaryId,
         bursaryUrl,
-        profileId,
       });
     }
   };
@@ -64,7 +66,9 @@ const BursaryPost: React.FC<BursaryPostProps> = ({
     return (
       <Card className="h-72 w-full">
         <CardContent className="flex h-full items-center justify-center">
-          <DigilibLoad loading={loading} />
+          <div className="h-4 w-1/2 animate-pulse rounded bg-gray-400" />
+          <div className="h-24 w-full animate-pulse rounded bg-gray-400" />
+          <div className="h-4 w-1/4 animate-pulse rounded bg-gray-400" />
         </CardContent>
       </Card>
     );
@@ -82,13 +86,13 @@ const BursaryPost: React.FC<BursaryPostProps> = ({
                 dangerouslySetInnerHTML={{ __html: iconSvg }}
               />
             ) : applicationFeatureImage ? (
-              <Image
-                src={applicationFeatureImage}
-                alt={courseTitle}
-                width={56}
-                height={56}
-                className="object-cover"
-              />
+              <div className="h-14 w-14">
+                <img
+                  src={applicationFeatureImage}
+                  alt={courseTitle}
+                  className="object-cover"
+                />
+              </div>
             ) : null}
           </div>
           <div>
@@ -97,8 +101,7 @@ const BursaryPost: React.FC<BursaryPostProps> = ({
               {companyDescription}
               {timePosted && numberOfApplicants && (
                 <span className="ml-4">
-                  {getTimeDifferenceFromPostDate(timePosted)} -{" "}
-                  {numberOfApplicants}{" "}
+                  {TimeDifferenceFromDate(timePosted)} - {numberOfApplicants}{" "}
                   {parseInt(numberOfApplicants) !== 1
                     ? "applicants"
                     : "applicant"}
@@ -109,7 +112,7 @@ const BursaryPost: React.FC<BursaryPostProps> = ({
         </div>
 
         <div className="mb-4 flex items-center space-x-2">
-          <BuildingIcon className="h-6 w-6" />
+          <Building2 className="h-6 w-6" />
           <span className="text-muted-foreground">
             {open || close
               ? `${open || "Currently Open"} - ${close || ""}`

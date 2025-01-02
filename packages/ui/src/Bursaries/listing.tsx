@@ -1,8 +1,3 @@
-// TODO:data fetch
-
-import Image from "next/image";
-import Clamp from "react-multiline-clamp";
-
 import { cn } from "../";
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
@@ -51,35 +46,33 @@ const BursaryListing = ({
                     dangerouslySetInnerHTML={{ __html: iconSvg }}
                   />
                 ) : applicationFeatureImage ? (
-                  <Image
+                  <img
                     src={applicationFeatureImage}
                     alt={courseTitle}
-                    width={56}
-                    height={56}
                     className="rounded-lg object-cover"
                   />
                 ) : null}
               </div>
             </div>
             <div className="flex-grow text-left">
-              <Clamp lines={1}>
+              <div className="line-clamp-1">
                 <div
                   className="font-semibold leading-tight text-foreground"
                   dangerouslySetInnerHTML={{ __html: courseTitle }}
                 />
-              </Clamp>
-              <Clamp lines={1}>
+              </div>
+              <div className="line-clamp-1">
                 <div
                   className="font-semibold leading-tight text-foreground"
                   dangerouslySetInnerHTML={{ __html: courseCompanyName }}
                 />
-              </Clamp>
-              <Clamp lines={1}>
+              </div>
+              <div className="line-clamp-1">
                 <div
                   className="text-muted-foreground"
                   dangerouslySetInnerHTML={{ __html: courseDescription }}
                 />
-              </Clamp>
+              </div>
             </div>
           </div>
         </Button>

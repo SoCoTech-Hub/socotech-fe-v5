@@ -9,21 +9,21 @@ import {
 import { Input } from "../input";
 import { Skeleton } from "../skeleton";
 
-interface Category {
+export interface DigilibHelpCategory {
   id: string;
   name: string;
 }
 
-interface DigilibHelpProps {
-  categories: Category[];
-  loading?: boolean;
+export interface DigilibHelpProps {
+  categories: DigilibHelpCategory[];
   onSearch: (query: string) => void;
+  loading?: boolean;
 }
 
 const DigilibHelp: React.FC<DigilibHelpProps> = ({
   categories,
-  loading = false,
   onSearch,
+  loading = false,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Category");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -77,7 +77,7 @@ const DigilibHelp: React.FC<DigilibHelpProps> = ({
 
       <Button
         onClick={handleSearchSubmit}
-        className="text-primaryForeground bg-primary p-2"
+        className="bg-primary p-2 text-primaryForeground"
       >
         <img src="/search_icon.svg" alt="Search Icon" className="h-5 w-5" />
       </Button>

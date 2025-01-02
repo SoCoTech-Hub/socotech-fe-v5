@@ -79,3 +79,7 @@ export const SimulatingNewNotification: Story = {
     fireEvent.click(simulateButton);
   },
 };
+
+function within(canvasElement: HTMLElement) {
+  return testingLibraryWithin(canvasElement);
+}

@@ -1,7 +1,5 @@
 import { FC } from "react";
-import { baseUrl } from "@/context/constants";
 
-//TODO: fix baseUrl
 import { Button } from "../button";
 
 interface File {
@@ -31,7 +29,7 @@ const UploadThumbnail: FC<UploadThumbnailProps> = ({
                 src={
                   file?.mime?.startsWith("image")
                     ? file?.preview || file.url
-                    : `${baseUrl}/attachment.svg`
+                    : ``
                 }
                 alt="attachment"
                 className="centerImage h-20 w-20 object-contain"

@@ -62,7 +62,6 @@ export default function Cover(props: CoverProps) {
         reader.readAsDataURL(file);
 
         await uploadImage({
-          profileId: props.user.profile.id,
           file,
           uploadType,
         });
@@ -85,7 +84,7 @@ export default function Cover(props: CoverProps) {
   };
 
   return (
-    <div className="mx-auto w-full max-w-4xl">
+    <div className="w-full max-w-4xl mx-auto">
       <PopupAlert
         message={message}
         variant={variant}
@@ -94,13 +93,13 @@ export default function Cover(props: CoverProps) {
       />
       <div className="relative">
         {/* Banner */}
-        <div className="h-60 overflow-hidden rounded-t-xl">
+        <div className="overflow-hidden h-60 rounded-t-xl">
           <img
             src={bannerImage}
             alt="Profile Banner"
             width={1000}
             height={300}
-            className="h-full w-full object-cover"
+            className="object-cover w-full h-full"
           />
         </div>
         <Button
@@ -108,7 +107,7 @@ export default function Cover(props: CoverProps) {
           className="absolute right-4 top-4 bg-gray-700/80 hover:bg-gray-700/90"
           aria-label="Edit banner image"
         >
-          <Pencil className="mr-2 h-4 w-4" />
+          <Pencil className="w-4 h-4 mr-2" />
           Edit Banner
         </Button>
         <input
@@ -121,21 +120,21 @@ export default function Cover(props: CoverProps) {
         />
 
         {/* Avatar */}
-        <div className="absolute bottom-0 left-8 flex translate-y-1/2 transform items-center">
+        <div className="absolute bottom-0 flex items-center transform translate-y-1/2 left-8">
           <div className="relative">
             <img
               src={avatarImage}
               alt="Avatar"
               width={150}
               height={150}
-              className="rounded-full border-4 border-white"
+              className="border-4 border-white rounded-full"
             />
             <Button
               onClick={() => avatarInputRef.current?.click()}
-              className="absolute bottom-2 right-2 rounded-full px-3 py-2"
+              className="absolute px-3 py-2 rounded-full bottom-2 right-2"
               aria-label="Edit avatar image"
             >
-              <Camera className="h-4 w-4" />
+              <Camera className="w-4 h-4" />
               <span className="sr-only">Update avatar</span>
             </Button>
             <input
@@ -150,7 +149,7 @@ export default function Cover(props: CoverProps) {
             />
           </div>
           {/* User Name */}
-          <h1 className="text-primaryForeground ml-4 mt-6 text-2xl font-bold drop-shadow-lg">
+          <h1 className="mt-6 ml-4 text-2xl font-bold text-primaryForeground drop-shadow-lg">
             {props.name}
           </h1>
         </div>

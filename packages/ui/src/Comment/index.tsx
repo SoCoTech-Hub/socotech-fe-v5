@@ -10,14 +10,13 @@ import { ScrollArea } from "../scroll-area";
 import { SpinningLoader } from "../spinningLoader";
 import { Textarea } from "../textarea";
 
-// Define the Comment type
-export interface Comment {
+interface Comment {
   id: number;
   author: User;
   content: string;
   created_at: string;
 }
-export interface User {
+interface User {
   id: number;
   firstName: string;
   lastName: string;
@@ -71,10 +70,10 @@ export default function CommentComponent({
         const comment: Comment = {
           id: Date.now(),
           author: {
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            avatar: user.avatar,
+            id: user?.id || 0,
+            firstName: user?.firstName || "",
+            lastName: user?.lastName || "",
+            avatar: user?.avatar || "",
           },
           content: newComment.trim(),
           created_at: new Date().toISOString(),
@@ -106,7 +105,7 @@ export default function CommentComponent({
         <ScrollArea className="mb-4 h-[300px]" ref={scrollAreaRef}>
           {comments.length > 0 ? (
             comments.map((comment) => (
-              <div key={comment.id} className="flex items-start mb-4 space-x-4">
+              <div key={comment.id} className="mb-4 flex items-start space-x-4">
                 <Avatar>
                   <AvatarImage
                     src={comment.author.avatar}

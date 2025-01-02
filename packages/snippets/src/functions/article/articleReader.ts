@@ -1,11 +1,14 @@
+// import { api } from "@acme/api";
+
 import { runQuery } from "../../graphql";
 import { GET_ARTICLE_READERS } from "../../graphql/article/articleReader";
-import { FetchProfileSchools } from "./profile";
+
+// import { FetchProfileSchools } from "./profile";
 
 export const fetchArticleReads = async ({
   profileId,
   articleId,
-  organizationId,
+  // organizationId,
 }: {
   profileId: string;
   articleId: string;
@@ -13,19 +16,19 @@ export const fetchArticleReads = async ({
 }) => {
   const articleReaders = await FetchArticleReaders({ articleId, profileId });
   if (!articleReaders.id) {
-    const profile = await FetchProfileSchools(profileId);
+    // const profile = await FetchProfileSchools(profileId);
     //TODO: complete logic here
-    await api.post("/article-readers", {
-      profile: { id: profileId },
-      article: { id: article.id },
-      organization: { id: organizationId },
-      school: {
-        id:
-          profile?.schools && profile.schools.length > 0
-            ? profile.schools[0].id
-            : null,
-      },
-    });
+    // await api.POST("/article-readers", {
+    //   profile: { id: profileId },
+    //   article: { id: articleId },
+    //   organization: { id: organizationId },
+    //   school: {
+    //     id:
+    //       profile?.schools && profile.schools.length > 0
+    //         ? profile.schools[0].id
+    //         : null,
+    //   },
+    // });
   }
 };
 

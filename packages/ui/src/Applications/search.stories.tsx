@@ -7,11 +7,12 @@ const meta: Meta<typeof SearchFilter> = {
   component: SearchFilter,
   tags: ["autodocs"],
   argTypes: {
-    setQualifications: {
-      action: "setQualifications",
-      description:
-        "Function to update the list of qualifications based on the search and filter criteria.",
-    },
+    filterList: [
+      { id: "1", name: "Filter 1", field: "field1" },
+      { id: "2", name: "Filter 2", field: "field2" },
+      { id: "3", name: "Filter 3", field: "field3" },
+    ],
+    searchQuery: (e: string) => console.log(e),
   },
 };
 
@@ -21,7 +22,6 @@ type Story = StoryObj<typeof SearchFilter>;
 export const Default: Story = {
   render: (args) => <SearchFilter {...args} />,
   args: {
-    setQualifications: (qualifications) =>
-      console.log("Qualifications updated:", qualifications),
+    searchQuery: (string) => console.log("data list updated:", string),
   },
 };

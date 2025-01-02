@@ -1,9 +1,6 @@
-// TODO:fix imports
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import getFilterLists from "@/snippets/getFilterLists";
-import getGQLRequest from "@/snippets/getGQLRequest";
 
 import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
@@ -21,17 +18,20 @@ interface FilterOption {
 }
 
 interface ArticleFilterProps {
-  articleList: any[];
+  articleList: {}[];
   setArticleList: React.Dispatch<React.SetStateAction<any[]>>;
-  organizationId: string;
-  categoryId: string;
+  filters: {
+    grades: { id: string; name: string }[];
+    subjects: { id: string; name: string }[];
+    languages: { id: string; name: string }[];
+    releaseYears: { id: string; name: string }[];
+  };
 }
 
 export const ArticleFilter: React.FC<ArticleFilterProps> = ({
   articleList,
   setArticleList,
-  organizationId,
-  categoryId,
+  filters,
 }) => {
   const [grades, setGrades] = useState<FilterOption[]>([]);
   const [gradeFilter, setGradeFilter] = useState<string | null>(null);
@@ -48,55 +48,18 @@ export const ArticleFilter: React.FC<ArticleFilterProps> = ({
   // Fetch filter options based on the initial articles
   useEffect(() => {
     const fetchFilterLists = async () => {
-      const result = await getFilterLists({ initialArticles });
-      setGrades(result.grades);
-      setSubjects(result.subjects);
-      setLanguages(result.languages);
-      setReleaseYears(result.releaseYears);
+      setGrades(filters.grades);
+      setSubjects(filters.subjects);
+      setLanguages(filters.languages);
+      setReleaseYears(filters.releaseYears);
     };
     fetchFilterLists();
   }, [initialArticles]);
 
-  // Apply filters to fetch the filtered articles
+  // TODO: Apply filters to fetch the filtered articles
   const applyFilters = useCallback(async () => {
-    let customWhere = "";
-    if (subjectFilter) {
-      customWhere += `, subject:{id:${subjectFilter}}`;
-    }
-    if (gradeFilter) {
-      customWhere += `, grades:{id:${gradeFilter}}`;
-    }
-    if (releaseYearFilter) {
-      const releaseYear = releaseYears.find(
-        (year) => year.id === releaseYearFilter,
-      );
-      if (releaseYear) {
-        customWhere += `, releaseYear_contains:"${releaseYear.name}"`;
-      }
-    }
-    if (languageFilter) {
-      const language = languages.find((lang) => lang.id === languageFilter);
-      if (language) {
-        customWhere += `, language:"${language.name}"`;
-      }
-    }
-    const { knowledgeBases } = await getGQLRequest({
-      endpoint: `knowledgeBases`,
-      where: `categories:{id:[${categoryId}]},organization:{id:[${parseInt(organizationId)}]}${customWhere}`,
-      fields: `id,link,name`,
-    });
-    setArticleList(knowledgeBases);
-  }, [
-    subjectFilter,
-    gradeFilter,
-    releaseYearFilter,
-    languageFilter,
-    releaseYears,
-    languages,
-    categoryId,
-    organizationId,
-    setArticleList,
-  ]);
+    // setArticleList();
+  }, []);
 
   // Clear all filters and reset the article list
   const clearFilters = useCallback(() => {

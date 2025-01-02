@@ -4,7 +4,7 @@ import SocialLinks from "./social";
 export interface AboutProps {
   links: {
     href: string;
-    social: SVGSVGElement;
+    social: React.ReactNode;
     label: string;
   }[];
   firstName: string;

@@ -1,23 +1,20 @@
-// TODO:data fetch
-
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { X } from "lucide-react";
-
-import { baseUrl } from "@acme/snippets/constants";
 
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
 
 interface WelcomeBannerProps {
   header?: string;
+  tourImage: string;
 }
 
-const WelcomeBanner: React.FC<WelcomeBannerProps> = ({
+const WelcomeBanner = ({
   header = "Explore qualifications currently available in SA",
-}) => {
+  tourImage,
+}: WelcomeBannerProps) => {
   const [closed, setClosed] = useState(false);
 
   if (closed) {
@@ -29,11 +26,9 @@ const WelcomeBanner: React.FC<WelcomeBannerProps> = ({
       <CardContent className="p-0">
         <div className="flex flex-col md:flex-row">
           <div className="flex-1 p-6 md:p-10">
-            <Image
-              src={`${baseUrl}/applications-tour.png`}
+            <img
+              src={tourImage}
               alt="Welcome Image"
-              width={400}
-              height={300}
               className="mx-auto object-contain"
             />
           </div>

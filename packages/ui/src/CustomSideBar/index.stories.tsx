@@ -11,7 +11,22 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <CustomSidebar {...args} />;
+const Template: StoryFn = (args) => (
+  <CustomSidebar
+    logo={{
+      url: "https://via.placeholder.com/100",
+      altUrl: "https://via.placeholder.com/50",
+    }}
+    menuItems={sidebarItems}
+    userProfileOptions={{
+      avatarSrc: "https://via.placeholder.com/40",
+      name: "John Doe",
+      email: "johndoe@example.com",
+      isExpanded: true,
+    }}
+    {...args}
+  />
+);
 
 export const Expanded = Template.bind({});
 Expanded.args = {

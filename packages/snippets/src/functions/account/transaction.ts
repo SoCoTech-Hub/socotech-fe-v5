@@ -19,7 +19,7 @@ export async function createOrUpdateTransaction({
   data,
 }: {
   id?: string;
-  data: Transaction;
+  data: ApiTransactionTransaction;
 }): Promise<{ id: string; message: string }> {
   if (id) {
     // Update the existing transaction

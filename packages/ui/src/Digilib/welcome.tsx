@@ -1,10 +1,11 @@
 import { Skeleton } from "../skeleton";
-import Help from "./help";
+import Help, { DigilibHelpProps } from "./help";
 
 export interface WelcomeProps {
   imageUrl?: string;
   title?: string;
   subtitle?: string;
+  digilibHelp?: DigilibHelpProps;
   loading?: boolean;
 }
 
@@ -12,6 +13,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   imageUrl = "/default_welcome.png",
   title = "Hello, how can we help you?",
   subtitle = "Tell us what you are looking for in the search bar below, select a category, and we will help you find what you need.",
+  digilibHelp,
   loading = false,
 }) => (
   <div className="bg-digilibWelcome shadow-menu flex flex-col rounded-lg p-6 lg:flex-row lg:gap-6">
@@ -30,7 +32,11 @@ const Welcome: React.FC<WelcomeProps> = ({
       <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
       <p className="mt-2 text-lg text-gray-600">{subtitle}</p>
       <div className="mt-4">
-        {loading ? <Skeleton className="h-12 w-full" /> : <Help />}
+        {loading ? (
+          <Skeleton className="h-12 w-full" />
+        ) : (
+          digilibHelp && <Help {...digilibHelp} />
+        )}
       </div>
     </div>
   </div>

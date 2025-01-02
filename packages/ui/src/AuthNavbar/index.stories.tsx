@@ -35,5 +35,9 @@ LoggedOut.args = {
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
   ],
-  user: null,
+  user: {
+    name: "Guest",
+    email: "mail@mail.com",
+    image: "https://via.placeholder.com/150",
+  },
 };
