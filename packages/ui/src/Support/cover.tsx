@@ -5,8 +5,8 @@ import { Camera, Pencil } from "lucide-react";
 
 import { uploadImage } from "@acme/snippets/posts/user";
 
-import { PopupAlert } from "../Alert/index";
 import { Button } from "../button";
+import { PopupAlert } from "../PopupAlert";
 
 interface CoverProps {
   name?: string;
@@ -150,7 +150,7 @@ export default function Cover(props: CoverProps) {
             />
           </div>
           {/* User Name */}
-          <h1 className="text-primaryForeground ml-4 mt-6 text-2xl font-bold drop-shadow-lg">
+          <h1 className="ml-4 mt-6 text-2xl font-bold text-primaryForeground drop-shadow-lg">
             {props.name}
           </h1>
         </div>

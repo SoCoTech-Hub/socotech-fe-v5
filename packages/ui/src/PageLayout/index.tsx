@@ -1,5 +1,4 @@
 import type { FC, ReactNode } from "react";
-import { baseUrl } from "@/context/constants";
 
 import { Alert } from "../alert";
 import LogoOverlay from "../LogoOverlay";
@@ -26,7 +25,7 @@ export const Page: FC<PageProps> = ({
     <div
       className="flex h-full w-full items-center justify-center"
       style={{
-        backgroundImage: `url(${background ?? `${baseUrl}/background1.png`})`,
+        backgroundImage: `url(${background ?? `./background1.png`})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
