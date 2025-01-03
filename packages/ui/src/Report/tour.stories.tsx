@@ -17,7 +17,7 @@ const meta: Meta<typeof ReportWelcomeBanner> = {
 export default meta;
 type Story = StoryObj<typeof ReportWelcomeBanner>;
 
-export const Default: Story = {
+export const Normal: Story = {
   render: (args) => <ReportWelcomeBanner {...args} />,
   args: {
     header: "Explore bursaries currently available in SA",

@@ -46,8 +46,7 @@ export const NotesTable: React.FC<NotesProps> = ({
   const [sortKey, setSortKey] = useState<SortKey>("created_at");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
 
-  const pageSize = 10;
-  const totalPages = Math.ceil(notes.length / pageSize);
+  const pageSize = 10; // Number of items per page
 
   const sortedNotes = useMemo(() => {
     return [...notes].sort((a, b) => {
@@ -199,11 +198,12 @@ export const NotesTable: React.FC<NotesProps> = ({
             ? renderSkeletonRows()
             : currentTableData.map(renderNoteCard)}
         </div>
-        {totalPages > 1 && (
+        {Math.ceil(notes.length / pageSize) > 1 && (
           <div className="mt-4 flex justify-center">
             <PaginationComponent
               currentPage={currentPage}
-              totalPages={totalPages}
+              totalItems={notes.length}
+              itemsPerPage={pageSize}
               onPageChange={setCurrentPage}
             />
           </div>

@@ -106,7 +106,6 @@ const UploadForum: React.FC<UploadForumProps> = ({ userId, isAdmin }) => {
             <MdxEditor
               value={description}
               setValue={setDescription}
-              placeholder="Write your topic description here..."
             />
           </div>
           {isAdmin && (

@@ -71,8 +71,8 @@ SortingChoice.args = {
   answer: ["3", "1", "2"],
 };
 
-export const MatrixSort = Template.bind({});
-MatrixSort.args = {
+export const QuizMatrixSort = Template.bind({});
+QuizMatrixSort.args = {
   question: {
     id: "6",
     type: "matrixSort",

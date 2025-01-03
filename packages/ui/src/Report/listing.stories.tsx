@@ -45,7 +45,7 @@ const meta: Meta<typeof ReportListing> = {
 export default meta;
 type Story = StoryObj<typeof ReportListing>;
 
-export const Default: Story = {
+export const Normal: Story = {
   render: (args) => <ReportListing {...args} />,
   args: {
     id: "1",
