@@ -7,11 +7,11 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
 import FreeChoiceQuestion from "./freeChoice";
-import MatrixSortQuestion from "./matrixSort";
+import QuizMatrixSortQuestion from "./matrixSortQuestion";
 import MultipleChoiceQuestion from "./multipleChoice";
 import QuizReport from "./report";
 import SingleChoiceQuestion from "./singleChoice";
-import SortingChoiceQuestion from "./sortingChoice";
+import SortingChoiceQuestion from "./sortable";
 
 export type QuestionType =
   | "essay"
@@ -97,7 +97,7 @@ export default function Quiz({
         );
       case "matrixSort":
         return (
-          <MatrixSortQuestion
+          <QuizMatrixSortQuestion
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}

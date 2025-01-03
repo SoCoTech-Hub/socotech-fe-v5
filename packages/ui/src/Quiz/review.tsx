@@ -17,7 +17,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
 import FreeChoiceQuestion from "./freeChoice";
-import MatrixSortQuestion from "./matrixSort";
+import QuizMatrixSortQuestion from "./matrixSortQuestion";
 import MultipleChoiceQuestion from "./multipleChoice";
 import SingleChoiceQuestion from "./singleChoice";
 import SortingChoiceQuestion from "./sortable";
@@ -64,7 +64,7 @@ export default function ReviewQuiz({
       case "freeChoice":
         return <FreeChoiceQuestion {...props} />;
       case "matrixSort":
-        return <MatrixSortQuestion {...props} />;
+        return <QuizMatrixSortQuestion {...props} />;
       case "multipleChoice":
         return <MultipleChoiceQuestion {...props} />;
       case "singleChoice":

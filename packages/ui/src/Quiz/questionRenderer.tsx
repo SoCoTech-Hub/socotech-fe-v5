@@ -2,7 +2,7 @@ import type { Question } from "./quiz";
 import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
 import FreeChoiceQuestion from "./freeChoice";
-import MatrixSortQuestion from "./matrixSort";
+import QuizMatrixSortQuestion from "./matrixSortQuestion";
 import MultipleChoiceQuestion from "./multipleChoice";
 import SingleChoiceQuestion from "./singleChoice";
 import SortingChoiceQuestion from "./sortable";
@@ -45,7 +45,7 @@ export default function QuestionRenderer({
       );
     case "matrixSort":
       return (
-        <MatrixSortQuestion
+        <QuizMatrixSortQuestion
           question={question}
           onAnswer={onAnswer}
           answer={answer}

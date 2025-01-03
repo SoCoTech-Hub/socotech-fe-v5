@@ -20,7 +20,6 @@ export * from "./Favicons";
 export * from "./Feed";
 export * from "./FilterDropdown";
 export * from "./Forum";
-export * from "./ForumReviewDisplay";
 export * from "./Header";
 export * from "./hooks";
 export * from "./IFrame";

@@ -9,13 +9,13 @@ const generateFolderIndex = (folderPath) => {
     const fullPath = path.join(folderPath, file);
     return (
       fs.statSync(fullPath).isFile() &&
-      file.endsWith(".ts") &&
-      file !== "index.ts"
+      !file.startsWith("index.") && // Exclude existing index files
+      (file.endsWith(".ts") || file.endsWith(".tsx") || file.endsWith(".js"))
     );
   });
 
   const exportStatements = files.map((file) => {
-    const fileName = path.basename(file, ".ts");
+    const fileName = path.basename(file, path.extname(file));
     return `export * from "./${fileName}";`;
   });
 
@@ -36,9 +36,10 @@ const generateSrcIndex = () => {
 
   const exportStatements = folders.map((folder) => {
     const folderPath = path.join(srcDir, folder);
-    const indexPath = path.join(folderPath, "index.ts");
+    const indexTsPath = path.join(folderPath, "index.ts");
+    const indexTsxPath = path.join(folderPath, "index.tsx");
 
-    if (!fs.existsSync(indexPath)) {
+    if (!fs.existsSync(indexTsPath) && !fs.existsSync(indexTsxPath)) {
       generateFolderIndex(folderPath);
     }
 
@@ -46,7 +47,7 @@ const generateSrcIndex = () => {
   });
 
   fs.writeFileSync(outputFile, exportStatements.join("\n") + "\n");
-  console.log(`Generated src/folder.ts`);
+  console.log(`Generated ${outputFile}`);
 };
 
 generateSrcIndex();

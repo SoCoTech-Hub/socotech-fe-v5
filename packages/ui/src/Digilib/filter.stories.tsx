@@ -16,13 +16,9 @@ const meta: Meta<typeof ArticleFilter> = {
       action: "setArticleList",
       description: "Function to update the list of articles.",
     },
-    organizationId: {
-      control: { type: "text" },
-      description: "The ID of the organization.",
-    },
-    categoryId: {
-      control: { type: "text" },
-      description: "The ID of the category for filtering articles.",
+    filters: {
+      control: { type: "object" },
+      description: "Initial list of filters available for filtering.",
     },
   },
 };
@@ -47,7 +43,12 @@ export const Default: Story = {
       { id: "1", name: "Article 1", link: "https://example.com/article1" },
       { id: "2", name: "Article 2", link: "https://example.com/article2" },
     ],
-    organizationId: "123",
-    categoryId: "456",
+    setArticleList: () => console.log("article Set"),
+    filters: {
+      grades: [{ id: "1", name: "10" }],
+      subjects: [{ id: "1", name: "Mathematics" }],
+      languages: [{ id: "1", name: "English" }],
+      releaseYears: [{ id: "1", name: "2025" }],
+    },
   },
 };

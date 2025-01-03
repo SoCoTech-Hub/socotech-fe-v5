@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { Grip, X } from "lucide-react";
-import Draggable from "react-draggable";
+import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 
 import { Button } from "./button";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
@@ -16,43 +14,43 @@ interface DraggableProps {
 }
 
 export default function DraggableContent({
-  title,
-  content,
+  title = "Untitled",
+  content = "No content available.",
   onClose,
 }: DraggableProps) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [defaultPosition, setDefaultPosition] = useState({ x: 0, y: 0 });
 
-  const handleDrag = (e: any, ui: any) => {
-    const { x, y } = ui;
-    setPosition({ x, y });
+  const handleDrag = (_: DraggableEvent, data: DraggableData) => {
+    setDefaultPosition({ x: data.x, y: data.y });
   };
 
   return (
     <Draggable
       handle=".handle"
       bounds="parent"
-      position={position}
+      position={defaultPosition}
       onDrag={handleDrag}
     >
       <Card className="absolute w-64 shadow-lg sm:w-80">
         <CardHeader className="handle flex cursor-move flex-row items-center justify-between p-4">
-          {title && (
-            <CardTitle className="flex items-center text-lg font-semibold">
-              <Grip className="mr-2 h-4 w-4" />
-              {title}
-            </CardTitle>
-          )}
+          <CardTitle className="flex items-center text-lg font-semibold">
+            <Grip className="mr-2 h-4 w-4" />
+            {title}
+          </CardTitle>
           {onClose && (
-            <Button variant="ghost" size="icon" onClick={onClose}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              aria-label="Close"
+            >
               <X className="h-4 w-4" />
             </Button>
           )}
         </CardHeader>
-        {content && (
-          <CardContent className="p-4">
-            <p className="text-sm">{content}</p>
-          </CardContent>
-        )}
+        <CardContent className="p-4">
+          <p className="text-sm">{content}</p>
+        </CardContent>
       </Card>
     </Draggable>
   );

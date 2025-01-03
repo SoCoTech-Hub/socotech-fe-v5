@@ -8,17 +8,17 @@ import type { Question } from "./quiz";
 import { Card, CardContent } from "../card";
 import { Label } from "../label";
 
-interface MatrixSortQuestionProps {
+interface QuizMatrixSortQuestionProps {
   question: Question;
   onAnswer: (answer: { [key: string]: string[] }) => void;
   answer: { [key: string]: string[] };
 }
 
-export default function MatrixSortQuestion({
+export default function QuizMatrixSortQuestion({
   question,
   onAnswer,
   answer,
-}: MatrixSortQuestionProps) {
+}: QuizMatrixSortQuestionProps) {
   const [columns, setColumns] = useState(answer || question.matrixData || {});
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -94,7 +94,7 @@ export default function MatrixSortQuestion({
               >
                 <div>
                   <Card
-                    className={`mb-2 cursor-move p-2 ${draggedItem === item ? "bg-primary text-primary-foreground" : ""}`}
+                    className={`mb-2 cursor-move p-2 ${draggedItem === item ? "text-primary-foreground bg-primary" : ""}`}
                   >
                     <CardContent className="p-2">{item}</CardContent>
                   </Card>

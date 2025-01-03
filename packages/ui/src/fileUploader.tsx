@@ -1,26 +1,40 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { Check, File, Image, Upload, X } from "lucide-react";
-import { useDropzone } from "react-dropzone";
+import { useCallback, useEffect, useState } from "react";
+import { Check, File, Upload, X } from "lucide-react";
+import { FileRejection, useDropzone } from "react-dropzone";
 
 import { Button } from "./button";
 import { Progress } from "./progress";
 import { ScrollArea } from "./scroll-area";
 
 interface FileWithPreview extends File {
-  preview: string;
+  preview: string | null;
   progress: number;
   status: "idle" | "uploading" | "done" | "error";
+  errorMessage?: string;
 }
 
-export default function FileUploader() {
+interface FileUploaderProps {
+  maxFileSize?: number; // Max file size in MB
+  allowedTypes?: string[];
+  dragAndDropMessage?: string;
+  dropActiveMessage?: string;
+  onFileUpload: (file: FileWithPreview) => Promise<void>; // Function to handle the file upload
+}
+
+export default function FileUploader({
+  maxFileSize = 5, // Default max file size: 5MB
+  allowedTypes = ["image/*", "application/pdf", "application/msword"],
+  dragAndDropMessage = "Drag 'n' drop files here, or click to select",
+  dropActiveMessage = "Drop the files here...",
+  onFileUpload,
+}: FileUploaderProps) {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles((prevFiles) => [
-      ...prevFiles,
-      ...acceptedFiles.map((file) =>
+  const onDrop = useCallback(
+    (acceptedFiles: File[], fileRejections: FileRejection[]) => {
+      const validFiles = acceptedFiles.map((file) =>
         Object.assign(file, {
           preview: file.type.startsWith("image/")
             ? URL.createObjectURL(file)
@@ -28,60 +42,70 @@ export default function FileUploader() {
           progress: 0,
           status: "idle" as const,
         }),
-      ),
-    ]);
-  }, []);
+      );
+
+      const invalidFiles = fileRejections.map((rejection) => ({
+        ...rejection.file,
+        preview: null,
+        progress: 0,
+        status: "error" as const,
+        errorMessage: rejection.errors.map((err) => err.message).join(", "),
+      }));
+
+      setFiles((prevFiles) => [...prevFiles, ...validFiles, ...invalidFiles]);
+    },
+    [],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: {
-      "image/*": [],
-      "application/pdf": [],
-      "application/msword": [],
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-        [],
-    },
+    accept: allowedTypes.reduce((acc, type) => ({ ...acc, [type]: [] }), {}),
+    maxSize: maxFileSize * 1024 * 1024, // Convert MB to bytes
   });
 
   const removeFile = (file: FileWithPreview) => {
-    const newFiles = [...files];
-    newFiles.splice(newFiles.indexOf(file), 1);
-    setFiles(newFiles);
+    setFiles((prevFiles) => prevFiles.filter((f) => f !== file));
+    if (file.preview) URL.revokeObjectURL(file.preview);
   };
 
-  const uploadFile = (file: FileWithPreview) => {
+  const uploadFile = async (file: FileWithPreview) => {
     setFiles((prevFiles) =>
       prevFiles.map((f) =>
-        f === file ? { ...f, status: "uploading" as const, progress: 0 } : f,
+        f === file ? { ...f, status: "uploading", progress: 0 } : f,
       ),
     );
 
-    const interval = setInterval(() => {
-      setFiles((prevFiles) =>
-        prevFiles.map((f) => {
-          if (f === file) {
-            const progress = Math.min(f.progress + 10, 100);
-            return {
-              ...f,
-              progress,
-              status:
-                progress === 100 ? ("done" as const) : ("uploading" as const),
-            };
-          }
-          return f;
-        }),
-      );
-    }, 500);
+    try {
+      await onFileUpload(file);
 
-    setTimeout(() => {
-      clearInterval(interval);
       setFiles((prevFiles) =>
         prevFiles.map((f) =>
-          f === file ? { ...f, status: "done" as const, progress: 100 } : f,
+          f === file ? { ...f, status: "done", progress: 100 } : f,
         ),
       );
-    }, 5000);
+    } catch (error) {
+      setFiles((prevFiles) =>
+        prevFiles.map((f) =>
+          f === file
+            ? {
+                ...f,
+                status: "error",
+                errorMessage: "Upload failed. Please try again.",
+              }
+            : f,
+        ),
+      );
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      // Revoke object URLs on component unmount
+      files.forEach(
+        (file) => file.preview && URL.revokeObjectURL(file.preview),
+      );
+    };
+  }, [files]);
 
   return (
     <div className="mx-auto w-full max-w-md space-y-4 p-4">
@@ -92,16 +116,15 @@ export default function FileUploader() {
             ? "border-primary bg-primary/10 dark:bg-primary/20"
             : "border-gray-300 hover:border-primary dark:border-gray-700 dark:hover:border-primary"
         }`}
+        aria-label="File upload area"
       >
         <input {...getInputProps()} />
         <Upload className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" />
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-          {isDragActive
-            ? "Drop the files here..."
-            : "Drag 'n' drop files here, or click to select"}
+          {isDragActive ? dropActiveMessage : dragAndDropMessage}
         </p>
         <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
-          Support for images, PDFs, and Word documents
+          Supported types: images, PDFs, and Word documents
         </p>
       </div>
 
@@ -111,16 +134,12 @@ export default function FileUploader() {
             {files.map((file) => (
               <div key={file.name} className="flex items-center space-x-4">
                 <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded">
-                  {file.type.startsWith("image/") ? (
-                    file.preview ? (
-                      <img
-                        src={file.preview}
-                        alt={file.name}
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <Image className="h-full w-full text-gray-400 dark:text-gray-600" />
-                    )
+                  {file.type.startsWith("image/") && file.preview ? (
+                    <img
+                      src={file.preview}
+                      alt={file.name}
+                      className="h-full w-full object-cover"
+                    />
                   ) : (
                     <File className="h-full w-full text-gray-400 dark:text-gray-600" />
                   )}
@@ -133,6 +152,9 @@ export default function FileUploader() {
                     {(file.size / 1024 / 1024).toFixed(2)} MB
                   </p>
                   <Progress value={file.progress} className="mt-1 h-1" />
+                  {file.status === "error" && (
+                    <p className="text-xs text-red-500">{file.errorMessage}</p>
+                  )}
                 </div>
                 {file.status === "idle" && (
                   <Button
@@ -157,16 +179,14 @@ export default function FileUploader() {
                 {file.status === "done" && (
                   <Check className="h-5 w-5 text-green-500" />
                 )}
-                {file.status !== "uploading" && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeFile(file)}
-                    className="shrink-0"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => removeFile(file)}
+                  className="shrink-0"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
               </div>
             ))}
           </div>
