@@ -19,7 +19,9 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <FileUploader {...args} />;
+const Template: StoryFn = (args) => (
+  <FileUploader onFileUpload={() => Promise.resolve()} {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {};
