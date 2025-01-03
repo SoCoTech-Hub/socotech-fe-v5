@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   Maximize,
   Minimize,
@@ -27,45 +27,23 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
   const [seeking, setSeeking] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [showVolume, setShowVolume] = useState(false);
   const playerRef = useRef<ReactPlayer>(null);
   const playerWrapperRef = useRef<HTMLDivElement>(null);
 
-  const handlePlayPause = () => {
-    setPlaying(!playing);
-  };
-
-  const handleVolumeChange = (newVolume: number[]) => {
+  const handlePlayPause = useCallback(() => setPlaying((prev) => !prev), []);
+  const handleVolumeChange = useCallback((newVolume: number[]) => {
     setVolume(newVolume[0] ?? 0);
     setMuted(newVolume[0] === 0);
-  };
-
-  const handleToggleMute = () => {
-    setMuted(!muted);
-  };
-
-  const handleProgress = (state: { played: number }) => {
-    if (!seeking) {
-      setPlayed(state.played);
-    }
-  };
-
-  const handleSeekChange = (newPlayed: number[]) => {
+  }, []);
+  const handleToggleMute = useCallback(() => setMuted((prev) => !prev), []);
+  const handleSeekChange = useCallback((newPlayed: number[]) => {
     setPlayed(newPlayed[0] ?? 0);
-  };
-
-  const handleSeekMouseDown = () => {
-    setSeeking(true);
-  };
-
-  const handleSeekMouseUp = (newPlayed: number[]) => {
+  }, []);
+  const handleSeekMouseUp = useCallback((newPlayed: number[]) => {
     setSeeking(false);
-    if (playerRef.current) {
-      playerRef.current.seekTo(newPlayed[0] ?? 0);
-    }
-  };
-
-  const handleToggleFullscreen = () => {
+    playerRef.current?.seekTo(newPlayed[0] ?? 0);
+  }, []);
+  const handleToggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
       void playerWrapperRef.current?.requestFullscreen();
       setFullscreen(true);
@@ -73,29 +51,32 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
       void document.exitFullscreen();
       setFullscreen(false);
     }
-  };
+  }, []);
+  const handleDuration = useCallback(
+    (duration: number) => setDuration(duration),
+    [],
+  );
+  const handleProgress = useCallback(
+    (state: { played: number }) => {
+      if (!seeking) setPlayed(state.played);
+    },
+    [seeking],
+  );
 
-  const handleDuration = (duration: number) => {
-    setDuration(duration);
-  };
-
-  const formatTime = (seconds: number) => {
+  const formatTime = useCallback((seconds: number) => {
     const date = new Date(seconds * 1000);
     const hh = date.getUTCHours();
     const mm = date.getUTCMinutes();
     const ss = date.getUTCSeconds().toString().padStart(2, "0");
-    if (hh) {
-      return `${hh}:${mm.toString().padStart(2, "0")}:${ss}`;
-    }
-    return `${mm}:${ss}`;
-  };
+    return hh ? `${hh}:${mm.toString().padStart(2, "0")}:${ss}` : `${mm}:${ss}`;
+  }, []);
 
   return (
     <>
       <h1 className="mb-8 text-4xl font-bold">{title}</h1>
       <div
         ref={playerWrapperRef}
-        className="relative w-full max-w-3xl mx-auto bg-black"
+        className="relative mx-auto w-full max-w-3xl bg-black"
       >
         <ReactPlayer
           ref={playerRef}
@@ -109,17 +90,16 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
           height="auto"
           style={{ aspectRatio: "16 / 9" }}
         />
-        <div className="absolute bottom-0 left-0 right-0 px-4 py-2 bg-gradient-to-t from-black to-transparent">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent px-4 py-2">
           <Slider
             value={[played]}
             onValueChange={handleSeekChange}
-            onPointerDown={handleSeekMouseDown}
-            onPointerUp={(value) => handleSeekMouseUp(value)}
+            onValueCommit={(value) => handleSeekMouseUp(value)}
             max={1}
             step={0.01}
-            className="w-full mb-2"
+            className="mb-2 w-full"
           />
-          <div className="flex items-center justify-between mb-2 text-sm text-white">
+          <div className="mb-2 flex items-center justify-between text-sm text-white">
             <span>{formatTime(played * duration)}</span>
             <span>{formatTime(duration * (1 - played))}</span>
           </div>
@@ -127,37 +107,26 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
             <div className="flex items-center space-x-2">
               <Button variant="ghost" size="icon" onClick={handlePlayPause}>
                 {playing ? (
-                  <Pause className="w-4 h-4" />
+                  <Pause className="h-4 w-4" />
                 ) : (
-                  <Play className="w-4 h-4" />
+                  <Play className="h-4 w-4" />
                 )}
               </Button>
               <div className="relative">
                 <Button variant="ghost" size="icon" onClick={handleToggleMute}>
                   {muted ? (
-                    <VolumeX className="w-4 h-4" />
+                    <VolumeX className="h-4 w-4" />
                   ) : (
-                    <Volume2 className="w-4 h-4" />
+                    <Volume2 className="h-4 w-4" />
                   )}
                 </Button>
                 <Slider
                   value={[muted ? 0 : volume]}
-                  onValueChange={(newVolume) => {
-                    handleVolumeChange(newVolume);
-                    setShowVolume(true);
-                  }}
-                  onPointerUp={() => {
-                    setTimeout(() => setShowVolume(false), 1000);
-                  }}
+                  onValueChange={handleVolumeChange}
                   max={1}
                   step={0.01}
                   className="w-20"
                 />
-                {showVolume && (
-                  <div className="absolute px-2 py-1 text-xs text-white transform -translate-x-1/2 bg-black bg-opacity-75 rounded -top-6 left-1/2">
-                    {Math.round(volume * 100)}%
-                  </div>
-                )}
               </div>
             </div>
             <Button
@@ -166,9 +135,9 @@ export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
               onClick={handleToggleFullscreen}
             >
               {fullscreen ? (
-                <Minimize className="w-4 h-4" />
+                <Minimize className="h-4 w-4" />
               ) : (
-                <Maximize className="w-4 h-4" />
+                <Maximize className="h-4 w-4" />
               )}
             </Button>
           </div>

@@ -1,11 +1,13 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { SetStateAction } from "react";
 import { useState } from "react";
 import { CheckCircle2, XCircle } from "lucide-react";
 
-import type { Question } from "./quiz";
+import type {
+  MultipleChoiceQuestion,
+  Question,
+  SingleChoiceQuestion,
+  SortingChoiceQuestion,
+} from "./quiz";
 import {
   Accordion,
   AccordionContent,
@@ -18,15 +20,37 @@ import EssayQuestion from "./essay";
 import FillInTheBlankQuestion from "./fillInBlank";
 import FreeChoiceQuestion from "./freeChoice";
 import QuizMatrixSortQuestion from "./matrixSortQuestion";
-import MultipleChoiceQuestion from "./multipleChoice";
-import SingleChoiceQuestion from "./singleChoice";
-import SortingChoiceQuestion from "./sortable";
+import MultipleChoiceQuestionComponent from "./multipleChoice";
+import SingleChoiceQuestionComponent from "./singleChoice";
+import SortingChoiceQuestionComponent from "./sortable";
 
 interface ReviewQuizProps {
   questions: Question[];
   userAnswers: Record<string, any>;
   onFinishReview: () => void;
 }
+
+// Type guards for narrowing question types
+const hasCorrectAnswer = (
+  question: Question,
+): question is
+  | MultipleChoiceQuestion
+  | SingleChoiceQuestion
+  | SortingChoiceQuestion => {
+  return "correctAnswer" in question;
+};
+
+const isMultipleChoiceQuestion = (
+  question: Question,
+): question is MultipleChoiceQuestion => question.type === "multipleChoice";
+
+const isSingleChoiceQuestion = (
+  question: Question,
+): question is SingleChoiceQuestion => question.type === "singleChoice";
+
+const isSortingChoiceQuestion = (
+  question: Question,
+): question is SortingChoiceQuestion => question.type === "sortingChoice";
 
 export default function ReviewQuiz({
   questions,
@@ -35,45 +59,60 @@ export default function ReviewQuiz({
 }: ReviewQuizProps) {
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
 
-  const isCorrect = (question: Question, userAnswer: any) => {
-    if (question.type === "essay" || question.type === "freeChoice") {
-      return null; // These need manual grading
+  const isCorrect = (question: Question, userAnswer: any): boolean | null => {
+    if (hasCorrectAnswer(question)) {
+      if (question.correctAnswer && Array.isArray(question?.correctAnswer)) {
+        return (
+          JSON.stringify(userAnswer) === JSON.stringify(question.correctAnswer)
+        );
+      }
+      return userAnswer === question.correctAnswer;
     }
-
-    if (Array.isArray(question.correctAnswer)) {
-      return (
-        JSON.stringify(userAnswer) === JSON.stringify(question.correctAnswer)
-      );
-    }
-
-    return userAnswer === question.correctAnswer;
+    return null; // Manual grading or unsupported
   };
 
   const renderQuestion = (question: Question) => {
     const props = {
-      question,
       answer: userAnswers[question.id],
-      onAnswer: () => {}, // Disable answer changes in review mode
+      onAnswer: () => {}, // Disable interactions in review mode
     };
 
-    switch (question.type) {
-      case "essay":
-        return <EssayQuestion {...props} />;
-      case "fillInTheBlank":
-        return <FillInTheBlankQuestion {...props} />;
-      case "freeChoice":
-        return <FreeChoiceQuestion {...props} />;
-      case "matrixSort":
-        return <QuizMatrixSortQuestion {...props} />;
-      case "multipleChoice":
-        return <MultipleChoiceQuestion {...props} />;
-      case "singleChoice":
-        return <SingleChoiceQuestion {...props} />;
-      case "sortingChoice":
-        return <SortingChoiceQuestion {...props} />;
-      default:
-        return null;
+    if (isMultipleChoiceQuestion(question)) {
+      return <MultipleChoiceQuestionComponent question={question} {...props} />;
     }
+
+    if (isSingleChoiceQuestion(question)) {
+      return <SingleChoiceQuestionComponent question={question} {...props} />;
+    }
+
+    if (isSortingChoiceQuestion(question)) {
+      return (
+        <SortingChoiceQuestionComponent
+          items={question.items}
+          correctOrder={question.correctOrder}
+          {...props}
+          onReorder={() => {}}
+        />
+      );
+    }
+
+    if (question.type === "matrixSort") {
+      return <QuizMatrixSortQuestion question={question} {...props} />;
+    }
+
+    if (question.type === "fillInTheBlank") {
+      return <FillInTheBlankQuestion question={question} {...props} />;
+    }
+
+    if (question.type === "essay") {
+      return <EssayQuestion question={question} {...props} />;
+    }
+
+    if (question.type === "freeChoice") {
+      return <FreeChoiceQuestion question={question} {...props} />;
+    }
+
+    return <p>Unsupported question type.</p>;
   };
 
   return (
@@ -93,7 +132,11 @@ export default function ReviewQuiz({
           {questions.map((question, index) => {
             const correct = isCorrect(question, userAnswers[question.id]);
             return (
-              <AccordionItem key={question.id} value={question.id}>
+              <AccordionItem
+                key={question.id}
+                value={question.id}
+                aria-expanded={expandedQuestion === question.id}
+              >
                 <AccordionTrigger className="flex items-center">
                   <span className="flex items-center">
                     {correct === true && (
@@ -111,7 +154,7 @@ export default function ReviewQuiz({
                     <div className="mt-4">
                       <p className="font-semibold">Your Answer:</p>
                       <p>{JSON.stringify(userAnswers[question.id])}</p>
-                      {question.correctAnswer && (
+                      {hasCorrectAnswer(question) && question.correctAnswer && (
                         <>
                           <p className="mt-2 font-semibold">Correct Answer:</p>
                           <p>{JSON.stringify(question.correctAnswer)}</p>
@@ -124,7 +167,9 @@ export default function ReviewQuiz({
                         </p>
                       ) : (
                         <p
-                          className={`mt-2 ${correct ? "text-green-600" : "text-red-600"}`}
+                          className={`mt-2 ${
+                            correct ? "text-green-600" : "text-red-600"
+                          }`}
                         >
                           {correct ? "Correct!" : "Incorrect"}
                         </p>

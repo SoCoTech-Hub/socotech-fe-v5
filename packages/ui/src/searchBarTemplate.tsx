@@ -7,37 +7,37 @@ import { Button } from "./button";
 import { Input } from "./input";
 
 interface SearchBarProps {
-  initData?: []; //TODO: populate with data to search
-  onSearch: (query: []) => void; //TODO: update data type, usually useState function datatype
+  initData?: { title: string; excerpt: string; author: string }[]; // Example data type
+  onSearch: (
+    query: { title: string; excerpt: string; author: string }[],
+  ) => void;
   placeholder?: string;
   initialQuery?: string;
 }
 
 export default function SearchBar({
-  initData,
+  initData = [], // Default to empty array if not provided
   onSearch,
-  placeholder = "Search...", // TODO: update search term
+  placeholder = "Search...",
   initialQuery = "",
 }: SearchBarProps) {
   const [query, setQuery] = useState(initialQuery);
-  const filteredData = initData?.filter(
-    (
-      data, //TODO: Update filter for which to seach
-    ) =>
-      // data.title.toLowerCase().includes(query.toLowerCase()) ||
-      // data.excerpt.toLowerCase().includes(query.toLowerCase()) ||
-      // data.author.toLowerCase().includes(query.toLowerCase()),
-      console.log("count", data),
+
+  const filteredData = initData.filter(
+    (data) =>
+      data.title.toLowerCase().includes(query.toLowerCase()) ||
+      data.excerpt.toLowerCase().includes(query.toLowerCase()) ||
+      data.author.toLowerCase().includes(query.toLowerCase()),
   );
 
   const handleSearch = useCallback(() => {
     onSearch(filteredData);
-  }, [query, onSearch]);
+  }, [filteredData, onSearch]);
 
   const handleClear = useCallback(() => {
     setQuery("");
-    onSearch(initData); //TODO: check here
-  }, [onSearch]);
+    onSearch(initData); // Reset to original data
+  }, [initData, onSearch]);
 
   const handleKeyPress = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -49,9 +49,9 @@ export default function SearchBar({
   );
 
   return (
-    <div className="flex items-center w-full max-w-sm space-x-2">
+    <div className="flex w-full max-w-sm items-center space-x-2">
       <div className="relative w-full">
-        <Search className="absolute w-4 h-4 -translate-y-1/2 left-2 top-1/2 text-muted-foreground" />
+        <Search className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           type="text"
           placeholder={placeholder}
@@ -64,10 +64,10 @@ export default function SearchBar({
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-0 right-0 h-full"
+            className="absolute right-0 top-0 h-full"
             onClick={handleClear}
           >
-            <X className="w-4 h-4" />
+            <X className="h-4 w-4" />
             <span className="sr-only">Clear search</span>
           </Button>
         )}

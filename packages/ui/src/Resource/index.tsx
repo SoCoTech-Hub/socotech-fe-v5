@@ -28,18 +28,23 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
   useEffect(() => {
     const fetchResource = async () => {
       setIsLoading(true);
-      // Simulating an API call
-      setTimeout(() => {
-        setResource({
-          id: resourceId,
-          title: "Sample Media Resource",
-          description:
-            "This is a sample media resource. You can view or play it directly on this page or download it.",
-          fileUrl: "https://example.com/sample-resource.mp4",
-          fileType: "video", // Change this to 'audio' or 'pdf' to test different types
-        });
+      try {
+        // Simulated API call
+        setTimeout(() => {
+          setResource({
+            id: resourceId,
+            title: "Sample Media Resource",
+            description:
+              "This is a sample media resource. You can view or play it directly on this page or download it.",
+            fileUrl: "https://example.com/sample-resource.mp4",
+            fileType: "video",
+          });
+          setIsLoading(false);
+        }, 2000);
+      } catch (error) {
+        console.error("Failed to fetch resource", error);
         setIsLoading(false);
-      }, 2000);
+      }
     };
 
     fetchResource();
@@ -51,24 +56,21 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
     }
   };
 
-  const handlePlayPause = () => {
-    const mediaElement = document.querySelector("video, audio")!;
+  const togglePlayback = (action: "play" | "pause" | "restart") => {
+    const mediaElement =
+      document.querySelector<HTMLMediaElement>("video, audio");
     if (mediaElement) {
-      if (isPlaying) {
-        mediaElement.pause();
-      } else {
+      if (action === "play") {
         mediaElement.play();
+        setIsPlaying(true);
+      } else if (action === "pause") {
+        mediaElement.pause();
+        setIsPlaying(false);
+      } else if (action === "restart") {
+        mediaElement.currentTime = 0;
+        mediaElement.play();
+        setIsPlaying(true);
       }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleRestart = () => {
-    const mediaElement = document.querySelector("video, audio")!;
-    if (mediaElement) {
-      mediaElement.currentTime = 0;
-      mediaElement.play();
-      setIsPlaying(true);
     }
   };
 
@@ -103,7 +105,7 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
       case "pdf":
         return <PDFViewer url={resource.fileUrl} />;
       default:
-        return null;
+        return <p>Unsupported file type.</p>;
     }
   };
 
@@ -111,7 +113,6 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
     <div className="container mx-auto space-y-4 p-4">
       <Card className="mx-auto w-full max-w-3xl">
         {isLoading ? (
-          // Skeleton loader
           <>
             <CardHeader>
               <Skeleton className="h-8 w-3/4" />
@@ -126,7 +127,6 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
             </CardFooter>
           </>
         ) : (
-          // Resource content
           <>
             <CardHeader>
               <CardTitle>{resource?.title}</CardTitle>
@@ -143,7 +143,9 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
                   resource?.fileType === "video") && (
                   <>
                     <Button
-                      onClick={handlePlayPause}
+                      onClick={() =>
+                        togglePlayback(isPlaying ? "pause" : "play")
+                      }
                       variant="outline"
                       className="mr-2"
                     >
@@ -153,7 +155,10 @@ export default function ResourcePage({ resourceId }: ResourcePageProps) {
                         <Play className="h-4 w-4" />
                       )}
                     </Button>
-                    <Button onClick={handleRestart} variant="outline">
+                    <Button
+                      onClick={() => togglePlayback("restart")}
+                      variant="outline"
+                    >
                       <RotateCw className="h-4 w-4" />
                     </Button>
                   </>

@@ -7,7 +7,7 @@ import MultipleChoiceQuestion from "./multipleChoice";
 import SingleChoiceQuestion from "./singleChoice";
 import Sortable from "./sortable";
 
-interface QuestionRendererProps {
+export interface QuestionRendererProps {
   question: Question;
   onAnswer: (answer: any) => void;
   answer: any;

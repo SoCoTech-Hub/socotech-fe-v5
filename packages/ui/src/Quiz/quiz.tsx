@@ -30,6 +30,7 @@ export interface BaseQuestion {
 
 export interface EssayQuestion extends BaseQuestion {
   type: "essay";
+  correctAnswer: string;
 }
 
 export interface MatrixSortQuestion extends BaseQuestion {
@@ -48,17 +49,22 @@ export interface FreeChoiceQuestion extends BaseQuestion {
 export interface MultipleChoiceQuestion extends BaseQuestion {
   type: "multipleChoice";
   options: string[];
+  correctAnswer: string[]; // Add correctAnswer property
 }
 
 export interface SingleChoiceQuestion extends BaseQuestion {
   type: "singleChoice";
   options: string[];
+  correctAnswer: string; // Add correctAnswer property
 }
 
-export interface SortingChoiceQuestion extends BaseQuestion {
+export interface SortingChoiceQuestion {
+  id: string;
   type: "sortingChoice";
+  question: string;
   items: { id: string; content: string }[];
   correctOrder: string[];
+  correctAnswer: string[]; // Add correctAnswer property
 }
 
 export type Question =

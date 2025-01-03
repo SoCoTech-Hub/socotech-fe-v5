@@ -45,7 +45,6 @@ export * from "./Ratings";
 export * from "./Report";
 export * from "./Resource";
 export * from "./SearchableSelect";
-export * from "./ShareLinks";
 export * from "./Shows";
 export * from "./Support";
 export * from "./SvgIcons";

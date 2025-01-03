@@ -1,9 +1,9 @@
-import type { Question } from "./quiz";
+import type { MultipleChoiceQuestion as MultipleChoiceQuestionType } from "./quiz";
 import { Checkbox } from "../checkbox";
 import { Label } from "../label";
 
 interface MultipleChoiceQuestionProps {
-  question: Question;
+  question: MultipleChoiceQuestionType; // Narrowed type
   onAnswer: (answer: string[]) => void;
   answer: string[];
 }
@@ -27,7 +27,7 @@ export default function MultipleChoiceQuestion({
     <div>
       <Label className="mb-4 text-lg font-medium">{question.question}</Label>
       <div className="space-y-2">
-        {question.options?.map((option) => (
+        {question.options.map((option) => (
           <div key={option} className="flex items-center space-x-2">
             <Checkbox
               id={`${question.id}-${option}`}

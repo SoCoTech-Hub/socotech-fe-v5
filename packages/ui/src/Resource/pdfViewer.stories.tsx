@@ -13,19 +13,28 @@ export default {
   },
 } as Meta<typeof PDFViewer>;
 
-const Template: StoryObj<typeof PDFViewer> = (args) => <PDFViewer {...args} />;
+type Story = StoryObj<typeof PDFViewer>;
 
-export const SinglePagePDF = Template.bind({});
-SinglePagePDF.args = {
-  url: "https://example.com/sample-single-page.pdf",
+export const SinglePagePDF: Story = {
+  args: {
+    url: "https://example.com/sample-single-page.pdf",
+  },
 };
 
-export const MultiPagePDF = Template.bind({});
-MultiPagePDF.args = {
-  url: "https://example.com/sample-multi-page.pdf",
+export const MultiPagePDF: Story = {
+  args: {
+    url: "https://example.com/sample-multi-page.pdf",
+  },
 };
 
-export const LargePDF = Template.bind({});
-LargePDF.args = {
-  url: "https://example.com/sample-large.pdf",
+export const LargePDF: Story = {
+  args: {
+    url: "https://example.com/sample-large.pdf",
+  },
+};
+
+export const InvalidPDF: Story = {
+  args: {
+    url: "https://example.com/invalid-pdf.pdf",
+  },
 };

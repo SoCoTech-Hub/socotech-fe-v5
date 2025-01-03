@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Frown, Star, ThumbsUp, Trophy } from "lucide-react";
@@ -24,31 +22,33 @@ export default function QuizReport({
 }: QuizReportProps) {
   const [showReview, setShowReview] = useState(false);
 
+  const isAnswerCorrect = (userAnswer: any, correctAnswer: any): boolean => {
+    if (Array.isArray(correctAnswer)) {
+      return (
+        Array.isArray(userAnswer) &&
+        userAnswer.length === correctAnswer.length &&
+        userAnswer.every((item, index) => item === correctAnswer[index])
+      );
+    }
+    return userAnswer === correctAnswer;
+  };
+
   const calculateScore = () => {
     let correctAnswers = 0;
+
     questions.forEach((question) => {
-      if (question.type === "essay" || question.type === "freeChoice") {
-        // These types need manual grading
-        return;
-      }
+      if (question.type === "essay" || question.type === "freeChoice") return;
 
       const userAnswer = answers[question.id];
-      const correctAnswer = question.correctAnswer;
+      if ('correctAnswer' in question) {
+        const correctAnswer = question.correctAnswer;
 
-      if (Array.isArray(correctAnswer)) {
-        if (
-          Array.isArray(userAnswer) &&
-          userAnswer.length === correctAnswer.length
-        ) {
-          const isCorrect = userAnswer.every(
-            (item, index) => item === correctAnswer[index],
-          );
-          if (isCorrect) correctAnswers++;
+        if (isAnswerCorrect(userAnswer, correctAnswer)) {
+          correctAnswers++;
         }
-      } else if (userAnswer === correctAnswer) {
-        correctAnswers++;
       }
     });
+
     return correctAnswers > 0 ? (correctAnswers / questions.length) * 100 : 0;
   };
 
@@ -59,6 +59,13 @@ export default function QuizReport({
     if (score >= 75) return <Star className="text-blue-500" />;
     if (score >= 50) return <ThumbsUp className="text-green-500" />;
     return <Frown className="text-red-500" />;
+  };
+
+  const getScoreMessage = () => {
+    if (score >= 90) return "Excellent work! You're a top performer!";
+    if (score >= 75) return "Great job! You did really well!";
+    if (score >= 50) return "Good effort! Keep it up!";
+    return "Don't worry, you can try again and improve!";
   };
 
   if (showReview) {
@@ -72,13 +79,15 @@ export default function QuizReport({
   }
 
   return (
-    <Card className="mx-auto w-full max-w-2xl">
+    <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>Quiz Report</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="mb-4 flex items-center space-x-4">
-          <p className="text-2xl font-bold">Your Score: {score.toFixed(2)}%</p>
+        <div className="flex items-center mb-4 space-x-4">
+          <p className="text-2xl font-bold" aria-live="polite">
+            Your Score: {score.toFixed(2)}%
+          </p>
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -87,10 +96,12 @@ export default function QuizReport({
               stiffness: 260,
               damping: 20,
             }}
+            aria-hidden="true"
           >
             {getScoreIcon()}
           </motion.div>
         </div>
+        <p className="mb-4">{getScoreMessage()}</p>
         <p className="mb-4">
           You've completed the quiz. Would you like to review your answers or
           continue?
