@@ -1,9 +1,5 @@
-"use client";
-
-import type { DraggableData, DraggableEvent } from "react-draggable";
-import { useEffect, useRef, useState } from "react";
-import { CheckCircle, GripVertical, XCircle } from "lucide-react";
-import Draggable from "react-draggable";
+import { useState } from "react";
+import { CheckCircle, ChevronDownCircle, ChevronUpCircle } from "lucide-react";
 
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
@@ -25,40 +21,19 @@ export default function Sortable({
   onReorder,
 }: SortableQuizListProps) {
   const [items, setItems] = useState(initialItems);
-  const [draggingId, setDraggingId] = useState<string | null>(null);
   const [checkedAnswers, setCheckedAnswers] = useState<boolean[]>([]);
-  const listRef = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    setItems(initialItems);
-  }, [initialItems]);
+  const moveItem = (index: number, direction: -1 | 1) => {
+    const newIndex = index + direction;
+    if (newIndex < 0 || newIndex >= items.length) return;
 
-  const onDragStart = (id: string) => {
-    setDraggingId(id);
-  };
+    const newItems = [...items];
+    const [movedItem] = newItems.splice(index, 1);
+    newItems.splice(newIndex, 0, movedItem);
 
-  const onDragStop = (e: DraggableEvent, data: DraggableData, id: string) => {
-    setDraggingId(null);
-    if (!listRef.current) return;
-
-    const itemElements = Array.from(listRef.current.children);
-    const itemPositions = itemElements.map(
-      (el) => el.getBoundingClientRect().top,
-    );
-    const draggedIndex = items.findIndex((item) => item.id === id);
-    const draggedTop = data.y + itemPositions[draggedIndex];
-
-    let newIndex = itemPositions.findIndex((top) => draggedTop < top);
-    if (newIndex === -1) newIndex = itemPositions.length;
-
-    if (newIndex !== draggedIndex) {
-      const newItems = Array.from(items);
-      const [reorderedItem] = newItems.splice(draggedIndex, 1);
-      newItems.splice(newIndex, 0, reorderedItem);
-      setItems(newItems);
-      onReorder(newItems);
-      setCheckedAnswers([]);
-    }
+    setItems(newItems);
+    onReorder(newItems);
+    setCheckedAnswers([]); // Reset answers on reorder
   };
 
   const checkAnswers = () => {
@@ -71,39 +46,31 @@ export default function Sortable({
 
   return (
     <div className="space-y-4">
-      <ul ref={listRef} className="space-y-2">
+      <ul className="space-y-2">
         {items.map((item, index) => (
-          <Draggable
-            key={item.id}
-            axis="y"
-            handle=".handle"
-            position={{ x: 0, y: 0 }}
-            grid={[25, 25]}
-            scale={1}
-            onStart={() => onDragStart(item.id)}
-            onStop={(e, data) => onDragStop(e, data, item.id)}
-          >
-            <li className={`${draggingId === item.id ? "opacity-50" : ""}`}>
-              <Card>
-                <CardContent className="flex items-center space-x-4 p-4">
-                  <span className="handle cursor-move">
-                    <GripVertical className="h-5 w-5 text-gray-500" />
-                  </span>
-                  <span className="flex-grow">{item.content}</span>
-                  {checkedAnswers[index] !== undefined &&
-                    (checkedAnswers[index] ? (
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                    ) : (
-                      <XCircle className="h-5 w-5 text-red-500" />
-                    ))}
-                </CardContent>
-              </Card>
-            </li>
-          </Draggable>
+          <li key={item.id}>
+            <Card>
+              <CardContent className="flex items-center space-x-4 p-4">
+                <span className="flex-grow">{item.content}</span>
+                <Button
+                  onClick={() => moveItem(index, -1)}
+                  disabled={index === 0}
+                >
+                  <ChevronUpCircle />
+                </Button>
+                <Button
+                  onClick={() => moveItem(index, 1)}
+                  disabled={index === items.length - 1}
+                >
+                  <ChevronDownCircle />
+                </Button>
+              </CardContent>
+            </Card>
+          </li>
         ))}
       </ul>
       <Button onClick={checkAnswers} className="w-full">
-        Check Answers
+        <CheckCircle /> Check Answers
       </Button>
     </div>
   );

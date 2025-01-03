@@ -1,9 +1,8 @@
 import type { FC, ReactNode } from "react";
 
-import { Alert } from "../alert";
+import { Alert, AlertDescription, AlertTitle } from "../alert";
 import LogoOverlay from "../LogoOverlay";
 
-//TODO: Fix
 export interface PageProps {
   header: string;
   message: string;
@@ -41,9 +40,14 @@ export const Page: FC<PageProps> = ({
         <div className="text-themeColorSecondary w-full px-4 text-center">
           {message}
         </div>
-        <div className="desktop:px-20 laptop:px-20 mobile:px-2">
-          <Alert error={error} success={success} />
-        </div>
+        {(error || success) && (
+          <div className="desktop:px-20 laptop:px-20 mobile:px-2">
+            <Alert variant={error ? "destructive" : "success"}>
+              <AlertTitle>{error ? "Error" : "Success"}</AlertTitle>
+              <AlertDescription>{error || success}</AlertDescription>
+            </Alert>
+          </div>
+        )}
         <div className="mb-4 flex flex-wrap justify-center gap-4">
           {buttons.map((button, index) => (
             <div key={index}>{button}</div>
