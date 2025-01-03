@@ -1,101 +1,39 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import type { Meta, StoryFn } from "@storybook/react";
+import  { useState } from "react";
 
-import { MultiSelect } from "./multiSelect";
+import { MultiSelect, MultiSelectProps } from "./multiSelect";
 
-// Setting up the Meta configuration for Storybook
-const meta: Meta<typeof MultiSelect> = {
-  title: "MultiSelect",
+export default {
+  title: "Components/MultiSelect",
   component: MultiSelect,
-  parameters: {
-    layout: "centered",
-  },
-  argTypes: {
-    placeholder: {
-      control: "text",
-      defaultValue: "Select items...",
-      description: "Placeholder text for the MultiSelect input",
-    },
-    options: {
-      control: { type: "object" },
-      defaultValue: [
-        { value: "apple", label: "Apple" },
-        { value: "banana", label: "Banana" },
-        { value: "cherry", label: "Cherry" },
-        { value: "date", label: "Date" },
-        { value: "fig", label: "Fig" },
-        { value: "grape", label: "Grape" },
-      ],
-      description: "Array of options to display in the dropdown",
-    },
-  },
-};
+} as Meta;
 
-export default meta;
-type Story = StoryObj<typeof MultiSelect>;
-
-// Default story for MultiSelect
-export const Default: Story = {
-  render: (args) => {
-    const [selected, setSelected] = useState<(typeof Option)[]>([]);
-    return (
+const Template: StoryFn<MultiSelectProps> = (args) => {
+  const [selected, setSelected] = useState(args.selected || []);
+  return (
+    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px" }}>
       <MultiSelect
         {...args}
         selected={selected}
-        onChange={(newSelected) => setSelected(newSelected)}
+        onChange={(newSelected) => {
+          setSelected(newSelected);
+          args.onChange(newSelected);
+        }}
       />
-    );
-  },
-  args: {
-    placeholder: "Select items...",
-    options: [
-      { value: "apple", label: "Apple" },
-      { value: "banana", label: "Banana" },
-      { value: "cherry", label: "Cherry" },
-      { value: "date", label: "Date" },
-      { value: "fig", label: "Fig" },
-      { value: "grape", label: "Grape" },
-    ],
-  },
+    </div>
+  );
 };
 
-// Story to demonstrate the MultiSelect with pre-selected options
-export const WithPreSelectedOptions: Story = {
-  render: (args) => {
-    const [selected, setSelected] = useState<Option[]>([
-      { value: "apple", text: "Apple" },
-      { value: "banana", text: "Banana" },
-    ]);
-
-    return (
-      <MultiSelect
-        {...args}
-        selected={selected}
-        onChange={(newSelected) => setSelected(newSelected)}
-      />
-    );
-  },
-  args: {
-    placeholder: "Select items...",
-  },
-};
-
-// Story to show the component when no options are available
-export const NoOptions: Story = {
-  render: (args) => {
-    const [selected, setSelected] = useState<Option[]>([]);
-
-    return (
-      <MultiSelect
-        {...args}
-        options={[]}
-        selected={selected}
-        onChange={(newSelected) => setSelected(newSelected)}
-      />
-    );
-  },
-  args: {
-    placeholder: "Select items...",
-  },
+export const Default = Template.bind({});
+Default.args = {
+  options: [
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+    { value: "option4", label: "Option 4" },
+    { value: "option5", label: "Option 5" },
+  ],
+  selected: [{ value: "option1", label: "Option 1" }],
+  placeholder: "Select items...",
+  onChange: (selected) => console.log("Selected options:", selected),
 };

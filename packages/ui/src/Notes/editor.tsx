@@ -6,9 +6,7 @@ import { DropdownSelect } from "../dropdownSelect";
 import { Input } from "../input";
 import { Label } from "../label";
 import MDX from "../Mdx";
-import { Select } from "../select";
 import { Skeleton } from "../skeleton";
-import { Textarea } from "../textarea";
 
 interface Subject {
   id: string;
@@ -23,7 +21,7 @@ interface Note {
   read: boolean;
 }
 
-interface NoteEditorProps {
+export interface NoteEditorProps {
   subjects: Subject[];
   note?: Note;
   onSave: (

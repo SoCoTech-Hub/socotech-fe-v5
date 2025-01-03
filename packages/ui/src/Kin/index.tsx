@@ -48,8 +48,8 @@ export default function GuardianManager() {
       email: "jane@example.com",
     },
   ]);
-  const [editingGuardian, setEditingGuardian] = useState<Guardian | null>(null);
-  const [isAddingGuardian, setIsAddingGuardian] = useState(false);
+  const [_editingGuardian, setEditingGuardian] = useState<Guardian | null>(null);
+  const [_isAddingGuardian, setIsAddingGuardian] = useState(false);
 
   const handleEdit = (guardian: Guardian) => {
     setEditingGuardian(guardian);

@@ -1,49 +1,29 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
-import LeftDrawer from ".";
 import { Button } from "../button";
+import { LeftDrawer } from "./leftDrawer";
 
-const meta: Meta<typeof LeftDrawer> = {
+export default {
   title: "Components/LeftDrawer",
   component: LeftDrawer,
-  tags: ["autodocs"],
-  argTypes: {
-    isOpen: {
-      control: { type: "boolean" },
-      description: "Determines if the drawer is open or closed.",
-    },
-    onClose: {
-      action: "onClose",
-      description: "Function to close the drawer.",
-    },
-    title: {
-      control: { type: "text" },
-      description: "Title of the drawer.",
-    },
-    children: {
-      control: { type: "text" },
-      description: "Content to display inside the drawer.",
-    },
-  },
+} as Meta;
+
+const Template: StoryFn = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
+      <LeftDrawer {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <p>This is the content inside the drawer.</p>
+        <p>You can add any React nodes here.</p>
+      </LeftDrawer>
+    </div>
+  );
 };
 
-export default meta;
-type Story = StoryObj<typeof LeftDrawer>;
-
-export const Default: Story = {
-  render: function DefaultRender(args) {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-      <>
-        <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
-        <LeftDrawer {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <p>This is the content inside the drawer.</p>
-        </LeftDrawer>
-      </>
-    );
-  },
-  args: {
-    title: "Menu",
-  },
+export const DefaultDrawer = Template.bind({});
+DefaultDrawer.args = {
+  title: "Menu",
 };

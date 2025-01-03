@@ -20,7 +20,7 @@ interface Option {
   label: string;
 }
 
-interface MultiSelectProps {
+export interface MultiSelectProps {
   options: Option[];
   selected: Option[];
   onChange: (selected: Option[]) => void;

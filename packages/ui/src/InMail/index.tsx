@@ -3,16 +3,15 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 
-import type { EmailProps } from "./view";
 import { Button } from "../button";
 import { Input } from "../input";
+import { AttachmentType } from "./attachments";
 import InmailComposer from "./composer";
 import InmailList from "./list";
 import InmailSidebar from "./sidebar";
-import InmailView from "./view";
+import InmailView, { EmailProps } from "./view";
 
-// Mock data structure for emails //TODO:fetch Emails
-const initialEmails = [
+const initialEmails: EmailProps[] = [
   {
     id: 1,
     from: "john@example.com",
@@ -57,7 +56,7 @@ export default function EmailApp() {
   const [selectedEmail, setSelectedEmail] = useState<EmailProps | null>(null);
   const [composing, setComposing] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [attachment, setAttachment] = useState<File | null>(null);
+  const [attachments, setAttachments] = useState<AttachmentType[]>([]);
   const [isMenuCollapsed, setIsMenuCollapsed] = useState(false);
 
   const filteredEmails = emails
@@ -92,7 +91,11 @@ export default function EmailApp() {
 
   const handleAttachment = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.length) {
-      setAttachment(event.target.files[0] ?? null);
+      const newAttachments = Array.from(event.target.files).map((file) => ({
+        id: crypto.randomUUID(),
+        url: URL.createObjectURL(file),
+      }));
+      setAttachments((prev) => [...prev, ...newAttachments]);
     }
   };
 
@@ -102,7 +105,6 @@ export default function EmailApp() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Collapsible Side Menu for all screen sizes */}
       <InmailSidebar
         setSelectedSection={setSelectedSection}
         setComposing={setComposing}
@@ -110,9 +112,7 @@ export default function EmailApp() {
         toggleCollapse={toggleMenuCollapse}
       />
 
-      {/* Main Content */}
       <div className="flex flex-1 flex-col">
-        {/* Top Bar */}
         <div className="flex items-center justify-between bg-white p-4">
           <Input
             type="text"
@@ -127,9 +127,7 @@ export default function EmailApp() {
           </Button>
         </div>
 
-        {/* Email List and View */}
         <div className="flex flex-1 overflow-hidden">
-          {/* Email List */}
           <InmailList
             emails={filteredEmails}
             onSelectEmail={setSelectedEmail}
@@ -141,7 +139,6 @@ export default function EmailApp() {
             }
           />
 
-          {/* Email View */}
           {selectedEmail && (
             <div className="flex-1">
               <InmailView
@@ -155,12 +152,11 @@ export default function EmailApp() {
         </div>
       </div>
 
-      {/* Email Composer */}
       {composing && (
         <InmailComposer
           setComposing={setComposing}
           handleAttachment={handleAttachment}
-          attachments={attachment}
+          attachments={attachments}
         />
       )}
     </div>

@@ -1,6 +1,6 @@
 import { Paperclip, Send, X } from "lucide-react";
 
-import type { Attachment } from "./attachments";
+import type { AttachmentType } from "./attachments";
 import { Button } from "../button";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
@@ -9,7 +9,7 @@ import Attachments from "./attachments";
 export interface InmailComposerProps {
   setComposing: (composing: boolean) => void;
   handleAttachment: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  attachments?: Attachment[];
+  attachments?: AttachmentType[];
 }
 
 const InmailComposer: React.FC<InmailComposerProps> = ({

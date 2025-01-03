@@ -1,27 +1,31 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import type { Subject } from "./subjects";
-import Lessons from "./lessons";
+import Lessons, { LessonsProps } from "./lessons";
 
 export default {
-  title: "LessonIntro/Lessons",
+  title: "Components/Lessons",
   component: Lessons,
+  argTypes: {
+    handleBack: { action: "Back Button Clicked" },
+    handleLessonSelect: { action: "Lesson Selected" },
+  },
 } as Meta;
 
-const sampleSubject: Subject = {
-  id: "1",
-  title: "Algebra",
-  lessons: [
-    { id: "1", title: "Linear Equations" },
-    { id: "2", title: "Quadratic Equations" },
-  ],
-};
-
-const Template: StoryFn = (args) => <Lessons {...args} />;
+const Template: StoryFn<LessonsProps> = (args) => (
+  <div style={{ height: "100vh", padding: "1rem" }}>
+    <Lessons {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {
-  selectedSubject: sampleSubject,
-  handleBack: () => alert("Back to Subjects"),
-  handleLessonSelect: (lesson) => alert(`Selected Lesson: ${lesson.title}`),
+  selectedSubject: {
+    id: "math",
+    title: "Mathematics",
+    lessons: [
+      { id: "lesson1", title: "Introduction to Algebra" },
+      { id: "lesson2", title: "Quadratic Equations" },
+      { id: "lesson3", title: "Basics of Geometry" },
+    ],
+  },
 };

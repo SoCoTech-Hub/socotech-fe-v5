@@ -2,7 +2,7 @@
 
 import { Star } from "lucide-react";
 
-export interface Rating {
+export interface LessonsRating {
   id: number;
   userId: string;
   userName: string;
@@ -13,11 +13,13 @@ export interface Rating {
   timestamp: Date;
 }
 
-export interface RatingSummaryProps {
-  ratings: Rating[];
+export interface LessonsRatingSummaryProps {
+  ratings: LessonsRating[];
 }
 
-export default function RatingSummary({ ratings }: RatingSummaryProps) {
+export default function LessonsRatingSummary({
+  ratings,
+}: LessonsRatingSummaryProps) {
   const averageRating =
     ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length;
   const ratingCounts = ratings.reduce(

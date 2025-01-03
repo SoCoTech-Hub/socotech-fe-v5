@@ -79,8 +79,7 @@ const mockThreads: ForumThread[] = [
 ];
 
 const ForumDisplay: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [threads, setThreads] = useState<ForumThread[]>(mockThreads);
+  const [threads] = useState<ForumThread[]>(mockThreads); //removed setThreads
   const [sortColumn, setSortColumn] =
     useState<keyof ForumThread>("lastActivity");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");

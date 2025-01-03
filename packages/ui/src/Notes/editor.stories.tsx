@@ -1,65 +1,47 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
+import type { Meta, StoryFn } from "@storybook/react";
 
-import { NoteEditor } from "./editor";
+import { NoteEditor, NoteEditorProps } from "./editor";
 
-const meta: Meta<typeof NoteEditor> = {
-  title: "Notes/Editor",
+export default {
+  title: "Components/NoteEditor",
   component: NoteEditor,
-  parameters: {
-    layout: "centered",
-  },
-  argTypes: {
-    onSave: { action: "onSave" },
-    onCancel: { action: "onCancel" },
-  },
-};
+} as Meta;
 
-export default meta;
-type Story = StoryObj<typeof NoteEditor>;
+const Template: StoryFn<NoteEditorProps> = (args) => <NoteEditor {...args} />;
 
-// Mock Subjects
-const subjects = [
-  { id: "1", name: "Math" },
-  { id: "2", name: "Science" },
-  { id: "3", name: "History" },
-];
-
-// Mock Note
-const note = {
-  id: "1",
-  name: "My Math Note",
-  subject: { id: "1", name: "Math" },
-  note: "This is a math note.",
-  read: true,
-};
-
-export const Default: Story = {
-  render: (args) => {
-    const [noteData, setNoteData] = React.useState(note);
-
-    return (
-      <NoteEditor
-        {...args}
-        subjects={subjects}
-        note={noteData}
-        onSave={() => {
-          setNoteData({ ...noteData, name: "Updated Note" });
-          args.onSave();
-        }}
-      />
-    );
+export const Default = Template.bind({});
+Default.args = {
+  subjects: [
+    { id: "1", name: "Math" },
+    { id: "2", name: "Science" },
+    { id: "3", name: "History" },
+  ],
+  onSave: (title, description, read, subject, id) =>
+    console.log("Note saved", { title, description, read, subject, id }),
+  onCancel: () => console.log("Cancelled"),
+  note: {
+    id: "123",
+    name: "Study Guide",
+    subject: { id: "1", name: "Math" },
+    note: "This is a detailed study guide.",
+    read: false,
   },
 };
 
-export const NewNote: Story = {
-  render: (args) => {
-    return <NoteEditor {...args} subjects={subjects} />;
-  },
+export const NewNote = Template.bind({});
+NewNote.args = {
+  subjects: [
+    { id: "1", name: "Math" },
+    { id: "2", name: "Science" },
+    { id: "3", name: "History" },
+  ],
+  onSave: (title, description, read, subject, id) =>
+    console.log("Note saved", { title, description, read, subject, id }),
+  onCancel: () => console.log("Cancelled"),
 };
 
-export const LoadingState: Story = {
-  render: (args) => {
-    return <NoteEditor {...args} subjects={subjects} />;
-  },
+export const Loading = Template.bind({});
+Loading.args = {
+  subjects: [],
+  loading: true,
 };

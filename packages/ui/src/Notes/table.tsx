@@ -4,7 +4,6 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "../button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
 import { DeleteModal } from "../deleteModal";
-import { Pagination } from "../pagination";
 import { PaginationComponent } from "../paginationComponent";
 import { Skeleton } from "../skeleton";
 import {
@@ -26,7 +25,7 @@ interface Note {
   };
 }
 
-interface NotesProps {
+export interface NotesProps {
   notes: Note[];
   refetchNotes: () => void;
   isLoading: boolean;

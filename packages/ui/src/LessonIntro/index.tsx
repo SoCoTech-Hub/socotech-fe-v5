@@ -7,7 +7,7 @@ import SubjectCategories from "./categories";
 import Lessons from "./lessons";
 import Subjects from "./subjects";
 
-interface SubjectHierarchyProps {
+export interface SubjectHierarchyProps {
   categories: SubjectCategory[];
   onLessonSelect: (
     lesson: Lesson,

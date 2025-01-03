@@ -1,30 +1,37 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
+import React, { useState } from "react";
 
-import InmailComposer from "./composer";
+import InmailComposer, { InmailComposerProps } from "./composer";
 
-const meta: Meta<typeof InmailComposer> = {
-  title: "Inmail/Composer",
+export default {
+  title: "Components/InmailComposer",
   component: InmailComposer,
-  tags: ["autodocs"],
-  argTypes: {
-    setComposing: { action: "set composing" },
-    handleAttachment: { action: "attachment handled" },
-  },
+} as Meta;
+
+const Template: StoryFn<InmailComposerProps> = (args) => {
+  const [composing, setComposing] = useState(true);
+
+  const handleAttachment = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Attachment added:", event.target.files);
+  };
+
+  if (!composing) return <></>;
+
+  return (
+    <InmailComposer
+      {...args}
+      setComposing={setComposing}
+      handleAttachment={handleAttachment}
+    />
+  );
 };
 
-export default meta;
-type Story = StoryObj<typeof InmailComposer>;
-
-export const Default: Story = {
-  render: function DefaultRender(args) {
-    return <InmailComposer {...args} attachment={null} />;
-  },
-};
-
-export const WithAttachment: Story = {
-  render: function WithAttachmentRender(args) {
-    return (
-      <InmailComposer {...args} attachment={{ name: "example.pdf" } as File} />
-    );
-  },
+export const DefaultComposer = Template.bind({});
+DefaultComposer.args = {
+  attachments: [
+    {
+      id: "1",
+      url: "adjksfghbaijkldsga/fadsghaiouhgs/g/adsfgadga",
+    },
+  ],
 };

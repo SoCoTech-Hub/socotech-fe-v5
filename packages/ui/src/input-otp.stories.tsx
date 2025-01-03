@@ -33,7 +33,7 @@ export const inputOTP: Story = {
     autoFocus: true,
   },
   render: (args) => (
-    <InputOTP {...args}>
+    <InputOTP {...args} >
       <InputOTPGroup>
         <InputOTPSlot index={0} />
         <InputOTPSlot index={1} />

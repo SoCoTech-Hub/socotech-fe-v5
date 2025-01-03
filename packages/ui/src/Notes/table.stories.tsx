@@ -1,81 +1,59 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 
-import { NotesTable } from "./table";
+import { NotesProps, NotesTable } from "./table";
 
-const meta: Meta<typeof NotesTable> = {
-  title: "Notes/Table",
+export default {
+  title: "Components/NotesTable",
   component: NotesTable,
-  parameters: {
-    layout: "centered",
-  },
-  argTypes: {
-    notes: {
-      control: "object",
-      description: "Array of note objects to display",
+} as Meta;
+
+const Template: StoryFn<NotesProps> = (args) => <NotesTable {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  notes: [
+    {
+      profile: { id: "1" },
+      id: "note1",
+      created_at: "2023-01-01T12:00:00Z",
+      name: "Introduction to Algebra",
+      subject: { name: "Math" },
     },
-    isLoading: {
-      control: "boolean",
-      description: "Whether the component is loading",
-      defaultValue: false,
+    {
+      profile: { id: "2" },
+      id: "note2",
+      created_at: "2023-01-02T14:30:00Z",
+      name: "Shakespeare's Sonnets",
+      subject: { name: "English Literature" },
     },
-    refetchNotes: {
-      action: "refetchNotes",
-      description: "Function to refetch notes after a delete operation",
+    {
+      profile: { id: "3" },
+      id: "note3",
+      created_at: "2023-01-03T09:15:00Z",
+      name: "Basics of Quantum Physics",
+      subject: { name: "Physics" },
     },
-  },
+  ],
+  isLoading: false,
+  refetchNotes: () => console.log("Refetching notes..."),
+  deleteNote: ({ id, profileId }) =>
+    console.log(`Deleting note with id ${id} for profile ${profileId}`),
 };
 
-export default meta;
-type Story = StoryObj<typeof NotesTable>;
-
-// Sample notes data for demonstration
-const sampleNotes = [
-  {
-    id: "1",
-    created_at: "2023-09-25",
-    name: "Meeting Notes",
-    subject: { name: "Work" },
-  },
-  {
-    id: "2",
-    created_at: "2023-09-26",
-    name: "Shopping List",
-    subject: { name: "Personal" },
-  },
-  {
-    id: "3",
-    created_at: "2023-09-27",
-    name: "Project Plan",
-    subject: { name: "Work" },
-  },
-];
-
-export const Default: Story = {
-  args: {
-    notes: sampleNotes,
-    isLoading: false,
-    refetchNotes: () => {
-      console.log("Refetching notes...");
-    },
-  },
+export const Loading = Template.bind({});
+Loading.args = {
+  notes: [],
+  isLoading: true,
+  refetchNotes: () => console.log("Refetching notes..."),
+  deleteNote: ({ id, profileId }) =>
+    console.log(`Deleting note with id ${id} for profile ${profileId}`),
 };
 
-export const Loading: Story = {
-  args: {
-    notes: [],
-    isLoading: true,
-    refetchNotes: () => {
-      console.log("Refetching notes...");
-    },
-  },
-};
-
-export const NoNotes: Story = {
-  args: {
-    notes: [],
-    isLoading: false,
-    refetchNotes: () => {
-      console.log("Refetching notes...");
-    },
-  },
+export const Empty = Template.bind({});
+Empty.args = {
+  notes: [],
+  isLoading: false,
+  refetchNotes: () => console.log("Refetching notes..."),
+  deleteNote: ({ id, profileId }) =>
+    console.log(`Deleting note with id ${id} for profile ${profileId}`),
 };

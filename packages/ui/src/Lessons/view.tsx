@@ -11,7 +11,7 @@ import HelpfulMaterials from "./materials";
 import LessonOverview from "./overview";
 import RatingComponent from "./ratings";
 import RatingSubmission from "./submit";
-import RatingSummary from "./summary";
+import LessonsRatingSummary from "./summary";
 import HeaderSection from "./viewHeader";
 import HeaderImage from "./viewHeaderImage";
 
@@ -103,7 +103,7 @@ export default function ViewPage({
         </Tabs>
 
         {/* Comments Section */}
-        <RatingSummary ratings={ratings} />
+        <LessonsRatingSummary ratings={ratings} />
 
         <RatingSubmission onSubmit={onSubmit} />
 

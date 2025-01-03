@@ -1,12 +1,12 @@
 import { Paperclip } from "lucide-react";
 
-export interface Attachment {
+export interface AttachmentType {
   url: string;
   id: string;
 }
 
 export interface AttachmentsProps {
-  attachments?: Attachment[];
+  attachments?: AttachmentType[];
 }
 
 const Attachments = ({ attachments }: AttachmentsProps) => (
@@ -21,7 +21,7 @@ const Attachments = ({ attachments }: AttachmentsProps) => (
       </div>
     )}
     <div className="mt-2 flex gap-4">
-      {attachments?.map((file: Attachment) => (
+      {attachments?.map((file: AttachmentType) => (
         <a href={file.url} target="_blank" rel="noreferrer" key={file.id}>
           <Paperclip />
         </a>

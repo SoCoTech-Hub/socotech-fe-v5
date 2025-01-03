@@ -1,18 +1,18 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import type { Rating, RatingSummaryProps } from "./summary";
-import RatingSummary from "./summary";
+import type { LessonsRating, LessonsRatingSummaryProps } from "./summary";
+import LessonsRatingSummary from "./summary";
 
 export default {
   title: "Lesson/RatingSummary",
-  component: RatingSummary,
+  component: LessonsRatingSummary,
 } as Meta;
 
-const Template: StoryFn<RatingSummaryProps> = (args) => (
-  <RatingSummary {...args} />
+const Template: StoryFn<LessonsRatingSummaryProps> = (args) => (
+  <LessonsRatingSummary {...args} />
 );
 
-const sampleRatings: Rating[] = [
+const sampleRatings: LessonsRating[] = [
   {
     id: 1,
     userId: "user1",

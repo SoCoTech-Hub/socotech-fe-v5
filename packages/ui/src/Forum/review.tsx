@@ -5,11 +5,8 @@
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import {
-  ChevronDown,
-  ChevronUp,
   MessageSquare,
-  ThumbsUp,
-  User,
+  ThumbsUp
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
@@ -50,7 +47,7 @@ interface Reply {
   likes: number;
 }
 
-const mockPost: ForumPost = {
+const ForumPost = {
   id: "1",
   title: "How to optimize React performance?",
   content:
