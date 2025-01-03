@@ -1,60 +1,52 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Button } from "./button";
+import {
+  Popover,
+  PopoverAnchor,
+  PopoverContent,
+  PopoverTrigger,
+} from "./popover";
 
-const meta: Meta<typeof Popover> = {
-  title: "Popover",
+export default {
+  title: "Components/Popover",
   component: Popover,
-  tags: ["autodocs"],
-  argTypes: {
-    align: {
-      control: "select",
-      options: ["center", "start", "end"],
-      description: "Specifies the alignment of the popover content.",
-      defaultValue: "center",
-    },
-    sideOffset: {
-      control: "number",
-      description:
-        "Sets the offset distance of the popover content from the trigger.",
-      defaultValue: 4,
-    },
-  },
-};
+  subcomponents: { PopoverTrigger, PopoverContent, PopoverAnchor },
+} as Meta;
 
-export default meta;
-type Story = StoryObj<typeof Popover>;
-
-export const Default: Story = {
-  args: {
-    align: "center",
-    sideOffset: 4,
-  },
-  render: (args) => (
+const Template: StoryFn = (args) => (
+  <div className="flex h-screen items-center justify-center">
     <Popover>
-      <PopoverTrigger className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white">
-        Open Popover
+      <PopoverAnchor>
+        <Button>Anchor Button</Button>
+      </PopoverAnchor>
+      <PopoverTrigger asChild>
+        <Button>Open Popover</Button>
       </PopoverTrigger>
-      <PopoverContent {...args} className="bg-white p-4">
-        This is the popover content. You can place any elements here.
+      <PopoverContent {...args}>
+        <div className="flex flex-col items-start space-y-2">
+          <p className="text-sm">This is a popover content area.</p>
+          <Button variant="outline">Action Button</Button>
+        </div>
       </PopoverContent>
     </Popover>
-  ),
+  </div>
+);
+
+export const DefaultPopover = Template.bind({});
+DefaultPopover.args = {
+  align: "center", // Options: "start", "center", "end"
+  sideOffset: 4,
 };
 
-export const CustomAlignment: Story = {
-  args: {
-    align: "start",
-    sideOffset: 10,
-  },
-  render: (args) => (
-    <Popover>
-      <PopoverTrigger className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white">
-        Custom Alignment
-      </PopoverTrigger>
-      <PopoverContent {...args} className="p-4">
-        This popover is aligned to the start with a custom offset.
-      </PopoverContent>
-    </Popover>
-  ),
+export const RightAlignedPopover = Template.bind({});
+RightAlignedPopover.args = {
+  align: "end",
+  sideOffset: 8,
+};
+
+export const BottomPopover = Template.bind({});
+BottomPopover.args = {
+  align: "center",
+  side: "bottom",
 };

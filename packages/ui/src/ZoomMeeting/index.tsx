@@ -21,7 +21,9 @@ const ZoomMeeting: React.FC = () => {
   }, [meetingLink]);
 
   if (!meetingLink || typeof meetingLink !== "string") {
-    return <p align="center">Please, provide a valid meeting link!</p>;
+    return (
+      <p className="align=center">Please, provide a valid meeting link!</p>
+    );
   }
 
   return (

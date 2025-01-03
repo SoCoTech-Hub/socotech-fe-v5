@@ -13,7 +13,7 @@ interface QuizItem {
   content: string;
 }
 
-interface SortableQuizListProps {
+export interface SortableQuizListProps {
   items: QuizItem[];
   correctOrder: string[];
   onReorder: (newItems: QuizItem[]) => void;
