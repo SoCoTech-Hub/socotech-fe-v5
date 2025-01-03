@@ -10,7 +10,7 @@ import {
 } from "./card";
 
 interface SocialMediaLink {
-  platform?: "facebook" | "twitter" | "linkedin" | "instagram";
+  platform?: "facebook" | "twitter" | "linkedin" | "instagram" ;
   url: string;
 }
 

@@ -36,17 +36,18 @@ CustomTitleAndDescription.args = {
   ],
 };
 
-export const MissingPlatform = Template.bind({});
-MissingPlatform.args = {
-  title: "Oops! Missing Platform",
-  description:
-    "This example demonstrates how the component handles missing or invalid platforms.",
-  links: [
-    { url: "https://example.com" }, // No platform provided
-    { platform: "unknown", url: "https://unknown.com" }, // Invalid platform
-    { platform: "twitter", url: "https://twitter.com" },
-  ],
-};
+//doesnt work has to be one of the 4 platforms(hardcoded)
+// export const MissingPlatform = Template.bind({});
+// MissingPlatform.args = {
+//   title: "Oops! Missing Platform",
+//   description:
+//     "This example demonstrates how the component handles missing or invalid platforms.",
+//   links: [
+//     { url: "https://example.com" }, // No platform provided
+//     { platform: "unknown", url: "https://unknown.com" }, // Invalid platform
+//     { platform: "twitter", url: "https://twitter.com" },
+//   ],
+// };
 
 export const NoLinks = Template.bind({});
 NoLinks.args = {

@@ -10,7 +10,7 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <ThemeLayout {...args} />;
+const Template: StoryFn = (args) => <ThemeLayout {...args} children />;
 
 export const Default = Template.bind({});
 Default.args = {

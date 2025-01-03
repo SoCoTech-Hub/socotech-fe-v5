@@ -3,16 +3,17 @@ import type { Meta, StoryFn } from "@storybook/react";
 import CreateSupportForm from "./form";
 
 export default {
-  title: "Support/Form",
+  title: "Support/CreateSupportForm",
   component: CreateSupportForm,
 } as Meta;
 
-const Template: StoryFn = (args) => <CreateSupportForm {...args} />;
+const Template: StoryFn<{
+  onSubmit: (title: string, description: string, location: string) => void;
+}> = (args) => <CreateSupportForm {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
-  onSubmit: (title, description, location) =>
-    alert(
-      `Ticket Created:\nTitle: ${title}\nDescription: ${description}\nLocation: ${location}`,
-    ),
+export const DefaultCreateSupportForm = Template.bind({});
+DefaultCreateSupportForm.args = {
+  onSubmit: (title, description, location) => {
+    console.log("Form submitted with: ", { title, description, location });
+  },
 };

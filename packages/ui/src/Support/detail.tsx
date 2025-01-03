@@ -25,7 +25,7 @@ interface Message {
   attachment?: string;
 }
 
-interface TicketDetailProps {
+export interface TicketDetailProps {
   ticket: {
     id: number;
     title: string;
@@ -85,7 +85,7 @@ export default function TicketDetail({ ticket }: TicketDetailProps) {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="mx-auto w-full max-w-4xl">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
@@ -125,7 +125,7 @@ export default function TicketDetail({ ticket }: TicketDetailProps) {
                   {message.attachment && (
                     <div className="mt-2">
                       <a href="#" className="flex items-center text-blue-500">
-                        <Paperclip className="w-4 h-4 mr-1" />
+                        <Paperclip className="mr-1 h-4 w-4" />
                         {message.attachment}
                       </a>
                     </div>
@@ -146,11 +146,11 @@ export default function TicketDetail({ ticket }: TicketDetailProps) {
           />
           <div className="flex items-center justify-between">
             <Button variant="outline">
-              <Paperclip className="w-4 h-4 mr-2" />
+              <Paperclip className="mr-2 h-4 w-4" />
               Attach File
             </Button>
             <Button onClick={handleSendMessage}>
-              <Send className="w-4 h-4 mr-2" />
+              <Send className="mr-2 h-4 w-4" />
               Send
             </Button>
           </div>

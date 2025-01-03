@@ -3,12 +3,10 @@
 import React, { useRef, useState } from "react";
 import { Camera, Pencil } from "lucide-react";
 
-import { uploadImage } from "@acme/snippets/posts/user";
-
 import { Button } from "../button";
 import { PopupAlert } from "../PopupAlert";
 
-interface CoverProps {
+export interface CoverProps {
   name?: string;
   bannerImage?: string;
   avatarImage?: string;
@@ -22,6 +20,7 @@ interface CoverProps {
     avatarImage: string;
     bannerImage: string;
   }) => void;
+  uploadImage?: (e: File) => void;
 }
 export default function Cover(props: CoverProps) {
   const [bannerImage, setBannerImage] = useState(
@@ -61,11 +60,7 @@ export default function Cover(props: CoverProps) {
         reader.onload = (e) => setImage(e.target?.result as string);
         reader.readAsDataURL(file);
 
-        await uploadImage({
-          profileId: props.user.profile.id,
-          file,
-          uploadType,
-        });
+        props.uploadImage?.(file);
         props.updateImages?.({
           profileId: props.user.profile.id,
           avatarImage: avatarImage,

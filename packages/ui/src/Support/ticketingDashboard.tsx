@@ -95,12 +95,12 @@ export default function TicketingDashboard(props: TicketingDashboardProps) {
   };
 
   return (
-    <div className="container p-4 mx-auto">
+    <div className="container mx-auto p-4">
       <h1 className="mb-4 text-2xl font-bold">Ticketing System</h1>
       <Sheet open={isFeedbackOpen} onOpenChange={setIsFeedbackOpen}>
         <SheetTrigger asChild>
           <Button variant="outline">
-            <MessageSquare className="w-4 h-4 mr-2" />
+            <MessageSquare className="mr-2 h-4 w-4" />
             Feedback
           </Button>
         </SheetTrigger>
@@ -142,7 +142,7 @@ export default function TicketingDashboard(props: TicketingDashboardProps) {
                         className="flex-grow"
                       />
                       <Button variant="outline" size="icon">
-                        <Search className="w-4 h-4" />
+                        <Search className="h-4 w-4" />
                       </Button>
                     </div>
                     <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">

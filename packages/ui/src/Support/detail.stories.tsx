@@ -1,22 +1,25 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import TicketDetail from "./detail";
+import TicketDetail, { TicketDetailProps } from "./detail";
 
 export default {
-  title: "Support/Detail",
+  title: "Support/TicketDetail",
   component: TicketDetail,
 } as Meta;
 
-const Template: StoryFn = (args) => <TicketDetail {...args} />;
+const Template: StoryFn<TicketDetailProps> = (args) => (
+  <TicketDetail {...args} />
+);
 
-export const Default = Template.bind({});
-Default.args = {
+export const DefaultTicketDetail = Template.bind({});
+DefaultTicketDetail.args = {
   ticket: {
-    id: 123,
-    title: "Login Issues",
-    description: "Unable to log in using my email credentials.",
+    id: 1234,
+    title: "Account Access Issue",
+    description:
+      "The user is unable to access their account despite entering the correct credentials. They are receiving an 'Invalid credentials' error.",
     status: "Open",
-    created: "2023-11-01",
-    location: "Frontend",
+    created: "2023-06-01",
+    location: "New York, NY",
   },
 };

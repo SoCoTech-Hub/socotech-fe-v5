@@ -46,7 +46,7 @@ export const WithCustomImages: Story = {
 };
 
 export const LoadingState: Story = {
-  render: () => <Cover />,
+  render: () => <Cover user={{ id: "1", profile: { id: "1" } }} />,
   parameters: {
     docs: {
       description: {

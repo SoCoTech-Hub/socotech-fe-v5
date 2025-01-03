@@ -1,56 +1,56 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import TicketList from "./list";
+import TicketList, { TicketItem } from "./list";
 
 export default {
-  title: "Support/List",
+  title: "Components/TicketList",
   component: TicketList,
 } as Meta;
 
-const mockTickets = [
-  {
-    id: 1,
-    title: "Frontend Issue",
-    description: "Button is not clickable",
-    status: "Open",
-    created: "2023-10-31",
-    location: "Frontend",
-  },
-  {
-    id: 2,
-    title: "Backend Issue",
-    description: "API is not responding",
-    status: "In Progress",
-    created: "2023-10-29",
-    location: "Backend",
-  },
-  {
-    id: 3,
-    title: "Database Issue",
-    description: "Query timeout",
-    status: "Closed",
-    created: "2023-10-25",
-    location: "Database",
-  },
-];
+const Template: StoryFn<{
+  tickets: TicketItem[];
+  onSelectTicket: (ticket: TicketItem) => void;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  isLoading: boolean;
+}> = (args) => <TicketList {...args} />;
 
-const Template: StoryFn = (args) => <TicketList {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  tickets: mockTickets,
-  onSelectTicket: (ticket) => alert(`Selected Ticket: ${ticket.title}`),
+export const DefaultTicketList = Template.bind({});
+DefaultTicketList.args = {
+  tickets: [
+    {
+      id: 1,
+      title: "Login Issue",
+      description: "Unable to login to the system.",
+      status: "Open",
+      created: "2023-12-01",
+      location: "Frontend",
+    },
+    {
+      id: 2,
+      title: "Database Timeout",
+      description: "Frequent timeout errors in database queries.",
+      status: "In Progress",
+      created: "2023-12-02",
+      location: "Backend",
+    },
+    {
+      id: 3,
+      title: "Network Latency",
+      description: "High latency observed in network operations.",
+      status: "Closed",
+      created: "2023-12-03",
+      location: "Network",
+    },
+  ],
+  onSelectTicket: (ticket) => {
+    console.log("Selected ticket: ", ticket);
+  },
   currentPage: 1,
-  totalPages: 1,
-  onPageChange: (page) => alert(`Switched to Page ${page}`),
+  totalPages: 3,
+  onPageChange: (page) => {
+    console.log("Page changed to: ", page);
+  },
   isLoading: false,
-};
-
-export const LoadingState = Template.bind({});
-LoadingState.args = {
-  tickets: [],
-  currentPage: 1,
-  totalPages: 1,
-  onPageChange: () => {},
-  isLoading: true,
 };
