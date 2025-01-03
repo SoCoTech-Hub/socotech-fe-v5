@@ -1,12 +1,14 @@
-"use client";
-
-import type { DraggableData, DraggableEvent } from "react-draggable";
-import { useEffect, useRef, useState } from "react";
-import Draggable from "react-draggable";
+import { useEffect, useState } from "react";
 
 import type { Question } from "./quiz";
-import { Card, CardContent } from "../card";
 import { Label } from "../label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../select";
 
 interface QuizMatrixSortQuestionProps {
   question: Question;
@@ -19,87 +21,53 @@ export default function QuizMatrixSortQuestion({
   onAnswer,
   answer,
 }: QuizMatrixSortQuestionProps) {
-  const [columns, setColumns] = useState(answer || question.matrixData || {});
-  const [draggedItem, setDraggedItem] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [columns, setColumns] = useState(
+    answer || (question as any).matrixData || {},
+  );
 
+  // Update parent component whenever columns change
   useEffect(() => {
     onAnswer(columns);
   }, [columns, onAnswer]);
 
-  const onDragStart = (item: string) => {
-    setDraggedItem(item);
-  };
-
-  const onDragStop = (
-    e: DraggableEvent,
-    data: DraggableData,
-    item: string,
-    sourceColumnId: string,
-  ) => {
-    if (!containerRef.current) return;
-
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const itemRect = (e.target as HTMLElement).getBoundingClientRect();
-
-    const centerX = itemRect.left + itemRect.width / 2;
-    const centerY = itemRect.top + itemRect.height / 2;
-
-    let targetColumnId = sourceColumnId;
-
-    Object.entries(columns).forEach(([columnId, columnItems]) => {
-      const columnElement = document.getElementById(`column-${columnId}`);
-      if (columnElement) {
-        const columnRect = columnElement.getBoundingClientRect();
-        if (
-          centerX >= columnRect.left &&
-          centerX <= columnRect.right &&
-          centerY >= columnRect.top &&
-          centerY <= columnRect.bottom
-        ) {
-          targetColumnId = columnId;
-        }
-      }
+  const handleSelectChange = (item: string, targetColumn: string) => {
+    const newColumns: { [key: string]: string[] } = {};
+    Object.entries(columns).forEach(([columnId, items]) => {
+      newColumns[columnId] = items.filter((i) => i !== item);
     });
-
-    if (targetColumnId !== sourceColumnId) {
-      const newColumns = { ...columns };
-      newColumns[sourceColumnId] = newColumns[sourceColumnId].filter(
-        (i) => i !== item,
-      );
-      newColumns[targetColumnId] = [...newColumns[targetColumnId], item];
-      setColumns(newColumns);
-    }
-
-    setDraggedItem(null);
+    newColumns[targetColumn] = [...(newColumns[targetColumn] || []), item];
+    setColumns(newColumns);
   };
 
   return (
-    <div ref={containerRef}>
+    <div>
       <Label className="mb-4 text-lg font-medium">{question.question}</Label>
-      <div className="grid grid-cols-2 gap-4">
-        {Object.entries(columns).map(([columnId, columnItems]) => (
-          <div
-            key={columnId}
-            id={`column-${columnId}`}
-            className="rounded-lg border p-4"
-          >
-            <h3 className="mb-2 font-medium">{columnId}</h3>
-            {columnItems.map((item) => (
-              <Draggable
-                key={item}
-                onStart={() => onDragStart(item)}
-                onStop={(e, data) => onDragStop(e, data, item, columnId)}
-                position={{ x: 0, y: 0 }}
-              >
-                <div>
-                  <Card
-                    className={`mb-2 cursor-move p-2 ${draggedItem === item ? "text-primary-foreground bg-primary" : ""}`}
-                  >
-                    <CardContent className="p-2">{item}</CardContent>
-                  </Card>
-                </div>
-              </Draggable>
+      <div className="space-y-4">
+        {Object.entries(columns).flatMap(([_columnId, items]) => (
+          <div key={_columnId}>
+            {items.map((item) => (
+              <div key={item} className="flex items-center space-x-4">
+                <span>{item}</span>
+                <Select
+                  value={
+                    Object.entries(columns).find(([_, items]) =>
+                      items.includes(item),
+                    )?.[0]
+                  }
+                  onValueChange={(value) => handleSelectChange(item, value)}
+                >
+                  <SelectTrigger className="w-64">
+                    <SelectValue placeholder="Select Column" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(columns).map((colId) => (
+                      <SelectItem key={colId} value={colId}>
+                        {colId}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             ))}
           </div>
         ))}

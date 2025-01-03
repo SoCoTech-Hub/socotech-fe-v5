@@ -1,13 +1,10 @@
-// TODO:data fetch
+import { Building2 } from "lucide-react";
 
-import Image from "next/image";
-import DigilibLoad from "@/components/DigilibLoad";
-import { BuildingIcon } from "@/components/SvgIcons";
-import applyQualification from "@/snippets/user/applyQualification";
-import { getTimeDifferenceFromPostDate } from "@/snippets/user/getTimeDifferenceFromPostDate";
+import TimeDifferenceFromDate from "@acme/snippets/functions/timeDifferenceFromDate";
 
 import { Button } from "../button";
 import { Card, CardContent, CardFooter } from "../card";
+import Section from "./section";
 
 interface QualificationPostProps {
   loading: boolean;
@@ -27,7 +24,10 @@ interface QualificationPostProps {
   numberOfApplicants?: string;
   qualificationId?: string;
   qualificationUrl?: string;
-  profileId?: string;
+  applyQualification?: (data: {
+    qualificationId: string;
+    qualificationUrl: string;
+  }) => Promise<void>;
 }
 
 const QualificationPost: React.FC<QualificationPostProps> = ({
@@ -48,15 +48,22 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
   numberOfApplicants = "",
   qualificationId,
   qualificationUrl,
-  profileId,
+  applyQualification,
 }) => {
   const apply = async () => {
-    if (qualificationId && qualificationUrl && profileId) {
-      await applyQualification({
+    if (!qualificationId || !qualificationUrl) {
+      console.error("Missing required application data.");
+      return;
+    }
+
+    try {
+      await applyQualification?.({
         qualificationId,
         qualificationUrl,
-        profileId,
       });
+      console.log("Application submitted successfully.");
+    } catch (error) {
+      console.error("Application submission failed:", error);
     }
   };
 
@@ -64,7 +71,11 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
     return (
       <Card className="h-72 w-full">
         <CardContent className="flex h-full items-center justify-center">
-          <DigilibLoad loading={loading} />
+          <div className="w-full animate-pulse space-y-4">
+            <div className="h-4 w-3/4 rounded bg-gray-300"></div>
+            <div className="h-4 w-1/2 rounded bg-gray-300"></div>
+            <div className="h-4 w-1/3 rounded bg-gray-300"></div>
+          </div>
         </CardContent>
       </Card>
     );
@@ -73,6 +84,7 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
   return (
     <Card className="w-full">
       <CardContent className="p-6">
+        {/* Header Section */}
         <div className="mb-4 flex items-center space-x-4">
           <div className="hidden h-14 w-14 overflow-hidden rounded-lg bg-primary md:block">
             {iconSvg ? (
@@ -82,11 +94,9 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
                 dangerouslySetInnerHTML={{ __html: iconSvg }}
               />
             ) : applicationFeatureImage ? (
-              <Image
+              <img
                 src={applicationFeatureImage}
-                alt={courseTitle}
-                width={56}
-                height={56}
+                alt={courseTitle || "Feature Image"}
                 className="object-cover"
               />
             ) : null}
@@ -97,8 +107,7 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
               {companyDescription}
               {timePosted && numberOfApplicants && (
                 <span className="ml-4">
-                  {getTimeDifferenceFromPostDate(timePosted)} -{" "}
-                  {numberOfApplicants}{" "}
+                  {TimeDifferenceFromDate(timePosted)} - {numberOfApplicants}{" "}
                   {parseInt(numberOfApplicants) !== 1
                     ? "applicants"
                     : "applicant"}
@@ -108,8 +117,9 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
           </div>
         </div>
 
+        {/* Open/Close Dates */}
         <div className="mb-4 flex items-center space-x-2">
-          <BuildingIcon className="h-6 w-6" />
+          <Building2 className="h-6 w-6" />
           <span className="text-muted-foreground">
             {open || close
               ? `${open || "Currently Open"} - ${close || ""}`
@@ -117,42 +127,17 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
           </span>
         </div>
 
+        {/* Sections */}
         {whoQualifies && (
-          <div className="mb-4">
-            <h3 className="mb-2 font-semibold">Who Qualifies?</h3>
-            <div dangerouslySetInnerHTML={{ __html: whoQualifies }} />
-          </div>
+          <Section title="Who Qualifies?" content={whoQualifies} />
         )}
-
-        {application && (
-          <div className="mb-4">
-            <h3 className="mb-2 font-semibold">Applications:</h3>
-            <div dangerouslySetInnerHTML={{ __html: application }} />
-          </div>
-        )}
-
-        {value && (
-          <div className="mb-4">
-            <h3 className="mb-2 font-semibold">Value:</h3>
-            <div dangerouslySetInnerHTML={{ __html: value }} />
-          </div>
-        )}
-
-        {particulars && (
-          <div className="mb-4">
-            <h3 className="mb-2 font-semibold">Particulars:</h3>
-            <div dangerouslySetInnerHTML={{ __html: particulars }} />
-          </div>
-        )}
-
-        {notes && (
-          <div className="mb-4">
-            <h3 className="mb-2 font-semibold">Notes:</h3>
-            <div dangerouslySetInnerHTML={{ __html: notes }} />
-          </div>
-        )}
+        {application && <Section title="Applications" content={application} />}
+        {value && <Section title="Value" content={value} />}
+        {particulars && <Section title="Particulars" content={particulars} />}
+        {notes && <Section title="Notes" content={notes} />}
       </CardContent>
 
+      {/* Footer */}
       {courseTitle && qualificationUrl && (
         <CardFooter>
           <Button onClick={apply} className="w-full">

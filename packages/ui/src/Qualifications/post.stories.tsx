@@ -75,9 +75,9 @@ const meta: Meta<typeof QualificationPost> = {
       control: { type: "text" },
       description: "URL of the qualification.",
     },
-    profileId: {
-      control: { type: "text" },
-      description: "Profile ID for the user applying for the qualification.",
+    applyQualification: {
+      control: { type: "object" },
+      description: "function to apply for Qualification.",
     },
   },
 };
@@ -106,7 +106,9 @@ export const Default: Story = {
     numberOfApplicants: "10",
     qualificationId: "123",
     qualificationUrl: "https://qualification.example.com",
-    profileId: "user_456",
+    applyQualification: async (data) => {
+      console.log(data);
+    },
   },
 };
 

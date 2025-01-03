@@ -22,14 +22,53 @@ export type QuestionType =
   | "singleChoice"
   | "sortingChoice";
 
-export interface Question {
+export interface BaseQuestion {
   id: string;
   type: QuestionType;
   question: string;
-  options?: string[];
-  correctAnswer?: string | string[];
-  matrixData?: { [key: string]: string[] };
 }
+
+export interface EssayQuestion extends BaseQuestion {
+  type: "essay";
+}
+
+export interface MatrixSortQuestion extends BaseQuestion {
+  type: "matrixSort";
+  matrixData: { [key: string]: string[] };
+}
+
+export interface FillInTheBlankQuestion extends BaseQuestion {
+  type: "fillInTheBlank";
+}
+
+export interface FreeChoiceQuestion extends BaseQuestion {
+  type: "freeChoice";
+}
+
+export interface MultipleChoiceQuestion extends BaseQuestion {
+  type: "multipleChoice";
+  options: string[];
+}
+
+export interface SingleChoiceQuestion extends BaseQuestion {
+  type: "singleChoice";
+  options: string[];
+}
+
+export interface SortingChoiceQuestion extends BaseQuestion {
+  type: "sortingChoice";
+  items: { id: string; content: string }[];
+  correctOrder: string[];
+}
+
+export type Question =
+  | EssayQuestion
+  | FillInTheBlankQuestion
+  | FreeChoiceQuestion
+  | MatrixSortQuestion
+  | MultipleChoiceQuestion
+  | SingleChoiceQuestion
+  | SortingChoiceQuestion;
 
 interface QuizProps {
   questions: Question[];
@@ -48,15 +87,19 @@ export default function Quiz({
   const [answers, setAnswers] = useState<{ [key: string]: any }>({});
   const [showReport, setShowReport] = useState(false);
 
+  if (questions.length === 0) {
+    return <div>No questions available.</div>;
+  }
+
   const currentQuestion = questions[currentQuestionIndex];
 
   const handleAnswer = (answer: any) => {
-    setAnswers({ ...answers, [currentQuestion.id]: answer });
+    setAnswers((prev) => ({ ...prev, [currentQuestion.id]: answer }));
   };
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       setShowReport(true);
       onComplete(answers);
@@ -65,7 +108,7 @@ export default function Quiz({
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
@@ -122,13 +165,13 @@ export default function Quiz({
       case "sortingChoice":
         return (
           <SortingChoiceQuestion
-            question={currentQuestion}
-            onAnswer={handleAnswer}
-            answer={answers[currentQuestion.id]}
+            items={currentQuestion.items}
+            correctOrder={currentQuestion.correctOrder}
+            onReorder={handleAnswer}
           />
         );
       default:
-        return null;
+        return <div>Unsupported question type.</div>;
     }
   };
 
@@ -152,10 +195,21 @@ export default function Quiz({
       </CardHeader>
       <CardContent>{renderQuestion()}</CardContent>
       <CardFooter className="flex justify-between">
-        <Button onClick={handlePrevious} disabled={currentQuestionIndex === 0}>
+        <Button
+          onClick={handlePrevious}
+          disabled={currentQuestionIndex === 0}
+          aria-label="Go to the previous question"
+        >
           Previous
         </Button>
-        <Button onClick={handleNext}>
+        <Button
+          onClick={handleNext}
+          aria-label={
+            currentQuestionIndex === questions.length - 1
+              ? "Finish the quiz"
+              : "Go to the next question"
+          }
+        >
           {currentQuestionIndex === questions.length - 1 ? "Finish" : "Next"}
         </Button>
       </CardFooter>

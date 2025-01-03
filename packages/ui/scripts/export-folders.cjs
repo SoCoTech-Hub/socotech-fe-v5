@@ -10,6 +10,7 @@ const generateFolderIndex = (folderPath) => {
     return (
       fs.statSync(fullPath).isFile() &&
       !file.startsWith("index.") && // Exclude existing index files
+      !file.includes(".stories") && // Skip .stories files
       (file.endsWith(".ts") || file.endsWith(".tsx") || file.endsWith(".js"))
     );
   });

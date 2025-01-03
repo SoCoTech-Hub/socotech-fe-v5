@@ -5,7 +5,7 @@ import FreeChoiceQuestion from "./freeChoice";
 import QuizMatrixSortQuestion from "./matrixSortQuestion";
 import MultipleChoiceQuestion from "./multipleChoice";
 import SingleChoiceQuestion from "./singleChoice";
-import SortingChoiceQuestion from "./sortable";
+import Sortable from "./sortable";
 
 interface QuestionRendererProps {
   question: Question;
@@ -69,17 +69,13 @@ export default function QuestionRenderer({
       );
     case "sortingChoice":
       return (
-        <SortingChoiceQuestion
-          items={question}
-          correctOrder={answer}
+        <Sortable
+          items={question.items}
+          correctOrder={question.correctOrder}
           onReorder={onAnswer}
-
-          // question={question}
-          // onAnswer={onAnswer}
-          // answer={answer}
         />
       );
     default:
-      return <div>Question Unsupported</div>;
+      return <div>Question type unsupported</div>;
   }
 }
