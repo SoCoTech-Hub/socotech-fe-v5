@@ -25,10 +25,12 @@ export { api };
 
 function getAuthToken(): string | null {
   // Retrieve token from cookies
-  return (
-    document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1] ?? null
-  );
+  //TODO: uncomment this section
+  // return (
+  //   document.cookie
+  //     .split("; ")
+  //     .find((row) => row.startsWith("token="))
+  //     ?.split("=")[1] ?? null
+  // );
+  return null;
 }
