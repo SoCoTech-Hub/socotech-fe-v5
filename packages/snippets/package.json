@@ -6,31 +6,31 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
+      "default": "./src/index.ts"
     },
     "./*": {
       "types": "./dist/src/*.d.ts",
-      "default": "./dist/src/*.js"
+      "default": "./src/*.ts"
     },
     "./constants/*": {
       "types": "./dist/src/constants/*.d.ts",
-      "default": "./dist/src/constants/*.js"
+      "default": "./src/constants/*.ts"
     },
     "./graphql/*": {
       "types": "./dist/src/graphql/*.d.ts",
-      "default": "./dist/src/graphql/*.js"
+      "default": "./src/graphql/*.ts"
     },
     "./utils/*": {
       "types": "./dist/src/utils/*.d.ts",
-      "default": "./dist/src/utils/*.js"
+      "default": "./src/utils/*.ts"
     },
     "./theme/*": {
       "types": "./dist/src/theme/*.d.ts",
-      "default": "./dist/src/theme/*.js"
+      "default": "./src/theme/*.ts"
     },
     "./cookies/*": {
       "types": "./dist/src/cookies/*.d.ts",
-      "default": "./dist/src/cookies/*.js"
+      "default": "./src/cookies/*.ts"
     }
   },
   "license": "MIT",

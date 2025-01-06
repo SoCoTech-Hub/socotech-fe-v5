@@ -9,3 +9,5 @@ export const GET_SUBSCRIPTIONS = gql`
     }
   }
 `;
+
+export const UPDATE_SUBSCRIPTIONS = 
