@@ -1,4 +1,4 @@
-function convertUTCToLocal(
+export function convertUTCToLocal(
   utcDate: string,
   options?: Intl.DateTimeFormatOptions,
   locale: string = "default",
@@ -35,6 +35,6 @@ function convertUTCToLocal(
 }
 
 // Example usage:
-const utcDate = "2024-12-22T14:30:00Z";
-const localDate = convertUTCToLocal(utcDate);
-console.log(localDate);
+// const utcDate = "2024-12-22T14:30:00Z";
+// const localDate = convertUTCToLocal(utcDate);
+// console.log(localDate);

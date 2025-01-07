@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,8 +9,8 @@ import {
   FetchSubscription,
   UpsertSubscription,
 } from "@acme/snippets/functions/account/subscription";
-import { Alert } from "@acme/ui/Alert";
 import Cover from "@acme/ui/Cover";
+import { Alert } from "@acme/ui/PopupAlert";
 import { Switch } from "@acme/ui/switch";
 
 interface Subscription {
