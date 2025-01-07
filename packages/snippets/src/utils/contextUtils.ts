@@ -19,6 +19,10 @@ export const useDisplayName = (): string | undefined => {
   const { profile } = useAppContext();
   return `${profile?.attributes.firstName} ${profile?.attributes.lastName}`;
 };
+export const useFirstName = (): string | undefined => {
+  const { profile } = useAppContext();
+  return profile?.attributes.firstName;
+};
 export const useGrades = (): string | undefined => {
   const { profile } = useAppContext();
   return profile?.attributes.grades;
@@ -104,6 +108,10 @@ export const useLogoDark = (): string | undefined => {
 export const useOrganizationId = (): string | undefined => {
   const { organization } = useAppContext();
   return organization?.id;
+};
+export const useMerchantId = (): string | undefined => {
+  const { organization } = useAppContext();
+  return organization?.attributes.merchantId;
 };
 export const useOrganizationName = (): string | undefined => {
   const { organization } = useAppContext();
