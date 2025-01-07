@@ -1,7 +1,9 @@
 import React from "react";
+import Link from "next/link";
+
+import { Button } from "@acme/ui/button";
 
 import WelcomeBanner from "../../../../../packages/ui/src/applications/tour";
-import { Button } from "../../../../../packages/ui/src/button";
 import DigilibCategories from "../../../../../packages/ui/src/Digilib/categories";
 
 interface Faculty {
@@ -33,11 +35,9 @@ const Applications: React.FC<ApplicationsProps> = ({
       <div className="mb-5 w-full">
         <WelcomeBanner />
         <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 flex justify-end font-bold">
-          <Button
-            label="Back"
-            link={`/applications`}
-            color="bg-themeColorMain"
-          />
+          <Link href={`/applications`}>
+            <Button className="bg-primary">Back</Button>
+          </Link>
         </div>
         <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 desktop:grid-cols-3 laptop:grid-cols-3 mobile:grid-cols-1 grid place-items-stretch gap-3">
           {faculties?.map((faculty) => (

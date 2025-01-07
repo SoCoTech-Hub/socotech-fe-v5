@@ -10,10 +10,10 @@ import registerUser from "@/snippets/registerUser";
 
 import { authUrl, baseUrl } from "@acme/snippets/context/constants";
 import { fetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
-import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import InputField from "@acme/ui/InputField";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 interface RegisterProps {
   uniqueId: string | null;

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import getSelectedQualification from "@/snippets/user/getSelectedQualification";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import { profileId } from "@acme/snippets/context/constants";
+import { Button } from "@acme/ui/button";
 
 import { ApplicationsListing } from "../../../../../../packages/ui/src/applications/listing";
 import { ApplicationsPost } from "../../../../../../packages/ui/src/applications/Post";
-import { Button } from "../../../../../../packages/ui/src/button";
 
 //TODO:fix components
 interface Qualification {
@@ -101,11 +102,13 @@ const Application: React.FC<ApplicationProps> = ({
           </div>
         </div>
         <div className="my-4 flex w-full justify-end">
-          <Button
-            label="Back"
-            color="bg-themeColorMain"
-            link={`/applications/${universityId}`}
-          />
+          <Link href={`/applications/${universityId}`}>
+            <Button
+              className="bg-primary" 
+            >
+              Back
+            </Button>
+          </Link>
         </div>
         {qualificationsArr?.length > 0 && (
           <div className="bg-compBg shadow-menu flex divide-x rounded-lg p-3">

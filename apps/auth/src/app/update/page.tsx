@@ -18,8 +18,8 @@ import { gql } from "@apollo/client";
 import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
-import { Alert } from "@acme/ui/Alert";
 import { Button } from "@acme/ui/button";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 type UpdateProps = {
   profile: any;

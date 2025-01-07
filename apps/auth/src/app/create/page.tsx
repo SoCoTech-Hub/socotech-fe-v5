@@ -6,10 +6,10 @@ import { baseUrl } from "@acme/snippet/context/constants";
 import RegisterUser2 from "@acme/snippets/functions/auth/registerUser2";
 import { FetchUserByEmail } from "@acme/snippets/functions/auth/user";
 import validateEmail from "@acme/snippets/functions/auth/validateEmail";
-import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 type RegisterProps = {};
 

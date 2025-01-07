@@ -5,9 +5,9 @@ import ReactMarkdown from "react-markdown";
 
 import { FetchArticle } from "@acme/snippets/functions/article/article";
 import { FetchArticleReaders } from "@acme/snippets/functions/article/articleReader";
-import { Alert } from "@acme/ui/Alert";
 import { Button } from "@acme/ui/button";
 import Loader from "@acme/ui/loader";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import ShareLinks from "@acme/ui/ShareLinks/index";
 
 interface Article {
@@ -70,7 +70,11 @@ export default function Article({ article }: ArticleProps) {
           </div>
           <div className="w-full">
             <div className="justify-content-center flex">
-              <Alert />
+              <PopupAlert
+                message={error ? error : success}
+                variant={error ? "destructive" : "success"}
+                visible={!!(error || success)}
+              />
             </div>
             <div className="mobile:p-1 flex flex-row justify-between px-6 pb-1">
               <div className="flex h-10 flex-row items-center align-middle">

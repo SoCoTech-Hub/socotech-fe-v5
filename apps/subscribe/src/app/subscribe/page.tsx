@@ -9,10 +9,10 @@ import {
   mainUrl,
   organizationId,
 } from "@acme/snippets/context/constants";
-import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import InputField from "@acme/ui/InputField/index";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { SEO } from "@acme/ui/SeoHead/index";
 
 interface SubscribeProps {

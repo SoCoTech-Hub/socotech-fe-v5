@@ -3,9 +3,9 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
-import { Alert } from "@acme/ui/Alert";
 import { Button } from "@acme/ui/button";
 import Loader from "@acme/ui/loader";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import ShareLinks from "@acme/ui/ShareLinks/index";
 
 interface Article {

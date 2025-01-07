@@ -8,10 +8,10 @@ import { grades, userId } from "@acme/snippets/context/constants";
 import { FetchAssignmentReplies } from "@acme/snippets/functions/assignment/assignmentReplies";
 import { FetchUserProfilesByGrades } from "@acme/snippets/functions/assignment/user";
 import AccordionBase from "@acme/ui/Accordion";
-import { Alert } from "@acme/ui/Alert";
 import { Button } from "@acme/ui/button";
 import FileUploader from "@acme/ui/FileUploader";
 import { MultiSelect } from "@acme/ui/MultiSelect";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { Textarea } from "@acme/ui/Textarea";
 import UploadThumbnail from "@acme/ui/UploadThumbnail";
 
