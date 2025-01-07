@@ -8,8 +8,8 @@ import {
 } from "@acme/snippets/context/constants";
 import { FetchIsAffiliate } from "@acme/snippets/functions/affiliate/affiliate";
 import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
-import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 const RegisterAffiliate = () => {
   const router = useRouter();
@@ -68,11 +68,9 @@ const RegisterAffiliate = () => {
             <div className="">
               <div className="flex justify-center">
                 <div className="flex flex-row pt-3">
-                  <Button
-                    label="Back"
-                    color="bg-themeColorMain"
-                    onClickFunction={() => router.back()}
-                  />
+                  <Button className="bg-primary" onClick={() => router.back()}>
+                    Back
+                  </Button>
                 </div>
               </div>
             </div>
@@ -85,31 +83,29 @@ const RegisterAffiliate = () => {
           {!disabled ? (
             <div className="flex justify-center">
               <div className="flex flex-row pt-3">
-                <Button
-                  label="Cancel"
-                  color="bg-themeColorMain"
-                  onClickFunction={() => router.back()}
-                />
-                <Button
-                  label="Apply"
-                  color="bg-themeColorMain"
-                  onClickFunction={Apply}
-                />
+                <Button className="bg-primary" onClick={() => router.back()}>
+                  Cancel
+                </Button>
+                <Button className="bg-primary" onClick={Apply}>
+                  Apply
+                </Button>
               </div>
             </div>
           ) : (
             <div className="flex justify-center">
               <div className="flex flex-row pt-3">
-                <Button
-                  label="Back"
-                  color="bg-themeColorMain"
-                  onClickFunction={() => router.back()}
-                />
+                <Button className="bg-primary" onClick={() => router.back()}>
+                  Back
+                </Button>
               </div>
             </div>
           )}
           <div className="mt-3 justify-center">
-            <Alert error={error} success={success} />
+            <PopupAlert
+              message={error ? error : success}
+              variant={error ? "destructive" : "success"}
+              visible={!!(error || success)}
+            />
           </div>
         </div>
       </div>

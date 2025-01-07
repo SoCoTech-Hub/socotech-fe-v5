@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { Button } from "../../../../../packages/ui/src/button";
+import { Button } from "@acme/ui/button";
 
 interface AffiliateTransaction {
   id: string;
@@ -28,12 +28,9 @@ const Transaction: React.FC<TransactionProps> = ({ affiliateTransactions }) => {
         <div className="flex justify-between">
           <h1 className="m-2 text-xl font-bold">Affiliate Transactions</h1>
           <div>
-            <Button
-              label="Back"
-              color="bg-themeColorMain"
-              onClickFunction={() => router.back()}
-              width="w-32"
-            />
+            <Button className="w-32 bg-primary" onClick={() => router.back()}>
+              Back
+            </Button>
           </div>
         </div>
         <table className="m-4 w-fit">
@@ -85,16 +82,12 @@ const Transaction: React.FC<TransactionProps> = ({ affiliateTransactions }) => {
         </table>
       </div>
       <div className="flex flex-row pt-3">
-        <Button
-          label="Back"
-          color="bg-themeColorMain"
-          onClickFunction={() => router.back()}
-          width="w-32"
-        />
+        <Button className="w-32 bg-primary" onClick={() => router.back()}>
+          Back
+        </Button>
       </div>
     </>
   );
 };
-
 
 export default Transaction;
