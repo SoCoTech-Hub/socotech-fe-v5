@@ -5,6 +5,7 @@ import {
   useComponentBgDark,
   useDisplayName,
   useEmail,
+  useFirstName,
   useGrades,
   useHasSiyavulaAccess,
   useIcon1,
@@ -44,6 +45,7 @@ export const gtag = process.env.NEXT_PUBLIC_GTAG_ID;
 export const mainUrl = process.env.NEXT_PUBLIC_MAIN_URL;
 export const isPaying = useIsPaying();
 export const orgId = useOrganizationId();
+export const merchantId = useOrganizationId();
 export const profileId = useProfileId();
 export const userId = useUserId();
 
@@ -76,6 +78,7 @@ export const ProfilePic = useProfilePic();
 export const role = useRole();
 export const uniqueId = useUniqueId();
 export const userName = useDisplayName();
+export const firstName = useFirstName();
 
 // School Details
 export const grades = useGrades();
