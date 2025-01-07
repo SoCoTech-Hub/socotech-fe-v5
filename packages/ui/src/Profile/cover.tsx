@@ -12,13 +12,11 @@ interface CoverProps {
   name?: string;
   bannerImage?: string;
   avatarImage?: string;
-  user: { id: string; profile: { id: string } };
+  user?: { id?: string; profile: { id?: string } };
   updateImages?: ({
-    profileId,
     avatarImage,
     bannerImage,
   }: {
-    profileId: string;
     avatarImage: string;
     bannerImage: string;
   }) => void;
@@ -64,7 +62,6 @@ export default function Cover(props: CoverProps) {
 
         props.uploadImage?.(file);
         props.updateImages?.({
-          profileId: props.user.profile.id,
           avatarImage: avatarImage,
           bannerImage: bannerImage,
         });

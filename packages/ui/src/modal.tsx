@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 import { Button } from "./button";
 import {
@@ -12,8 +12,9 @@ import {
 
 interface ModalProps {
   title: string;
-  message: string;
-  timestamp: string;
+  message: ReactNode;
+  timestamp?: string;
+  isOpen?: boolean;
   onClose?: () => void;
 }
 
@@ -21,9 +22,10 @@ export default function Modal({
   title,
   message,
   timestamp,
+  isOpen = false,
   onClose,
 }: ModalProps) {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(isOpen);
   const closeModal = () => {
     setOpen(!open);
     if (onClose) {
@@ -35,7 +37,11 @@ export default function Modal({
       <DialogContent className="bg-white">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{timestamp.toLocaleString()}</DialogDescription>
+          {timestamp ? (
+            <DialogDescription>{timestamp.toLocaleString()}</DialogDescription>
+          ) : (
+            <></>
+          )}
         </DialogHeader>
         <div className="mt-4">
           <p>{message}</p>

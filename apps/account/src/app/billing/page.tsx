@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from "react";
-import Alert from "@/components/Alert";
-import Btn from "@/components/Btn";
-import BtnBig from "@/components/BtnBig";
-import InputField from "@/components/InputField";
-import Overlay from "@/components/Overlay";
-import ProfileUserCover from "@/components/ProfileUserCover";
-// import { organizationId, profileId, uniqueId } from "@acme/snippets/context/constants";
-// import getGQLRequest from "@/snippets/getGQLRequest";
-// import getReadableDate from "@/snippets/user/getReadableDate";
+import Link from "next/link";
 
-import { createOrUpdateTransaction, FetchTransactionByPaymentId } from "@acme/snippets/functions/account/transaction";
-import {FetchProfile } from "@acme/snippets/functions/account/profile";
+import {
+  Banner,
+  organizationId,
+  profileId,
+  ProfilePic,
+  uniqueId,
+  userId,
+  userName,
+} from "@acme/snippets/context/constants";
 import { FetchOrganizationMerchantId } from "@acme/snippets/functions/account/organization";
-
-import api from "./api/api";
-import { pauseSubscription, unpauseSubscription } from "./api/payfastApi";
-import { organizationId, profileId, uniqueId } from "@acme/snippets/context/constants";
-import getReadableDate from "@/snippets/user/getReadableDate";
-import Alert from "@acme/ui/alert";
-import Button from "@acme/ui/button";
-import InputField from "@acme/ui/InputField/index";
+import {
+  FetchProfile,
+  updateImages,
+  uploadImages,
+} from "@acme/snippets/functions/account/profile";
+import {
+  createOrUpdateTransaction,
+  FetchTransactionByPaymentId,
+} from "@acme/snippets/functions/account/transaction";
+import { convertUTCToLocal } from "@acme/snippets/functions/convertUtcToLocal";
+import { Button } from "@acme/ui/button";
+import { InputField } from "@acme/ui/InputField/index";
 import Modal from "@acme/ui/modal";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import Cover from "@acme/ui/profile/cover";
 import { PopupAlert } from "@acme/ui/PopupAlert/index"
+
+import api from "./api/api"; //TODO:payfast api
+import { pauseSubscription, unpauseSubscription } from "./api/payfastApi"; //TODO:payfast api
 
 interface Transaction {
   id: string;
@@ -72,32 +79,31 @@ const Billing: React.FC = () => {
     const fetchData = async () => {
       if (uniqueId && organizationId) {
         const trans = await FetchTransactionByPaymentId(uniqueId);
-      if (trans.length) {
-        setTransactions(trans);
-        setCompany(trans[0].company);
-        setVatNr(trans[0].vatNr);
-        setFirstName(trans[0].firstName);
-        setLastName(trans[0].lastName);
-        setEmail(trans[0].email);
-        setAddressLine1(trans[0].addressLine1);
-        setPostalCode(trans[0].postalCode);
-        setAdditionalInformation(trans[0].additionalInformation);
-        setCellNr(trans[0].cellnr);
+        if (trans) {
+          setTransactions(trans);
+          setCompany(trans[0].company);
+          setVatNr(trans[0].vatNr);
+          setFirstName(trans[0].firstName);
+          setLastName(trans[0].lastName);
+          setEmail(trans[0].email);
+          setAddressLine1(trans[0].addressLine1);
+          setPostalCode(trans[0].postalCode);
+          setAdditionalInformation(trans[0].additionalInformation);
+          setCellNr(trans[0].cellnr);
         }
 
         const prof = await FetchProfile(profileId);
-        if(prof){
-        setProfile(prof)}
-        
-        const merch = await FetchOrganizationMerchantId
-        setOrg(merch)
+        if (prof) {
+          setProfile(prof);
+        }
+
+        const merch = await FetchOrganizationMerchantId;
+        setOrg(merch);
       }
     };
 
     fetchData();
   }, [uniqueId]);
-
-
 
   const cancelSub = async () => {
     const date = new Date();
@@ -125,12 +131,9 @@ const Billing: React.FC = () => {
   const save = async () => {
     setSuccess("");
     setError("");
-    const result = await createOrUpdateTransaction(
+    const res = await createOrUpdateTransaction(
       transactions?.[0]?.id,
-      transactionData,
-    );
-    const res = await api.put(`transactions/${transactions[0].id}`, {
-      company: company,
+      { company: company,
       vatNr: vatNr,
       firstName: firstName,
       lastName: lastName,
@@ -138,8 +141,19 @@ const Billing: React.FC = () => {
       addressLine1: addressLine1,
       postalCode: postalCode,
       cellNr: cellNr,
-      additionalInformation: additionalInformation,
-    });
+      additionalInformation: additionalInformation},
+    );
+    // const res = await api.put(`transactions/${transactions[0].id}`, {
+      // company: company,
+      // vatNr: vatNr,
+      // firstName: firstName,
+      // lastName: lastName,
+      // email: email,
+      // addressLine1: addressLine1,
+      // postalCode: postalCode,
+      // cellNr: cellNr,
+      // additionalInformation: additionalInformation,
+    // });
     if (!res.ok) {
       setError("Something went wrong");
     }
@@ -148,50 +162,45 @@ const Billing: React.FC = () => {
     return;
   };
 
-  const isPayingDate = getReadableDate(profile?.isPayingDate);
+  const isPayingDate = convertUTCToLocal(profile?.isPayingDate || "");
 
   return (
     <div className="w-full">
-      <div className="pt-3 pl-3 pr-3 mb-4 rounded-lg bg-compBg shadow-menu">
-        <ProfileUserCover edit="true" />
-        <div className="pb-3 mt-4 ml-2 mr-2">
+      <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
+        <Cover
+          user={{ id: userId, profile: { id: profileId } }}
+          avatarImage={ProfilePic}
+          bannerImage={Banner}
+          name={userName}
+          updateImages={updateImages}
+          uploadImage={uploadImages}
+        />
+        <div className="ml-2 mr-2 mt-4 pb-3">
           <hr className="bg-compBg" />
         </div>
       </div>
-      <div className="flex my-4 gap-x-4">
-        <BtnBig
-          link="invoice"
-          label="Generate Invoice"
-          color="bg-themeColorMain"
-          textColor="black"
-        />
-        <BtnBig
-          onClickFunction={() => setIsOpen(!open)}
-          label={`${
-            profile?.cancelDate ? " Uncancel" : " Cancel"
-          } Subscription`}
-          color="bg-themeColorSecondary"
-          textColor="black"
-        />
+      <div className="my-4 flex gap-x-4">
+        <Link href={"/invoice"}>
+          <Button className="bg-primary text-black">Generate Invoice</Button>
+        </Link>
+        <Button
+          onClick={() => setIsOpen(!open)}
+          className="bg-secondary text-black"
+        >{`${
+          profile?.cancelDate ? " Uncancel" : " Cancel"
+        } Subscription`}</Button>
       </div>
-      <Overlay
-        bgColor="compBg"
-        open={open}
+      <Modal
         isOpen={isOpen}
-        setOpen={setIsOpen}
-        width={"3/4"}
-        height={58}
         onClose={() => setIsOpen(false)}
-        content={
+        title={`ARE YOU SURE YOU WISH TO
+              ${profile?.cancelDate ? " UNCANCEL" : " CANCEL"} YOUR SUBSCRIPTION?`}
+        message={
           <>
-            <div className="p-4 mb-4 leading-tight text-center rounded-lg text-textColor heading bg-themeColorMain">
-              ARE YOU SURE YOU WISH TO
-              {profile?.cancelDate ? " UNCANCEL" : " CANCEL"} YOUR SUBSCRIPTION?
-            </div>
             <div className="flex items-center justify-center">
               <img src="/user/CancelSub.png" alt="" />
             </div>
-            <div className="mt-2 mb-4 text-xl text-center text-textColor">
+            <div className="text-textColor mb-4 mt-2 text-center text-xl">
               Your account will be
               {profile?.cancelDate
                 ? ` uncanceled and your next payment will be on ${isPayingDate}.`
@@ -199,136 +208,142 @@ const Billing: React.FC = () => {
             </div>
             <div className="flex justify-center gap-3">
               <div className="">
-                <Btn
-                  onClickFunction={
-                    profile?.cancelDate ? unCancelSub : cancelSub
-                  }
-                  label="Yes"
-                  color={
-                    profile?.cancelDate ? "bg-themeColorMain" : "bg-red-500"
-                  }
-                />
+                <Button
+                  onClick={profile?.cancelDate ? unCancelSub : cancelSub}
+                  className={profile?.cancelDate ? "bg-primary" : "bg-red-500"}
+                >
+                  Yes
+                </Button>
               </div>
               <div className="">
-                <Btn
-                  onClickFunction={() => setOpen(!open)}
-                  label="No"
-                  color={
-                    profile?.cancelDate
-                      ? "bg-themeColorSecondary"
-                      : "bg-themeColorMain"
+                <Button
+                  onClick={() => setOpen(!open)}
+                  className={
+                    profile?.cancelDate ? "bg-secondary" : "bg-primary"
                   }
-                />
+                >
+                  No
+                </Button>
               </div>
             </div>
           </>
         }
       />
       <div className="space-y-5">
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
-            <div className="my-3 ml-4 text-lg font-bold text-textColor">
+            <div className="text-textColor my-3 ml-4 text-lg font-bold">
               Personal Information
             </div>
           </div>
           <div className="pt-3">
             <div className="">
               <InputField
+                type="text"
                 placeholder="Your First name"
-                id="firstName"
+                label="First name"
                 value={firstName}
-                onChange={() => setFirstName()}
+                onChange={(value) => setFirstName(value.toString())}
               />
               <InputField
+                type="text"
                 placeholder="Your Last name"
-                id="lastName"
+                label="Surname"
                 value={lastName}
-                onChange={() => setLastName()}
+                onChange={(value) => setLastName(value.toString())}
               />
             </div>
             <div className="">
               <InputField
+                type="text"
                 placeholder="Your email address"
-                id="email"
+                label="Email"
                 value={email}
-                onChange={() => setEmail()}
+                onChange={(value) => setEmail(value.toString())}
               />
             </div>
             <div className="">
               <InputField
+                type="text"
                 placeholder="Your cell number"
-                id="cellNr"
+                label="CellNr"
                 value={cellNr}
-                onChange={() => setCellNr()}
+                onChange={(value) => setCellNr(value.toString())}
               />
             </div>
             <div className="">
               <InputField
+                type="text"
                 placeholder="Address"
-                id="addressLine1"
+                label="Address line 1"
                 value={addressLine1}
-                onChange={() => setAddressLine1()}
+                onChange={(value) => setAddressLine1(value.toString())}
               />
             </div>
             <div className="">
               <InputField
+                type="text"
                 placeholder="Postal Code"
-                id="postalCode"
+                label="Postal code"
                 value={postalCode}
-                onChange={() => setPostalCode()}
+                onChange={(value) => setPostalCode(value.toString())}
               />
             </div>
           </div>
         </div>
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
-            <div className="my-3 ml-4 text-lg font-bold text-textColor">
+            <div className="text-textColor my-3 ml-4 text-lg font-bold">
               Invoice Information
             </div>
           </div>
           <div className="pt-3">
             <div className="">
               <InputField
-                id="company"
+                type="text"
+                label="Company"
                 placeholder="Company"
                 value={company}
-                onChange={() => setCompany()}
+                onChange={(value) => setCompany(value.toString())}
               />
             </div>
             <div className="">
               <InputField
-                id="vatNr"
+                type="text"
+                label="VAT Nr"
                 placeholder="VAT number"
                 value={vatNr}
-                onChange={() => setVatNr()}
+                onChange={(value) => setVatNr(value.toString())}
               />
             </div>
             <div className="">
               <InputField
-                id="addressLine1"
+                type="text"
+                label="Address line 1"
                 placeholder="Billing address"
                 value={addressLine1}
-                onChange={() => setAddressLine1()}
+                onChange={(value) => setAddressLine1(value.toString())}
               />
             </div>
             <div className="">
               <InputField
-                id="additionalInformation"
+                type="text"
+                label="Additional Information"
                 placeholder="Additional Information"
                 value={additionalInformation}
-                onChange={() => setAdditionalInformation()}
+                onChange={(value) => setAdditionalInformation(value.toString())}
               />
             </div>
           </div>
-          <div className="flex flex-row justify-start w-full pt-4">
-            <PopupAlert message={error ? error : success} variant={error ? 'destructive' : 'success'} visible={!!(error || success)} />
-            <Btn
-              label="Save"
-              color="bg-themeColorMain"
-              width="36"
-              padding="px-3 py-2"
-              onClickFunction={save}
+          <div className="flex w-full flex-row justify-start pt-4">
+            <PopupAlert
+              message={error ? error : success}
+              variant={error ? "destructive" : "success"}
+              visible={!!(error || success)}
             />
+            <Button className="w-36 bg-primary px-3 py-2" onClick={save}>
+              Save
+            </Button>
           </div>
         </div>
       </div>
@@ -336,4 +351,4 @@ const Billing: React.FC = () => {
   );
 };
 
-export default billing;
+export default Billing;
