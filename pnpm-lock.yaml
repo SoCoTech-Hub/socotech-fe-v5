@@ -304,8 +304,11 @@ importers:
 
   apps/account:
     dependencies:
+      '@acme/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@acme/config':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../tooling/config
       '@acme/snippets':
         specifier: workspace:*

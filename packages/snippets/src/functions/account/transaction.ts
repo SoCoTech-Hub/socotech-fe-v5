@@ -1,4 +1,4 @@
-import { ApiTransactionTransaction } from "@acme/api/graphql/index.js";
+import { ApiTransactionTransaction } from "@acme/api/graphql";
 
 import {
   CREATE_TRANSACTION,
@@ -25,7 +25,7 @@ export async function createOrUpdateTransaction({
     // Update the existing transaction
     const updatedTransaction = await runMutation<{
       updateTransaction: { id: string };
-    }>(UPDATE_TRANSACTION, { id: id, data });
+    }>(UPDATE_TRANSACTION, { id: id, data:data.attributes });
     return {
       id: updatedTransaction.updateTransaction.id,
       message: "Updated successfully",

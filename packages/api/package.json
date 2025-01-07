@@ -10,8 +10,12 @@
       "types": "./dist/src/index.d.ts",
       "default": "./src/index.ts"
     },
+    "./graphql": {
+      "types": "./dist/src/graphql/index.d.ts",
+      "default": "./src/graphql/index.ts"
+    },
     "./graphql/*": {
-      "types": "./src/graphql/*",
+      "types": "./dist/src/graphql/*",
       "default": "./src/graphql/*"
     },
     "./types/*": {

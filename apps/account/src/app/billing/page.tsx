@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
+import { ApiTransactionTransaction } from "@acme/api/graphql";
 import {
   Banner,
   organizationId,
@@ -26,27 +27,9 @@ import { InputField } from "@acme/ui/InputField/index";
 import Modal from "@acme/ui/modal";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import Cover from "@acme/ui/profile/cover";
-import { PopupAlert } from "@acme/ui/PopupAlert/index"
 
 import api from "./api/api"; //TODO:payfast api
 import { pauseSubscription, unpauseSubscription } from "./api/payfastApi"; //TODO:payfast api
-
-import api from "./api/api"; //TODO:payfast api
-import { pauseSubscription, unpauseSubscription } from "./api/payfastApi"; //TODO:payfast api
-
-interface Transaction {
-  id: string;
-  company: string;
-  vatNr: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  addressLine1: string;
-  postalCode: string;
-  cellnr: string;
-  additionalInformation: string;
-  signature: string | null;
-}
 
 interface Profile {
   id: string;
@@ -63,7 +46,9 @@ const Billing: React.FC = () => {
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-  const [transactions, setTransactions] = useState<Transaction[] | null>(null);
+  const [transactions, setTransactions] = useState<
+    ApiTransactionTransaction[] | null
+  >(null);
   const [company, setCompany] = useState<string>("");
   const [vatNr, setVatNr] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -83,7 +68,7 @@ const Billing: React.FC = () => {
       if (uniqueId && organizationId) {
         const trans = await FetchTransactionByPaymentId(uniqueId);
         if (trans) {
-          setTransactions(trans);
+          setTransactions(trans.transactions);
           setCompany(trans[0].company);
           setVatNr(trans[0].vatNr);
           setFirstName(trans[0].firstName);
@@ -95,13 +80,13 @@ const Billing: React.FC = () => {
           setCellNr(trans[0].cellnr);
         }
 
-        const prof = await FetchProfile(profileId);
+        const prof = await FetchProfile(profileId || "");
         if (prof) {
-          setProfile(prof);
+          setProfile(prof.profile);
         }
 
-        const merch = await FetchOrganizationMerchantId;
-        setOrg(merch);
+        const merch = await FetchOrganizationMerchantId();
+        setOrg(merch.organization);
       }
     };
 
@@ -110,54 +95,77 @@ const Billing: React.FC = () => {
 
   const cancelSub = async () => {
     const date = new Date();
-    if (transactions[0].signature) {
-      await pauseSubscription(transactions[0].signature, org);
+    if (transactions?.[0]?.attributes?.signature) {
+      await pauseSubscription(transactions[0].attributes.signature, org);
     }
+
     await api.put(`/profiles/${profileId}`, {
       cancelDate: date.toISOString().split("T")[0],
     });
+
+    if (profile) {
+      setProfile({
+        ...profile,
+        cancelDate: date.toISOString().split("T")[0],
+      });
+    } else {
+      setError("Profile data is missing");
+    }
+
     setIsOpen(false);
-    setProfile({ ...profile, cancelDate: date.toISOString().split("T")[0] });
   };
 
   const unCancelSub = async () => {
-    if (transactions[0].signature) {
-      await unpauseSubscription(transactions[0].signature, org);
+    if (transactions?.[0]?.attributes?.signature) {
+      await unpauseSubscription(transactions[0].attributes.signature, org);
     }
+
     await api.put(`/profiles/${profileId}`, {
       cancelDate: null,
     });
+
     setIsOpen(false);
-    setProfile({ ...profile, cancelDate: "" });
+
+    if (profile) {
+      setProfile({
+        ...profile,
+        cancelDate: null, // Match the expected type of `cancelDate`
+      });
+    } else {
+      console.error("Profile data is missing. Unable to update cancelDate.");
+    }
   };
 
   const save = async () => {
     setSuccess("");
     setError("");
-    const res = await createOrUpdateTransaction(
-      transactions?.[0]?.id,
-      { company: company,
-      vatNr: vatNr,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      addressLine1: addressLine1,
-      postalCode: postalCode,
-      cellNr: cellNr,
-      additionalInformation: additionalInformation},
-    );
+    const data = {
+      id: transactions?.[0]?.id,
+      attributes: {
+        company: company,
+        vatNr: vatNr,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        addressLine1: addressLine1,
+        postalCode: postalCode,
+        cellNr: cellNr,
+        additionalInformation: additionalInformation,
+      },
+    };
+    const res = await createOrUpdateTransaction(transactions?.[0]?.id,data);
     // const res = await api.put(`transactions/${transactions[0].id}`, {
-      // company: company,
-      // vatNr: vatNr,
-      // firstName: firstName,
-      // lastName: lastName,
-      // email: email,
-      // addressLine1: addressLine1,
-      // postalCode: postalCode,
-      // cellNr: cellNr,
-      // additionalInformation: additionalInformation,
+    // company: company,
+    // vatNr: vatNr,
+    // firstName: firstName,
+    // lastName: lastName,
+    // email: email,
+    // addressLine1: addressLine1,
+    // postalCode: postalCode,
+    // cellNr: cellNr,
+    // additionalInformation: additionalInformation,
     // });
-    if (!res.ok) {
+    if (!res) {
       setError("Something went wrong");
     }
 
