@@ -10,7 +10,6 @@ import Load from "@/components/Load";
 import PaperComponent from "@/components/PaperComponent";
 import VideoPlayer from "@/components/VideoPlayer";
 import AWSVideoPlayer from "@/components/VideoPlayer2";
-import { cloudinaryVideoUrl, profileId, userId } from "@/context/constants";
 import { getNextButtonHref } from "@/lib/utils";
 import getDataRequest from "@/snippets/getDataRequest";
 import getGQLRequest from "@/snippets/getGQLRequest";
@@ -28,6 +27,11 @@ import NotesUpdate from "graphql/mutations/NotesUpdate";
 import GetLessonModuleNote from "graphql/queries/GetLessonModuleNote";
 import { Box } from "reflexbox";
 
+import {
+  cloudinaryVideoUrl,
+  profileId,
+  userId,
+} from "@acme/snippets/context/constants";
 import { FetchAssignmentReplyCheck } from "@acme/snippets/functions/lesson/assignmentReplies";
 import { FetchLessonSections } from "@acme/snippets/functions/lesson/lesson";
 import { FetchQuizResponseCheck } from "@acme/snippets/functions/lesson/quizResponse";
@@ -352,7 +356,7 @@ const Module = ({ lesson, module }) => {
               <VideoPlayer src={module.videoLink} />
             </>
           ) : (
-            <video controls className="w-full h-96" src={module.videoLink}>
+            <video controls className="h-96 w-full" src={module.videoLink}>
               {/* <source src={module.videoLink} type='video/*' />  */}
             </video>
           )
@@ -377,7 +381,7 @@ const Module = ({ lesson, module }) => {
         )}
       </div>
 
-      <div className="mt-2 mb-4">
+      <div className="mb-4 mt-2">
         <LessonListDisplay
           modules={lesson.modules}
           assignments={lesson.lmsAssignments}
@@ -435,7 +439,7 @@ const Module = ({ lesson, module }) => {
             PaperComponent={PaperComponent}
             aria-labelledby="draggable-dialog-title"
           >
-            <div className="border-2 border-white rounded-lg bg-compBg text-textColor">
+            <div className="bg-compBg text-textColor rounded-lg border-2 border-white">
               <DialogTitle
                 style={{ cursor: "move" }}
                 id="draggable-dialog-title"
@@ -445,7 +449,7 @@ const Module = ({ lesson, module }) => {
               <DialogContent>
                 <DialogContentText>
                   <TextareaAutosize
-                    className="px-2 my-2 border-2 rounded-lg"
+                    className="my-2 rounded-lg border-2 px-2"
                     id="user_note"
                     name="user_note"
                     maxRows={4}
@@ -462,7 +466,7 @@ const Module = ({ lesson, module }) => {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <div className="flex flex-row justify-center w-full">
+                <div className="flex w-full flex-row justify-center">
                   <div className="">
                     <Btn
                       color="bg-themeColorMain"
@@ -498,7 +502,7 @@ const Module = ({ lesson, module }) => {
 
 export async function getStaticProps({ params }) {
   const { id, lesson } = params;
-  const lessonData  = await FetchLessonSections(lesson);
+  const lessonData = await FetchLessonSections(lesson);
   const module = await getDataRequest(
     `/lesson-modules/${id}?lessons=${lesson}`,
     () => {},

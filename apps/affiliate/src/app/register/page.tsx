@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { organizationId, profileId, userId } from "@/context/constants";
 
+import {
+  organizationId,
+  profileId,
+  userId,
+} from "@acme/snippets/context/constants";
 import { FetchIsAffiliate } from "@acme/snippets/functions/affiliate/affiliate";
 import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
 import { Alert } from "@acme/ui/alert";

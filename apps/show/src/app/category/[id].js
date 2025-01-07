@@ -3,8 +3,8 @@ import Btn from "@/components/Btn";
 import { SEO } from "@/components/SeoHead";
 import ShowsCategories from "@/components/ShowsCategories";
 import ShowsWelcome from "@/components/ShowsWelcome";
-import { baseUrl } from "@/context/constants";
 
+import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchShowCardDetails } from "@acme/snippets/functions/show/show";
 
 const ShowsCategory = () => {

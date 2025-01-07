@@ -1,5 +1,6 @@
 import React from "react";
-import { baseUrl } from "@/context/constants";
+
+import { baseUrl } from "@acme/snippets/context/constants";
 
 import ShowsPage from "../../../../packages/ui/src/shows";
 import ShowsWelcome from "../../../../packages/ui/src/shows/welcome";

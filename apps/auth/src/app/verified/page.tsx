@@ -3,8 +3,9 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { baseUrl } from "@/context/constants";
 import resendConfirmation from "@/snippets/auth/resendConfirmation";
+
+import { baseUrl } from "@acme/snippets/context/constants";
 
 import {
   Alert,
@@ -151,7 +152,5 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
     </>
   );
 };
-
-
 
 export default Verified;

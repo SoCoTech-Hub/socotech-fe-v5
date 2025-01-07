@@ -5,7 +5,7 @@ import BtnBig from "@/components/BtnBig";
 import InputField from "@/components/InputField";
 import Overlay from "@/components/Overlay";
 import ProfileUserCover from "@/components/ProfileUserCover";
-// import { organizationId, profileId, uniqueId } from "@/context/constants";
+// import { organizationId, profileId, uniqueId } from "@acme/snippets/context/constants";
 // import getGQLRequest from "@/snippets/getGQLRequest";
 // import getReadableDate from "@/snippets/user/getReadableDate";
 
@@ -15,7 +15,7 @@ import { FetchOrganizationMerchantId } from "@acme/snippets/functions/account/or
 
 import api from "./api/api";
 import { pauseSubscription, unpauseSubscription } from "./api/payfastApi";
-import { organizationId, profileId, uniqueId } from "@/context/constants";
+import { organizationId, profileId, uniqueId } from "@acme/snippets/context/constants";
 import getReadableDate from "@/snippets/user/getReadableDate";
 import Alert from "@acme/ui/alert";
 import Button from "@acme/ui/button";

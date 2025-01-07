@@ -4,9 +4,9 @@ import LessonCard from "@/components/LessonCard";
 import LessonList from "@/components/LessonList";
 import LessonSelector from "@/components/LessonSelector";
 import UserCover from "@/components/UserCover";
-import { profileId } from "@/context/constants";
 import getGQLRequest from "@/snippets/getGQLRequest";
 
+import { profileId } from "@acme/snippets/context/constants";
 import { FetchLessonProgresses } from "@acme/snippets/functions/lessons/progress";
 import { FetchSubjectCategories } from "@acme/snippets/functions/lessons/subjectCategories";
 

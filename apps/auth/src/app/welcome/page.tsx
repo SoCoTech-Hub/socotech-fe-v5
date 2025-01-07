@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { SEO } from "@/components/SeoHead";
-import { baseUrl } from "@/context/constants";
+
+import { baseUrl } from "@acme/snippets/context/constants";
 
 const Index: FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);

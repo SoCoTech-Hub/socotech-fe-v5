@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { profileId } from "@/context/constants";
 import getSelectedQualification from "@/snippets/user/getSelectedQualification";
+
+import { profileId } from "@acme/snippets/context/constants";
 
 import { Button } from "../../../../../packages/ui/src/button";
 import QualificationListing from "../../../../../packages/ui/src/qualifications/listing";
@@ -99,7 +100,11 @@ const Qualification = ({
           </div>
         </div>
         <div className="my-4 flex justify-end font-bold">
-          <Button title="Back" link={`/qualifications`} color="bg-themeColorMain" />
+          <Button
+            title="Back"
+            link={`/qualifications`}
+            color="bg-themeColorMain"
+          />
         </div>
 
         {qualifications?.length > 0 && (

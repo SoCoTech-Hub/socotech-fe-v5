@@ -1,9 +1,10 @@
 import React, { FC, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { baseUrl } from "@/context/constants";
 import checkEmail from "@/snippets/auth/checkEmail";
 import forgotPassword from "@/snippets/auth/forgotPassword";
+
+import { baseUrl } from "@acme/snippets/context/constants";
 
 import { Alert } from "../../../packages/ui/src/alert";
 import { Button } from "../../../packages/ui/src/button";

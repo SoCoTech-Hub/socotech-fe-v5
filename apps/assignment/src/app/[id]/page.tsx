@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import api from "@/api/api";
-import { grades, userId } from "@/context/constants";
 import { getNextButtonHref } from "@/lib/utils";
 import getReadableDate from "@/snippets/user/getReadableDate";
 
+import { grades, userId } from "@acme/snippets/context/constants";
 import { FetchAssignmentReplies } from "@acme/snippets/functions/assignment/assignmentReplies";
 import { FetchUserProfilesByGrades } from "@acme/snippets/functions/assignment/user";
 import AccordionBase from "@acme/ui/Accordion";

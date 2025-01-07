@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { profileId } from "@/context/constants";
 import getSelectedQualification from "@/snippets/user/getSelectedQualification";
 import { Scrollbars } from "react-custom-scrollbars";
+
+import { profileId } from "@acme/snippets/context/constants";
 
 import { ApplicationsListing } from "../../../../../../packages/ui/src/applications/listing";
 import { ApplicationsPost } from "../../../../../../packages/ui/src/applications/Post";
 import { Button } from "../../../../../../packages/ui/src/button";
+
 //TODO:fix components
 interface Qualification {
   id: string;
@@ -193,6 +195,5 @@ const Application: React.FC<ApplicationProps> = ({
     </div>
   );
 };
-
 
 export default Application;

@@ -3,12 +3,12 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { authUrl, baseUrl } from "@/context/constants";
 import checkEmail from "@/snippets/auth/checkEmail";
 import validateEmail from "@/snippets/auth/validateEmail";
 import getDataRequest from "@/snippets/getDataRequest";
 import registerUser from "@/snippets/registerUser";
 
+import { authUrl, baseUrl } from "@acme/snippets/context/constants";
 import { fetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
 import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";

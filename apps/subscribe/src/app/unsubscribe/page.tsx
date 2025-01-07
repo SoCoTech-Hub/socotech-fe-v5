@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { baseUrl, profileId, userId } from "@/context/constants";
 import deleteAccount from "@/snippets/deleteAccount";
 import logout from "@/snippets/logout";
 
+import { baseUrl, profileId, userId } from "@acme/snippets/context/constants";
 import { InputField } from "@acme/ui/InputField/index";
 
 import api from "./api/api";

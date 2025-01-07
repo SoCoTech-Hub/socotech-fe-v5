@@ -11,11 +11,11 @@ import LogoOverlay from "@/components/LogoOverlay";
 import MaskedMobile from "@/components/MaskedMobile";
 import Overlay from "@/components/Overlay";
 import { InfoIcon } from "@/components/SvgIcons/InfoIcon";
-import { baseUrl } from "@/context/constants";
 import updateUserDetails from "@/snippets/auth/updateUserDetails";
 import getGQLRequest from "@/snippets/getGQLRequest";
 import { gql } from "@apollo/client";
 
+import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
 import { Alert } from "@acme/ui/Alert";

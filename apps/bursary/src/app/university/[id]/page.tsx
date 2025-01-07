@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { profileId } from "@/context/constants";
 import getSelectedBursary from "@/snippets/user/getSelectedBursary";
+
+import { profileId } from "@acme/snippets/context/constants";
 
 import BursaryListing from "../../../../../../packages/ui/src/Bursaries/listing";
 import BursaryPost from "../../../../../../packages/ui/src/Bursaries/Post";

@@ -6,7 +6,6 @@ import LessonProgress from "@/components/LessonProgress";
 import LessonRating from "@/components/LessonRating/LessonRating";
 import LessonTabs from "@/components/LessonTabs";
 import Load from "@/components/Load";
-import { mainUrl, profileId, userId } from "@/context/constants";
 import { useCountdown } from "@/hooks/useCountDown/useCountDown";
 import { convertDateToDaysHoursMinSec } from "@/snippets/convertDateToDaysHoursMinSec";
 import getDataRequest from "@/snippets/getDataRequest";
@@ -18,6 +17,7 @@ import ZoomLessonCreate from "graphql/mutations/ZoomLessonCreate";
 import ZoomLessonUpdate from "graphql/mutations/ZoomLessonUpdate";
 import GetZoomLessonOccupancy from "graphql/queries/GetZoomLessonOccupancy";
 
+import { mainUrl, profileId, userId } from "@acme/snippets/context/constants";
 import { FetchAssignmentReplyCheck } from "@acme/snippets/functions/lesson/assignmentReplies";
 import { FetchLessonRequiredLessons } from "@acme/snippets/functions/lesson/lesson";
 import { FetchLessonProgress } from "@acme/snippets/functions/lesson/progress";

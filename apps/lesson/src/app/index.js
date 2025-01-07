@@ -5,8 +5,8 @@ import LessonCard from "@/components/LessonCard";
 import LessonList from "@/components/LessonList";
 import LessonSelector from "@/components/LessonSelector";
 import UserCover from "@/components/UserCover";
-import { isPaying } from "@/context/constants";
 
+import { isPaying } from "@acme/snippets/context/constants";
 import { FetchLessonsCardDetail } from "@acme/snippets/functions/lesson/lesson";
 import { FetchSubjectCategories } from "@acme/snippets/functions/lesson/subjectCategories";
 

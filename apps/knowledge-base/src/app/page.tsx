@@ -1,5 +1,6 @@
 import React from "react";
-import { baseUrl } from "@/context/constants";
+
+import { baseUrl } from "@acme/snippets/context/constants";
 
 import DigilibCategories from "../../../packages/ui/src/Digilib/Categories";
 import DigilibHelp from "../../../packages/ui/src/Digilib/Help";

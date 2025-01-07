@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { baseUrl } from "@/context/constants";
 import CreateInMail from "@/snippets/auth/createInMail";
 import generateUniqueId from "@/snippets/auth/generateUniqueId";
 import authCheck from "@/snippets/authCheck";
 import { CreateAllCookies } from "@/snippets/createCookies";
 import getDataRequest from "@/snippets/getDataRequest";
 
+import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
 
 import { Button } from "../../../packages/ui/src/button";
@@ -97,7 +97,7 @@ const Login: React.FC<LoginProps> = ({
           error ? (
             "You are being redirected! Try Again"
           ) : (
-            <div className="flex justify-center desktop:mx-4 laptop:mx-4">
+            <div className="desktop:mx-4 laptop:mx-4 flex justify-center">
               If you aren't redirected yet,
               <br className="mobile:hidden" /> please click on the Continue
               button to continue.

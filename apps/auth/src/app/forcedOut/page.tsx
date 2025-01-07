@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react";
 import Link from "next/link";
-import { baseUrl } from "@/context/constants";
 import logoutMain from "@/snippets/logoutMain";
+
+import { baseUrl } from "@acme/snippets/context/constants";
 
 import { Page } from "../../../packages/ui/src/PageLayout";
 import { SEO } from "../../../packages/ui/src/SeoHead";

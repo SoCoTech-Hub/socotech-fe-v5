@@ -1,10 +1,14 @@
 import { FC, useState } from "react";
 import Link from "next/link";
-import { baseUrl, mainUrl, organizationId } from "@/context/constants";
 import getGQLRequest from "@/snippets/getGQLRequest";
 import createTransaction from "@/snippets/payfast/createTransaction";
 import sendTransaction from "@/snippets/payfast/sendTransaction";
 
+import {
+  baseUrl,
+  mainUrl,
+  organizationId,
+} from "@acme/snippets/context/constants";
 import { Alert } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
