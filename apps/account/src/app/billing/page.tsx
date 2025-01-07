@@ -31,6 +31,9 @@ import { PopupAlert } from "@acme/ui/PopupAlert/index"
 import api from "./api/api"; //TODO:payfast api
 import { pauseSubscription, unpauseSubscription } from "./api/payfastApi"; //TODO:payfast api
 
+import api from "./api/api"; //TODO:payfast api
+import { pauseSubscription, unpauseSubscription } from "./api/payfastApi"; //TODO:payfast api
+
 interface Transaction {
   id: string;
   company: string;
