@@ -4,10 +4,16 @@ import api from "@/api/api";
 import invoice from "@/snippets/email/invoice";
 import { parseCookies } from "@/snippets/parseCookies";
 
-import { isPaying, mainUrl } from "@acme/snippets/context/constants";
+import { ApiTransactionEventTransactionEvent } from "@acme/api/graphql/index.js";
+import {
+  isPaying,
+  mainUrl,
+  organizationId,
+  uniqueId,
+} from "@acme/snippets/context/constants";
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
-import Alert from "@acme/ui/Alert";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 interface Transaction {
   email: string;
@@ -37,7 +43,8 @@ interface Organization {
 
 const Invoice = () => {
   const router = useRouter();
-  const [transactionEvent, setTransactionEvent] = useState();
+  const [transactionEvent, setTransactionEvent] =
+    useState<ApiTransactionEventTransactionEvent>();
   const [organization, setOrganization] = useState();
 
   const [email, setEmail] = useState(transactionEvent?.email || "");
@@ -55,9 +62,9 @@ const Invoice = () => {
       router.push(`${mainUrl}/user`);
     }
     const fetchData = async () => {
-      const event = await FetchTransactionEventsByPaymentId(uniqueId); //TODO: get uniqueId
+      const event = await FetchTransactionEventsByPaymentId(uniqueId || "");
       setTransactionEvent(event);
-      const org = await FetchOrganizationLogos(organizationId); //TODO: Get organizationId
+      const org = await FetchOrganizationLogos();
       setOrganization(org);
     };
     fetchData();
@@ -160,7 +167,7 @@ const Invoice = () => {
             >
               Download Invoice
             </button>
-            <Alert success={alert} />
+            <PopupAlert message={alert} variant={"success"} visible={!!alert} />
           </div>
         </form>
         <InvoiceBodyHTML />
@@ -193,7 +200,7 @@ export async function getServerSideProps({ req }: { req: any }) {
 
   const event = await FetchTransactionEventsByPaymentId(uniqueId);
 
-  const { organization } = await FetchOrganizationLogos(cookies.organizationId);
+  const { organization } = await FetchOrganizationLogos();
 
   return {
     props: {

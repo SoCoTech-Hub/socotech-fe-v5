@@ -22,6 +22,7 @@ import Button from "@acme/ui/button";
 import InputField from "@acme/ui/InputField/index";
 import Modal from "@acme/ui/modal";
 import Cover from "@acme/ui/profile/cover";
+import { PopupAlert } from "@acme/ui/PopupAlert/index"
 
 interface Transaction {
   id: string;
@@ -320,7 +321,7 @@ const Billing: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-row justify-start w-full pt-4">
-            <Alert success={success} error={error} />
+            <PopupAlert message={error ? error : success} variant={error ? 'destructive' : 'success'} visible={!!(error || success)} />
             <Btn
               label="Save"
               color="bg-themeColorMain"
