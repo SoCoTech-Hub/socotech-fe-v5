@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -8,7 +8,7 @@ import { FetchUserByEmail } from "@acme/snippets/functions/auth/user";
 import validateEmail from "@acme/snippets/functions/auth/validateEmail";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
-import { InputField } from "@acme/ui/InputField";
+import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 type RegisterProps = {};
@@ -173,22 +173,29 @@ const Register: FC<RegisterProps> = () => {
             </div>
 
             {/* Alert and Buttons */}
-            {error && <Alert error={error} />}
+            {error && (
+              <PopupAlert
+                message={error}
+                variant="destructive"
+                visible={true}
+              />
+            )}
             <div className="desktop:gap-x-3 laptop:gap-x-3 mobile:gap-y-3 desktop:flex-row laptop:flex-row mobile:flex-col flex">
               <Button
-                title={loading ? "Loading" : "Register"}
                 disabled={loading}
-                color="bg-themeColorMain"
+                className="mobile:w-60 w-48 bg-primary"
                 onClick={register}
-                width="w-48 mobile:w-60"
-              />
-              <Button
-                disabled={loading}
-                title="Register with Google"
-                color="bg-themeColorMain"
-                link={`${process.env.NEXT_PUBLIC_API_URL}/connect/google`}
-                width="w-58 mobile:w-60"
-              />
+              >
+                {loading ? "Loading" : "Register"}
+              </Button>
+              <Link href={`${process.env.NEXT_PUBLIC_API_URL}/connect/google`}>
+                <Button
+                  disabled={loading}
+                  className="w-58 mobile:w-60 bg-primary"
+                >
+                  Register with Google
+                </Button>
+              </Link>
             </div>
             {/* Already have an account */}
             <div className="text-textColor my-3 flex flex-row items-center text-sm">

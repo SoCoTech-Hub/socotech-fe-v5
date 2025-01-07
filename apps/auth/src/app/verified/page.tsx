@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -6,12 +6,7 @@ import { useRouter } from "next/router";
 import resendConfirmation from "@/snippets/auth/resendConfirmation";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "../../../packages/ui/src/alert";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 type VerifiedProps = {
   email: string | null;
@@ -142,7 +137,11 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
                       </button>
                     </div>
                   )}
-                  <Alert />
+                  <PopupAlert
+                    message={error ? error : success}
+                    variant={error ? "destructive" : "success"}
+                    visible={!!(error || success)}
+                  />
                 </div>
               </div>
             </div>

@@ -71,9 +71,9 @@ export default function Article({ article }: ArticleProps) {
           <div className="w-full">
             <div className="justify-content-center flex">
               <PopupAlert
-                message={error ? error : success}
-                variant={error ? "destructive" : "success"}
-                visible={!!(error || success)}
+                message={"success"}
+                variant={"success"}
+                visible={success}
               />
             </div>
             <div className="mobile:p-1 flex flex-row justify-between px-6 pb-1">
@@ -112,20 +112,22 @@ export default function Article({ article }: ArticleProps) {
               <div className="mobile:ml-8 flex flex-wrap gap-2">
                 <div className="">
                   <Button
-                    color="bg-themeColorMain"
-                    title="Back"
-                    onClickFunction={() => router.push("/")}
-                    trackingAction={`return to blogs from article: ${article.title}`}
-                  />
+                    className="bg-primary"
+                    onClick={() => router.push("/")}
+                    // trackingAction={`return to blogs from article: ${article.title}`}//TODO:is tracking needed?
+                  >
+                    Back
+                  </Button>
                 </div>
                 <div className="">
                   <Button
-                    color="bg-themeColorMain"
-                    title="Save"
-                    onClickFunction={handleSaveArticle}
-                    trackingAction={`Saved article: ${article.title}`}
+                    className="bg-primary"
+                    onClick={handleSaveArticle}
+                    // trackingAction={`Saved article: ${article.title}`}//TODO:is tracking needed?
                     id={article.id}
-                  />
+                  >
+                    Save
+                  </Button>
                 </div>
               </div>
             </div>
@@ -144,11 +146,12 @@ export default function Article({ article }: ArticleProps) {
             <div className="mr-4 flex justify-end">
               <div className="mt-4">
                 <Button
-                  color="bg-themeColorMain"
-                  title="Back to list"
-                  onClickFunction={() => router.back()}
-                  trackingAction={`return to blogs from article: ${article.title}`}
-                />
+                  className="bg-primary"
+                  onClick={() => router.back()}
+                  //trackingAction={`return to blogs from article: ${article.title}`}//TODO:is tracking needed?
+                >
+                  Back to list
+                </Button>
               </div>
             </div>
           </div>

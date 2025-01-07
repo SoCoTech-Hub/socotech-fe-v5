@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import Link from "next/link";
 import logoutMain from "@/snippets/logoutMain";
 
-import { Button } from "../../../packages/ui/src/button";
+import { Button } from "@acme/ui/button";
+
 import { Page } from "../../../packages/ui/src/PageLayout";
 import { SEO } from "../../../packages/ui/src/SeoHead";
 
@@ -26,13 +28,11 @@ const Logout: React.FC = () => {
           </div>
         }
         buttons={[
-          <Button
-            key="login-button"
-            title="Log in"
-            link="/"
-            color="bg-themeColorMain"
-            width="w-60"
-          />,
+          <Link href={"/"}>
+            <Button key="login-button" className="w-60 bg-primary">
+              Log in
+            </Button>
+          </Link>,
         ]}
       />
     </>

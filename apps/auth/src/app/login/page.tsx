@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import CreateInMail from "@/snippets/auth/createInMail";
 import generateUniqueId from "@/snippets/auth/generateUniqueId";
@@ -8,8 +9,8 @@ import getDataRequest from "@/snippets/getDataRequest";
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
+import { Button } from "@acme/ui/button";
 
-import { Button } from "../../../packages/ui/src/button";
 import { Page } from "../../../packages/ui/src/PageLayout";
 import { SEO } from "../../../packages/ui/src/SeoHead";
 import publicapi from "./api/publicapi";
@@ -105,13 +106,11 @@ const Login: React.FC<LoginProps> = ({
           )
         }
         buttons={[
-          <Button
-            key="btn-continue"
-            link={error ? "/login" : "/update"}
-            label={error ? "Retry" : "Continue"}
-            color="bg-themeColorMain"
-            width="w-60"
-          />,
+          <Link href={error ? "/login" : "/update"}>
+            <Button key="btn-continue" className="w-60 bg-primary">
+              {error ? "Retry" : "Continue"}
+            </Button>
+          </Link>,
         ]}
         error={error}
         background={`${baseUrl}/background2.png`}

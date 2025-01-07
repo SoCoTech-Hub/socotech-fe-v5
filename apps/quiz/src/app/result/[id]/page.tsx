@@ -1,13 +1,17 @@
 import React from "react";
 
+import { Button } from "@acme/ui/button";
 import QuizReport from "@acme/ui/Quiz/report";
-import { Button } from "@acme/ui/button"
+import { useRouter } from "next/router"
 
+const router = useRouter();
 export default function Home() {
   return (
     <div>
       <div>
-        <Button />
+        <Button className="bg-primary" onClick={() => router.back()}>
+          Back
+        </Button>
       </div>
       <div>
         <QuizReport />

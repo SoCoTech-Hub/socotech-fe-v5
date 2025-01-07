@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,7 +6,6 @@ import client from "@/api/apolloClient";
 import Checkbox from "@/components/Checkbox";
 import DatePickField from "@/components/DatePickField";
 import DefaultSelectNew from "@/components/DefaultSelectNew";
-import InputField from "@/components/InputField";
 import LogoOverlay from "@/components/LogoOverlay";
 import MaskedMobile from "@/components/MaskedMobile";
 import Overlay from "@/components/Overlay";
@@ -19,6 +18,7 @@ import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
 import { Button } from "@acme/ui/button";
+import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 type UpdateProps = {
@@ -30,6 +30,7 @@ type UpdateProps = {
 
 const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
   const router = useRouter();
+  const [success, setSuccess] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [check, setCheck] = useState<boolean>(false);
   const [userInput, setUserInput] = useState({
@@ -309,19 +310,23 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
         )}
         {/* Submit Button and Alerts */}
         <div className="">
-          <Alert error={error} />
+          <PopupAlert
+            message={error ? error : success}
+            variant={error ? "destructive" : "success"}
+            visible={!!(error || success)}
+          />
           <div
             className={`${
               isUnder18(userInput.dob) ? "" : "mobile:mt-4 mt-3"
             } mobile:justify-center mobile:flex mobile:mb-4`}
           >
             <Button
-              onClickFunction={updateUser}
-              color="bg-themeColorMain"
-              label={loading ? "Loading..." : "Completed"}
-              className="mobile:px-8"
+              onClick={updateUser}
+              className="mobile:px-8 bg-themeColorMain"
               disabled={loading}
-            />
+            >
+              {loading ? "Loading..." : "Completed"}
+            </Button>
           </div>
         </div>
       </div>

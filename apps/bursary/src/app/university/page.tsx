@@ -1,7 +1,9 @@
 import React from "react";
+import Link from "next/link";
+
+import { Button } from "@acme/ui/button";
 
 import BursaryWelcomeBanner from "../../../../../packages/ui/src/Bursaries/tour";
-import { Button } from "../../../../../packages/ui/src/button";
 import ContentLock from "../../../../../packages/ui/src/ContentLock";
 import DigilibCategories from "../../../../../packages/ui/src/Digilib/categories";
 
@@ -24,7 +26,9 @@ const Bursaries = ({ bursaryCategories }: BursariesProps) => {
     <div>
       <BursaryWelcomeBanner />
       <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 flex justify-end">
-        <Button title="Back" link={`/bursaries`} color="bg-themeColorMain" />
+        <Link href={`/bursaries`}>
+          <Button className="bg-primary">Back</Button>
+        </Link>
       </div>
       <ContentLock
         isPaying={isPaying}

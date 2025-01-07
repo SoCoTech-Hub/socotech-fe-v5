@@ -37,13 +37,12 @@ const FaqDisplay = () => {
     <div className="col row">
       <div className="gx-5 gy-4 space-y-10">
         <div className="text-textColor text-4xl">{category?.name}</div>
-        <Button //TODO: @Garreth replace with the correct button component
-          onClickFunction={() => router.back()}
-          label="Back"
-          color="bg-themeColorMain"
-          padding="px-3 py-2"
-          width="w-28"
-        />
+        <Button
+          onClick={() => router.back()}
+          className="w-28 bg-primary px-3 py-2"
+        >
+          Back
+        </Button>
         {/* <div className=''>
           <DigilibHelp />
         </div> */}

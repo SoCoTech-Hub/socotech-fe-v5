@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import { Button } from "@acme/ui/button";
 
+const router = useRouter();
 const Info = () => {
   const [data, setData] = useState({ title: "", content: "" });
   //TODO: Get info page (terms of use, payment policy etc) and display here
@@ -11,7 +13,9 @@ const Info = () => {
     <div className="flex">
       <div className="flex flex-row">
         <h2>{data.title}</h2>
-        <Button />
+        <Button className="bg-primary" onClick={() => router.back()}>
+          Back
+        </Button>
       </div>
       <div dangerouslySetInnerHTML={{ __html: data.content }} />
     </div>

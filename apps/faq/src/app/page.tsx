@@ -21,7 +21,6 @@ interface FaqCategoryProps {
 const FaqCategory: React.FC<FaqCategoryProps> = ({ categories }) => {
   const router = useRouter();
 
-
   return (
     <div className="col row">
       <div className="gx-5 desktop:gy-4 space-y-10">
@@ -29,12 +28,11 @@ const FaqCategory: React.FC<FaqCategoryProps> = ({ categories }) => {
           Frequently Asked Questions
         </div>
         <Button
-          onClickFunction={() => router.back()}
-          label="Back"
-          color="bg-themeColorMain"
-          padding="px-3 py-2"
-          width="w-28"
-        />
+          onClick={() => router.back()}
+          className="w-28 bg-primary px-3 py-2"
+        >
+          Back
+        </Button>
         {/* <div className='mobile:hidden desktop:block'>
           <DigilibWelcome />
         </div> */}
@@ -57,6 +55,5 @@ const FaqCategory: React.FC<FaqCategoryProps> = ({ categories }) => {
     </div>
   );
 };
-
 
 export default FaqCategory;

@@ -5,9 +5,9 @@ import checkEmail from "@/snippets/auth/checkEmail";
 import forgotPassword from "@/snippets/auth/forgotPassword";
 
 import { baseUrl } from "@acme/snippets/context/constants";
+import { Button } from "@acme/ui/button";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
-import { Alert } from "../../../packages/ui/src/alert";
-import { Button } from "../../../packages/ui/src/button";
 import { InputField } from "../../../packages/ui/src/InputField";
 
 const Reset: FC = () => {
@@ -110,12 +110,15 @@ const Reset: FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <div className="mb-1">
-                  <Alert error={error} success={successMessage} />
-                  <Button
-                    label={loading ? "Loading" : "Request password reset"}
-                    onClick={handleSubmit}
-                    color="bg-themeColorMain"
+                  <PopupAlert
+                    message={error ? error : successMessage}
+                    variant={error ? "destructive" : "success"}
+                    visible={!!(error || successMessage)}
                   />
+                  <Button onClick={() => handleSubmit} className="bg-primary">
+                    {/*//TODO:not sure about this function */}
+                    {loading ? "Loading" : "Request password reset"}
+                  </Button>
                 </div>
                 <h6 className="text-themeColorMain mt-3 text-xs">
                   <Link

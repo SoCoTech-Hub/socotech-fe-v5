@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import getSelectedQualification from "@/snippets/user/getSelectedQualification";
 
 import { profileId } from "@acme/snippets/context/constants";
+import { Button } from "@acme/ui/button";
 
-import { Button } from "../../../../../packages/ui/src/button";
 import QualificationListing from "../../../../../packages/ui/src/qualifications/listing";
 import QualificationPost from "../../../../../packages/ui/src/qualifications/Post";
 
@@ -100,11 +101,9 @@ const Qualification = ({
           </div>
         </div>
         <div className="my-4 flex justify-end font-bold">
-          <Button
-            title="Back"
-            link={`/qualifications`}
-            color="bg-themeColorMain"
-          />
+          <Link href={`/qualifications`}>
+            <Button className="bg-primary">Back</Button>
+          </Link>
         </div>
 
         {qualifications?.length > 0 && (
@@ -190,7 +189,7 @@ const Qualification = ({
         )}
 
         {qualifications?.length === 0 && !loading && (
-          <div align="center">No Qualifications found</div>
+          <div className="align-middle">No Qualifications found</div>
         )}
       </div>
     </div>

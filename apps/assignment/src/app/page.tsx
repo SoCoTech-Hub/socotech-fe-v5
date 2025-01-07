@@ -1,6 +1,7 @@
 import React from "react";
+import Link from "next/link";
 
-import { Button } from "../../../../packages/ui/src/button";
+import { Button } from "@acme/ui/button";
 
 //TODO:fix button
 interface AssignmentHomeProps {
@@ -29,20 +30,18 @@ const AssignmentHome: React.FC<AssignmentHomeProps> = ({
           <div className="bg-compBg mobile:p-1.5 laptop:p-2 desktop:p-3 mobile:gap-1 laptop:gap-3 desktop:gap-4 mobile:grid-cols-2 laptop:grid-cols-4 desktop:grid-cols-4 grid rounded-lg">
             {module.map((item, r) => (
               <div key={r}>
-                <Button
-                  color="bg-themeColorMain"
-                  link={`/${lessonId}/assignment/${item.id}`}
-                  label={item?.title}
-                />
+                <Link href={`/${lessonId}/assignment/${item.id}`}>
+                  <Button className="bg-primary">{item?.title}</Button>
+                </Link>
                 <div>
                   {response?.map((x) =>
                     x.assignment.id === item.id ? (
-                      <Button
-                        key={x.id}
-                        color="bg-themeColorSecondary"
-                        label={`${item?.title} marks`}
-                        link={`/${lessonId}/assignment/${item.id}/marks`}
-                      />
+                      <Link href={`/${lessonId}/assignment/${item.id}/marks`}>
+                        <Button
+                          key={x.id}
+                          className="bg-secondary"
+                        >{`${item?.title} marks`}</Button>
+                      </Link>
                     ) : null,
                   )}
                 </div>

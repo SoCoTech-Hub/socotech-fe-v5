@@ -1,7 +1,6 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import Link from "next/link";
 import logoutMain from "@/snippets/logoutMain";
-
 import { baseUrl } from "@acme/snippets/context/constants";
 
 import { Page } from "../../../packages/ui/src/PageLayout";

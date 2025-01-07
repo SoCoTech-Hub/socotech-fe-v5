@@ -35,10 +35,11 @@ const Payment: React.FC = () => {
             <div className="text-xl font-bold">Payment Policy</div>
             <div>
               <Button
-                title="Back"
-                color="bg-themeColorMain text-black"
-                onClickFunction={() => router.back()}
-              />
+                className="bg-primary text-black"
+                onClick={() => router.back()}
+              >
+                Back
+              </Button>
             </div>
           </div>
           <p>

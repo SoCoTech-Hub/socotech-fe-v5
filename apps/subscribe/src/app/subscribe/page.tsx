@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Link from "next/link";
 import getGQLRequest from "@/snippets/getGQLRequest";
 import createTransaction from "@/snippets/payfast/createTransaction";
@@ -11,7 +11,7 @@ import {
 } from "@acme/snippets/context/constants";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
-import InputField from "@acme/ui/InputField/index";
+import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { SEO } from "@acme/ui/SeoHead/index";
 
@@ -190,23 +190,29 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
                 </div>
 
                 <div className="">
-                  <Alert error={error} />
+                  <PopupAlert
+                    message={error}
+                    variant={"destructive"}
+                    visible={error ? true : false}
+                  />
                   {isChecked ? (
                     <Button
-                      title={loading ? "Loading..." : "Subscribe"}
                       onClick={subscribe}
-                      color="bg-themeColorMain"
+                      className="bg-primary"
                       disabled={loading}
-                    />
+                    >
+                      {loading ? "Loading..." : "Subscribe"}
+                    </Button>
                   ) : (
                     <></>
                   )}
                   <div className="py-1">
                     <Button
-                      title={"Cancel"}
-                      color="bg-themeColorSecondary my-3"
+                      className="my-3 bg-secondary"
                       onClick={() => cancel()}
-                    />
+                    >
+                      Cancel
+                    </Button>
                   </div>
                 </div>
               </form>

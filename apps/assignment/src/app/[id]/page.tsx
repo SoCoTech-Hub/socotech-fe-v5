@@ -287,7 +287,11 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
       </div>
       {/* NextButton */}
       <div className="pt-3">
-        <Alert success={success} error={error} />
+        <PopupAlert
+          message={error ? error : success}
+          variant={error ? "destructive" : "success"}
+          visible={!!(error || success)}
+        />
       </div>
 
       <div className="flex flex-row justify-end">
@@ -295,29 +299,26 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
           <></>
         ) : (
           <div className="mr-6 mt-3">
-            <Button
-              label="Save"
-              color="bg-themeColorMain"
-              onClickFunction={() => saveAssignment()}
-            />
+            <Button className="bg-primary" onClick={() => saveAssignment()}>
+              Save
+            </Button>
           </div>
         )}
         {isCompleted ? (
           <div className="mr-6 mt-3">
             <Button
-              label="Next"
-              color="bg-themeColorMain"
-              onClickFunction={() => router.push(nextButtonHref)}
-            />
+              className="bg-primary"
+              onClick={() => router.push(nextButtonHref)}
+            >
+              Next
+            </Button>
           </div>
         ) : (
           responseId && (
             <div className="mr-6 mt-3">
-              <Button
-                label="Complete"
-                color="bg-themeColorMain"
-                onClickFunction={() => markComplete()}
-              />
+              <Button className="bg-primary" onClick={() => markComplete()}>
+                Complete
+              </Button>
             </div>
           )
         )}

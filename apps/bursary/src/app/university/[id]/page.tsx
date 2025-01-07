@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import getSelectedBursary from "@/snippets/user/getSelectedBursary";
 
 import { profileId } from "@acme/snippets/context/constants";
+import { Button } from "@acme/ui/button";
 
 import BursaryListing from "../../../../../../packages/ui/src/Bursaries/listing";
 import BursaryPost from "../../../../../../packages/ui/src/Bursaries/Post";
-import { Button } from "../../../../../../packages/ui/src/button";
 
 interface Bursary {
   id: string;
@@ -98,7 +99,9 @@ const Bursary = ({
           </div>
         </div>
         <div className="my-4 flex justify-end font-bold">
-          <Button title="Back" link={`/bursaries`} color="bg-themeColorMain" />
+          <Link href={`/bursaries`}>
+            <Button className="bg-primary">Back</Button>
+          </Link>
         </div>
 
         {bursaries?.length > 0 && (
@@ -184,7 +187,7 @@ const Bursary = ({
         )}
 
         {bursaries?.length === 0 && !loading && (
-          <div align="center">No Bursaries found</div>
+          <div className="align-middle">No Bursaries found</div>
         )}
       </div>
     </div>

@@ -12,7 +12,7 @@ import { authUrl, baseUrl } from "@acme/snippets/context/constants";
 import { fetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
-import InputField from "@acme/ui/InputField";
+import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 interface RegisterProps {
@@ -210,12 +210,14 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
 
                 <div>
                   <div className="mb-1">
-                    <Alert error={error} />
-                    <Button
-                      label={loading ? "Loading..." : "Register"}
-                      onClick={handleSubmit}
-                      color="bg-themeColorSecondary"
+                    <PopupAlert
+                      message={error}
+                      variant={"destructive"}
+                      visible={error ? true : false}
                     />
+                    <Button onClick={handleSubmit} className="bg-primary">
+                      {loading ? "Loading..." : "Register"}
+                    </Button>
                   </div>
                   <h6 className="text-textColor mt-3 text-xs">
                     Already have an account?
