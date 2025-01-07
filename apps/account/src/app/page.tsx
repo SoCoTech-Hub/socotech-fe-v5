@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-import { isPaying, profileId } from "@acme/snippets/context/constants";
+import { isPaying } from "@acme/snippets/context/constants";
 import {
   FetchSubscription,
-  UpdateSubscription,
+  UpsertSubscription,
 } from "@acme/snippets/functions/account/subscription";
 import { Alert } from "@acme/ui/Alert";
 import Cover from "@acme/ui/Cover";
@@ -31,7 +31,7 @@ const AccountSettings: React.FC = () => {
   useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        const subscriptions = await FetchSubscription(profileId);
+        const subscriptions = await FetchSubscription();
         if (subscriptions.length) {
           setSubscriptions(subscriptions[0]);
           setNewsLetterActive(subscriptions[0].newsletterActive);
@@ -67,7 +67,7 @@ const AccountSettings: React.FC = () => {
     activeSms: boolean;
   }) => {
     try {
-      const updated = await UpdateSubscription(profileId, {
+      const updated = await UpsertSubscription({
         newsletterActive: activeNewsLetter,
         smsActive: activeSms,
       });

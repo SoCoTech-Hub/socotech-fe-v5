@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import api from "@/api/api";
-import { isPaying, mainUrl } from "@/context/constants";
 import invoice from "@/snippets/email/invoice";
 import { parseCookies } from "@/snippets/parseCookies";
 
-
-
+import { isPaying, mainUrl } from "@acme/snippets/context/constants";
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
 import Alert from "@acme/ui/Alert";
-
-
-
-
 
 interface Transaction {
   email: string;
@@ -132,16 +126,16 @@ const Invoice = () => {
   return (
     <>
       <div className="col row">
-        <form className="px-8 pt-6 pb-8 mb-4 rounded-lg shadow-md bg-compBg">
+        <form className="bg-compBg mb-4 rounded-lg px-8 pb-8 pt-6 shadow-md">
           <div className="mb-4">
             <label
-              className="block mb-2 text-sm font-bold text-textColor"
+              className="text-textColor mb-2 block text-sm font-bold"
               htmlFor="sender"
             >
               Email invoice to:
             </label>
             <input
-              className="w-full px-3 py-2 leading-tight text-black border rounded-lg shadow appearance-none focus:shadow-outline focus:outline-none"
+              className="focus:shadow-outline w-full appearance-none rounded-lg border px-3 py-2 leading-tight text-black shadow focus:outline-none"
               id="sender"
               name="sender"
               type="email"
@@ -153,14 +147,14 @@ const Invoice = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="px-4 py-2 font-bold text-black rounded-full bg-themeColorMain focus:shadow-outline focus:outline-none"
+              className="bg-themeColorMain focus:shadow-outline rounded-full px-4 py-2 font-bold text-black focus:outline-none"
               type="button"
               onClick={handleSendInvoice}
             >
               Send Invoice
             </button>
             <button
-              className="px-4 py-2 font-bold bg-blue-500 rounded-full text-textColor focus:shadow-outline hover:bg-blue-700 focus:outline-none"
+              className="text-textColor focus:shadow-outline rounded-full bg-blue-500 px-4 py-2 font-bold hover:bg-blue-700 focus:outline-none"
               type="button"
               onClick={handlePrintInvoice}
             >
