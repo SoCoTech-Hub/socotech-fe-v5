@@ -9,8 +9,8 @@ import {
   FetchSubscription,
   UpsertSubscription,
 } from "@acme/snippets/functions/account/subscription";
-import Cover from "@acme/ui/Cover";
-import { Alert } from "@acme/ui/PopupAlert";
+import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import Cover from "@acme/ui/profile/cover";
 import { Switch } from "@acme/ui/switch";
 
 interface Subscription {
@@ -110,7 +110,11 @@ const AccountSettings: React.FC = () => {
               >
                 {loading ? "Loading..." : "Request Password Update"}
               </button>
-              <Alert error={errorPwd} success={successPwd} />
+              <PopupAlert
+                message={error ? error : success}
+                variant={error ? "destructive" : "success"}
+                visible={!!(error || success)}
+              />
             </div>
           </div>
         </div>

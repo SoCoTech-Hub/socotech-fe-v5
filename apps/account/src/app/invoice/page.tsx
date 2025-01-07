@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import api from "@/api/api";
-import invoice from "@/snippets/email/invoice";
-import { parseCookies } from "@/snippets/parseCookies";
 
-import { ApiTransactionEventTransactionEvent } from "@acme/api/graphql/index.js";
-import {
-  isPaying,
-  mainUrl,
-  organizationId,
-  uniqueId,
-} from "@acme/snippets/context/constants";
+import { ApiTransactionEventTransactionEvent } from "@acme/api/graphql";
+import { api } from "@acme/snippets/api/api";
+import { isPaying, mainUrl, uniqueId } from "@acme/snippets/context/constants";
+import invoice from "@acme/snippets/functions/account/email";
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
@@ -65,7 +59,9 @@ const Invoice = () => {
       const event = await FetchTransactionEventsByPaymentId(uniqueId || "");
       setTransactionEvent(event);
       const org = await FetchOrganizationLogos();
-      setOrganization(org);
+      if (org) {
+        setOrganization(org.organization);
+      }
     };
     fetchData();
   }, []);

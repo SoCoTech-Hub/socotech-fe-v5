@@ -1,7 +1,10 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { ApiTransactionTransaction } from "@acme/api/graphql";
+import { api } from "@acme/snippets/api/api";
 import {
   Banner,
   organizationId,
@@ -18,18 +21,19 @@ import {
   uploadImages,
 } from "@acme/snippets/functions/account/profile";
 import {
-  createOrUpdateTransaction,
   FetchTransactionByPaymentId,
+  UpsertTransaction,
 } from "@acme/snippets/functions/account/transaction";
 import { convertUTCToLocal } from "@acme/snippets/functions/convertUtcToLocal";
+import {
+  pauseSubscription,
+  unpauseSubscription,
+} from "@acme/snippets/functions/payfast";
 import { Button } from "@acme/ui/button";
 import { InputField } from "@acme/ui/InputField/index";
 import Modal from "@acme/ui/modal";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import Cover from "@acme/ui/profile/cover";
-
-import api from "./api/api"; //TODO:payfast api
-import { pauseSubscription, unpauseSubscription } from "./api/payfastApi"; //TODO:payfast api
 
 interface Profile {
   id: string;
@@ -139,38 +143,36 @@ const Billing: React.FC = () => {
   const save = async () => {
     setSuccess("");
     setError("");
-    const data = {
-      id: transactions?.[0]?.id,
-      attributes: {
-        company: company,
-        vatNr: vatNr,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        addressLine1: addressLine1,
-        postalCode: postalCode,
-        cellNr: cellNr,
-        additionalInformation: additionalInformation,
-      },
-    };
-    const res = await createOrUpdateTransaction(transactions?.[0]?.id,data);
-    // const res = await api.put(`transactions/${transactions[0].id}`, {
-    // company: company,
-    // vatNr: vatNr,
-    // firstName: firstName,
-    // lastName: lastName,
-    // email: email,
-    // addressLine1: addressLine1,
-    // postalCode: postalCode,
-    // cellNr: cellNr,
-    // additionalInformation: additionalInformation,
-    // });
-    if (!res) {
-      setError("Something went wrong");
-    }
 
-    setSuccess("Billing Information Updated");
-    return;
+    const updatedData: Partial<ApiTransactionTransaction["attributes"]> = {
+      ...(company && { company }),
+      ...(vatNr && { vatNr }),
+      ...(firstName && { firstName }),
+      ...(lastName && { lastName }),
+      ...(email && { email }),
+      ...(addressLine1 && { addressLine1 }),
+      ...(postalCode && { postalCode }),
+      ...(cellNr && { cellNr }),
+      ...(additionalInformation && { additionalInformation }),
+    };
+
+    try {
+      if (transactions?.[0]?.id) {
+        const res = await UpsertTransaction({
+          id: transactions?.[0]?.id,
+          data: updatedData,
+        });
+
+        if (!res) {
+          setError("Something went wrong");
+        } else {
+          setSuccess(`Billing Information ${res.message}`);
+        }
+      }
+    } catch (err) {
+      setError("Failed to save transaction.");
+      console.error(err);
+    }
   };
 
   const isPayingDate = convertUTCToLocal(profile?.isPayingDate || "");
