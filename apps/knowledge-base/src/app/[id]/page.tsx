@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import TimeTracks from "@/snippets/timeTracks";
+import React, { useState } from "react";
 
-import DigilibHeader from "../../../packages/ui/src/Digilib/header";
-import { IFrame } from "../../../packages/ui/src/IFrame";
+import TimeTracks from "@acme/snippets/hooks/useTimeTracker";
+import DigilibHeader from "@acme/ui/Digilib/header";
+import { IFrame } from "@acme/ui/IFrame/index";
 
 interface Article {
   id: string;
@@ -28,11 +28,6 @@ export default function Article({ article }: ArticleProps) {
   const startTime = new Date();
 
   if (!article?.attachment) {
-    const seo = {
-      title: "Topic - Article Not Found",
-      description: "No Articles were found!",
-    };
-
     return (
       <div>
         <div>Resource not found</div>

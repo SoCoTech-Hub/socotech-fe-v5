@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import resendConfirmation from "@/snippets/auth/resendConfirmation";
 
 import { baseUrl } from "@acme/snippets/context/constants";
+import resendConfirmation from "@acme/snippets/functions/auth/resendConfirmation";
+import { Button } from "@acme/ui/button";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 type VerifiedProps = {
@@ -118,23 +118,23 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
                           </a>
                         </Link>
                       ) : (
-                        <button
+                        <Button
                           onClick={handleSubmit}
                           disabled={disabled}
                           className="bg-themeColorMain mt-2 cursor-pointer rounded-md px-2 py-3 text-center text-white"
                         >
                           Resend
-                        </button>
+                        </Button>
                       )}
                     </div>
                   ) : (
                     <div className="mx-auto flex w-1/2 flex-col py-3">
-                      <button
+                      <Button
                         onClick={() => router.back()}
                         className="bg-themeColorMain mt-2 cursor-pointer rounded-md px-2 py-3 text-center text-white"
                       >
                         Back
-                      </button>
+                      </Button>
                     </div>
                   )}
                   <PopupAlert

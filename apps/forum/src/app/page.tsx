@@ -1,6 +1,6 @@
 import React from "react";
 
-import ForumDisplay from "@acme/ui/Forum/ForumDisplay";
+import ForumDisplay from "@acme/ui/Forum/displayForum";
 
 //TODO: get list of forums
 export default function Home() {

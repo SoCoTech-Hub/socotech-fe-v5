@@ -1,13 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
-import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import resendConfirmation from "@/snippets/auth/resendConfirmation";
-import { parseCookies } from "@/snippets/parseCookies";
+
+import resendConfirmation from "@acme/snippets/auth/resendConfirmation"; //TODO Make snippet
 
 //TODO:fix imports.
 import { Page } from "@acme/ui/PageLayout/index";
-import { SEO } from "@acme/ui/SeoHead/index";
 
 type ConfirmProps = {
   email: string | null;
@@ -76,7 +74,6 @@ const Confirm: FC<ConfirmProps> = ({ email }) => {
 
   return (
     <>
-      <SEO title="Confirm" description="Confirm Page" />
       <Page
         header="Thank you for registering!"
         message={

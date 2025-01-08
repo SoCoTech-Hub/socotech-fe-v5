@@ -1,9 +1,10 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import GetKBSearchResults from "graphql/queries/GetKBSearchResults";
+import GetKBSearchResults from "graphql/queries/GetKBSearchResults"; //TODO:make query
 
-import MainSearchResults from "../../../packages/ui/src/MainSearchResults";
-import client from "./api/apolloClient";
+import MainSearchResults from "@acme/ui/MainSearchResults/index";
+
+import client from "./api/apolloClient";//TODO:make snippet
 
 //TODO:fix component
 interface SearchResult {
@@ -17,11 +18,6 @@ interface SearchProps {
 }
 
 const Search = ({ results }: SearchProps) => {
-  const seo = {
-    title: "Search Categories",
-    description: "Search what categories you are looking for!",
-  };
-
   return (
     <>
       <div className="w-full shadow-md">

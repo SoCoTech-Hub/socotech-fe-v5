@@ -3,23 +3,28 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import client from "@/api/apolloClient";
-import Checkbox from "@/components/Checkbox";
-import DatePickField from "@/components/DatePickField";
-import DefaultSelectNew from "@/components/DefaultSelectNew";
-import LogoOverlay from "@/components/LogoOverlay";
-import MaskedMobile from "@/components/MaskedMobile";
-import Overlay from "@/components/Overlay";
-import { InfoIcon } from "@/components/SvgIcons/InfoIcon";
-import updateUserDetails from "@/snippets/auth/updateUserDetails";
-import getGQLRequest from "@/snippets/getGQLRequest";
 import { gql } from "@apollo/client";
+
+
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
+import updateUserDetails from "@acme/snippets/functions/auth/updateUserDetails"; //TODO:make snippet
 import { Button } from "@acme/ui/button";
+import { Checkbox } from "@acme/ui/Checkbox";
+import { DatePicker } from "@acme/ui/DatePickField/index";
+import DefaultSelectNew from "@acme/ui/DefaultSelectNew/index"; //TODO:Replace all DefaultSelectNew
 import { InputField } from "@acme/ui/InputField/index";
+import LogoOverlay from "@acme/ui/LogoOverlay/index";
+import Overlay from "@acme/ui/Overlay/index";//TODO:Replace overlay
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { InfoIcon } from "@acme/ui/SvgIcons/InfoIcon";
+import InputMask from "@acme/ui/inputMask"
+
+
+
+
 
 type UpdateProps = {
   profile: any;
@@ -223,7 +228,7 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
         >
           {/* First Column */}
           <div className="desktop:flex laptop:flex desktop:flex-col laptop:flex-col mobile:w-full mr-3 w-1/2">
-            <DatePickField
+            <DatePicker
               id="dob"
               placeholder="Date of Birth"
               onChange={(e) => updateInput(e.target.value, "dob")}
@@ -244,7 +249,7 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
               value={userInput.lastName}
               onChange={(e) => updateInput(e.target.value, "lastName")}
             />
-            <MaskedMobile
+            <InputMask
               onChange={(e) => updateInput(e.target.value, "mobileNr")}
               value={userInput.mobileNr}
               placeholder="Cellphone Number"

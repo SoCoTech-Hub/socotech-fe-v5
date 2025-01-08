@@ -1,14 +1,13 @@
 import React, { FC, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import checkEmail from "@/snippets/auth/checkEmail";
-import forgotPassword from "@/snippets/auth/forgotPassword";
 
 import { baseUrl } from "@acme/snippets/context/constants";
+import checkEmail from "@acme/snippets/functions/auth/checkEmail";
+import forgotPassword from "@acme/snippets/functions/auth/forgotPassword";
 import { Button } from "@acme/ui/button";
+import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
-
-import { InputField } from "../../../packages/ui/src/InputField";
 
 const Reset: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -63,14 +62,6 @@ const Reset: FC = () => {
       setError("Reset password link could not be sent");
       setLoading(false);
     }
-  };
-
-  const seo = {
-    title: "Topic - Reset Password",
-    description:
-      "You seem to have forgotten your password; let's change that for you.",
-    image: "https://lms.topic.co.za/auth/logo.png",
-    url: "https://topic.co.za",
   };
 
   return (

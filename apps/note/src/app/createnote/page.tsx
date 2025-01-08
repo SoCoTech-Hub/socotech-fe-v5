@@ -1,6 +1,6 @@
 import React from "react";
 
-import NoteEditor from "@acme/ui/Notes/editor";
+import { NoteEditor } from "@acme/ui/Notes/editor";
 
 const createnote = ({ subjects, profileId }) => {
   return (

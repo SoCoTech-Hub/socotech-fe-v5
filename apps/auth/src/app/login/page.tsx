@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import CreateInMail from "@/snippets/auth/createInMail";
-import generateUniqueId from "@/snippets/auth/generateUniqueId";
-import authCheck from "@/snippets/authCheck";
-import { CreateAllCookies } from "@/snippets/createCookies";
-import getDataRequest from "@/snippets/getDataRequest";
 
+import publicapi from "@acme/api/publicapi"; //TODO:make snippet
 import { baseUrl } from "@acme/snippets/context/constants";
+import authCheck from "@acme/snippets/functions/auth/authCheck"; //TODO:make snippet
+import { CreateAllCookies } from "@acme/snippets/functions/auth/createCookies"; //TODO:make snippet
+import CreateInMail from "@acme/snippets/functions/auth/createInMail"; //TODO:make snippet
+import generateUniqueId from "@acme/snippets/functions/auth/generateUniqueId"; //TODO:make snippet
 import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
 import { Button } from "@acme/ui/button";
-
-import { Page } from "../../../packages/ui/src/PageLayout";
-import { SEO } from "../../../packages/ui/src/SeoHead";
-import publicapi from "./api/publicapi";
+import { Page } from "@acme/ui/PageLayout/index";
 
 interface LoginProps {
   userId: string;
@@ -90,8 +87,6 @@ const Login: React.FC<LoginProps> = ({
 
   return (
     <>
-      <SEO title="Topic - Confirm" description="You are ready to start!" />
-
       <Page
         header={error ? "Something Went Wrong" : "You are ready to start!"}
         message={

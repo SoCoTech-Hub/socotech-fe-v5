@@ -2,10 +2,10 @@ import React, { FC, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { baseUrl } from "@acme/snippet/context/constants";
-import RegisterUser2 from "@acme/snippets/functions/auth/registerUser2";
+import { baseUrl } from "@acme/snippets/context/constants";
+import RegisterUser2 from "@acme/snippets/functions/auth/registerUser2"; //TODO:make snippet
 import { FetchUserByEmail } from "@acme/snippets/functions/auth/user";
-import validateEmail from "@acme/snippets/functions/auth/validateEmail";
+import validateEmail from "@acme/snippets/functions/auth/validateEmail"; //TODO:make snippet
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField/index";

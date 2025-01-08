@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { Button } from "@acme/ui/button";
 
-//TODO:fix button
 interface AssignmentHomeProps {
   module: Array<{
     id: string;

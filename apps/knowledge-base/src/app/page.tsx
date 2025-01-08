@@ -1,10 +1,9 @@
 import React from "react";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-
-import DigilibCategories from "../../../packages/ui/src/Digilib/Categories";
-import DigilibHelp from "../../../packages/ui/src/Digilib/Help";
-import Welcome from "../../../packages/ui/src/Digilib/Welcome";
+import DigilibCategories from "@acme/ui/Digilib/Categories";
+import DigilibHelp from "@acme/ui/Digilib/Help";
+import Welcome from "@acme/ui/Digilib/Welcome";
 
 interface Category {
   id: string;
@@ -30,11 +29,6 @@ interface IndexProps {
 }
 
 const Index = ({ categories, helpCategories }: IndexProps) => {
-  const seo = {
-    title: "Digital Library Home Page",
-    description: "Choose from different libraries!",
-  };
-
   return (
     <div className="col row mobile:mb-20">
       <div className="desktop:gap-y-5 laptop:gap-y-5 mobile:gap-y-3 flex flex-col">

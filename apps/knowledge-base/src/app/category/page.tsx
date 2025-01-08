@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { FetchKnowledgeBases } from "@acme/functions/knowledgeBase/knowledgeBase";
-import { FetchKnowledgeBaseCategory } from "@acme/functions/knowledgeBase/knowledgeBaseCategory";
-import ArticleFilter from "@acme/ui/ArticleFilter";
-import DigilibCategories from "@acme/ui/DigilibCategories";
+import { FetchKnowledgeBases } from "@acme/snippets/functions/knowledgeBase/knowledgeBase";
+import { FetchKnowledgeBaseCategory } from "@acme/snippets/functions/knowledgeBase/knowledgeBaseCategory";
+import ArticleFilter from "@acme/ui/Digilib/Filter";
+import DigilibCategories from "@acme/ui/Digilib/Categories";
 
 interface Category {
   id: string;

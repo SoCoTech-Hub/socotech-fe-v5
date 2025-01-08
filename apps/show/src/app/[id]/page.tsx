@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import { Button } from "@acme/ui/Button";
-import HLSVideoPlayer from "@acme/ui/HLSVideoPlayer";
+import HLSVideoPlayer from "@acme/ui/videoPlayer";
 import { NoteEditor } from "@acme/ui/Notes/Editor";
 
 const CategoryDisplay: React.FC<CategoryDisplayProps> = ({ show }) => {

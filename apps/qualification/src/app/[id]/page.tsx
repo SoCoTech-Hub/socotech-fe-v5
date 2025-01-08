@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import getSelectedQualification from "@/snippets/user/getSelectedQualification";
 
 import { profileId } from "@acme/snippets/context/constants";
+import getSelectedQualification from "@acme/snippets/user/getSelectedQualification";//TODO:make snippet
 import { Button } from "@acme/ui/button";
-
-import QualificationListing from "../../../../../packages/ui/src/qualifications/listing";
-import QualificationPost from "../../../../../packages/ui/src/qualifications/Post";
+import QualificationListing from "@acme/ui/Qualifications/listing";
+import QualificationPost from "@acme/ui/Qualifications/Post";
 
 interface Qualification {
   id: string;

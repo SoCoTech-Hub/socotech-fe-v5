@@ -8,7 +8,6 @@ import { FetchArticleReaders } from "@acme/snippets/functions/article/articleRea
 import { Button } from "@acme/ui/button";
 import Loader from "@acme/ui/loader";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import ShareLinks from "@acme/ui/ShareLinks/index";
 
 interface Article {
   id: string;
@@ -99,6 +98,7 @@ export default function Article({ article }: ArticleProps) {
                     </div>
                   </div>
                 </div>
+                {/* //TODO:replace with socialLinks */}
                 <div className="ml-2">
                   <ShareLinks
                     news={{ url: `/${article.id}` }}

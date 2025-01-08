@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import getSelectedQualification from "@/snippets/user/getSelectedQualification";
-import { Scrollbars } from "react-custom-scrollbars";
 
 import { profileId } from "@acme/snippets/context/constants";
+import getSelectedQualification from "@acme/snippets/user/getSelectedQualification";//TODO:snippet
+import { ApplicationsPost } from "@acme/ui/applications/Post";
+import { ApplicationsListing } from "@acme/ui/applications/listing";
 import { Button } from "@acme/ui/button";
 
-import { ApplicationsListing } from "../../../../../../packages/ui/src/applications/listing";
-import { ApplicationsPost } from "../../../../../../packages/ui/src/applications/Post";
+
+
+
 
 //TODO:fix components
 interface Qualification {
@@ -103,11 +105,7 @@ const Application: React.FC<ApplicationProps> = ({
         </div>
         <div className="my-4 flex w-full justify-end">
           <Link href={`/applications/${universityId}`}>
-            <Button
-              className="bg-primary" 
-            >
-              Back
-            </Button>
+            <Button className="bg-primary">Back</Button>
           </Link>
         </div>
         {qualificationsArr?.length > 0 && (
@@ -116,15 +114,7 @@ const Application: React.FC<ApplicationProps> = ({
               className="desktop:w-1/3 laptop:w-1/3 mobile:hidden no-scrolly grid grid-cols-1 space-y-2 divide-y shadow-inner"
               id="scrollplz"
             >
-              <Scrollbars
-                style={{ height: "600px" }}
-                renderThumbVertical={({ style, ...props }) => (
-                  <div
-                    {...props}
-                    style={{ ...style, backgroundColor: "#D6F379" }}
-                  />
-                )}
-              >
+              
                 {qualificationsArr.map((item) => (
                   <div key={item.id}>
                     <ApplicationsListing
@@ -141,21 +131,12 @@ const Application: React.FC<ApplicationProps> = ({
                     />
                   </div>
                 ))}
-              </Scrollbars>
             </div>
             <div
               className="desktop:w-2/3 mobile:w-1/2 laptop:w-2/3 mobile:hidden no-scrolly"
               id="scrollplz"
             >
-              <Scrollbars
-                style={{ height: "600px" }}
-                renderThumbVertical={({ style, ...props }) => (
-                  <div
-                    {...props}
-                    style={{ ...style, backgroundColor: "#D6F379" }}
-                  />
-                )}
-              >
+              
                 {selected && (
                   <ApplicationsPost
                     loading={loading}
@@ -185,7 +166,6 @@ const Application: React.FC<ApplicationProps> = ({
                     svgIcon={faculty?.svgIcon}
                   />
                 )}
-              </Scrollbars>
             </div>
           </div>
         )}

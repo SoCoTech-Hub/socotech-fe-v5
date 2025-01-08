@@ -103,7 +103,7 @@ const Billing: React.FC = () => {
       await pauseSubscription(transactions[0].attributes.signature, org);
     }
 
-    await api.put(`/profiles/${profileId}`, {
+    await api.PUT(`/profiles/${profileId}`, {
       cancelDate: date.toISOString().split("T")[0],
     });
 
@@ -124,7 +124,7 @@ const Billing: React.FC = () => {
       await unpauseSubscription(transactions[0].attributes.signature, org);
     }
 
-    await api.put(`/profiles/${profileId}`, {
+    await api.PUT(`/profiles/${profileId}`, {
       cancelDate: null,
     });
 

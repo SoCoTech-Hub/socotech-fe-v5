@@ -1,10 +1,9 @@
 import React, { FC, useEffect } from "react";
 import Link from "next/link";
-import logoutMain from "@/snippets/logoutMain";
-import { baseUrl } from "@acme/snippets/context/constants";
 
-import { Page } from "../../../packages/ui/src/PageLayout";
-import { SEO } from "../../../packages/ui/src/SeoHead";
+import { baseUrl } from "@acme/snippets/context/constants";
+import logoutMain from "@acme/snippets/functions/auth/logoutMain"; //TODO:make snippet
+import { Page } from "@acme/ui/PageLayout/index";
 
 const ForcedOut: FC = () => {
   useEffect(() => {
@@ -13,7 +12,6 @@ const ForcedOut: FC = () => {
 
   return (
     <>
-      <SEO title="Logout" description="Logout Page" />
       <Page
         header="Your account is active on another device or internet browser."
         message={

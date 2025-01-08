@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
-import { SEO } from "@/components/SeoHead";
 
 import { baseUrl } from "@acme/snippets/context/constants";
+import { Button } from "@acme/ui/button";
 
 const Index: FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
@@ -25,7 +25,6 @@ const Index: FC = () => {
 
   return (
     <>
-      <SEO title="Welcome" description="We need to know who you are" />
 
       <div className="desktop:flex-row laptop:flex-row mobile:flex-col flex h-screen overflow-hidden">
         {/* Left Section */}
@@ -54,7 +53,7 @@ const Index: FC = () => {
             <div className="laptop:w-3/5 w-10/12">
               {deferredPrompt && (
                 <div className="flex justify-center py-2">
-                  <button
+                  <Button
                     id="install-button"
                     className="bg-themeColorMain w-64 rounded-full py-2 text-center font-bold text-white"
                     onClick={() => {
@@ -74,7 +73,7 @@ const Index: FC = () => {
                     }}
                   >
                     Install App
-                  </button>
+                  </Button>
                 </div>
               )}
 

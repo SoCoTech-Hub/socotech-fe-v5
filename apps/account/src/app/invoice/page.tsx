@@ -4,9 +4,10 @@ import { useRouter } from "next/router";
 import { ApiTransactionEventTransactionEvent } from "@acme/api/graphql";
 import { api } from "@acme/snippets/api/api";
 import { isPaying, mainUrl, uniqueId } from "@acme/snippets/context/constants";
-import invoice from "@acme/snippets/functions/account/email";
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
+import invoice from "@acme/snippets/functions/payfast/invoice";
+
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 interface Transaction {

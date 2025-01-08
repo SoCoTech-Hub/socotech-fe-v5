@@ -1,7 +1,7 @@
 import React from "react";
 
-import { ApplicationsListing } from "../../../../packages/ui/src/Applications/listing";
-import WelcomeBanner from "../../../../packages/ui/src/applications/tour";
+import { ApplicationsListing } from "@acme/ui/Applications/listing";
+import WelcomeBanner from "@acme/ui/applications/tour";
 
 //TODO: snippets
 export default function Home() {

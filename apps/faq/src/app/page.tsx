@@ -1,9 +1,5 @@
 import React from "react";
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import client from "@/api/apolloClient";
-import { SEO } from "@/components/SeoHead";
-import GetFAQCategories from "graphql/queries/GetFAQCategories";
 
 import { Button } from "@acme/ui/button";
 import DigilibCategories from "@acme/ui/Digilib/Categories";

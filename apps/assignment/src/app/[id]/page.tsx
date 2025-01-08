@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import api from "@/api/api";
-import { getNextButtonHref } from "@/lib/utils";
-import getReadableDate from "@/snippets/user/getReadableDate";
 
 import { grades, userId } from "@acme/snippets/context/constants";
 import { FetchAssignmentReplies } from "@acme/snippets/functions/assignment/assignmentReplies";
 import { FetchUserProfilesByGrades } from "@acme/snippets/functions/assignment/user";
-import AccordionBase from "@acme/ui/Accordion";
+import getReadableDate from "@acme/snippets/user/getReadableDate"; //TODO:find right snippet
+import { getNextButtonHref } from "@acme/snippets/utils/index"; //TODO:Snippet does not exist
+
+import AccordionBase from "@acme/ui/Accordion/index";
 import { Button } from "@acme/ui/button";
 import FileUploader from "@acme/ui/FileUploader";
 import { MultiSelect } from "@acme/ui/MultiSelect";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { Textarea } from "@acme/ui/Textarea";
-import UploadThumbnail from "@acme/ui/UploadThumbnail";
+import UploadThumbnail from "@acme/ui/UploadThumbnail/index";
 
 //TODO:fix components
 interface AssignmentProps {

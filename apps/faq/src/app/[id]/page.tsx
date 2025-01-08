@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { FetchFaqCategory } from "@acme/snippets/functions/faq/faqCategory";
-import Accordion from "@acme/ui/Accordion";
+import Accordion from "@acme/ui/Accordion/index";
 import { Button } from "@acme/ui/button";
 
 interface Faq {
@@ -28,10 +28,6 @@ const FaqDisplay = () => {
     };
   }, []);
 
-  const seo = {
-    title: category?.name || "FAQ",
-    description: category?.name || "FAQ",
-  };
 
   return (
     <div className="col row">

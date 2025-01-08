@@ -1,7 +1,7 @@
 //TODO: used same report sections as profile page
 import React from "react";
 
-import ReportSection from "../../../../../packages/ui/src/profile/report";
+import ReportSection from "@acme/ui/profile/report";
 
 const Report = ({}) => (
   <>

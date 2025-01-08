@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import getSelectedBursary from "@/snippets/user/getSelectedBursary";
 
 import { profileId } from "@acme/snippets/context/constants";
+import getSelectedBursary from "@acme/snippets/functions/user/getSelectedBursary"; //TODO:make snippet
+import BursaryListing from "@acme/ui/Bursaries/listing";
+import BursaryPost from "@acme/ui/Bursaries/Post";
 import { Button } from "@acme/ui/button";
-
-import BursaryListing from "../../../../../../packages/ui/src/Bursaries/listing";
-import BursaryPost from "../../../../../../packages/ui/src/Bursaries/Post";
 
 interface Bursary {
   id: string;

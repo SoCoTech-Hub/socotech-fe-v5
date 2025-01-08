@@ -1,8 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import AccordionSection from "../../../../../../packages/ui/src/Accordion";
-import UploadThumbnail from "../../../../../../packages/ui/src/UploadThumbnail";
+import AccordionSection from "@acme/ui/Accordion/index";
+import UploadThumbnail from "@acme/ui/UploadThumbnail/index";
 
 //TODO:fix uploadThumbnail
 interface RubiconMark {

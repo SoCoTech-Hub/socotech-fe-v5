@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { FetchForums } from "@acme/snippets/functions/forum/forum";
-import ForumPost from "@acme/ui/ForumReviewDisplay/index";
+import ForumPostView from "@acme/ui/Forum/review";
 
 export default function Home() {
   const [forum, setForum] = useState([]);
@@ -208,7 +208,7 @@ export default function Home() {
   return (
     <div>
       {/* TODO: make component dynamic */}
-      <ForumPost />
+      <ForumPostView />
     </div>
   );
 }

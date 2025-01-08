@@ -9,17 +9,10 @@
       "default": "./src/index.ts"
     },
     "./*": {
-      "types": "./dist/src/*.d.ts",
+      "types": "./dist/src/*",
       "default": [
         "./src/*.ts",
         "./src/*.tsx"
-      ]
-    },
-    "./**": {
-      "types": "./dist/src/**/*.d.ts",
-      "default": [
-        "./src/**/*.ts",
-        "./src/**/*.tsx"
       ]
     }
   },
