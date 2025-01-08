@@ -30,7 +30,7 @@
 
 import React from "react";
 
-import MeetingView from "@acme/ui/Zoom/meetingView";
+import MeetingView from "@acme/ui/ZoomMeeting/meetingView";
 
 export default function MeetingPage({
   params,
