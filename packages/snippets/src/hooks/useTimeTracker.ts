@@ -6,12 +6,11 @@ import { api } from "@acme/snippets/api/api";
 import { orgId, userId } from "../context/constants";
 
 interface TimeTrack {
-  userId: string; // User ID (optional, fetch from context if needed)
-  organizationId: string; // Organization ID (optional, fetch from context if needed)
+  user: { id: string };
+  organization: { id: string };
   from: string; // Previous page
   to: string; // Current page
   duration: number; // Time spent in seconds
-  created_at: string; // ISO timestamp
 }
 
 export const useTimeTracker = () => {
@@ -37,12 +36,11 @@ export const useTimeTracker = () => {
 
         // Send tracking data to the API
         trackTime({
-          userId: userId || "",
-          organizationId: orgId || "1",
+          user: { id: userId || "" },
+          organization: { id: orgId || "1" },
           from: previousPathRef.current,
           to: url,
           duration,
-          created_at: new Date().toISOString(),
         });
       }
 
