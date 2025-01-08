@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 
-import { api } from "@acme/snippets/api/api";
-
+import { api } from "../api/api";
 import { orgId, userId } from "../context/constants";
 
 interface TimeTrack {
