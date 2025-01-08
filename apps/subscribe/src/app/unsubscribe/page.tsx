@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Head from "next/head";
-import deleteAccount from "@/snippets/deleteAccount";
-import logout from "@/snippets/logout";
+import deleteAccount from "@/snippets/deleteAccount"; //TODO:make snippet
+import logout from "@/snippets/logout"; //TODO:make snippet
 
 import { baseUrl, profileId, userId } from "@acme/snippets/context/constants";
 import { InputField } from "@acme/ui/InputField/index";

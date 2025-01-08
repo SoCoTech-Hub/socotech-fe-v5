@@ -4,30 +4,15 @@ import { useRouter } from "next/router";
 import { mainUrl } from "@acme/snippets/context/constants";
 import { Button } from "@acme/ui/button";
 import LogoOverlay from "@acme/ui/LogoOverlay/index";
-import { SEO } from "@acme/ui/SeoHead/index";
+
 
 //TODO: move to info
-interface Seo {
-  title: string;
-  description: string;
-}
 
 const Payment: React.FC = () => {
   const router = useRouter();
 
-  const seo: Seo = {
-    title: "Topic - Payment Policy",
-    description: `The Just Brands Africa (PTY) is committed to deal responsibly with
-      your personal information. Just Brands Africa (PTY) provide you with
-      this privacy notice in order for you to make an informed decision
-      about whether you want to use our website or not and/ or provide
-      your personal information. The use of the website is of your own
-      volition and the provision of any personal information.`,
-  };
-
   return (
     <>
-      <SEO title={seo.title} description={seo.description} />
       <div className="desktop:p-4 laptop:p-4 mobile:p-1 bg-appBg desktop:h-full laptop:h-full mobile:h-full no-scrolly overflow-scroll">
         <LogoOverlay />
         <div className="bg-compBg desktop:mt-28 laptop:mt-20 mobile:mt-8 no-scrolly text-textColor desktop:p-4 laptop:p-4 mobile:p-1 rounded-lg drop-shadow-md">

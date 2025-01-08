@@ -3,13 +3,12 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import checkEmail from "@/snippets/auth/checkEmail";
-import validateEmail from "@/snippets/auth/validateEmail";
-import getDataRequest from "@/snippets/getDataRequest";
-import registerUser from "@/snippets/registerUser";
 
-import { authUrl, baseUrl } from "@acme/snippets/context/constants";
-import { fetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
+import checkEmail from "@acme/snippets/auth/checkEmail"; //TODO: make snippet
+import registerUser from "@acme/snippets/auth/registerUser"; //TODO: make snippet
+import validateEmail from "@acme/snippets/auth/validateEmail"; //TODO: make snippet
+import { authUrl, baseUrl } from "@acme/snippets/context/constants"; //TODO: make snippet authURL
+import { FetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField/index";
@@ -37,11 +36,11 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
       if (!uniqueId) {
         router.push(`${baseUrl}cancel`);
       } else {
-        const res = await getDataRequest(`transactions?mPaymentId=${uniqueId}`);
+        const res = await getDataRequest(`transactions?mPaymentId=${uniqueId}`); //TODO:replace
         if (res) {
           setTransaction(res[0]);
           if (res[0]?.ref) {
-            const { affiliates } = await fetchAffiliateReferrer(res[0].ref);
+            const { affiliates } = await FetchAffiliateReferrer(res[0].ref);
             if (affiliates?.length) {
               setRefferal(affiliates[0]);
             }

@@ -1,8 +1,7 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
-import getGQLRequest from "@/snippets/getGQLRequest";
-import createTransaction from "@/snippets/payfast/createTransaction";
-import sendTransaction from "@/snippets/payfast/sendTransaction";
+import createTransaction from "@/snippets/functions/payfast/createTransaction"; //TODO:Make snippet
+import sendTransaction from "@/snippets/functions/payfast/sendTransaction"; //TODO:Make snippet
 
 import {
   baseUrl,
@@ -13,7 +12,6 @@ import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import { SEO } from "@acme/ui/SeoHead/index";
 
 interface SubscribeProps {
   product: any;
@@ -84,14 +82,8 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
     window.location.replace(`${mainUrl}${url}`);
   };
 
-  const seo = {
-    title: "Subscribe",
-    description: "Subscribe to our premium content",
-  };
-
   return (
     <>
-      <SEO title={seo.title} description={seo.description} />
       <div className="g-0 flex flex-wrap overflow-x-hidden">
         <div className="desktop:w-1/2 laptop:w-1/2 mobile:h-1/3 w-full">
           <div className="desktop:h-screen laptop:h-screen flex w-full place-content-center items-center">
