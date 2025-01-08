@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 import client from "@/api/apolloClient";
 import { gql } from "@apollo/client";
 
-
-
 import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
@@ -16,15 +14,11 @@ import { Checkbox } from "@acme/ui/Checkbox";
 import { DatePicker } from "@acme/ui/DatePickField/index";
 import DefaultSelectNew from "@acme/ui/DefaultSelectNew/index"; //TODO:Replace all DefaultSelectNew
 import { InputField } from "@acme/ui/InputField/index";
+import InputMask from "@acme/ui/inputMask";
 import LogoOverlay from "@acme/ui/LogoOverlay/index";
-import Overlay from "@acme/ui/Overlay/index";//TODO:Replace overlay
+import Overlay from "@acme/ui/Overlay/index"; //TODO:Replace overlay
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { InfoIcon } from "@acme/ui/SvgIcons/InfoIcon";
-import InputMask from "@acme/ui/inputMask"
-
-
-
-
 
 type UpdateProps = {
   profile: any;
@@ -236,18 +230,19 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
               required={true}
             />
             <InputField
-              id="firstName"
+              label="First Name"
               placeholder="First Name"
               type="text"
               value={userInput.firstName}
-              onChange={(e) => updateInput(e.target.value, "firstName")}
+              onChange={(value) => updateInput(value as string, "firstName")}
             />
+
             <InputField
-              id="surname"
+              label="Surname"
               placeholder="Your Surname"
               type="text"
               value={userInput.lastName}
-              onChange={(e) => updateInput(e.target.value, "lastName")}
+              onChange={(value) => updateInput(value as string, "lastName")}
             />
             <InputMask
               onChange={(e) => updateInput(e.target.value, "mobileNr")}

@@ -96,9 +96,12 @@ const Reset: FC = () => {
               </div>
               <form onSubmit={handleSubmit}>
                 <InputField
+                  label="Email"
                   icon="ti-email"
                   placeholder="Your Email Address"
-                  onChange={(e) => setEmail(e.target.value)}
+                  type="text"
+                  value={email}
+                  onChange={(value) => setEmail(value as string)}
                 />
                 <div className="mb-1">
                   <PopupAlert

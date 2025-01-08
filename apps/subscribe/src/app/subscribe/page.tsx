@@ -115,30 +115,39 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
               <form autoComplete="on">
                 <div className="my-4">Add Invoice Information (Optional)</div>
                 <InputField
-                  id="Email"
+                  label="Email"
                   placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
                   value={email}
+                  type="text"
+                  onChange={(value) => setEmail(value as string)}
                 />
+
                 <InputField
-                  id="CompanyName"
+                  label="Company Name"
                   placeholder="Company"
-                  onChange={(e) => setCompany(e.target.value)}
                   value={company}
+                  type="text"
+                  onChange={(value) => setCompany(value as string)}
                 />
+
                 {company && (
                   <InputField
-                    id="VATNumber"
+                    label="VAT Number"
                     placeholder="VAT Number"
-                    onChange={(e) => setVatNr(e.target.value)}
                     value={vatnr}
+                    type="text"
+                    onChange={(value) => setVatNr(value as string)}
                   />
                 )}
+
                 <InputField
-                  id="AdditionalInfo"
+                  label="Additional Info"
                   placeholder="Additional Information"
-                  onChange={(e) => setAdditionalInformation(e.target.value)}
                   value={additionalInformation}
+                  type="text"
+                  onChange={(value) =>
+                    setAdditionalInformation(value as string)
+                  }
                 />
 
                 <div className="flex h-10 flex-row text-left align-middle">

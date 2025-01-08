@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { format } from "date-fns";
 import { Calendar, Eye, EyeOff } from "lucide-react";
 
@@ -18,6 +18,7 @@ export interface InputFieldProps {
   onChange: (value: string | Date) => void;
   className?: string;
   error?: string;
+  icon?: ReactNode; // New prop to accept an icon
 }
 
 export function InputField({
@@ -28,6 +29,7 @@ export function InputField({
   onChange,
   className,
   error,
+  icon,
 }: InputFieldProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -52,12 +54,20 @@ export function InputField({
       case "password":
         return (
           <div className="relative">
+            {icon && (
+              <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                {icon}
+              </div>
+            )}
             <Input
               type={showPassword ? "text" : "password"}
               placeholder={placeholder}
               value={value as string}
               onChange={handleInputChange}
-              className={cn("pr-10", error && "border-red-500")}
+              className={cn(
+                icon ? "pl-10 pr-10" : "pr-10",
+                error && "border-red-500",
+              )}
             />
             <Button
               type="button"
@@ -89,7 +99,7 @@ export function InputField({
                   error && "border-red-500",
                 )}
               >
-                <Calendar className="mr-2 h-4 w-4" />
+                {icon || <Calendar className="mr-2 h-4 w-4" />}
                 {value instanceof Date ? (
                   format(value, "PPP")
                 ) : (
@@ -109,13 +119,20 @@ export function InputField({
         );
       default:
         return (
-          <Input
-            type="text"
-            placeholder={placeholder}
-            value={value as string}
-            onChange={handleInputChange}
-            className={cn(error && "border-red-500")}
-          />
+          <div className="relative">
+            {icon && (
+              <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                {icon}
+              </div>
+            )}
+            <Input
+              type="text"
+              placeholder={placeholder}
+              value={value as string}
+              onChange={handleInputChange}
+              className={cn(icon ? "pl-10" : "", error && "border-red-500")}
+            />
+          </div>
         );
     }
   };

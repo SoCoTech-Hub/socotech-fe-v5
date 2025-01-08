@@ -162,37 +162,46 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
               <form onSubmit={handleSubmit} autoComplete="off">
                 <input autoComplete="off" name="hidden" type="text" />
                 <InputField
-                  id="StudentName"
+                  label="Student Name"
                   icon="ti-user"
                   placeholder="Learner Name"
-                  onChange={(e) => setFirstName(e)}
+                  type="text"
+                  value={firstName}
+                  onChange={(value) => setFirstName(value as string)}
                 />
                 <InputField
-                  id="StudentSurname"
+                  label="Student Surname"
                   icon="ti-user"
                   placeholder="Learner Surname"
-                  onChange={(e) => setLastName(e)}
+                  type="text"
+                  value={lastName}
+                  onChange={(value) => setLastName(value as string)}
                 />
+
                 <InputField
-                  id="StudentEmail"
+                  label="Student Email"
                   icon="ti-email"
                   placeholder="Learner Email Address"
-                  type="email"
-                  onChange={(e) => setEmail(e)}
+                  type="text"
+                  value={email}
+                  onChange={(value) => setEmail(value as string)}
                 />
+
                 <InputField
-                  id="StudentPassword"
+                  label="Student Password"
                   icon="ti-lock"
                   placeholder="Password"
                   type="password"
-                  onChange={(e) => setPassword(e)}
+                  value={password}
+                  onChange={(value) => setPassword(value as string)}
                 />
                 <InputField
-                  id="StudentRepeatPassword"
+                  label="Student Repeat Password"
                   icon="ti-lock"
                   placeholder="Repeat Password"
                   type="password"
-                  onChange={(e) => setRepeatPassword(e)}
+                  value={repeatPassword}
+                  onChange={(value) => setRepeatPassword(value as string)}
                 />
 
                 <div className="my-3 flex flex-row text-left">

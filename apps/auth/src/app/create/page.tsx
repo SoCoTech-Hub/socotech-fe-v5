@@ -15,27 +15,16 @@ type RegisterProps = {};
 
 const Register: FC<RegisterProps> = () => {
   const router = useRouter();
-  const [userInput, setUserInput] = useState({
-    email: "",
-    password: "",
-    confirm: "",
-  });
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirm, setConfirm] = useState<string>("");
   const [check, setCheck] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const updateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserInput((prevInput) => ({
-      ...prevInput,
-      [name]: value,
-    }));
-  };
-
   const register = async () => {
     setError("");
     setLoading(true);
-    const { email, password, confirm } = userInput;
 
     // Basic validation
     if (!email || !password || !confirm) {
@@ -112,7 +101,7 @@ const Register: FC<RegisterProps> = () => {
         </div>
         {/* Right section with form */}
         <div className="mobile:pt-4 ml-8 w-full pt-16">
-          {/*logo overlay*/}
+          {/* Logo overlay */}
           <img
             src={`${baseUrl}/logo.png`}
             alt="Logo"
@@ -127,34 +116,34 @@ const Register: FC<RegisterProps> = () => {
           <form autoComplete="on">
             <div className="w-4/5 pt-2">
               <InputField
-                id="email"
-                name="email"
+                label="Email"
                 icon="ti-email"
                 placeholder="Your Email Address"
                 type="text"
-                onChange={updateInput}
+                value={email}
+                onChange={(value) => setEmail(value as string)}
               />
             </div>
 
             <div className="desktop:flex-row laptop:flex-row mobile:flex-col flex gap-1">
               <div className="mobile:w-4/5 w-2/5">
                 <InputField
-                  id="password"
-                  name="password"
+                  label="Password"
                   icon="ti-lock"
                   placeholder="Password"
                   type="password"
-                  onChange={updateInput}
+                  value={password}
+                  onChange={(value) => setPassword(value as string)}
                 />
               </div>
               <div className="mobile:w-4/5 w-2/5">
                 <InputField
-                  id="confirm"
-                  name="confirm"
+                  label="Confirm"
                   icon="ti-lock"
                   placeholder="Confirm Password"
                   type="password"
-                  onChange={updateInput}
+                  value={confirm}
+                  onChange={(value) => setConfirm(value as string)}
                 />
               </div>
             </div>

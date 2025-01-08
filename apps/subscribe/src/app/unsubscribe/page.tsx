@@ -111,9 +111,11 @@ const Unsubscribe: React.FC = () => {
             </span>
             <div className="my-2">
               <InputField
+                label="Reason"
                 placeholder="Start typing here..."
                 value={reason}
-                onChange={(e) => setReason(e.target.value)}
+                type="text"
+                onChange={(value) => setReason(value as string)}
               />
             </div>
 
