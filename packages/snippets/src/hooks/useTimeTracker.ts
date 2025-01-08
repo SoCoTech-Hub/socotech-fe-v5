@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 
 import { api } from "@acme/snippets/api/api";
 
+import { orgId, userId } from "../context/constants";
+
 interface TimeTrack {
   userId: string; // User ID (optional, fetch from context if needed)
   organizationId: string; // Organization ID (optional, fetch from context if needed)
@@ -35,8 +37,8 @@ export const useTimeTracker = () => {
 
         // Send tracking data to the API
         trackTime({
-          userId: "user-id", // Replace with actual user ID
-          organizationId: "org-id", // Replace with actual organization ID
+          userId: userId || "",
+          organizationId: orgId || "1",
           from: previousPathRef.current,
           to: url,
           duration,

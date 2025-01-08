@@ -141,3 +141,19 @@ export const useTextDark = (): string | undefined => {
   const { organization } = useAppContext();
   return organization?.attributes.textDark;
 };
+export const useOrgEmail = (): string | undefined => {
+  const { organization } = useAppContext();
+  return organization?.attributes.email;
+};
+export const useOrgVat = (): string | undefined => {
+  const { organization } = useAppContext();
+  return organization?.attributes.companyVatNr;
+};
+export const useOrgName = (): string | undefined => {
+  const { organization } = useAppContext();
+  return organization?.attributes.companyName;
+};
+export const useOrgUrl = (): string | undefined => {
+  const { organization } = useAppContext();
+  return organization?.attributes.url;
+};

@@ -18,6 +18,10 @@ import {
   useLogoDark,
   useOrganizationId,
   useOrganizationName,
+  useOrgEmail,
+  useOrgName,
+  useOrgUrl,
+  useOrgVat,
   usePrimaryColor,
   usePrimaryColorDark,
   useProfileBanner,
@@ -43,6 +47,7 @@ export const env = process.env.ENV_MODE;
 export const gqlUrl = process.env.NEXT_PUBLIC_GQL_URL;
 export const gtag = process.env.NEXT_PUBLIC_GTAG_ID;
 export const mainUrl = process.env.NEXT_PUBLIC_MAIN_URL;
+export const testmode = process.env.NEXT_PUBLIC_TEST;
 export const isPaying = useIsPaying();
 export const orgId = useOrganizationId();
 export const merchantId = useOrganizationId();
@@ -67,12 +72,18 @@ export const SecondaryColorDark = useSecondaryColorDark();
 export const Text = useText();
 export const TextDark = useTextDark();
 
+// Organization constants
+export const OrgEmail = useOrgEmail();
+export const OrgVat = useOrgVat();
+export const OrgName = useOrgName(); // Company registered Name (example:Just Brands PTY Ltd)
+export const OrgUrl = useOrgUrl();
+
 // User Constants
 export const Banner = useProfileBanner();
 export const email = useEmail();
 export const hasSiyavulaAccess = useHasSiyavulaAccess();
 export const isDeveloper = useIsDeveloper();
-export const orgName = useOrganizationName();
+export const orgName = useOrganizationName(); // Platform Name (example:TopicX)
 export const organizationId = useOrganizationId();
 export const ProfilePic = useProfilePic();
 export const role = useRole();

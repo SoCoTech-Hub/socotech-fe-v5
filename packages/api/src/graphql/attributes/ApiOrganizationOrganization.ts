@@ -1,4 +1,3 @@
-
 export interface ApiOrganizationOrganization {
   id: string;
   attributes: {
@@ -32,5 +31,9 @@ export interface ApiOrganizationOrganization {
     updatedAt: string;
     updatedBy: string;
     vouchers: string;
+    email: string;
+    companyVatNr: string;
+    companyName: string;
+    url: string;
   };
 }
