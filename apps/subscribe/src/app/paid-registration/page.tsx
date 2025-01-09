@@ -205,9 +205,13 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
                 />
 
                 <div className="my-3 flex flex-row text-left">
-                  <Checkbox label="Accept" setter={setCheck} />
+                  <Checkbox
+                    checked={check as boolean}
+                    onCheckedChange={(value) => setCheck(value as boolean)}
+                  />
                   <div className="mt-1 text-xs">
                     &nbsp;
+                    <span>Accept </span>
                     <Link href="/tou" passHref>
                       <span className="pointer-cursor cursor-pointer font-bold hover:text-blue-400">
                         Terms and Conditions

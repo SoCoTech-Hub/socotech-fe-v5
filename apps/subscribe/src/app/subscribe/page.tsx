@@ -152,7 +152,10 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
 
                 <div className="flex h-10 flex-row text-left align-middle">
                   <div className="mt-0.5">
-                    <Checkbox setter={setIsCheck} value={isChecked} />
+                    <Checkbox
+                      checked={isChecked}
+                      onCheckedChange={(value) => setIsCheck(value as boolean)}
+                    />
                   </div>
                   <div className="mt-0.5 text-sm">
                     <span className="text-textHeading font-bold">Accept </span>

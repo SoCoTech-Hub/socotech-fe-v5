@@ -150,7 +150,10 @@ const Register: FC<RegisterProps> = () => {
 
             {/* Checkbox and Terms */}
             <div className="mobile:mb-4 mb-4 mt-3 flex items-center">
-              <Checkbox setter={setCheck} value={check} />
+              <Checkbox
+                checked={check}
+                onCheckedChange={(value) => setCheck(value as boolean)}
+              />
               <div className="text-textColor ml-2 text-sm">
                 I have read and agreed to the
                 <Link href="/tou" passHref>

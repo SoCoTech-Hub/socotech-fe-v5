@@ -167,7 +167,11 @@ const AccountSettings: React.FC = () => {
               }`}
             />
           </div>
-          <Alert error={error} success={success} />
+          <PopupAlert
+            message={error ? error : success}
+            variant={error ? "destructive" : "success"}
+            visible={!!(error || success)}
+          />
         </div>
 
         {/* Billing Information */}
