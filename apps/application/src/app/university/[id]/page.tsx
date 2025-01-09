@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
-import getSelectedQualification from "@acme/snippets/user/getSelectedQualification";//TODO:snippet
-import { ApplicationsPost } from "@acme/ui/applications/Post";
+import getSelectedQualification from "@acme/snippets/user/getSelectedQualification"; //TODO:snippet
+
 import { ApplicationsListing } from "@acme/ui/applications/listing";
+import { ApplicationsPost } from "@acme/ui/applications/Post";
 import { Button } from "@acme/ui/button";
-
-
-
-
 
 //TODO:fix components
 interface Qualification {
@@ -19,6 +16,7 @@ interface Qualification {
   shortDescription?: string;
   university?: { logo?: { url: string } };
   degree?: string;
+  duration?: string;
   subjects?: { id: string; name: string }[];
   url?: string;
   openDate?: string;
@@ -114,63 +112,61 @@ const Application: React.FC<ApplicationProps> = ({
               className="desktop:w-1/3 laptop:w-1/3 mobile:hidden no-scrolly grid grid-cols-1 space-y-2 divide-y shadow-inner"
               id="scrollplz"
             >
-              
-                {qualificationsArr.map((item) => (
-                  <div key={item.id}>
-                    <ApplicationsListing
-                      id={item.id}
-                      courseTitle={item.name}
-                      courseCompanyName={item.institution}
-                      courseDescription={item.shortDescription}
-                      applicationFeatureImage={
-                        faculty?.icon || "/user/Icon_School.png"
-                      }
-                      bgColor={faculty?.color}
-                      svgIcon={faculty?.svgIcon}
-                      setSelection={setSelectedId}
-                    />
-                  </div>
-                ))}
+              {qualificationsArr.map((item) => (
+                <div key={item.id}>
+                  <ApplicationsListing
+                    id={item.id}
+                    courseTitle={item.name}
+                    courseCompanyName={item.institution}
+                    courseDescription={item.shortDescription}
+                    applicationFeatureImage={
+                      faculty?.icon?.url || "/user/Icon_School.png"
+                    }
+                    bgColor={faculty?.color}
+                    svgIcon={faculty?.svgIcon}
+                    setSelection={setSelectedId}
+                  />
+                </div>
+              ))}
             </div>
             <div
               className="desktop:w-2/3 mobile:w-1/2 laptop:w-2/3 mobile:hidden no-scrolly"
               id="scrollplz"
             >
-              
-                {selected && (
-                  <ApplicationsPost
-                    loading={loading}
-                    qualificationUrl={selected.url}
-                    qualificationId={selected.id}
-                    profileId={profileId}
-                    courseTitle={selected.name}
-                    companyDescription={selected.institution}
-                    timePosted={selected.created_at}
-                    numberOfApplicants={numberOfApplications}
-                    positionTitle={
-                      selected.duration && selected.degree
-                        ? `${selected.duration} - ${selected.degree}`
-                        : ""
-                    }
-                    fieldDescription={
-                      selected.openDate && selected.closeDate
-                        ? `${selected.openDate} - ${selected.closeDate}`
-                        : "Date: TBC"
-                    }
-                    topDescription={selected.programmDescription}
-                    requirementsDescription={selected.requirements}
-                    applicationFeatureImage={
-                      faculty?.icon || "/user/Icon_School.png"
-                    }
-                    bgColor={faculty?.color}
-                    svgIcon={faculty?.svgIcon}
-                  />
-                )}
+              {selected && (
+                <ApplicationsPost
+                  loading={loading}
+                  qualificationUrl={selected.url as string}
+                  qualificationId={selected.id as string}
+                  profileId={profileId as string}
+                  courseTitle={selected.name}
+                  companyDescription={selected.institution}
+                  timePosted={selected.created_at}
+                  numberOfApplicants={numberOfApplications.toString()}
+                  positionTitle={
+                    selected.duration && selected.degree
+                      ? `${selected.duration} - ${selected.degree}`
+                      : ""
+                  }
+                  fieldDescription={
+                    selected.openDate && selected.closeDate
+                      ? `${selected.openDate} - ${selected.closeDate}`
+                      : "Date: TBC"
+                  }
+                  topDescription={selected.programmDescription}
+                  requirementsDescription={selected.requirements}
+                  applicationFeatureImage={
+                    faculty?.icon?.url || "/user/Icon_School.png"
+                  }
+                  bgColor={faculty?.color}
+                  svgIcon={faculty?.svgIcon}
+                />
+              )}
             </div>
           </div>
         )}
         {qualificationsArr?.length === 0 && !loading && (
-          <div align="center" className="text-white">
+          <div className="text-white align-middle">
             No Qualifications found
           </div>
         )}

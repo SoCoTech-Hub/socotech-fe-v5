@@ -1,4 +1,3 @@
-
 export interface ApiTransactionTransaction {
   id: string;
   attributes: {

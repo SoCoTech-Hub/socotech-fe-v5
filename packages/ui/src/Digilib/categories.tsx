@@ -20,6 +20,7 @@ interface DigilibCategoriesProps {
 
 const DigilibCategories: React.FC<DigilibCategoriesProps> = ({
   img = "coming_soon.jpg",
+  imgAlt,
   title,
   description,
   link,
@@ -35,7 +36,7 @@ const DigilibCategories: React.FC<DigilibCategoriesProps> = ({
         <CardHeader className="flex justify-center p-4">
           <div
             className="relative h-72 w-auto rounded-t-lg bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${img})` }}
+            style={{ backgroundImage: `url(${img ? img : imgAlt})` }}
           >
             {title && (
               <div className="absolute bottom-0 w-full bg-black/60 p-2 text-center">

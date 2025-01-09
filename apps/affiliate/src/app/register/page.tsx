@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { api } from "@acme/snippets/api/api";
 import {
-  organizationId,
+  // organizationId,
   profileId,
   userId,
 } from "@acme/snippets/context/constants";
 import { FetchIsAffiliate } from "@acme/snippets/functions/affiliate/affiliate";
-import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
+// import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
 import { Button } from "@acme/ui/button";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
@@ -17,23 +18,20 @@ const RegisterAffiliate = () => {
     id?: string;
     profile?: { isAffiliate: boolean };
   }>({});
-  const [responses, setResponses] = useState<{ terms: string }[]>([]);
+  const [responses, _setResponses] = useState<{ terms: string }[]>([]);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [disabled, setDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const terms = await FetchAffiliateSettingTerms(organizationId);
-      setResponses(terms);
+      // const terms = await FetchAffiliateSettingTerms(organizationId || "1");
+      // setResponses(terms.attributes);//TODO: Fix this
 
-      const { affiliates } = await FetchIsAffiliate(profileId);
-      if (affiliates.length) {
-        setAffiliate(affiliates[0]);
-      }
-
-      if (affiliates.length) {
-        if (affiliates[0].profile.isAffiliate) {
+      const affiliates = await FetchIsAffiliate(profileId || "");
+      if (affiliates) {
+        setAffiliate(affiliates);
+        if (affiliates.profile.isAffiliate) {
           setSuccess("You are already an affiliate.");
         } else {
           setSuccess("Your request is being processed.");
@@ -49,9 +47,9 @@ const RegisterAffiliate = () => {
     if (affiliate.id) {
       setError("You Already Applied.");
     } else {
-      await api.post("/affiliates", {
-        user: { id: parseInt(userId) },
-        profile: { id: parseInt(profileId) },
+      await api.POST("/affiliates", {
+        user: { id: parseInt(userId || "") },
+        profile: { id: parseInt(profileId || "") },
       });
       setSuccess("Thank You For Applying!");
     }

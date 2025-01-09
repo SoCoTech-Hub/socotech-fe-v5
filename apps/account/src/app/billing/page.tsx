@@ -25,10 +25,8 @@ import {
   UpsertTransaction,
 } from "@acme/snippets/functions/account/transaction";
 import { convertUTCToLocal } from "@acme/snippets/functions/convertUtcToLocal";
-import {
-  pauseSubscription,
-  unpauseSubscription,
-} from "@acme/snippets/functions/payfast";
+import { PauseSubscription } from "@acme/snippets/functions/payfast/pauseSubscription";
+import UnpauseSubscription from "@acme/snippets/functions/payfast/unpauseSubscription";
 import { Button } from "@acme/ui/button";
 import { InputField } from "@acme/ui/InputField/index";
 import Modal from "@acme/ui/modal";
@@ -72,16 +70,16 @@ const Billing: React.FC = () => {
       if (uniqueId && organizationId) {
         const trans = await FetchTransactionByPaymentId(uniqueId);
         if (trans) {
-          setTransactions(trans.transactions);
-          setCompany(trans[0].company);
-          setVatNr(trans[0].vatNr);
-          setFirstName(trans[0].firstName);
-          setLastName(trans[0].lastName);
-          setEmail(trans[0].email);
-          setAddressLine1(trans[0].addressLine1);
-          setPostalCode(trans[0].postalCode);
-          setAdditionalInformation(trans[0].additionalInformation);
-          setCellNr(trans[0].cellnr);
+          // setTransactions(trans.transactions);//TODO: Fix this
+          // setCompany(trans[0].company);
+          // setVatNr(trans[0].vatNr);
+          // setFirstName(trans[0].firstName);
+          // setLastName(trans[0].lastName);
+          // setEmail(trans[0].email);
+          // setAddressLine1(trans[0].addressLine1);
+          // setPostalCode(trans[0].postalCode);
+          // setAdditionalInformation(trans[0].additionalInformation);
+          // setCellNr(trans[0].cellnr);
         }
 
         const prof = await FetchProfile(profileId || "");
@@ -100,7 +98,7 @@ const Billing: React.FC = () => {
   const cancelSub = async () => {
     const date = new Date();
     if (transactions?.[0]?.attributes?.signature) {
-      await pauseSubscription(transactions[0].attributes.signature, org);
+      await PauseSubscription(transactions[0].attributes.signature, org);
     }
 
     await api.PUT(`/profiles/${profileId}`, {
@@ -121,7 +119,7 @@ const Billing: React.FC = () => {
 
   const unCancelSub = async () => {
     if (transactions?.[0]?.attributes?.signature) {
-      await unpauseSubscription(transactions[0].attributes.signature, org);
+      await UnpauseSubscription(transactions[0].attributes.signature);
     }
 
     await api.PUT(`/profiles/${profileId}`, {

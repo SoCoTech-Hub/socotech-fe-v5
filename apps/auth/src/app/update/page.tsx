@@ -296,7 +296,7 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
         </form>
 
         {isUnder18(userInput.dob) && (
-          <div className="mobile:mb-4 mb-4 mt-3 flex items-center"> 
+          <div className="mobile:mb-4 mb-4 mt-3 flex items-center">
             <Checkbox
               checked={check}
               onCheckedChange={(value) => setCheck(value as boolean)}

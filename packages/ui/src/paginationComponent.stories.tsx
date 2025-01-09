@@ -4,7 +4,7 @@ import { useState } from "react";
 import { PaginationComponent } from "./paginationComponent";
 
 export default {
-  title: "Pagination",
+  title: "PaginationComponent",
   component: PaginationComponent,
   parameters: {
     docs: {

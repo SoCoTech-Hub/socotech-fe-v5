@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
+import { profileId } from "@acme/snippets/context/constants";
 import { FetchArticle } from "@acme/snippets/functions/article/article";
 import { FetchArticleReaders } from "@acme/snippets/functions/article/articleReader";
 import { Button } from "@acme/ui/button";
@@ -37,7 +38,7 @@ export default function Article({ article }: ArticleProps) {
   const router = useRouter();
 
   useEffect(() => {
-    FetchArticleReaders({ articleId: article.id, profileId: profileId });
+    FetchArticleReaders({ articleId: article.id, profileId: profileId || "" });
   }, [article.id]);
 
   const handleSaveArticle = () => {
@@ -165,7 +166,7 @@ export default function Article({ article }: ArticleProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const article = await FetchArticle(params.id as string);
+  const article = await FetchArticle(params?.id as string);
   return {
     props: {
       article: article,

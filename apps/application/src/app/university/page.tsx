@@ -32,7 +32,8 @@ const Applications: React.FC<ApplicationsProps> = ({
   return (
     <div>
       <div className="mb-5 w-full">
-        <WelcomeBanner />
+        <WelcomeBanner tourImage="" />
+        {/* //TODO: add image */}
         <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 flex justify-end font-bold">
           <Link href={`/applications`}>
             <Button className="bg-primary">Back</Button>
@@ -41,13 +42,10 @@ const Applications: React.FC<ApplicationsProps> = ({
         <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 desktop:grid-cols-3 laptop:grid-cols-3 mobile:grid-cols-1 grid place-items-stretch gap-3">
           {faculties?.map((faculty) => (
             <DigilibCategories
-              background={faculty?.background?.url}
-              bgColor={faculty?.color}
-              svgIcon={faculty?.svgIcon}
-              icon={faculty?.icon}
+              img={faculty?.svgIcon}
+              imgAlt={faculty?.icon?.url ? faculty?.icon?.url : ""}
               title={faculty?.name}
               description={faculty?.about}
-              id={faculty?.id}
               key={faculty?.id}
               link={`applications/${university?.id}`}
             />

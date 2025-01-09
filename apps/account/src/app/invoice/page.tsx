@@ -6,8 +6,7 @@ import { api } from "@acme/snippets/api/api";
 import { isPaying, mainUrl, uniqueId } from "@acme/snippets/context/constants";
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
-import invoice from "@acme/snippets/functions/payfast/invoice";
-
+import invoice from "@acme/snippets/functions/payfast/email/invoice";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 
 interface Transaction {
@@ -177,6 +176,7 @@ const Invoice = () => {
 };
 
 const generateInvoiceHTML = (
+  //TODO: Fix this
   transaction: Transaction,
   event: Event,
   organization: Organization,
@@ -191,20 +191,20 @@ const generateInvoiceHTML = (
   `;
 };
 
-export async function getServerSideProps({ req }: { req: any }) {
-  const cookies = parseCookies(req);
-  const uniqueId = cookies.uniqueId;
+// export async function getServerSideProps({ req }: { req: any }) {//TODO: Fix this
+//   const cookies = parseCookies(req);
+//   const uniqueId = cookies.uniqueId;
 
-  const event = await FetchTransactionEventsByPaymentId(uniqueId);
+//   const event = await FetchTransactionEventsByPaymentId(uniqueId);
 
-  const { organization } = await FetchOrganizationLogos();
+//   const { organization } = await FetchOrganizationLogos();
 
-  return {
-    props: {
-      event: event,
-      organization,
-    },
-  };
-}
+//   return {
+//     props: {
+//       event: event,
+//       organization,
+//     },
+//   };
+// }
 
 export default Invoice;

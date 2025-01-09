@@ -9,11 +9,15 @@ export default function Home() {
     <div>
       <div>
         <div className="desktop:p-4 laptop:p-4 mobile:p-1 card bg-themeColorMain w-full">
-          <WelcomeBanner />
+          <WelcomeBanner tourImage="" />
+          {/* //TODO:add image */}
         </div>
 
         <div className="mobile:grid-cols-2 my-4 grid grid-cols-5 place-items-stretch gap-3">
-          {faculties?.map((faculty) => <ApplicationsListing link={""} />)}
+          {/* //TODO:fix */}
+          {faculties?.map((faculty) => (
+            <ApplicationsListing setSelection={""} />
+          ))}
         </div>
       </div>
     </div>
