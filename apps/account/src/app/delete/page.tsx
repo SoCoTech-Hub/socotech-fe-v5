@@ -7,8 +7,8 @@ import DeleteAccount from "@acme/ui/deletePage";
 const DeletePage = () => {
   return (
     <DeleteAccount
-      deleteAccount={DeleteProfile()}
-      deactivateAccount={DeactivateProfile()}
+      deleteAccount={DeleteProfile}
+      deactivateAccount={DeactivateProfile}
     />
   );
 };
