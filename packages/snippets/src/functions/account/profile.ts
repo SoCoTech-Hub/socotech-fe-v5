@@ -33,5 +33,8 @@ export const FetchProfile = async (id: string) => {
   }>(GET_PROFILE, { id });
 };
 //TODO: complete these functions
-export const updateImages = () => {};
-export const uploadImages = () => {};
+export const UpdateImages = () => {};
+export const UploadImages = () => {};
+
+export const DeleteProfile = () => {};
+export const DeactivateProfile = () => {};

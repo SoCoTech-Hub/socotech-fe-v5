@@ -1,7 +1,7 @@
+import { api } from "../../api/api";
 import { runQuery } from "../../graphql";
 import { GET_SUBSCRIPTIONS } from "../../graphql/account/subscription";
 import { useProfileId } from "../../utils";
-import { api } from "../.@acme/snippets/api/api";
 
 interface Subscription {
   id: string;

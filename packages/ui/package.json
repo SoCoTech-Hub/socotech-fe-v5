@@ -32,6 +32,7 @@
     "@acme/snippets": "workspace:*",
     "@hookform/resolvers": "catalog:ui",
     "@radix-ui/react-accordion": "catalog:ui",
+    "@radix-ui/react-alert-dialog": "catalog:ui",
     "@radix-ui/react-avatar": "catalog:ui",
     "@radix-ui/react-checkbox": "catalog:ui",
     "@radix-ui/react-collapsible": "catalog:ui",

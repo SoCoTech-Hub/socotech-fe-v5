@@ -187,7 +187,6 @@ const handleCompletePayment = async (
     );
 
     const invoiceBody = Invoice({
-      organizationName: organization.name,
       OrgName: OrgName || "Just Brands (PTY) Ltd.",
       orgName: orgName || "TOPIC",
       orgEmail: OrgEmail || "info@topic.co.za",

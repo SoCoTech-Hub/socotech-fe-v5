@@ -14,6 +14,7 @@ import {
   useIcon2Dark,
   useIsDeveloper,
   useIsPaying,
+  useLastName,
   useLogo,
   useLogoDark,
   useOrganizationId,
@@ -90,6 +91,7 @@ export const role = useRole();
 export const uniqueId = useUniqueId();
 export const userName = useDisplayName();
 export const firstName = useFirstName();
+export const lastName = useLastName();
 
 // School Details
 export const grades = useGrades();

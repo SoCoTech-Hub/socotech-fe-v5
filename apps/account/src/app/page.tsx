@@ -2,9 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-import { isPaying } from "@acme/snippets/context/constants";
+import { HandleSendInvoice, UpdateImages, UploadImages } from "@acme/snippets";
+import { api } from "@acme/snippets/api/api";
+import {
+  Banner,
+  email,
+  isPaying,
+  profileId,
+  ProfilePic,
+  userId,
+  userName,
+} from "@acme/snippets/context/constants";
 import {
   FetchSubscription,
   UpsertSubscription,
@@ -13,29 +22,18 @@ import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import Cover from "@acme/ui/profile/cover";
 import { Switch } from "@acme/ui/switch";
 
-interface Subscription {
-  id: string;
-  newsletterActive: boolean;
-  smsActive: boolean;
-}
-
 const AccountSettings: React.FC = () => {
-  const { basePath } = useRouter();
-  const [subscriptions, setSubscriptions] = useState<Subscription | null>(null);
   const [newsLetterActive, setNewsLetterActive] = useState<boolean>(true);
   const [success, setSuccess] = useState<string>("");
   const [smsActive, setSmsActive] = useState<boolean>(true);
-  const [successPwd, setSuccessPwd] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [errorPwd, setErrorPwd] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        const subscriptions = await FetchSubscription();
+        const { subscriptions } = await FetchSubscription();
         if (subscriptions.length) {
-          setSubscriptions(subscriptions[0]);
           setNewsLetterActive(subscriptions[0].newsletterActive);
           setSmsActive(subscriptions[0].smsActive);
         }
@@ -48,14 +46,12 @@ const AccountSettings: React.FC = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
+    setError("");
     try {
-      // Replace with actual API call for password reset
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API delay
-      setSuccessPwd("Password reset link sent successfully.");
-      setErrorPwd("");
+      await api.POST("/auth/forgot-password", { email: email });
+      setSuccess("Password reset link sent successfully.");
     } catch (error) {
-      setErrorPwd("Failed to request password reset. Please try again.");
-      setSuccessPwd("");
+      setError("Failed to request password reset. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -69,25 +65,37 @@ const AccountSettings: React.FC = () => {
     activeSms: boolean;
   }) => {
     try {
-      const updated = await UpsertSubscription({
+      const updatedSubscription = await UpsertSubscription({
         newsletterActive: activeNewsLetter,
         smsActive: activeSms,
       });
-      setSubscriptions(updated);
-      setNewsLetterActive(updated.newsletterActive);
-      setSmsActive(updated.smsActive);
-      setSuccess("Preferences updated successfully.");
-      setError("");
+
+      if (updatedSubscription) {
+        setNewsLetterActive(updatedSubscription.newsletterActive);
+        setSmsActive(updatedSubscription.smsActive);
+        setSuccess("Preferences updated successfully.");
+      }
     } catch (error) {
       setError("Failed to update preferences. Please try again.");
-      setSuccess("");
+    } finally {
+      setTimeout(() => {
+        setError("");
+        setSuccess("");
+      }, 3000);
     }
   };
 
   return (
     <div className="mb-24 mt-1.5 w-full">
       <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
-        <Cover edit="true" />
+        <Cover
+          user={{ id: userId, profile: { id: profileId } }}
+          avatarImage={ProfilePic}
+          bannerImage={Banner}
+          name={userName}
+          updateImages={UpdateImages}
+          uploadImage={UploadImages}
+        />
         <div className="ml-2 mr-2 mt-4 pb-3">
           <hr className="bg-compBg" />
         </div>
@@ -134,9 +142,9 @@ const AccountSettings: React.FC = () => {
             </span>
             <Switch
               checked={newsLetterActive}
-              onChange={(e) =>
+              onCheckedChange={(checked: boolean) =>
                 updateNewsletter({
-                  activeNewsLetter: e,
+                  activeNewsLetter: checked,
                   activeSms: smsActive,
                 })
               }
@@ -156,10 +164,10 @@ const AccountSettings: React.FC = () => {
             </span>
             <Switch
               checked={smsActive}
-              onChange={(e) =>
+              onCheckedChange={(checked: boolean) =>
                 updateNewsletter({
                   activeNewsLetter: newsLetterActive,
-                  activeSms: e,
+                  activeSms: checked,
                 })
               }
               className={`${
@@ -175,7 +183,7 @@ const AccountSettings: React.FC = () => {
         </div>
 
         {/* Billing Information */}
-        {isPaying === 1 && (
+        {isPaying === "1" && (
           <div className="bg-compBg shadow-menu rounded-lg p-4">
             <div className="flex flex-row">
               <div className="text-themeColorMain text-lg">
@@ -207,7 +215,7 @@ const AccountSettings: React.FC = () => {
               data, including progress and saved content. This action cannot be
               undone.
             </div>
-            <Link href="/unsubscribe">
+            <Link href="/delete">
               <a className="w-36 cursor-pointer rounded-md bg-red-700 p-2.5 text-center font-bold text-black shadow-md hover:bg-red-600">
                 Delete My Account
               </a>

@@ -23,6 +23,10 @@ export const useFirstName = (): string | undefined => {
   const { profile } = useAppContext();
   return profile?.attributes.firstName;
 };
+export const useLastName = (): string | undefined => {
+  const { profile } = useAppContext();
+  return profile?.attributes.lastName;
+};
 export const useGrades = (): string | undefined => {
   const { profile } = useAppContext();
   return profile?.attributes.grades;

@@ -1,17 +1,16 @@
 import { ZeroPadding } from "../../zeroPadding";
 import { CommonStyles, GenerateHTMLTemplate } from "./template";
 
-interface InvoiceParams {
-  organizationName: string;
-  OrgName: string;
-  orgName: string;
-  orgEmail: string;
-  orgUrl: string;
-  orgVat: string;
-  PrimaryColor: string;
+export interface InvoiceParams {
+  OrgName?: string;
+  orgName?: string;
+  orgEmail?: string;
+  orgUrl?: string;
+  orgVat?: string;
+  PrimaryColor?: string;
   LogoDark: string;
   firstName: string;
-  lastName: string;
+  lastName?: string;
   addressLine1?: string;
   postalCode?: string;
   company?: string;
@@ -27,12 +26,12 @@ interface InvoiceParams {
 }
 
 const Invoice = ({
-  OrgName,
-  orgName,
-  orgEmail,
-  orgUrl,
-  orgVat,
-  PrimaryColor,
+  OrgName = "Just Brands (PTY) Ltd.",
+  orgName = "TOPIC",
+  orgEmail = "info@topic.co.za",
+  orgUrl = "https://topic.co.za",
+  orgVat = "4800270201",
+  PrimaryColor = "#f4f4f4",
   LogoDark,
   firstName,
   lastName,

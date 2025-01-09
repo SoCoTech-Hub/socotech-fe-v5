@@ -17,8 +17,8 @@ import {
 import { FetchOrganizationMerchantId } from "@acme/snippets/functions/account/organization";
 import {
   FetchProfile,
-  updateImages,
-  uploadImages,
+  UpdateImages,
+  UploadImages,
 } from "@acme/snippets/functions/account/profile";
 import {
   FetchTransactionByPaymentId,
@@ -185,8 +185,8 @@ const Billing: React.FC = () => {
           avatarImage={ProfilePic}
           bannerImage={Banner}
           name={userName}
-          updateImages={updateImages}
-          uploadImage={uploadImages}
+          updateImages={UpdateImages}
+          uploadImage={UploadImages}
         />
         <div className="ml-2 mr-2 mt-4 pb-3">
           <hr className="bg-compBg" />
