@@ -13,9 +13,10 @@ interface CountEventResponsesResponse {
 
 export default async function countEventResponses({
   profileId,
-  currentDate,
-  endDate,
 }: CountEventResponsesParams): Promise<CountEventResponsesResponse> {
+  const currentDate = new Date();
+  const endDate = new Date();
+  endDate.setDate(currentDate.getDate() + 6);
   try {
     const { eventResponsesConnection } = await runQuery<{
       eventResponsesConnection: {
