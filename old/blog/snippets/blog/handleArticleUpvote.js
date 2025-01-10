@@ -41,6 +41,7 @@ const handleArticleUpvote = async ({
       }
     } else {
       let res = null
+      const profile = {id:profileId}
       let { profile } = await getGQLRequest({
         endpoint: `profile`,
         findOne: true,
