@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import api from "@/api/api";
 
+import { api } from "@acme/snippets/api/api";
 import { grades, userId } from "@acme/snippets/context/constants";
 import { FetchAssignmentReplies } from "@acme/snippets/functions/assignment/assignmentReplies";
 import { FetchUserProfilesByGrades } from "@acme/snippets/functions/assignment/user";
-import getReadableDate from "@acme/snippets/user/getReadableDate"; //TODO:find right snippet
-import { getNextButtonHref } from "@acme/snippets/utils/index"; //TODO:Snippet does not exist
-
-import AccordionBase from "@acme/ui/Accordion/index";
+import getReadableDate from "@acme/snippets/functions/getReadableDate";
+import getNextButtonHref from "@acme/snippets/utils/index";
+import AccordionSection from "@acme/ui/Accordion/index";
 import { Button } from "@acme/ui/button";
 import FileUploader from "@acme/ui/FileUploader";
 import { MultiSelect } from "@acme/ui/MultiSelect";
@@ -71,7 +70,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
     const fetchAssignmentReplies = async () => {
       const res = await FetchAssignmentReplies({
         lessonId,
-        userId,
+        userId: userId as string,
         assignmentId: assignment.id,
       });
 
@@ -134,7 +133,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
       formData.append("files", acceptedFiles[0]);
 
       try {
-        const uploadedFiles = await api.post("/upload", formData, {
+        const uploadedFiles = await api.POST("/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -157,7 +156,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
   const markComplete = async () => {
     if (isCompleted) return;
 
-    await api.put(`/assignment-replies/${responseId}`, { isCompleted: true });
+    await api.PUT(`/assignment-replies/${responseId}`, { isCompleted: true });
     setIsCompleted(true);
     router.push(nextButtonHref);
   };
@@ -192,8 +191,8 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
     };
 
     const res = responseId
-      ? await api.put(`/assignment-replies/${responseId}`, payload)
-      : await api.post(`/assignment-replies`, payload);
+      ? await api.PUT(`/assignment-replies/${responseId}`, payload)
+      : await api.POST(`/assignment-replies`, payload);
 
     if (res.ok) {
       setResponseId(res.data?.id || null);
@@ -224,7 +223,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
             {assignment?.question ? (
               <div dangerouslySetInnerHTML={{ __html: assignment.question }} />
             ) : (
-              <div className="text-textColor text-md" align="center">
+              <div className="text-textColor text-md align-middle">
                 Assignment Question not found
               </div>
             )}
@@ -246,27 +245,30 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
       )}
       {/*Answering area */}
       <div className="hidden">
-        <AccordionBase
-          title="Answer"
-          data={
-            <Textarea
-              minRows={8}
-              value={answer}
-              onChange={setAnswer}
-              placeholder="Give your Answer here..."
-              className="w-full rounded-lg border-2 border-gray-200 p-3 text-lg"
-            />
-          }
+        <AccordionSection
+          items={[
+            {
+              key: "Answer",
+              value: (
+                <Textarea
+                  rows={8}
+                  value={answer || ""}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  placeholder="Give your Answer here..."
+                  className="w-full rounded-lg border-2 border-gray-200 p-3 text-lg"
+                />
+              ),
+            },
+          ]}
         />
       </div>
       {assignment.isGrouped ? (
         <div className="pb-3 pt-3">
           <MultiSelect
-            label="Choose your group members"
-            name="groupUsers"
-            updatefield={setUserList}
-            value={userList}
-            list={users}
+            options={users} // Available options
+            selected={userList} // Currently selected options
+            onChange={setUserList} // Update selected options
+            placeholder="Choose your group members"
           />
         </div>
       ) : (
@@ -278,11 +280,31 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
           <UploadThumbnail files={attachments} />
         ) : (
           <FileUploader
-            files={attachments}
-            filesSetter={setAttachments}
-            filesPreviews={attachmentPreviews}
-            onDrop={handleDocumentUpload}
-            dropzonePlaceholder="Attachments"
+            files={attachments} // Attachments to display
+            onDrop={handleDocumentUpload} // Handle file uploads
+            dropzonePlaceholder="Drag and drop your files here or click to upload"
+            maxFileSize={10 * 1024 * 1024} // 10MB file size limit
+            multiple // Allow multiple file uploads
+            filePreviews={attachmentPreviews.map((file) => ({
+              id: file.id,
+              preview: file.preview,
+              name: file.name,
+              mime: file.mime,
+            }))}
+            onRemove={(fileId: string) => {
+              setAttachments((prevAttachments) =>
+                prevAttachments.filter((file) => file.id !== fileId),
+              );
+              setAttachmentPreviews((prevPreviews) =>
+                prevPreviews.filter((file) => file.id !== fileId),
+              );
+            }}
+            error={error}
+            success={success}
+            onError={(errorMessage: string) => setErrorMessages(errorMessage)}
+            onSuccess={(successMessage: string) =>
+              setSuccessMessage(successMessage)
+            }
           />
         )}
       </div>

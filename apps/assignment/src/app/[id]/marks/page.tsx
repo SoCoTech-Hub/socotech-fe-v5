@@ -86,10 +86,24 @@ const Marks: React.FC<MarksProps> = ({ reply }) => {
               {RubiconMark.map((mark, i) => (
                 <div key={i}>
                   <AccordionSection
-                    topic={mark.topic}
-                    criteria={mark.criteria}
-                    remarks={mark.remarks}
-                    score={mark.score}
+                    items={[
+                      {
+                        key: "Topic",
+                        value: mark.topic,
+                      },
+                      {
+                        key: "Criteria",
+                        value: mark.criteria,
+                      },
+                      {
+                        key: "Remarks",
+                        value: mark.remarks,
+                      },
+                      {
+                        key: "Score",
+                        value: mark.score.toString(),
+                      },
+                    ]}
                   />
                 </div>
               ))}
@@ -98,13 +112,19 @@ const Marks: React.FC<MarksProps> = ({ reply }) => {
                 dangerouslySetInnerHTML={{ __html: reply.feedback }}
               />
               <div className="card mt-2 rounded-lg border-none p-3">
-                {assignment?.attachment && (
+                {assignment?.attachment && reply.attachmentReply && (
                   <>
                     <b>Marked Assignment:</b>
-                    <UploadThumbnail files={reply.attachmentReply} />
+                    <UploadThumbnail
+                      files={reply.attachmentReply.map((url, index) => ({
+                        id: `file-${index}`,
+                        url,
+                      }))}
+                    />
                   </>
                 )}
               </div>
+
               <div className="pl-12 pt-4 text-lg font-semibold" id="grade">
                 Total score: {grade}%
               </div>

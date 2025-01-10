@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +9,7 @@ import {
 
 export interface AccordionItem {
   key: string;
-  value: string;
+  value: ReactNode;
 }
 export interface AccordionSectionProps {
   items: AccordionItem[];
@@ -15,7 +17,7 @@ export interface AccordionSectionProps {
 
 export default function AccordionSection({ items }: AccordionSectionProps) {
   return (
-    <div className="w-full max-w-md p-4 mx-auto">
+    <div className="mx-auto w-full max-w-md p-4">
       <Accordion type="single" collapsible className="w-full">
         {items.map((item, index) => (
           <AccordionItem key={`item-${index}`} value={`item-${index}`}>

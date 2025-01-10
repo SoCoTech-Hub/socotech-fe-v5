@@ -41,7 +41,7 @@ export default async function validateEmail({
     if (validationRes.result === "deliverable") {
       return true;
     } else {
-      return { error: validationRes.reason };
+      return { error: validationRes.reason.join(", ") };
     }
   } catch (error: any) {
     console.error("Error validating email:", error.message, ":", error.details);

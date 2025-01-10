@@ -9,6 +9,7 @@ import { FetchArticleReaders } from "@acme/snippets/functions/article/articleRea
 import { Button } from "@acme/ui/button";
 import Loader from "@acme/ui/loader";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import SocialLinks from "@acme/ui/socialLinks";
 
 interface Article {
   id: string;
@@ -99,15 +100,16 @@ export default function Article({ article }: ArticleProps) {
                     </div>
                   </div>
                 </div>
-                {/* //TODO:replace with socialLinks */}
+                {/* //TODO:fix socialLinks */}
                 <div className="ml-2">
-                  <ShareLinks
+                  <SocialLinks links={}/>
+                  {/* <ShareLinks
                     news={{ url: `/${article.id}` }}
                     name={"share"}
                     onClick={function (): void {
                       throw new Error("Function not implemented.");
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="mobile:ml-8 flex flex-wrap gap-2">
