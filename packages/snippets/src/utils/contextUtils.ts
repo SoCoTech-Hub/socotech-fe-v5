@@ -1,163 +1,165 @@
 import { useAppContext } from "../context/AppContext";
 
 // User
-export const useEmail = (): string | undefined => {
+export const useEmail = (): string => {
   const { user } = useAppContext();
-  return user?.attributes.email;
+  return user?.attributes.email || "";
 };
-export const useRole = (): string | undefined => {
+export const useRole = (): string => {
   const { user } = useAppContext();
-  return user?.attributes.role;
+  return user?.attributes.role || "";
 };
-export const useUserId = (): string | undefined => {
+export const useUserId = (): string => {
   const { user } = useAppContext();
-  return user?.id;
+  return user?.id || "";
 };
 
 // Profile
-export const useDisplayName = (): string | undefined => {
+export const useDisplayName = (): string => {
   const { profile } = useAppContext();
-  return `${profile?.attributes.firstName} ${profile?.attributes.lastName}`;
+  return (
+    `${profile?.attributes.firstName} ${profile?.attributes.lastName}` || ""
+  );
 };
-export const useFirstName = (): string | undefined => {
+export const useFirstName = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.firstName;
+  return profile?.attributes.firstName || "";
 };
-export const useLastName = (): string | undefined => {
+export const useLastName = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.lastName;
+  return profile?.attributes.lastName || "";
 };
-export const useGrades = (): string | undefined => {
+export const useGrades = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.grades;
+  return profile?.attributes.grades || "";
 };
-export const useHasSiyavulaAccess = (): string | undefined => {
+export const useHasSiyavulaAccess = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.hasSiyavulaAccess;
+  return profile?.attributes.hasSiyavulaAccess || "";
 };
-export const useIsDeveloper = (): string | undefined => {
+export const useIsDeveloper = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.isDeveloper;
+  return profile?.attributes.isDeveloper || "";
 };
-export const useIsPaying = (): string | undefined => {
+export const useIsPaying = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.isPaying;
+  return profile?.attributes.isPaying || "";
 };
-export const useProfileBanner = (): string | undefined => {
+export const useProfileBanner = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.banner;
+  return profile?.attributes.banner || "";
 };
-export const useProfileId = (): string | undefined => {
+export const useProfileId = (): string => {
   const { profile } = useAppContext();
-  return profile?.id;
+  return profile?.id || "";
 };
-export const useProfilePic = (): string | undefined => {
+export const useProfilePic = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.profilePic;
+  return profile?.attributes.profilePic || "";
 };
-export const useProvinces = (): string | undefined => {
+export const useProvinces = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.provinces;
+  return profile?.attributes.provinces || "";
 };
-export const useSchools = (): string | undefined => {
+export const useSchools = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.schools;
+  return profile?.attributes.schools || "";
 };
-export const useUniqueId = (): string | undefined => {
+export const useUniqueId = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.uniqueId;
+  return profile?.attributes.uniqueId || "";
 };
 
 // Organization
-export const useAppBg = (): string | undefined => {
+export const useAppBg = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.appBg;
+  return organization?.attributes.appBg || "";
 };
-export const useAppBgDark = (): string | undefined => {
+export const useAppBgDark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.appBgDark;
+  return organization?.attributes.appBgDark || "";
 };
-export const useComponentBg = (): string | undefined => {
+export const useComponentBg = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.componentBg;
+  return organization?.attributes.componentBg || "";
 };
-export const useComponentBgDark = (): string | undefined => {
+export const useComponentBgDark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.componentBgDark;
+  return organization?.attributes.componentBgDark || "";
 };
-export const useIcon1 = (): string | undefined => {
+export const useIcon1 = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.icon1;
+  return organization?.attributes.icon1 || "";
 };
-export const useIcon1Dark = (): string | undefined => {
+export const useIcon1Dark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.icon1Dark;
+  return organization?.attributes.icon1Dark || "";
 };
-export const useIcon2 = (): string | undefined => {
+export const useIcon2 = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.icon2;
+  return organization?.attributes.icon2 || "";
 };
-export const useIcon2Dark = (): string | undefined => {
+export const useIcon2Dark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.icon2Dark;
+  return organization?.attributes.icon2Dark || "";
 };
-export const useLogo = (): string | undefined => {
+export const useLogo = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.logo;
+  return organization?.attributes.logo || "";
 };
-export const useLogoDark = (): string | undefined => {
+export const useLogoDark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.logoDark;
+  return organization?.attributes.logoDark || "";
 };
-export const useOrganizationId = (): string | undefined => {
+export const useOrganizationId = (): string => {
   const { organization } = useAppContext();
-  return organization?.id;
+  return organization?.id || "";
 };
-export const useMerchantId = (): string | undefined => {
+export const useMerchantId = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.merchantId;
+  return organization?.attributes.merchantId || "";
 };
-export const useOrganizationName = (): string | undefined => {
+export const useOrganizationName = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.name;
+  return organization?.attributes.name || "";
 };
-export const usePrimaryColor = (): string | undefined => {
+export const usePrimaryColor = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.primaryColor;
+  return organization?.attributes.primaryColor || "";
 };
-export const usePrimaryColorDark = (): string | undefined => {
+export const usePrimaryColorDark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.primaryColorDark;
+  return organization?.attributes.primaryColorDark || "";
 };
-export const useSecondaryColor = (): string | undefined => {
+export const useSecondaryColor = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.secondaryColor;
+  return organization?.attributes.secondaryColor || "";
 };
-export const useSecondaryColorDark = (): string | undefined => {
+export const useSecondaryColorDark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.secondaryColorDark;
+  return organization?.attributes.secondaryColorDark || "";
 };
-export const useText = (): string | undefined => {
+export const useText = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.text;
+  return organization?.attributes.text || "";
 };
-export const useTextDark = (): string | undefined => {
+export const useTextDark = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.textDark;
+  return organization?.attributes.textDark || "";
 };
-export const useOrgEmail = (): string | undefined => {
+export const useOrgEmail = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.email;
+  return organization?.attributes.email || "";
 };
-export const useOrgVat = (): string | undefined => {
+export const useOrgVat = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.companyVatNr;
+  return organization?.attributes.companyVatNr || "";
 };
-export const useOrgName = (): string | undefined => {
+export const useOrgName = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.companyName;
+  return organization?.attributes.companyName || "";
 };
-export const useOrgUrl = (): string | undefined => {
+export const useOrgUrl = (): string => {
   const { organization } = useAppContext();
-  return organization?.attributes.url;
+  return organization?.attributes.url || "";
 };
