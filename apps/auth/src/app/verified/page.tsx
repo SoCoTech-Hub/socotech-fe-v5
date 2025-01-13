@@ -21,21 +21,21 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
 
   useEffect(() => {
     const resendEmail = async () => {
-      if (rEmail || email) {
-        const res = await resendConfirmation({
-          email: rEmail ? rEmail : email,
-        });
-        if (res.ok) {
-          setSuccess(
-            `Confirmation email has been sent successfully to ${
-              rEmail ? rEmail : email
-            }`,
-          );
-        } else {
-          if (res.data.message === "already.confirmed") {
+      const validEmail = rEmail || email;
+      if (validEmail) {
+        try {
+          const res = await resendConfirmation({
+            email: validEmail,
+          });
+          if (res.ok) {
+            setSuccess(
+              `Confirmation email has been sent successfully to ${validEmail}`,
+            );
+          } else if (res.data.message === "already.confirmed") {
             setError("This account has already been confirmed");
-            return;
           }
+        } catch (err) {
+          setError("Something went wrong, please try again later.");
         }
         setDisabled(true);
       }
@@ -49,26 +49,30 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
         setDisabled(false);
         setSuccess("");
       }, 120000);
+
       return () => clearTimeout(timer);
     }
+
+    return undefined;
   }, [disabled]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (rEmail || email) {
+    const validEmail = rEmail || email;
+    if (validEmail) {
       try {
         await resendConfirmation({
-          email: rEmail ? rEmail : email,
+          email: validEmail,
         });
         setSuccess("Confirmation email has been sent successfully.");
         setDisabled(true);
       } catch (err) {
         setError(
-          "Confirmation email could not be sent, please contact support",
+          "Confirmation email could not be sent, please contact support.",
         );
       }
     } else {
-      setError("Confirmation email could not be sent, please contact support");
+      setError("Confirmation email could not be sent, please contact support.");
     }
   };
 
@@ -97,7 +101,7 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
                 <div className="laptop:text-xl my-2 text-lg font-bold text-white">
                   A verification email has been sent to your email account:
                   <div className="my-2 text-center underline">
-                    {rEmail ? rEmail : email}
+                    {rEmail || email}
                   </div>
                 </div>
                 <div className="mb-3 w-full text-center text-xs text-white">

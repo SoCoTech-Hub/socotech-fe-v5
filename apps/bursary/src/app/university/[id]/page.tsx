@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
-import getSelectedBursary from "@acme/snippets/functions/Bursary/getSelectedBursary"; 
+import getSelectedBursary from "@acme/snippets/functions/Bursary/getSelectedBursary";
 import BursaryListing from "@acme/ui/Bursaries/listing";
 import BursaryPost from "@acme/ui/Bursaries/Post";
 import { Button } from "@acme/ui/button";
@@ -37,7 +37,7 @@ interface BursaryProps {
 }
 
 const Bursary = ({
-  universityId,
+  // universityId,
   bursariesArr,
   bursaryCategory,
 }: BursaryProps) => {
@@ -55,7 +55,7 @@ const Bursary = ({
       if (bursaries.length) {
         let resultData = await getSelectedBursary({
           bursaryId: bursaries[0].id,
-          selectedId: selectedId,
+          selectedId: selectedId || "",
         });
         setSelected(resultData.selected);
         setNumberOfApplications(resultData.numberOfApplicants);
@@ -75,7 +75,7 @@ const Bursary = ({
       if (bursaries.length) {
         let resultData = await getSelectedBursary({
           bursaryId: bursaries[0].id,
-          selectedId: selectedId,
+          selectedId: selectedId || "",
         });
         setSelected(resultData.selected);
         setNumberOfApplications(resultData.numberOfApplicants);
@@ -175,7 +175,7 @@ const Bursary = ({
                       ? bursaryCategory?.icon
                       : "/user/Icon_School.png"
                   }
-                  numberOfApplicants={numberOfApplications}
+                  numberOfApplicants={numberOfApplications.toString()}
                   bursaryUrl={(selected as Bursary).url}
                   bursaryId={(selected as Bursary).id}
                   profileId={profileId}
