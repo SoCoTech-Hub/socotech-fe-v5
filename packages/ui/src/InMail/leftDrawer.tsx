@@ -2,9 +2,9 @@
 
 import { X } from "lucide-react";
 
-import { cn } from "..";
 import { Button } from "../button";
 import { ScrollArea } from "../scroll-area";
+import { cn } from "../utils";
 
 interface LeftDrawerProps {
   isOpen: boolean;

@@ -50,5 +50,6 @@ export * from "./Support";
 export * from "./SvgIcons";
 export * from "./Tour";
 export * from "./UploadThumbnail";
+export * from "./utils";
 export * from "./Wizard";
 export * from "./ZoomMeeting";

@@ -5,10 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp, Paperclip, Square } from "lucide-react";
 import { omit } from "remeda";
 
-import { cn } from "./";
 import { Button } from "./button";
 import { FilePreview } from "./file-preview";
 import { useAutosizeTextArea } from "./hooks/use-autosize-textarea";
+import { cn } from "./utils";
 
 interface MessageInputBaseProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

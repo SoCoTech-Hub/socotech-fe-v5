@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
-import { cn } from "../";
 import { Button } from "../button";
 import { Card, CardContent } from "../card";
+import { cn } from "../utils";
 
 export interface QualificationListingProps {
   id: string;

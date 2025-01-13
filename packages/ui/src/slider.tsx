@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 
-import { cn } from "./";
+import { cn } from "./utils";
 
 interface SliderProps
   extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {

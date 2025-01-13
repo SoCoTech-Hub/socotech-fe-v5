@@ -1,5 +1,5 @@
 import type { Step } from ".";
-import { cn } from "..";
+import { cn } from "../utils";
 
 export interface ProgressProps {
   currentStepIndex: number;

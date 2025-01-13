@@ -1,8 +1,8 @@
 import { ChevronRight } from "lucide-react";
 
 import type { Step } from ".";
-import { cn } from "..";
 import { Button } from "../button";
+import { cn } from "../utils";
 
 export interface PaginateProps {
   handlePrevious: () => void;

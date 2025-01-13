@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import AccessDenied from "@acme/ui/AccessDenied/accessDenied";
+import AccessDenied from "./accessDenied";
 
 describe("AccessDenied Component", () => {
   it("renders with default props", () => {

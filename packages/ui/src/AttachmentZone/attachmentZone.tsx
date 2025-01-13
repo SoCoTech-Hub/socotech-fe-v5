@@ -4,8 +4,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-import { cn } from "..";
 import { useToast } from "../hooks/use-toast";
+import { cn } from "../utils";
 import StatusContent from "./statusContent";
 
 export interface DropzoneProps {

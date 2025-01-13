@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
-import { cn } from "..";
 import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { Label } from "../label";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+import { cn } from "../utils";
 
 interface DatePickerProps {
   label?: string;

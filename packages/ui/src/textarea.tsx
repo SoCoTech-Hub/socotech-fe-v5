@@ -1,6 +1,6 @@
 import React from "react";
 
-import { cn } from "./";
+import { cn } from "./utils";
 
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 

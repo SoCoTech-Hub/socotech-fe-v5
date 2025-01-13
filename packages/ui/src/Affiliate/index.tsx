@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Button } from "@acme/ui/button";
+import { Button } from "../button";
 import {
   Card,
   CardContent,
@@ -10,16 +10,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@acme/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@acme/ui/tabs";
+} from "../card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
 const AffiliateHomePage: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="text-secondary-foreground bg-secondary py-20">
-          <div className="container mx-auto px-4 text-center">
+        <section className="py-20 text-secondary-foreground bg-secondary">
+          <div className="container px-4 mx-auto text-center">
             <h1 className="mb-4 text-4xl font-bold">
               Earn More with Our Affiliate Program
             </h1>
@@ -38,12 +38,12 @@ const AffiliateHomePage: React.FC = () => {
         </section>
 
         {/* How It Works Section */}
-        <section className="bg-muted py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold">
+        <section className="py-20 bg-muted">
+          <div className="container px-4 mx-auto">
+            <h2 className="mb-12 text-3xl font-bold text-center">
               How It Works
             </h2>
-            <Tabs defaultValue="register" className="mx-auto max-w-2xl">
+            <Tabs defaultValue="register" className="max-w-2xl mx-auto">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="register">Register</TabsTrigger>
                 <TabsTrigger value="promote">Promote</TabsTrigger>

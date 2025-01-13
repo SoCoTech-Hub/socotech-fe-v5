@@ -1,8 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 
-import { cn } from "@acme/ui";
-
 import { Button } from "./button";
+import { cn } from "./utils";
 
 interface ButtonItem {
   label: string;

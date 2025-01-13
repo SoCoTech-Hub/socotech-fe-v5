@@ -2,13 +2,12 @@ import { ReactNode, useState } from "react";
 import { format } from "date-fns";
 import { Calendar, Eye, EyeOff } from "lucide-react";
 
-import { cn } from "@acme/ui";
-
 import { Button } from "../button";
 import { Calendar as CalendarComponent } from "../calendar";
 import { Input } from "../input";
 import { Label } from "../label";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+import { cn } from "../utils";
 
 export interface InputFieldProps {
   type: "text" | "password" | "date";

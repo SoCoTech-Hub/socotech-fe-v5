@@ -4,7 +4,6 @@ import type { ReactElement } from "react";
 import { forwardRef, useCallback, useState } from "react";
 import { ArrowDown, ThumbsDown, ThumbsUp } from "lucide-react";
 
-import { cn } from "./";
 import { Button } from "./button";
 import { type Message } from "./chat-message";
 import { CopyButton } from "./copy-button";
@@ -12,6 +11,7 @@ import { useAutoScroll } from "./hooks/use-auto-scroll";
 import { MessageInput } from "./message-input";
 import { MessageList } from "./message-list";
 import { PromptSuggestions } from "./prompt-suggestions";
+import { cn } from "./utils";
 
 interface ChatPropsBase {
   handleSubmit: (
