@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 
-import logoutMain from "@acme/snippets/functions/auth/logoutMain"; //TODO:make snippet
-
+import logoutMain from "@acme/snippets/functions/logout";
 import { Button } from "@acme/ui/button";
 import { Page } from "@acme/ui/PageLayout/index";
 

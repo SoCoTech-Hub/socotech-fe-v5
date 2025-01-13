@@ -3,8 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import checkEmail from "@acme/snippets/functions/auth/checkEmail";
 import forgotPassword from "@acme/snippets/functions/auth/forgotPassword";
+import checkEmail from "@acme/snippets/functions/user/checkEmail";
 import { Button } from "@acme/ui/button";
 import { InputField } from "@acme/ui/InputField/index";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";

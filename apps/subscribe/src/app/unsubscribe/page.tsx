@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import deleteAccount from "@/snippets/deleteAccount"; //TODO:make snippet
-import logout from "@/snippets/logout"; //TODO:make snippet
 
-import api from "@acme/snippets/api/api";
+import { api } from "@acme/snippets/api/api";
 import { baseUrl, profileId, userId } from "@acme/snippets/context/constants";
+import deleteAccount from "@acme/snippets/functions/auth/deleteAccount";
+import logout from "@acme/snippets/functions/logout";
 import { InputField } from "@acme/ui/InputField/index";
 
 interface RadioOption {
@@ -17,12 +17,12 @@ const Unsubscribe: React.FC = () => {
 
   async function handleSubmit(): Promise<void> {
     if (option === "break") {
-      await api.put(`/users/${userId}`, {
+      await api.PUT(`/users/${userId}`, {
         deleted: true,
         onBreak: true,
       });
       if (reason) {
-        await api.put(`/profiles/${profileId}`, {
+        await api.PUT(`/profiles/${profileId}`, {
           about: reason,
         });
       }

@@ -4,11 +4,13 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import checkEmail from "@acme/snippets/auth/checkEmail"; //TODO: make snippet
-import registerUser from "@acme/snippets/auth/registerUser"; //TODO: make snippet
-import validateEmail from "@acme/snippets/auth/validateEmail"; //TODO: make snippet
+import checkEmail from "@acme/snippets/auth/checkEmail"; //TODO: fix snippet
+
 import { authUrl, baseUrl } from "@acme/snippets/context/constants"; //TODO: make snippet authURL
 import { FetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
+import validateEmail from "@acme/snippets/functions/auth/checkValidEmailAddress";
+import registerUser from "@acme/snippets/functions/auth/registerUser";
+
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField/index";

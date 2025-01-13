@@ -1,5 +1,6 @@
 import React from "react";
 
+import { UpdateImages, UploadImages } from "@acme/snippets"; //TODO: not sure if correct
 import {
   Banner,
   profileId,
@@ -7,10 +8,6 @@ import {
   userId,
   userName,
 } from "@acme/snippets/context/constants";
-import {
-  updateImages,
-  uploadImages,
-} from "@acme/snippets/functions/account/profile";
 import Section from "@acme/ui/profile/section";
 import Cover from "@acme/ui/support/cover";
 
@@ -25,8 +22,8 @@ export default function Home() {
               avatarImage={ProfilePic}
               bannerImage={Banner}
               name={userName}
-              updateImages={updateImages}
-              uploadImage={uploadImages}
+              updateImages={UpdateImages}
+              uploadImage={UploadImages}
             />
           </div>
 

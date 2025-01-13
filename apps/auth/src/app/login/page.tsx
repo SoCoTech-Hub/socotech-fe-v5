@@ -2,15 +2,21 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import publicapi from "@acme/api/publicapi"; //TODO:make snippet
+
+
+import api from "@acme/snippets/api/api";
 import { baseUrl } from "@acme/snippets/context/constants";
-import authCheck from "@acme/snippets/functions/auth/authCheck"; //TODO:make snippet
-import { CreateAllCookies } from "@acme/snippets/functions/auth/createCookies"; //TODO:make snippet
-import CreateInMail from "@acme/snippets/functions/auth/createInMail"; //TODO:make snippet
-import generateUniqueId from "@acme/snippets/functions/auth/generateUniqueId"; //TODO:make snippet
+import { CreateAllCookies } from "@acme/snippets/cookies/createAllCookies";
+import authCheck from "@acme/snippets/functions/auth/authCheck";
 import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
+import generateUniqueId from "@acme/snippets/functions/generateUniqueId";
+import CreateInMail from "@acme/snippets/functions/inmail/createInMail";
 import { Button } from "@acme/ui/button";
 import { Page } from "@acme/ui/PageLayout/index";
+
+
+
+
 
 interface LoginProps {
   userId: string;
@@ -121,7 +127,7 @@ export async function getServerSideProps(context: any) {
 
   if (id_token && access_token) {
     try {
-      const res = await publicapi.get(
+      const res = await api.get(
         `/auth/google/callback?id_token=${id_token}&access_token=${access_token}`,
       );
 
@@ -132,19 +138,19 @@ export async function getServerSideProps(context: any) {
         userData = res.data.user;
         profileData = res.data.user.profile;
       } else {
-        const organization = await publicapi.get(`/organizations/1`);
+        const organization = await api.get(`/organizations/1`);
 
         const uniqueId = generateUniqueId({
           organization: organization.data,
           userid: res.data.user.id,
         });
-        profileData = await publicapi.post(`/profiles`, {
+        profileData = await api.post(`/profiles`, {
           firstName: res.data.user.username,
           organization: { id: organization.data.id },
           uniqueId: uniqueId,
         });
 
-        userData = await publicapi.put(`/users/${res.data.user.id}`, {
+        userData = await api.put(`/users/${res.data.user.id}`, {
           profile: { id: profileData.data.id },
         });
         await CreateInMail({

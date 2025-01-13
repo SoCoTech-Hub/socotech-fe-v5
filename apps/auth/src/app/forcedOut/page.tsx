@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import logoutMain from "@acme/snippets/functions/auth/logoutMain"; //TODO:make snippet
+import logoutMain from "@acme/snippets/functions/logout";
 import { Page } from "@acme/ui/PageLayout/index";
 
 const ForcedOut: FC = () => {
@@ -12,6 +12,7 @@ const ForcedOut: FC = () => {
 
   return (
     <>
+      {/* //TODO:fix page */}
       <Page
         header="Your account is active on another device or internet browser."
         message={

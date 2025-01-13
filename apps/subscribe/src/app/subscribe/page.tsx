@@ -1,13 +1,14 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
-import createTransaction from "@/snippets/functions/payfast/createTransaction"; //TODO:Make snippet
-import sendTransaction from "@/snippets/functions/payfast/sendTransaction"; //TODO:Make snippet
 
 import {
   baseUrl,
   mainUrl,
   organizationId,
 } from "@acme/snippets/context/constants";
+import sendTransaction from "@acme/snippets/functions/account/Transaction"; 
+import createTransaction from "@acme/snippets/functions/account/Transaction";
+
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField/index";

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { UpdateImages, UploadImages } from "@acme/snippets";
+import { UpdateImages, UploadImages } from "@acme/snippets"; //TODO: not sure if correct
 import { api } from "@acme/snippets/api/api";
 import {
   Banner,

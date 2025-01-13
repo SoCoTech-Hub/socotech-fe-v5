@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
-import getSelectedQualification from "@acme/snippets/user/getSelectedQualification";//TODO:make snippet
+import getSelectedQualification from "@acme/snippets/functions/qualificationResponses/getSelectedQualification";
 import { Button } from "@acme/ui/button";
 import QualificationListing from "@acme/ui/Qualifications/listing";
 import QualificationPost from "@acme/ui/Qualifications/Post";

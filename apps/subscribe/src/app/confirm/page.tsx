@@ -2,9 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import resendConfirmation from "@acme/snippets/auth/resendConfirmation"; //TODO Make snippet
+import resendConfirmation from "@acme/snippets/functions/auth/resendConfirmation";
 
-//TODO:fix imports.
 import { Page } from "@acme/ui/PageLayout/index";
 
 type ConfirmProps = {

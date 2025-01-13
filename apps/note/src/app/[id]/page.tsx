@@ -1,11 +1,7 @@
 import React from "react";
 
-import NoteEditor from "@acme/ui/Notes/editor";
+import {NoteEditor} from "@acme/ui/Notes/editor"
 
-const seo = {
-  title: "Note Display",
-  description: "Optimize your notes with Topic!",
-};
 const notesdisplay = ({ subjects, note, profileId }) => (
   <div className="desktop:mb-4 laptop:mb-4 mobile:mb-10 col row">
     <div className="desktop:gx-5 desktop:gy-4 mobile:space-y-3 space-y-10">

@@ -4,7 +4,7 @@ import GetKBSearchResults from "graphql/queries/GetKBSearchResults"; //TODO:make
 
 import MainSearchResults from "@acme/ui/MainSearchResults/index";
 
-import client from "./api/apolloClient";//TODO:make snippet
+import client from "./api/apolloClient";//TODO:replace apolloClient
 
 //TODO:fix component
 interface SearchResult {

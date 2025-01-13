@@ -2,13 +2,13 @@ import React, { FC, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import client from "@/api/apolloClient";
+import client from "@/api/apolloClient";//TODO:Replace all apolloClient
 import { gql } from "@apollo/client";
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
-import updateUserDetails from "@acme/snippets/functions/auth/updateUserDetails"; //TODO:make snippet
+import updateUserDetails from "@acme/snippets/functions/user/updateUserDetails";
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { DatePicker } from "@acme/ui/DatePickField/index";

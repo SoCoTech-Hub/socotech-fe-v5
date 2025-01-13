@@ -3,9 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import RegisterUser2 from "@acme/snippets/functions/auth/registerUser2"; //TODO:make snippet
+import validateEmail from "@acme/snippets/functions/auth/checkValidEmailAddress";
+import RegisterUser2 from "@acme/snippets/functions/auth/registerUser2";
 import { FetchUserByEmail } from "@acme/snippets/functions/auth/user";
-import validateEmail from "@acme/snippets/functions/auth/validateEmail"; //TODO:make snippet
 import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/Checkbox";
 import { InputField } from "@acme/ui/InputField/index";
@@ -47,7 +47,7 @@ const Register: FC<RegisterProps> = () => {
       setLoading(false);
       return;
     }
-
+    //TODO: fix validateEmail
     // Validate email
     const validEmail = await validateEmail({ email });
     if (validEmail?.error) {
@@ -55,7 +55,7 @@ const Register: FC<RegisterProps> = () => {
       setLoading(false);
       return;
     }
-
+    //TODO: fix FetchUserByEmail
     // Check if the account already exists
     const users = await FetchUserByEmail(email);
     if (users.length > 0) {

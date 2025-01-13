@@ -128,3 +128,4 @@ const NoteEditorSkeleton: React.FC = () => (
     </div>
   </div>
 );
+

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Menu, Settings } from "lucide-react";
 
 import { Button } from "../button";
@@ -33,8 +33,8 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
 
   return (
     <nav className="border-b bg-background">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 justify-between">
           <div className="flex items-center space-x-4">
             <button
               onClick={() => handleLinkClick("/")}
@@ -58,7 +58,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
             <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
-                  <Menu className="w-6 h-6" />
+                  <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">
@@ -75,7 +75,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="ml-3">
-            <Settings className="w-5 h-5" />
+            <Settings className="h-5 w-5" />
             <span className="sr-only">Settings</span>
           </Button>
         </DropdownMenuTrigger>
@@ -101,8 +101,8 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="ml-3">
-            <User className="w-5 h-5" />
-            <ChevronDown className="w-3 h-3 ml-1" />
+            <User className="h-5 w-5" />
+            <ChevronDown className="ml-1 h-3 w-3" />
             <span className="sr-only">User menu</span>
           </Button>
         </DropdownMenuTrigger>
@@ -125,7 +125,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
       <Sheet open={isRightDrawerOpen} onOpenChange={setIsRightDrawerOpen}>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="ml-3">
-            <Menu className="w-5 h-5" />
+            <Menu className="h-5 w-5" />
             <span className="sr-only">Open right menu</span>
           </Button>
         </SheetTrigger>
@@ -139,7 +139,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
               Quick access to various features
             </SheetDescription>
           </SheetHeader>
-          <div className="flex flex-col flex-grow mt-6 space-y-4 overflow-y-auto">
+          <div className="mt-6 flex flex-grow flex-col space-y-4 overflow-y-auto">
             {drawerItems.map((item) => (
               <button
                 key={item.name}
@@ -149,7 +149,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
                   activeLink === item.href && "font-semibold text-primary",
                 )}
               >
-                <item.icon className="w-5 h-5 mr-2" />
+                <item.icon className="mr-2 h-5 w-5" />
                 {item.name}
               </button>
             ))}
@@ -164,7 +164,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
               ))}
             </div>
           </div>
-          <div className="pt-4 mt-auto border-t">
+          <div className="mt-auto border-t pt-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Avatar>
@@ -184,7 +184,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon">
-                    <Settings className="w-5 h-5" />
+                    <Settings className="h-5 w-5" />
                     <span className="sr-only">Open user settings</span>
                   </Button>
                 </DropdownMenuTrigger>
@@ -219,7 +219,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
-              <Menu className="w-6 h-6" />
+              <Menu className="h-6 w-6" />
               <span className="sr-only">Open main menu</span>
             </Button>
           </SheetTrigger>
@@ -228,7 +228,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
               <SheetTitle>Menu</SheetTitle>
               <SheetDescription>Navigate through our site</SheetDescription>
             </SheetHeader>
-            <div className="flex flex-col flex-grow mt-6 space-y-4 overflow-y-auto">
+            <div className="mt-6 flex flex-grow flex-col space-y-4 overflow-y-auto">
               {menuItems.map((item) => (
                 <button
                   key={item.name}
@@ -248,19 +248,19 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
                   activeLink === "/calendar" && "font-semibold text-primary",
                 )}
               >
-                <Calendar className="w-5 h-5 mr-2" />
+                <Calendar className="mr-2 h-5 w-5" />
                 Calendar
               </button>
               <Button variant="ghost" className="justify-start px-0">
-                <Bell className="w-5 h-5 mr-2" />
+                <Bell className="mr-2 h-5 w-5" />
                 Notifications
               </Button>
               <Button variant="ghost" className="justify-start px-0">
-                <Settings className="w-5 h-5 mr-2" />
+                <Settings className="mr-2 h-5 w-5" />
                 Settings
               </Button>
               <Button variant="ghost" className="justify-start px-0">
-                <User className="w-5 h-5 mr-2" />
+                <User className="mr-2 h-5 w-5" />
                 Profile
               </Button>
               {drawerItems.map((item) => (
@@ -272,7 +272,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
                     activeLink === item.href && "font-semibold text-primary",
                   )}
                 >
-                  <item.icon className="w-5 h-5 mr-2" />
+                  <item.icon className="mr-2 h-5 w-5" />
                   {item.name}
                 </button>
               ))}
@@ -287,7 +287,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
                 ))}
               </div>
             </div>
-            <div className="pt-4 mt-auto border-t">
+            <div className="mt-auto border-t pt-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Avatar>
@@ -307,7 +307,7 @@ export function Navbar({ logoUrl, logoName }: NavbarProps) {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon">
-                      <Settings className="w-5 h-5" />
+                      <Settings className="h-5 w-5" />
                       <span className="sr-only">Open user settings</span>
                     </Button>
                   </DropdownMenuTrigger>

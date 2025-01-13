@@ -264,6 +264,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
       </div>
       {assignment.isGrouped ? (
         <div className="pb-3 pt-3">
+          {/* //TODO:fix props */}
           <MultiSelect
             options={users} // Available options
             selected={userList} // Currently selected options
@@ -276,6 +277,7 @@ const Assignment: React.FC<AssignmentProps> = ({ lessonId, assignment }) => {
       )}
 
       <div className="flex w-full flex-row justify-end pt-4">
+        {/* //TODO:fix props */}
         {isCompleted || currentDate >= dueDate ? (
           <UploadThumbnail files={attachments} />
         ) : (
