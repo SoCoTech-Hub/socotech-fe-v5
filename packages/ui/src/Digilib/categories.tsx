@@ -1,4 +1,3 @@
-import { cn } from "..";
 import { Badge } from "../badge";
 import {
   Card,
@@ -8,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../card";
+import { cn } from "../utils";
 
 interface DigilibCategoriesProps {
   img?: string;

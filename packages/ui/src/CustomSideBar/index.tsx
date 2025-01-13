@@ -7,7 +7,6 @@ import type { LogoProps } from "../logo";
 import type { SidebarItemListProps } from "./itemlist";
 import type { SidebarProfileProps } from "./profile";
 import type { SidebarProfileListItem } from "./profileList";
-import { cn } from "..";
 import { Button } from "../button";
 import {
   DropdownMenu,
@@ -24,6 +23,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "../sidebar";
+import { cn } from "../utils";
 import SidebarItem from "./item";
 import SidebarProfile from "./profile";
 import SidebarProfileSection from "./profileSection";
@@ -61,7 +61,7 @@ export default function CustomSidebar({
             {isExpanded ? (
               <SidebarLogo url={logo.url} />
             ) : (
-              <div className="flex h-10 w-10 items-center justify-center rounded-full">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full">
                 <SidebarLogo url={logo.altUrl} />
               </div>
             )}

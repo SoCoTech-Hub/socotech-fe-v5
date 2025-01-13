@@ -14,7 +14,7 @@ import * as RechartsPrimitive from "recharts";
 //   Payload,
 //   ValueType,
 // } from "recharts/types/component/DefaultTooltipContent";
-import { cn } from "./";
+import { cn } from "./utils";
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const;

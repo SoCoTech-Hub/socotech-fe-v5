@@ -1,7 +1,7 @@
 // TODO:data fetch
 
-import { cn } from "../";
 import { Button } from "../button";
+import { cn } from "../utils";
 
 interface ApplicationsListingProps {
   id: string;

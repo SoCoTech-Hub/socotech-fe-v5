@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 
-import { cn } from "@acme/ui";
+import { cn } from "../utils";
 
 export interface IFrameProps {
   src: string;

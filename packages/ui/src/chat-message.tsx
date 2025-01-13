@@ -4,9 +4,9 @@ import type { VariantProps } from "class-variance-authority";
 import React, { useMemo } from "react";
 import { cva } from "class-variance-authority";
 
-import { cn } from "./";
 import { FilePreview } from "./file-preview";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { cn } from "./utils";
 
 const chatBubbleVariants = cva(
   "group/message relative break-words rounded-lg p-3 text-sm sm:max-w-[70%]",

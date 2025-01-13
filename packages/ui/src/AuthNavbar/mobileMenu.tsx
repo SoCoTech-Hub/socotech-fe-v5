@@ -1,9 +1,9 @@
 import { X } from "lucide-react";
 
 import type { User } from "./index";
-import { cn } from "..";
 import { Button } from "../button";
 import Logo from "../logo";
+import { cn } from "../utils";
 import { MenuItems } from "./menuItems";
 
 export interface MobileMenuProps {
@@ -28,7 +28,7 @@ function MobileMenu({
       aria-modal="true"
     >
       <div className="fixed inset-0 z-50"></div>
-      <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+      <div className="fixed inset-y-0 right-0 z-50 w-full px-6 py-6 overflow-y-auto bg-background sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div className="flex items-center justify-between">
           <a href="/" className="-m-1.5 p-1.5">
             {companyName && <span className="sr-only">{companyName}</span>}
@@ -36,17 +36,17 @@ function MobileMenu({
           </a>
           <Button variant="ghost" size="icon" onClick={() => setOpen(false)}>
             <span className="sr-only">Close menu</span>
-            <X className="h-6 w-6" aria-hidden="true" />
+            <X className="w-6 h-6" aria-hidden="true" />
           </Button>
         </div>
-        <div className="mt-6 flow-root">
+        <div className="flow-root mt-6">
           <div className="-my-6 divide-y divide-gray-500/10">
-            <div className="space-y-2 py-6">
+            <div className="py-6 space-y-2">
               {MenuItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-foreground hover:bg-accent"
+                  className="block px-3 py-2 -mx-3 text-base font-semibold leading-7 rounded-lg text-foreground hover:bg-accent"
                 >
                   {item.title}
                 </a>

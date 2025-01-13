@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { Lock } from "lucide-react";
 
-import { cn } from "../";
 import { Button } from "../button";
 import { Dialog, DialogContent, DialogTrigger } from "../dialog";
+import { cn } from "../utils";
 
 interface ContentLockProps {
   bgColor?: string;

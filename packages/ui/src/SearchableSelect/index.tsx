@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn } from "..";
 import { Button } from "../button";
 import {
   Command,
@@ -13,6 +12,7 @@ import {
   CommandItem,
 } from "../command";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+import { cn } from "../utils";
 
 export interface Option {
   value: string;

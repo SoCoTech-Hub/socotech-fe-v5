@@ -2,8 +2,8 @@ import React, { Suspense } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { cn } from "./";
 import { CopyButton } from "./copy-button";
+import { cn } from "./utils";
 
 interface MarkdownRendererProps {
   children: string;

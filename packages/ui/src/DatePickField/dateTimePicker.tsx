@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon, Clock } from "lucide-react";
 
-import { cn } from "..";
 import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { Label } from "../label";
@@ -17,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../select";
+import { cn } from "../utils";
 
 interface DateTimePickerProps {
   label?: string;

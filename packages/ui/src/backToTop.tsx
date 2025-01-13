@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
-import { cn } from ".";
 import { Button } from "./button";
+import { cn } from "./utils";
 
 export interface BackToTopProps extends React.HTMLAttributes<HTMLDivElement> {
   threshold?: number;

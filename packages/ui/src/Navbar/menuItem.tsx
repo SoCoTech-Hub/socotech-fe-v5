@@ -1,11 +1,11 @@
 import { ChevronRight } from "lucide-react";
 
-import { cn } from "..";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../collapsible";
+import { cn } from "../utils";
 
 interface MenuItemProps {
   name: string;

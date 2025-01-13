@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 
-import { cn } from "@acme/ui";
-
 import { Button } from "../button";
 import {
   DropdownMenu,
@@ -14,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../dropdown-menu";
+import { cn } from "../utils";
 
 export interface FilterOption {
   id: string;

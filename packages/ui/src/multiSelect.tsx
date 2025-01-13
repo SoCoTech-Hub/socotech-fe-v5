@@ -3,7 +3,6 @@
 import React from "react";
 import { Check, ChevronsUpDown, X } from "lucide-react";
 
-import { cn } from "./";
 import { Badge } from "./badge";
 import { Button } from "./button";
 import {
@@ -14,6 +13,7 @@ import {
   CommandItem,
 } from "./command";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { cn } from "./utils";
 
 interface Option {
   value: string;
@@ -45,7 +45,6 @@ export function MultiSelect({
     }
   };
 
-  
   const handleRemove = (option: Option) => {
     onChange(selected.filter((item) => item.value !== option.value));
   };

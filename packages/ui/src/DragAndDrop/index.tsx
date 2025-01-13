@@ -5,7 +5,7 @@
 // import { HTML5Backend } from "react-dnd-html5-backend";
 // import { TouchBackend } from "react-dnd-touch-backend";
 
-// import { cn } from "../";
+// import { cn } from "../utils";;
 // import { Button } from "../button";
 // import { Card, CardContent } from "../card";
 
