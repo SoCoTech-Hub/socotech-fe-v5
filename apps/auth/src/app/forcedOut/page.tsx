@@ -12,7 +12,6 @@ const ForcedOut: FC = () => {
 
   return (
     <>
-      {/* //TODO:fix page */}
       <Page
         header="Your account is active on another device or internet browser."
         message={

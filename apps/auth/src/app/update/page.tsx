@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import client from "@/api/apolloClient";//TODO:Replace all apolloClient
+import client from "@/api/apolloClient"; //TODO:Replace all apolloClient
 import { gql } from "@apollo/client";
 
 import { baseUrl } from "@acme/snippets/context/constants";
@@ -245,9 +245,10 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
               onChange={(value) => updateInput(value as string, "lastName")}
             />
             <InputMask
+              label="Mobile Number"
               onChange={(e) => updateInput(e.target.value, "mobileNr")}
               value={userInput.mobileNr}
-              placeholder="Cellphone Number"
+              type="mobile"
             />
             <DefaultSelectNew
               id="gender"

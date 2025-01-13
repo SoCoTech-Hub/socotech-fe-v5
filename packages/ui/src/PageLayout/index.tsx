@@ -1,11 +1,14 @@
 import type { FC, ReactNode } from "react";
 
+
+
 import { Alert, AlertDescription, AlertTitle } from "../alert";
 import LogoOverlay from "../LogoOverlay";
 
+
 export interface PageProps {
   header: string;
-  message: string;
+  message: ReactNode;
   buttons: ReactNode[];
   background?: string;
   error?: string;

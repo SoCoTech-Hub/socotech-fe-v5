@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
-import getSelectedQualification from "@acme/snippets/user/getSelectedQualification"; //TODO:snippet
-
+import getSelectedQualification from "@acme/snippets/functions/qualificationResponses/getSelectedQualification";
 import { ApplicationsListing } from "@acme/ui/applications/listing";
 import { ApplicationsPost } from "@acme/ui/applications/Post";
 import { Button } from "@acme/ui/button";
@@ -59,7 +58,7 @@ const Application: React.FC<ApplicationProps> = ({
       if (qualificationsArr.length) {
         const resultData = await getSelectedQualification({
           qualificationId: qualificationsArr[0].id,
-          selectedId,
+          selectedId: selectedId || "",
         });
         setSelected(resultData.selected);
         setNumberOfApplications(resultData.numberOfApplicants);
@@ -79,7 +78,7 @@ const Application: React.FC<ApplicationProps> = ({
       if (qualificationsArr.length) {
         const resultData = await getSelectedQualification({
           qualificationId: qualificationsArr[0].id,
-          selectedId,
+          selectedId: selectedId || "",
         });
         setSelected(resultData.selected);
         setNumberOfApplications(resultData.numberOfApplicants);
@@ -166,9 +165,7 @@ const Application: React.FC<ApplicationProps> = ({
           </div>
         )}
         {qualificationsArr?.length === 0 && !loading && (
-          <div className="text-white align-middle">
-            No Qualifications found
-          </div>
+          <div className="align-middle text-white">No Qualifications found</div>
         )}
       </div>
     </div>

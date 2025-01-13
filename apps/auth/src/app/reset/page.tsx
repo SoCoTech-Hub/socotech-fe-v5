@@ -25,7 +25,7 @@ const Reset: FC = () => {
       return;
     }
 
-    const emailCheck = await checkEmail({ email });
+    const emailCheck = await checkEmail(email);
 
     if (!emailCheck) {
       setError("Email not found");
@@ -110,7 +110,6 @@ const Reset: FC = () => {
                     visible={!!(error || successMessage)}
                   />
                   <Button onClick={() => handleSubmit} className="bg-primary">
-                    {/*//TODO:not sure about this function */}
                     {loading ? "Loading" : "Request password reset"}
                   </Button>
                 </div>
