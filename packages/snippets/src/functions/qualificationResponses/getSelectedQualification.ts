@@ -28,7 +28,7 @@ export const saveQualification = async ({
     }>(GET_QUALIFICATION_DETAILS, { id });
 
     // Count applicants
-    const numberOfApplicants = await countQualificationResponses(id);
+    const numberOfApplicants = await countQualificationResponses({ selectedId: id });
 
     return {
       selected: qualification || {},
