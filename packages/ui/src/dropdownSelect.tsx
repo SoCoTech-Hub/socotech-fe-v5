@@ -7,14 +7,14 @@ import {
   SelectValue,
 } from "./select";
 
-export interface Option {
+export interface DropdownSelectOption {
   value: string;
   label: string;
 }
 
 interface DropdownSelectProps {
   label: string;
-  options: Option[];
+  options: DropdownSelectOption[];
   onChange: (value: string) => void;
   placeholder?: string;
 }

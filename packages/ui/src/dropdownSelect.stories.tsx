@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
-import type { Option } from "./dropdownSelect";
+import type { DropdownSelectOption } from "./dropdownSelect";
 import { DropdownSelect } from "./dropdownSelect";
 
 export default {
@@ -37,7 +37,7 @@ export default {
   },
 } as Meta;
 
-const options: Option[] = [
+const options: DropdownSelectOption[] = [
   { value: "apple", label: "Apple" },
   { value: "banana", label: "Banana" },
   { value: "cherry", label: "Cherry" },

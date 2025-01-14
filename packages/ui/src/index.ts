@@ -72,3 +72,4 @@ export * from "./tooltip";
 export * from "./typing-indicator";
 export * from "./videoPlayer";
 export * from "./welcomeBanner";
+export * from "./folders";

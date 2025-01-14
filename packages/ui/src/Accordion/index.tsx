@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+"use client";
+
+import React, { ReactNode } from "react";
 
 import {
   Accordion,
@@ -7,12 +9,12 @@ import {
   AccordionTrigger,
 } from "./accordion";
 
-export interface AccordionItem {
+export interface AccordionItemProps {
   key: string;
   value: ReactNode;
 }
 export interface AccordionSectionProps {
-  items: AccordionItem[];
+  items: AccordionItemProps[];
 }
 
 export default function AccordionSection({ items }: AccordionSectionProps) {
@@ -29,3 +31,4 @@ export default function AccordionSection({ items }: AccordionSectionProps) {
     </div>
   );
 }
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
