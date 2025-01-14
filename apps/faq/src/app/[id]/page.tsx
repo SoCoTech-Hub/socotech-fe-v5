@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { FetchFaqCategory } from "@acme/snippets/functions/faq/faqCategory";
-import {AccordionSection} from "@acme/ui/accordion/index";
-import { Button } from "@acme/ui/button";
+import {AccordionSection} from "@acme/ui";
+import { Button } from "@acme/ui";
 
 interface Faq {
   id: string;

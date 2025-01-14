@@ -9,10 +9,10 @@ import {
 import sendTransaction from "@acme/snippets/functions/account/Transaction"; 
 import createTransaction from "@acme/snippets/functions/account/Transaction";
 
-import { Button } from "@acme/ui/button";
-import { Checkbox } from "@acme/ui/Checkbox";
-import { InputField } from "@acme/ui/InputField/index";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { Button } from "@acme/ui";
+import { Checkbox } from "@acme/ui";
+import { InputField } from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
 
 interface SubscribeProps {
   product: any;

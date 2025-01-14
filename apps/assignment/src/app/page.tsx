@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Button } from "@acme/ui/button";
+import { Button } from "@acme/ui";
 
 interface AssignmentHomeProps {
   module: Array<{

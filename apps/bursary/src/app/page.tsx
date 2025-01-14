@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/bursary/bursaryCategory";
-import {BursaryListing} from "@acme/ui/Bursaries/listing";
-import {BursaryWelcomeBanner} from "@acme/ui/Bursaries/tour";
+import {BursaryListing} from "@acme/ui";
+import {BursaryWelcomeBanner} from "@acme/ui";
 
 //TODO: fix links and add component needs
 

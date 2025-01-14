@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import {InfosPage} from "@acme/ui/Info/index";
+import {InfosPage} from "@acme/ui";
 
 interface Info {
   id: string;

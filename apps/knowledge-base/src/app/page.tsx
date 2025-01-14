@@ -1,9 +1,9 @@
 import React from "react";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import { DigilibCategories } from "@acme/ui/Digilib/Categories";
-import { DigilibHelp } from "@acme/ui/Digilib/Help";
-import { Welcome } from "@acme/ui/Digilib/Welcome";
+import { DigilibCategories } from "@acme/ui";
+import { DigilibHelp } from "@acme/ui";
+import { Welcome } from "@acme/ui";
 
 interface Category {
   id: string;

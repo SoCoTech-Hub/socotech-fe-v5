@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import resendConfirmation from "@acme/snippets/functions/auth/resendConfirmation";
-import { Button } from "@acme/ui/button";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { Button } from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
 
 type VerifiedProps = {
   email: string | null;

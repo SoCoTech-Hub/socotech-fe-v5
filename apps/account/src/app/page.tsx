@@ -18,9 +18,9 @@ import {
   FetchSubscription,
   UpsertSubscription,
 } from "@acme/snippets/functions/account/subscription";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import { Cover } from "@acme/ui/profile/cover";
-import { Switch } from "@acme/ui/switch";
+import { PopupAlert } from "@acme/ui";
+import { Cover } from "@acme/ui";
+import { Switch } from "@acme/ui";
 
 const AccountSettings: React.FC = () => {
   const [newsLetterActive, setNewsLetterActive] = useState<boolean>(true);

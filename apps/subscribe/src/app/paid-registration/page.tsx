@@ -11,10 +11,10 @@ import { FetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affil
 import validateEmail from "@acme/snippets/functions/auth/checkValidEmailAddress";
 import registerUser from "@acme/snippets/functions/auth/registerUser";
 
-import { Button } from "@acme/ui/button";
-import { Checkbox } from "@acme/ui/Checkbox";
-import { InputField } from "@acme/ui/InputField/index";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { Button } from "@acme/ui";
+import { Checkbox } from "@acme/ui";
+import { InputField } from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
 
 interface RegisterProps {
   uniqueId: string | null;

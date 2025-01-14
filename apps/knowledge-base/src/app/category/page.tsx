@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { organizationId } from "@acme/snippets/context/constants";
 import { FetchKnowledgeBases } from "@acme/snippets/functions/knowledgeBase/knowledgeBase";
 import { FetchKnowledgeBaseCategory } from "@acme/snippets/functions/knowledgeBase/knowledgeBaseCategory";
-import { DigilibCategories } from "@acme/ui/Digilib/Categories";
-import { ArticleFilter } from "@acme/ui/Digilib/Filter";
+import { DigilibCategories } from "@acme/ui";
+import { ArticleFilter } from "@acme/ui";
 
 interface Category {
   id: string;

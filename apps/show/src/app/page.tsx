@@ -1,8 +1,8 @@
 import React from "react";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import { ShowsPage } from "@acme/ui/shows/index";
-import { ShowsWelcome } from "@acme/ui/shows/welcome";
+import { ShowsPage } from "@acme/ui";
+import { ShowsWelcome } from "@acme/ui";//TODO: find component
 
 //TODO: fix components
 interface Category {

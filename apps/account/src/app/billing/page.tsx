@@ -27,11 +27,11 @@ import {
 import { convertUTCToLocal } from "@acme/snippets/functions/convertUtcToLocal";
 import { PauseSubscription } from "@acme/snippets/functions/payfast/pauseSubscription";
 import UnpauseSubscription from "@acme/snippets/functions/payfast/unpauseSubscription";
-import { Button } from "@acme/ui/button";
-import { InputField } from "@acme/ui/InputField/index";
-import {Modal} from "@acme/ui/modal";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import {Cover} from "@acme/ui/profile/cover";
+import { Button } from "@acme/ui";
+import { InputField } from "@acme/ui";
+import {Modal} from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
+import {Cover} from "@acme/ui";
 
 interface Profile {
   id: string;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ZoomMeeting } from "@acme/ui/ZoomMeeting/zoomIntegration";
+import { ZoomMeeting } from "@acme/ui";
 
 export default function Home() {
   return (

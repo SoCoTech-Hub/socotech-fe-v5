@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
 import getSelectedQualification from "@acme/snippets/functions/qualificationResponses/getSelectedQualification";
-import { ApplicationsListing } from "@acme/ui/applications/listing";
-import { ApplicationsPost } from "@acme/ui/applications/Post";
-import { Button } from "@acme/ui/button";
+import { ApplicationsListing } from "@acme/ui";
+import { ApplicationsPost } from "@acme/ui";
+import { Button } from "@acme/ui";
 
 //TODO:fix components
 interface Qualification {

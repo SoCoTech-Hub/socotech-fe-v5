@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import { Button } from "@acme/ui/button";
+import { Button } from "@acme/ui";
 
 const Index: FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);

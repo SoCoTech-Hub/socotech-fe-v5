@@ -4,7 +4,7 @@ import { api } from "@acme/snippets/api/api";
 import { baseUrl, profileId, userId } from "@acme/snippets/context/constants";
 import deleteAccount from "@acme/snippets/functions/auth/deleteAccount";
 import logout from "@acme/snippets/functions/logout";
-import { InputField } from "@acme/ui/InputField/index";
+import { InputField } from "@acme/ui";
 
 interface RadioOption {
   value: string;

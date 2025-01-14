@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import { Button } from "@acme/ui/Button";
-import {HLSVideoPlayer} from "@acme/ui/videoPlayer";
-import { NoteEditor } from "@acme/ui/Notes/Editor";
+import { Button } from "@acme/ui";
+import {HLSVideoPlayer} from "@acme/ui";
+import { NoteEditor } from "@acme/ui";
 
 const CategoryDisplay: React.FC<CategoryDisplayProps> = ({ show }) => {
   return (

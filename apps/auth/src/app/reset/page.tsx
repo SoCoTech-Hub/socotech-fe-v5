@@ -5,9 +5,9 @@ import Link from "next/link";
 import { baseUrl } from "@acme/snippets/context/constants";
 import forgotPassword from "@acme/snippets/functions/auth/forgotPassword";
 import checkEmail from "@acme/snippets/functions/user/checkEmail";
-import { Button } from "@acme/ui/button";
-import { InputField } from "@acme/ui/InputField/index";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { Button } from "@acme/ui";
+import { InputField } from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
 
 const Reset: FC = () => {
   const [email, setEmail] = useState<string>("");

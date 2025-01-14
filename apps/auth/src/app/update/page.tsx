@@ -9,16 +9,16 @@ import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
 import updateUserDetails from "@acme/snippets/functions/user/updateUserDetails";
-import { Button } from "@acme/ui/button";
-import { Checkbox } from "@acme/ui/Checkbox";
-import { DatePicker } from "@acme/ui/DatePickField/index";
-import DefaultSelectNew from "@acme/ui/DefaultSelectNew/index"; //TODO:Replace all DefaultSelectNew
-import { InputField } from "@acme/ui/InputField/index";
-import {InputMask} from "@acme/ui/inputMask";
-import {LogoOverlay} from "@acme/ui/LogoOverlay/index";
-import Overlay from "@acme/ui/Overlay/index"; //TODO:Replace overlay
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import { InfoIcon } from "@acme/ui/SvgIcons/InfoIcon";
+import { Button } from "@acme/ui";
+import { Checkbox } from "@acme/ui";
+import { DatePicker } from "@acme/ui";
+import DefaultSelectNew from "@acme/ui"; //TODO:Replace all DefaultSelectNew
+import { InputField } from "@acme/ui";
+import {InputMask} from "@acme/ui";
+import {LogoOverlay} from "@acme/ui";
+import Overlay from "@acme/ui"; //TODO:Replace overlay
+import { PopupAlert } from "@acme/ui";
+import { InfoIcon } from "@acme/ui";
 
 type UpdateProps = {
   profile: any;

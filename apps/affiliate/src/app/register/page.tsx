@@ -9,8 +9,8 @@ import {
 } from "@acme/snippets/context/constants";
 import { FetchIsAffiliate } from "@acme/snippets/functions/affiliate/affiliate";
 // import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
-import { Button } from "@acme/ui/button";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { Button } from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
 
 const RegisterAffiliate = () => {
   const router = useRouter();

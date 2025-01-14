@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 
 import logoutMain from "@acme/snippets/functions/logout";
-import { Button } from "@acme/ui/button";
-import { Page } from "@acme/ui/PageLayout/index";
+import { Button } from "@acme/ui";
+import { Page } from "@acme/ui";
 
 const Logout: React.FC = () => {
   useEffect(() => {

@@ -6,10 +6,10 @@ import ReactMarkdown from "react-markdown";
 import { profileId } from "@acme/snippets/context/constants";
 import { FetchArticle } from "@acme/snippets/functions/article/article";
 import { FetchArticleReaders } from "@acme/snippets/functions/article/articleReader";
-import { Button } from "@acme/ui/button";
-import {Loader} from "@acme/ui/loader";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import {SocialLinks} from "@acme/ui/socialLinks";
+import { Button } from "@acme/ui";
+import {Loader} from "@acme/ui";
+import { PopupAlert } from "@acme/ui";
+import {SocialLinks} from "@acme/ui";
 
 interface Article {
   id: string;

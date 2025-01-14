@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Quiz} from "@acme/ui/quiz/quiz";
+import {Quiz} from "@acme/ui";
 
 export default function Home() {
   return (

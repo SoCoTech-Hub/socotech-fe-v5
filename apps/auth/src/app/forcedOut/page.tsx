@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import logoutMain from "@acme/snippets/functions/logout";
-import { Page } from "@acme/ui/PageLayout/index";
+import { Page } from "@acme/ui";
 
 const ForcedOut: FC = () => {
   useEffect(() => {

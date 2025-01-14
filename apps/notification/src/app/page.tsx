@@ -1,6 +1,6 @@
 import React from "react";
 
-import { NotificationList } from "@acme/ui/Notifications/List";
+import { NotificationList } from "@acme/ui";
 
 export default function Home() {
   return (

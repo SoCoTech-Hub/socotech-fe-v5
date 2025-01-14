@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { email } from "@acme/snippets/context/constants";
 import resendConfirmation from "@acme/snippets/functions/auth/resendConfirmation";
-import { Page } from "@acme/ui/PageLayout/index";
+import { Page } from "@acme/ui";
 
 type ConfirmProps = {
   email: string | null;

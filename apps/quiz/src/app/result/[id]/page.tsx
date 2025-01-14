@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Button } from "@acme/ui/button";
-import {QuizReport} from "@acme/ui/Quiz/report";
+import { Button } from "@acme/ui";
+import {QuizReport} from "@acme/ui";
 import { useRouter } from "next/router"
 
 const router = useRouter();

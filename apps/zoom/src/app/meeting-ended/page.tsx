@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from "@acme/ui/button";
+import { Button } from "@acme/ui";
 
 export default function MeetingEndedPage() {
   return (

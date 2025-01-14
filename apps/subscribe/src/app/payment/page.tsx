@@ -2,8 +2,8 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { mainUrl } from "@acme/snippets/context/constants";
-import { Button } from "@acme/ui/button";
-import {LogoOverlay} from "@acme/ui/LogoOverlay/index";
+import { Button } from "@acme/ui";
+import {LogoOverlay} from "@acme/ui";
 
 
 //TODO: move to info

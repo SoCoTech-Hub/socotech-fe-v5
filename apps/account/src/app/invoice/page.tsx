@@ -7,7 +7,7 @@ import { isPaying, mainUrl, uniqueId } from "@acme/snippets/context/constants";
 import { FetchOrganizationLogos } from "@acme/snippets/functions/account/organization";
 import { FetchTransactionEventsByPaymentId } from "@acme/snippets/functions/account/transactionEvent";
 import invoice from "@acme/snippets/functions/payfast/email/invoice";
-import { PopupAlert } from "@acme/ui/PopupAlert/index";
+import { PopupAlert } from "@acme/ui";
 
 interface Transaction {
   email: string;

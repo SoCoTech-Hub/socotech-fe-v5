@@ -6,7 +6,7 @@
 //   AccordionItem,
 //   AccordionTrigger,
 // } from "@acme/ui";
-import { cn } from "@acme/ui/utils/classMerge";
+import { cn } from "@acme/ui";
 
 export default function Home() {
   const classes = cn(

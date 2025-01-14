@@ -10,8 +10,8 @@ import authCheck from "@acme/snippets/functions/auth/authCheck";
 import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
 import generateUniqueId from "@acme/snippets/functions/generateUniqueId";
 import CreateInMail from "@acme/snippets/functions/inmail/createInMail";
-import { Button } from "@acme/ui/button";
-import { Page } from "@acme/ui/PageLayout/index";
+import { Button } from "@acme/ui";
+import { Page } from "@acme/ui";
 import { api } from "@acme/snippets/api/api"
 
 

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { profileId } from "@acme/snippets/context/constants";
 import { FetchEvent } from "@acme/snippets/functions/event/event";
-import {Modal} from "@acme/ui/Modal";
+import {Modal} from "@acme/ui";
 
 interface Event {
   id: string;

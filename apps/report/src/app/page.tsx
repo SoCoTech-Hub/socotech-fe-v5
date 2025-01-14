@@ -1,7 +1,7 @@
 import React from "react";
 
-import { ReportListing } from "@acme/ui/report/listing";
-import { ReportWelcomeBanner } from "@acme/ui/report/tour";
+import { ReportListing } from "@acme/ui";
+import { ReportWelcomeBanner } from "@acme/ui";
 
 //TODO:make categories and change banner
 export default function Home() {
