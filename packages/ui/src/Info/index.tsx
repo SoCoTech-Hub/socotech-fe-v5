@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 
 import type { Info } from "./card";
-import InfoGrid from "./grid";
+import { InfoGrid } from "./grid";
 
-export default function InfosPage() {
+export function InfosPage() {
   const [infos, setInfos] = useState<Info[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

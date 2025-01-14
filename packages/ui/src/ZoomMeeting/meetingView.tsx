@@ -12,7 +12,7 @@ export interface MeetingViewProps {
   meetingId: string;
 }
 
-export default function MeetingView({ meetingId }: MeetingViewProps) {
+export function MeetingView({ meetingId }: MeetingViewProps) {
   const zoomMeetingRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

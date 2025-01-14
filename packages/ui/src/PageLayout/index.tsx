@@ -1,10 +1,7 @@
 import type { FC, ReactNode } from "react";
 
-
-
 import { Alert, AlertDescription, AlertTitle } from "../alert";
-import LogoOverlay from "../LogoOverlay";
-
+import { LogoOverlay } from "../LogoOverlay";
 
 export interface PageProps {
   header: string;
@@ -60,5 +57,3 @@ export const Page: FC<PageProps> = ({
     </div>
   </div>
 );
-
-export default Page;

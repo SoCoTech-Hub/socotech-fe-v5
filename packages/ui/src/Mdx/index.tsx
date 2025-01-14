@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 import Quill from "quill";
 
-import Editor from "./editor";
+import { Editor } from "./editor";
 
 export interface MDXProps {
   value: string;
   setValue?: (e: string) => void;
 }
 
-const MDX = ({ value, setValue }: MDXProps) => {
+export const MdxEditor = ({ value, setValue }: MDXProps) => {
   // Use a ref to access the Quill instance directly
   const quillRef = useRef<Quill | null>(null);
 
@@ -29,5 +29,3 @@ const MDX = ({ value, setValue }: MDXProps) => {
     </div>
   );
 };
-
-export default MDX;

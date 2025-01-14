@@ -11,7 +11,7 @@ export interface InmailListProps {
   onTrashEmail: (id: number) => void;
 }
 
-const InmailList: React.FC<InmailListProps> = ({
+export const InmailList: React.FC<InmailListProps> = ({
   emails,
   onSelectEmail,
   onStarEmail,
@@ -58,5 +58,3 @@ const InmailList: React.FC<InmailListProps> = ({
     ))}
   </ScrollArea>
 );
-
-export default InmailList;

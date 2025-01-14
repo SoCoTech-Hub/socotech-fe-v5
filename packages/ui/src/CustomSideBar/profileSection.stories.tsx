@@ -7,8 +7,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../dropdown-menu";
-import SidebarProfile from "./profile";
-import SidebarProfileSection from "./profileSection";
+import { SidebarProfile } from "./profile";
+import { SidebarProfileSection } from "./profileSection";
 
 export default {
   title: "Sidebar/ProfileSection",

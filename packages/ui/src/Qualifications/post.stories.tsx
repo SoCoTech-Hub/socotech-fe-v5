@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import QualificationPost from "./post";
+import { QualificationPost } from "./post";
 
 const meta: Meta<typeof QualificationPost> = {
   title: "Qualification/Post",

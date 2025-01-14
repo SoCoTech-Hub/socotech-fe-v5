@@ -18,7 +18,7 @@ interface NotificationManagerProps {
   onSubscriptionChange?: (isSubscribed: boolean) => void;
 }
 
-export default function NotificationManager({
+export function NotificationManager({
   title = "Push Notifications",
   description = "Manage your push notification preferences.",
   onSubscriptionChange,

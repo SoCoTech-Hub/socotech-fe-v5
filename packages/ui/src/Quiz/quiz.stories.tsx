@@ -2,7 +2,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { QuestionRendererProps } from "./questionRenderer";
-import QuestionRenderer from "./questionRenderer";
+import { QuestionRenderer } from "./questionRenderer";
 
 export default {
   title: "Quiz/QuestionRenderer",

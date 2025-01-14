@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { HeaderSectionProps } from "./viewHeader";
-import HeaderSection from "./viewHeader";
+import { HeaderSection } from "./viewHeader";
 
 export default {
   title: "Lesson/HeaderSection",

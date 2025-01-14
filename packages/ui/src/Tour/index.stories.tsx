@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { TourGuideProps } from ".";
-import TourGuide from ".";
+import { TourGuide } from ".";
 
 export default {
   title: "Tour/Guide",

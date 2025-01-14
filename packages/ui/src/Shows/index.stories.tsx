@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import ShowsPage from ".";
+import { ShowsPage } from ".";
 
 export default {
   title: "Shows/Page",

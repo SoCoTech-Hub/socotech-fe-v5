@@ -16,13 +16,13 @@ import {
 } from "../Accordion/accordion";
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
-import EssayQuestion from "./essay";
-import FillInTheBlankQuestion from "./fillInBlank";
-import FreeChoiceQuestion from "./freeChoice";
-import QuizMatrixSortQuestion from "./matrixSortQuestion";
-import MultipleChoiceQuestionComponent from "./multipleChoice";
-import SingleChoiceQuestionComponent from "./singleChoice";
-import SortingChoiceQuestionComponent from "./sortable";
+import { EssayQuestionComponent } from "./essay";
+import { FillInTheBlankQuestionComponent } from "./fillInBlank";
+import { FreeChoiceQuestionComponent } from "./freeChoice";
+import { QuizMatrixSortQuestionComponent } from "./matrixSortQuestion";
+import { MultipleChoiceQuestionComponent } from "./multipleChoice";
+import { SingleChoiceQuestionComponent } from "./singleChoice";
+import { Sortable } from "./sortable";
 
 interface ReviewQuizProps {
   questions: Question[];
@@ -52,7 +52,7 @@ const isSortingChoiceQuestion = (
   question: Question,
 ): question is SortingChoiceQuestion => question.type === "sortingChoice";
 
-export default function ReviewQuiz({
+export function ReviewQuiz({
   questions,
   userAnswers,
   onFinishReview,
@@ -87,7 +87,7 @@ export default function ReviewQuiz({
 
     if (isSortingChoiceQuestion(question)) {
       return (
-        <SortingChoiceQuestionComponent
+        <Sortable
           items={question.items}
           correctOrder={question.correctOrder}
           {...props}
@@ -97,19 +97,19 @@ export default function ReviewQuiz({
     }
 
     if (question.type === "matrixSort") {
-      return <QuizMatrixSortQuestion question={question} {...props} />;
+      return <QuizMatrixSortQuestionComponent question={question} {...props} />;
     }
 
     if (question.type === "fillInTheBlank") {
-      return <FillInTheBlankQuestion question={question} {...props} />;
+      return <FillInTheBlankQuestionComponent question={question} {...props} />;
     }
 
     if (question.type === "essay") {
-      return <EssayQuestion question={question} {...props} />;
+      return <EssayQuestionComponent question={question} {...props} />;
     }
 
     if (question.type === "freeChoice") {
-      return <FreeChoiceQuestion question={question} {...props} />;
+      return <FreeChoiceQuestionComponent question={question} {...props} />;
     }
 
     return <p>Unsupported question type.</p>;

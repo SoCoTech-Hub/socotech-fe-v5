@@ -11,7 +11,7 @@ export interface SearchBarProps {
   placeholder?: string;
 }
 //TODO:add search function
-export default function SearchBar({
+export function SearchBar({
   onSearch,
   placeholder = "Search...",
 }: SearchBarProps) {

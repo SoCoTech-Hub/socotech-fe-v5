@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import ZoomIntegration from "./zoomIntegration";
+import { ZoomIntegration } from "./zoomIntegration";
 
 export default {
   title: "Zoom/ZoomIntegration",

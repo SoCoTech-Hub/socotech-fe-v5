@@ -8,7 +8,7 @@ interface FillInTheBlankQuestionProps {
   answer: string;
 }
 
-export default function FillInTheBlankQuestion({
+export function FillInTheBlankQuestionComponent({
   question,
   onAnswer,
   answer,

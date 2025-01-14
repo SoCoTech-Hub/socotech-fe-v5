@@ -4,7 +4,7 @@ export interface LessonOverviewProps {
   presenter: string;
 }
 
-const LessonOverview: React.FC<LessonOverviewProps> = ({
+export const LessonOverview: React.FC<LessonOverviewProps> = ({
   overview,
   duration,
   presenter,
@@ -26,5 +26,3 @@ const LessonOverview: React.FC<LessonOverviewProps> = ({
     </section>
   );
 };
-
-export default LessonOverview;

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import Page, { PageProps } from "./";
+import { Page, PageProps } from "./";
 
 export default {
   title: "Page",

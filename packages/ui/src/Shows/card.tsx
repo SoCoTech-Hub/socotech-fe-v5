@@ -6,17 +6,17 @@ export interface Show {
   imageUrl: string;
 }
 
-const ShowCard = ({ show }: { show: Show }) => (
+export const ShowCard = ({ show }: { show: Show }) => (
   <Card className="overflow-hidden">
     <a href={`/shows/${show.id}`}>
       <div className="relative aspect-video">
         <img
           src={show.imageUrl}
           alt={`Cover for ${show.title}`}
-          className="h-full w-full object-cover"
+          className="object-cover w-full h-full"
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-          <h3 className="line-clamp-2 text-lg font-semibold text-white">
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+          <h3 className="text-lg font-semibold text-white line-clamp-2">
             {show.title}
           </h3>
         </div>
@@ -24,4 +24,4 @@ const ShowCard = ({ show }: { show: Show }) => (
     </a>
   </Card>
 );
-export default ShowCard;
+

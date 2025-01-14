@@ -9,9 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../select";
-import NotificationItem from "./item";
-import NotificationModal from "./modal";
-import NotificationStatusReport from "./report";
+import { NotificationItem } from "./item";
+import { NotificationModal } from "./modal";
+import { NotificationStatusReport } from "./report";
 
 export interface Notification {
   id: string;
@@ -23,7 +23,7 @@ export interface Notification {
 
 type SortOption = "newest" | "oldest" | "unread";
 
-export default function NotificationList({
+export function NotificationList({
   initialNotifications,
 }: {
   initialNotifications: Notification[];

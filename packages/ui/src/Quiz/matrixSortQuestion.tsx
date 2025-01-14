@@ -16,7 +16,7 @@ interface QuizMatrixSortQuestionProps {
   answer: { [key: string]: string[] };
 }
 
-export default function QuizMatrixSortQuestion({
+export function QuizMatrixSortQuestionComponent({
   question,
   onAnswer,
   answer,

@@ -8,7 +8,7 @@ export interface BlogSearchProps {
   posts: BlogPost[];
   setPosts?: (posts: BlogPost[]) => void;
 }
-const BlogSearch = (props: BlogSearchProps) => {
+export const BlogSearch = (props: BlogSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const filteredPosts = props.posts.filter(
     (post) =>
@@ -39,4 +39,3 @@ const BlogSearch = (props: BlogSearchProps) => {
     </div>
   );
 };
-export default BlogSearch;

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import ShowCard from "./card";
+import { ShowCard } from "./card";
 
 export default {
   title: "Shows/Card",

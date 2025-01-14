@@ -1,11 +1,11 @@
 import type { Question } from "./quiz";
-import EssayQuestion from "./essay";
-import FillInTheBlankQuestion from "./fillInBlank";
-import FreeChoiceQuestion from "./freeChoice";
-import QuizMatrixSortQuestion from "./matrixSortQuestion";
-import MultipleChoiceQuestion from "./multipleChoice";
-import SingleChoiceQuestion from "./singleChoice";
-import Sortable from "./sortable";
+import { EssayQuestionComponent } from "./essay";
+import { FillInTheBlankQuestionComponent } from "./fillInBlank";
+import { FreeChoiceQuestionComponent } from "./freeChoice";
+import { QuizMatrixSortQuestionComponent } from "./matrixSortQuestion";
+import { MultipleChoiceQuestionComponent } from "./multipleChoice";
+import { SingleChoiceQuestionComponent } from "./singleChoice";
+import { Sortable } from "./sortable";
 
 export interface QuestionRendererProps {
   question: Question;
@@ -13,7 +13,7 @@ export interface QuestionRendererProps {
   answer: any;
 }
 
-export default function QuestionRenderer({
+export function QuestionRenderer({
   question,
   onAnswer,
   answer,
@@ -21,7 +21,7 @@ export default function QuestionRenderer({
   switch (question.type) {
     case "essay":
       return (
-        <EssayQuestion
+        <EssayQuestionComponent
           question={question}
           onAnswer={onAnswer}
           answer={answer}
@@ -29,7 +29,7 @@ export default function QuestionRenderer({
       );
     case "fillInTheBlank":
       return (
-        <FillInTheBlankQuestion
+        <FillInTheBlankQuestionComponent
           question={question}
           onAnswer={onAnswer}
           answer={answer}
@@ -37,7 +37,7 @@ export default function QuestionRenderer({
       );
     case "freeChoice":
       return (
-        <FreeChoiceQuestion
+        <FreeChoiceQuestionComponent
           question={question}
           onAnswer={onAnswer}
           answer={answer}
@@ -45,7 +45,7 @@ export default function QuestionRenderer({
       );
     case "matrixSort":
       return (
-        <QuizMatrixSortQuestion
+        <QuizMatrixSortQuestionComponent
           question={question}
           onAnswer={onAnswer}
           answer={answer}
@@ -53,7 +53,7 @@ export default function QuestionRenderer({
       );
     case "multipleChoice":
       return (
-        <MultipleChoiceQuestion
+        <MultipleChoiceQuestionComponent
           question={question}
           onAnswer={onAnswer}
           answer={answer}
@@ -61,7 +61,7 @@ export default function QuestionRenderer({
       );
     case "singleChoice":
       return (
-        <SingleChoiceQuestion
+        <SingleChoiceQuestionComponent
           question={question}
           onAnswer={onAnswer}
           answer={answer}

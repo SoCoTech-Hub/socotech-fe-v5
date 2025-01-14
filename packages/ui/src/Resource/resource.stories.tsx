@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ResourcePage from "./";
+import { ResourcePage } from "./";
 
 export default {
   title: "Resource/ResourcePage",

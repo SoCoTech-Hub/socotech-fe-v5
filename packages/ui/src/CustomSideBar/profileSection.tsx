@@ -6,17 +6,16 @@ export interface SidebarProfileSectionProps {
   items?: SidebarProfileListItem[];
   isExpanded?: boolean;
 }
-const SidebarProfileSection = ({
+export const SidebarProfileSection = ({
   items = SidebarProfileList, // Fallback to SidebarProfileList
   isExpanded = false,
 }: SidebarProfileSectionProps) => {
   return items.map((item, index) => (
     <DropdownMenuItem key={`dropdown-${index}`}>
       <a href={item.url}>
-        <div className="w-4 h-4 mr-2">{item.icon}</div>
+        <div className="mr-2 h-4 w-4">{item.icon}</div>
         {isExpanded && <span>{item.title}</span>}
       </a>
     </DropdownMenuItem>
   ));
 };
-export default SidebarProfileSection;

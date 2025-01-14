@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 //TODO:fix import
-const LogoOverlay: FC = () => {
+export const LogoOverlay: FC = () => {
   return (
     <img
       src={`./logo.png`}
@@ -10,5 +10,3 @@ const LogoOverlay: FC = () => {
     />
   );
 };
-
-export default LogoOverlay;

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import WelcomeBanner from "./welcomeBanner";
+import { WelcomeBanner } from "./welcomeBanner";
 
 export default {
   title: "WelcomeBanner",

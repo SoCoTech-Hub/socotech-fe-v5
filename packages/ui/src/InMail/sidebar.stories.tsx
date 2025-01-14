@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import InmailSidebar from "./sidebar";
+import { InmailSidebar } from "./sidebar";
 
 const meta: Meta<typeof InmailSidebar> = {
   title: "Inmail/Sidebar",

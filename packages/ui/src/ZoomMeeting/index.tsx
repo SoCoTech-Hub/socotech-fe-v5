@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const ZoomMeeting: React.FC = () => {
+export const ZoomMeeting: React.FC = () => {
   const router = useRouter();
   const { meetingLink, lessonId } = router.query;
 
@@ -46,5 +46,3 @@ const ZoomMeeting: React.FC = () => {
     </div>
   );
 };
-
-export default ZoomMeeting;

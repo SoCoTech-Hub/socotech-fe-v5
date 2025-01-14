@@ -12,7 +12,7 @@ export interface BannerProps {
   onCtaClick: () => void;
 }
 
-export default function Banner({
+export function Banner({
   title,
   paragraphs,
   gifSrc,

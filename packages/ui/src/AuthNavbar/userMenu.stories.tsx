@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { UserMenuProps } from "./userMenu";
-import UserMenu from "./userMenu";
+import { UserMenu } from "./userMenu";
 
 export default {
   title: "AuthNavbar/UserMenu",

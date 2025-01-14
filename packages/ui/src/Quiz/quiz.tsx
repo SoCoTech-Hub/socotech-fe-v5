@@ -4,14 +4,14 @@ import { useState } from "react";
 
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
-import EssayQuestion from "./essay";
-import FillInTheBlankQuestion from "./fillInBlank";
-import FreeChoiceQuestion from "./freeChoice";
-import QuizMatrixSortQuestion from "./matrixSortQuestion";
-import MultipleChoiceQuestion from "./multipleChoice";
-import QuizReport from "./report";
-import SingleChoiceQuestion from "./singleChoice";
-import SortingChoiceQuestion from "./sortable";
+import { EssayQuestionComponent } from "./essay";
+import { FillInTheBlankQuestionComponent } from "./fillInBlank";
+import { FreeChoiceQuestionComponent } from "./freeChoice";
+import { QuizMatrixSortQuestionComponent } from "./matrixSortQuestion";
+import { MultipleChoiceQuestionComponent } from "./multipleChoice";
+import { QuizReport } from "./report";
+import { SingleChoiceQuestionComponent } from "./singleChoice";
+import { Sortable } from "./sortable";
 
 export type QuestionType =
   | "essay"
@@ -83,7 +83,7 @@ interface QuizProps {
   onContinue: () => void;
 }
 
-export default function Quiz({
+export function Quiz({
   questions,
   onComplete,
   onRetry,
@@ -122,7 +122,7 @@ export default function Quiz({
     switch (currentQuestion.type) {
       case "essay":
         return (
-          <EssayQuestion
+          <EssayQuestionComponent
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}
@@ -130,7 +130,7 @@ export default function Quiz({
         );
       case "fillInTheBlank":
         return (
-          <FillInTheBlankQuestion
+          <FillInTheBlankQuestionComponent
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}
@@ -138,7 +138,7 @@ export default function Quiz({
         );
       case "freeChoice":
         return (
-          <FreeChoiceQuestion
+          <FreeChoiceQuestionComponent
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}
@@ -146,7 +146,7 @@ export default function Quiz({
         );
       case "matrixSort":
         return (
-          <QuizMatrixSortQuestion
+          <QuizMatrixSortQuestionComponent
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}
@@ -154,7 +154,7 @@ export default function Quiz({
         );
       case "multipleChoice":
         return (
-          <MultipleChoiceQuestion
+          <MultipleChoiceQuestionComponent
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}
@@ -162,7 +162,7 @@ export default function Quiz({
         );
       case "singleChoice":
         return (
-          <SingleChoiceQuestion
+          <SingleChoiceQuestionComponent
             question={currentQuestion}
             onAnswer={handleAnswer}
             answer={answers[currentQuestion.id]}
@@ -170,7 +170,7 @@ export default function Quiz({
         );
       case "sortingChoice":
         return (
-          <SortingChoiceQuestion
+          <Sortable
             items={currentQuestion.items}
             correctOrder={currentQuestion.correctOrder}
             onReorder={handleAnswer}

@@ -16,7 +16,7 @@ export interface SubjectCategoriesProps {
   selectedCategory?: SubjectCategory;
   handleCategorySelect: (category: SubjectCategory) => void;
 }
-const SubjectCategories = (props: SubjectCategoriesProps) => (
+export const SubjectCategories = (props: SubjectCategoriesProps) => (
   <Card className="m-4 flex-1">
     <CardHeader>
       <CardTitle>Categories</CardTitle>
@@ -44,4 +44,3 @@ const SubjectCategories = (props: SubjectCategoriesProps) => (
     </CardContent>
   </Card>
 );
-export default SubjectCategories;

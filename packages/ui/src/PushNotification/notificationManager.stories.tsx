@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import NotificationManager from "./notificationManager";
+import { NotificationManager } from "./notificationManager";
 
 const meta: Meta<typeof NotificationManager> = {
   title: "PushNotification/NotificationManager",

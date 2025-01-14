@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import DigilibHelp from "./help";
+import { DigilibHelp } from "./help";
 
 const meta: Meta<typeof DigilibHelp> = {
   title: "Digilib/Help",

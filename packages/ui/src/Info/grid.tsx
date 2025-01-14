@@ -3,18 +3,15 @@
 import { useEffect, useState } from "react";
 
 import type { Info } from "./card";
-import InfoCard from "./card";
-import InfoCardSkeleton from "./loader";
+import { InfoCard } from "./card";
+import { InfoCardSkeleton } from "./loader";
 
 export interface InfoGridProps {
   infos: Info[];
   isLoading?: boolean;
 }
 
-export default function InfoGrid({
-  infos,
-  isLoading = false,
-}: InfoGridProps) {
+export function InfoGrid({ infos, isLoading = false }: InfoGridProps) {
   const [displayedInfos, setDisplayedInfos] = useState<Info[]>([]);
 
   useEffect(() => {

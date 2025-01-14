@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import ShowCardSkeleton from "./loader";
+import { ShowCardSkeleton } from "./loader";
 
 export default {
   title: "Shows/Loader",

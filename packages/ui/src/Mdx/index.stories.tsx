@@ -1,11 +1,11 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
-import MDX, { MDXProps } from "./";
+import { MdxEditor, MDXProps } from "./";
 
 export default {
   title: "MDX/MDX",
-  component: MDX,
+  component: MdxEditor,
 } as Meta;
 
 const Template: StoryFn<MDXProps> = (args) => {
@@ -13,7 +13,7 @@ const Template: StoryFn<MDXProps> = (args) => {
 
   return (
     <div>
-      <MDX value={content} setValue={setContent} />
+      <MdxEditor value={content} setValue={setContent} />
       <div style={{ marginTop: "20px" }}>
         <h4>Preview:</h4>
         <div

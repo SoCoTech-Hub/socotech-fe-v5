@@ -18,7 +18,7 @@ export interface LessonCardProps {
   type: "lesson" | "subject";
 }
 
-const LessonCard: React.FC<LessonCardProps> = ({ item, type }) => {
+export const LessonCard: React.FC<LessonCardProps> = ({ item, type }) => {
   const isLesson = type === "lesson";
   const linkUrl = isLesson ? `/lessons/${item.id}` : `/subjects/${item.id}`;
   const title = isLesson ? (item as Lesson).title : (item as Subject).name;
@@ -45,5 +45,3 @@ const LessonCard: React.FC<LessonCardProps> = ({ item, type }) => {
     </Card>
   );
 };
-
-export default LessonCard;

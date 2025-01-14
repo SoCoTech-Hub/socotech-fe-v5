@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import PDFViewer from "./pdfViewer";
+import { PDFViewer } from "./pdfViewer";
 
 export default {
   title: "Resource/PDFViewer",

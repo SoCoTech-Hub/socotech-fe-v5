@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import QualificationListing from "./listing";
+import { QualificationListing } from "./listing";
 
 const meta: Meta<typeof QualificationListing> = {
   title: "Qualification/Listing",
@@ -52,7 +52,8 @@ export const Default: Story = {
     applicationFeatureImage: "https://via.placeholder.com/56",
     courseTitle: "Software Engineering Qualification",
     courseCompanyName: "Tech Corp",
-    courseDescription: "A qualification opportunity for aspiring software engineers.",
+    courseDescription:
+      "A qualification opportunity for aspiring software engineers.",
     setSelection: (id) => console.log("Selected qualification:", id),
     bgColor: "bg-blue-500",
     iconSvg: "",

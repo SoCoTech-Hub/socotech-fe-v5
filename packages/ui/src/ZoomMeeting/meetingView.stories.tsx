@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import MeetingView, { MeetingViewProps } from "./meetingView";
+import { MeetingView, MeetingViewProps } from "./meetingView";
 
 export default {
   title: "Zoom/MeetingView",

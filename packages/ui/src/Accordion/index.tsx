@@ -17,9 +17,9 @@ export interface AccordionSectionProps {
   items: AccordionItemProps[];
 }
 
-export default function AccordionSection({ items }: AccordionSectionProps) {
+export function AccordionSection({ items }: AccordionSectionProps) {
   return (
-    <div className="mx-auto w-full max-w-md p-4">
+    <div className="w-full max-w-md p-4 mx-auto">
       <Accordion type="single" collapsible className="w-full">
         {items.map((item, index) => (
           <AccordionItem key={`item-${index}`} value={`item-${index}`}>

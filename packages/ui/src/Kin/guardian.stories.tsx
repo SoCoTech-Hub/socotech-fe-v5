@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import GuardianManager from "./";
+import { GuardianManager } from "./";
 
 export default {
   title: "Components/GuardianManager",

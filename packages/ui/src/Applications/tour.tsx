@@ -11,7 +11,7 @@ interface WelcomeBannerProps {
   tourImage: string;
 }
 
-const WelcomeBanner = ({
+export const ApplicationWelcomeBanner = ({
   header = "Explore qualifications currently available in SA",
   tourImage,
 }: WelcomeBannerProps) => {
@@ -55,5 +55,3 @@ const WelcomeBanner = ({
     </Card>
   );
 };
-
-export default WelcomeBanner;

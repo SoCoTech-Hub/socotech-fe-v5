@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
 import type { MobileMenuProps } from "./mobileMenu";
-import MobileMenu from "./mobileMenu";
+import { MobileMenu } from "./mobileMenu";
 
 export default {
   title: "AuthNavbar/MobileMenu",

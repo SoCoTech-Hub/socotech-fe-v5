@@ -8,7 +8,7 @@ interface NotificationStatusReportProps {
   unread: number;
 }
 
-export default function NotificationStatusReport({
+export function NotificationStatusReport({
   total,
   read,
   unread,

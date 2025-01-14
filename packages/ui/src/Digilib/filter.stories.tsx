@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import ArticleFilter from "./filter";
+import { ArticleFilter } from "./filter";
 
 const meta: Meta<typeof ArticleFilter> = {
   title: "Digilib/Filter",

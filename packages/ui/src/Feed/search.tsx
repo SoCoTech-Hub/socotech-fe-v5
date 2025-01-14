@@ -8,7 +8,7 @@ export interface FeedSearchProps {
   posts: FeedPost[];
   setPosts?: (posts: FeedPost[]) => void;
 }
-const FeedSearch = (props: FeedSearchProps) => {
+export const FeedSearch = (props: FeedSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const filteredPosts = props.posts.filter(
     (post) =>
@@ -39,4 +39,3 @@ const FeedSearch = (props: FeedSearchProps) => {
     </div>
   );
 };
-export default FeedSearch;

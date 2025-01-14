@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import SocialLinks, { SocialLinksProps } from "./social";
+import { SocialLinks, SocialLinksProps } from "./social";
 
 export default {
   title: "Article/SocialLinks",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import EmailApp from "./";
+import { EmailApp } from "./";
 
 const meta: Meta<typeof EmailApp> = {
   title: "Inmail/EmailApp",

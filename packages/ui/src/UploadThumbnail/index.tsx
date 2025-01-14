@@ -1,6 +1,9 @@
 import { FC } from "react";
 
+
+
 import { Button } from "../button";
+
 
 interface File {
   id: string;
@@ -15,7 +18,7 @@ export interface UploadThumbnailProps {
   handleFileRemove?: (id: string) => void;
 }
 
-const UploadThumbnail: FC<UploadThumbnailProps> = ({
+export const UploadThumbnail: FC<UploadThumbnailProps> = ({
   files,
   handleFileRemove,
 }) => {
@@ -32,11 +35,11 @@ const UploadThumbnail: FC<UploadThumbnailProps> = ({
                     : ``
                 }
                 alt="attachment"
-                className="centerImage h-20 w-20 object-contain"
+                className="object-contain w-20 h-20 centerImage"
               />
               {file.name && (
                 <span
-                  className="rounded-lg bg-blue-100 bg-opacity-50 px-3 py-1"
+                  className="px-3 py-1 bg-blue-100 bg-opacity-50 rounded-lg"
                   style={{ color: "#0099FF" }}
                 >
                   {file.name.substring(0, 10) + "..."}
@@ -56,5 +59,3 @@ const UploadThumbnail: FC<UploadThumbnailProps> = ({
     <></>
   );
 };
-
-export default UploadThumbnail;

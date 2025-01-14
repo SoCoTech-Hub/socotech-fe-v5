@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { InmailViewProps } from "./view";
-import InmailView from "./view";
+import { InmailView } from "./view";
 
 const meta: Meta<typeof InmailView> = {
   title: "Inmail/View",

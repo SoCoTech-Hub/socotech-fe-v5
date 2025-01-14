@@ -36,7 +36,7 @@ export interface ReportSectionProps {
   report?: UserReport;
 }
 
-export default function ReportSection({
+export function ReportSection({
   filterOptions = {
     grades: [],
     subjectCategories: [],

@@ -21,7 +21,7 @@ interface AccessDeniedModalProps {
   description?: string;
 }
 
-const AccessDenied = ({
+export const AccessDenied = ({
   isOpen = false,
   onClose = () => console.log("Dialog closed"),
   // onRequestAccess = () => {},
@@ -74,4 +74,3 @@ const AccessDenied = ({
     </Dialog>
   );
 };
-export default AccessDenied;

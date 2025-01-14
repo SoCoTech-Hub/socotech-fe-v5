@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import Blog from ".";
+import { Blog } from ".";
 
 export default {
   title: "Blog/index",

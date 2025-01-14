@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 import { Card, CardContent, CardHeader } from "../card";
-import TourFooter from "./footer";
-import TourTitle from "./title";
+import { TourFooter } from "./footer";
+import { TourTitle } from "./title";
 
 export interface TourStep {
   target: string;
@@ -18,7 +18,7 @@ export interface TourGuideProps {
   onComplete: () => void;
 }
 
-export default function TourGuide({ steps, onComplete }: TourGuideProps) {
+export function TourGuide({ steps, onComplete }: TourGuideProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 

@@ -4,7 +4,7 @@ import type { AttachmentType } from "./attachments";
 import { Button } from "../button";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
-import Attachments from "./attachments";
+import { Attachments } from "./attachments";
 
 export interface InmailComposerProps {
   setComposing: (composing: boolean) => void;
@@ -12,7 +12,7 @@ export interface InmailComposerProps {
   attachments?: AttachmentType[];
 }
 
-const InmailComposer: React.FC<InmailComposerProps> = ({
+export const InmailComposer: React.FC<InmailComposerProps> = ({
   setComposing,
   handleAttachment,
   attachments,
@@ -53,5 +53,3 @@ const InmailComposer: React.FC<InmailComposerProps> = ({
     </div>
   </div>
 );
-
-export default InmailComposer;

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Summary from "./summary";
+import { RatingSummary } from "./summary";
 
-const meta: Meta<typeof Summary> = {
+const meta: Meta<typeof RatingSummary> = {
   title: "Ratings/Summary",
-  component: Summary,
+  component: RatingSummary,
   parameters: {
     layout: "centered",
   },
@@ -12,7 +12,7 @@ const meta: Meta<typeof Summary> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Summary>;
+type Story = StoryObj<typeof RatingSummary>;
 
 export const Default: Story = {
   args: {

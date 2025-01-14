@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import QualificationWelcomeBanner from "./tour";
+import { QualificationWelcomeBanner } from "./tour";
 
 const meta: Meta<typeof QualificationWelcomeBanner> = {
   title: "Qualification/Tour",

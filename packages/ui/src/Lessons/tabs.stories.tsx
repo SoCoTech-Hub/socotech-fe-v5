@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { Grade, ScrollTabsProps } from "./tabs";
-import ScrollTabs from "./tabs";
+import { ScrollTabs } from "./tabs";
 
 export default {
   title: "Lesson/ScrollTabs",

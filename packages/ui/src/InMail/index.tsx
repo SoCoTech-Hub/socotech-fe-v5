@@ -6,10 +6,10 @@ import { Search } from "lucide-react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { AttachmentType } from "./attachments";
-import InmailComposer from "./composer";
-import InmailList from "./list";
-import InmailSidebar from "./sidebar";
-import InmailView, { EmailProps } from "./view";
+import { InmailComposer } from "./composer";
+import { InmailList } from "./list";
+import { InmailSidebar } from "./sidebar";
+import { EmailProps, InmailView } from "./view";
 
 const initialEmails: EmailProps[] = [
   {
@@ -50,7 +50,7 @@ const initialEmails: EmailProps[] = [
   },
 ];
 
-export default function EmailApp() {
+export function EmailApp() {
   const [emails, setEmails] = useState(initialEmails);
   const [selectedSection, setSelectedSection] = useState("inbox");
   const [selectedEmail, setSelectedEmail] = useState<EmailProps | null>(null);

@@ -1,25 +1,24 @@
 import { Card, CardContent, CardFooter, CardHeader } from "../card";
 import { Skeleton } from "../skeleton";
 
-const FeedCardSkeleton = () => (
+export const FeedCardSkeleton = () => (
   <Card className="w-full">
-    <Skeleton className="h-48 w-full rounded-t-lg" />
+    <Skeleton className="w-full h-48 rounded-t-lg" />
     <CardHeader>
-      <Skeleton className="h-6 w-3/4" />
+      <Skeleton className="w-3/4 h-6" />
     </CardHeader>
     <CardContent>
-      <Skeleton className="mb-2 h-4 w-full" />
-      <Skeleton className="mb-2 h-4 w-5/6" />
-      <Skeleton className="h-4 w-2/3" />
+      <Skeleton className="w-full h-4 mb-2" />
+      <Skeleton className="w-5/6 h-4 mb-2" />
+      <Skeleton className="w-2/3 h-4" />
     </CardContent>
     <CardFooter className="flex justify-between">
       <div className="flex space-x-2">
-        <Skeleton className="h-8 w-8 rounded-md" />
-        <Skeleton className="h-8 w-8 rounded-md" />
-        <Skeleton className="h-8 w-8 rounded-md" />
+        <Skeleton className="w-8 h-8 rounded-md" />
+        <Skeleton className="w-8 h-8 rounded-md" />
+        <Skeleton className="w-8 h-8 rounded-md" />
       </div>
-      <Skeleton className="h-8 w-20" />
+      <Skeleton className="w-20 h-8" />
     </CardFooter>
   </Card>
 );
-export default FeedCardSkeleton;

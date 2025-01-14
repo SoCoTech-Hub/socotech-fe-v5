@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Cover from "./cover";
+import { Cover } from "./cover";
 
 const meta: Meta<typeof Cover> = {
   title: "Profile/Cover",

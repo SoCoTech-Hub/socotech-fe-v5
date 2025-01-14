@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
 import type { Profile } from "./about";
-import AboutSection from "./about";
+import { AboutSection } from "./about";
 
 export default {
   title: "Profile/About",

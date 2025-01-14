@@ -26,7 +26,7 @@ import {
 } from "../select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
-export default function ZoomIntegration() {
+export function ZoomIntegration() {
   const [meetingId, setMeetingId] = useState("");
   const [meetingPassword, setMeetingPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);

@@ -22,7 +22,7 @@ interface SplitPageFormProps {
   imageSide?: "left" | "right";
 }
 
-export default function SplitPageForm({
+export function SplitPageForm({
   imageUrl,
   imageAlt,
   formTitle,

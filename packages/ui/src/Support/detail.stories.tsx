@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import TicketDetail, { TicketDetailProps } from "./detail";
+import { TicketDetail, TicketDetailProps } from "./detail";
 
 export default {
   title: "Support/TicketDetail",

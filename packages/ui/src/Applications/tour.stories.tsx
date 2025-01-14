@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import WelcomeBanner from "./tour";
+import { ApplicationWelcomeBanner } from "./tour";
 
-const meta: Meta<typeof WelcomeBanner> = {
+const meta: Meta<typeof ApplicationWelcomeBanner> = {
   title: "Applications/tour",
-  component: WelcomeBanner,
+  component: ApplicationWelcomeBanner,
   tags: ["autodocs"],
   argTypes: {
     header: {
@@ -15,17 +15,17 @@ const meta: Meta<typeof WelcomeBanner> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof WelcomeBanner>;
+type Story = StoryObj<typeof ApplicationWelcomeBanner>;
 
 export const Default: Story = {
-  render: (args) => <WelcomeBanner {...args} />,
+  render: (args) => <ApplicationWelcomeBanner {...args} />,
   args: {
     header: "Explore qualifications currently available in SA",
   },
 };
 
 export const CustomHeader: Story = {
-  render: (args) => <WelcomeBanner {...args} />,
+  render: (args) => <ApplicationWelcomeBanner {...args} />,
   args: {
     header: "Discover your path to success with our qualifications",
   },

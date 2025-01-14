@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import HLSVideoPlayer from "./videoPlayer";
+import { HLSVideoPlayer } from "./videoPlayer";
 
 export default {
   title: "VideoPlayer",

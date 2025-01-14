@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { StatusContentProps } from "./statusContent";
-import StatusContent from "./statusContent";
+import { StatusContent } from "./statusContent";
 
 export default {
   title: "Attachments/StatusContent",

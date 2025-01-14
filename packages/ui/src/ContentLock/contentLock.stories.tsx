@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ContentLock from "./";
+import { ContentLock } from "./";
 
 const meta: Meta<typeof ContentLock> = {
   title: "ContentLock",

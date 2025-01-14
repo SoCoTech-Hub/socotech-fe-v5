@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { DropzoneProps } from "./attachmentZone";
-import Dropzone from "./attachmentZone";
+import { Dropzone } from "./attachmentZone";
 
 export default {
   title: "Attachments/AttachmentZone",

@@ -12,7 +12,7 @@ interface LeftSwipeDrawerProps {
   dragHandleWidth?: number;
 }
 
-export default function LeftSwipeDrawer({
+export function LeftSwipeDrawer({
   children = <div>Main Content</div>,
   drawerContent = <div>Drawer Content</div>,
   drawerWidth = "80%",
@@ -55,7 +55,7 @@ export default function LeftSwipeDrawer({
       >
         <div className="h-full overflow-y-auto p-4">{drawerContent}</div>
         <button
-          className="bg-primaryForeground text-primaryForeground absolute -right-6 top-1/2 -translate-y-1/2 transform rounded-r-full p-2"
+          className="absolute -right-6 top-1/2 -translate-y-1/2 transform rounded-r-full bg-primaryForeground p-2 text-primaryForeground"
           onClick={toggleDrawer}
           aria-label={isOpen ? "Close drawer" : "Open drawer"}
         >

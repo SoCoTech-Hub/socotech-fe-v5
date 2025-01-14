@@ -7,7 +7,11 @@ export interface ProgressProps {
   className?: string;
 }
 
-const Progress = ({ currentStepIndex, steps, className }: ProgressProps) => {
+export const Progress = ({
+  currentStepIndex,
+  steps,
+  className,
+}: ProgressProps) => {
   return (
     <nav aria-label="Progress" className={className}>
       <ol role="list" className="space-y-4 md:flex md:space-x-8 md:space-y-0">
@@ -45,5 +49,3 @@ const Progress = ({ currentStepIndex, steps, className }: ProgressProps) => {
     </nav>
   );
 };
-
-export default Progress;

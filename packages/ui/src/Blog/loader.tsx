@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from "../card";
 import { Skeleton } from "../skeleton";
 
-const BlogCardSkeleton = () => (
+export const BlogCardSkeleton = () => (
   <Card className="w-full">
     <Skeleton className="h-48 w-full rounded-t-lg" />
     <CardHeader>
@@ -22,4 +22,3 @@ const BlogCardSkeleton = () => (
     </CardFooter>
   </Card>
 );
-export default BlogCardSkeleton;

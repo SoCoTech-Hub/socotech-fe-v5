@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { HeaderImageProps } from "./viewHeaderImage";
-import HeaderImage from "./viewHeaderImage";
+import { HeaderImage } from "./viewHeaderImage";
 
 export default {
   title: "Lesson/HeaderImage",

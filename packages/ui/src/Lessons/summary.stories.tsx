@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { LessonsRating, LessonsRatingSummaryProps } from "./summary";
-import LessonsRatingSummary from "./summary";
+import { LessonsRatingSummary } from "./summary";
 
 export default {
   title: "Lesson/RatingSummary",

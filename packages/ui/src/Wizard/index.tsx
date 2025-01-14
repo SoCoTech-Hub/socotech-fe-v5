@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import Paginate from "./paginate";
-import Progress from "./progress";
+import { Paginate } from "./paginate";
+import { Progress } from "./progress";
 
 export interface Step {
   id: string;

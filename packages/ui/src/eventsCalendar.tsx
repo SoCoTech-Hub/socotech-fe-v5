@@ -46,7 +46,7 @@ interface Event {
 
 type ViewType = "day" | "week" | "month";
 
-const EnhancedTaskCalendar: React.FC = () => {
+export const EnhancedTaskCalendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date()); // State to track the currently selected date
   const [view, setView] = useState<ViewType>("month"); // State to track the current view (day, week, month)
   const [events, setEvents] = useState<Event[]>([]); // State to track the list of events
@@ -266,5 +266,3 @@ const EnhancedTaskCalendar: React.FC = () => {
     </Card>
   );
 };
-
-export default EnhancedTaskCalendar;

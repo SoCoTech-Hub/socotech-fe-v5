@@ -19,7 +19,12 @@ export interface InmailViewProps {
   onClose: (id: number) => void;
 }
 
-const InmailView = ({ email, onStar, onTrash, onClose }: InmailViewProps) => (
+export const InmailView = ({
+  email,
+  onStar,
+  onTrash,
+  onClose,
+}: InmailViewProps) => (
   <div className="h-full overflow-auto bg-white p-4">
     <div className="mb-4 flex items-center justify-between">
       <h2 className="text-2xl font-bold">{email.subject}</h2>
@@ -57,4 +62,3 @@ const InmailView = ({ email, onStar, onTrash, onClose }: InmailViewProps) => (
     <p>{email.body}</p>
   </div>
 );
-export default InmailView;

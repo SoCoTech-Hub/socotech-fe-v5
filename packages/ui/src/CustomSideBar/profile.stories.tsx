@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { SidebarProfileProps } from "./profile";
-import SidebarProfile from "./profile";
+import { SidebarProfile } from "./profile";
 
 export default {
   title: "Sidebar/Profile",

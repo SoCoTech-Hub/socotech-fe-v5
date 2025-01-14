@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { BlogPost } from "./index";
-import BlogGrid from "./grid";
+import { BlogGrid } from "./grid";
 
 export default {
   title: "Blog/Grid",

@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { TourTitleProps } from "./title";
-import TourTitle from "./title";
+import { TourTitle } from "./title";
 
 export default {
   title: "Tour/Title",

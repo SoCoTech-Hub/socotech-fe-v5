@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import InfoCard from "./card";
+import { InfoCard } from "./card";
 
 export default {
   title: "Info/Card",

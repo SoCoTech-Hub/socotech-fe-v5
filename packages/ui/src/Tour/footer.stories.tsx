@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { TourFooterProps } from "./footer";
-import TourFooter from "./footer";
+import { TourFooter } from "./footer";
 
 export default {
   title: "Tour/Footer",

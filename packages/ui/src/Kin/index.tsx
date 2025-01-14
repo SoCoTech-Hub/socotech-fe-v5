@@ -31,7 +31,7 @@ interface Guardian {
   email: string;
 }
 
-export default function GuardianManager() {
+export function GuardianManager() {
   const [guardians, setGuardians] = useState<Guardian[]>([
     {
       id: "1",
@@ -48,7 +48,9 @@ export default function GuardianManager() {
       email: "jane@example.com",
     },
   ]);
-  const [_editingGuardian, setEditingGuardian] = useState<Guardian | null>(null);
+  const [_editingGuardian, setEditingGuardian] = useState<Guardian | null>(
+    null,
+  );
   const [_isAddingGuardian, setIsAddingGuardian] = useState(false);
 
   const handleEdit = (guardian: Guardian) => {

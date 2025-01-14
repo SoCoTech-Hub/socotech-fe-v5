@@ -13,7 +13,7 @@ interface DraggableProps {
   onClose?: () => void;
 }
 
-export default function DraggableContent({
+export function DraggableContent({
   title = "Untitled",
   content = "No content available.",
   onClose,

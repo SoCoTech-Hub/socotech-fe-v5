@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { Step } from ".";
-import Progress from "./progress";
+import { Progress } from "./progress";
 
 export default {
   title: "Wizard/Progress",

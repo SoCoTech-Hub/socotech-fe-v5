@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import SubjectHierarchy, { SubjectHierarchyProps } from ".";
+import { SubjectHierarchy, SubjectHierarchyProps } from ".";
 
 export default {
   title: "Components/SubjectHierarchy",

@@ -6,14 +6,14 @@ import type { Material } from "./materials";
 import type { Rating } from "./ratings";
 import { Progress } from "../progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
-import LessonContent from "./content";
-import HelpfulMaterials from "./materials";
-import LessonOverview from "./overview";
-import RatingComponent from "./ratings";
-import RatingSubmission from "./submit";
-import LessonsRatingSummary from "./summary";
-import HeaderSection from "./viewHeader";
-import HeaderImage from "./viewHeaderImage";
+import { LessonContent } from "./content";
+import { HelpfulMaterials } from "./materials";
+import { LessonOverview } from "./overview";
+import { LessonRatingComponent } from "./ratings";
+import { LessonRatingSubmission } from "./submit";
+import { LessonsRatingSummary } from "./summary";
+import { HeaderSection } from "./viewHeader";
+import { HeaderImage } from "./viewHeaderImage";
 
 export interface Comment {
   id: string;
@@ -41,7 +41,7 @@ export interface ViewProps {
   onSubmit: (rating: { rating: number; comment: string }) => void;
 }
 
-export default function ViewPage({
+export function ViewPage({
   subject,
   title,
   overview,
@@ -105,9 +105,9 @@ export default function ViewPage({
         {/* Comments Section */}
         <LessonsRatingSummary ratings={ratings} />
 
-        <RatingSubmission onSubmit={onSubmit} />
+        <LessonRatingSubmission onSubmit={onSubmit} />
 
-        <RatingComponent {...ratings} />
+        <LessonRatingComponent {...ratings} />
       </div>
     </div>
   );

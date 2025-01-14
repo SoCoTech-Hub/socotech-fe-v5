@@ -20,7 +20,7 @@ export interface DigilibHelpProps {
   loading?: boolean;
 }
 
-const DigilibHelp: React.FC<DigilibHelpProps> = ({
+export const DigilibHelp: React.FC<DigilibHelpProps> = ({
   categories,
   onSearch,
   loading = false,
@@ -84,5 +84,3 @@ const DigilibHelp: React.FC<DigilibHelpProps> = ({
     </div>
   );
 };
-
-export default DigilibHelp;

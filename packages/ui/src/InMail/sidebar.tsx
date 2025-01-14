@@ -17,7 +17,7 @@ export interface InmailSidebarProps {
   toggleCollapse: () => void;
 }
 
-const InmailSidebar: React.FC<InmailSidebarProps> = ({
+export const InmailSidebar: React.FC<InmailSidebarProps> = ({
   setSelectedSection,
   setComposing,
   isCollapsed,
@@ -75,5 +75,3 @@ const InmailSidebar: React.FC<InmailSidebarProps> = ({
     </Button>
   </div>
 );
-
-export default InmailSidebar;

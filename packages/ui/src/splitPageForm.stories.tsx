@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryFn } from "@storybook/react";
 
-import SplitPageForm from "./splitPageForm";
+import { SplitPageForm } from "./splitPageForm";
 
 export default {
   title: "SplitPageForm",

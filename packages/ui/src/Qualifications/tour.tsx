@@ -12,7 +12,7 @@ export interface QualificationWelcomeBannerProps {
   img?: string;
 }
 
-const QualificationWelcomeBanner = ({
+export const QualificationWelcomeBanner = ({
   header = "Explore bursaries currently available in SA",
   subHeader = "Start your journey by exploring and applying for bursaries that can help fund your education and future career.",
   img = "/applications-tour.png",
@@ -22,14 +22,14 @@ const QualificationWelcomeBanner = ({
   if (isClosed) return null;
 
   return (
-    <Card className="bg-applicationsBg w-full">
+    <Card className="w-full bg-applicationsBg">
       <CardContent className="p-0">
         <div className="flex flex-col md:flex-row">
-          <div className="flex flex-1 items-center justify-center p-6 md:p-10">
+          <div className="flex items-center justify-center flex-1 p-6 md:p-10">
             <img
               src={img}
               alt="Welcome Image"
-              className="h-72 w-96 object-contain"
+              className="object-contain h-72 w-96"
             />
           </div>
           <div className="relative flex-1 p-6">
@@ -39,13 +39,13 @@ const QualificationWelcomeBanner = ({
               className="absolute right-2 top-2"
               onClick={() => setIsClosed(true)}
             >
-              <X className="h-4 w-4" />
+              <X className="w-4 h-4" />
               <span className="sr-only">Close</span>
             </Button>
-            <h2 className="text-textColor mb-4 pt-3 text-3xl font-bold leading-tight md:text-4xl">
+            <h2 className="pt-3 mb-4 text-3xl font-bold leading-tight text-textColor md:text-4xl">
               {header}
             </h2>
-            <p className="text-textColor mb-6 text-lg leading-snug">
+            <p className="mb-6 text-lg leading-snug text-textColor">
               {subHeader}
             </p>
           </div>
@@ -55,4 +55,4 @@ const QualificationWelcomeBanner = ({
   );
 };
 
-export default QualificationWelcomeBanner;
+

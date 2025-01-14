@@ -8,7 +8,7 @@ interface NotificationDotProps {
   className?: string;
 }
 
-export default function NotificationDot({
+export function NotificationDot({
   active = true,
   size = "md",
   color = "primary",

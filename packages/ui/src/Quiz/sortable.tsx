@@ -20,7 +20,7 @@ export interface SortableQuizListProps {
   onReorder: (newItems: QuizItem[]) => void;
 }
 
-export default function Sortable({
+export function Sortable({
   items: initialItems,
   correctOrder,
   onReorder,

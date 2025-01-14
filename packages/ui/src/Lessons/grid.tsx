@@ -1,4 +1,4 @@
-import CardSkeleton from "./skeleton";
+import { CardSkeleton } from "./skeleton";
 
 export interface GridProps<T> {
   items: T[];
@@ -6,7 +6,11 @@ export interface GridProps<T> {
   isLoading?: boolean;
 }
 
-const Grid = <T,>({ items, renderItem, isLoading = false }: GridProps<T>) => (
+export const Grid = <T,>({
+  items,
+  renderItem,
+  isLoading = false,
+}: GridProps<T>) => (
   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     {isLoading
       ? Array(8)
@@ -15,5 +19,3 @@ const Grid = <T,>({ items, renderItem, isLoading = false }: GridProps<T>) => (
       : items.map(renderItem)}
   </div>
 );
-
-export default Grid;

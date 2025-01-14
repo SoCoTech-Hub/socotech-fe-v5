@@ -33,7 +33,7 @@ interface BursaryPostProps {
   }) => void;
 }
 
-const BursaryPost = ({
+export const BursaryPost = ({
   loading,
   courseTitle = "",
   companyDescription = "",
@@ -166,5 +166,3 @@ const BursaryPost = ({
     </Card>
   );
 };
-
-export default BursaryPost;

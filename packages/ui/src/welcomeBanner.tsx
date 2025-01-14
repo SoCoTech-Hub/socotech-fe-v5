@@ -11,7 +11,7 @@ interface WelcomeBannerProps {
   className?: string;
 }
 
-export default function WelcomeBanner({
+export function WelcomeBanner({
   title,
   subheading,
   buttonText,

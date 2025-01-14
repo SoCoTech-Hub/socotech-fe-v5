@@ -16,7 +16,7 @@ interface NotificationModalProps {
   onClose?: () => void;
 }
 
-export default function NotificationModal({
+export function NotificationModal({
   notification,
   onClose,
 }: NotificationModalProps) {

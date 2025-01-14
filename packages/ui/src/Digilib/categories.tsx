@@ -18,7 +18,7 @@ interface DigilibCategoriesProps {
   badge?: string;
 }
 
-const DigilibCategories: React.FC<DigilibCategoriesProps> = ({
+export const DigilibCategories: React.FC<DigilibCategoriesProps> = ({
   img = "coming_soon.jpg",
   imgAlt,
   title,
@@ -57,5 +57,3 @@ const DigilibCategories: React.FC<DigilibCategoriesProps> = ({
     </Card>
   );
 };
-
-export default DigilibCategories;

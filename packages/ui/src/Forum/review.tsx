@@ -83,7 +83,7 @@ const ForumPost = {
   ],
 };
 
-const ForumPostView = (postData: ForumPost) => {
+export const ForumPostView = (postData: ForumPost) => {
   const [post, setPost] = useState<ForumPost>(postData);
   const [newReply, setNewReply] = useState("");
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest" | "mostLiked">(
@@ -144,7 +144,7 @@ const ForumPostView = (postData: ForumPost) => {
   const pageCount = Math.ceil(sortedReplies.length / repliesPerPage);
 
   return (
-    <Card className="mx-auto w-full max-w-4xl">
+    <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
         <CardTitle>{post.title}</CardTitle>
       </CardHeader>
@@ -174,11 +174,11 @@ const ForumPostView = (postData: ForumPost) => {
             size="sm"
             onClick={() => handleLike(true, post.id)}
           >
-            <ThumbsUp className="mr-2 h-4 w-4" />
+            <ThumbsUp className="w-4 h-4 mr-2" />
             Like ({post.likes})
           </Button>
           <p className="text-sm text-muted-foreground">
-            <MessageSquare className="mr-2 inline h-4 w-4" />
+            <MessageSquare className="inline w-4 h-4 mr-2" />
             {post.replies.length} replies
           </p>
         </div>
@@ -224,7 +224,7 @@ const ForumPostView = (postData: ForumPost) => {
                   size="sm"
                   onClick={() => handleLike(false, reply.id)}
                 >
-                  <ThumbsUp className="mr-2 h-4 w-4" />
+                  <ThumbsUp className="w-4 h-4 mr-2" />
                   Like ({reply.likes})
                 </Button>
               </div>
@@ -280,4 +280,3 @@ const ForumPostView = (postData: ForumPost) => {
   );
 };
 
-export default ForumPostView;

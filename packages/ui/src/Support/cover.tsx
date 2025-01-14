@@ -22,7 +22,7 @@ export interface CoverProps {
   }) => void;
   uploadImage?: (e: File) => void;
 }
-export default function Cover(props: CoverProps) {
+export function Cover(props: CoverProps) {
   const [bannerImage, setBannerImage] = useState(
     props.bannerImage ?? "https://via.placeholder.com/1000x300",
   );

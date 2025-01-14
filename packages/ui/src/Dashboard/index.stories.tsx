@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Index from "./index";
+import { UserDashboard } from "./index";
 
 const meta = {
   title: "Dashboard/Index",
-  component: Index,
+  component: UserDashboard,
   argTypes: {},
-} satisfies Meta<typeof Index>;
+} satisfies Meta<typeof UserDashboard>;
 
 export default meta;
 

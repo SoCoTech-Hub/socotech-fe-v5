@@ -7,7 +7,7 @@ export interface StatusContentProps {
   maxSize?: number;
   uploadProgress?: number;
 }
-const StatusContent = ({
+export const StatusContent = ({
   acceptedFileTypes = ["idle"],
   errorMessage,
   maxSize = 5242880,
@@ -81,4 +81,3 @@ const StatusContent = ({
       return null;
   }
 };
-export default StatusContent;

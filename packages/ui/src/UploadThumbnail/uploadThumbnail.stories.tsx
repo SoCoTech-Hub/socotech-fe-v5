@@ -1,7 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-
-import UploadThumbnail, { UploadThumbnailProps } from "./";
+import { UploadThumbnail, UploadThumbnailProps } from "./";
 
 export default {
   title: "Components/UploadThumbnail",

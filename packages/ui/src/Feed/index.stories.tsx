@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import Feed from ".";
+import { Feed } from ".";
 
 export default {
   title: "Feed/index",

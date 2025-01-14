@@ -19,7 +19,7 @@ import { Textarea } from "../textarea";
 
 type FeedbackType = "bug" | "feature" | "improvement" | "other";
 
-export default function FeedbackForm({ onBack }: { onBack: () => void }) {
+export function FeedbackForm({ onBack }: { onBack: () => void }) {
   const [rating, setRating] = useState<number>(0);
   const [hoveredRating, setHoveredRating] = useState<number>(0);
   const [feedbackType, setFeedbackType] = useState<FeedbackType>("improvement");

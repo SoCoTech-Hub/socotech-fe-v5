@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { UserAboutProps } from "./userAbout";
-import UserAbout from "./userAbout";
+import { UserAbout } from "./userAbout";
 
 export default {
   title: "Dashboard/UserAbout",

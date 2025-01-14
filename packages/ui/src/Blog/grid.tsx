@@ -1,8 +1,8 @@
 "use client";
 
 import type { BlogPost } from ".";
-import BlogCard from "./card";
-import BlogCardSkeleton from "./loader";
+import { BlogCard } from "./card";
+import { BlogCardSkeleton } from "./loader";
 
 export interface BlogGridProps {
   handleShare?: (id: string) => void;
@@ -12,7 +12,7 @@ export interface BlogGridProps {
   posts?: BlogPost[];
 }
 
-export default function BlogGrid(props: BlogGridProps) {
+export function BlogGrid(props: BlogGridProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {props.isLoading

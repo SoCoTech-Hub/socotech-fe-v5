@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { BlogPost } from "./index";
-import SavedArticlesList from "./savedArticles";
+import { SavedArticlesList } from "./savedArticles";
 
 export default {
   title: "Components/SavedArticlesList",

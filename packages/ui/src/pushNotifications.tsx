@@ -29,7 +29,7 @@ export interface PushNotificationsProps {
   description: string; // Description of the card
 }
 
-export default function PushNotifications({
+export function PushNotifications({
   apiEndpoint,
   vapidPublicKey,
   userId,

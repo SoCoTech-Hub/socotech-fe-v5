@@ -18,7 +18,7 @@ interface ModalProps {
   onClose?: () => void;
 }
 
-export default function Modal({
+export function Modal({
   title,
   message,
   timestamp,

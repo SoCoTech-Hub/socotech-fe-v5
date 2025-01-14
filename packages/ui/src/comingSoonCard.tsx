@@ -11,7 +11,7 @@ import {
 } from "./card";
 import { Toast } from "./toast";
 
-export default function ComingSoonCard({
+export function ComingSoonCard({
   title = "Coming Soon",
   description = "We're working on something exciting. Stay tuned!",
   ctaText = "Notify Me",

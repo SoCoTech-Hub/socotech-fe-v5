@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import InfoSection from "./info";
+import { InfoSection } from "./info";
 
 const sampleDropdowns = {
   genders: [

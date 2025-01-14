@@ -6,7 +6,7 @@ import { Download, Pause, Play, RotateCw } from "lucide-react";
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import { Skeleton } from "../skeleton";
-import PDFViewer from "./pdfViewer";
+import { PDFViewer } from "./pdfViewer";
 
 interface Resource {
   id: string;
@@ -20,7 +20,7 @@ interface ResourcePageProps {
   resourceId: string;
 }
 
-export default function ResourcePage({ resourceId }: ResourcePageProps) {
+export function ResourcePage({ resourceId }: ResourcePageProps) {
   const [resource, setResource] = useState<Resource | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);

@@ -14,7 +14,7 @@ export interface LessonsProps {
   handleBack: () => void;
   handleLessonSelect: (lesson: Lesson) => void;
 }
-const Lessons = (props: LessonsProps) => (
+export const Lessons = (props: LessonsProps) => (
   <Card className="m-4 flex-1">
     <CardHeader className="flex flex-row items-center justify-between">
       <CardTitle>Lessons in {props.selectedSubject.title}</CardTitle>
@@ -42,4 +42,3 @@ const Lessons = (props: LessonsProps) => (
     </CardContent>
   </Card>
 );
-export default Lessons;

@@ -23,7 +23,7 @@ const Redirect: React.FC = () => (
   </div>
 );
 
-const ContentLock: React.FC<ContentLockProps> = ({
+export const ContentLock: React.FC<ContentLockProps> = ({
   bgColor = "bg-gray-100",
   isPaying = "false",
   children,
@@ -57,5 +57,3 @@ const ContentLock: React.FC<ContentLockProps> = ({
     </Dialog>
   );
 };
-
-export default ContentLock;

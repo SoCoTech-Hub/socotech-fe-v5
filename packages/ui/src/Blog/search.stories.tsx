@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { BlogPost } from "./";
-import BlogSearch from "./search";
+import { BlogSearch } from "./search";
 
 export default {
   title: "Blog/Search",

@@ -19,7 +19,7 @@ export interface UserAboutProps {
   bio?: string;
 }
 
-export default function UserAbout({
+export function UserAbout({
   school = "University of Example",
   province = "Example Province",
   grade = "Senior",
@@ -37,15 +37,15 @@ export default function UserAbout({
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="flex items-center space-x-2">
-            <School className="h-5 w-5 text-primary dark:text-primary-foreground" />
+            <School className="dark:text-primary-foreground h-5 w-5 text-primary" />
             <span className="dark:text-gray-300">{school}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <MapPin className="h-5 w-5 text-primary dark:text-primary-foreground" />
+            <MapPin className="dark:text-primary-foreground h-5 w-5 text-primary" />
             <span className="dark:text-gray-300">{province}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <GraduationCap className="h-5 w-5 text-primary dark:text-primary-foreground" />
+            <GraduationCap className="dark:text-primary-foreground h-5 w-5 text-primary" />
             <span className="dark:text-gray-300">{grade}</span>
           </div>
         </div>

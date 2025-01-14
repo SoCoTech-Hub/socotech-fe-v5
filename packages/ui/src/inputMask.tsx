@@ -53,12 +53,7 @@ const formatValue = (value: string, mask: string) => {
   return maskedValue;
 };
 
-export default function InputMask({
-  type,
-  label,
-  value,
-  onChange,
-}: InputMaskProps) {
+export function InputMask({ type, label, value, onChange }: InputMaskProps) {
   const [displayValue, setDisplayValue] = useState<string>("");
 
   // Update display value whenever the value or type changes

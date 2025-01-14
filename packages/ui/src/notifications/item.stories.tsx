@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { Notification } from "./list";
-import NotificationItem from "./item";
+import { NotificationItem } from "./item";
 
 const meta: Meta<typeof NotificationItem> = {
   title: "Notifications/Item",

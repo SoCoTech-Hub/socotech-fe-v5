@@ -9,7 +9,7 @@ export interface AttachmentsProps {
   attachments?: AttachmentType[];
 }
 
-const Attachments = ({ attachments }: AttachmentsProps) => (
+export const Attachments = ({ attachments }: AttachmentsProps) => (
   <div className="mt-4 border-t-2 border-dotted border-black">
     {attachments?.length === 1 ? (
       <div className="text-textColor text-xs font-bold">
@@ -29,5 +29,3 @@ const Attachments = ({ attachments }: AttachmentsProps) => (
     </div>
   </div>
 );
-
-export default Attachments;

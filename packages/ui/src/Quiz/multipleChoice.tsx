@@ -8,7 +8,7 @@ interface MultipleChoiceQuestionProps {
   answer: string[];
 }
 
-export default function MultipleChoiceQuestion({
+export function MultipleChoiceQuestionComponent({
   question,
   onAnswer,
   answer,

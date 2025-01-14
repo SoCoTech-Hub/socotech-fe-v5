@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import BursaryPost from "./post";
+import { BursaryPost } from "./post";
 
 const meta: Meta<typeof BursaryPost> = {
   title: "Bursary/Post",

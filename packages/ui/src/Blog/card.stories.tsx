@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { BlogPost } from "./";
-import BlogCard from "./card";
+import { BlogCard } from "./card";
 
 export default {
   title: "Blog/Card",

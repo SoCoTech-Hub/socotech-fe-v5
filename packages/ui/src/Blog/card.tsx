@@ -4,7 +4,7 @@ import type { BlogPost } from ".";
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 
-const BlogCard = ({
+export const BlogCard = ({
   post,
   onSave,
   onLike,
@@ -69,4 +69,3 @@ const BlogCard = ({
     </CardFooter>
   </Card>
 );
-export default BlogCard;

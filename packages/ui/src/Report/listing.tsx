@@ -17,7 +17,7 @@ export interface ReportListingProps {
   iconSvg?: string;
 }
 
-const ReportListing = ({
+export const ReportListing = ({
   id,
   applicationFeatureImage = "",
   courseTitle = "Course Title Goes Here",
@@ -32,11 +32,11 @@ const ReportListing = ({
       <CardContent className="p-0">
         <Button
           variant="ghost"
-          className="h-auto w-full p-0 hover:bg-transparent"
+          className="w-full h-auto p-0 hover:bg-transparent"
           onClick={() => setSelection(id)}
         >
-          <div className="flex h-24 w-full items-center">
-            <div className="mx-3 h-14 w-14 flex-shrink-0">
+          <div className="flex items-center w-full h-24">
+            <div className="flex-shrink-0 mx-3 h-14 w-14">
               <div
                 className={cn(
                   "h-14 w-14 overflow-hidden rounded-full",
@@ -45,7 +45,7 @@ const ReportListing = ({
               >
                 {iconSvg ? (
                   <div
-                    className="flex h-full w-full items-center justify-center"
+                    className="flex items-center justify-center w-full h-full"
                     style={{ backgroundColor: bgColor || "var(--primary)" }}
                     dangerouslySetInnerHTML={{ __html: iconSvg }}
                   />
@@ -55,7 +55,7 @@ const ReportListing = ({
                     alt={courseTitle}
                     width={56}
                     height={56}
-                    className="rounded-lg object-cover"
+                    className="object-cover rounded-lg"
                   />
                 ) : null}
               </div>
@@ -87,4 +87,4 @@ const ReportListing = ({
   );
 };
 
-export default ReportListing;
+

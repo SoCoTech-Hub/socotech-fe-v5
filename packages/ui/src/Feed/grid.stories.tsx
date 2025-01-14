@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { FeedPost } from "./index";
-import FeedGrid from "./grid";
+import { FeedGrid } from "./grid";
 
 export default {
   title: "Feed/Grid",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import LeftSwipeDrawer from "./leftSwipeDrawer";
+import { LeftSwipeDrawer } from "./leftSwipeDrawer";
 
 const meta: Meta<typeof LeftSwipeDrawer> = {
   title: "LeftSwipeDrawer",

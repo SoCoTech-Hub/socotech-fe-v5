@@ -18,7 +18,7 @@ export interface TourFooterProps {
   handleNext: () => void;
   handleStepChange: (e: string) => void;
 }
-const TourFooter = (props: TourFooterProps) => (
+export const TourFooter = (props: TourFooterProps) => (
   <CardFooter className="flex flex-col gap-2">
     <div className="flex w-full justify-between">
       <Button
@@ -53,4 +53,3 @@ const TourFooter = (props: TourFooterProps) => (
     </Select>
   </CardFooter>
 );
-export default TourFooter;

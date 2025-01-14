@@ -1,6 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import TicketingDashboard, {
+import {
+  TicketingDashboard,
   TicketingDashboardProps,
 } from "./ticketingDashboard";
 

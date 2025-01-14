@@ -14,7 +14,7 @@ export interface TicketItem {
   location: string;
 }
 
-const TicketList = ({
+export const TicketList = ({
   tickets,
   onSelectTicket,
   currentPage,
@@ -99,4 +99,3 @@ const TicketList = ({
     </div>
   </div>
 );
-export default TicketList;

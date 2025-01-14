@@ -7,11 +7,13 @@ import { Button } from "../button";
 import { useToast } from "../hooks/use-toast";
 import { Textarea } from "../textarea";
 
-export interface RatingSubmissionProps {
+export interface LessonRatingSubmissionProps {
   onSubmit: (rating: { rating: number; comment: string }) => void;
 }
 
-export default function RatingSubmission({ onSubmit }: RatingSubmissionProps) {
+export function LessonRatingSubmission({
+  onSubmit,
+}: LessonRatingSubmissionProps) {
   const [userRating, setUserRating] = useState(0);
   const [userComment, setUserComment] = useState("");
   const { toast } = useToast();

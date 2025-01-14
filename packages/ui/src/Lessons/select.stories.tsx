@@ -1,14 +1,14 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { Grade } from "./tabs";
-import Lessons from "./select";
+import { Lessons } from "./select";
 
 export default {
   title: "Lesson/Lessons",
   component: Lessons,
 } as Meta;
 
-const Template: StoryFn = (args) => <Lessons {...args} />;
+const Template: StoryFn = (args) => <Lessons grades={grades} {...args} />;
 
 const grades: Grade[] = [
   {
@@ -80,6 +80,3 @@ const grades: Grade[] = [
 ];
 
 export const DefaultLessons = Template.bind({});
-DefaultLessons.args = {
-  grades: grades,
-};

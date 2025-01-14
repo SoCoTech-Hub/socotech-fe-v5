@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import CustomSidebar from "./index";
+import { CustomSidebar } from "./index";
 import { sidebarItems } from "./itemlist";
 
 export default {

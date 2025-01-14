@@ -17,7 +17,7 @@ export interface QualificationListingProps {
   iconSvg?: string;
 }
 
-const QualificationListing = ({
+export const QualificationListing = ({
   id,
   applicationFeatureImage = "",
   courseTitle = "Course Title Goes Here",
@@ -86,5 +86,3 @@ const QualificationListing = ({
     </Card>
   );
 };
-
-export default QualificationListing;

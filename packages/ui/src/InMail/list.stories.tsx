@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { InmailListProps } from "./list";
-import InmailList from "./list";
+import { InmailList } from "./list";
 
 const meta: Meta<typeof InmailList> = {
   title: "Inmail/List",

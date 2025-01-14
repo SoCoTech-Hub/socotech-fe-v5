@@ -1,15 +1,15 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { Rating } from "./ratings";
-import RatingComponent from "./ratings";
+import { LessonRatingComponent } from "./ratings";
 
 export default {
   title: "Lesson/RatingComponent",
-  component: RatingComponent,
+  component: LessonRatingComponent,
 } as Meta;
 
 const Template: StoryFn<{ ratings: Rating[] }> = (args) => (
-  <RatingComponent {...args.ratings} />
+  <LessonRatingComponent {...args.ratings} />
 );
 
 const sampleRatings: Rating[] = [

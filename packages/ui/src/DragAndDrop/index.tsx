@@ -157,5 +157,3 @@ export const MatrixSort: React.FC<MatrixSortProps> = () =>
       // </DndProvider>
     );
   };
-
-export default MatrixSort;

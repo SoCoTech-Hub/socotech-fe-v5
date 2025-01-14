@@ -16,7 +16,7 @@ interface ButtonGroupProps {
   className?: string;
 }
 
-export default function ButtonGroup({
+export function ButtonGroup({
   buttons,
   variant = "default",
   size = "default",
@@ -53,7 +53,7 @@ export default function ButtonGroup({
 // import ButtonGroup from '@acme/ButtonGroup'
 // import { Home, Settings, User } from 'lucide-react'
 
-// export default function ButtonGroupExample() {
+// export function ButtonGroupExample() {
 //   const handleClick = (action: string) => {
 //     console.log(`${action} clicked`)
 //   }

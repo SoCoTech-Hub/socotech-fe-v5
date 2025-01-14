@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import AccessDenied from "./accessDenied";
+import { AccessDenied } from "./accessDenied";
 
 export default {
   title: "AccessDenied",

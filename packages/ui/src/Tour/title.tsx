@@ -9,7 +9,7 @@ export interface TourTitleProps {
   handleClose: () => void;
   currentStep: number;
 }
-const TourTitle = (props: TourTitleProps) => (
+export const TourTitle = (props: TourTitleProps) => (
   <CardTitle className="flex items-center justify-between">
     <span>{props.steps[props.currentStep]?.title}</span>
     <Button variant="ghost" size="icon" onClick={props.handleClose}>
@@ -18,4 +18,3 @@ const TourTitle = (props: TourTitleProps) => (
     </Button>
   </CardTitle>
 );
-export default TourTitle;

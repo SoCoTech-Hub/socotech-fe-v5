@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import Lessons, { LessonsProps } from "./lessons";
+import { Lessons, LessonsProps } from "./lessons";
 
 export default {
   title: "Components/Lessons",

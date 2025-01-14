@@ -4,7 +4,7 @@ import TimeDifferenceFromDate from "@acme/snippets/functions/timeDifferenceFromD
 
 import { Button } from "../button";
 import { Card, CardContent, CardFooter } from "../card";
-import Section from "./section";
+import { Section } from "./section";
 
 interface QualificationPostProps {
   loading: boolean;
@@ -30,7 +30,7 @@ interface QualificationPostProps {
   }) => Promise<void>;
 }
 
-const QualificationPost: React.FC<QualificationPostProps> = ({
+export const QualificationPost: React.FC<QualificationPostProps> = ({
   loading,
   courseTitle = "",
   companyDescription = "",
@@ -148,5 +148,3 @@ const QualificationPost: React.FC<QualificationPostProps> = ({
     </Card>
   );
 };
-
-export default QualificationPost;

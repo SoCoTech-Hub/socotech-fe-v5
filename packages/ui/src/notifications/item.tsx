@@ -8,7 +8,7 @@ interface NotificationItemProps {
   onClick: () => void;
 }
 
-export default function NotificationItem({
+export function NotificationItem({
   notification,
   onClick,
 }: NotificationItemProps) {

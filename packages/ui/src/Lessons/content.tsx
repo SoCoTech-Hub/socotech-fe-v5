@@ -16,7 +16,7 @@ export interface ContentItem {
   url: string;
 }
 //TODO:fix onclick
-const LessonContent: React.FC<LessonContentProps> = ({
+export const LessonContent: React.FC<LessonContentProps> = ({
   subject,
   title,
   hasQuiz,
@@ -67,5 +67,3 @@ const LessonContent: React.FC<LessonContentProps> = ({
     </section>
   );
 };
-
-export default LessonContent;

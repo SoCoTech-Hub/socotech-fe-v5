@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import Avatar, { AvatarProps } from "./avatar";
+import { Avatar, AvatarProps } from "./avatar";
 
 export default {
   title: "Article/Avatar",

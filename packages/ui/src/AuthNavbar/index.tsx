@@ -4,10 +4,10 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 
 import { Button } from "../button";
-import Logo from "../logo";
+import { Logo } from "../logo";
 import { cn } from "../utils";
-import MobileMenu from "./mobileMenu";
-import UserMenu from "./userMenu";
+import { MobileMenu } from "./mobileMenu";
+import { UserMenu } from "./userMenu";
 
 export interface NavItem {
   title: string;

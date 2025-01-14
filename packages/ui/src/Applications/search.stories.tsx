@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SearchFilter from "./search";
+import { SearchFilter } from "./search";
 
 const meta: Meta<typeof SearchFilter> = {
   title: "Applications/SearchFilter",

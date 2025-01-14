@@ -1,4 +1,4 @@
-const Section: React.FC<{ title: string; content: string }> = ({
+export const Section: React.FC<{ title: string; content: string }> = ({
   title,
   content,
 }) => (
@@ -7,4 +7,3 @@ const Section: React.FC<{ title: string; content: string }> = ({
     <div dangerouslySetInnerHTML={{ __html: content }} />
   </div>
 );
-export default Section;

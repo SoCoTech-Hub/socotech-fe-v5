@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { LessonOverviewProps } from "./overview";
-import LessonOverview from "./overview";
+import { LessonOverview } from "./overview";
 
 export default {
   title: "Lesson/LessonOverview",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import DraggableContent from "./draggable";
+import { DraggableContent } from "./draggable";
 
 const meta: Meta<typeof DraggableContent> = {
   title: "DraggableContent",

@@ -23,7 +23,7 @@ interface FileUploaderProps {
   onFileUpload: (file: FileWithPreview) => Promise<void>; // Function to handle the file upload
 }
 
-export default function FileUploader({
+export function FileUploader({
   maxFileSize = 5, // Default max file size: 5MB
   allowedTypes = ["image/*", "application/pdf", "application/msword"],
   dragAndDropMessage = "Drag 'n' drop files here, or click to select",

@@ -12,7 +12,7 @@ export interface SidebarItemProps {
   item: SidebarItemListProps;
 }
 
-const SidebarItem = ({ isExpanded, item }: SidebarItemProps) => (
+export const SidebarItem = ({ isExpanded, item }: SidebarItemProps) => (
   <SidebarMenuButton>
     {item.subItems ? (
       <DropdownMenu>
@@ -43,5 +43,3 @@ const SidebarItem = ({ isExpanded, item }: SidebarItemProps) => (
     )}
   </SidebarMenuButton>
 );
-
-export default SidebarItem;

@@ -9,7 +9,7 @@ export interface DigilibHeaderProps {
   backOnClick?: () => void;
 }
 
-const DigilibHeader: React.FC<DigilibHeaderProps> = ({
+export const DigilibHeader: React.FC<DigilibHeaderProps> = ({
   name,
   category,
   subject,
@@ -22,14 +22,14 @@ const DigilibHeader: React.FC<DigilibHeaderProps> = ({
         {loading ? (
           <Skeleton className="mb-2 h-6 w-48" />
         ) : (
-          <h1 className="text-primaryForeground text-lg font-bold leading-tight md:text-xl">
+          <h1 className="text-lg font-bold leading-tight text-primaryForeground md:text-xl">
             {name}
           </h1>
         )}
         {loading ? (
           <Skeleton className="h-10 w-72 md:w-80 lg:w-96" />
         ) : (
-          <h2 className="text-primaryForeground text-3xl font-semibold leading-tight md:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-semibold leading-tight text-primaryForeground md:text-4xl lg:text-5xl">
             {category} {subject}
           </h2>
         )}
@@ -37,7 +37,7 @@ const DigilibHeader: React.FC<DigilibHeaderProps> = ({
       {!loading && !backOnClick && (
         <Button
           onClick={backOnClick}
-          className="text-primaryForeground mt-4"
+          className="mt-4 text-primaryForeground"
           variant="outline"
         >
           Back
@@ -46,5 +46,3 @@ const DigilibHeader: React.FC<DigilibHeaderProps> = ({
     </div>
   );
 };
-
-export default DigilibHeader;

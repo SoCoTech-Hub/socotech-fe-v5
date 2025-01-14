@@ -12,7 +12,7 @@ export interface BursaryWelcomeBannerProps {
   img?: string;
 }
 
-const BursaryWelcomeBanner = ({
+export const BursaryWelcomeBanner = ({
   header = "Explore bursaries currently available in SA",
   subHeader = "Start your journey by exploring and applying for bursaries that can help fund your education and future career.",
   img = "/applications-tour.png",
@@ -54,5 +54,3 @@ const BursaryWelcomeBanner = ({
     </Card>
   );
 };
-
-export default BursaryWelcomeBanner;

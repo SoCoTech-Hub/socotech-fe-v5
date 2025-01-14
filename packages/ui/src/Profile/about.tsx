@@ -25,7 +25,7 @@ export interface UserProfile {
   updateProfile?: (profile: Profile) => void;
 }
 
-export default function AboutSection(props: UserProfile) {
+export function AboutSection(props: UserProfile) {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);

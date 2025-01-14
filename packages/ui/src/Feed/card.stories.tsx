@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { FeedPost } from "./";
-import FeedCard from "./card";
+import { FeedCard } from "./card";
 
 export default {
   title: "Feed/Card",

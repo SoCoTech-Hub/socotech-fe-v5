@@ -18,7 +18,7 @@ export interface SubjectsProps {
   handleBack: () => void;
   handleSubjectSelect: (subject: Subject) => void;
 }
-const Subjects = (props: SubjectsProps) => (
+export const Subjects = (props: SubjectsProps) => (
   <Card className="m-4 flex-1">
     <CardHeader className="flex flex-row items-center justify-between">
       <CardTitle>Subjects in {props.selectedCategory.title}</CardTitle>
@@ -56,4 +56,3 @@ const Subjects = (props: SubjectsProps) => (
     </CardContent>
   </Card>
 );
-export default Subjects;

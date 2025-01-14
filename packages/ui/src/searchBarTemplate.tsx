@@ -15,7 +15,7 @@ interface SearchBarProps {
   initialQuery?: string;
 }
 
-export default function SearchBar({
+export function SearchBarTemplate({
   initData = [], // Default to empty array if not provided
   onSearch,
   placeholder = "Search...",

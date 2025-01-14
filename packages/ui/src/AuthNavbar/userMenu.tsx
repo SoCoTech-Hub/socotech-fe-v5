@@ -15,7 +15,7 @@ export interface UserMenuProps {
   image?: string;
 }
 
-function UserMenu(props: UserMenuProps) {
+export function UserMenu(props: UserMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,4 +49,3 @@ function UserMenu(props: UserMenuProps) {
     </DropdownMenu>
   );
 }
-export default UserMenu;

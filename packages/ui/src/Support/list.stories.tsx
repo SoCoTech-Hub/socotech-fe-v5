@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import TicketList, { TicketItem } from "./list";
+import { TicketItem, TicketList } from "./list";
 
 export default {
   title: "Components/TicketList",

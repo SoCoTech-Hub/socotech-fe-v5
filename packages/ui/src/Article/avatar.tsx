@@ -4,7 +4,7 @@ export interface AvatarProps {
   title: string;
   avatarUrl: string;
 }
-const Avatar = (props: AvatarProps) => (
+export const Avatar = (props: AvatarProps) => (
   <div className="mb-4 flex items-center">
     <img
       src={props.avatarUrl}
@@ -19,4 +19,3 @@ const Avatar = (props: AvatarProps) => (
     </div>
   </div>
 );
-export default Avatar;

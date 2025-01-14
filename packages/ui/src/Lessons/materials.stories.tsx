@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 import { FileText, Link } from "lucide-react";
 
 import type { HelpfulMaterialsProps, Material } from "./materials";
-import HelpfulMaterials from "./materials";
+import { HelpfulMaterials } from "./materials";
 
 export default {
   title: "Lesson/HelpfulMaterials",

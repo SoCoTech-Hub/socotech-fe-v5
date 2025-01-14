@@ -29,16 +29,16 @@ import {
   SheetTrigger,
 } from "../sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
-import TicketDetail from "./detail";
-import FeedbackForm from "./feedback";
-import CreateSupportForm from "./form";
-import TicketList from "./list";
+import { TicketDetail } from "./detail";
+import { FeedbackForm } from "./feedback";
+import { CreateSupportForm } from "./form";
+import { TicketList } from "./list";
 
 export interface TicketingDashboardProps {
   tickets: TicketItem[];
   createTicket?: (ticket: TicketItem) => void;
 }
-export default function TicketingDashboard(props: TicketingDashboardProps) {
+export function TicketingDashboard(props: TicketingDashboardProps) {
   const [tickets, setTickets] = useState<TicketItem[]>([]);
   const [activeTicket, setActiveTicket] = useState<TicketItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);

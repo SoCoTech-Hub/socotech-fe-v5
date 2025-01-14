@@ -3,7 +3,7 @@ export interface HeaderImageProps {
   headerImageAlt: string;
 }
 
-const HeaderImage: React.FC<HeaderImageProps> = ({
+export const HeaderImage: React.FC<HeaderImageProps> = ({
   headerImageUrl,
   headerImageAlt,
 }) => {
@@ -17,5 +17,3 @@ const HeaderImage: React.FC<HeaderImageProps> = ({
     </div>
   );
 };
-
-export default HeaderImage;

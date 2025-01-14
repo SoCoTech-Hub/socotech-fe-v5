@@ -1,15 +1,15 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import type { RatingSubmissionProps } from "./submit";
-import RatingSubmission from "./submit";
+import type { LessonRatingSubmissionProps } from "./submit";
+import { LessonRatingSubmission } from "./submit";
 
 export default {
   title: "Lesson/RatingSubmission",
-  component: RatingSubmission,
+  component: LessonRatingSubmission,
 } as Meta;
 
-const Template: StoryFn<RatingSubmissionProps> = (args) => (
-  <RatingSubmission {...args} />
+const Template: StoryFn<LessonRatingSubmissionProps> = (args) => (
+  <LessonRatingSubmission {...args} />
 );
 
 export const DefaultSubmission = Template.bind({});

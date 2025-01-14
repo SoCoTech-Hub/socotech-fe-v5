@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import InfosPage from ".";
+import { InfosPage } from ".";
 
 export default {
   title: "Infos/Page",

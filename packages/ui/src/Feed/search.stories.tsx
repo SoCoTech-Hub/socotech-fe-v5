@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { FeedPost } from "./";
-import FeedSearch from "./search";
+import { FeedSearch } from "./search";
 
 export default {
   title: "Feed/Search",

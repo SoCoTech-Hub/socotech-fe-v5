@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 
 import type { Show } from "./card";
-import ShowCard from "./card";
-import ShowCardSkeleton from "./loader";
+import { ShowCard } from "./card";
+import { ShowCardSkeleton } from "./loader";
 
 export interface ShowGridProps {
   shows: Show[];
   isLoading?: boolean;
 }
 
-export default function ShowGrid({ shows, isLoading = false }: ShowGridProps) {
+export function ShowGrid({ shows, isLoading = false }: ShowGridProps) {
   const [displayedShows, setDisplayedShows] = useState<Show[]>([]);
 
   useEffect(() => {

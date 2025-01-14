@@ -1,16 +1,16 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import ThemeLayout from "./themeLayout";
+import { RootLayout } from "./themeLayout";
 
 export default {
-  title: "ThemeLayout",
-  component: ThemeLayout,
+  title: "RootLayout",
+  component: RootLayout,
   parameters: {
     layout: "fullscreen",
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <ThemeLayout {...args} children />;
+const Template: StoryFn = (args) => <RootLayout {...args} children />;
 
 export const Default = Template.bind({});
 Default.args = {

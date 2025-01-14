@@ -13,7 +13,7 @@ import {
 import { Textarea } from "../textarea";
 import { FormLists } from "./formList";
 
-const CreateSupportForm = ({
+export const CreateSupportForm = ({
   onSubmit,
 }: {
   onSubmit: (title: string, description: string, location: string) => void;
@@ -72,4 +72,3 @@ const CreateSupportForm = ({
     </form>
   );
 };
-export default CreateSupportForm;

@@ -18,7 +18,7 @@ export interface PollProps {
   onSubmit: (selectedOption: string) => void;
 }
 
-export default function ZoomPoll({ question, options, onSubmit }: PollProps) {
+export function ZoomPoll({ question, options, onSubmit }: PollProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleSubmit = (event: React.FormEvent) => {

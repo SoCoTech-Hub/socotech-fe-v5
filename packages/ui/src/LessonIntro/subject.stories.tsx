@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { SubjectCategory } from "./categories";
-import Subjects from "./subjects";
+import { Subjects } from "./subjects";
 
 export default {
   title: "LessonIntro/Subjects",

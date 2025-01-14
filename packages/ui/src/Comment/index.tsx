@@ -30,7 +30,7 @@ export interface CommentComponentProps {
   user?: User;
 }
 
-export default function CommentComponent({
+export function CommentComponent({
   comments: initialComments = [],
   onFetchComments,
   onPostComment,

@@ -67,7 +67,7 @@ const mockMessages: Message[] = [
   },
 ];
 
-export default function TicketDetail({ ticket }: TicketDetailProps) {
+export function TicketDetail({ ticket }: TicketDetailProps) {
   const [messages, setMessages] = useState<Message[]>(mockMessages);
   const [newMessage, setNewMessage] = useState("");
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import CardSkeleton from "./skeleton";
+import { CardSkeleton } from "./skeleton";
 
 export default {
   title: "Lesson/CardSkeleton",

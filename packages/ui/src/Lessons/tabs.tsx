@@ -14,7 +14,7 @@ export interface ScrollTabsProps {
   setSelectedGrade: (gradeId: string) => void;
 }
 
-const ScrollTabs: React.FC<ScrollTabsProps> = ({
+export const ScrollTabs: React.FC<ScrollTabsProps> = ({
   grades,
   selectedGrade,
   setSelectedGrade,
@@ -35,5 +35,3 @@ const ScrollTabs: React.FC<ScrollTabsProps> = ({
     </ScrollArea>
   </Tabs>
 );
-
-export default ScrollTabs;

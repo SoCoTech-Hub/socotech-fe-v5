@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { SearchBarProps } from ".";
-import SearchBar from ".";
+import { SearchBar } from ".";
 
 export default {
   title: "Search/MainSearchBar",

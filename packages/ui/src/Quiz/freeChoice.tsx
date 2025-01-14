@@ -8,7 +8,7 @@ interface FreeChoiceQuestionProps {
   answer: string;
 }
 
-export default function FreeChoiceQuestion({
+export function FreeChoiceQuestionComponent({
   question,
   onAnswer,
   answer,

@@ -19,7 +19,7 @@ export interface Rating {
   timestamp: Date;
 }
 
-export default function RatingComponent(props: Rating[]) {
+export function LessonRatingComponent(props: Rating[]) {
   const [ratings, setRatings] = useState<Rating[]>(props);
   const [newComment, setNewComment] = useState("");
   const [commentingOn, setCommentingOn] = useState<number | null>(null);

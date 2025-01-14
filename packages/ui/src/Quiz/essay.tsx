@@ -8,7 +8,7 @@ interface EssayQuestionProps {
   answer: string;
 }
 
-export default function EssayQuestion({
+export function EssayQuestionComponent({
   question,
   onAnswer,
   answer,

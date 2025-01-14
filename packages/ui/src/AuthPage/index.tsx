@@ -16,7 +16,7 @@ export interface AuthPageProps {
   className?: string;
 }
 
-const AuthPage: React.FC<AuthPageProps> = ({
+export const AuthPage: React.FC<AuthPageProps> = ({
   bgImage,
   bgColor = "inherit",
   bgSize = "cover",
@@ -67,5 +67,3 @@ const AuthPage: React.FC<AuthPageProps> = ({
     </>
   );
 };
-
-export default AuthPage;

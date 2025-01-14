@@ -11,7 +11,7 @@ interface RatingSubmissionProps {
   onSubmit: (rating: { rating: number; comment: string }) => void;
 }
 
-export default function RatingSubmission({ onSubmit }: RatingSubmissionProps) {
+export function RatingSubmission({ onSubmit }: RatingSubmissionProps) {
   const [userRating, setUserRating] = useState(0);
   const [userComment, setUserComment] = useState("");
   const { toast } = useToast();

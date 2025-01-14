@@ -12,7 +12,9 @@ export interface HelpfulMaterialsProps {
   materials: Material[];
 }
 
-const HelpfulMaterials: React.FC<HelpfulMaterialsProps> = ({ materials }) => {
+export const HelpfulMaterials: React.FC<HelpfulMaterialsProps> = ({
+  materials,
+}) => {
   const handleCardClick = (url: string) => {
     window.location.href = url;
   };
@@ -38,5 +40,3 @@ const HelpfulMaterials: React.FC<HelpfulMaterialsProps> = ({ materials }) => {
     </section>
   );
 };
-
-export default HelpfulMaterials;

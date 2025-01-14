@@ -1,8 +1,8 @@
 "use client";
 
 import type { FeedPost } from ".";
-import FeedCard from "./card";
-import FeedCardSkeleton from "./loader";
+import { FeedCard } from "./card";
+import { FeedCardSkeleton } from "./loader";
 
 export interface FeedGridProps {
   handleShare?: (id: string) => void;
@@ -12,7 +12,7 @@ export interface FeedGridProps {
   posts?: FeedPost[];
 }
 
-export default function FeedGrid(props: FeedGridProps) {
+export function FeedGrid(props: FeedGridProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {props.isLoading

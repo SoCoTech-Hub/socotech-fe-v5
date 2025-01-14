@@ -78,7 +78,7 @@ const mockThreads: ForumThread[] = [
   },
 ];
 
-const ForumDisplay: React.FC = () => {
+export const ForumDisplay: React.FC = () => {
   const [threads] = useState<ForumThread[]>(mockThreads); //removed setThreads
   const [sortColumn, setSortColumn] =
     useState<keyof ForumThread>("lastActivity");
@@ -240,5 +240,3 @@ const ForumDisplay: React.FC = () => {
     </Card>
   );
 };
-
-export default ForumDisplay;

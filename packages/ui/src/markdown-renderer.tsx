@@ -193,5 +193,3 @@ function withClass(Tag: keyof JSX.IntrinsicElements, classes: string) {
   Component.displayName = Tag;
   return Component;
 }
-
-export default MarkdownRenderer;

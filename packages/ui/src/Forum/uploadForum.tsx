@@ -11,14 +11,17 @@ import { Checkbox } from "../checkbox";
 import { useToast } from "../hooks/use-toast";
 import { Input } from "../input";
 import { Label } from "../label";
-import MdxEditor from "../Mdx";
+import { MdxEditor } from "../Mdx";
 
 interface UploadForumProps {
   userId: number;
   isAdmin: boolean;
 }
 
-const UploadForum: React.FC<UploadForumProps> = ({ userId, isAdmin }) => {
+export const UploadForum: React.FC<UploadForumProps> = ({
+  userId,
+  isAdmin,
+}) => {
   const router = useRouter();
   const { toast } = useToast();
   const [title, setTitle] = useState("");
@@ -103,10 +106,7 @@ const UploadForum: React.FC<UploadForumProps> = ({ userId, isAdmin }) => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
-            <MdxEditor
-              value={description}
-              setValue={setDescription}
-            />
+            <MdxEditor value={description} setValue={setDescription} />
           </div>
           {isAdmin && (
             <div className="flex items-center space-x-2">
@@ -147,5 +147,3 @@ const UploadForum: React.FC<UploadForumProps> = ({ userId, isAdmin }) => {
     </Card>
   );
 };
-
-export default UploadForum;

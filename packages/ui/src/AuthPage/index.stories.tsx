@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { AuthPageProps } from "./";
-import AuthPage from "./";
+import { AuthPage } from "./";
 
 export default {
   title: "AuthPage/Index",

@@ -2,15 +2,15 @@ import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { email } from "@acme/snippets/context/constants";
 import resendConfirmation from "@acme/snippets/functions/auth/resendConfirmation";
-
 import { Page } from "@acme/ui/PageLayout/index";
 
 type ConfirmProps = {
   email: string | null;
 };
 
-const Confirm: FC<ConfirmProps> = ({ email }) => {
+const Confirm: FC<ConfirmProps> = () => {
   const router = useRouter();
   const rEmail = router.query?.email as string | undefined;
   const [error, setError] = useState<string>("");
@@ -50,6 +50,7 @@ const Confirm: FC<ConfirmProps> = ({ email }) => {
       }, 120000);
       return () => clearTimeout(timer);
     }
+    return;
   }, [disabled]);
 
   const handleSubmit = async (event: React.FormEvent) => {

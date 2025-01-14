@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { ShowGridProps } from "./grid";
-import ShowGrid from "./grid";
+import { ShowGrid } from "./grid";
 
 export default {
   title: "Shows/Grid",

@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 import type { Material } from "./materials";
 import type { Rating } from "./ratings";
 import type { ViewProps } from "./view";
-import ViewPage from "./view";
+import { ViewPage } from "./view";
 
 export default {
   title: "Components/ViewPage",

@@ -13,7 +13,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../dropdown-menu";
-import SidebarLogo from "../logo";
+import { Logo } from "../logo";
 import {
   Sidebar,
   SidebarContent,
@@ -24,9 +24,9 @@ import {
   SidebarProvider,
 } from "../sidebar";
 import { cn } from "../utils";
-import SidebarItem from "./item";
-import SidebarProfile from "./profile";
-import SidebarProfileSection from "./profileSection";
+import { SidebarItem } from "./item";
+import { SidebarProfile } from "./profile";
+import { SidebarProfileSection } from "./profileSection";
 
 interface SidebarProps {
   logo: LogoProps;
@@ -35,7 +35,7 @@ interface SidebarProps {
   userProfileMenuItems?: SidebarProfileListItem[];
 }
 
-export default function CustomSidebar({
+export function CustomSidebar({
   logo,
   menuItems,
   userProfileOptions,
@@ -59,10 +59,10 @@ export default function CustomSidebar({
         <SidebarHeader className="flex items-center justify-between pb-4">
           <a href="/">
             {isExpanded ? (
-              <SidebarLogo url={logo.url} />
+              <Logo url={logo.url} />
             ) : (
-              <div className="flex items-center justify-center w-10 h-10 rounded-full">
-                <SidebarLogo url={logo.altUrl} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full">
+                <Logo url={logo.altUrl} />
               </div>
             )}
           </a>

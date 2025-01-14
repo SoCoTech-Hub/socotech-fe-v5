@@ -54,5 +54,3 @@ export const LeftDrawer: React.FC<LeftDrawerProps> = ({
     </>
   );
 };
-
-export default LeftDrawer;

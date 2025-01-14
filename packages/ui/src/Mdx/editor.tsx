@@ -5,7 +5,7 @@ interface EditorProps {
   defaultValue?: string;
 }
 
-const Editor = forwardRef<Quill | null, EditorProps>(
+export const Editor = forwardRef<Quill | null, EditorProps>(
   ({ defaultValue }, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const defaultValueRef = useRef<string | undefined>(defaultValue);
@@ -48,5 +48,3 @@ const Editor = forwardRef<Quill | null, EditorProps>(
 );
 
 Editor.displayName = "Editor";
-
-export default Editor;

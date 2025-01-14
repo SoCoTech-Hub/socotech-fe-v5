@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import CreateSupportForm from "./form";
+import { CreateSupportForm } from "./form";
 
 export default {
   title: "Support/CreateSupportForm",

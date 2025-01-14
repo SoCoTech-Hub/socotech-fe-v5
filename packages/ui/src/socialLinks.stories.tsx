@@ -1,15 +1,15 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { SocialMediaShareProps } from "./socialLinks";
-import Component from "./socialLinks"; // Replace with the actual file path
+import { SocialLinks } from "./socialLinks"; // Replace with the actual file path
 
 export default {
   title: "SocialLinks",
-  component: Component,
+  component: SocialLinks,
 } as Meta;
 
 const Template: StoryFn<SocialMediaShareProps> = (args) => (
-  <Component {...args} />
+  <SocialLinks {...args} />
 );
 
 export const Default = Template.bind({});

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import About, { AboutProps } from "./about";
+import { About, AboutProps } from "./about";
 
 export default {
   title: "Article/About",

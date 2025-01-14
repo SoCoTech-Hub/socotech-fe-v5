@@ -21,7 +21,7 @@ interface SearchFilterProps {
   searchQuery?: (e: string) => void;
 }
 
-const SearchFilter = (props: SearchFilterProps) => {
+export const SearchFilter = (props: SearchFilterProps) => {
   return (
     <div className="flex items-center space-x-2 rounded-lg bg-background p-4">
       <DropdownMenu>
@@ -52,5 +52,3 @@ const SearchFilter = (props: SearchFilterProps) => {
     </div>
   );
 };
-
-export default SearchFilter;

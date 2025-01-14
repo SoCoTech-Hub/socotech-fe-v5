@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 
 import { toast } from "../hooks/use-toast";
-import BlogGrid from "./grid";
-import SavedArticlesList from "./savedArticles";
-import BlogSearch from "./search";
+import { BlogGrid } from "./grid";
+import { SavedArticlesList } from "./savedArticles";
+import { BlogSearch } from "./search";
 
 export interface BlogPost {
   id: string;
@@ -18,7 +18,7 @@ export interface BlogPost {
   imageUrl: string;
 }
 
-export default function Blog() {
+export function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [savedPosts, setSavedPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);

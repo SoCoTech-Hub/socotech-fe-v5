@@ -63,7 +63,7 @@ export interface InfoSectionProps {
   onSave: (user: UserInfo[keyof UserInfo]) => void;
 }
 
-export default function InfoSection({
+export function InfoSection({
   dropdowns,
   initialUserInfo,
   onSave,

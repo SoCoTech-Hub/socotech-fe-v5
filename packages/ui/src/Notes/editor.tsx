@@ -5,7 +5,7 @@ import { Button } from "../button";
 import { DropdownSelect } from "../dropdownSelect";
 import { Input } from "../input";
 import { Label } from "../label";
-import MDX from "../Mdx";
+import { MdxEditor } from "../Mdx";
 import { Skeleton } from "../skeleton";
 
 interface Subject {
@@ -100,7 +100,7 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
         onChange={(value: string) => setSubject(value)}
         options={subjects.map(({ id, name }) => ({ value: id, label: name }))}
       />
-      <MDX value={description} setValue={setDescription} />
+      <MdxEditor value={description} setValue={setDescription} />
       {(error ?? success) && (
         <Alert variant={error ? "destructive" : "default"} className="mb-4">
           <AlertDescription>{error ?? success}</AlertDescription>
@@ -128,4 +128,3 @@ const NoteEditorSkeleton: React.FC = () => (
     </div>
   </div>
 );
-

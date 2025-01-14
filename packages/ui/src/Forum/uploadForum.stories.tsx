@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import UploadForum from "./uploadForum";
+import { UploadForum } from "./uploadForum";
 
 const meta: Meta<typeof UploadForum> = {
   title: "Forum/Upload",

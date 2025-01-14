@@ -23,7 +23,7 @@ interface HeaderProps {
   navItems: NavItem[];
 }
 
-const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
+export const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Toggles the state of the mobile menu
@@ -140,5 +140,3 @@ const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
     </header>
   );
 };
-
-export default Header;

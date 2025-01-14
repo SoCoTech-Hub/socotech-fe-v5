@@ -8,7 +8,7 @@ export interface Info {
   imageUrl?: string;
 }
 
-const InfoCard = ({ info }: { info: Info }) => (
+export const InfoCard = ({ info }: { info: Info }) => (
   <Card className="overflow-hidden">
     <a href={`/infos/${info.id}`}>
       <div className="relative aspect-video">
@@ -30,4 +30,3 @@ const InfoCard = ({ info }: { info: Info }) => (
     </a>
   </Card>
 );
-export default InfoCard;

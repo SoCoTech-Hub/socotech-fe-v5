@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 
 import type { SidebarItemProps } from "./item";
 import { SidebarProvider } from "../sidebar";
-import SidebarItem from "./item";
+import { SidebarItem } from "./item";
 
 export default {
   title: "Sidebar/Item",

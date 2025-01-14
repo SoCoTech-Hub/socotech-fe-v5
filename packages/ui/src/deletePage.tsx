@@ -55,7 +55,7 @@ const REASONS = {
   ],
 };
 
-const DeleteAccount = ({
+export const DeleteAccount = ({
   deleteAccount,
   deactivateAccount,
 }: {
@@ -241,5 +241,3 @@ const DeleteAccount = ({
     </div>
   );
 };
-
-export default DeleteAccount;

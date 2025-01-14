@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { InfoGridProps } from "./grid";
-import InfoGrid from "./grid";
+import { InfoGrid } from "./grid";
 
 export default {
   title: "Infos/Grid",

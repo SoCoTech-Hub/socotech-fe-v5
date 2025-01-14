@@ -13,7 +13,7 @@ export interface BursaryListingProps {
   iconSvg?: string;
 }
 
-const BursaryListing = ({
+export const BursaryListing = ({
   id,
   applicationFeatureImage = "",
   courseTitle = "Course Title Goes Here",
@@ -80,5 +80,3 @@ const BursaryListing = ({
     </Card>
   );
 };
-
-export default BursaryListing;

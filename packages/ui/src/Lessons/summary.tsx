@@ -17,9 +17,7 @@ export interface LessonsRatingSummaryProps {
   ratings: LessonsRating[];
 }
 
-export default function LessonsRatingSummary({
-  ratings,
-}: LessonsRatingSummaryProps) {
+export function LessonsRatingSummary({ ratings }: LessonsRatingSummaryProps) {
   const averageRating =
     ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length;
   const ratingCounts = ratings.reduce(

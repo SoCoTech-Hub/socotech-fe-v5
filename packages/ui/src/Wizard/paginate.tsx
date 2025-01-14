@@ -12,7 +12,7 @@ export interface PaginateProps {
   className?: string;
 }
 
-const Paginate = ({
+export const Paginate = ({
   handlePrevious,
   currentStepIndex,
   handleNext,
@@ -39,5 +39,3 @@ const Paginate = ({
     </div>
   );
 };
-
-export default Paginate;

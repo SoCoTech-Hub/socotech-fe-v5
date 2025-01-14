@@ -6,7 +6,7 @@ import { useDropzone } from "react-dropzone";
 
 import { useToast } from "../hooks/use-toast";
 import { cn } from "../utils";
-import StatusContent from "./statusContent";
+import { StatusContent } from "./statusContent";
 
 export interface DropzoneProps {
   maxSize?: number;
@@ -14,7 +14,7 @@ export interface DropzoneProps {
   uploadUrl: string;
 }
 
-function Dropzone({
+export function Dropzone({
   maxSize = 5242880,
   acceptedFileTypes = ["image/*", "application/pdf"],
   uploadUrl,
@@ -118,4 +118,3 @@ function Dropzone({
     </div>
   );
 }
-export default Dropzone;

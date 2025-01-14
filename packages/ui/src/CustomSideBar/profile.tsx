@@ -4,7 +4,7 @@ export interface SidebarProfileProps {
   name: string;
   email: string;
 }
-const SidebarProfile = (props: SidebarProfileProps) => (
+export const SidebarProfile = (props: SidebarProfileProps) => (
   <div className="flex w-10 items-center">
     <img
       src={props.avatarSrc}
@@ -19,4 +19,3 @@ const SidebarProfile = (props: SidebarProfileProps) => (
     )}
   </div>
 );
-export default SidebarProfile;

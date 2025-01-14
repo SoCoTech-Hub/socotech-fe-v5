@@ -1,5 +1,5 @@
 import { Skeleton } from "../skeleton";
-import Help, { DigilibHelpProps } from "./help";
+import { DigilibHelp, DigilibHelpProps } from "./help";
 
 export interface WelcomeProps {
   imageUrl?: string;
@@ -9,7 +9,7 @@ export interface WelcomeProps {
   loading?: boolean;
 }
 
-const Welcome: React.FC<WelcomeProps> = ({
+export const Welcome: React.FC<WelcomeProps> = ({
   imageUrl = "/default_welcome.png",
   title = "Hello, how can we help you?",
   subtitle = "Tell us what you are looking for in the search bar below, select a category, and we will help you find what you need.",
@@ -35,11 +35,9 @@ const Welcome: React.FC<WelcomeProps> = ({
         {loading ? (
           <Skeleton className="h-12 w-full" />
         ) : (
-          digilibHelp && <Help {...digilibHelp} />
+          digilibHelp && <DigilibHelp {...digilibHelp} />
         )}
       </div>
     </div>
   </div>
 );
-
-export default Welcome;

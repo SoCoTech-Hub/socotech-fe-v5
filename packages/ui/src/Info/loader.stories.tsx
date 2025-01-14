@@ -1,7 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-
-import InfoCardSkeleton from "./loader";
+import { InfoCardSkeleton } from "./loader";
 
 export default {
   title: "Infos/Loader",

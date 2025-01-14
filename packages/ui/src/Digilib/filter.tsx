@@ -156,5 +156,3 @@ export const ArticleFilter: React.FC<ArticleFilterProps> = ({
     </Card>
   );
 };
-
-export default ArticleFilter;

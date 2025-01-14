@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import AffiliateHomePage from "./";
+import { AffiliateHomePage } from "./";
 
 export default {
   title: "Affiliate/HomePage",

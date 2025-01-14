@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import PushNotifications, { PushNotificationsProps } from "./pushNotifications";
+import { PushNotifications, PushNotificationsProps } from "./pushNotifications";
 
 export default {
   title: "Components/PushNotifications",

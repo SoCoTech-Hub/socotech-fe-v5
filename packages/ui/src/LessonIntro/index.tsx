@@ -3,9 +3,9 @@ import { useState } from "react";
 import type { SubjectCategory } from "./categories";
 import type { Lesson } from "./lessons";
 import type { Subject } from "./subjects";
-import SubjectCategories from "./categories";
-import Lessons from "./lessons";
-import Subjects from "./subjects";
+import { SubjectCategories } from "./categories";
+import { Lessons } from "./lessons";
+import { Subjects } from "./subjects";
 
 export interface SubjectHierarchyProps {
   categories: SubjectCategory[];
@@ -16,7 +16,7 @@ export interface SubjectHierarchyProps {
   ) => void;
 }
 
-export default function SubjectHierarchy({
+export function SubjectHierarchy({
   categories,
   onLessonSelect,
 }: SubjectHierarchyProps) {

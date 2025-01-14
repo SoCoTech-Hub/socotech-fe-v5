@@ -8,7 +8,7 @@ interface SingleChoiceQuestionProps {
   answer: string;
 }
 
-export default function SingleChoiceQuestion({
+export function SingleChoiceQuestionComponent({
   question,
   onAnswer,
   answer,

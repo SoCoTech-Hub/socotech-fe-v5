@@ -1,7 +1,8 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
-import SubjectCategories, {
+import {
+  SubjectCategories,
   SubjectCategoriesProps,
   SubjectCategory,
 } from "./categories";

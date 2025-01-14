@@ -1,7 +1,7 @@
 import { MoveLeft } from "lucide-react";
 
 import { Avatar } from "../avatar";
-import About, { AboutProps } from "./about";
+import { About, AboutProps } from "./about";
 
 export interface ArticleProps {
   article: {
@@ -12,7 +12,7 @@ export interface ArticleProps {
   };
   publisher: AboutProps;
 }
-const Article = ({ article, publisher }: ArticleProps) => {
+export const Article = ({ article, publisher }: ArticleProps) => {
   return (
     <main className="container mx-auto px-4 py-8">
       <a
@@ -44,4 +44,3 @@ const Article = ({ article, publisher }: ArticleProps) => {
     </main>
   );
 };
-export default Article;

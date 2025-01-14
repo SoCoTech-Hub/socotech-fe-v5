@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import FileUploader from "./fileUploader";
+import { FileUploader } from "./fileUploader";
 
 export default {
   title: "FileUploader",

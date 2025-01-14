@@ -7,7 +7,10 @@ export interface HeaderSectionProps {
   title: string;
 }
 //TODO: add the functions
-const HeaderSection: React.FC<HeaderSectionProps> = ({ subject, title }) => {
+export const HeaderSection: React.FC<HeaderSectionProps> = ({
+  subject,
+  title,
+}) => {
   const handleBackClick = () => {
     console.log("Back button clicked");
     // Add navigation logic here, e.g., window.history.back();
@@ -42,5 +45,3 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({ subject, title }) => {
     </div>
   );
 };
-
-export default HeaderSection;

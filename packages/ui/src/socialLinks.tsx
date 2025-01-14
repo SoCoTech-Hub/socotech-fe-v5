@@ -10,7 +10,7 @@ import {
 } from "./card";
 
 interface SocialMediaLink {
-  platform?: "facebook" | "twitter" | "linkedin" | "instagram" ;
+  platform?: "facebook" | "twitter" | "linkedin" | "instagram";
   url: string;
 }
 
@@ -31,28 +31,28 @@ const iconMap: Record<
 };
 //TODO: Update links According to company requirements
 // const links = [
-  // {
-  //   name: "instagram",
-  //   url: "https://www.instagram.com/topic.education?fbclid=IwAR1WYgYgvoPU4MTH0DOqWcf-dbTtWdkG8ziCNGwUnFxKUZsy6OgYUJzoCdg",
-  //   icon: <Instagram />,
-  // },
-  // {
-  //   name: "facebook",
-  //   url: "https://www.facebook.com/profile.php?id=100095540883970",
-  //   icon: <Facebook />,
-  // },
-  // {
-  //   name: "tiktok",
-  //   url: "https://www.tiktok.com/@topiceducation?is_from_webapp=1",
-  //   icon: <TikTok />,
-  // },
-  // {
-  //   name: "whatsappGroup",
-  //   url: "https://whatsapp.com/channel/0029VaFE7lUJENyAWIOPCB0J",
-  //   icon: <WhatsAppGroup />,
-  // },
+// {
+//   name: "instagram",
+//   url: "https://www.instagram.com/topic.education?fbclid=IwAR1WYgYgvoPU4MTH0DOqWcf-dbTtWdkG8ziCNGwUnFxKUZsy6OgYUJzoCdg",
+//   icon: <Instagram />,
+// },
+// {
+//   name: "facebook",
+//   url: "https://www.facebook.com/profile.php?id=100095540883970",
+//   icon: <Facebook />,
+// },
+// {
+//   name: "tiktok",
+//   url: "https://www.tiktok.com/@topiceducation?is_from_webapp=1",
+//   icon: <TikTok />,
+// },
+// {
+//   name: "whatsappGroup",
+//   url: "https://whatsapp.com/channel/0029VaFE7lUJENyAWIOPCB0J",
+//   icon: <WhatsAppGroup />,
+// },
 // ];
-export default function SocialLinks({
+export function SocialLinks({
   links,
   title = "Share this content",
   description = "Share this content on your favorite social media platforms",

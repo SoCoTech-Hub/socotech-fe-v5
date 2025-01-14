@@ -5,7 +5,7 @@ import { Frown, Star, ThumbsUp, Trophy } from "lucide-react";
 import type { Question } from "./quiz";
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
-import ReviewQuiz from "./review";
+import { ReviewQuiz } from "./review";
 
 interface QuizReportProps {
   answers: Record<string, any>;
@@ -14,7 +14,7 @@ interface QuizReportProps {
   onContinue: () => void;
 }
 
-export default function QuizReport({
+export function QuizReport({
   answers,
   questions,
   onRetry,
@@ -40,7 +40,7 @@ export default function QuizReport({
       if (question.type === "essay" || question.type === "freeChoice") return;
 
       const userAnswer = answers[question.id];
-      if ('correctAnswer' in question) {
+      if ("correctAnswer" in question) {
         const correctAnswer = question.correctAnswer;
 
         if (isAnswerCorrect(userAnswer, correctAnswer)) {
@@ -79,12 +79,12 @@ export default function QuizReport({
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="mx-auto w-full max-w-2xl">
       <CardHeader>
         <CardTitle>Quiz Report</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center mb-4 space-x-4">
+        <div className="mb-4 flex items-center space-x-4">
           <p className="text-2xl font-bold" aria-live="polite">
             Your Score: {score.toFixed(2)}%
           </p>

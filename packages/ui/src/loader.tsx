@@ -2,7 +2,7 @@ interface LoaderProps {
   src?: string;
 }
 
-export default function Loader(props: LoaderProps) {
+export function Loader(props: LoaderProps) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       {props.src ? (

@@ -4,7 +4,7 @@ import type { FeedPost } from ".";
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 
-const FeedCard = ({
+export const FeedCard = ({
   post,
   onLike,
   onShare,
@@ -57,4 +57,3 @@ const FeedCard = ({
     </CardFooter>
   </Card>
 );
-export default FeedCard;

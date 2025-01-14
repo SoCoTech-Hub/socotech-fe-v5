@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Comment from "./";
+import { CommentComponent } from "./";
 
-const meta: Meta<typeof Comment> = {
+const meta: Meta<typeof CommentComponent> = {
   title: "Comment",
-  component: Comment,
+  component: CommentComponent,
   tags: ["autodocs"],
   argTypes: {},
 };
 
 export default meta;
-type Story = StoryObj<typeof Comment>;
+type Story = StoryObj<typeof CommentComponent>;
 
 const User = {
   id: 1,
@@ -20,6 +20,6 @@ const User = {
 };
 
 export const Default: Story = {
-  render: () => <Comment user={User} />,
+  render: () => <CommentComponent user={User} />,
   args: {},
 };

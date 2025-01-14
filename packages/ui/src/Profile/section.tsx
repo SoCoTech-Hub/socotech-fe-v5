@@ -4,9 +4,9 @@ import { useState } from "react";
 
 import { Card, CardContent } from "../card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
-import AboutSection, { UserProfile } from "./about";
-import InfoSection, { Dropdowns, UserInfo } from "./info";
-import ReportSection, { ReportSectionProps } from "./report";
+import { AboutSection, UserProfile } from "./about";
+import { Dropdowns, InfoSection, UserInfo } from "./info";
+import { ReportSection, ReportSectionProps } from "./report";
 
 // Props for the Section Component
 export interface SectionProps {
@@ -16,7 +16,7 @@ export interface SectionProps {
   ReportSectionProps: ReportSectionProps;
 }
 
-export default function Section({
+export function Section({
   aboutInfo,
   dropdowns,
   initialUserInfo,

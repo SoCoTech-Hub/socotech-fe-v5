@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
 import type { LessonContentProps } from "./content";
-import LessonContent from "./content";
+import { LessonContent } from "./content";
 
 export default {
   title: "Lesson/Content",

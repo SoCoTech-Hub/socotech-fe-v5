@@ -10,7 +10,7 @@ export interface SocialLinksProps {
   };
 }
 
-const SocialLinks = ({ links, publisher }: SocialLinksProps) => (
+export const SocialLinks = ({ links, publisher }: SocialLinksProps) => (
   <div className="flex space-x-4">
     {links?.map((link, i) => (
       <a
@@ -26,5 +26,3 @@ const SocialLinks = ({ links, publisher }: SocialLinksProps) => (
     ))}
   </div>
 );
-
-export default SocialLinks;

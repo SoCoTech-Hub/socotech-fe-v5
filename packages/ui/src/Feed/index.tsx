@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import FeedGrid from "./grid";
-import FeedSearch from "./search";
+import { FeedGrid } from "./grid";
+import { FeedSearch } from "./search";
 
 export interface FeedPost {
   id: string;
@@ -15,7 +15,7 @@ export interface FeedPost {
   imageUrl: string;
 }
 
-export default function Feed() {
+export function Feed() {
   const [posts, setPosts] = useState<FeedPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

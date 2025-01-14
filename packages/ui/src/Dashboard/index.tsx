@@ -21,9 +21,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import { Input } from "../input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 import { Textarea } from "../textarea";
-import UserAbout from "./userAbout";
+import { UserAbout } from "./userAbout";
 
-export default function UserDashboard() {
+export function UserDashboard() {
   const [activeTab, setActiveTab] = useState("news");
   const [newPost, setNewPost] = useState("");
   const [comments, setComments] = useState<Record<number, string>>({});

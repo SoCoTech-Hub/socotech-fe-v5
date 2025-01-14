@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import Article, { ArticleProps } from "./index";
+import { Article, ArticleProps } from "./index";
 
 export default {
   title: "Article/Article",

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Submit from "./submit";
+import { RatingSubmission } from "./submit";
 
-const meta: Meta<typeof Submit> = {
+const meta: Meta<typeof RatingSubmission> = {
   title: "Ratings/Submit",
-  component: Submit,
+  component: RatingSubmission,
   parameters: {
     layout: "centered",
   },
@@ -12,7 +12,7 @@ const meta: Meta<typeof Submit> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Submit>;
+type Story = StoryObj<typeof RatingSubmission>;
 
 export const Default: Story = {
   args: {

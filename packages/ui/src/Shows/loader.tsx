@@ -1,9 +1,9 @@
 import { Card } from "../card";
 import { Skeleton } from "../skeleton";
 
-const ShowCardSkeleton = () => (
+export const ShowCardSkeleton = () => (
   <Card className="overflow-hidden">
-    <Skeleton className="aspect-video w-full" />
+    <Skeleton className="w-full aspect-video" />
   </Card>
 );
-export default ShowCardSkeleton;
+

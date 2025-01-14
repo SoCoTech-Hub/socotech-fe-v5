@@ -9,7 +9,7 @@ export interface SavedArticlesListProps {
   onRemove?: (id: string) => void;
 }
 
-const SavedArticlesList = (props: SavedArticlesListProps) => (
+export const SavedArticlesList = (props: SavedArticlesListProps) => (
   <ScrollArea className="h-[50vh] w-full rounded-md border p-4 lg:h-[calc(100vh-2rem)] lg:w-64">
     <h2 className="mb-4 font-semibold">Saved Articles</h2>
     {props.savedPosts.map((post) => (
@@ -46,4 +46,3 @@ const SavedArticlesList = (props: SavedArticlesListProps) => (
     ))}
   </ScrollArea>
 );
-export default SavedArticlesList;

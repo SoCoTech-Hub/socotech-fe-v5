@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function DroppableContent({
+export function DroppableContent({
   criterionHtml,
   criterionId,
   handleDroppableClear,

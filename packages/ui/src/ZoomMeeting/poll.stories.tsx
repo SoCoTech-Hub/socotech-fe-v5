@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import ZoomPoll, { PollProps } from "./poll";
+import { PollProps, ZoomPoll } from "./poll";
 
 export default {
   title: "Zoom/ZoomPoll",

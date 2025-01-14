@@ -19,7 +19,7 @@ interface HLSVideoPlayerProps {
   title: string;
 }
 
-export default function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
+export function HLSVideoPlayer({ url, title }: HLSVideoPlayerProps) {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [muted, setMuted] = useState(false);
