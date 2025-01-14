@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 
+import { organizationId } from "@acme/snippets/context/constants";
 import { FetchKnowledgeBases } from "@acme/snippets/functions/knowledgeBase/knowledgeBase";
 import { FetchKnowledgeBaseCategory } from "@acme/snippets/functions/knowledgeBase/knowledgeBaseCategory";
-import ArticleFilter from "@acme/ui/Digilib/Filter";
 import DigilibCategories from "@acme/ui/Digilib/Categories";
+import ArticleFilter from "@acme/ui/Digilib/Filter";
 
 interface Category {
   id: string;
@@ -27,9 +28,12 @@ const CategoryDisplay = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await FetchKnowledgeBases(categoryId, organizationId); //TODO: get categoryId and organizationId
+      const res = await FetchKnowledgeBases(
+        category?.id as string,
+        organizationId,
+      ); //TODO: get categoryId and organizationId
       setArticleList(res);
-      const cat = await FetchKnowledgeBaseCategory(categoryId);
+      const cat = await FetchKnowledgeBaseCategory(category?.id as string);
       setCategory(cat);
     };
     fetchData();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import TimeTracks from "@acme/snippets/hooks/useTimeTracker";
+import TimeTracks from "@acme/snippets/functions/timeTracks";
 import DigilibHeader from "@acme/ui/Digilib/header";
 import { IFrame } from "@acme/ui/IFrame/index";
 
@@ -25,8 +25,6 @@ interface ArticleProps {
 }
 
 export default function Article({ article }: ArticleProps) {
-  const startTime = new Date();
-
   if (!article?.attachment) {
     return (
       <div>
@@ -35,7 +33,7 @@ export default function Article({ article }: ArticleProps) {
     );
   }
 
-  const [loading, setLoading] = useState(true);
+  const [loading, _setLoading] = useState(true);
 
   return (
     <>
@@ -43,20 +41,28 @@ export default function Article({ article }: ArticleProps) {
         <div className="desktop:gx-5 laptop:gx-5 gy-4 mobile:gx-4 space-y-10">
           <div className="">
             <DigilibHeader
-              name={article?.name}
+              name={article.name}
               loading={loading}
-              category={article?.categories[0]?.name}
-              subject={article?.subject?.name}
-              downloadLink={article?.attachment?.url}
-              download={article?.download ? article.download : false}
+              category={article.categories[0]?.name || "Uncategorized"}
+              subject={article.subject?.name || "No Subject"}
+              backOnClick={() => console.log("Back button clicked")}
             />
           </div>
           <div className="pl-3 pr-3"></div>
         </div>
       </div>
+      {/* //TODO:replace with non statc values */}
       <div className="bg-compBg rounded-lg p-4">
-        <IFrame src={article?.attachment?.url} setLoading={setLoading} />
-        <TimeTracks knowledgeBase={article?.id} />
+        <IFrame
+          src={article.attachment.url}
+          title={`Document Viewer - ${article.name}`}
+          width="100%"
+          height="600px"
+          className="rounded-lg shadow-md"
+          allowFullScreen
+          sandbox="allow-scripts allow-same-origin"
+        />
+        <TimeTracks knowledgeBase={article.id} userId="" />
       </div>
     </>
   );

@@ -4,18 +4,19 @@ import { FetchForums } from "@acme/snippets/functions/forum/forum";
 import ForumPostView from "@acme/ui/Forum/review";
 
 export default function Home() {
-  const [forum, setForum] = useState([]);
+  const [forum, setForum] = useState(null);
   const [forumListItems, setForumListItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const slug = "slug"; //TODO: get slug from page id
+      const slug = "slug"; // TODO: get slug from page id
       const forumList = await FetchForums(slug);
       setForum(forumList[0]);
       setForumListItems(forumList.slice(1));
     };
     fetchData();
   }, []);
+
   // TODO: add/import other functions for forum
 
   // const [add, setAdd] = useState(0);
@@ -205,10 +206,25 @@ export default function Home() {
   //   }
   // };
 
-  return (
+return (
     <div>
-      {/* TODO: make component dynamic */}
-      <ForumPostView />
+      {forum && (
+        <ForumPostView
+          id={forum.id}
+          title={forum.title}
+          content={forum.content}
+          author={forum.author}
+          createdAt={new Date(forum.createdAt)}
+          likes={forum.likes}
+          replies={forum.replies.map((reply) => ({
+            id: reply.id,
+            content: reply.content,
+            author: reply.author,
+            createdAt: new Date(reply.createdAt),
+            likes: reply.likes,
+          }))}
+        />
+      )}
     </div>
   );
 }

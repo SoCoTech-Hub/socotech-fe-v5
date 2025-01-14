@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { FetchFaqCategory } from "@acme/snippets/functions/faq/faqCategory";
-import Accordion from "@acme/ui/Accordion/index";
+import AccordionSection from "@acme/ui/accordion/index";
 import { Button } from "@acme/ui/button";
 
 interface Faq {
@@ -26,8 +26,16 @@ const FaqDisplay = () => {
       const faqCategory = await FetchFaqCategory(router.query.id as string);
       setCategory(faqCategory);
     };
-  }, []);
 
+    fetchData();
+  }, [router.query.id]);
+
+  // Transform FAQ data to match AccordionSection props
+  const accordionItems =
+    category?.faqs.map((faq) => ({
+      key: faq.question,
+      value: faq.answer,
+    })) || [];
 
   return (
     <div className="col row">
@@ -39,11 +47,8 @@ const FaqDisplay = () => {
         >
           Back
         </Button>
-        {/* <div className=''>
-          <DigilibHelp />
-        </div> */}
         <div className="pl-3 pr-3">
-          <Accordion faqs={category?.faqs || []} />
+          <AccordionSection items={accordionItems} />
         </div>
         <div className="mobile:h-16"></div>
       </div>

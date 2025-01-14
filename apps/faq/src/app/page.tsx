@@ -29,20 +29,15 @@ const FaqCategory: React.FC<FaqCategoryProps> = ({ categories }) => {
         >
           Back
         </Button>
-        {/* <div className='mobile:hidden desktop:block'>
-          <DigilibWelcome />
-        </div> */}
-        {/* <div className='desktop:hidden laptop:hidden mobile:block'>
-          <DigilibHelp />
-        </div> */}
         <div className="desktop:grid-cols-3 laptop:grid-cols-2 mobile:grid-cols-2 mb-5 grid place-items-stretch gap-2">
           {categories?.map((category) => (
             <DigilibCategories
-              img={category?.image?.url}
-              background={category?.background?.url}
+              img={category?.image?.url || "coming_soon.jpg"}
+              imgAlt={category.name}
               title={category.name}
               description={category.description}
               link={`/faqcategory/${category.id}`}
+              badge={"FAQ"}
               key={category.id}
             />
           ))}
