@@ -7,9 +7,9 @@ import { profileId } from "@acme/snippets/context/constants";
 import { FetchArticle } from "@acme/snippets/functions/article/article";
 import { FetchArticleReaders } from "@acme/snippets/functions/article/articleReader";
 import { Button } from "@acme/ui/button";
-import Loader from "@acme/ui/loader";
+import {Loader} from "@acme/ui/loader";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import SocialLinks from "@acme/ui/socialLinks";
+import {SocialLinks} from "@acme/ui/socialLinks";
 
 interface Article {
   id: string;

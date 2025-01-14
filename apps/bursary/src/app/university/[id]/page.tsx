@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
 import getSelectedBursary from "@acme/snippets/functions/Bursary/getSelectedBursary";
-import BursaryListing from "@acme/ui/Bursaries/listing";
-import BursaryPost from "@acme/ui/Bursaries/Post";
+import {BursaryListing} from "@acme/ui/Bursaries/listing";
+import {BursaryPost} from "@acme/ui/Bursaries/Post";
 import { Button } from "@acme/ui/button";
 
 interface Bursary {

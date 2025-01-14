@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-import BursaryWelcomeBanner from "@acme/ui/Bursaries/tour";
+import {BursaryWelcomeBanner} from "@acme/ui/Bursaries/tour";
 import { Button } from "@acme/ui/button";
-import ContentLock from "@acme/ui/ContentLock/index";
-import DigilibCategories from "@acme/ui/Digilib/categories";
+import {ContentLock} from "@acme/ui/ContentLock/index";
+import {DigilibCategories} from "@acme/ui/Digilib/categories";
 
 //TODO: fix components
 interface BursaryCategory {

@@ -19,7 +19,7 @@ import {
   UpsertSubscription,
 } from "@acme/snippets/functions/account/subscription";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
-import Cover from "@acme/ui/profile/cover";
+import { Cover } from "@acme/ui/profile/cover";
 import { Switch } from "@acme/ui/switch";
 
 const AccountSettings: React.FC = () => {

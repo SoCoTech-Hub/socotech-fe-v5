@@ -60,7 +60,7 @@
 
 import React from "react";
 
-import MeetingView from "@acme/ui/ZoomMeeting/meetingView";
+import { MeetingView } from "@acme/ui/ZoomMeeting/meetingView";
 
 export default function MeetingPage({
   params,

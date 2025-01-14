@@ -8,8 +8,8 @@ import {
   userId,
   userName,
 } from "@acme/snippets/context/constants";
-import Section from "@acme/ui/profile/section";
-import Cover from "@acme/ui/support/cover";
+import { Section } from "@acme/ui/profile/section";
+import { Cover } from "@acme/ui/support/cover";
 
 export default function Home() {
   return (

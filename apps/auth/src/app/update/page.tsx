@@ -14,8 +14,8 @@ import { Checkbox } from "@acme/ui/Checkbox";
 import { DatePicker } from "@acme/ui/DatePickField/index";
 import DefaultSelectNew from "@acme/ui/DefaultSelectNew/index"; //TODO:Replace all DefaultSelectNew
 import { InputField } from "@acme/ui/InputField/index";
-import InputMask from "@acme/ui/inputMask";
-import LogoOverlay from "@acme/ui/LogoOverlay/index";
+import {InputMask} from "@acme/ui/inputMask";
+import {LogoOverlay} from "@acme/ui/LogoOverlay/index";
 import Overlay from "@acme/ui/Overlay/index"; //TODO:Replace overlay
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { InfoIcon } from "@acme/ui/SvgIcons/InfoIcon";

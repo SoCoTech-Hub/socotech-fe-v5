@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import TimeTracks from "@acme/snippets/functions/timeTracks";
-import DigilibHeader from "@acme/ui/Digilib/header";
+import { DigilibHeader } from "@acme/ui/Digilib/header";
 import { IFrame } from "@acme/ui/IFrame/index";
 
 interface Article {

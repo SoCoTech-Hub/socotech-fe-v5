@@ -4,8 +4,8 @@ import Link from "next/link";
 import { profileId } from "@acme/snippets/context/constants";
 import getSelectedQualification from "@acme/snippets/functions/qualificationResponses/getSelectedQualification";
 import { Button } from "@acme/ui/button";
-import QualificationListing from "@acme/ui/Qualifications/listing";
-import QualificationPost from "@acme/ui/Qualifications/Post";
+import { QualificationListing } from "@acme/ui/Qualifications/listing";
+import { QualificationPost } from "@acme/ui/Qualifications/Post";
 
 interface Qualification {
   id: string;

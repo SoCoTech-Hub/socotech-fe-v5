@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import WelcomeBanner from "@acme/ui/applications/tour";
+import {WelcomeBanner} from "@acme/ui/applications/tour";
 import { Button } from "@acme/ui/button";
-import DigilibCategories from "@acme/ui/Digilib/categories";
+import {DigilibCategories} from "@acme/ui/Digilib/categories";
 
 interface Faculty {
   id: string;

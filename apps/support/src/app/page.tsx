@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import Cover from "@acme/ui/support/cover";
-import TicketingDashboard from "@acme/ui/support/TicketingDashboard";
+import {Cover} from "@acme/ui/support/cover";
+import {TicketingDashboard} from "@acme/ui/support/TicketingDashboard";
 import { UpdateImages, UploadImages } from "@acme/snippets"//TODO: not sure if correct
 
 

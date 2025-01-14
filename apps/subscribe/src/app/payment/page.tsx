@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { mainUrl } from "@acme/snippets/context/constants";
 import { Button } from "@acme/ui/button";
-import LogoOverlay from "@acme/ui/LogoOverlay/index";
+import {LogoOverlay} from "@acme/ui/LogoOverlay/index";
 
 
 //TODO: move to info

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import ForumDisplay from "@acme/ui/Forum/displayForum";
+import {ForumDisplay} from "@acme/ui/Forum/displayForum";
 
 interface ForumThread {
   id: string;

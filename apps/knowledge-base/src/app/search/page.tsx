@@ -2,7 +2,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import GetKBSearchResults from "graphql/queries/GetKBSearchResults"; //TODO:make query
 
-import MainSearchResults from "@acme/ui/MainSearchResults/index";
+import {MainSearchResults} from "@acme/ui/MainSearchResults/index";
 
 import client from "./api/apolloClient";//TODO:replace apolloClient
 

@@ -7,13 +7,13 @@ import { FetchAssignmentReplies } from "@acme/snippets/functions/assignment/assi
 import { FetchUserProfilesByGrades } from "@acme/snippets/functions/assignment/user";
 import getReadableDate from "@acme/snippets/functions/getReadableDate";
 import getNextButtonHref from "@acme/snippets/utils/index";
-import AccordionSection from "@acme/ui/Accordion/index";
+import {AccordionSection} from "@acme/ui/Accordion/index";
 import { Button } from "@acme/ui/button";
-import FileUploader from "@acme/ui/FileUploader";
+import {FileUploader} from "@acme/ui/FileUploader";
 import { MultiSelect } from "@acme/ui/MultiSelect";
 import { PopupAlert } from "@acme/ui/PopupAlert/index";
 import { Textarea } from "@acme/ui/Textarea";
-import UploadThumbnail from "@acme/ui/UploadThumbnail/index";
+import {UploadThumbnail} from "@acme/ui/UploadThumbnail/index";
 
 //TODO:fix components
 interface AssignmentProps {

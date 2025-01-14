@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { FetchForums } from "@acme/snippets/functions/forum/forum";
-import ForumPostView from "@acme/ui/Forum/review";
+import {ForumPostView} from "@acme/ui/Forum/review";
 
 export default function Home() {
   const [forum, setForum] = useState(null);

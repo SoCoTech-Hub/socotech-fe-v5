@@ -1,7 +1,7 @@
 import React from "react";
 
-import QualificationListing from "@acme/ui/Qualifications/listing";
-import QualificationWelcomeBanner from "@acme/ui/qualifications/tour";
+import { QualificationListing } from "@acme/ui/Qualifications/listing";
+import { QualificationWelcomeBanner } from "@acme/ui/qualifications/tour";
 
 export default function Home() {
   return (

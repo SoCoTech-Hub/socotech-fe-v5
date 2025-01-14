@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { Button } from "@acme/ui/button";
-import DigilibCategories from "@acme/ui/Digilib/Categories";
+import {DigilibCategories} from "@acme/ui/Digilib/Categories";
 
 interface FaqCategoryProps {
   categories: Array<{
