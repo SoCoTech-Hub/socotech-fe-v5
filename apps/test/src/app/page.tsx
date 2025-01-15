@@ -1,12 +1,14 @@
 "use client";
 
-// import {
-//   Accordion,
-//   AccordionContent,
-//   AccordionItem,
-//   AccordionTrigger,
-// } from "@acme/ui";
-import { cn } from "@acme/ui";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  cn,
+} from "@acme/ui";
 
 export default function Home() {
   const classes = cn(
@@ -14,30 +16,21 @@ export default function Home() {
   );
 
   return (
-    <div>
+    <div className="flex space-x-4 p-4">
       <h1>Home Page</h1>
       {classes}
-      {/* <Accordion type="multiple" className="w-full">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that match the aesthetic of other
-            components.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It's animated by default, but you can disable it if you prefer.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion> */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Card With Footer</CardTitle>
+          <CardDescription>This card does not have a footer.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p>This card contains a header, content and footer sections.</p>
+        </CardContent>
+        <CardFooter>
+          <p>Footer.</p>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

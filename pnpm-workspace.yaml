@@ -24,7 +24,7 @@ catalogs:
     react: ^19.0.0
     react-dom: ^19.0.0
     "@types/react": ^19.0.0
-    "@types/react-dom": ^19.0.0
+    "@types/react-dom": ^19.0.3
     "@types/node": ^22.10.1
   storybook:
     "@chromatic-com/storybook": ^3.2.3
@@ -88,7 +88,7 @@ catalogs:
     react-hook-form: ^7.54.1
     react-pdf: ^9.1.1
     react-player: ^2.16.0
-    react-quill: ^2.0.0
+    react-quill-new: ^3.3.3
     react-resizable-panels: ^2.1.7
     react-router-dom: ^6.28.0
     react-markdown: ^9.0.1
@@ -96,7 +96,7 @@ catalogs:
     recharts: ^2.15.0
     remark-gfm: ^4.0.0
     remeda: "2"
-    shiki: ^1.26.1
+    shiki: ^1.27.2
     sonner: ^1.7.1
     tailwind-merge: ^2.5.5
     vaul: ^1.1.2

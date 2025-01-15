@@ -37,6 +37,7 @@
     "ui-add": "pnpm dlx shadcn@latest add && prettier src --write --list-different"
   },
   "dependencies": {
+    "@acme/config": "workspace:*",
     "@acme/snippets": "workspace:*",
     "@hookform/resolvers": "catalog:ui",
     "@radix-ui/react-accordion": "catalog:ui",
@@ -80,8 +81,7 @@
     "react-markdown": "catalog:ui",
     "react-pdf": "catalog:ui",
     "react-player": "catalog:ui",
-    "react-quill": "catalog:ui",
-    "react-quill-new": "^3.3.3",
+    "react-quill-new": "catalog:ui",
     "react-resizable-panels": "catalog:ui",
     "react-router-dom": "catalog:ui",
     "recharts": "catalog:ui",
@@ -103,6 +103,7 @@
     "@testing-library/user-event": "catalog:jest",
     "@types/jest": "catalog:jest",
     "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
     "eslint": "catalog:",
     "jest": "catalog:jest",
     "jest-environment-jsdom": "catalog:jest",

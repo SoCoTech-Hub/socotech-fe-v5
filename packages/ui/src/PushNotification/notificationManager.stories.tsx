@@ -1,22 +1,54 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
+import { useState } from "react";
 
-import { NotificationManager } from "./notificationManager";
+import type { PushNotificationProps } from "./notification";
+import { PushNotification } from "./notification";
 
-const meta: Meta<typeof NotificationManager> = {
-  title: "PushNotification/NotificationManager",
-  component: NotificationManager,
-  parameters: {
-    layout: "centered",
-  },
+export default {
+  title: "PushNotification/Notification",
+  component: PushNotification,
+} as Meta;
+
+const Template: StoryFn<PushNotificationProps> = (args) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
+  return (
+    <PushNotification
+      {...args}
+      onDismiss={() => {
+        console.log("Notification dismissed");
+        setIsVisible(false);
+      }}
+    />
+  );
 };
 
-export default meta;
+export const Default = Template.bind({});
+Default.args = {
+  message: "This is a default notification!",
+  variant: "default",
+  duration: 5000,
+};
 
-type Story = StoryObj<typeof NotificationManager>;
+export const Success = Template.bind({});
+Success.args = {
+  message: "Action was successful!",
+  variant: "success",
+  duration: 5000,
+};
 
-export const Default: Story = {
-  args: {
-    title: "Push Notifications",
-    description: "Manage your push notification preferences.",
-  },
+export const Error = Template.bind({});
+Error.args = {
+  message: "Something went wrong!",
+  variant: "error",
+  duration: 5000,
+};
+
+export const Info = Template.bind({});
+Info.args = {
+  message: "Here is some information.",
+  variant: "info",
+  duration: 5000,
 };

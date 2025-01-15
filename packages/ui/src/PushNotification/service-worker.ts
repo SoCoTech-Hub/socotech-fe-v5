@@ -2,20 +2,33 @@
 
 declare const self: ServiceWorkerGlobalScope;
 
-self.addEventListener("push", (event) => {
-  const data = event.data?.json() || {};
-  const title = data.title || "New Notification";
-  const options: NotificationOptions = {
-    body: data.body || "You have a new notification.",
-    icon: data.icon || "/icon.png",
-    badge: data.badge || "/badge.png",
-    data: data.url || "/",
-  };
+interface PushEvent extends ExtendableEvent {
+  data: PushMessageData | null;
+}
 
-  event.waitUntil(self.registration.showNotification(title, options));
+interface PushData {
+  title: string;
+  body: string;
+  url: string;
+}
+
+self.addEventListener("push", function (event: PushEvent) {
+  if (event.data) {
+    const data: PushData = event.data.json() as PushData;
+    const options: NotificationOptions = {
+      body: data.body,
+      icon: "/icon.png",
+      badge: "/badge.png",
+      data: data.url,
+    };
+
+    event.waitUntil(self.registration.showNotification(data.title, options));
+  }
 });
 
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener("notificationclick", function (event: NotificationEvent) {
   event.notification.close();
-  event.waitUntil(self.clients.openWindow(event.notification.data));
+  event.waitUntil(self.clients.openWindow(event.notification.data as string));
 });
+
+export {};
