@@ -6,10 +6,7 @@ import { baseUrl } from "@acme/snippets/context/constants";
 import validateEmail from "@acme/snippets/functions/auth/checkValidEmailAddress";
 import RegisterUser2 from "@acme/snippets/functions/auth/registerUser2";
 import { FetchUserByEmail } from "@acme/snippets/functions/auth/user";
-import { Button } from "@acme/ui";
-import { Checkbox } from "@acme/ui";
-import { InputField } from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
+import { Button, Checkbox, InputField, PopupAlert } from "@acme/ui";
 
 type RegisterProps = {};
 
@@ -47,7 +44,7 @@ const Register: FC<RegisterProps> = () => {
       setLoading(false);
       return;
     }
-    //TODO: fix validateEmail
+
     // Validate email
     const validEmail = await validateEmail({ email });
     if (validEmail?.error) {
@@ -55,11 +52,17 @@ const Register: FC<RegisterProps> = () => {
       setLoading(false);
       return;
     }
-    //TODO: fix FetchUserByEmail
+
     // Check if the account already exists
-    const users = await FetchUserByEmail(email);
-    if (users.length > 0) {
-      setError("Account already registered");
+    try {
+      const users = await FetchUserByEmail({ email });
+      if (users.id && users.id.length > 0) {
+        setError("Account already registered");
+        setLoading(false);
+        return;
+      }
+    } catch (error) {
+      setError("Error checking account. Please try again.");
       setLoading(false);
       return;
     }

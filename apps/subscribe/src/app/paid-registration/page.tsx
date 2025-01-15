@@ -4,17 +4,13 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import checkEmail from "@acme/snippets/auth/checkEmail"; //TODO: fix snippet
+import checkEmail from "@acme/snippets"; //TODO: fix snippet
 
 import { authUrl, baseUrl } from "@acme/snippets/context/constants"; //TODO: make snippet authURL
 import { FetchAffiliateReferrer } from "@acme/snippets/functions/affiliate/affiliate";
 import validateEmail from "@acme/snippets/functions/auth/checkValidEmailAddress";
 import registerUser from "@acme/snippets/functions/auth/registerUser";
-
-import { Button } from "@acme/ui";
-import { Checkbox } from "@acme/ui";
-import { InputField } from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
+import { Button, Checkbox, InputField, PopupAlert } from "@acme/ui";
 
 interface RegisterProps {
   uniqueId: string | null;

@@ -81,6 +81,7 @@
     "react-pdf": "catalog:ui",
     "react-player": "catalog:ui",
     "react-quill": "catalog:ui",
+    "react-quill-new": "^3.3.3",
     "react-resizable-panels": "catalog:ui",
     "react-router-dom": "catalog:ui",
     "recharts": "catalog:ui",

@@ -2,21 +2,14 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-
-
+import { api } from "@acme/snippets/api/api";
 import { baseUrl } from "@acme/snippets/context/constants";
 import { CreateAllCookies } from "@acme/snippets/cookies/createAllCookies";
 import authCheck from "@acme/snippets/functions/auth/authCheck";
 import { FetchUserDetail } from "@acme/snippets/functions/auth/user";
 import generateUniqueId from "@acme/snippets/functions/generateUniqueId";
 import CreateInMail from "@acme/snippets/functions/inmail/createInMail";
-import { Button } from "@acme/ui";
-import { Page } from "@acme/ui";
-import { api } from "@acme/snippets/api/api"
-
-
-
-
+import { Button, Page } from "@acme/ui";
 
 interface LoginProps {
   userId: string;
@@ -131,8 +124,8 @@ export async function getServerSideProps(context: any) {
         `/auth/google/callback?id_token=${id_token}&access_token=${access_token}`,
       );
 
-      let profileData = [];
-      let userData = [];
+      let profileData: any = null;
+      let userData: any = null;
 
       if (res.data?.user?.profile) {
         userData = res.data.user;
@@ -144,6 +137,7 @@ export async function getServerSideProps(context: any) {
           organization: organization.data,
           userid: res.data.user.id,
         });
+
         profileData = await api.POST(`/profiles`, {
           firstName: res.data.user.username,
           organization: { id: organization.data.id },
@@ -153,6 +147,7 @@ export async function getServerSideProps(context: any) {
         userData = await api.PUT(`/users/${res.data.user.id}`, {
           profile: { id: profileData.data.id },
         });
+
         await CreateInMail({
           orgName: organization.data.name,
           orgId: organization.data.id,
@@ -160,8 +155,9 @@ export async function getServerSideProps(context: any) {
           profileId: profileData.data.id,
         });
       }
+
       const user = await FetchUserDetail(res.data.user.id);
-      const { profile } = user;
+      const { profile } = user; //TODO:fix section
       const { organization } = profile;
 
       return {

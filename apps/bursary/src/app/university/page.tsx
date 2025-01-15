@@ -1,10 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-import {BursaryWelcomeBanner} from "@acme/ui";
-import { Button } from "@acme/ui";
-import {ContentLock} from "@acme/ui";
-import {DigilibCategories} from "@acme/ui";
+import { isPaying } from "@acme/snippets/context/constants";
+import {
+  BursaryWelcomeBanner,
+  Button,
+  ContentLock,
+  DigilibCategories,
+} from "@acme/ui";
 
 //TODO: fix components
 interface BursaryCategory {
@@ -30,7 +33,7 @@ const Bursaries = ({ bursaryCategories }: BursariesProps) => {
         </Link>
       </div>
       <ContentLock
-        isPaying={isPaying}
+        isPaying={!!isPaying}
         bgColor={"bg-themeColorMain"}
         children={
           <>
