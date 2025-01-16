@@ -1,12 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+// import dynamic from "next/dynamic";
 import { Download, Pause, Play, RotateCw } from "lucide-react";
 
 import { Button } from "../button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import { Skeleton } from "../skeleton";
 import { PDFViewer } from "./pdfViewer";
+
+// import { Spinner } from "./spinner";
+
+// const PDFViewer = dynamic(() => import("./pdfViewer"), {
+//   ssr: false,
+//   loading: () => <Spinner />,
+// });
 
 interface Resource {
   id: string;

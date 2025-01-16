@@ -1,68 +1,134 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Document, Page, pdfjs } from "react-pdf";
+import { useEffect, useRef, useState } from "react";
 
-import { Button } from "../button";
-import { Card, CardContent, CardFooter } from "../card";
+// import dynamic from "next/dynamic";
 
-// Ensure PDF.js worker is available
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+import { Alert, AlertDescription, AlertTitle } from "../alert";
+import { PDFControls } from "./pdfControls";
+import { Spinner } from "./spinner";
 
-interface PDFViewerProps {
+// const PDFControls = dynamic(() => import("./pdfControls"), {
+//   ssr: false,
+//   loading: () => <Spinner />,
+// });
+export interface PDFViewerProps {
   url: string;
+  allowDownload?: boolean;
 }
 
-export function PDFViewer({ url }: PDFViewerProps) {
-  const [numPages, setNumPages] = useState<number | null>(null);
+export function PDFViewer({ url, allowDownload = false }: PDFViewerProps) {
+  const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [pdfjs, setPdfjs] = useState<typeof import("pdfjs-dist")>();
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
+  useEffect(() => {
+    import("pdfjs-dist").then((pdfjs) => {
+      setPdfjs(pdfjs);
+      pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!pdfjs) return;
+
+    const loadPDF = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const loadingTask = pdfjs.getDocument(url);
+        const pdf = await loadingTask.promise;
+        setNumPages(pdf.numPages);
+        renderPage(pdf, 1);
+      } catch (err) {
+        console.error("Error loading PDF:", err);
+        setError("Failed to load PDF. Please check the URL and try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPDF();
+  }, [url, pdfjs]);
+
+  const renderPage = async (
+    pdf: import("pdfjs-dist").PDFDocumentProxy,
+    pageNum: number,
+  ) => {
+    if (!canvasRef.current || !pdfjs) return;
+
+    const page = await pdf.getPage(pageNum);
+    const viewport = page.getViewport({ scale: 1.5 });
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    const renderContext = {
+      canvasContext: context!,
+      viewport: viewport,
+    };
+
+    await page.render(renderContext).promise;
+  };
+
+  const handlePageChange = async (newPage: number) => {
+    if (!pdfjs) return;
+
+    if (newPage >= 1 && newPage <= numPages) {
+      setPageNumber(newPage);
+      setLoading(true);
+      try {
+        const loadingTask = pdfjs.getDocument(url);
+        const pdf = await loadingTask.promise;
+        await renderPage(pdf, newPage);
+      } catch (err) {
+        console.error("Error rendering page:", err);
+        setError("Failed to render page. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const handleDownload = () => {
+    if (allowDownload) {
+      window.open(url, "_blank");
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex h-64 items-center justify-center">
+        <Spinner className="h-8 w-8" />
+      </div>
+    );
   }
 
-  function changePage(offset: number) {
-    setPageNumber((prevPageNumber) => prevPageNumber + offset);
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    );
   }
-
-  const previousPage = () => changePage(-1);
-  const nextPage = () => changePage(1);
 
   return (
-    <Card className="mx-auto w-full max-w-3xl">
-      <CardContent className="p-4">
-        <Document
-          file={url}
-          onLoadSuccess={onDocumentLoadSuccess}
-          className="flex justify-center"
-        >
-          <Page
-            pageNumber={pageNumber}
-            renderTextLayer={false}
-            className="h-auto max-w-full"
-          />
-        </Document>
-      </CardContent>
-      <CardFooter className="flex items-center justify-between">
-        <Button
-          onClick={previousPage}
-          disabled={pageNumber <= 1}
-          variant="outline"
-        >
-          <ChevronLeft className="mr-2 h-4 w-4" /> Previous
-        </Button>
-        <p className="text-sm text-muted-foreground">
-          Page {pageNumber} of {numPages}
-        </p>
-        <Button
-          onClick={nextPage}
-          disabled={numPages !== null && pageNumber >= numPages}
-          variant="outline"
-        >
-          Next <ChevronRight className="ml-2 h-4 w-4" />
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col items-center space-y-4">
+      <div className="overflow-hidden rounded-lg border border-gray-300">
+        <canvas ref={canvasRef} />
+      </div>
+      <PDFControls
+        currentPage={pageNumber}
+        totalPages={numPages}
+        onPageChange={handlePageChange}
+        allowDownload={allowDownload}
+        onDownload={handleDownload}
+      />
+    </div>
   );
 }
