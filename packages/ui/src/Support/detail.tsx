@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Paperclip, Send } from "lucide-react";
-import ReactQuill from "react-quill";
 
 import { Avatar, AvatarFallback } from "../avatar";
 import { Badge } from "../badge";
@@ -14,8 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../card";
-
-import "react-quill/dist/quill.snow.css";
+import { MDXEditor } from "../Mdx/editor";
 
 interface Message {
   id: number;
@@ -34,41 +32,16 @@ export interface TicketDetailProps {
     created: string;
     location: string;
   };
+  messageList?: Message[];
+  sendMessage?: (e: Message) => void;
 }
-// TODO: Fetch ticket messages
-const mockMessages: Message[] = [
-  {
-    id: 1,
-    sender: "user",
-    content: "I'm having trouble accessing my account. Can you help?",
-    timestamp: "2023-06-01 10:00",
-  },
-  {
-    id: 2,
-    sender: "agent",
-    content:
-      "I'd be happy to help. Can you please provide more details about the issue you're experiencing?",
-    timestamp: "2023-06-01 10:15",
-  },
-  {
-    id: 3,
-    sender: "user",
-    content:
-      "When I try to log in, it says 'Invalid credentials' even though I'm sure my password is correct.",
-    timestamp: "2023-06-01 10:20",
-  },
-  {
-    id: 4,
-    sender: "agent",
-    content:
-      "I see. Let's try resetting your password. I'm sending you a password reset link to your registered email address.",
-    timestamp: "2023-06-01 10:25",
-    attachment: "password_reset.pdf",
-  },
-];
 
-export function TicketDetail({ ticket }: TicketDetailProps) {
-  const [messages, setMessages] = useState<Message[]>(mockMessages);
+export function TicketDetail({
+  ticket,
+  messageList,
+  sendMessage,
+}: TicketDetailProps) {
+  const [messages, setMessages] = useState<Message[]>(messageList || []);
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = () => {
@@ -81,6 +54,7 @@ export function TicketDetail({ ticket }: TicketDetailProps) {
       };
       setMessages([...messages, message]);
       setNewMessage("");
+      sendMessage?.(message);
     }
   };
 
@@ -139,11 +113,7 @@ export function TicketDetail({ ticket }: TicketDetailProps) {
           ))}
         </div>
         <div className="mt-4 space-y-2">
-          <ReactQuill
-            value={newMessage}
-            onChange={setNewMessage}
-            placeholder="Type your message..."
-          />
+          <MDXEditor initialValue={newMessage} onSave={setNewMessage} />
           <div className="flex items-center justify-between">
             <Button variant="outline">
               <Paperclip className="mr-2 h-4 w-4" />

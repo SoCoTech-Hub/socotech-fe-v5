@@ -11,7 +11,7 @@ import { Checkbox } from "../checkbox";
 import { useToast } from "../hooks/use-toast";
 import { Input } from "../input";
 import { Label } from "../label";
-import { MdxEditor } from "../Mdx";
+import { MDXEditor } from "../Mdx/editor";
 
 interface UploadForumProps {
   userId: number;
@@ -106,7 +106,7 @@ export const UploadForum: React.FC<UploadForumProps> = ({
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
-            <MdxEditor value={description} setValue={setDescription} />
+            <MDXEditor initialValue={description} onSave={setDescription} />
           </div>
           {isAdmin && (
             <div className="flex items-center space-x-2">

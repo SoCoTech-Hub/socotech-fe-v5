@@ -1,27 +1,39 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
 
-import { MdxEditor } from ".";
+import { MDXEditor } from "./editor";
 
-const meta: Meta<typeof MdxEditor> = {
+const meta: Meta<typeof MDXEditor> = {
   title: "MDX/Editor",
-  component: MdxEditor,
+  component: MDXEditor,
   tags: ["autodocs"],
   argTypes: {
-    value: {
+    initialValue: {
       control: { type: "text" },
-      description: "The content of the editor.",
+      description: "The initial content of the editor.",
+    },
+    onSave: {
+      control: { type: "object" },
+      description: "Save the content using a function",
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof MdxEditor>;
+type Story = StoryObj<typeof MDXEditor>;
 
 export const Default: Story = {
   render: function DefaultRender(args) {
-    const [value, setValue] = useState("");
-    return <MdxEditor {...args} value={value} setValue={setValue} />;
+    return (
+      <MDXEditor
+        {...args}
+        initialValue={args.initialValue}
+        onSave={args.onSave}
+      />
+    );
   },
-  args: {},
+  args: {
+    initialValue:
+      "<h1>Welcome</h1> to the <h2>MDX Editor!</h2><br/>Update your content here...",
+    onSave: (e: string) => console.log(e),
+  },
 };
