@@ -2,16 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// import dynamic from "next/dynamic";
-
 import { Alert, AlertDescription, AlertTitle } from "../alert";
 import { PDFControls } from "./pdfControls";
 import { Spinner } from "./spinner";
 
-// const PDFControls = dynamic(() => import("./pdfControls"), {
-//   ssr: false,
-//   loading: () => <Spinner />,
-// });
 export interface PDFViewerProps {
   url: string;
   allowDownload?: boolean;

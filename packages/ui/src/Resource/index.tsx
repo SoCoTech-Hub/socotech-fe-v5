@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import dynamic from "next/dynamic";
 import { Download, Pause, Play, RotateCw } from "lucide-react";
 
 import { Button } from "../button";
@@ -9,12 +8,6 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card";
 import { Skeleton } from "../skeleton";
 import { PDFViewer } from "./pdfViewer";
 
-// import { Spinner } from "./spinner";
-
-// const PDFViewer = dynamic(() => import("./pdfViewer"), {
-//   ssr: false,
-//   loading: () => <Spinner />,
-// });
 
 interface Resource {
   id: string;
@@ -118,20 +111,20 @@ export function ResourcePage({ resourceId }: ResourcePageProps) {
   };
 
   return (
-    <div className="container mx-auto space-y-4 p-4">
-      <Card className="mx-auto w-full max-w-3xl">
+    <div className="container p-4 mx-auto space-y-4">
+      <Card className="w-full max-w-3xl mx-auto">
         {isLoading ? (
           <>
             <CardHeader>
-              <Skeleton className="h-8 w-3/4" />
+              <Skeleton className="w-3/4 h-8" />
             </CardHeader>
             <CardContent>
-              <Skeleton className="mb-2 h-4 w-full" />
-              <Skeleton className="mb-2 h-4 w-5/6" />
-              <Skeleton className="h-4 w-4/6" />
+              <Skeleton className="w-full h-4 mb-2" />
+              <Skeleton className="w-5/6 h-4 mb-2" />
+              <Skeleton className="w-4/6 h-4" />
             </CardContent>
             <CardFooter>
-              <Skeleton className="h-10 w-32" />
+              <Skeleton className="w-32 h-10" />
             </CardFooter>
           </>
         ) : (
@@ -145,7 +138,7 @@ export function ResourcePage({ resourceId }: ResourcePageProps) {
             <CardFooter className="flex justify-between">
               <div>
                 <Button onClick={handleDownload} className="mr-2">
-                  <Download className="mr-2 h-4 w-4" /> Download
+                  <Download className="w-4 h-4 mr-2" /> Download
                 </Button>
                 {(resource?.fileType === "audio" ||
                   resource?.fileType === "video") && (
@@ -158,16 +151,16 @@ export function ResourcePage({ resourceId }: ResourcePageProps) {
                       className="mr-2"
                     >
                       {isPlaying ? (
-                        <Pause className="h-4 w-4" />
+                        <Pause className="w-4 h-4" />
                       ) : (
-                        <Play className="h-4 w-4" />
+                        <Play className="w-4 h-4" />
                       )}
                     </Button>
                     <Button
                       onClick={() => togglePlayback("restart")}
                       variant="outline"
                     >
-                      <RotateCw className="h-4 w-4" />
+                      <RotateCw className="w-4 h-4" />
                     </Button>
                   </>
                 )}
@@ -178,7 +171,7 @@ export function ResourcePage({ resourceId }: ResourcePageProps) {
       </Card>
 
       {!isLoading && (
-        <Card className="mx-auto w-full max-w-3xl">
+        <Card className="w-full max-w-3xl mx-auto">
           <CardContent className="p-4">{renderMediaPlayer()}</CardContent>
         </Card>
       )}

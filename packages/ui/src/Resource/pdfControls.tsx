@@ -20,7 +20,7 @@ export function PDFControls({
 }: PDFControlsProps) {
   return (
     totalPages >= 1 && (
-      <div className="flex w-full items-center justify-between rounded-lg bg-gray-100 p-4">
+      <div className="flex items-center justify-between w-full p-4 bg-gray-100 rounded-lg">
         <div className="flex items-center space-x-2">
           {currentPage === 1 && (
             <Button onClick={() => onPageChange(currentPage - 1)}>
