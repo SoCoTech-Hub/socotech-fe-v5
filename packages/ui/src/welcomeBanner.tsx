@@ -1,6 +1,6 @@
 import { Button } from "./button";
 
-interface WelcomeBannerProps {
+export interface WelcomeBannerProps {
   title: string;
   subheading: string;
   buttonText?: string;

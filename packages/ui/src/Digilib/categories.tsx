@@ -9,7 +9,7 @@ import {
 } from "../card";
 import { cn } from "../utils";
 
-interface DigilibCategoriesProps {
+export interface DigilibCategoriesProps {
   img?: string;
   title?: string;
   imgAlt?: string;

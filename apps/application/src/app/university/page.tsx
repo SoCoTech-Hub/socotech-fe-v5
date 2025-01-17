@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Button, DigilibCategories, WelcomeBanner } from "@acme/ui";
 
-export interface Faculty {
+interface Faculty {
   id: string;
   name: string;
   svgIcon?: string;
