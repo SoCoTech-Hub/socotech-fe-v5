@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@acme/config": "workspace:*",
     "@acme/snippets": "workspace:*",
     "@acme/ui": "workspace:*",
     "next": "catalog:",
