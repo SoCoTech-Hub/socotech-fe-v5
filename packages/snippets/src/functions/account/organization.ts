@@ -1,9 +1,6 @@
 import { organizationId } from "../../context/constants";
-import {
-  GET_ORGANIZATION_LOGOS,
-  GET_ORGANIZATION_MERCHANT_ID,
-  runQuery,
-} from "../../graphql";
+import { GET_ORGANIZATION_LOGOS, runQuery } from "../../graphql";
+import { GET_ORGANIZATION_MERCHANT_ID } from "../../graphql/payfast/organization";
 
 export const FetchOrganizationMerchantId = async () => {
   return await runQuery<{

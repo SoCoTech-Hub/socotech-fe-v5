@@ -2,7 +2,7 @@ import { gql } from "graphql-tag";
 
 export const GET_PROFILE = gql`
   query GetUserProfile {
-    user {
+    user(id: $id) {
       id
       profile {
         firstName

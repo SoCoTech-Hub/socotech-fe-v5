@@ -8,9 +8,11 @@ import { GET_ME, runQuery } from "../graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 webpush.setVapidDetails(
-  "<mailto:info@jbafrica.com>",
-  process.env.VAPID_PUB_KEY ?? "",
-  process.env.VAPID_PRIVATE_KEY ?? "",
+  "mailto:info@jbafrica.com",
+  process.env.VAPID_PUB_KEY ||
+    "BMLUzTxqGpd70oaJ0mD9pbW6TcZnORsf_iD2blURAS9WHF9blBRuGqtywLJ5VDh-GgDfNkrOod-7ENZnKubPgD8",
+  process.env.VAPID_PRIVATE_KEY ||
+    "9AWdK2ZIbGpn0Drho-y3m4vElx_u97RKx_AcrVIgVto",
 );
 
 let subscription: webpush.PushSubscription | null = null;

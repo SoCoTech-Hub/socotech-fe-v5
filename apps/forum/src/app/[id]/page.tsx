@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-import { FetchForums } from "@acme/snippets/functions/forum/forum";
-import {ForumPostView} from "@acme/ui";
+import { FetchForumsBySlug } from "@acme/snippets/functions/forum/forum";
+import { ForumPostView } from "@acme/ui";
 
-export default function Home() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
   const [forum, setForum] = useState(null);
   const [forumListItems, setForumListItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const slug = "slug"; // TODO: get slug from page id
-      const forumList = await FetchForums(slug);
+      const forumList = await FetchForumsBySlug(id);
       setForum(forumList[0]);
       setForumListItems(forumList.slice(1));
     };
@@ -206,7 +210,7 @@ export default function Home() {
   //   }
   // };
 
-return (
+  return (
     <div>
       {forum && (
         <ForumPostView

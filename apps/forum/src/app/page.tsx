@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+// import { FetchForums } from "@acme/snippets/functions/forum/forum";
 import { ForumDisplay } from "@acme/ui";
 
 interface ForumThread {
@@ -58,7 +59,8 @@ export default function Home() {
 
   useEffect(() => {
     const loadThreads = async () => {
-      const data = await fetchThreads();
+      const data = await fetchThreads(); //TODO: remove when done
+      // const data = await FetchForums(); //TODO:uncomment when done
       setThreads(data);
     };
     loadThreads();

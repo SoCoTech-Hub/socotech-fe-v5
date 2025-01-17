@@ -40,46 +40,11 @@ interface ForumThread {
   lastActivity: Date;
 }
 
-const mockThreads: ForumThread[] = [
-  {
-    id: "1",
-    title: "How to get started with React?",
-    author: "newbie123",
-    replies: 5,
-    lastActivity: new Date("2023-06-10T10:00:00"),
-  },
-  {
-    id: "2",
-    title: "Best practices for state management",
-    author: "reactPro",
-    replies: 12,
-    lastActivity: new Date("2023-06-11T15:30:00"),
-  },
-  {
-    id: "3",
-    title: "Optimizing React performance",
-    author: "speedFreak",
-    replies: 8,
-    lastActivity: new Date("2023-06-12T09:45:00"),
-  },
-  {
-    id: "4",
-    title: "How to handle forms in React?",
-    author: "formMaster",
-    replies: 15,
-    lastActivity: new Date("2023-06-13T14:20:00"),
-  },
-  {
-    id: "5",
-    title: "React Hooks explained",
-    author: "hookFan",
-    replies: 20,
-    lastActivity: new Date("2023-06-14T11:10:00"),
-  },
-];
+interface ForumDisplayProps {
+  threads?: ForumThread[];
+}
 
-export const ForumDisplay: React.FC = () => {
-  const [threads] = useState<ForumThread[]>(mockThreads); //removed setThreads
+export const ForumDisplay: React.FC<ForumDisplayProps> = ({ threads }) => {
   const [sortColumn, setSortColumn] =
     useState<keyof ForumThread>("lastActivity");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
@@ -99,7 +64,7 @@ export const ForumDisplay: React.FC = () => {
 
   // Memoized sorting and filtering of threads
   const filteredThreads = useMemo(() => {
-    const sortedThreads = [...threads].sort((a, b) => {
+    const sortedThreads = [...(threads || [])].sort((a, b) => {
       if (a[sortColumn] < b[sortColumn])
         return sortDirection === "asc" ? -1 : 1;
       if (a[sortColumn] > b[sortColumn])
@@ -210,32 +175,38 @@ export const ForumDisplay: React.FC = () => {
             ))}
           </TableBody>
         </Table>
-        <Pagination className="mt-4">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              />
-            </PaginationItem>
-            {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-              <PaginationItem key={page}>
-                <PaginationLink
-                  onClick={() => setCurrentPage(page)}
-                  isActive={currentPage === page}
-                >
-                  {page}
-                </PaginationLink>
+        {pageCount > 1 && (
+          <Pagination className="mt-4">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
+                />
               </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationNext
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, pageCount))
-                }
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+              {Array.from({ length: pageCount }, (_, i) => i + 1).map(
+                (page) => (
+                  <PaginationItem key={page}>
+                    <PaginationLink
+                      onClick={() => setCurrentPage(page)}
+                      isActive={currentPage === page}
+                    >
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
+                ),
+              )}
+              <PaginationItem>
+                <PaginationNext
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, pageCount))
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        )}
       </CardContent>
     </Card>
   );
