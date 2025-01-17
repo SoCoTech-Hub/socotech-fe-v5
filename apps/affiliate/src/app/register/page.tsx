@@ -3,14 +3,13 @@ import { useRouter } from "next/router";
 
 import { api } from "@acme/snippets/api/api";
 import {
-  // organizationId,
+  organizationId,
   profileId,
   userId,
 } from "@acme/snippets/context/constants";
 import { FetchIsAffiliate } from "@acme/snippets/functions/affiliate/affiliate";
-// import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
-import { Button } from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
+import { FetchAffiliateSettingTerms } from "@acme/snippets/functions/affiliate/affiliateSettings";
+import { Button, PopupAlert } from "@acme/ui";
 
 const RegisterAffiliate = () => {
   const router = useRouter();
@@ -18,15 +17,17 @@ const RegisterAffiliate = () => {
     id?: string;
     profile?: { isAffiliate: boolean };
   }>({});
-  const [responses, _setResponses] = useState<{ terms: string }[]>([]);
+  const [responses, setResponses] = useState<{ terms: string }[]>([]);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [disabled, setDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      // const terms = await FetchAffiliateSettingTerms(organizationId || "1");
-      // setResponses(terms.attributes);//TODO: Fix this
+      const terms = await FetchAffiliateSettingTerms(organizationId || "1");
+      if (terms && terms.attributes) {
+        setResponses([{ terms: terms.attributes.terms }]); 
+      }
 
       const affiliates = await FetchIsAffiliate(profileId || "");
       if (affiliates) {

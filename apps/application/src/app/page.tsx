@@ -1,7 +1,6 @@
 import React from "react";
 
-import { ApplicationsListing } from "@acme/ui";
-import {WelcomeBanner} from "@acme/ui";
+import { ApplicationsListing, WelcomeBanner } from "@acme/ui";
 
 //TODO: snippets
 export default function Home() {
@@ -9,7 +8,15 @@ export default function Home() {
     <div>
       <div>
         <div className="desktop:p-4 laptop:p-4 mobile:p-1 card bg-themeColorMain w-full">
-          <WelcomeBanner tourImage="" />
+          <WelcomeBanner
+            title={`Welcome to ${university.name}`}
+            subheading="Discover all the opportunities our university offers."
+            backgroundClass="bg-gradient-to-r from-green-500 to-blue-600"
+            buttonText="Learn More"
+            onClick={() => console.log("Learn More clicked")}
+            gifSrc="/images/welcome-banner.gif"
+            gifAlt="University animation"
+          />
           {/* //TODO:add image */}
         </div>
 

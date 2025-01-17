@@ -38,12 +38,12 @@ interface Organization {
 const Invoice = () => {
   const router = useRouter();
   const [transactionEvent, setTransactionEvent] =
-    useState<ApiTransactionEventTransactionEvent>();
-  const [organization, setOrganization] = useState();
+    useState<ApiTransactionEventTransactionEvent | null>(null);
+  const [organization, setOrganization] = useState<Organization | null>(null);
 
-  const [email, setEmail] = useState(transactionEvent?.email || "");
+  const [email, setEmail] = useState<string>("");
   const [alert, setAlert] = useState<string>("");
-  const date = new Date(transactionEvent?.created_at || Date.now());
+  const date = new Date(transactionEvent?.attributes?.createdAt || Date.now());
   const formatter = new Intl.NumberFormat("en-ZA", {
     style: "currency",
     currency: "ZAR",
@@ -54,15 +54,37 @@ const Invoice = () => {
   useEffect(() => {
     if (!isPaying) {
       router.push(`${mainUrl}/user`);
+      return;
     }
+
     const fetchData = async () => {
-      const event = await FetchTransactionEventsByPaymentId(uniqueId || "");
-      setTransactionEvent(event);
-      const org = await FetchOrganizationLogos();
-      if (org) {
-        setOrganization(org.organization);
+      try {
+        const events = await FetchTransactionEventsByPaymentId(uniqueId || "");
+        if (events.length > 0) {
+          const firstEvent = events[0];
+          setTransactionEvent(firstEvent);
+
+          // Assuming `transaction` holds the email in some way
+          const emailFromTransaction = firstEvent.attributes?.transaction; // Update this logic as needed
+          if (emailFromTransaction) setEmail(emailFromTransaction);
+        }
+
+        const org = await FetchOrganizationLogos();
+        if (org?.organization) {
+          // Transform to match the `Organization` type
+          const transformedOrganization: Organization = {
+            name: org.organization.name || "Default Organization Name",
+            primaryColor: "#000000", // Default primary color
+            secondaryColor: "#FFFFFF", // Default secondary color
+            logoDark: org.organization.logoDark || { url: "" },
+          };
+          setOrganization(transformedOrganization);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
     };
+
     fetchData();
   }, []);
 
@@ -71,18 +93,28 @@ const Invoice = () => {
 
   const handleSendInvoice = async () => {
     try {
-      await api.post(`/email`, {
+      if (!transactionEvent || !organization) {
+        throw new Error("Missing transaction event or organization data.");
+      }
+
+      // Extract transaction details
+      const { attributes } = transactionEvent;
+      if (!attributes) {
+        throw new Error("Transaction attributes are missing.");
+      }
+
+      await api.POST(`/email`, {
         from: "info@topic.co.za",
         to: email,
         subject: `${organization.name} Invoice ${organization.name
-          .substring(0, 3)
-          .toUpperCase()}-${transaction.mPaymentId}-${zeroPad(event.id, 3)}`,
+          ?.substring(0, 3)
+          .toUpperCase()}-${attributes.paymentId}-${zeroPad(Number(transactionEvent.id), 3)}`,
         html: Body,
       });
       setAlert("Email sent successfully.");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert(error.message);
+      setAlert(error.message || "An error occurred while sending the email.");
     }
   };
 
@@ -90,27 +122,34 @@ const Invoice = () => {
     window.print();
   };
 
+  if (!organization || !transactionEvent) {
+    throw new Error("Organization or transaction event data is missing.");
+  }
+  //TODO:find right types
   const Body = invoice({
-    organizationName: organization.name,
-    organizationPrimaryColor: organization.primaryColor,
-    organizationSecondaryColor: organization.secondaryColor,
-    organizationLogoDarkUrl: organization.logoDark.url,
-    firstName: transaction.firstName,
-    lastName: transaction.lastName,
-    addressLine1: transaction.addressLine1,
-    postalCode: transaction.postalCode,
-    company: transaction.company,
-    vatNr: transaction.vatNr,
-    date: date,
-    mPaymentId: transaction.mPaymentId,
-    id: event.id,
-    item: transaction.item,
-    description: transaction.description,
-    amount: transaction.amount,
-    formatter: formatter,
-    zeroPad: zeroPad,
+    OrgName: organization?.name || "Organization Name Missing", // Handle missing organization name
+    orgName: organization?.name || "Org Name Missing", // Short organization name
+    orgEmail: "", // Must be fetched or provided
+    orgUrl: "", // Must be fetched or provided
+    orgVat: "", // Must be fetched or provided
+    PrimaryColor: organization?.primaryColor || "#FFFFFF", // Default primary color if missing
+    LogoDark: organization?.logoDark?.url || "", // Default empty string for missing logo
+    firstName: "", // Placeholder as firstName is not in the current structure
+    lastName: "", // Placeholder as lastName is not in the current structure
+    addressLine1: "", // Placeholder
+    postalCode: "", // Placeholder
+    company: "", // Placeholder
+    vatNr: "", // Placeholder
+    email: email || "", // Email from state
+    date, // The date object
+    uniqueId: transactionEvent.id || "0", // Use the transaction event ID
+    id: Number(transactionEvent.id) || 0, // Ensure ID is a number for ZeroPadding
+    item: transactionEvent.attributes?.item || "Unknown Item", // Default fallback
+    description: transactionEvent.attributes?.description || "No description", // Default fallback
+    amount: Number(transactionEvent.attributes?.amountNet) || 0, // Ensure amount is numeric
+    formatter, // Currency formatter
   });
-
+  //TODO:fix this
   const InvoiceBodyHTML: React.FC = () => (
     <div
       dangerouslySetInnerHTML={{
@@ -191,7 +230,7 @@ const generateInvoiceHTML = (
   `;
 };
 
-// export async function getServerSideProps({ req }: { req: any }) {//TODO: Fix this
+// export async function getServerSideProps({ req }: { req: any }) { //TODO: Fix this
 //   const cookies = parseCookies(req);
 //   const uniqueId = cookies.uniqueId;
 

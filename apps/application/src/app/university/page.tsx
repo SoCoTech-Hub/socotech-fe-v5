@@ -1,11 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import {WelcomeBanner} from "@acme/ui";
-import { Button } from "@acme/ui";
-import {DigilibCategories} from "@acme/ui";
+import { Button, DigilibCategories, WelcomeBanner } from "@acme/ui";
 
-interface Faculty {
+export interface Faculty {
   id: string;
   name: string;
   svgIcon?: string;
@@ -32,7 +30,15 @@ const Applications: React.FC<ApplicationsProps> = ({
   return (
     <div>
       <div className="mb-5 w-full">
-        <WelcomeBanner tourImage="" />
+        <WelcomeBanner
+          title={`Welcome to ${university.name}`}
+          subheading="Explore our faculties and learn more about what we offer."
+          backgroundClass="bg-gradient-to-r from-blue-500 to-indigo-600"
+          buttonText="Take a Tour"
+          onClick={() => console.log("Tour button clicked")}
+          gifSrc="/images/welcome-animation.gif"
+          gifAlt="A welcoming animation"
+        />
         {/* //TODO: add image */}
         <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 flex justify-end font-bold">
           <Link href={`/applications`}>

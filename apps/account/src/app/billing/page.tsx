@@ -27,11 +27,7 @@ import {
 import { convertUTCToLocal } from "@acme/snippets/functions/convertUtcToLocal";
 import { PauseSubscription } from "@acme/snippets/functions/payfast/pauseSubscription";
 import UnpauseSubscription from "@acme/snippets/functions/payfast/unpauseSubscription";
-import { Button } from "@acme/ui";
-import { InputField } from "@acme/ui";
-import {Modal} from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
-import {Cover} from "@acme/ui";
+import { Button, Cover, InputField, Modal, PopupAlert } from "@acme/ui";
 
 interface Profile {
   id: string;
@@ -69,17 +65,20 @@ const Billing: React.FC = () => {
     const fetchData = async () => {
       if (uniqueId && organizationId) {
         const trans = await FetchTransactionByPaymentId(uniqueId);
-        if (trans) {
-          // setTransactions(trans.transactions);//TODO: Fix this
-          // setCompany(trans[0].company);
-          // setVatNr(trans[0].vatNr);
-          // setFirstName(trans[0].firstName);
-          // setLastName(trans[0].lastName);
-          // setEmail(trans[0].email);
-          // setAddressLine1(trans[0].addressLine1);
-          // setPostalCode(trans[0].postalCode);
-          // setAdditionalInformation(trans[0].additionalInformation);
-          // setCellNr(trans[0].cellnr);
+        if (trans && trans.transactions && trans.transactions.length > 0) {
+          const firstTransaction = trans.transactions[0]; 
+          setTransactions(trans.transactions);
+          setCompany(firstTransaction.attributes.company);
+          setVatNr(firstTransaction.attributes.vatNr);
+          setFirstName(firstTransaction.attributes.firstName);
+          setLastName(firstTransaction.attributes.lastName);
+          setEmail(firstTransaction.attributes.email);
+          setAddressLine1(firstTransaction.attributes.addressLine1);
+          setPostalCode(firstTransaction.attributes.postalCode);
+          setAdditionalInformation(
+            firstTransaction.attributes.additionalInformation,
+          );
+          setCellNr(firstTransaction.attributes.cellnr);
         }
 
         const prof = await FetchProfile(profileId || "");
