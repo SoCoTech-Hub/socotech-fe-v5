@@ -1,4 +1,5 @@
 // TODO:data fetch
+"use client";
 
 import { useState } from "react";
 import { X } from "lucide-react";
@@ -22,14 +23,14 @@ export const QualificationWelcomeBanner = ({
   if (isClosed) return null;
 
   return (
-    <Card className="w-full bg-applicationsBg">
+    <Card className="bg-applicationsBg w-full">
       <CardContent className="p-0">
         <div className="flex flex-col md:flex-row">
-          <div className="flex items-center justify-center flex-1 p-6 md:p-10">
+          <div className="flex flex-1 items-center justify-center p-6 md:p-10">
             <img
               src={img}
               alt="Welcome Image"
-              className="object-contain h-72 w-96"
+              className="h-72 w-96 object-contain"
             />
           </div>
           <div className="relative flex-1 p-6">
@@ -39,13 +40,13 @@ export const QualificationWelcomeBanner = ({
               className="absolute right-2 top-2"
               onClick={() => setIsClosed(true)}
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
             </Button>
-            <h2 className="pt-3 mb-4 text-3xl font-bold leading-tight text-textColor md:text-4xl">
+            <h2 className="text-textColor mb-4 pt-3 text-3xl font-bold leading-tight md:text-4xl">
               {header}
             </h2>
-            <p className="mb-6 text-lg leading-snug text-textColor">
+            <p className="text-textColor mb-6 text-lg leading-snug">
               {subHeader}
             </p>
           </div>
@@ -54,5 +55,3 @@ export const QualificationWelcomeBanner = ({
     </Card>
   );
 };
-
-

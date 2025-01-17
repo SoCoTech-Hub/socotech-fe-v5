@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  cn,
-} from "@acme/ui";
+import { cn, EmailApp } from "@acme/ui";
 
 export default function Home() {
   const classes = cn(
@@ -19,18 +11,7 @@ export default function Home() {
     <div className="flex space-x-4 p-4">
       <h1>Home Page</h1>
       {classes}
-      <Card>
-        <CardHeader>
-          <CardTitle>Card With Footer</CardTitle>
-          <CardDescription>This card does not have a footer.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>This card contains a header, content and footer sections.</p>
-        </CardContent>
-        <CardFooter>
-          <p>Footer.</p>
-        </CardFooter>
-      </Card>
+      <EmailApp />
     </div>
   );
 }

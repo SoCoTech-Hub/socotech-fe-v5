@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, useState } from "react";
 import { format } from "date-fns";
 import { Calendar, Eye, EyeOff } from "lucide-react";

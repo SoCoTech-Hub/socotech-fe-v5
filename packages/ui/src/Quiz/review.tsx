@@ -1,3 +1,5 @@
+"use client";
+
 import type { SetStateAction } from "react";
 import { useState } from "react";
 import { CheckCircle2, XCircle } from "lucide-react";

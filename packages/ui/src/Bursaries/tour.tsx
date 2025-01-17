@@ -1,4 +1,5 @@
 // TODO:data fetch
+"use client";
 
 import { useState } from "react";
 import { X } from "lucide-react";

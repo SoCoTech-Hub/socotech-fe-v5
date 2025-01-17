@@ -1,7 +1,8 @@
 {
-  "extends": "@acme/tsconfig/next.json",
+  "extends": "@acme/tsconfig/internal-package.json",
   "compilerOptions": {
     "rootDir": "."
   },
-  "include": ["src"]
+  "include": [".storybook/*.ts"],
+  "exclude": ["node_modules", ".next"]
 }

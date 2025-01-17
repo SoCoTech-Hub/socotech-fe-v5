@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 
-import {ForumDisplay} from "@acme/ui";
+import { ForumDisplay } from "@acme/ui";
 
 interface ForumThread {
   id: string;
@@ -18,35 +20,35 @@ const fetchThreads = async (): Promise<ForumThread[]> => {
       title: "How to get started with React?",
       author: "newbie123",
       replies: 5,
-      lastActivity: new Date("2023-06-10T10:00:00"),
+      lastActivity: new Date("2023-06-10T10:00:00Z"),
     },
     {
       id: "2",
       title: "Best practices for state management",
       author: "reactPro",
       replies: 12,
-      lastActivity: new Date("2023-06-11T15:30:00"),
+      lastActivity: new Date("2023-06-11T15:30:00Z"),
     },
     {
       id: "3",
       title: "Optimizing React performance",
       author: "speedFreak",
       replies: 8,
-      lastActivity: new Date("2023-06-12T09:45:00"),
+      lastActivity: new Date("2023-06-12T09:45:00Z"),
     },
     {
       id: "4",
       title: "How to handle forms in React?",
       author: "formMaster",
       replies: 15,
-      lastActivity: new Date("2023-06-13T14:20:00"),
+      lastActivity: new Date("2023-06-13T14:20:00Z"),
     },
     {
       id: "5",
       title: "React Hooks explained",
       author: "hookFan",
       replies: 20,
-      lastActivity: new Date("2023-06-14T11:10:00"),
+      lastActivity: new Date("2023-06-14T11:10:00Z"),
     },
   ];
 };
