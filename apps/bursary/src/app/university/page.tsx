@@ -9,7 +9,7 @@ import {
   DigilibCategories,
 } from "@acme/ui";
 
-//TODO: fix components
+//TODO: fix bursary
 interface BursaryCategory {
   id: string;
   name: string;

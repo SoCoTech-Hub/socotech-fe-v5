@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { FetchFaqCategory } from "@acme/snippets/functions/faq/faqCategory";
-import {AccordionSection} from "@acme/ui";
-import { Button } from "@acme/ui";
+import { AccordionSection, Button } from "@acme/ui";
 
 interface Faq {
   id: string;
@@ -23,8 +22,22 @@ const FaqDisplay = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const faqCategory = await FetchFaqCategory(router.query.id as string);
-      setCategory(faqCategory);
+      try {
+        const response = await FetchFaqCategory(router.query.id as string);
+        const faqCategory: FaqCategory = {
+          id: response.faqCategory.id,
+          name: response.faqCategory.name,
+          faqs: response.faqCategory.faqs.map((faq: any) => ({
+            id: faq.id,
+            question: faq.question,
+            answer: faq.answer,
+          })),
+        };
+        setCategory(faqCategory);
+      } catch (error) {
+        console.error("Error fetching FAQ category:", error);
+        setCategory(null); // Handle error case
+      }
     };
 
     fetchData();

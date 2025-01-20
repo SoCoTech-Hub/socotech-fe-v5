@@ -46,9 +46,9 @@ const Register: FC<RegisterProps> = () => {
     }
 
     // Validate email
-    const validEmail = await validateEmail({ email });
-    if (validEmail?.error) {
-      setError("Email does not exist");
+    const validEmail = validateEmail([], email);
+    if (!validEmail.valid) {
+      setError(validEmail.message);
       setLoading(false);
       return;
     }

@@ -9,14 +9,13 @@ import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
 import updateUserDetails from "@acme/snippets/functions/user/updateUserDetails";
-import { Button } from "@acme/ui";
+import { Button, Modal } from "@acme/ui";
 import { Checkbox } from "@acme/ui";
 import { DatePicker } from "@acme/ui";
 import DefaultSelectNew from "@acme/ui"; //TODO:Replace all DefaultSelectNew
 import { InputField } from "@acme/ui";
 import {InputMask} from "@acme/ui";
 import {LogoOverlay} from "@acme/ui";
-import Overlay from "@acme/ui"; //TODO:Replace overlay
 import { PopupAlert } from "@acme/ui";
 import { InfoIcon } from "@acme/ui";
 
@@ -192,11 +191,11 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
             </div>
           </div>
           <div className="text-textColor flex flex-row justify-start">
-            <Overlay
+            <Modal
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
               title="Account Details"
-              content={
+              message={
                 <>
                   <p className="text-left text-lg text-black">
                     Account details are vital as they serve to identify,

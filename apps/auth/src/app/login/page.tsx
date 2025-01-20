@@ -157,8 +157,8 @@ export async function getServerSideProps(context: any) {
       }
 
       const user = await FetchUserDetail(res.data.user.id);
-      const { profile } = user; //TODO:fix section
-      const { organization } = profile;
+      const profile = user;
+      const  organization  = profile;
 
       return {
         props: {

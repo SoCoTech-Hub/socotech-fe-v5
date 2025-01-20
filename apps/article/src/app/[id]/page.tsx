@@ -6,10 +6,14 @@ import ReactMarkdown from "react-markdown";
 import { profileId } from "@acme/snippets/context/constants";
 import { FetchArticle } from "@acme/snippets/functions/article/article";
 import { FetchArticleReaders } from "@acme/snippets/functions/article/articleReader";
-import { Button } from "@acme/ui";
-import {Loader} from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
-import {SocialLinks} from "@acme/ui";
+import {
+  Button,
+  HeartIcon,
+  Loader,
+  PopupAlert,
+  SocialLinks,
+  SocialMediaShareProps,
+} from "@acme/ui";
 
 interface Article {
   id: string;
@@ -43,9 +47,33 @@ export default function Article({ article }: ArticleProps) {
   }, [article.id]);
 
   const handleSaveArticle = () => {
-    // TODO: Implement save article logic here
     setSuccess(true);
   };
+
+  const socialLinks: SocialMediaShareProps["links"] = [
+    {
+      platform: "facebook",
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        window.location.href,
+      )}`,
+    },
+    {
+      platform: "twitter",
+      url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+        window.location.href,
+      )}&text=${encodeURIComponent(article.title || "")}`,
+    },
+    {
+      platform: "linkedin",
+      url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+        window.location.href,
+      )}&title=${encodeURIComponent(article.title || "")}`,
+    },
+    {
+      platform: "instagram",
+      url: "https://www.instagram.com/", // Placeholder for Instagram
+    },
+  ];
 
   return (
     <>
@@ -88,7 +116,6 @@ export default function Article({ article }: ArticleProps) {
                       }
                       data-tracking-action={`Loved article: ${article.title}`}
                     >
-                      {/* Replace LikesIcon and HeartIcon with appropriate icons */}
                       <HeartIcon
                         className="w-5"
                         name={"loves"}
@@ -96,20 +123,16 @@ export default function Article({ article }: ArticleProps) {
                       />
                     </div>
                     <div className="text-textColor mobile:mt-1 ml-1 text-xs">
-                      {/* Replace lovesTotal with appropriate count */}0
+                      0
                     </div>
                   </div>
                 </div>
-                {/* //TODO:fix socialLinks */}
                 <div className="ml-2">
-                  <SocialLinks links={}/>
-                  {/* <ShareLinks
-                    news={{ url: `/${article.id}` }}
-                    name={"share"}
-                    onClick={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  /> */}
+                  <SocialLinks
+                    links={socialLinks}
+                    title="Share this article"
+                    description="Spread the word on your favorite social media platforms"
+                  />
                 </div>
               </div>
               <div className="mobile:ml-8 flex flex-wrap gap-2">
@@ -117,7 +140,6 @@ export default function Article({ article }: ArticleProps) {
                   <Button
                     className="bg-primary"
                     onClick={() => router.push("/")}
-                    // trackingAction={`return to blogs from article: ${article.title}`}//TODO:is tracking needed?
                   >
                     Back
                   </Button>
@@ -126,7 +148,6 @@ export default function Article({ article }: ArticleProps) {
                   <Button
                     className="bg-primary"
                     onClick={handleSaveArticle}
-                    // trackingAction={`Saved article: ${article.title}`}//TODO:is tracking needed?
                     id={article.id}
                   >
                     Save
@@ -148,11 +169,7 @@ export default function Article({ article }: ArticleProps) {
             </div>
             <div className="mr-4 flex justify-end">
               <div className="mt-4">
-                <Button
-                  className="bg-primary"
-                  onClick={() => router.back()}
-                  //trackingAction={`return to blogs from article: ${article.title}`}//TODO:is tracking needed?
-                >
+                <Button className="bg-primary" onClick={() => router.back()}>
                   Back to list
                 </Button>
               </div>

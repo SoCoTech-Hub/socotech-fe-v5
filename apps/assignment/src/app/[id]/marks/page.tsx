@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { AccordionSection } from "@acme/ui";
 import { UploadThumbnail } from "@acme/ui";
 
-//TODO:fix uploadThumbnail
 interface RubiconMark {
   topic: string;
   criteria: string;

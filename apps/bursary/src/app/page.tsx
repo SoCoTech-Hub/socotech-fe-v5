@@ -3,20 +3,39 @@
 import React, { useEffect, useState } from "react";
 
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/bursary/bursaryCategory";
-import {BursaryListing} from "@acme/ui";
-import {BursaryWelcomeBanner} from "@acme/ui";
+import { BursaryListing, BursaryWelcomeBanner } from "@acme/ui";
 
-//TODO: fix links and add component needs
+// Define the type for a bursary category
+type BursaryCategory = {
+  id?: string;
+  name?: string;
+  description?: string;
+  color?: string;
+  icon?: { url: string };
+};
 
 const Bursaries = () => {
-  const [bursaryCategories, setBursaryCategories] = useState([]);
+  // Explicitly set the type for state
+  const [bursaryCategories, setBursaryCategories] = useState<BursaryCategory[]>(
+    [],
+  );
+
   useEffect(() => {
     const fetch = async () => {
-      const { bursaryCategories } = await FetchDistrictsByProvince();
-      setBursaryCategories(bursaryCategories);
+      try {
+        const { bursaryCategories } = await FetchDistrictsByProvince();
+        setBursaryCategories(bursaryCategories || []);
+      } catch (error) {
+        console.error("Error fetching bursary categories:", error);
+      }
     };
     fetch();
   }, []);
+
+  const handleSelection = (id: string) => {
+    console.log(`Selected Bursary ID: ${id}`);
+  };
+
   return (
     <div>
       <div className="card mobile:p-1 mobile:mb-5 bg-themeColorSecondary w-full p-4">
@@ -31,7 +50,23 @@ const Bursaries = () => {
         </div>
       </div>
       <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 desktop:grid-cols-5 laptop:grid-cols-3 mobile:grid-cols-1 grid place-items-stretch gap-3">
-        {bursaryCategories?.map((bursary) => <BursaryListing link={""} />)}
+        {bursaryCategories.map((bursary) => (
+          <BursaryListing
+            key={bursary.id || ""}
+            id={bursary.id || ""}
+            applicationFeatureImage={bursary.icon?.url || ""}
+            courseTitle={bursary.name || "Untitled Bursary"}
+            courseCompanyName="Scholarship Provider" // Adjust as needed
+            courseDescription={
+              bursary.description || "No description available."
+            }
+            setSelection={handleSelection}
+            bgColor={bursary.color || "bg-gray-200"}
+            iconSvg={
+              bursary.icon?.url ? `<img src="${bursary.icon.url}" />` : ""
+            }
+          />
+        ))}
       </div>
     </div>
   );
