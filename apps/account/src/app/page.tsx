@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { UpdateImages, UploadImages } from "@acme/snippets"; //TODO: not sure if correct
+import { UpdateImages, UploadImages } from "@acme/snippets";
 import { api } from "@acme/snippets/api/api";
 import {
   Banner,
@@ -94,9 +94,7 @@ const AccountSettings: React.FC = () => {
           updateImages={UpdateImages}
           uploadImage={UploadImages}
         />
-        <div className="ml-2 mr-2 mt-4 pb-3">
-          <hr className="bg-compBg" />
-        </div>
+        <div className="mx-4 mt-8 pb-3" />
       </div>
       <div className="space-y-4">
         <div className="bg-compBg shadow-menu rounded-lg p-4">
