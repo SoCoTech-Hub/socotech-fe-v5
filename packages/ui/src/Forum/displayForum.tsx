@@ -40,7 +40,7 @@ interface ForumThread {
   lastActivity: Date;
 }
 
-interface ForumDisplayProps {
+export interface ForumDisplayProps {
   threads?: ForumThread[];
 }
 

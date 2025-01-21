@@ -2,13 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 
-import {InfosPage} from "@acme/ui";
-
-interface Info {
-  id: string;
-  title: string;
-  imageUrl: string;
-}
+import type { Info } from "@acme/ui/Info/card.js";
+import { InfosPage, InfosPageProps } from "@acme/ui";
 
 export default function Home() {
   const [infos, setInfos] = useState<Info[]>([]);
@@ -17,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const fetchInfos = async () => {
       setIsLoading(true);
-      //TODO:fetch infos
+      // Simulate fetching data
       await new Promise((resolve) => setTimeout(resolve, 2000));
       const fetchedInfos: Info[] = [
         {
@@ -48,9 +43,12 @@ export default function Home() {
     void fetchInfos();
   }, []);
 
+  // Ensure correct props are passed to InfosPage
+  const pageProps: InfosPageProps = { infos, isLoading };
+
   return (
     <div>
-      <InfosPage infos={infos} isLoading={isLoading} />
+      <InfosPage {...pageProps} />
     </div>
   );
 }

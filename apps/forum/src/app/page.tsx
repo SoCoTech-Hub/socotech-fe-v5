@@ -2,73 +2,42 @@
 
 import React, { useEffect, useState } from "react";
 
-// import { FetchForums } from "@acme/snippets/functions/forum/forum";
-import { ForumDisplay } from "@acme/ui";
-
-interface ForumThread {
-  id: string;
-  title: string;
-  author: string;
-  replies: number;
-  lastActivity: Date;
-}
-
-// TODO:fetch data from an API
-const fetchThreads = async (): Promise<ForumThread[]> => {
-  return [
-    {
-      id: "1",
-      title: "How to get started with React?",
-      author: "newbie123",
-      replies: 5,
-      lastActivity: new Date("2023-06-10T10:00:00Z"),
-    },
-    {
-      id: "2",
-      title: "Best practices for state management",
-      author: "reactPro",
-      replies: 12,
-      lastActivity: new Date("2023-06-11T15:30:00Z"),
-    },
-    {
-      id: "3",
-      title: "Optimizing React performance",
-      author: "speedFreak",
-      replies: 8,
-      lastActivity: new Date("2023-06-12T09:45:00Z"),
-    },
-    {
-      id: "4",
-      title: "How to handle forms in React?",
-      author: "formMaster",
-      replies: 15,
-      lastActivity: new Date("2023-06-13T14:20:00Z"),
-    },
-    {
-      id: "5",
-      title: "React Hooks explained",
-      author: "hookFan",
-      replies: 20,
-      lastActivity: new Date("2023-06-14T11:10:00Z"),
-    },
-  ];
-};
+import { FetchForums } from "@acme/snippets/functions/forum/forum";
+import { ForumDisplay, ForumDisplayProps } from "@acme/ui";
 
 export default function Home() {
-  const [threads, setThreads] = useState<ForumThread[]>([]);
+  const [threads, setThreads] = useState<ForumDisplayProps["threads"]>([]); // Use threads from ForumDisplayProps
 
   useEffect(() => {
     const loadThreads = async () => {
-      const data = await fetchThreads(); //TODO: remove when done
-      // const data = await FetchForums(); //TODO:uncomment when done
-      setThreads(data);
+      try {
+        const { forums } = await FetchForums();
+
+        // Transform the fetched data to match ForumThread interface
+        const transformedThreads: ForumDisplayProps["threads"] = forums.map(
+          (forum: any) => ({
+            id: forum.id,
+            title: forum.name || forum.question || "Untitled",
+            author: forum.user?.profile
+              ? `${forum.user.profile.firstName} ${forum.user.profile.lastName || ""}`
+              : "Unknown Author",
+            replies: forum.parentForum ? 1 : 0, // Replace with actual reply count if available
+            lastActivity: new Date(forum.updated_at),
+          }),
+        );
+
+        setThreads(transformedThreads);
+      } catch (error) {
+        console.error("Error fetching forums:", error);
+      }
     };
+
     loadThreads();
   }, []);
 
   return (
     <div>
-      <ForumDisplay threads={threads} />
+      <ForumDisplay threads={threads} /> {/* Correctly pass the threads prop */}
     </div>
   );
 }
