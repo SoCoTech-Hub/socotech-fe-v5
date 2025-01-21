@@ -1,10 +1,9 @@
-
 export interface ApiProfileProfile {
   id: string;
   attributes: {
     about: string;
     addresses: string;
-    banner: string;
+    banner: { url: string };
     cancelDate: string;
     createdAt: string;
     createdBy: string;
@@ -32,7 +31,7 @@ export interface ApiProfileProfile {
     notifications: string;
     organization: string;
     parents: string;
-    profilePic: string;
+    profilePic: { url: string };
     progresses: string;
     provinces: string;
     publishedAt: string;

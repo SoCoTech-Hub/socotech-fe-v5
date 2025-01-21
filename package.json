@@ -8,6 +8,7 @@
   "scripts": {
     "copy-middleware": "node scripts/copyMiddleware.js",
     "update-basepath": "node scripts/updateBasePath.js",
+    "update-nextConf": "node scripts/updateNextConfig.js",
     "update-ports": "node scripts/updatePorts.js",
     "build": "turbo run build",
     "clean": "git clean -xdf node_modules",

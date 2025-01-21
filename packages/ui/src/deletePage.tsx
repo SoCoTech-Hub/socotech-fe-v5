@@ -162,7 +162,7 @@ export const DeleteAccount = ({
                 <SelectTrigger>
                   <SelectValue placeholder="Select a reason" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-primary text-primaryForeground">
                   {REASONS[deletionType].map((reason) => (
                     <SelectItem key={reason.value} value={reason.value}>
                       {reason.label}
@@ -201,7 +201,7 @@ export const DeleteAccount = ({
 
             {/* Action Buttons */}
             <div className="flex justify-between">
-              <Link scroll={false} href="/account" passHref>
+              <Link scroll={false} href="/" passHref>
                 <Button variant="outline">Cancel</Button>
               </Link>
               <AlertDialog>

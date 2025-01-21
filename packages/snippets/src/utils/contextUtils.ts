@@ -34,9 +34,7 @@ export const useUserId = (): string => {
 // Profile
 export const useDisplayName = (): string => {
   const { profile } = useAppContext();
-  return (
-    `${profile?.attributes.firstName} ${profile?.attributes.lastName}` || ""
-  );
+  return `${profile?.attributes.firstName || "Incognito"} ${profile?.attributes.lastName || ""}`;
 };
 export const useFirstName = (): string => {
   const { profile } = useAppContext();
@@ -64,7 +62,7 @@ export const useIsPaying = (): string => {
 };
 export const useProfileBanner = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.banner || "";
+  return profile?.attributes.banner?.url || "";
 };
 export const useProfileId = (): string => {
   const { profile } = useAppContext();
@@ -72,7 +70,7 @@ export const useProfileId = (): string => {
 };
 export const useProfilePic = (): string => {
   const { profile } = useAppContext();
-  return profile?.attributes.profilePic || "";
+  return profile?.attributes.profilePic?.url || "";
 };
 export const useProvinces = (): string => {
   const { profile } = useAppContext();

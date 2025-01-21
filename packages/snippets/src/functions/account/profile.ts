@@ -2,6 +2,7 @@
 
 import { GET_PROFILE, runQuery } from "../../graphql";
 
+
 // const cancelSub = async () => {
 //   const date = new Date();
 //   if (transactions[0].signature) {
@@ -35,16 +36,16 @@ export const FetchProfile = async (id: string) => {
   }>(GET_PROFILE, { id });
 };
 //TODO: complete these functions
-export const UpdateImages = () => {
+export const UpdateImages = async () => {
   return;
 };
-export const UploadImages = () => {
+export const UploadImages = async () => {
   return;
 };
 
-export const DeleteProfile = () => {
+export const DeleteProfile = async() => {
   return;
 };
-export const DeactivateProfile = () => {
+export const DeactivateProfile = async () => {
   return;
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { Camera, Pencil } from "lucide-react";
 
 // import { uploadImage } from "@acme/snippets/posts/user";
@@ -24,10 +25,11 @@ interface CoverProps {
 }
 export function Cover(props: CoverProps) {
   const [bannerImage, setBannerImage] = useState(
-    props.bannerImage ?? "https://via.placeholder.com/1000x300",
+    props.bannerImage || "https://placehold.co/100",
   );
+  console.log({ bannerImage });
   const [avatarImage, setAvatarImage] = useState(
-    props.avatarImage ?? "https://via.placeholder.com/150",
+    props.avatarImage || "https://placehold.co/100",
   );
 
   const bannerInputRef = useRef<HTMLInputElement>(null);
@@ -117,31 +119,33 @@ export function Cover(props: CoverProps) {
         {/* Avatar */}
         <div className="absolute bottom-0 left-8 flex translate-y-1/2 transform items-center">
           <div className="relative">
-            <img
-              src={avatarImage}
-              alt="Avatar"
-              width={150}
-              height={150}
-              className="rounded-full border-4 border-white"
-            />
-            <Button
-              onClick={() => avatarInputRef.current?.click()}
-              className="absolute bottom-2 right-2 rounded-full px-3 py-2"
-              aria-label="Edit avatar image"
-            >
-              <Camera className="h-4 w-4" />
-              <span className="sr-only">Update avatar</span>
-            </Button>
-            <input
-              ref={avatarInputRef}
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                handleImageUpload(e, setAvatarImage, "profilePic")
-              }
-              className="hidden"
-              aria-label="Upload avatar image"
-            />
+            <div className="h-40 w-40">
+              <Image
+                src={avatarImage}
+                alt="Avatar"
+                width={150}
+                height={150}
+                className="h-full w-full rounded-full border-4 border-white object-cover"
+              />
+              <Button
+                onClick={() => avatarInputRef.current?.click()}
+                className="absolute bottom-2 right-2 rounded-full px-3 py-2"
+                aria-label="Edit avatar image"
+              >
+                <Camera className="h-4 w-4" />
+                <span className="sr-only">Update avatar</span>
+              </Button>
+              <input
+                ref={avatarInputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  handleImageUpload(e, setAvatarImage, "profilePic")
+                }
+                className="hidden"
+                aria-label="Upload avatar image"
+              />
+            </div>
           </div>
           {/* User Name */}
           <h1 className="ml-4 mt-6 text-2xl font-bold text-primaryForeground drop-shadow-lg">

@@ -1,7 +1,7 @@
-import ports from "@acme/config/ports";
 import type { NextConfig } from "next";
 
-import Config from "@acme/snippets/nextConfig";
+import ports from "@acme/config/ports";
+import { NextConfigHeaders, NextConfigImages } from "@acme/snippets/nextConfig";
 
 const nextConfig: NextConfig = {
   serverRuntimeConfig: { port: ports.article },
@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@acme/ui"],
   async headers() {
-    return Config;
+    return NextConfigHeaders;
   },
+  ...NextConfigImages,
 };
-
 export default nextConfig;
