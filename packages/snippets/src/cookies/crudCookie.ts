@@ -9,14 +9,18 @@ export interface CreateCookieProps {
 }
 
 export function CreateCookie(req: CreateCookieProps) {
-  setCookie(req.key, req.value, {
-    expires: req.time ?? "7d",
-    path: "/",
-    domain: CONFIG.DOMAIN,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax",
-  });
-  return { ok: 200, message: "Cookie set successfully" };
+  try {
+    setCookie(req.key, req.value, {
+      expires: req.time ?? "7d",
+      path: "/",
+      domain: CONFIG.DOMAIN,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Lax",
+    });
+    return { ok: 200, message: "Cookie set successfully" };
+  } catch {
+    return { ok: 400, message: "Cookie not set successfully" };
+  }
 }
 
 export interface DeleteCookieProps {
@@ -24,8 +28,12 @@ export interface DeleteCookieProps {
 }
 
 export function DeleteCookie(req: DeleteCookieProps) {
-  deleteCookie(req.key, { path: "/", domain: CONFIG.DOMAIN });
-  return { ok: 200, message: "Cookie deleted successfully" };
+  try {
+    deleteCookie(req.key, { path: "/", domain: CONFIG.DOMAIN });
+    return { ok: 200, message: "Cookie deleted successfully" };
+  } catch {
+    return { ok: 400, message: "Cookie not deleted successfully" };
+  }
 }
 
 export interface GetCookieProps {
@@ -33,5 +41,9 @@ export interface GetCookieProps {
 }
 
 export function GetCookie(req: GetCookieProps) {
-  return getCookie(req.key);
+  try {
+    return getCookie(req.key);
+  } catch {
+    return;
+  }
 }
