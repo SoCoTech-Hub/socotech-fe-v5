@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import React from "react";
 
+import { AppProvider } from "@acme/snippets";
+
 import "./globals.css";
-import '@acme/ui/'
+import "@acme/ui/";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }

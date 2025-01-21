@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { TimeTrackerProvider } from "@acme/snippets";
+import { AppProvider } from "@acme/snippets";
 
 import "./globals.css";
 
@@ -19,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <BrowserRouter>
-        <TimeTrackerProvider>
-          <body className={`antialiased`}>{children}</body>
-        </TimeTrackerProvider>
+        {/* <TimeTrackerProvider> */}
+        <body className={`antialiased`}>
+          <AppProvider>{children}</AppProvider>
+        </body>
+        {/* </TimeTrackerProvider> */}
       </BrowserRouter>
     </html>
   );
