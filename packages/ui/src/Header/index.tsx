@@ -36,10 +36,8 @@ export const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4">
           {/* Logo Section */}
-          <Link scroll={false} href={"/"}>
-            <a className="flex items-center">
-              <Image src={logo} alt="Logo" width={40} height={40} />
-            </a>
+          <Link scroll={false} href="/" className="flex items-center">
+            <Image src={logo} alt="Logo" width={40} height={40} />
           </Link>
 
           {/* Desktop Navigation */}

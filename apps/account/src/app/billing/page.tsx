@@ -172,7 +172,9 @@ const Billing: React.FC = () => {
     }
   };
 
-  const isPayingDate = convertUTCToLocal(profile?.isPayingDate || "");
+  const isPayingDate = profile?.isPayingDate
+    ? convertUTCToLocal(profile.isPayingDate)
+    : "";
 
   return (
     <div className="w-full">

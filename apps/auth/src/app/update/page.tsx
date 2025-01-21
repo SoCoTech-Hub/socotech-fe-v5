@@ -306,10 +306,12 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
             />
             <div className="text-textColor ml-2 text-sm">
               <span>I have permission from my</span>
-              <Link scroll={false} href="/">
-                <a className="text-textHeading ml-1 font-bold underline">
-                  Parents/ Guardian
-                </a>
+              <Link
+                scroll={false}
+                href="/"
+                className="text-textHeading ml-1 font-bold underline"
+              >
+                Parents/ Guardian
               </Link>
             </div>
           </div>

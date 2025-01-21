@@ -85,7 +85,7 @@ const AccountSettings: React.FC = () => {
 
   return (
     <div className="mb-24 mt-1.5 w-full">
-      <div className="pt-3 pl-3 pr-3 mb-4 rounded-lg bg-compBg shadow-menu">
+      <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
         <Cover
           user={{ id: userId, profile: { id: profileId } }}
           avatarImage={ProfilePic}
@@ -94,23 +94,23 @@ const AccountSettings: React.FC = () => {
           updateImages={UpdateImages}
           uploadImage={UploadImages}
         />
-        <div className="pb-3 mt-4 ml-2 mr-2">
+        <div className="ml-2 mr-2 mt-4 pb-3">
           <hr className="bg-compBg" />
         </div>
       </div>
       <div className="space-y-4">
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
-            <div className="text-lg text-themeColorMain">Password Update</div>
+            <div className="text-themeColorMain text-lg">Password Update</div>
           </div>
           <div className="pt-2">
-            <div className="mb-2 text-sm text-textColor">
+            <div className="text-textColor mb-2 text-sm">
               If you've forgotten your password or want to update it, you can
               reset it here.
             </div>
             <div className="w-1/2">
               <button
-                className="p-2 text-center text-black rounded-lg shadow-md cursor-pointer bg-themeColorMain buttonHover"
+                className="bg-themeColorMain buttonHover cursor-pointer rounded-lg p-2 text-center text-black shadow-md"
                 onClick={handleSubmit}
                 disabled={loading}
               >
@@ -126,13 +126,13 @@ const AccountSettings: React.FC = () => {
         </div>
 
         {/* Communication Preferences */}
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
-            <div className="text-lg text-themeColorMain">
+            <div className="text-themeColorMain text-lg">
               Communication Preferences
             </div>
           </div>
-          <div className="mt-2 text-sm text-textColor">
+          <div className="text-textColor mt-2 text-sm">
             <div className="font-bold">Newsletter Subscription</div>
             <span>
               Subscribe/Unsubscribe: Receive or stop receiving newsletters with
@@ -153,7 +153,7 @@ const AccountSettings: React.FC = () => {
               }`}
             />
           </div>
-          <div className="mt-4 text-sm text-textColor">
+          <div className="text-textColor mt-4 text-sm">
             <div className="font-bold">SMS Notifications</div>
             <span>
               {smsActive
@@ -182,41 +182,45 @@ const AccountSettings: React.FC = () => {
 
         {/* Billing Information */}
         {isPaying === "1" && (
-          <div className="p-4 rounded-lg bg-compBg shadow-menu">
+          <div className="bg-compBg shadow-menu rounded-lg p-4">
             <div className="flex flex-row">
-              <div className="text-lg text-themeColorMain">
+              <div className="text-themeColorMain text-lg">
                 Billing Information
               </div>
             </div>
             <div className="mt-2">
-              <div className="mb-4 text-sm text-textColor">
+              <div className="text-textColor mb-4 text-sm">
                 Billing information button that takes you to your billing
                 information.
               </div>
-              <Link scroll={false} href="/billing">
-                <a className="bg-themeColorMain my-4 w-36 cursor-pointer rounded-md p-2.5 text-center text-black shadow-md">
-                  Billing information
-                </a>
+              <Link
+                scroll={false}
+                href="/billing"
+                className="bg-themeColorMain my-4 w-36 cursor-pointer rounded-md p-2.5 text-center text-black shadow-md"
+              >
+                Billing information
               </Link>
             </div>
           </div>
         )}
 
         {/* Delete Account */}
-        <div className="p-4 rounded-lg bg-compBg shadow-menu">
+        <div className="bg-compBg shadow-menu rounded-lg p-4">
           <div className="flex flex-row">
             <div className="text-lg text-red-600">Delete Account</div>
           </div>
           <div className="mt-2">
-            <div className="mb-4 text-sm text-textColor">
+            <div className="text-textColor mb-4 text-sm">
               Warning: Deleting your account will permanently remove all your
               data, including progress and saved content. This action cannot be
               undone.
             </div>
-            <Link scroll={false} href="/delete">
-              <a className="w-36 cursor-pointer rounded-md bg-red-700 p-2.5 text-center font-bold text-black shadow-md hover:bg-red-600">
-                Delete My Account
-              </a>
+            <Link
+              scroll={false}
+              href="/delete"
+              className="w-36 cursor-pointer rounded-md bg-red-700 p-2.5 text-center font-bold text-black shadow-md hover:bg-red-600"
+            >
+              Delete My Account
             </Link>
           </div>
         </div>

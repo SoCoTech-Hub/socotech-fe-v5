@@ -2,7 +2,7 @@ import {
   DeactivateProfile,
   DeleteProfile,
 } from "@acme/snippets/functions/account/profile";
-import {DeleteAccount} from "@acme/ui";
+import { DeleteAccount } from "@acme/ui";
 
 const DeletePage = () => {
   return (

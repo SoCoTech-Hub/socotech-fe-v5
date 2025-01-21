@@ -82,10 +82,12 @@ const Index: FC = () => {
               </h6>
 
               <div className="mb-3 mt-3 flex justify-center py-2">
-                <Link scroll={false} href="/">
-                  <span className="bg-themeColorMain w-64 cursor-pointer rounded-full py-2 text-center font-bold text-white">
-                    Login
-                  </span>
+                <Link
+                  scroll={false}
+                  href="/"
+                  className="bg-themeColorMain w-64 cursor-pointer rounded-full py-2 text-center font-bold text-white"
+                >
+                  Login
                 </Link>
               </div>
             </div>

@@ -210,10 +210,13 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
                   <div className="mt-1 text-xs">
                     &nbsp;
                     <span>Accept </span>
-                    <Link scroll={false} href="/tou" passHref>
-                      <span className="pointer-cursor cursor-pointer font-bold hover:text-blue-400">
-                        Terms and Conditions
-                      </span>
+                    <Link
+                      scroll={false}
+                      href="/tou"
+                      passHref
+                      className="pointer-cursor cursor-pointer font-bold hover:text-blue-400"
+                    >
+                      Terms and Conditions
                     </Link>
                   </div>
                 </div>

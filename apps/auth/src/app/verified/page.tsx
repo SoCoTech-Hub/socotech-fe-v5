@@ -115,10 +115,12 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
                   {rEmail || email ? (
                     <div className="mx-auto flex w-1/2 flex-col py-3">
                       {error === "This account has already been confirmed" ? (
-                        <Link scroll={false} href="/">
-                          <a className="bg-themeColorMain mt-2 cursor-pointer rounded-md px-2 py-3 text-center text-white">
-                            Login
-                          </a>
+                        <Link
+                          scroll={false}
+                          href="/"
+                          className="bg-themeColorMain mt-2 cursor-pointer rounded-md px-2 py-3 text-center text-white"
+                        >
+                          Login
                         </Link>
                       ) : (
                         <Button

@@ -1,3 +1,5 @@
+"use server";
+
 import { GET_PROFILE, runQuery } from "../../graphql";
 
 // const cancelSub = async () => {
@@ -33,8 +35,16 @@ export const FetchProfile = async (id: string) => {
   }>(GET_PROFILE, { id });
 };
 //TODO: complete these functions
-export const UpdateImages = () => {};
-export const UploadImages = () => {};
+export const UpdateImages = () => {
+  return;
+};
+export const UploadImages = () => {
+  return;
+};
 
-export const DeleteProfile = () => {};
-export const DeactivateProfile = () => {};
+export const DeleteProfile = () => {
+  return;
+};
+export const DeactivateProfile = () => {
+  return;
+};

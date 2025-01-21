@@ -20,10 +20,12 @@ const Cancel: React.FC = () => (
             Payment Failed
           </div>
           <div className="mb-3 mt-3 flex justify-center py-2">
-            <Link scroll={false} href="./create">
-              <a className="text-textColor d-inline-block bg-themeColorMain w-64 cursor-pointer rounded-full py-2 text-center font-bold">
-                Try Again
-              </a>
+            <Link
+              scroll={false}
+              href="./create"
+              className="text-textColor d-inline-block bg-themeColorMain w-64 cursor-pointer rounded-full py-2 text-center font-bold"
+            >
+              Try Again
             </Link>
           </div>
         </div>

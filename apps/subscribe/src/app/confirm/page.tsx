@@ -117,10 +117,14 @@ const Confirm: FC<ConfirmProps> = () => {
           ) : (
             <></>
           ),
-          <Link scroll={false} href="/create" passHref key="start-again">
-            <div className="text-textColorSecondary bg-themeColorSecondary cursor-pointer rounded-lg p-3 text-center">
-              Start Again
-            </div>
+          <Link
+            scroll={false}
+            href="/create"
+            passHref
+            key="start-again"
+            className="text-textColorSecondary bg-themeColorSecondary cursor-pointer rounded-lg p-3 text-center"
+          >
+            Start Again
           </Link>,
         ]}
       />

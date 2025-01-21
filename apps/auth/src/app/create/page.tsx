@@ -159,10 +159,13 @@ const Register: FC<RegisterProps> = () => {
               />
               <div className="text-textColor ml-2 text-sm">
                 I have read and agreed to the
-                <Link scroll={false} href="/tou" passHref>
-                  <a className="text-textHeading ml-1 font-bold underline">
-                    Terms and Conditions
-                  </a>
+                <Link
+                  scroll={false}
+                  href="/tou"
+                  passHref
+                  className="text-textHeading ml-1 font-bold underline"
+                >
+                  Terms and Conditions
                 </Link>
               </div>
             </div>
@@ -198,8 +201,12 @@ const Register: FC<RegisterProps> = () => {
             {/* Already have an account */}
             <div className="text-textColor my-3 flex flex-row items-center text-sm">
               Already have an account?
-              <Link scroll={false} href="/">
-                <a className="text-themeColorMain ml-1 font-semibold">Login</a>
+              <Link
+                scroll={false}
+                href="/"
+                className="text-themeColorMain ml-1 font-semibold"
+              >
+                Login
               </Link>
             </div>
           </form>

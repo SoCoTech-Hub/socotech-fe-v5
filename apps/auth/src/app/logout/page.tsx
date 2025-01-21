@@ -24,7 +24,7 @@ const Logout: React.FC = () => {
           </div>
         }
         buttons={[
-          <Link scroll={false} href={"/"}>
+          <Link scroll={false} href="/">
             <Button key="login-button" className="w-60 bg-primary">
               Log in
             </Button>
