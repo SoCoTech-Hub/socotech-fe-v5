@@ -6,13 +6,9 @@ import {
   mainUrl,
   organizationId,
 } from "@acme/snippets/context/constants";
-import sendTransaction from "@acme/snippets/functions/account/Transaction"; 
+import sendTransaction from "@acme/snippets/functions/account/Transaction";
 import createTransaction from "@acme/snippets/functions/account/Transaction";
-
-import { Button } from "@acme/ui";
-import { Checkbox } from "@acme/ui";
-import { InputField } from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
+import { Button, Checkbox, InputField, PopupAlert } from "@acme/ui";
 
 interface SubscribeProps {
   product: any;
@@ -160,7 +156,7 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
                   </div>
                   <div className="mt-0.5 text-sm">
                     <span className="text-textHeading font-bold">Accept </span>
-                    <Link href="/tou" passHref>
+                    <Link scroll={false} href="/tou" passHref>
                       <a target="_blank" rel="noopener noreferrer">
                         <span className="text-textHeading cursor-pointer font-bold">
                           terms and conditions
@@ -168,7 +164,7 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
                       </a>
                     </Link>
                     <span className="text-textHeading font-bold">, </span>
-                    <Link href="/privacy" passHref>
+                    <Link scroll={false} href="/privacy" passHref>
                       <a target="_blank" rel="noopener noreferrer">
                         <span className="text-textHeading cursor-pointer font-bold">
                           privacy policy
@@ -176,7 +172,7 @@ const Subscribe: FC<SubscribeProps> = ({ product, user, url }) => {
                       </a>
                     </Link>
                     <span className="text-textHeading font-bold"> and </span>
-                    <Link href="/payment" passHref>
+                    <Link scroll={false} href="/payment" passHref>
                       <a target="_blank" rel="noopener noreferrer">
                         <span className="text-textHeading cursor-pointer font-bold">
                           payment policy

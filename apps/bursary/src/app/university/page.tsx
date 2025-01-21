@@ -28,7 +28,7 @@ const Bursaries = ({ bursaryCategories }: BursariesProps) => {
     <div>
       <BursaryWelcomeBanner />
       <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 flex justify-end">
-        <Link href={`/bursaries`}>
+        <Link scroll={false} href="/bursaries">
           <Button className="bg-primary">Back</Button>
         </Link>
       </div>

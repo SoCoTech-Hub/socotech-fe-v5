@@ -3,9 +3,7 @@ import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
 import getSelectedQualification from "@acme/snippets/functions/qualificationResponses/getSelectedQualification";
-import { ApplicationsListing } from "@acme/ui";
-import { ApplicationsPost } from "@acme/ui";
-import { Button } from "@acme/ui";
+import { ApplicationsListing, ApplicationsPost, Button } from "@acme/ui";
 
 //TODO:fix components
 interface Qualification {
@@ -101,7 +99,7 @@ const Application: React.FC<ApplicationProps> = ({
           </div>
         </div>
         <div className="my-4 flex w-full justify-end">
-          <Link href={`/applications/${universityId}`}>
+          <Link legacyBehavior href={`/applications/${universityId}`}>
             <Button className="bg-primary">Back</Button>
           </Link>
         </div>

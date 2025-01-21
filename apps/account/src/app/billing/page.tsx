@@ -66,7 +66,7 @@ const Billing: React.FC = () => {
       if (uniqueId && organizationId) {
         const trans = await FetchTransactionByPaymentId(uniqueId);
         if (trans && trans.transactions && trans.transactions.length > 0) {
-          const firstTransaction = trans.transactions[0]; 
+          const firstTransaction = trans.transactions[0];
           setTransactions(trans.transactions);
           setCompany(firstTransaction.attributes.company);
           setVatNr(firstTransaction.attributes.vatNr);
@@ -190,7 +190,7 @@ const Billing: React.FC = () => {
         </div>
       </div>
       <div className="my-4 flex gap-x-4">
-        <Link href={"/invoice"}>
+        <Link scroll={false} href="/invoice">
           <Button className="bg-primary text-black">Generate Invoice</Button>
         </Link>
         <Button

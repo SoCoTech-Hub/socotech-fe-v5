@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 
 import { baseUrl } from "@acme/snippets/context/constants";
 import resendConfirmation from "@acme/snippets/functions/auth/resendConfirmation";
-import { Button } from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
+import { Button, PopupAlert } from "@acme/ui";
 
 type VerifiedProps = {
   email: string | null;
@@ -116,7 +115,7 @@ const Verified: FC<VerifiedProps> = ({ email }) => {
                   {rEmail || email ? (
                     <div className="mx-auto flex w-1/2 flex-col py-3">
                       {error === "This account has already been confirmed" ? (
-                        <Link href="/">
+                        <Link scroll={false} href="/">
                           <a className="bg-themeColorMain mt-2 cursor-pointer rounded-md px-2 py-3 text-center text-white">
                             Login
                           </a>

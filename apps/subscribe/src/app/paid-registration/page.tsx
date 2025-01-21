@@ -210,7 +210,7 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
                   <div className="mt-1 text-xs">
                     &nbsp;
                     <span>Accept </span>
-                    <Link href="/tou" passHref>
+                    <Link scroll={false} href="/tou" passHref>
                       <span className="pointer-cursor cursor-pointer font-bold hover:text-blue-400">
                         Terms and Conditions
                       </span>
@@ -232,7 +232,9 @@ const Register: React.FC<RegisterProps> = ({ uniqueId }) => {
                   <h6 className="text-textColor mt-3 text-xs">
                     Already have an account?
                     <span className="text-themeColorMain ms-1 cursor-pointer font-semibold">
-                      <Link href={authUrl}>Login</Link>
+                      <Link scroll={false} href={authUrl} legacyBehavior>
+                        Login
+                      </Link>
                     </span>
                   </h6>
                 </div>

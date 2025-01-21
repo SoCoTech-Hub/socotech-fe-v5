@@ -100,7 +100,7 @@ const Login: React.FC<LoginProps> = ({
           )
         }
         buttons={[
-          <Link href={error ? "/login" : "/update"}>
+          <Link scroll={false} href={error ? "/login" : "/update"}>
             <Button key="btn-continue" className="w-60 bg-primary">
               {error ? "Retry" : "Continue"}
             </Button>
@@ -158,7 +158,7 @@ export async function getServerSideProps(context: any) {
 
       const user = await FetchUserDetail(res.data.user.id);
       const profile = user;
-      const  organization  = profile;
+      const organization = profile;
 
       return {
         props: {

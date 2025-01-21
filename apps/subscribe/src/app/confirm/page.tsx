@@ -117,7 +117,7 @@ const Confirm: FC<ConfirmProps> = () => {
           ) : (
             <></>
           ),
-          <Link href="/create" passHref key="start-again">
+          <Link scroll={false} href="/create" passHref key="start-again">
             <div className="text-textColorSecondary bg-themeColorSecondary cursor-pointer rounded-lg p-3 text-center">
               Start Again
             </div>

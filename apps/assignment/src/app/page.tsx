@@ -29,13 +29,19 @@ const AssignmentHome: React.FC<AssignmentHomeProps> = ({
           <div className="bg-compBg mobile:p-1.5 laptop:p-2 desktop:p-3 mobile:gap-1 laptop:gap-3 desktop:gap-4 mobile:grid-cols-2 laptop:grid-cols-4 desktop:grid-cols-4 grid rounded-lg">
             {module.map((item, r) => (
               <div key={r}>
-                <Link href={`/${lessonId}/assignment/${item.id}`}>
+                <Link
+                  legacyBehavior
+                  href={`/${lessonId}/assignment/${item.id}`}
+                >
                   <Button className="bg-primary">{item?.title}</Button>
                 </Link>
                 <div>
                   {response?.map((x) =>
                     x.assignment.id === item.id ? (
-                      <Link href={`/${lessonId}/assignment/${item.id}/marks`}>
+                      <Link
+                        legacyBehavior
+                        href={`/${lessonId}/assignment/${item.id}/marks`}
+                      >
                         <Button
                           key={x.id}
                           className="bg-secondary"

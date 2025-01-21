@@ -9,15 +9,18 @@ import { baseUrl } from "@acme/snippets/context/constants";
 import { FetchDistrictsByProvince } from "@acme/snippets/functions/auth/district";
 import { FetchSchoolsByDistrict } from "@acme/snippets/functions/auth/school";
 import updateUserDetails from "@acme/snippets/functions/user/updateUserDetails";
-import { Button, Modal } from "@acme/ui";
-import { Checkbox } from "@acme/ui";
-import { DatePicker } from "@acme/ui";
-import DefaultSelectNew from "@acme/ui"; //TODO:Replace all DefaultSelectNew
-import { InputField } from "@acme/ui";
-import {InputMask} from "@acme/ui";
-import {LogoOverlay} from "@acme/ui";
-import { PopupAlert } from "@acme/ui";
-import { InfoIcon } from "@acme/ui";
+//TODO:Replace all DefaultSelectNew
+import DefaultSelectNew, {
+  Button,
+  Checkbox,
+  DatePicker,
+  InfoIcon,
+  InputField,
+  InputMask,
+  LogoOverlay,
+  Modal,
+  PopupAlert,
+} from "@acme/ui";
 
 type UpdateProps = {
   profile: any;
@@ -303,7 +306,7 @@ const Update: FC<UpdateProps> = ({ profile, grades, locations, genders }) => {
             />
             <div className="text-textColor ml-2 text-sm">
               <span>I have permission from my</span>
-              <Link href="/">
+              <Link scroll={false} href="/">
                 <a className="text-textHeading ml-1 font-bold underline">
                   Parents/ Guardian
                 </a>

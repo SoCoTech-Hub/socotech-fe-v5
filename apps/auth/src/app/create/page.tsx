@@ -159,7 +159,7 @@ const Register: FC<RegisterProps> = () => {
               />
               <div className="text-textColor ml-2 text-sm">
                 I have read and agreed to the
-                <Link href="/tou" passHref>
+                <Link scroll={false} href="/tou" passHref>
                   <a className="text-textHeading ml-1 font-bold underline">
                     Terms and Conditions
                   </a>
@@ -183,7 +183,10 @@ const Register: FC<RegisterProps> = () => {
               >
                 {loading ? "Loading" : "Register"}
               </Button>
-              <Link href={`${process.env.NEXT_PUBLIC_API_URL}/connect/google`}>
+              <Link
+                legacyBehavior
+                href={`${process.env.NEXT_PUBLIC_API_URL}/connect/google`}
+              >
                 <Button
                   disabled={loading}
                   className="w-58 mobile:w-60 bg-primary"
@@ -195,7 +198,7 @@ const Register: FC<RegisterProps> = () => {
             {/* Already have an account */}
             <div className="text-textColor my-3 flex flex-row items-center text-sm">
               Already have an account?
-              <Link href="/">
+              <Link scroll={false} href="/">
                 <a className="text-themeColorMain ml-1 font-semibold">Login</a>
               </Link>
             </div>

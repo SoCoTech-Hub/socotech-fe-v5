@@ -3,9 +3,7 @@ import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
 import getSelectedBursary from "@acme/snippets/functions/Bursary/getSelectedBursary";
-import {BursaryListing} from "@acme/ui";
-import {BursaryPost} from "@acme/ui";
-import { Button } from "@acme/ui";
+import { BursaryListing, BursaryPost, Button } from "@acme/ui";
 
 interface Bursary {
   id: string;
@@ -98,7 +96,7 @@ const Bursary = ({
           </div>
         </div>
         <div className="my-4 flex justify-end font-bold">
-          <Link href={`/bursaries`}>
+          <Link scroll={false} href="/bursaries">
             <Button className="bg-primary">Back</Button>
           </Link>
         </div>

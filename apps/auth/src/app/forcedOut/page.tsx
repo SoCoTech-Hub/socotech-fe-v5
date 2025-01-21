@@ -26,10 +26,13 @@ const ForcedOut: FC = () => {
           </>
         }
         buttons={[
-          <Link href="/" passHref key="log-in">
-            <a className="text-textColor bg-themeColorMain hover:text-textColorSecondary cursor-pointer rounded-md px-6 py-3 text-center">
-              Log In
-            </a>
+          <Link
+            href="/"
+            passHref
+            key="log-in"
+            className="text-textColor bg-themeColorMain hover:text-textColorSecondary cursor-pointer rounded-md px-6 py-3 text-center"
+          >
+            Log In
           </Link>,
         ]}
         background={`${baseUrl}/background2.png`}

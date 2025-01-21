@@ -3,9 +3,7 @@ import Link from "next/link";
 
 import { profileId } from "@acme/snippets/context/constants";
 import getSelectedQualification from "@acme/snippets/functions/qualificationResponses/getSelectedQualification";
-import { Button } from "@acme/ui";
-import { QualificationListing } from "@acme/ui";
-import { QualificationPost } from "@acme/ui";
+import { Button, QualificationListing, QualificationPost } from "@acme/ui";
 
 interface Qualification {
   id: string;
@@ -100,7 +98,7 @@ const Qualification = ({
           </div>
         </div>
         <div className="my-4 flex justify-end font-bold">
-          <Link href={`/qualifications`}>
+          <Link scroll={false} href={`/qualifications`}>
             <Button className="bg-primary">Back</Button>
           </Link>
         </div>

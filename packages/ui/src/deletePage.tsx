@@ -201,7 +201,7 @@ export const DeleteAccount = ({
 
             {/* Action Buttons */}
             <div className="flex justify-between">
-              <Link href="/account" passHref>
+              <Link scroll={false} href="/account" passHref>
                 <Button variant="outline">Cancel</Button>
               </Link>
               <AlertDialog>

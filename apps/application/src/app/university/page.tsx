@@ -41,7 +41,7 @@ const Applications: React.FC<ApplicationsProps> = ({
         />
         {/* //TODO: add image */}
         <div className="desktop:mt-5 laptop:mt-5 mobile:mt-4 flex justify-end font-bold">
-          <Link href={`/applications`}>
+          <Link scroll={false} href={`/applications`}>
             <Button className="bg-primary">Back</Button>
           </Link>
         </div>

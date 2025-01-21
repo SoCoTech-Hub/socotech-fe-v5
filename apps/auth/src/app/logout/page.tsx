@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 
 import logoutMain from "@acme/snippets/functions/logout";
-import { Button } from "@acme/ui";
-import { Page } from "@acme/ui";
+import { Button, Page } from "@acme/ui";
 
 const Logout: React.FC = () => {
   useEffect(() => {
@@ -25,7 +24,7 @@ const Logout: React.FC = () => {
           </div>
         }
         buttons={[
-          <Link href={"/"}>
+          <Link scroll={false} href={"/"}>
             <Button key="login-button" className="w-60 bg-primary">
               Log in
             </Button>

@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4">
           {/* Logo Section */}
-          <Link href={"/"}>
+          <Link scroll={false} href={"/"}>
             <a className="flex items-center">
               <Image src={logo} alt="Logo" width={40} height={40} />
             </a>
@@ -45,10 +45,13 @@ export const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
           {/* Desktop Navigation */}
           <nav className="hidden space-x-4 md:flex">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
-                  {item.label}
-                </a>
+              <Link
+                legacyBehavior
+                key={item.href}
+                href={item.href}
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+              >
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -89,13 +92,13 @@ export const Header: React.FC<HeaderProps> = ({ logo, navItems }) => {
         <div className="md:hidden">
           <div className="space-y-1 px-4 pb-3 pt-2">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900"
-                  onClick={toggleMobileMenu}
-                >
-                  {item.label}
-                </a>
+              <Link
+                key={item.href}
+                href={item.href}
+                legacyBehavior
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900"
+              >
+                <a onClick={toggleMobileMenu}>{item.label}</a>
               </Link>
             ))}
           </div>

@@ -28,10 +28,14 @@ export const AffiliateHomePage: React.FC = () => {
             </p>
             <div className="flex justify-center space-x-4">
               <Button asChild size="lg">
-                <Link href="/register">Register Now</Link>
+                <Link scroll={false} href="/register">
+                  Register Now
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/transactions">View Transactions</Link>
+                <Link scroll={false} href="/transactions">
+                  View Transactions
+                </Link>
               </Button>
             </div>
           </div>
@@ -65,7 +69,9 @@ export const AffiliateHomePage: React.FC = () => {
                   </CardContent>
                   <CardFooter>
                     <Button asChild>
-                      <Link href="/register">Register Now</Link>
+                      <Link scroll={false} href="/register">
+                        Register Now
+                      </Link>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -103,7 +109,9 @@ export const AffiliateHomePage: React.FC = () => {
                   </CardContent>
                   <CardFooter>
                     <Button asChild variant="outline">
-                      <Link href="/transactions">View Transactions</Link>
+                      <Link scroll={false} href="/transactions">
+                        View Transactions
+                      </Link>
                     </Button>
                   </CardFooter>
                 </Card>

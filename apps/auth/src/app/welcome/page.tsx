@@ -25,7 +25,6 @@ const Index: FC = () => {
 
   return (
     <>
-
       <div className="desktop:flex-row laptop:flex-row mobile:flex-col flex h-screen overflow-hidden">
         {/* Left Section */}
         <div className="mobile:w-full desktop:w-1/2 laptop:w-1/2 relative h-full">
@@ -83,7 +82,7 @@ const Index: FC = () => {
               </h6>
 
               <div className="mb-3 mt-3 flex justify-center py-2">
-                <Link href="/">
+                <Link scroll={false} href="/">
                   <span className="bg-themeColorMain w-64 cursor-pointer rounded-full py-2 text-center font-bold text-white">
                     Login
                   </span>

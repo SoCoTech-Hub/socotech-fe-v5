@@ -2,16 +2,33 @@ import { useAppContext } from "../context/AppContext";
 
 // User
 export const useEmail = (): string => {
-  const { user } = useAppContext();
-  return user?.attributes.email || "";
+  console.log("useEmail");
+  try {
+    const { user } = useAppContext();
+    return user?.attributes.email || "";
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
 };
 export const useRole = (): string => {
-  const { user } = useAppContext();
-  return user?.attributes.role || "";
+  console.log("useRole");
+  try {
+    const { user } = useAppContext();
+    return user?.attributes.role || "";
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
 };
 export const useUserId = (): string => {
-  const { user } = useAppContext();
-  return user?.id || "";
+  try {
+    const { user } = useAppContext();
+    return user?.id || "";
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
 };
 
 // Profile

@@ -2,9 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { baseUrl } from "@acme/snippets/context/constants";
-import { Button } from "@acme/ui";
-import {HLSVideoPlayer} from "@acme/ui";
-import { NoteEditor } from "@acme/ui";
+import { Button, HLSVideoPlayer, NoteEditor } from "@acme/ui";
 
 const CategoryDisplay: React.FC<CategoryDisplayProps> = ({ show }) => {
   return (
@@ -23,7 +21,7 @@ const CategoryDisplay: React.FC<CategoryDisplayProps> = ({ show }) => {
         >
           Take notes
         </Button>
-        <Link href={`/shows/category/${show?.showCategory?.id}`}>
+        <Link scroll={false} href={`/shows/category/${show?.showCategory?.id}`}>
           <Button className="bg-primary">Back to Shows</Button>
         </Link>
 

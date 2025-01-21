@@ -44,10 +44,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
 // Custom hook to use the app context
 export function useAppContext() {
-  const context = useContext(AppContext);
-  console.log({ context });
-  if (!context) {
-    throw new Error("useAppContext must be used within an AppProvider");
+  try {
+    const context = useContext(AppContext);
+    if (!context) {
+      throw new Error("useAppContext must be used within an AppProvider");
+    }
+    return context;
+  } catch (error) {
+    console.log(error);
+    return { organization: null, profile: null, user: null, isDark: false };
   }
-  return context;
 }
