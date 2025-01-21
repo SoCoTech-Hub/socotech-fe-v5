@@ -15,13 +15,11 @@ interface CoverProps {
   avatarImage?: string;
   user?: { id?: string; profile: { id?: string } };
   updateImages?: ({
-    avatarImage,
-    bannerImage,
+    updatedImages,
   }: {
-    avatarImage: string;
-    bannerImage: string;
+    updatedImages: { avatarImage?: string; bannerImage?: string };
   }) => void;
-  uploadImage?: (e: File) => void;
+  uploadImage?: (e: File) => string;
 }
 export function Cover(props: CoverProps) {
   const [bannerImage, setBannerImage] = useState(
@@ -62,10 +60,12 @@ export function Cover(props: CoverProps) {
         reader.onload = (e) => setImage(e.target?.result as string);
         reader.readAsDataURL(file);
 
-        props.uploadImage?.(file);
+        const updatedImages = props.uploadImage?.(file);
         props.updateImages?.({
-          avatarImage: avatarImage,
-          bannerImage: bannerImage,
+          updatedImages:
+            uploadType === "profilePic"
+              ? { avatarImage: updatedImages }
+              : { bannerImage: updatedImages },
         });
         setMessage(
           `${uploadType === "profilePic" ? "Profile picture" : "Banner"} uploaded successfully!`,
@@ -91,7 +91,7 @@ export function Cover(props: CoverProps) {
       <div className="relative">
         {/* Banner */}
         <div className="h-60 overflow-hidden rounded-t-xl">
-          <img
+          <Image
             src={bannerImage}
             alt="Profile Banner"
             width={1000}
