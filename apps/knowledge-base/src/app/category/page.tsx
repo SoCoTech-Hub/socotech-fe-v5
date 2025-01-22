@@ -6,13 +6,13 @@ import { FetchKnowledgeBaseCategory } from "@acme/snippets/functions/knowledgeBa
 import { ArticleFilter, DigilibCategories } from "@acme/ui";
 
 interface Category {
-  //TODO: import interface
+  //TODO:replace with exported interfaces
   id: string;
   name: string;
 }
 
 interface Article {
-  //TODO: import interface
+  //TODO:replace with exported interfaces
   id: string;
   link: string;
   name: string;
@@ -23,9 +23,23 @@ interface Article {
   grades: { id: string; name: string }[];
 }
 
-const CategoryDisplay = () => {
-  const [articleList, setArticleList] = useState<Article[]>();
-  const [category, setCategory] = useState<Category>();
+interface Filters {
+  //TODO:replace with exported interfaces
+  grades: { id: string; name: string }[];
+  subjects: { id: string; name: string }[];
+  languages: { id: string; name: string }[];
+  releaseYears: { id: string; name: string }[];
+}
+
+const CategoryDisplay: React.FC = () => {
+  const [articleList, setArticleList] = useState<Article[]>([]);
+  const [category, setCategory] = useState<Category | undefined>();
+  const [filters, setFilters] = useState<Filters>({
+    grades: [],
+    subjects: [],
+    languages: [],
+    releaseYears: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +50,7 @@ const CategoryDisplay = () => {
           organizationId,
         );
 
-        // Transform data to match Article[] if needed
+        // Transform data to match Article[]
         const transformedArticles: Article[] = res.knowledgeBases.map(
           (kb: any) => ({
             id: kb.id,
@@ -67,33 +81,64 @@ const CategoryDisplay = () => {
           const fetchedCategory = await FetchKnowledgeBaseCategory(category.id);
           setCategory(fetchedCategory);
         }
+
+        // Set filters
+        const grades = Array.from(
+          new Set(transformedArticles.flatMap((article) => article.grades)),
+        );
+        const subjects = Array.from(
+          new Set(transformedArticles.map((article) => article.subject)),
+        );
+        const languages = Array.from(
+          new Set(
+            transformedArticles.map((article) => ({
+              id: article.language,
+              name: article.language,
+            })),
+          ),
+        );
+        const releaseYears = Array.from(
+          new Set(
+            transformedArticles.map((article) => ({
+              id: article.releaseYear.toString(),
+              name: article.releaseYear.toString(),
+            })),
+          ),
+        );
+
+        setFilters({ grades, subjects, languages, releaseYears });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [category?.id]); // Re-run the effect when the category ID changes
+  }, [category?.id]);
 
   return (
     <div className="col row">
       <div className="gx-5 gy-4 mobile:px-1 space-y-10">
-        {articleList?.length > 0 && (
+        {articleList.length > 0 && (
           <div>
             <ArticleFilter
               articleList={articleList}
               setArticleList={setArticleList}
-              organizationId={organizationId}
-              categoryId={category?.id}
+              filters={filters}
             />
           </div>
         )}
-        <div>
-          <DigilibCategories //TODO: @Garreth, should use a different component for this
-            articles={articleList}
-            category={category}
-            filters={filters}
-          />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {articleList.map((article) => (
+            <DigilibCategories
+              key={article.id}
+              img="default_image.jpg" // Use a default or dynamic image URL
+              imgAlt={`Image for ${article.name}`}
+              title={article.name}
+              description={`Subject: ${article.subject.name}`}
+              link={article.link}
+              badge={`Year: ${article.releaseYear}`}
+            />
+          ))}
         </div>
         <div className="mobile:h-16" />
       </div>

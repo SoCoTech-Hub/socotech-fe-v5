@@ -15,7 +15,7 @@ interface Note {
   };
 }
 
-interface NoteSearchProps {
+export interface NoteSearchProps {
   notes: Note[];
   setNoteList: (filteredNotes: Note[]) => void;
   placeholder?: string;
