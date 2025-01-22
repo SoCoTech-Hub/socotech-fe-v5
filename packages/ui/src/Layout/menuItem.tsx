@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import {
   Collapsible,
@@ -14,6 +14,7 @@ interface MenuItemProps {
   items?: { name: string; href: string }[]; // Optional nested items
   activeLink: string;
   onClick?: (href: string) => void;
+  isExpanded: boolean;
 }
 
 export function MenuItem({
@@ -23,19 +24,20 @@ export function MenuItem({
   items,
   activeLink,
   onClick,
+  isExpanded,
 }: MenuItemProps) {
   // Check if the item has nested items
   const isExpandable = items && items.length > 0;
 
   if (isExpandable) {
-    return (
-      <Collapsible>
+    return isExpanded ? (
+      <Collapsible aria-expanded={isExpanded}>
         <CollapsibleTrigger className="flex w-full items-center justify-between py-2 hover:text-primary">
           <div className="flex items-center">
             {Icon && <Icon className="mr-2 h-5 w-5" />}
             <span>{name}</span>
           </div>
-          <ChevronRight className="h-5 w-5 transition-transform duration-200" />
+          <ChevronDown className="h-5 w-5 transition-transform duration-200" />
         </CollapsibleTrigger>
         <CollapsibleContent className="ml-7 mt-1 space-y-1">
           {items.map((subItem) => (
@@ -52,11 +54,15 @@ export function MenuItem({
           ))}
         </CollapsibleContent>
       </Collapsible>
+    ) : (
+      <div className="flex items-center">
+        {Icon && <Icon className="mr-2 h-5 w-5" />}
+      </div>
     );
   }
 
   // Render a single-level item
-  return (
+  return isExpanded ? (
     <button
       onClick={() => href && onClick?.(href)}
       className={cn(
@@ -71,5 +77,7 @@ export function MenuItem({
         {name}
       </a>
     </button>
+  ) : (
+    <a href={href}>{Icon && <Icon className="mr-2 h-5 w-5" />}</a>
   );
 }

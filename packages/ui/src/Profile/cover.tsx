@@ -25,7 +25,7 @@ export function Cover(props: CoverProps) {
   const [bannerImage, setBannerImage] = useState(
     props.bannerImage || "https://placehold.co/100",
   );
-  console.log({ bannerImage });
+
   const [avatarImage, setAvatarImage] = useState(
     props.avatarImage || "https://placehold.co/100",
   );

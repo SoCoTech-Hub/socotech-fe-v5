@@ -21,5 +21,8 @@
   "devDependencies": {
     "@acme/tsconfig": "workspace:*",
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "lucide-react": "catalog:ui"
   }
 }
