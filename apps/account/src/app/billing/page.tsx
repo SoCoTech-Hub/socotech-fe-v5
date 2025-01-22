@@ -187,9 +187,7 @@ const Billing: React.FC = () => {
           updateImages={UpdateImages}
           uploadImage={UploadImages}
         />
-        <div className="ml-2 mr-2 mt-4 pb-3">
-          <hr className="bg-compBg" />
-        </div>
+        <div className="mx-4 mt-8 pb-3" />
       </div>
       <div className="my-4 flex gap-x-4">
         <Link scroll={false} href="/invoice">

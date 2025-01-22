@@ -85,7 +85,7 @@ const AccountSettings: React.FC = () => {
 
   return (
     <div className="mb-24 mt-1.5 w-full">
-      <div className="bg-compBg shadow-menu mb-4 rounded-lg pl-3 pr-3 pt-3">
+      <div className="bg-compBg shadow-menu mb-4 rounded-lg px-3 pt-3">
         <Cover
           user={{ id: userId, profile: { id: profileId } }}
           avatarImage={ProfilePic}
